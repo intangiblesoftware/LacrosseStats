@@ -1,0 +1,538 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B9C7A7351BADA3B30082DA8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A7341BADA3B30082DA8B /* main.m */; };
+		B9C7A7381BADA3B30082DA8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A7371BADA3B30082DA8B /* AppDelegate.m */; };
+		B9C7A73B1BADA3B30082DA8B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A73A1BADA3B30082DA8B /* ViewController.m */; };
+		B9C7A73E1BADA3B30082DA8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C7A73C1BADA3B30082DA8B /* Main.storyboard */; };
+		B9C7A7411BADA3B30082DA8B /* ScorebookLite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A73F1BADA3B30082DA8B /* ScorebookLite.xcdatamodeld */; };
+		B9C7A7431BADA3B30082DA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C7A7421BADA3B30082DA8B /* Assets.xcassets */; };
+		B9C7A7461BADA3B30082DA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C7A7441BADA3B30082DA8B /* LaunchScreen.storyboard */; };
+		B9C7A7511BADA3B30082DA8B /* ScorebookLiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A7501BADA3B30082DA8B /* ScorebookLiteTests.m */; };
+		B9C7A75C1BADA3B30082DA8B /* ScorebookLiteUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A75B1BADA3B30082DA8B /* ScorebookLiteUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B9C7A74D1BADA3B30082DA8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9C7A7281BADA3B30082DA8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9C7A72F1BADA3B30082DA8B;
+			remoteInfo = ScorebookLite;
+		};
+		B9C7A7581BADA3B30082DA8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9C7A7281BADA3B30082DA8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B9C7A72F1BADA3B30082DA8B;
+			remoteInfo = ScorebookLite;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B9C7A7301BADA3B30082DA8B /* ScorebookLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScorebookLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C7A7341BADA3B30082DA8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B9C7A7361BADA3B30082DA8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B9C7A7371BADA3B30082DA8B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B9C7A7391BADA3B30082DA8B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B9C7A73A1BADA3B30082DA8B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B9C7A73D1BADA3B30082DA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B9C7A7401BADA3B30082DA8B /* ScorebookLite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScorebookLite.xcdatamodel; sourceTree = "<group>"; };
+		B9C7A7421BADA3B30082DA8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B9C7A7451BADA3B30082DA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B9C7A7471BADA3B30082DA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9C7A74C1BADA3B30082DA8B /* ScorebookLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScorebookLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C7A7501BADA3B30082DA8B /* ScorebookLiteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScorebookLiteTests.m; sourceTree = "<group>"; };
+		B9C7A7521BADA3B30082DA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9C7A7571BADA3B30082DA8B /* ScorebookLiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScorebookLiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9C7A75B1BADA3B30082DA8B /* ScorebookLiteUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScorebookLiteUITests.m; sourceTree = "<group>"; };
+		B9C7A75D1BADA3B30082DA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B9C7A72D1BADA3B30082DA8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C7A7491BADA3B30082DA8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C7A7541BADA3B30082DA8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B9C7A7271BADA3B30082DA8B = {
+			isa = PBXGroup;
+			children = (
+				B9C7A7321BADA3B30082DA8B /* ScorebookLite */,
+				B9C7A74F1BADA3B30082DA8B /* ScorebookLiteTests */,
+				B9C7A75A1BADA3B30082DA8B /* ScorebookLiteUITests */,
+				B9C7A7311BADA3B30082DA8B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B9C7A7311BADA3B30082DA8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9C7A7301BADA3B30082DA8B /* ScorebookLite.app */,
+				B9C7A74C1BADA3B30082DA8B /* ScorebookLiteTests.xctest */,
+				B9C7A7571BADA3B30082DA8B /* ScorebookLiteUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B9C7A7321BADA3B30082DA8B /* ScorebookLite */ = {
+			isa = PBXGroup;
+			children = (
+				B9C7A7361BADA3B30082DA8B /* AppDelegate.h */,
+				B9C7A7371BADA3B30082DA8B /* AppDelegate.m */,
+				B9C7A7391BADA3B30082DA8B /* ViewController.h */,
+				B9C7A73A1BADA3B30082DA8B /* ViewController.m */,
+				B9C7A73C1BADA3B30082DA8B /* Main.storyboard */,
+				B9C7A7421BADA3B30082DA8B /* Assets.xcassets */,
+				B9C7A7441BADA3B30082DA8B /* LaunchScreen.storyboard */,
+				B9C7A7471BADA3B30082DA8B /* Info.plist */,
+				B9C7A73F1BADA3B30082DA8B /* ScorebookLite.xcdatamodeld */,
+				B9C7A7331BADA3B30082DA8B /* Supporting Files */,
+			);
+			path = ScorebookLite;
+			sourceTree = "<group>";
+		};
+		B9C7A7331BADA3B30082DA8B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B9C7A7341BADA3B30082DA8B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B9C7A74F1BADA3B30082DA8B /* ScorebookLiteTests */ = {
+			isa = PBXGroup;
+			children = (
+				B9C7A7501BADA3B30082DA8B /* ScorebookLiteTests.m */,
+				B9C7A7521BADA3B30082DA8B /* Info.plist */,
+			);
+			path = ScorebookLiteTests;
+			sourceTree = "<group>";
+		};
+		B9C7A75A1BADA3B30082DA8B /* ScorebookLiteUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B9C7A75B1BADA3B30082DA8B /* ScorebookLiteUITests.m */,
+				B9C7A75D1BADA3B30082DA8B /* Info.plist */,
+			);
+			path = ScorebookLiteUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B9C7A72F1BADA3B30082DA8B /* ScorebookLite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C7A7601BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "ScorebookLite" */;
+			buildPhases = (
+				B9C7A72C1BADA3B30082DA8B /* Sources */,
+				B9C7A72D1BADA3B30082DA8B /* Frameworks */,
+				B9C7A72E1BADA3B30082DA8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScorebookLite;
+			productName = ScorebookLite;
+			productReference = B9C7A7301BADA3B30082DA8B /* ScorebookLite.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B9C7A74B1BADA3B30082DA8B /* ScorebookLiteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C7A7631BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "ScorebookLiteTests" */;
+			buildPhases = (
+				B9C7A7481BADA3B30082DA8B /* Sources */,
+				B9C7A7491BADA3B30082DA8B /* Frameworks */,
+				B9C7A74A1BADA3B30082DA8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B9C7A74E1BADA3B30082DA8B /* PBXTargetDependency */,
+			);
+			name = ScorebookLiteTests;
+			productName = ScorebookLiteTests;
+			productReference = B9C7A74C1BADA3B30082DA8B /* ScorebookLiteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B9C7A7561BADA3B30082DA8B /* ScorebookLiteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9C7A7661BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "ScorebookLiteUITests" */;
+			buildPhases = (
+				B9C7A7531BADA3B30082DA8B /* Sources */,
+				B9C7A7541BADA3B30082DA8B /* Frameworks */,
+				B9C7A7551BADA3B30082DA8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B9C7A7591BADA3B30082DA8B /* PBXTargetDependency */,
+			);
+			name = ScorebookLiteUITests;
+			productName = ScorebookLiteUITests;
+			productReference = B9C7A7571BADA3B30082DA8B /* ScorebookLiteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9C7A7281BADA3B30082DA8B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Jim Dabrowski";
+				TargetAttributes = {
+					B9C7A72F1BADA3B30082DA8B = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					B9C7A74B1BADA3B30082DA8B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = B9C7A72F1BADA3B30082DA8B;
+					};
+					B9C7A7561BADA3B30082DA8B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = B9C7A72F1BADA3B30082DA8B;
+					};
+				};
+			};
+			buildConfigurationList = B9C7A72B1BADA3B30082DA8B /* Build configuration list for PBXProject "ScorebookLite" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B9C7A7271BADA3B30082DA8B;
+			productRefGroup = B9C7A7311BADA3B30082DA8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B9C7A72F1BADA3B30082DA8B /* ScorebookLite */,
+				B9C7A74B1BADA3B30082DA8B /* ScorebookLiteTests */,
+				B9C7A7561BADA3B30082DA8B /* ScorebookLiteUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B9C7A72E1BADA3B30082DA8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C7A7461BADA3B30082DA8B /* LaunchScreen.storyboard in Resources */,
+				B9C7A7431BADA3B30082DA8B /* Assets.xcassets in Resources */,
+				B9C7A73E1BADA3B30082DA8B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C7A74A1BADA3B30082DA8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C7A7551BADA3B30082DA8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B9C7A72C1BADA3B30082DA8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C7A73B1BADA3B30082DA8B /* ViewController.m in Sources */,
+				B9C7A7381BADA3B30082DA8B /* AppDelegate.m in Sources */,
+				B9C7A7351BADA3B30082DA8B /* main.m in Sources */,
+				B9C7A7411BADA3B30082DA8B /* ScorebookLite.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C7A7481BADA3B30082DA8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C7A7511BADA3B30082DA8B /* ScorebookLiteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C7A7531BADA3B30082DA8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9C7A75C1BADA3B30082DA8B /* ScorebookLiteUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B9C7A74E1BADA3B30082DA8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9C7A72F1BADA3B30082DA8B /* ScorebookLite */;
+			targetProxy = B9C7A74D1BADA3B30082DA8B /* PBXContainerItemProxy */;
+		};
+		B9C7A7591BADA3B30082DA8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B9C7A72F1BADA3B30082DA8B /* ScorebookLite */;
+			targetProxy = B9C7A7581BADA3B30082DA8B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B9C7A73C1BADA3B30082DA8B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9C7A73D1BADA3B30082DA8B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B9C7A7441BADA3B30082DA8B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9C7A7451BADA3B30082DA8B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B9C7A75E1BADA3B30082DA8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B9C7A75F1BADA3B30082DA8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B9C7A7611BADA3B30082DA8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ScorebookLite/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = INSO.ScorebookLite;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B9C7A7621BADA3B30082DA8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ScorebookLite/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = INSO.ScorebookLite;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B9C7A7641BADA3B30082DA8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ScorebookLiteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = INSO.ScorebookLiteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScorebookLite.app/ScorebookLite";
+			};
+			name = Debug;
+		};
+		B9C7A7651BADA3B30082DA8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ScorebookLiteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = INSO.ScorebookLiteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScorebookLite.app/ScorebookLite";
+			};
+			name = Release;
+		};
+		B9C7A7671BADA3B30082DA8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ScorebookLiteUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = INSO.ScorebookLiteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ScorebookLite;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		B9C7A7681BADA3B30082DA8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ScorebookLiteUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = INSO.ScorebookLiteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ScorebookLite;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B9C7A72B1BADA3B30082DA8B /* Build configuration list for PBXProject "ScorebookLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C7A75E1BADA3B30082DA8B /* Debug */,
+				B9C7A75F1BADA3B30082DA8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9C7A7601BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "ScorebookLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C7A7611BADA3B30082DA8B /* Debug */,
+				B9C7A7621BADA3B30082DA8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B9C7A7631BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "ScorebookLiteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C7A7641BADA3B30082DA8B /* Debug */,
+				B9C7A7651BADA3B30082DA8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B9C7A7661BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "ScorebookLiteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9C7A7671BADA3B30082DA8B /* Debug */,
+				B9C7A7681BADA3B30082DA8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B9C7A73F1BADA3B30082DA8B /* ScorebookLite.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B9C7A7401BADA3B30082DA8B /* ScorebookLite.xcdatamodel */,
+			);
+			currentVersion = B9C7A7401BADA3B30082DA8B /* ScorebookLite.xcdatamodel */;
+			path = ScorebookLite.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B9C7A7281BADA3B30082DA8B /* Project object */;
+}
