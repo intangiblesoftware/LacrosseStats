@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B9C7A7351BADA3B30082DA8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A7341BADA3B30082DA8B /* main.m */; };
-		B9C7A7381BADA3B30082DA8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A7371BADA3B30082DA8B /* AppDelegate.m */; };
-		B9C7A73B1BADA3B30082DA8B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A73A1BADA3B30082DA8B /* ViewController.m */; };
-		B9C7A73E1BADA3B30082DA8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C7A73C1BADA3B30082DA8B /* Main.storyboard */; };
-		B9C7A7411BADA3B30082DA8B /* ScorebookLite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A73F1BADA3B30082DA8B /* ScorebookLite.xcdatamodeld */; };
-		B9C7A7431BADA3B30082DA8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C7A7421BADA3B30082DA8B /* Assets.xcassets */; };
-		B9C7A7461BADA3B30082DA8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9C7A7441BADA3B30082DA8B /* LaunchScreen.storyboard */; };
+		B99FDD521BB46865006FB373 /* ScorebookLite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD501BB46865006FB373 /* ScorebookLite.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		B99FDD561BB46881006FB373 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD551BB46881006FB373 /* ViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B99FDD5F1BB46907006FB373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD5E1BB46907006FB373 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
+		B99FDD651BB46957006FB373 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD621BB46957006FB373 /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		B99FDD661BB46957006FB373 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD631BB46957006FB373 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		B99FDD671BB46957006FB373 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD641BB46957006FB373 /* main.m */; settings = {ASSET_TAGS = (); }; };
+		B99FDD6D1BB46A12006FB373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD691BB46A12006FB373 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		B99FDD6E1BB46A12006FB373 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD6B1BB46A12006FB373 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		B99FDD701BB47908006FB373 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD6F1BB47908006FB373 /* Events.plist */; settings = {ASSET_TAGS = (); }; };
+		B99FDD741BB47D6A006FB373 /* Human in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD721BB47D6A006FB373 /* Human */; settings = {ASSET_TAGS = (); }; };
+		B99FDD751BB47D6A006FB373 /* Machine in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD731BB47D6A006FB373 /* Machine */; settings = {ASSET_TAGS = (); }; };
+		B99FDD781BB4A272006FB373 /* INSOGameCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD771BB4A272006FB373 /* INSOGameCollectionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B99FDD7B1BB4A6F8006FB373 /* INSOGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD7A1BB4A6F8006FB373 /* INSOGameCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		B9C7A7511BADA3B30082DA8B /* ScorebookLiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A7501BADA3B30082DA8B /* ScorebookLiteTests.m */; };
 		B9C7A75C1BADA3B30082DA8B /* ScorebookLiteUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A75B1BADA3B30082DA8B /* ScorebookLiteUITests.m */; };
 /* End PBXBuildFile section */
@@ -36,17 +42,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B99FDD511BB46865006FB373 /* ScorebookLite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScorebookLite.xcdatamodel; sourceTree = "<group>"; };
+		B99FDD541BB46881006FB373 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B99FDD551BB46881006FB373 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B99FDD5E1BB46907006FB373 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B99FDD611BB46957006FB373 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B99FDD621BB46957006FB373 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B99FDD631BB46957006FB373 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B99FDD641BB46957006FB373 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B99FDD6A1BB46A12006FB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B99FDD6C1BB46A12006FB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B99FDD6F1BB47908006FB373 /* Events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
+		B99FDD711BB47A4A006FB373 /* ScorebookLiteEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScorebookLiteEnum.h; sourceTree = "<group>"; };
+		B99FDD721BB47D6A006FB373 /* Human */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Human; sourceTree = "<group>"; };
+		B99FDD731BB47D6A006FB373 /* Machine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Machine; sourceTree = "<group>"; };
+		B99FDD761BB4A272006FB373 /* INSOGameCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameCollectionViewController.h; sourceTree = "<group>"; };
+		B99FDD771BB4A272006FB373 /* INSOGameCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameCollectionViewController.m; sourceTree = "<group>"; };
+		B99FDD791BB4A6F8006FB373 /* INSOGameCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameCollectionViewCell.h; sourceTree = "<group>"; };
+		B99FDD7A1BB4A6F8006FB373 /* INSOGameCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameCollectionViewCell.m; sourceTree = "<group>"; };
 		B9C7A7301BADA3B30082DA8B /* ScorebookLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScorebookLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9C7A7341BADA3B30082DA8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B9C7A7361BADA3B30082DA8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B9C7A7371BADA3B30082DA8B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B9C7A7391BADA3B30082DA8B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B9C7A73A1BADA3B30082DA8B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		B9C7A73D1BADA3B30082DA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B9C7A7401BADA3B30082DA8B /* ScorebookLite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScorebookLite.xcdatamodel; sourceTree = "<group>"; };
-		B9C7A7421BADA3B30082DA8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B9C7A7451BADA3B30082DA8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B9C7A7471BADA3B30082DA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C7A74C1BADA3B30082DA8B /* ScorebookLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScorebookLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9C7A7501BADA3B30082DA8B /* ScorebookLiteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScorebookLiteTests.m; sourceTree = "<group>"; };
 		B9C7A7521BADA3B30082DA8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,6 +94,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B99FDD4F1BB46865006FB373 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B99FDD721BB47D6A006FB373 /* Human */,
+				B99FDD731BB47D6A006FB373 /* Machine */,
+				B99FDD501BB46865006FB373 /* ScorebookLite.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B99FDD531BB46881006FB373 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B99FDD541BB46881006FB373 /* ViewController.h */,
+				B99FDD551BB46881006FB373 /* ViewController.m */,
+				B99FDD761BB4A272006FB373 /* INSOGameCollectionViewController.h */,
+				B99FDD771BB4A272006FB373 /* INSOGameCollectionViewController.m */,
+			);
+			name = "View Controllers";
+			path = "ScorebookLite/View Controllers";
+			sourceTree = SOURCE_ROOT;
+		};
+		B99FDD5D1BB46907006FB373 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B99FDD5E1BB46907006FB373 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B99FDD601BB46957006FB373 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B99FDD6F1BB47908006FB373 /* Events.plist */,
+				B99FDD711BB47A4A006FB373 /* ScorebookLiteEnum.h */,
+				B99FDD611BB46957006FB373 /* AppDelegate.h */,
+				B99FDD621BB46957006FB373 /* AppDelegate.m */,
+				B99FDD631BB46957006FB373 /* Info.plist */,
+				B99FDD641BB46957006FB373 /* main.m */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B99FDD681BB46A12006FB373 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B99FDD691BB46A12006FB373 /* LaunchScreen.storyboard */,
+				B99FDD6B1BB46A12006FB373 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B9C7A7271BADA3B30082DA8B = {
 			isa = PBXGroup;
 			children = (
@@ -103,26 +169,15 @@
 		B9C7A7321BADA3B30082DA8B /* ScorebookLite */ = {
 			isa = PBXGroup;
 			children = (
-				B9C7A7361BADA3B30082DA8B /* AppDelegate.h */,
-				B9C7A7371BADA3B30082DA8B /* AppDelegate.m */,
-				B9C7A7391BADA3B30082DA8B /* ViewController.h */,
-				B9C7A73A1BADA3B30082DA8B /* ViewController.m */,
-				B9C7A73C1BADA3B30082DA8B /* Main.storyboard */,
-				B9C7A7421BADA3B30082DA8B /* Assets.xcassets */,
-				B9C7A7441BADA3B30082DA8B /* LaunchScreen.storyboard */,
-				B9C7A7471BADA3B30082DA8B /* Info.plist */,
-				B9C7A73F1BADA3B30082DA8B /* ScorebookLite.xcdatamodeld */,
-				B9C7A7331BADA3B30082DA8B /* Supporting Files */,
+				B99FDD5D1BB46907006FB373 /* Assets */,
+				B99FDD4F1BB46865006FB373 /* Model */,
+				B99FDD601BB46957006FB373 /* Supporting Files */,
+				B99FDD531BB46881006FB373 /* View Controllers */,
+				B99FDD681BB46A12006FB373 /* Views */,
+				B99FDD791BB4A6F8006FB373 /* INSOGameCollectionViewCell.h */,
+				B99FDD7A1BB4A6F8006FB373 /* INSOGameCollectionViewCell.m */,
 			);
 			path = ScorebookLite;
-			sourceTree = "<group>";
-		};
-		B9C7A7331BADA3B30082DA8B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B9C7A7341BADA3B30082DA8B /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B9C7A74F1BADA3B30082DA8B /* ScorebookLiteTests */ = {
@@ -205,11 +260,13 @@
 		B9C7A7281BADA3B30082DA8B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = INSO;
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Jim Dabrowski";
+				ORGANIZATIONNAME = "Intangible Software";
 				TargetAttributes = {
 					B9C7A72F1BADA3B30082DA8B = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = CRBB3K29X3;
 					};
 					B9C7A74B1BADA3B30082DA8B = {
 						CreatedOnToolsVersion = 7.0;
@@ -246,9 +303,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9C7A7461BADA3B30082DA8B /* LaunchScreen.storyboard in Resources */,
-				B9C7A7431BADA3B30082DA8B /* Assets.xcassets in Resources */,
-				B9C7A73E1BADA3B30082DA8B /* Main.storyboard in Resources */,
+				B99FDD751BB47D6A006FB373 /* Machine in Resources */,
+				B99FDD741BB47D6A006FB373 /* Human in Resources */,
+				B99FDD701BB47908006FB373 /* Events.plist in Resources */,
+				B99FDD6D1BB46A12006FB373 /* LaunchScreen.storyboard in Resources */,
+				B99FDD661BB46957006FB373 /* Info.plist in Resources */,
+				B99FDD5F1BB46907006FB373 /* Assets.xcassets in Resources */,
+				B99FDD6E1BB46A12006FB373 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,10 +334,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9C7A73B1BADA3B30082DA8B /* ViewController.m in Sources */,
-				B9C7A7381BADA3B30082DA8B /* AppDelegate.m in Sources */,
-				B9C7A7351BADA3B30082DA8B /* main.m in Sources */,
-				B9C7A7411BADA3B30082DA8B /* ScorebookLite.xcdatamodeld in Sources */,
+				B99FDD781BB4A272006FB373 /* INSOGameCollectionViewController.m in Sources */,
+				B99FDD561BB46881006FB373 /* ViewController.m in Sources */,
+				B99FDD521BB46865006FB373 /* ScorebookLite.xcdatamodeld in Sources */,
+				B99FDD671BB46957006FB373 /* main.m in Sources */,
+				B99FDD651BB46957006FB373 /* AppDelegate.m in Sources */,
+				B99FDD7B1BB4A6F8006FB373 /* INSOGameCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,20 +375,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B9C7A73C1BADA3B30082DA8B /* Main.storyboard */ = {
+		B99FDD691BB46A12006FB373 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B9C7A73D1BADA3B30082DA8B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B9C7A7441BADA3B30082DA8B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B9C7A7451BADA3B30082DA8B /* Base */,
+				B99FDD6A1BB46A12006FB373 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B99FDD6B1BB46A12006FB373 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B99FDD6C1BB46A12006FB373 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -417,7 +480,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ScorebookLite/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/ScorebookLite/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = INSO.ScorebookLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,7 +492,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ScorebookLite/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/ScorebookLite/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = INSO.ScorebookLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -502,6 +567,7 @@
 				B9C7A7621BADA3B30082DA8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9C7A7631BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "ScorebookLiteTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +576,7 @@
 				B9C7A7651BADA3B30082DA8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9C7A7661BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "ScorebookLiteUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,16 +585,17 @@
 				B9C7A7681BADA3B30082DA8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B9C7A73F1BADA3B30082DA8B /* ScorebookLite.xcdatamodeld */ = {
+		B99FDD501BB46865006FB373 /* ScorebookLite.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B9C7A7401BADA3B30082DA8B /* ScorebookLite.xcdatamodel */,
+				B99FDD511BB46865006FB373 /* ScorebookLite.xcdatamodel */,
 			);
-			currentVersion = B9C7A7401BADA3B30082DA8B /* ScorebookLite.xcdatamodel */;
+			currentVersion = B99FDD511BB46865006FB373 /* ScorebookLite.xcdatamodel */;
 			path = ScorebookLite.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>EventCode</key>
+		<integer>101</integer>
+		<key>EventTitle</key>
+		<string>Goal</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>102</integer>
+		<key>EventTitle</key>
+		<string>Assist</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>103</integer>
+		<key>EventTitle</key>
+		<string>Save</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>104</integer>
+		<key>EventTitle</key>
+		<string>Groundball</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>105</integer>
+		<key>EventTitle</key>
+		<string>Faceoff won</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>106</integer>
+		<key>EventTitle</key>
+		<string>Faceoff lost</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>107</integer>
+		<key>EventTitle</key>
+		<string>Shot</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>108</integer>
+		<key>EventTitle</key>
+		<string>Clear successful</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>109</integer>
+		<key>EventTitle</key>
+		<string>Clear failed</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>110</integer>
+		<key>EventTitle</key>
+		<string>Turnover</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>111</integer>
+		<key>EventTitle</key>
+		<string>Caused turnover</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>112</integer>
+		<key>EventTitle</key>
+		<string>Time out</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>113</integer>
+		<key>EventTitle</key>
+		<string>Entered game</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>114</integer>
+		<key>EventTitle</key>
+		<string>Left game</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>115</integer>
+		<key>EventTitle</key>
+		<string>Extra-man opportunity</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>116</integer>
+		<key>EventTitle</key>
+		<string>Goal allowed</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>117</integer>
+		<key>EventTitle</key>
+		<string>Shot on goal</string>
+			<key>CategoryCode</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>201</integer>
+		<key>EventTitle</key>
+		<string>Cross check</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>202</integer>
+		<key>EventTitle</key>
+		<string>Illegal body check</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>203</integer>
+		<key>EventTitle</key>
+		<string>Check involving head or neck</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>204</integer>
+		<key>EventTitle</key>
+		<string>Illegal crosse</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>205</integer>
+		<key>EventTitle</key>
+		<string>Use of illegal equipment</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>206</integer>
+		<key>EventTitle</key>
+		<string>Slashing</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>207</integer>
+		<key>EventTitle</key>
+		<string>Tripping</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>208</integer>
+		<key>EventTitle</key>
+		<string>Unnecessary roughness</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>209</integer>
+		<key>EventTitle</key>
+		<string>Unsportsmanlike conduct</string>
+			<key>CategoryCode</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>301</integer>
+		<key>EventTitle</key>
+		<string>Crease violation</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>302</integer>
+		<key>EventTitle</key>
+		<string>Goalkeeper interference</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>303</integer>
+		<key>EventTitle</key>
+		<string>Holding</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>304</integer>
+		<key>EventTitle</key>
+		<string>Illegal offensive screening</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>305</integer>
+		<key>EventTitle</key>
+		<string>Illegal procedure</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>306</integer>
+		<key>EventTitle</key>
+		<string>Conduct foul</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>307</integer>
+		<key>EventTitle</key>
+		<string>Interference</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>308</integer>
+		<key>EventTitle</key>
+		<string>Offside</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>309</integer>
+		<key>EventTitle</key>
+		<string>Pushing</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>310</integer>
+		<key>EventTitle</key>
+		<string>Stalling</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>311</integer>
+		<key>EventTitle</key>
+		<string>Warding off</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>312</integer>
+		<key>EventTitle</key>
+		<string>Witholding ball from play</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>313</integer>
+		<key>EventTitle</key>
+		<string>Targeting head or neck</string>
+			<key>CategoryCode</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>401</integer>
+		<key>EventTitle</key>
+		<string>Fighting</string>
+			<key>CategoryCode</key>
+		<integer>4</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>402</integer>
+		<key>EventTitle</key>
+		<string>Flagrant misconduct</string>
+			<key>CategoryCode</key>
+		<integer>4</integer>
+	</dict>
+	<dict>
+		<key>EventCode</key>
+		<integer>403</integer>
+		<key>EventTitle</key>
+		<string>Use of tobacco</string>
+			<key>CategoryCode</key>
+		<integer>4</integer>
+	</dict>
+</array>
+</plist>
