@@ -1,5 +1,5 @@
 //
-//  INSOGameCollectionViewCell.h
+//  INSOGameTableViewController.h
 //  ScorebookLite
 //
 //  Created by James Dabrowski on 9/24/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface INSOGameCollectionViewCell : UICollectionViewCell
+@interface INSOGameTableViewController : UITableViewController
 
 @end
