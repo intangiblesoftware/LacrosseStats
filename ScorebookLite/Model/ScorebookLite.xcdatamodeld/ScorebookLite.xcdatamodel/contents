@@ -3,11 +3,11 @@
     <entity name="Game" representedClassName="Game" syncable="YES">
         <attribute name="gameDateTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="homeScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="homeTeam" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="homeTeam" optional="YES" attributeType="String" defaultValueString="Home Team" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" defaultValueString="Home Field" syncable="YES"/>
         <attribute name="players" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="teamWatching" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="visitingTeam" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamWatching" optional="YES" attributeType="String" defaultValueString="Home Team" syncable="YES"/>
+        <attribute name="visitingTeam" optional="YES" attributeType="String" defaultValueString="Visiting Team" syncable="YES"/>
         <attribute name="visitorScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GameEvent" inverseName="game" inverseEntity="GameEvent" syncable="YES"/>
     </entity>

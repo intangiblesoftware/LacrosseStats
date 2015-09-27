@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B991A65E1BB75FA5004FD794 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65B1BB75FA5004FD794 /* Game.m */; settings = {ASSET_TAGS = (); }; };
+		B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65D1BB75FA5004FD794 /* GameEvent.m */; settings = {ASSET_TAGS = (); }; };
+		B991A6651BB75FAF004FD794 /* _Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A6621BB75FAF004FD794 /* _Game.m */; settings = {ASSET_TAGS = (); }; };
+		B991A6661BB75FAF004FD794 /* _GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A6641BB75FAF004FD794 /* _GameEvent.m */; settings = {ASSET_TAGS = (); }; };
+		B991A6691BB7622D004FD794 /* INSOGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A6681BB7622D004FD794 /* INSOGameTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		B99FDD521BB46865006FB373 /* ScorebookLite.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD501BB46865006FB373 /* ScorebookLite.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
 		B99FDD561BB46881006FB373 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD551BB46881006FB373 /* ViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B99FDD5F1BB46907006FB373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD5E1BB46907006FB373 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
@@ -16,8 +21,6 @@
 		B99FDD6D1BB46A12006FB373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD691BB46A12006FB373 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		B99FDD6E1BB46A12006FB373 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD6B1BB46A12006FB373 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		B99FDD701BB47908006FB373 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD6F1BB47908006FB373 /* Events.plist */; settings = {ASSET_TAGS = (); }; };
-		B99FDD741BB47D6A006FB373 /* Human in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD721BB47D6A006FB373 /* Human */; settings = {ASSET_TAGS = (); }; };
-		B99FDD751BB47D6A006FB373 /* Machine in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD731BB47D6A006FB373 /* Machine */; settings = {ASSET_TAGS = (); }; };
 		B9B6297B1BB4D78500CE362E /* INSOGameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B6297A1BB4D78500CE362E /* INSOGameTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B9C7A7511BADA3B30082DA8B /* ScorebookLiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A7501BADA3B30082DA8B /* ScorebookLiteTests.m */; };
 		B9C7A75C1BADA3B30082DA8B /* ScorebookLiteUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C7A75B1BADA3B30082DA8B /* ScorebookLiteUITests.m */; };
@@ -41,6 +44,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B991A65A1BB75FA5004FD794 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		B991A65B1BB75FA5004FD794 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		B991A65C1BB75FA5004FD794 /* GameEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEvent.h; sourceTree = "<group>"; };
+		B991A65D1BB75FA5004FD794 /* GameEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEvent.m; sourceTree = "<group>"; };
+		B991A6611BB75FAF004FD794 /* _Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Game.h; sourceTree = "<group>"; };
+		B991A6621BB75FAF004FD794 /* _Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Game.m; sourceTree = "<group>"; };
+		B991A6631BB75FAF004FD794 /* _GameEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _GameEvent.h; sourceTree = "<group>"; };
+		B991A6641BB75FAF004FD794 /* _GameEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _GameEvent.m; sourceTree = "<group>"; };
+		B991A6671BB7622D004FD794 /* INSOGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameTableViewCell.h; sourceTree = "<group>"; };
+		B991A6681BB7622D004FD794 /* INSOGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameTableViewCell.m; sourceTree = "<group>"; };
 		B99FDD511BB46865006FB373 /* ScorebookLite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ScorebookLite.xcdatamodel; sourceTree = "<group>"; };
 		B99FDD541BB46881006FB373 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B99FDD551BB46881006FB373 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -53,8 +66,6 @@
 		B99FDD6C1BB46A12006FB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B99FDD6F1BB47908006FB373 /* Events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
 		B99FDD711BB47A4A006FB373 /* ScorebookLiteEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScorebookLiteEnum.h; sourceTree = "<group>"; };
-		B99FDD721BB47D6A006FB373 /* Human */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Human; sourceTree = "<group>"; };
-		B99FDD731BB47D6A006FB373 /* Machine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Machine; sourceTree = "<group>"; };
 		B9B629791BB4D78500CE362E /* INSOGameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameTableViewController.h; sourceTree = "<group>"; };
 		B9B6297A1BB4D78500CE362E /* INSOGameTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameTableViewController.m; sourceTree = "<group>"; };
 		B9C7A7301BADA3B30082DA8B /* ScorebookLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScorebookLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,11 +102,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B991A6591BB75FA5004FD794 /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				B991A65A1BB75FA5004FD794 /* Game.h */,
+				B991A65B1BB75FA5004FD794 /* Game.m */,
+				B991A65C1BB75FA5004FD794 /* GameEvent.h */,
+				B991A65D1BB75FA5004FD794 /* GameEvent.m */,
+			);
+			path = Human;
+			sourceTree = "<group>";
+		};
+		B991A6601BB75FAF004FD794 /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				B991A6611BB75FAF004FD794 /* _Game.h */,
+				B991A6621BB75FAF004FD794 /* _Game.m */,
+				B991A6631BB75FAF004FD794 /* _GameEvent.h */,
+				B991A6641BB75FAF004FD794 /* _GameEvent.m */,
+			);
+			path = Machine;
+			sourceTree = "<group>";
+		};
+		B991A66A1BB762D4004FD794 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				B991A6671BB7622D004FD794 /* INSOGameTableViewCell.h */,
+				B991A6681BB7622D004FD794 /* INSOGameTableViewCell.m */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
 		B99FDD4F1BB46865006FB373 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B99FDD721BB47D6A006FB373 /* Human */,
-				B99FDD731BB47D6A006FB373 /* Machine */,
+				B991A6591BB75FA5004FD794 /* Human */,
+				B991A6601BB75FAF004FD794 /* Machine */,
 				B99FDD501BB46865006FB373 /* ScorebookLite.xcdatamodeld */,
 			);
 			path = Model;
@@ -171,6 +213,7 @@
 				B99FDD601BB46957006FB373 /* Supporting Files */,
 				B99FDD531BB46881006FB373 /* View Controllers */,
 				B99FDD681BB46A12006FB373 /* Views */,
+				B991A66A1BB762D4004FD794 /* TableViewCells */,
 			);
 			path = ScorebookLite;
 			sourceTree = "<group>";
@@ -298,8 +341,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B99FDD751BB47D6A006FB373 /* Machine in Resources */,
-				B99FDD741BB47D6A006FB373 /* Human in Resources */,
 				B99FDD701BB47908006FB373 /* Events.plist in Resources */,
 				B99FDD6D1BB46A12006FB373 /* LaunchScreen.storyboard in Resources */,
 				B99FDD661BB46957006FB373 /* Info.plist in Resources */,
@@ -329,9 +370,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B991A6661BB75FAF004FD794 /* _GameEvent.m in Sources */,
+				B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */,
+				B991A6691BB7622D004FD794 /* INSOGameTableViewCell.m in Sources */,
 				B99FDD561BB46881006FB373 /* ViewController.m in Sources */,
 				B99FDD521BB46865006FB373 /* ScorebookLite.xcdatamodeld in Sources */,
+				B991A6651BB75FAF004FD794 /* _Game.m in Sources */,
 				B99FDD671BB46957006FB373 /* main.m in Sources */,
+				B991A65E1BB75FA5004FD794 /* Game.m in Sources */,
 				B9B6297B1BB4D78500CE362E /* INSOGameTableViewController.m in Sources */,
 				B99FDD651BB46957006FB373 /* AppDelegate.m in Sources */,
 			);
