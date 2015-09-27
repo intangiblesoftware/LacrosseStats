@@ -12,11 +12,13 @@
 
 #import "INSOGameTableViewController.h"
 #import "INSOGameTableViewCell.h"
+#import "INSOGameDetailViewController.h"
 
 #import "Game.h"
 
 
-static NSString* const INSOGameCellIdentifier = @"GameCell";
+static NSString * const INSOGameCellIdentifier = @"GameCell";
+static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegue";
 
 @interface INSOGameTableViewController () <NSFetchedResultsControllerDelegate>
 // IBOutlets
@@ -31,6 +33,8 @@ static NSString* const INSOGameCellIdentifier = @"GameCell";
 // Private Methods
 - (void)configureTableView;
 - (void)configureGameCell:(INSOGameTableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
+
+- (void)prepareForShowGameDetailSegue:(UIStoryboardSegue*)segue sender:(INSOGameTableViewCell*)cell;
 
 @end
 
@@ -106,8 +110,12 @@ static NSString* const INSOGameCellIdentifier = @"GameCell";
 {
     Game* game = [self.gamesFRC objectAtIndexPath:indexPath];
 
+    NSString* dateFormat = [NSDateFormatter dateFormatFromTemplate:@"Mdyy" options:0 locale:[NSLocale currentLocale]];
+    NSString* timeFormat = [NSDateFormatter dateFormatFromTemplate:@"hmma" options:0 locale:[NSLocale currentLocale]];
+    NSString* dateTimeFormat = [NSString stringWithFormat:@"%@' at '%@", dateFormat, timeFormat];
+    
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"M/d/yyyy' at 'h:mm a"];
+    [formatter setDateFormat:dateTimeFormat];
     cell.gameDateTimeLabel.text = [formatter stringFromDate:game.gameDateTime];
     
     cell.homeTeamLabel.text = game.homeTeam;
@@ -122,8 +130,17 @@ static NSString* const INSOGameCellIdentifier = @"GameCell";
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:INSOShowGameDetailSegueIdentifier]) {
+        [self prepareForShowGameDetailSegue:segue sender:sender];
+    }
+}
+
+- (void)prepareForShowGameDetailSegue:(UIStoryboardSegue *)segue sender:(INSOGameTableViewCell *)cell
+{
+    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+    Game* selectedGame = [self.gamesFRC objectAtIndexPath:indexPath];
+    INSOGameDetailViewController* dest = segue.destinationViewController;
+    dest.game = selectedGame; 
 }
 
 #pragma mark - Table view data source
