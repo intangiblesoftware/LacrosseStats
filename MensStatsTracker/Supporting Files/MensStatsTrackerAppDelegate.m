@@ -6,13 +6,13 @@
 //  Copyright © 2015 Jim Dabrowski. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "MensStatsTrackerAppDelegate.h"
 
-@interface AppDelegate ()
+@interface MensStatsTrackerAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation MensStatsTrackerAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

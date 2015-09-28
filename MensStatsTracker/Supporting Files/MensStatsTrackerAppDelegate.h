@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  MensStatsTrackerAppDelegate.h
 //  ScorebookLite
 //
 //  Created by James Dabrowski on 9/19/15.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface MensStatsTrackerAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
