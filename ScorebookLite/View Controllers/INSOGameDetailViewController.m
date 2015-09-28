@@ -7,8 +7,11 @@
 //
 
 #import "INSOGameDetailViewController.h"
+#import "INSOGameEditViewController.h"
 
 #import "Game.h"
+
+static NSString * INSOEditGameSegueIdentifier = @"EditGameSegue";
 
 @interface INSOGameDetailViewController ()
 // IBOutlets
@@ -28,6 +31,8 @@
 // Private Methods
 - (void)configureView;
 
+- (void)prepareForGameEditSegue:(UIStoryboardSegue*)segue sender:(id)sender;
+
 
 @end
 
@@ -36,8 +41,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    [self configureView]; 
+    [self configureView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +82,15 @@
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    if ([segue.identifier isEqualToString:INSOEditGameSegueIdentifier]) {
+        [self prepareForGameEditSegue:segue sender:sender];
+    }
+}
+
+- (void)prepareForGameEditSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    INSOGameEditViewController* dest = segue.destinationViewController;
+    dest.game = self.game; 
 }
 
 

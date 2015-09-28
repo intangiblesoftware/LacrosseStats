@@ -5,7 +5,8 @@
         <attribute name="homeScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="homeTeam" optional="YES" attributeType="String" defaultValueString="Home Team" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" defaultValueString="Home Field" syncable="YES"/>
-        <attribute name="players" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="playersInGame" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="statsToCollect" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teamWatching" optional="YES" attributeType="String" defaultValueString="Home Team" syncable="YES"/>
         <attribute name="visitingTeam" optional="YES" attributeType="String" defaultValueString="Visiting Team" syncable="YES"/>
         <attribute name="visitorScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -24,7 +25,7 @@
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="events" inverseEntity="Game" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Game" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Game" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="GameEvent" positionX="-54" positionY="45" width="128" height="195"/>
     </elements>
 </model>

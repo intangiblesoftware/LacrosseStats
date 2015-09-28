@@ -198,6 +198,8 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
             break;
         case NSFetchedResultsChangeUpdate:
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        case NSFetchedResultsChangeMove:
+            [self.tableView reloadData]; 
         default:
             break;
     }

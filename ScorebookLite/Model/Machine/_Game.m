@@ -8,7 +8,8 @@ const struct GameAttributes GameAttributes = {
 	.homeScore = @"homeScore",
 	.homeTeam = @"homeTeam",
 	.location = @"location",
-	.players = @"players",
+	.playersInGame = @"playersInGame",
+	.statsToCollect = @"statsToCollect",
 	.teamWatching = @"teamWatching",
 	.visitingTeam = @"visitingTeam",
 	.visitorScore = @"visitorScore",
@@ -84,7 +85,9 @@ const struct GameRelationships GameRelationships = {
 
 @dynamic location;
 
-@dynamic players;
+@dynamic playersInGame;
+
+@dynamic statsToCollect;
 
 @dynamic teamWatching;
 

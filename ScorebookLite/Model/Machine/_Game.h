@@ -8,7 +8,8 @@ extern const struct GameAttributes {
 	__unsafe_unretained NSString *homeScore;
 	__unsafe_unretained NSString *homeTeam;
 	__unsafe_unretained NSString *location;
-	__unsafe_unretained NSString *players;
+	__unsafe_unretained NSString *playersInGame;
+	__unsafe_unretained NSString *statsToCollect;
 	__unsafe_unretained NSString *teamWatching;
 	__unsafe_unretained NSString *visitingTeam;
 	__unsafe_unretained NSString *visitorScore;
@@ -49,9 +50,13 @@ extern const struct GameRelationships {
 
 //- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* players;
+@property (nonatomic, strong) NSString* playersInGame;
 
-//- (BOOL)validatePlayers:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validatePlayersInGame:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* statsToCollect;
+
+//- (BOOL)validateStatsToCollect:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* teamWatching;
 
@@ -100,8 +105,11 @@ extern const struct GameRelationships {
 - (NSString*)primitiveLocation;
 - (void)setPrimitiveLocation:(NSString*)value;
 
-- (NSString*)primitivePlayers;
-- (void)setPrimitivePlayers:(NSString*)value;
+- (NSString*)primitivePlayersInGame;
+- (void)setPrimitivePlayersInGame:(NSString*)value;
+
+- (NSString*)primitiveStatsToCollect;
+- (void)setPrimitiveStatsToCollect:(NSString*)value;
 
 - (NSString*)primitiveTeamWatching;
 - (void)setPrimitiveTeamWatching:(NSString*)value;
