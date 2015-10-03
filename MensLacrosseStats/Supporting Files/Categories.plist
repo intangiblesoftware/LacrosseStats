@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>CategoryCode</key>
+		<integer>1</integer>
+		<key>CategoryTitle</key>
+		<string>Game Actions</string>
+		<key>SortOrder</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>CategoryCode</key>
+		<integer>2</integer>
+		<key>CategoryTitle</key>
+		<string>Personal Fouls</string>
+		<key>SortOrder</key>
+		<integer>2</integer>
+	</dict>
+	<dict>
+		<key>CategoryCode</key>
+		<integer>3</integer>
+		<key>CategoryTitle</key>
+		<string>Technical Fouls</string>
+		<key>SortOrder</key>
+		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>CategoryCode</key>
+		<integer>4</integer>
+		<key>CategoryTitle</key>
+		<string>Expulsion Fouls</string>
+		<key>SortOrder</key>
+		<integer>4</integer>
+	</dict>
+</array>
+</plist>
