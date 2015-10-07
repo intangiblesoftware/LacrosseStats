@@ -11,6 +11,7 @@
 @interface INSOEventTranslator : NSObject
 
 - (NSString*)titleForEventCode:(NSNumber*)eventCode;
-- (NSString*)titleForCategoryCode:(NSNumber*)categoryCode; 
+- (NSString*)titleForCategoryCode:(NSNumber*)categoryCode;
+- (NSString*)titleForCategoryAtIndex:(NSInteger)index; 
 
 @end

@@ -1,314 +1,358 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>101</key>
+<array>
 	<dict>
+		<key>EventCode</key>
+		<integer>101</integer>
 		<key>EventTitle</key>
 		<string>Goal</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>102</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>102</integer>
 		<key>EventTitle</key>
 		<string>Assist</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>103</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>103</integer>
 		<key>EventTitle</key>
 		<string>Save</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>104</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>104</integer>
 		<key>EventTitle</key>
-		<string>Ground ball</string>
-		<key>EventCategory</key>
+		<string>Groundball</string>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>105</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>105</integer>
 		<key>EventTitle</key>
-		<string>Faceoff Won</string>
-		<key>EventCategory</key>
+		<string>Faceoff won</string>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>106</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>106</integer>
 		<key>EventTitle</key>
-		<string>Faceoff Lost</string>
-		<key>EventCategory</key>
+		<string>Faceoff lost</string>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>107</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>107</integer>
 		<key>EventTitle</key>
 		<string>Shot</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>108</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>108</integer>
 		<key>EventTitle</key>
 		<string>Clear successful</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>109</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>109</integer>
 		<key>EventTitle</key>
 		<string>Clear failed</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>110</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>110</integer>
 		<key>EventTitle</key>
 		<string>Turnover</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>111</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>111</integer>
 		<key>EventTitle</key>
 		<string>Caused turnover</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>112</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>112</integer>
 		<key>EventTitle</key>
 		<string>Time out</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>113</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>113</integer>
 		<key>EventTitle</key>
 		<string>Entered game</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>114</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>114</integer>
 		<key>EventTitle</key>
 		<string>Left game</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>115</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>115</integer>
 		<key>EventTitle</key>
 		<string>Extra-man opportunity</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>116</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>116</integer>
 		<key>EventTitle</key>
 		<string>Goal allowed</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>117</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>117</integer>
 		<key>EventTitle</key>
 		<string>Shot on goal</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>118</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>118</integer>
 		<key>EventTitle</key>
 		<string>Man-down</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>119</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>119</integer>
 		<key>EventTitle</key>
 		<string>Interception</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>1</integer>
 	</dict>
-	<key>201</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>201</integer>
 		<key>EventTitle</key>
-		<string>Cross-check</string>
-		<key>EventCategory</key>
+		<string>Cross check</string>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>202</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>202</integer>
 		<key>EventTitle</key>
 		<string>Illegal body check</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>203</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>203</integer>
 		<key>EventTitle</key>
-		<string>Check involving head/neck</string>
-		<key>EventCategory</key>
+		<string>Check involving head or neck</string>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>204</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>204</integer>
 		<key>EventTitle</key>
 		<string>Illegal crosse</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>205</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>205</integer>
 		<key>EventTitle</key>
 		<string>Use of illegal equipment</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>206</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>206</integer>
 		<key>EventTitle</key>
 		<string>Slashing</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>207</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>207</integer>
 		<key>EventTitle</key>
 		<string>Tripping</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>208</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>208</integer>
 		<key>EventTitle</key>
 		<string>Unnecessary roughness</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>201</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>209</integer>
 		<key>EventTitle</key>
 		<string>Unsportsmanlike conduct</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>2</integer>
 	</dict>
-	<key>301</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>301</integer>
 		<key>EventTitle</key>
 		<string>Crease violation</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>302</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>302</integer>
 		<key>EventTitle</key>
 		<string>Goalkeeper interference</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>303</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>303</integer>
 		<key>EventTitle</key>
 		<string>Holding</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>304</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>304</integer>
 		<key>EventTitle</key>
 		<string>Illegal offensive screening</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>305</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>305</integer>
 		<key>EventTitle</key>
 		<string>Illegal procedure</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>306</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>306</integer>
 		<key>EventTitle</key>
 		<string>Conduct foul</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>307</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>307</integer>
 		<key>EventTitle</key>
 		<string>Interference</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>308</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>308</integer>
 		<key>EventTitle</key>
 		<string>Offside</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>309</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>309</integer>
 		<key>EventTitle</key>
 		<string>Pushing</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>310</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>310</integer>
 		<key>EventTitle</key>
 		<string>Stalling</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>311</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>311</integer>
 		<key>EventTitle</key>
 		<string>Warding off</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>312</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>312</integer>
 		<key>EventTitle</key>
 		<string>Witholding ball from play</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>313</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>313</integer>
 		<key>EventTitle</key>
 		<string>Targeting head or neck</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>3</integer>
 	</dict>
-	<key>401</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>401</integer>
 		<key>EventTitle</key>
 		<string>Fighting</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>4</integer>
 	</dict>
-	<key>402</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>402</integer>
 		<key>EventTitle</key>
 		<string>Flagrant misconduct</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>4</integer>
 	</dict>
-	<key>403</key>
 	<dict>
+		<key>EventCode</key>
+		<integer>403</integer>
 		<key>EventTitle</key>
 		<string>Use of tobacco</string>
-		<key>EventCategory</key>
+		<key>CategoryCode</key>
 		<integer>4</integer>
 	</dict>
-</dict>
+</array>
 </plist>

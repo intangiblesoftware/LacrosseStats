@@ -17,7 +17,7 @@ static NSString * CategorySortOrderKey = @"SortOrder";
 @interface INSOEventTranslator ()
 
 @property (nonatomic) NSMutableDictionary* events;
-@property (nonatomic) NSMutableDictionary* categories;
+@property (nonatomic) NSArray* categories;
 
 @end
 
@@ -30,13 +30,8 @@ static NSString * CategorySortOrderKey = @"SortOrder";
     if (self) {
         // First do the categories
         NSString* path = [[NSBundle mainBundle] bundlePath];
-        NSString* categoriesPath = [path stringByAppendingString:@"Categories.plist"];
-        NSArray* storedCategories = [[NSArray alloc] initWithContentsOfFile:categoriesPath];
-        
-        _categories = [NSMutableDictionary new];
-        for (NSDictionary* categoryDictionary in storedCategories) {
-            [_categories setObject:categoryDictionary[CategoryTitleKey] forKey:categoryDictionary[CategoryCodeKey]];
-        }
+        NSString* categoriesPath = [path stringByAppendingPathComponent:@"Categories.plist"];
+        _categories = [[NSArray alloc] initWithContentsOfFile:categoriesPath];
         
         // And now the events
         NSString* eventsPath = [path stringByAppendingPathComponent:@"Events.plist"];
@@ -54,7 +49,13 @@ static NSString * CategorySortOrderKey = @"SortOrder";
 #pragma mark - Public Methods
 - (NSString*)titleForCategoryCode:(NSNumber *)categoryCode
 {
-    return self.categories[categoryCode];
+    return @"foo";
+}
+
+- (NSString*)titleForCategoryAtIndex:(NSInteger)index
+{
+    NSDictionary* categoryDictionary = self.categories[index];
+    return categoryDictionary[CategoryTitleKey];
 }
 
 - (NSString*)titleForEventCode:(NSNumber *)eventCode

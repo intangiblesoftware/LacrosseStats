@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="Game" representedClassName="Game" syncable="YES">
+        <attribute name="gameDateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="homeScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="homeTeam" optional="YES" attributeType="String" defaultValueString="Home Team" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" defaultValueString="Home Field" syncable="YES"/>
+        <attribute name="statsToCollect" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamWatching" optional="YES" attributeType="String" defaultValueString="Home Team" syncable="YES"/>
+        <attribute name="visitingTeam" optional="YES" attributeType="String" defaultValueString="Visiting Team" syncable="YES"/>
+        <attribute name="visitorScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GameEvent" inverseName="game" inverseEntity="GameEvent" syncable="YES"/>
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RosterPlayer" inverseName="game" inverseEntity="RosterPlayer" syncable="YES"/>
+    </entity>
+    <entity name="GameEvent" representedClassName="GameEvent" syncable="YES">
+        <attribute name="categoryCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="categoryTitle" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="eventTitle" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isExtraManGoal" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="penaltyDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="penaltyTime" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="playerNumber" optional="YES" attributeType="Integer 16" defaultValueString="-1" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="events" inverseEntity="Game" syncable="YES"/>
+        <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RosterPlayer" inverseName="events" inverseEntity="RosterPlayer" syncable="YES"/>
+    </entity>
+    <entity name="RosterPlayer" representedClassName="RosterPlayer" syncable="YES">
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GameEvent" inverseName="player" inverseEntity="GameEvent" syncable="YES"/>
+        <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="players" inverseEntity="Game" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Game" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="GameEvent" positionX="-54" positionY="45" width="128" height="210"/>
+        <element name="RosterPlayer" positionX="-63" positionY="99" width="128" height="90"/>
+    </elements>
+</model>

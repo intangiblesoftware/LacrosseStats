@@ -77,33 +77,21 @@ typedef NS_ENUM(NSUInteger, CategoryIndex) {
             }
         }
         
-        // Now sort each sub-array and put into all events
+        // Now add each sub-array to main array, if they have events
         _storedEvents = [NSMutableArray new];
         if ([actionEventCodes count] > 0) {
-//            [actionEventCodes sortUsingComparator:^NSComparisonResult(NSNumber*  _Nonnull number1, NSNumber*  _Nonnull number2) {
-//                return [number1 compare:number2];
-//            }];
             [_storedEvents addObject:actionEventCodes];
         }
         
         if ([personalFoulEventCodes count] > 0) {
-//            [personalFoulEventCodes sortUsingComparator:^NSComparisonResult(NSNumber*  _Nonnull number1, NSNumber*  _Nonnull number2) {
-//                return [number1 compare:number2];
-//            }];
             [_storedEvents addObject:personalFoulEventCodes];
         }
         
         if ([technicalFoulEventCodes count] > 0) {
-//            [technicalFoulEventCodes sortUsingComparator:^NSComparisonResult(NSNumber*  _Nonnull number1, NSNumber*  _Nonnull number2) {
-//                return [number1 compare:number2];
-//            }];
             [_storedEvents addObject:technicalFoulEventCodes];
         }
 
         if ([expulsionFoulEventCodes count] > 0) {
-//            [expulsionFoulEventCodes sortUsingComparator:^NSComparisonResult(NSNumber*  _Nonnull number1, NSNumber*  _Nonnull number2) {
-//                return [number1 compare:number2];
-//            }];
             [_storedEvents addObject:expulsionFoulEventCodes];
         }
     }
