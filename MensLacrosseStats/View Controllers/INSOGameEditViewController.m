@@ -14,8 +14,7 @@
 #import "INSOPlayerCollectionViewCell.h"
 #import "INSOStatCollectionViewCell.h"
 #import "INSOMensLacrosseStatsConstants.h"
-#import "INSOEventArrayFactory.h"
-#import "INSOEventTranslator.h"
+#import "INSOEventFactory.h"
 #import "INSOHeaderCollectionReusableView.h"
 
 #import "Game.h"
@@ -56,8 +55,8 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic) NSArray* playersArray;
 @property (nonatomic) NSArray* statsArray;
-@property (nonatomic) INSOEventArrayFactory* eventArrayFactory;
-@property (nonatomic) INSOEventTranslator* eventTranslator;
+@property (nonatomic) INSOEventFactory* eventFactory;
+@property (nonatomic) NSMutableSet* selectedStats;
 
 // Private Methods
 - (void)configureView;
@@ -85,7 +84,29 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     
     self.playerStatCollectionView.allowsMultipleSelection = YES;
     
-    [self configureView]; 
+    [self configureView];
+    
+    // Select all the cells in the stats table
+    self.selectedStats = [NSMutableSet new];
+    for (NSInteger ii = 0; ii < [self.statsArray count]; ii++) {
+        NSDictionary* categoryDictionary = self.statsArray[ii];
+        NSArray* categoryStats = categoryDictionary[INSOCategoryStatsKey];
+        for (NSInteger jj = 0; jj < [categoryStats count]; jj++) {
+            [self.selectedStats addObject:[NSIndexPath indexPathForRow:jj inSection:ii]];
+        }
+    }
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    // We no longer transition to orientation, we transition to size. So use this instead.
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    // Once we transition to size,
+    // invalidate the content size and invalidate the layout.
+    // This will redraw the cells of the proper size.
+    [self.playerStatCollectionView invalidateIntrinsicContentSize];
+    [self.playerStatCollectionView.collectionViewLayout invalidateLayout];
 }
 
 - (void)didReceiveMemoryWarning
@@ -173,25 +194,17 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 - (NSArray*)statsArray
 {
     if (!_statsArray) {
-        _statsArray = [self.eventArrayFactory allEvents];
+        _statsArray = [self.eventFactory eventArray];
     }
     return _statsArray;
 }
 
-- (INSOEventArrayFactory*)eventArrayFactory
+- (INSOEventFactory*)eventFactory
 {
-    if (!_eventArrayFactory) {
-        _eventArrayFactory = [[INSOEventArrayFactory alloc] init];
+    if (!_eventFactory) {
+        _eventFactory = [[INSOEventFactory alloc] init];
     }
-    return _eventArrayFactory;
-}
-
-- (INSOEventTranslator*)eventTranslator
-{
-    if (!_eventTranslator) {
-        _eventTranslator = [[INSOEventTranslator alloc] init];
-    }
-    return _eventTranslator;
+    return _eventFactory;
 }
 
 #pragma mark - Private Methods
@@ -225,8 +238,14 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 
 - (void)configureStatCell:(INSOStatCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSNumber* eventCode = self.statsArray[indexPath.section][indexPath.row];
-    cell.statNameLabel.text = [self.eventTranslator titleForEventCode:eventCode]; 
+    NSDictionary* dictionary = self.statsArray[indexPath.section];
+    NSArray* stats = dictionary[INSOCategoryStatsKey];
+    cell.statNameLabel.text = [self.eventFactory titleForEventCode:stats[indexPath.row]];
+    
+    if ([self.selectedStats containsObject:indexPath]) {
+        cell.selected = YES;
+        [self.playerStatCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    }
 }
 
 - (BOOL)shouldEnableDoneButton
@@ -319,7 +338,8 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     if (self.playerStatSegmentedControl.selectedSegmentIndex == INSOPlayerStatSegmentPlayer) {
         return [self.playersArray count];
     } else {
-        return [self.statsArray[section] count];
+        NSArray* sectionStats = [self.statsArray[section] objectForKey:INSOCategoryStatsKey];
+        return [sectionStats count];
     }
 }
 
@@ -344,6 +364,8 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
         if (![self.game rosterContainsPlayerWithNumber:number]) {
             [self addPlayerToGameWithNumber:number];
         }
+    } else {
+        [self.selectedStats addObject:indexPath];
     }
 }
 
@@ -355,6 +377,8 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
         if ([self.game rosterContainsPlayerWithNumber:number]) {
             [self removePlayerFromGameWithNumber:number];
         }
+    } else {
+        [self.selectedStats removeObject:indexPath]; 
     }
 }
 
@@ -366,7 +390,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
         CGFloat collectionWidth = collectionView.frame.size.width;
         UICollectionViewFlowLayout* flowLayout = (UICollectionViewFlowLayout*)collectionViewLayout;
         collectionWidth -= (flowLayout.sectionInset.left + flowLayout.sectionInset.right);
-        return CGSizeMake(collectionWidth, 50.0); 
+        return CGSizeMake(collectionWidth, 44.0);
     }
 }
 
@@ -375,7 +399,9 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     INSOHeaderCollectionReusableView* header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:INSOHeaderViewIdentifier forIndexPath:indexPath];
     
     // Configure the header
-    header.leftTitleLabel.text = [self.eventTranslator titleForCategoryAtIndex:indexPath.section];
+    NSDictionary* dictionary = self.statsArray[indexPath.section];
+    NSNumber* categoryCode = dictionary[INSOCategoryCodeKey];
+    header.leftTitleLabel.text = [self.eventFactory titleForCategoryCode:categoryCode];
     
     return header;
 }
