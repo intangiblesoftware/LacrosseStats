@@ -8,7 +8,6 @@ extern const struct GameAttributes {
 	__unsafe_unretained NSString *homeScore;
 	__unsafe_unretained NSString *homeTeam;
 	__unsafe_unretained NSString *location;
-	__unsafe_unretained NSString *statsToCollect;
 	__unsafe_unretained NSString *teamWatching;
 	__unsafe_unretained NSString *visitingTeam;
 	__unsafe_unretained NSString *visitorScore;
@@ -17,10 +16,12 @@ extern const struct GameAttributes {
 extern const struct GameRelationships {
 	__unsafe_unretained NSString *events;
 	__unsafe_unretained NSString *players;
+	__unsafe_unretained NSString *statsToRecord;
 } GameRelationships;
 
 @class GameEvent;
 @class RosterPlayer;
+@class Event;
 
 @interface GameID : NSManagedObjectID {}
 @end
@@ -51,10 +52,6 @@ extern const struct GameRelationships {
 
 //- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* statsToCollect;
-
-//- (BOOL)validateStatsToCollect:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSString* teamWatching;
 
 //- (BOOL)validateTeamWatching:(id*)value_ error:(NSError**)error_;
@@ -79,6 +76,10 @@ extern const struct GameRelationships {
 
 - (NSMutableSet*)playersSet;
 
+@property (nonatomic, strong) NSSet *statsToRecord;
+
+- (NSMutableSet*)statsToRecordSet;
+
 @end
 
 @interface _Game (EventsCoreDataGeneratedAccessors)
@@ -94,6 +95,14 @@ extern const struct GameRelationships {
 - (void)removePlayers:(NSSet*)value_;
 - (void)addPlayersObject:(RosterPlayer*)value_;
 - (void)removePlayersObject:(RosterPlayer*)value_;
+
+@end
+
+@interface _Game (StatsToRecordCoreDataGeneratedAccessors)
+- (void)addStatsToRecord:(NSSet*)value_;
+- (void)removeStatsToRecord:(NSSet*)value_;
+- (void)addStatsToRecordObject:(Event*)value_;
+- (void)removeStatsToRecordObject:(Event*)value_;
 
 @end
 
@@ -114,9 +123,6 @@ extern const struct GameRelationships {
 - (NSString*)primitiveLocation;
 - (void)setPrimitiveLocation:(NSString*)value;
 
-- (NSString*)primitiveStatsToCollect;
-- (void)setPrimitiveStatsToCollect:(NSString*)value;
-
 - (NSString*)primitiveTeamWatching;
 - (void)setPrimitiveTeamWatching:(NSString*)value;
 
@@ -134,5 +140,8 @@ extern const struct GameRelationships {
 
 - (NSMutableSet*)primitivePlayers;
 - (void)setPrimitivePlayers:(NSMutableSet*)value;
+
+- (NSMutableSet*)primitiveStatsToRecord;
+- (void)setPrimitiveStatsToRecord:(NSMutableSet*)value;
 
 @end

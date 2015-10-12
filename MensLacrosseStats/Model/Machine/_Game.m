@@ -8,7 +8,6 @@ const struct GameAttributes GameAttributes = {
 	.homeScore = @"homeScore",
 	.homeTeam = @"homeTeam",
 	.location = @"location",
-	.statsToCollect = @"statsToCollect",
 	.teamWatching = @"teamWatching",
 	.visitingTeam = @"visitingTeam",
 	.visitorScore = @"visitorScore",
@@ -17,6 +16,7 @@ const struct GameAttributes GameAttributes = {
 const struct GameRelationships GameRelationships = {
 	.events = @"events",
 	.players = @"players",
+	.statsToRecord = @"statsToRecord",
 };
 
 @implementation GameID
@@ -85,8 +85,6 @@ const struct GameRelationships GameRelationships = {
 
 @dynamic location;
 
-@dynamic statsToCollect;
-
 @dynamic teamWatching;
 
 @dynamic visitingTeam;
@@ -130,6 +128,17 @@ const struct GameRelationships GameRelationships = {
 	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"players"];
 
 	[self didAccessValueForKey:@"players"];
+	return result;
+}
+
+@dynamic statsToRecord;
+
+- (NSMutableSet*)statsToRecordSet {
+	[self willAccessValueForKey:@"statsToRecord"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"statsToRecord"];
+
+	[self didAccessValueForKey:@"statsToRecord"];
 	return result;
 }
 

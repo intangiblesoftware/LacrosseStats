@@ -16,6 +16,7 @@ const struct GameEventAttributes GameEventAttributes = {
 };
 
 const struct GameEventRelationships GameEventRelationships = {
+	.event = @"event",
 	.game = @"game",
 	.player = @"player",
 };
@@ -205,6 +206,8 @@ const struct GameEventRelationships GameEventRelationships = {
 }
 
 @dynamic timestamp;
+
+@dynamic event;
 
 @dynamic game;
 

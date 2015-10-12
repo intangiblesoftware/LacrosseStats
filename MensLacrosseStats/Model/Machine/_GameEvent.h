@@ -16,10 +16,12 @@ extern const struct GameEventAttributes {
 } GameEventAttributes;
 
 extern const struct GameEventRelationships {
+	__unsafe_unretained NSString *event;
 	__unsafe_unretained NSString *game;
 	__unsafe_unretained NSString *player;
 } GameEventRelationships;
 
+@class Event;
 @class Game;
 @class RosterPlayer;
 
@@ -92,6 +94,10 @@ extern const struct GameEventRelationships {
 
 //- (BOOL)validateTimestamp:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) Event *event;
+
+//- (BOOL)validateEvent:(id*)value_ error:(NSError**)error_;
+
 @property (nonatomic, strong) Game *game;
 
 //- (BOOL)validateGame:(id*)value_ error:(NSError**)error_;
@@ -148,6 +154,9 @@ extern const struct GameEventRelationships {
 
 - (NSDate*)primitiveTimestamp;
 - (void)setPrimitiveTimestamp:(NSDate*)value;
+
+- (Event*)primitiveEvent;
+- (void)setPrimitiveEvent:(Event*)value;
 
 - (Game*)primitiveGame;
 - (void)setPrimitiveGame:(Game*)value;
