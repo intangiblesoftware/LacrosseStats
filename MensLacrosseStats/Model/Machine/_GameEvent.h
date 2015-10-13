@@ -4,14 +4,9 @@
 @import CoreData;
 
 extern const struct GameEventAttributes {
-	__unsafe_unretained NSString *categoryCode;
-	__unsafe_unretained NSString *categoryTitle;
-	__unsafe_unretained NSString *eventCode;
-	__unsafe_unretained NSString *eventTitle;
 	__unsafe_unretained NSString *isExtraManGoal;
 	__unsafe_unretained NSString *penaltyDuration;
 	__unsafe_unretained NSString *penaltyTime;
-	__unsafe_unretained NSString *playerNumber;
 	__unsafe_unretained NSString *timestamp;
 } GameEventAttributes;
 
@@ -33,30 +28,6 @@ extern const struct GameEventRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) GameEventID* objectID;
-
-@property (nonatomic, strong) NSNumber* categoryCode;
-
-@property (atomic) int16_t categoryCodeValue;
-- (int16_t)categoryCodeValue;
-- (void)setCategoryCodeValue:(int16_t)value_;
-
-//- (BOOL)validateCategoryCode:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* categoryTitle;
-
-//- (BOOL)validateCategoryTitle:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* eventCode;
-
-@property (atomic) int16_t eventCodeValue;
-- (int16_t)eventCodeValue;
-- (void)setEventCodeValue:(int16_t)value_;
-
-//- (BOOL)validateEventCode:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* eventTitle;
-
-//- (BOOL)validateEventTitle:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* isExtraManGoal;
 
@@ -82,14 +53,6 @@ extern const struct GameEventRelationships {
 
 //- (BOOL)validatePenaltyTime:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* playerNumber;
-
-@property (atomic) int16_t playerNumberValue;
-- (int16_t)playerNumberValue;
-- (void)setPlayerNumberValue:(int16_t)value_;
-
-//- (BOOL)validatePlayerNumber:(id*)value_ error:(NSError**)error_;
-
 @property (nonatomic, strong) NSDate* timestamp;
 
 //- (BOOL)validateTimestamp:(id*)value_ error:(NSError**)error_;
@@ -110,24 +73,6 @@ extern const struct GameEventRelationships {
 
 @interface _GameEvent (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveCategoryCode;
-- (void)setPrimitiveCategoryCode:(NSNumber*)value;
-
-- (int16_t)primitiveCategoryCodeValue;
-- (void)setPrimitiveCategoryCodeValue:(int16_t)value_;
-
-- (NSString*)primitiveCategoryTitle;
-- (void)setPrimitiveCategoryTitle:(NSString*)value;
-
-- (NSNumber*)primitiveEventCode;
-- (void)setPrimitiveEventCode:(NSNumber*)value;
-
-- (int16_t)primitiveEventCodeValue;
-- (void)setPrimitiveEventCodeValue:(int16_t)value_;
-
-- (NSString*)primitiveEventTitle;
-- (void)setPrimitiveEventTitle:(NSString*)value;
-
 - (NSNumber*)primitiveIsExtraManGoal;
 - (void)setPrimitiveIsExtraManGoal:(NSNumber*)value;
 
@@ -145,12 +90,6 @@ extern const struct GameEventRelationships {
 
 - (int16_t)primitivePenaltyTimeValue;
 - (void)setPrimitivePenaltyTimeValue:(int16_t)value_;
-
-- (NSNumber*)primitivePlayerNumber;
-- (void)setPrimitivePlayerNumber:(NSNumber*)value;
-
-- (int16_t)primitivePlayerNumberValue;
-- (void)setPrimitivePlayerNumberValue:(int16_t)value_;
 
 - (NSDate*)primitiveTimestamp;
 - (void)setPrimitiveTimestamp:(NSDate*)value;

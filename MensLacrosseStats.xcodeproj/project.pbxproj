@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B9108A911BC07FE9000450F8 /* MensLacrosseStatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9108A901BC07FE9000450F8 /* MensLacrosseStatsTests.m */; settings = {ASSET_TAGS = (); }; };
 		B9108A951BC08680000450F8 /* Categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9108A941BC08680000450F8 /* Categories.plist */; settings = {ASSET_TAGS = (); }; };
-		B9108A9C1BC0898A000450F8 /* INSOEventFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B9108A9B1BC0898A000450F8 /* INSOEventFactory.m */; settings = {ASSET_TAGS = (); }; };
 		B935AB411BC9C9E1006AEA3A /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB3F1BC9C9E1006AEA3A /* Event.m */; settings = {ASSET_TAGS = (); }; };
 		B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB451BC9C9F2006AEA3A /* _Event.m */; settings = {ASSET_TAGS = (); }; };
 		B935AB4A1BC9CA6C006AEA3A /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB491BC9CA6C006AEA3A /* EventCategory.m */; settings = {ASSET_TAGS = (); }; };
@@ -17,6 +16,7 @@
 		B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */; settings = {ASSET_TAGS = (); }; };
 		B95D943A1BBCB2F000E56AD9 /* _RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94391BBCB2F000E56AD9 /* _RosterPlayer.m */; settings = {ASSET_TAGS = (); }; };
 		B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9637FC81BCC8B070033DED3 /* GameEvents.plist */; settings = {ASSET_TAGS = (); }; };
 		B9880D2E1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		B991A65E1BB75FA5004FD794 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65B1BB75FA5004FD794 /* Game.m */; settings = {ASSET_TAGS = (); }; };
 		B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65D1BB75FA5004FD794 /* GameEvent.m */; settings = {ASSET_TAGS = (); }; };
@@ -36,7 +36,7 @@
 		B9CF5BB71BB967DD00AF51DF /* INSOPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */; settings = {ASSET_TAGS = (); }; };
 		B9CF5BBB1BB967EC00AF51DF /* INSOGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BBA1BB967EC00AF51DF /* INSOGameTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */; settings = {ASSET_TAGS = (); }; };
-		B9EBC2781BBB7C0D00370DE6 /* INSOMensStatsTrackerConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensStatsTrackerConstants.m */; settings = {ASSET_TAGS = (); }; };
+		B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +75,7 @@
 		B95D94391BBCB2F000E56AD9 /* _RosterPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RosterPlayer.m; sourceTree = "<group>"; };
 		B95D943B1BBCC47500E56AD9 /* INSOStatCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOStatCollectionViewCell.h; sourceTree = "<group>"; };
 		B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOStatCollectionViewCell.m; sourceTree = "<group>"; };
+		B9637FC81BCC8B070033DED3 /* GameEvents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameEvents.plist; sourceTree = "<group>"; };
 		B9880D2C1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOPlayerCollectionViewCell.h; sourceTree = "<group>"; };
 		B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPlayerCollectionViewCell.m; sourceTree = "<group>"; };
 		B991A65A1BB75FA5004FD794 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -114,7 +115,7 @@
 		B9DBC3BA1BC4B82600983F5B /* INSOHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOHeaderCollectionReusableView.h; sourceTree = "<group>"; };
 		B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOHeaderCollectionReusableView.m; sourceTree = "<group>"; };
 		B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOMensLacrosseStatsConstants.h; sourceTree = "<group>"; };
-		B9EBC2771BBB7C0D00370DE6 /* INSOMensStatsTrackerConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMensStatsTrackerConstants.m; sourceTree = "<group>"; };
+		B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMensLacrosseStatsConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +236,7 @@
 		B99FDD601BB46957006FB373 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B9637FC81BCC8B070033DED3 /* GameEvents.plist */,
 				B99FDD611BB46957006FB373 /* MensLacrosseStatsAppDelegate.h */,
 				B99FDD621BB46957006FB373 /* MensLacrosseStatsAppDelegate.m */,
 				B99FDD6F1BB47908006FB373 /* Events.plist */,
@@ -242,7 +244,7 @@
 				B99FDD641BB46957006FB373 /* main.m */,
 				B99FDD711BB47A4A006FB373 /* INSOMensLacrosseStatsEnum.h */,
 				B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */,
-				B9EBC2771BBB7C0D00370DE6 /* INSOMensStatsTrackerConstants.m */,
+				B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */,
 				B9108A941BC08680000450F8 /* Categories.plist */,
 			);
 			path = "Supporting Files";
@@ -433,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B99FDD701BB47908006FB373 /* Events.plist in Resources */,
+				B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */,
 				B99FDD6D1BB46A12006FB373 /* LaunchScreen.storyboard in Resources */,
 				B99FDD5F1BB46907006FB373 /* Assets.xcassets in Resources */,
 				B9108A951BC08680000450F8 /* Categories.plist in Resources */,
@@ -474,7 +477,6 @@
 				B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */,
 				B991A6651BB75FAF004FD794 /* _Game.m in Sources */,
 				B991A66D1BB76F14004FD794 /* INSOGameDetailViewController.m in Sources */,
-				B9108A9C1BC0898A000450F8 /* INSOEventFactory.m in Sources */,
 				B99FDD671BB46957006FB373 /* main.m in Sources */,
 				B991A65E1BB75FA5004FD794 /* Game.m in Sources */,
 				B935AB4A1BC9CA6C006AEA3A /* EventCategory.m in Sources */,
@@ -483,7 +485,7 @@
 				B9880D2E1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m in Sources */,
 				B9B6297B1BB4D78500CE362E /* INSOGameTableViewController.m in Sources */,
 				B99FDD651BB46957006FB373 /* MensLacrosseStatsAppDelegate.m in Sources */,
-				B9EBC2781BBB7C0D00370DE6 /* INSOMensStatsTrackerConstants.m in Sources */,
+				B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */,
 				B991A6701BB77D5C004FD794 /* INSOGameEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

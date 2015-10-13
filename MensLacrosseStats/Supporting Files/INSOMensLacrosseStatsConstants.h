@@ -10,11 +10,13 @@
 
 @interface INSOMensLacrosseStatsConstant : NSObject
 
-extern NSString * const INSOCategoryCodeKey;
+// User Defaults
+extern NSString * const INSODefaultShouldImportCategoriesAndEventsKey;
+
+// Import Keys
+extern NSString * const INSOEventTitleKey;
 extern NSString * const INSOCategoryTitleKey;
-extern NSString * const INSOSortOrderKey;
-extern NSString * const INSOEventCodesKey;
-extern NSString * const INSOEventCodeKey;
-extern NSString * const INSOEventTitleKey; 
+extern NSString * const INSOCategorySortOrderKey;
+extern NSString * const INSOCategoryEventsKey;
 
 @end

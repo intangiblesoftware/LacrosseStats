@@ -10,6 +10,9 @@
 
 #import "INSOMensLacrosseStatsConstants.h"
 
+#import "Event.h"
+#import "EventCategory.h"
+
 @interface MensLacrosseStatsAppDelegate ()
 
 @end
@@ -17,7 +20,15 @@
 @implementation MensLacrosseStatsAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{INSODefaultShouldImportCategoriesAndEventsKey:@(YES)}];
+    
+    // Now, load up database if necessary
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:INSODefaultShouldImportCategoriesAndEventsKey]) {
+        // Need to import positions
+        [self importCategoriesAndEvents];
+    }
+
     return YES;
 }
 
@@ -43,6 +54,42 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+#pragma mark - Private methods
+- (void)importCategoriesAndEvents
+{
+    // open up the game events plist
+    NSString* gameEventsPath = [[NSBundle mainBundle] pathForResource:@"GameEvents" ofType:@"plist"];
+    NSArray* categoriesArray = [[NSArray alloc] initWithContentsOfFile:gameEventsPath];
+    
+    // Create objects for all of them
+    for (NSDictionary* categoryDictionary in categoriesArray) {
+        // Create an event category object for each item at the root.
+        EventCategory* category = [EventCategory insertInManagedObjectContext:self.managedObjectContext];
+        category.title = categoryDictionary[INSOCategoryTitleKey];
+        category.sortOrder = categoryDictionary[INSOCategorySortOrderKey];
+        
+        // Now create event objects within each category
+        NSArray* eventsArray = categoryDictionary[INSOCategoryEventsKey];
+        for (NSDictionary* eventDictionary in eventsArray) {
+            Event* event = [Event insertInManagedObjectContext:self.managedObjectContext];
+            event.title = eventDictionary[INSOEventTitleKey];
+            event.isDefalutValue = YES;
+            event.category = category;
+        }
+    }
+    
+    // Save those changes
+    NSError* error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        // Could not save
+        NSLog(@"Unable to save categories and events on create: %@", error.localizedDescription);
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:INSODefaultShouldImportCategoriesAndEventsKey];
+    } else {
+        // Imported, so set import key to no
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:INSODefaultShouldImportCategoriesAndEventsKey];
+    }
 }
 
 #pragma mark - Core Data stack

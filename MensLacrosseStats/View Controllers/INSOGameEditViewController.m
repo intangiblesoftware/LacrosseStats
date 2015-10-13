@@ -14,7 +14,6 @@
 #import "INSOPlayerCollectionViewCell.h"
 #import "INSOStatCollectionViewCell.h"
 #import "INSOMensLacrosseStatsConstants.h"
-#import "INSOEventFactory.h"
 #import "INSOHeaderCollectionReusableView.h"
 
 #import "Game.h"
@@ -55,7 +54,6 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic) NSArray* playersArray;
 @property (nonatomic) NSArray* statsArray;
-@property (nonatomic) INSOEventFactory* eventFactory;
 @property (nonatomic) NSMutableSet* selectedStats;
 
 // Private Methods
@@ -86,15 +84,6 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     
     [self configureView];
     
-    // Select all the cells in the stats table
-    self.selectedStats = [NSMutableSet new];
-    for (NSInteger ii = 0; ii < [self.statsArray count]; ii++) {
-        NSDictionary* categoryDictionary = self.statsArray[ii];
-        NSArray* categoryStats = categoryDictionary[INSOCategoryStatsKey];
-        for (NSInteger jj = 0; jj < [categoryStats count]; jj++) {
-            [self.selectedStats addObject:[NSIndexPath indexPathForRow:jj inSection:ii]];
-        }
-    }
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -194,17 +183,9 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 - (NSArray*)statsArray
 {
     if (!_statsArray) {
-        _statsArray = [self.eventFactory eventArray];
+        _statsArray = [NSArray new];
     }
     return _statsArray;
-}
-
-- (INSOEventFactory*)eventFactory
-{
-    if (!_eventFactory) {
-        _eventFactory = [[INSOEventFactory alloc] init];
-    }
-    return _eventFactory;
 }
 
 #pragma mark - Private Methods
@@ -238,9 +219,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 
 - (void)configureStatCell:(INSOStatCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary* dictionary = self.statsArray[indexPath.section];
-    NSArray* stats = dictionary[INSOCategoryStatsKey];
-    cell.statNameLabel.text = [self.eventFactory titleForEventCode:stats[indexPath.row]];
+    cell.statNameLabel.text = @"stat name";
     
     if ([self.selectedStats containsObject:indexPath]) {
         cell.selected = YES;
@@ -338,8 +317,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     if (self.playerStatSegmentedControl.selectedSegmentIndex == INSOPlayerStatSegmentPlayer) {
         return [self.playersArray count];
     } else {
-        NSArray* sectionStats = [self.statsArray[section] objectForKey:INSOCategoryStatsKey];
-        return [sectionStats count];
+        return 4;
     }
 }
 
@@ -399,9 +377,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     INSOHeaderCollectionReusableView* header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:INSOHeaderViewIdentifier forIndexPath:indexPath];
     
     // Configure the header
-    NSDictionary* dictionary = self.statsArray[indexPath.section];
-    NSNumber* categoryCode = dictionary[INSOCategoryCodeKey];
-    header.leftTitleLabel.text = [self.eventFactory titleForCategoryCode:categoryCode];
+    header.leftTitleLabel.text = @"Category title";
     
     return header;
 }

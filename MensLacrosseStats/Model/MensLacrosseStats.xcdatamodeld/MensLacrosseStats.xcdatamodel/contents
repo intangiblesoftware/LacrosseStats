@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
     <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="eventCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="eventTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isDefalut" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EventCategory" inverseName="events" inverseEntity="EventCategory" syncable="YES"/>
         <relationship name="gameEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GameEvent" inverseName="event" inverseEntity="GameEvent" syncable="YES"/>
         <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="statsToRecord" inverseEntity="Game" syncable="YES"/>
     </entity>
     <entity name="EventCategory" representedClassName="EventCategory" syncable="YES">
-        <attribute name="categoryCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="categoryTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sortOrder" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="category" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="Game" representedClassName="Game" syncable="YES">
@@ -27,14 +25,9 @@
         <relationship name="statsToRecord" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="games" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="GameEvent" representedClassName="GameEvent" syncable="YES">
-        <attribute name="categoryCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="categoryTitle" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
-        <attribute name="eventCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="eventTitle" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
         <attribute name="isExtraManGoal" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="penaltyDuration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="penaltyTime" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="playerNumber" optional="YES" attributeType="Integer 16" defaultValueString="-1" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="gameEvents" inverseEntity="Event" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="events" inverseEntity="Game" syncable="YES"/>
@@ -45,12 +38,12 @@
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GameEvent" inverseName="player" inverseEntity="GameEvent" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="players" inverseEntity="Game" syncable="YES"/>
     </entity>
-    <fetchRequest name="AllEvents" entity="Event" predicateString="isDefalut == 1"/>
+    <fetchRequest name="DefaultEvents" entity="Event" predicateString="isDefalut == 1"/>
     <elements>
-        <element name="Event" positionX="-155" positionY="306" width="128" height="135"/>
-        <element name="EventCategory" positionX="61" positionY="306" width="128" height="105"/>
-        <element name="Game" positionX="-396" positionY="72" width="128" height="195"/>
-        <element name="GameEvent" positionX="43" positionY="-117" width="128" height="225"/>
+        <element name="Event" positionX="-155" positionY="306" width="128" height="118"/>
+        <element name="EventCategory" positionX="61" positionY="306" width="128" height="88"/>
+        <element name="Game" positionX="-396" positionY="72" width="128" height="193"/>
+        <element name="GameEvent" positionX="61" positionY="-117" width="128" height="148"/>
         <element name="RosterPlayer" positionX="-155" positionY="126" width="128" height="90"/>
     </elements>
 </model>
