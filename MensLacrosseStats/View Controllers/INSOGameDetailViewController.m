@@ -8,10 +8,12 @@
 
 #import "INSOGameDetailViewController.h"
 #import "INSOGameEditViewController.h"
+#import "INSORosterPlayerSelectorViewController.h"
 
 #import "Game.h"
 
 static NSString * INSOEditGameSegueIdentifier = @"EditGameSegue";
+static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
 
 @interface INSOGameDetailViewController ()
 // IBOutlets
@@ -29,10 +31,6 @@ static NSString * INSOEditGameSegueIdentifier = @"EditGameSegue";
 // Private Properties
 
 // Private Methods
-- (void)configureView;
-
-- (void)prepareForGameEditSegue:(UIStoryboardSegue*)segue sender:(id)sender;
-
 
 @end
 
@@ -85,11 +83,21 @@ static NSString * INSOEditGameSegueIdentifier = @"EditGameSegue";
     if ([segue.identifier isEqualToString:INSOEditGameSegueIdentifier]) {
         [self prepareForGameEditSegue:segue sender:sender];
     }
+    
+    if ([segue.identifier isEqualToString:INSORecordStatsSegueIdentifier]) {
+        [self prepareForRecordStatsSegue:segue sender:sender]; 
+    }
 }
 
 - (void)prepareForGameEditSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     INSOGameEditViewController* dest = segue.destinationViewController;
+    dest.game = self.game; 
+}
+
+- (void)prepareForRecordStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    INSORosterPlayerSelectorViewController* dest = segue.destinationViewController;
     dest.game = self.game; 
 }
 

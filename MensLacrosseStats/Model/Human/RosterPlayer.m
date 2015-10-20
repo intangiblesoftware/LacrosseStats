@@ -1,5 +1,7 @@
 #import "RosterPlayer.h"
 
+const NSInteger INSOTeamPlayerNumber = -1;
+
 @interface RosterPlayer ()
 
 // Private interface goes here.

@@ -18,6 +18,8 @@
 
 #import "Game.h"
 #import "RosterPlayer.h"
+#import "EventCategory.h"
+#import "Event.h"
 
 
 typedef NS_ENUM(NSUInteger, INSOPlayerStatSegment) {
@@ -55,6 +57,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 @property (nonatomic) NSArray* playersArray;
 @property (nonatomic) NSArray* statsArray;
 @property (nonatomic) NSMutableSet* selectedStats;
+@property (nonatomic) NSFetchedResultsController* eventsFRC;
 
 // Private Methods
 - (void)configureView;
@@ -188,6 +191,29 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     return _statsArray;
 }
 
+- (NSFetchedResultsController*)eventsFRC
+{
+    if (!_eventsFRC) {
+        
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Event entityName]];
+        
+        [fetchRequest setFetchBatchSize:20];
+        
+        NSSortDescriptor* sortByCategory = [NSSortDescriptor sortDescriptorWithKey:@"categorySortOrder" ascending:YES];
+        NSSortDescriptor* sortByTitle = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+        [fetchRequest setSortDescriptors:@[sortByCategory, sortByTitle]];
+        
+        _eventsFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.Title" cacheName:nil];
+        
+        NSError *error = nil;
+        if (![_eventsFRC performFetch:&error]) {
+            NSLog(@"Error fetching up games %@, %@", error, [error userInfo]);
+        }
+    }
+    
+    return _eventsFRC;
+}
+
 #pragma mark - Private Methods
 - (void)configureView
 {
@@ -219,9 +245,10 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 
 - (void)configureStatCell:(INSOStatCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    cell.statNameLabel.text = @"stat name";
+    Event* event = [self.eventsFRC objectAtIndexPath:indexPath];
+    cell.statNameLabel.text = event.title;
     
-    if ([self.selectedStats containsObject:indexPath]) {
+    if ([self.game.eventsToRecord containsObject:event]) {
         cell.selected = YES;
         [self.playerStatCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     }
@@ -309,7 +336,11 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 #pragma mark - UICollectionViewDelegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [self.statsArray count];
+    if (self.playerStatSegmentedControl.selectedSegmentIndex == INSOPlayerStatSegmentPlayer) {
+        return 1;
+    } else {
+        return [self.eventsFRC.sections count];
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -317,7 +348,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     if (self.playerStatSegmentedControl.selectedSegmentIndex == INSOPlayerStatSegmentPlayer) {
         return [self.playersArray count];
     } else {
-        return 4;
+        return [[[self.eventsFRC sections] objectAtIndex:section] numberOfObjects];
     }
 }
 
@@ -343,7 +374,9 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
             [self addPlayerToGameWithNumber:number];
         }
     } else {
-        [self.selectedStats addObject:indexPath];
+        Event* event = [self.eventsFRC objectAtIndexPath:indexPath];
+        event.isDefalutValue = YES;
+        [self.game addEventsToRecordObject:event];
     }
 }
 
@@ -356,7 +389,9 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
             [self removePlayerFromGameWithNumber:number];
         }
     } else {
-        [self.selectedStats removeObject:indexPath]; 
+        Event* event = [self.eventsFRC objectAtIndexPath:indexPath];
+        event.isDefalutValue = NO; 
+        [self.game removeEventsToRecordObject:event];
     }
 }
 
@@ -372,12 +407,22 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     }
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    if (self.playerStatSegmentedControl.selectedSegmentIndex == INSOPlayerStatSegmentPlayer) {
+        return CGSizeZero;
+    } else {
+        return CGSizeMake(collectionView.bounds.size.width, 30);
+    }
+}
+
 - (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     INSOHeaderCollectionReusableView* header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:INSOHeaderViewIdentifier forIndexPath:indexPath];
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.eventsFRC sections] objectAtIndex:indexPath.section];
     
     // Configure the header
-    header.leftTitleLabel.text = @"Category title";
+    header.leftTitleLabel.text = [sectionInfo name];
     
     return header;
 }

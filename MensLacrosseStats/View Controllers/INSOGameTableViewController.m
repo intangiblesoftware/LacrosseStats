@@ -15,7 +15,8 @@
 #import "INSOGameDetailViewController.h"
 
 #import "Game.h"
-
+#import "Event.h"
+#import "RosterPlayer.h"
 
 static NSString * const INSOGameCellIdentifier = @"GameCell";
 static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegue";
@@ -55,9 +56,20 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
 #pragma mark - IBActions
 - (void)addGame:(id)sender
 {
-    // Create a game with default values and now as the game date time
+    // Create a game with now as the game date time
     Game* newGame = [Game insertInManagedObjectContext:self.managedObjectContext];
     newGame.gameDateTime = [NSDate date];
+    
+    // Set up events to record
+    NSArray* defaultEvents = [Event fetchDefaultEvents:self.managedObjectContext];
+    NSSet* eventSet = [NSSet setWithArray:defaultEvents];
+    [newGame addEventsToRecord:eventSet];
+
+    // Give the game a team player
+    RosterPlayer* teamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+    teamPlayer.numberValue = INSOTeamPlayerNumber;
+    teamPlayer.isTeamValue = YES; 
+    [newGame addPlayersObject:teamPlayer]; 
     
     NSError* error = nil;
     if (![self.managedObjectContext save:&error]) {

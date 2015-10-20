@@ -31,6 +31,8 @@
 		B99FDD6D1BB46A12006FB373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD691BB46A12006FB373 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		B99FDD6E1BB46A12006FB373 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD6B1BB46A12006FB373 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		B99FDD701BB47908006FB373 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD6F1BB47908006FB373 /* Events.plist */; settings = {ASSET_TAGS = (); }; };
+		B9A1853A1BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A185391BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B9A308EC1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A308EB1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B9B6297B1BB4D78500CE362E /* INSOGameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B6297A1BB4D78500CE362E /* INSOGameTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.m */; settings = {ASSET_TAGS = (); }; };
 		B9CF5BB71BB967DD00AF51DF /* INSOPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */; settings = {ASSET_TAGS = (); }; };
@@ -100,6 +102,10 @@
 		B99FDD6C1BB46A12006FB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B99FDD6F1BB47908006FB373 /* Events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
 		B99FDD711BB47A4A006FB373 /* INSOMensLacrosseStatsEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INSOMensLacrosseStatsEnum.h; sourceTree = "<group>"; };
+		B9A185381BD5AE3200741727 /* INSOGameEventSelectorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameEventSelectorTableViewController.h; sourceTree = "<group>"; };
+		B9A185391BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameEventSelectorTableViewController.m; sourceTree = "<group>"; };
+		B9A308EA1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSORosterPlayerSelectorViewController.h; sourceTree = "<group>"; };
+		B9A308EB1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSORosterPlayerSelectorViewController.m; sourceTree = "<group>"; };
 		B9B629791BB4D78500CE362E /* INSOGameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameTableViewController.h; sourceTree = "<group>"; };
 		B9B6297A1BB4D78500CE362E /* INSOGameTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameTableViewController.m; sourceTree = "<group>"; };
 		B9C7A7301BADA3B30082DA8B /* MensLacrosseStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MensLacrosseStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +225,11 @@
 				B991A66F1BB77D5C004FD794 /* INSOGameEditViewController.m */,
 				B9B629791BB4D78500CE362E /* INSOGameTableViewController.h */,
 				B9B6297A1BB4D78500CE362E /* INSOGameTableViewController.m */,
+				B9A308EA1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.h */,
+				B9A308EB1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m */,
 				B9CF5BB81BB967EC00AF51DF /* TableViewCells */,
+				B9A185381BD5AE3200741727 /* INSOGameEventSelectorTableViewController.h */,
+				B9A185391BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m */,
 			);
 			name = "View Controllers";
 			path = "MensLacrosseStats/View Controllers";
@@ -464,6 +474,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A308EC1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m in Sources */,
+				B9A1853A1BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m in Sources */,
 				B935AB411BC9C9E1006AEA3A /* Event.m in Sources */,
 				B991A6661BB75FAF004FD794 /* _GameEvent.m in Sources */,
 				B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */,

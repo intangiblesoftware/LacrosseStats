@@ -15,13 +15,13 @@ extern const struct GameAttributes {
 
 extern const struct GameRelationships {
 	__unsafe_unretained NSString *events;
+	__unsafe_unretained NSString *eventsToRecord;
 	__unsafe_unretained NSString *players;
-	__unsafe_unretained NSString *statsToRecord;
 } GameRelationships;
 
 @class GameEvent;
-@class RosterPlayer;
 @class Event;
+@class RosterPlayer;
 
 @interface GameID : NSManagedObjectID {}
 @end
@@ -72,13 +72,13 @@ extern const struct GameRelationships {
 
 - (NSMutableSet*)eventsSet;
 
+@property (nonatomic, strong) NSSet *eventsToRecord;
+
+- (NSMutableSet*)eventsToRecordSet;
+
 @property (nonatomic, strong) NSSet *players;
 
 - (NSMutableSet*)playersSet;
-
-@property (nonatomic, strong) NSSet *statsToRecord;
-
-- (NSMutableSet*)statsToRecordSet;
 
 @end
 
@@ -90,19 +90,19 @@ extern const struct GameRelationships {
 
 @end
 
+@interface _Game (EventsToRecordCoreDataGeneratedAccessors)
+- (void)addEventsToRecord:(NSSet*)value_;
+- (void)removeEventsToRecord:(NSSet*)value_;
+- (void)addEventsToRecordObject:(Event*)value_;
+- (void)removeEventsToRecordObject:(Event*)value_;
+
+@end
+
 @interface _Game (PlayersCoreDataGeneratedAccessors)
 - (void)addPlayers:(NSSet*)value_;
 - (void)removePlayers:(NSSet*)value_;
 - (void)addPlayersObject:(RosterPlayer*)value_;
 - (void)removePlayersObject:(RosterPlayer*)value_;
-
-@end
-
-@interface _Game (StatsToRecordCoreDataGeneratedAccessors)
-- (void)addStatsToRecord:(NSSet*)value_;
-- (void)removeStatsToRecord:(NSSet*)value_;
-- (void)addStatsToRecordObject:(Event*)value_;
-- (void)removeStatsToRecordObject:(Event*)value_;
 
 @end
 
@@ -138,10 +138,10 @@ extern const struct GameRelationships {
 - (NSMutableSet*)primitiveEvents;
 - (void)setPrimitiveEvents:(NSMutableSet*)value;
 
+- (NSMutableSet*)primitiveEventsToRecord;
+- (void)setPrimitiveEventsToRecord:(NSMutableSet*)value;
+
 - (NSMutableSet*)primitivePlayers;
 - (void)setPrimitivePlayers:(NSMutableSet*)value;
-
-- (NSMutableSet*)primitiveStatsToRecord;
-- (void)setPrimitiveStatsToRecord:(NSMutableSet*)value;
 
 @end

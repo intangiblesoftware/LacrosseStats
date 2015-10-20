@@ -76,7 +76,8 @@
             Event* event = [Event insertInManagedObjectContext:self.managedObjectContext];
             event.title = eventDictionary[INSOEventTitleKey];
             event.isDefalutValue = YES;
-            event.category = category;
+            event.categorySortOrder = category.sortOrder;
+            event.category = category; 
         }
     }
     

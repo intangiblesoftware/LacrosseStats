@@ -4,6 +4,7 @@
 @import CoreData;
 
 extern const struct RosterPlayerAttributes {
+	__unsafe_unretained NSString *isTeam;
 	__unsafe_unretained NSString *number;
 } RosterPlayerAttributes;
 
@@ -23,6 +24,14 @@ extern const struct RosterPlayerRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) RosterPlayerID* objectID;
+
+@property (nonatomic, strong) NSNumber* isTeam;
+
+@property (atomic) BOOL isTeamValue;
+- (BOOL)isTeamValue;
+- (void)setIsTeamValue:(BOOL)value_;
+
+//- (BOOL)validateIsTeam:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* number;
 
@@ -51,6 +60,12 @@ extern const struct RosterPlayerRelationships {
 @end
 
 @interface _RosterPlayer (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveIsTeam;
+- (void)setPrimitiveIsTeam:(NSNumber*)value;
+
+- (BOOL)primitiveIsTeamValue;
+- (void)setPrimitiveIsTeamValue:(BOOL)value_;
 
 - (NSNumber*)primitiveNumber;
 - (void)setPrimitiveNumber:(NSNumber*)value;

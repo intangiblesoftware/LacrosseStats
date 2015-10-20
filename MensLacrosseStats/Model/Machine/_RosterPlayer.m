@@ -4,6 +4,7 @@
 #import "_RosterPlayer.h"
 
 const struct RosterPlayerAttributes RosterPlayerAttributes = {
+	.isTeam = @"isTeam",
 	.number = @"number",
 };
 
@@ -38,6 +39,11 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"isTeamValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isTeam"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"numberValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"number"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -45,6 +51,26 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 	}
 
 	return keyPaths;
+}
+
+@dynamic isTeam;
+
+- (BOOL)isTeamValue {
+	NSNumber *result = [self isTeam];
+	return [result boolValue];
+}
+
+- (void)setIsTeamValue:(BOOL)value_ {
+	[self setIsTeam:@(value_)];
+}
+
+- (BOOL)primitiveIsTeamValue {
+	NSNumber *result = [self primitiveIsTeam];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIsTeamValue:(BOOL)value_ {
+	[self setPrimitiveIsTeam:@(value_)];
 }
 
 @dynamic number;
