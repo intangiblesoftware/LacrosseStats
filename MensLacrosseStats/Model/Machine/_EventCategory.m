@@ -4,7 +4,7 @@
 #import "_EventCategory.h"
 
 const struct EventCategoryAttributes EventCategoryAttributes = {
-	.sortOrder = @"sortOrder",
+	.categoryCode = @"categoryCode",
 	.title = @"title",
 };
 
@@ -38,8 +38,8 @@ const struct EventCategoryRelationships EventCategoryRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-	if ([key isEqualToString:@"sortOrderValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"sortOrder"];
+	if ([key isEqualToString:@"categoryCodeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"categoryCode"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -47,24 +47,24 @@ const struct EventCategoryRelationships EventCategoryRelationships = {
 	return keyPaths;
 }
 
-@dynamic sortOrder;
+@dynamic categoryCode;
 
-- (float)sortOrderValue {
-	NSNumber *result = [self sortOrder];
-	return [result floatValue];
+- (int16_t)categoryCodeValue {
+	NSNumber *result = [self categoryCode];
+	return [result shortValue];
 }
 
-- (void)setSortOrderValue:(float)value_ {
-	[self setSortOrder:@(value_)];
+- (void)setCategoryCodeValue:(int16_t)value_ {
+	[self setCategoryCode:@(value_)];
 }
 
-- (float)primitiveSortOrderValue {
-	NSNumber *result = [self primitiveSortOrder];
-	return [result floatValue];
+- (int16_t)primitiveCategoryCodeValue {
+	NSNumber *result = [self primitiveCategoryCode];
+	return [result shortValue];
 }
 
-- (void)setPrimitiveSortOrderValue:(float)value_ {
-	[self setPrimitiveSortOrder:@(value_)];
+- (void)setPrimitiveCategoryCodeValue:(int16_t)value_ {
+	[self setPrimitiveCategoryCode:@(value_)];
 }
 
 @dynamic title;

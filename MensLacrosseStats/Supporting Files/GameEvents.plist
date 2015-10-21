@@ -5,120 +5,184 @@
 	<dict>
 		<key>CategoryTitle</key>
 		<string>Game Actions</string>
-		<key>SortOrder</key>
-		<integer>0</integer>
+		<key>CategoryCode</key>
+		<integer>100</integer>
 		<key>CategoryEvents</key>
 		<array>
 			<dict>
+				<key>EventCode</key>
+				<integer>101</integer>
 				<key>EventTitle</key>
 				<string>Goal</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>102</integer>
 				<key>EventTitle</key>
 				<string>Assist</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>103</integer>
 				<key>EventTitle</key>
 				<string>Save</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>104</integer>
 				<key>EventTitle</key>
 				<string>Groundball</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>105</integer>
 				<key>EventTitle</key>
 				<string>Faceoff won</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>106</integer>
 				<key>EventTitle</key>
 				<string>Faceoff lost</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>107</integer>
 				<key>EventTitle</key>
 				<string>Shot</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>108</integer>
 				<key>EventTitle</key>
 				<string>Clear successful</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>109</integer>
 				<key>EventTitle</key>
 				<string>Clear failed</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>110</integer>
 				<key>EventTitle</key>
 				<string>Turnover</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>111</integer>
 				<key>EventTitle</key>
 				<string>Caused turnover</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>112</integer>
 				<key>EventTitle</key>
 				<string>Time out</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>113</integer>
 				<key>EventTitle</key>
 				<string>Entered game</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>114</integer>
 				<key>EventTitle</key>
 				<string>Left game</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>115</integer>
 				<key>EventTitle</key>
 				<string>Extra-man opportunity</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>116</integer>
 				<key>EventTitle</key>
 				<string>Goal allowed</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>117</integer>
 				<key>EventTitle</key>
 				<string>Shot on goal</string>
+			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>118</integer>
+				<key>EventTitle</key>
+				<string>Interception</string>
+			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>119</integer>
+				<key>EventTitle</key>
+				<string>Man-down</string>
 			</dict>
 		</array>
 	</dict>
 	<dict>
 		<key>CategoryTitle</key>
 		<string>Personal Fouls</string>
-		<key>SortOrder</key>
-		<integer>1</integer>
+		<key>CategoryCode</key>
+		<integer>200</integer>
 		<key>CategoryEvents</key>
 		<array>
 			<dict>
+				<key>EventCode</key>
+				<integer>201</integer>
 				<key>EventTitle</key>
 				<string>Cross check</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>202</integer>
 				<key>EventTitle</key>
 				<string>Illegal body check</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>203</integer>
 				<key>EventTitle</key>
 				<string>Check involving head or neck</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>204</integer>
 				<key>EventTitle</key>
 				<string>Illegal crosse</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>205</integer>
 				<key>EventTitle</key>
 				<string>Use of illegal equipment</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>206</integer>
 				<key>EventTitle</key>
 				<string>Slashing</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>207</integer>
 				<key>EventTitle</key>
 				<string>Tripping</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>208</integer>
 				<key>EventTitle</key>
 				<string>Unnecessary roughness</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>209</integer>
 				<key>EventTitle</key>
 				<string>Unsportsmanlike conduct</string>
 			</dict>
@@ -127,59 +191,85 @@
 	<dict>
 		<key>CategoryTitle</key>
 		<string>Technical Fouls</string>
-		<key>SortOrder</key>
-		<integer>2</integer>
+		<key>CategoryCode</key>
+		<integer>300</integer>
 		<key>CategoryEvents</key>
 		<array>
 			<dict>
+				<key>EventCode</key>
+				<integer>301</integer>
 				<key>EventTitle</key>
 				<string>Crease violation</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>302</integer>
 				<key>EventTitle</key>
 				<string>Goalkeeper interference</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>303</integer>
 				<key>EventTitle</key>
 				<string>Holding</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>304</integer>
 				<key>EventTitle</key>
 				<string>Illegal offensive screening</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>305</integer>
 				<key>EventTitle</key>
 				<string>Illegal procedure</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>306</integer>
 				<key>EventTitle</key>
 				<string>Conduct foul</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>307</integer>
 				<key>EventTitle</key>
 				<string>Interference</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>308</integer>
 				<key>EventTitle</key>
 				<string>Offside</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>309</integer>
 				<key>EventTitle</key>
 				<string>Pushing</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>310</integer>
 				<key>EventTitle</key>
 				<string>Stalling</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>311</integer>
 				<key>EventTitle</key>
 				<string>Warding off</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>312</integer>
 				<key>EventTitle</key>
 				<string>Witholding ball from play</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>313</integer>
 				<key>EventTitle</key>
 				<string>Targeting head or neck</string>
 			</dict>
@@ -188,19 +278,25 @@
 	<dict>
 		<key>CategoryTitle</key>
 		<string>Expulsion Fouls</string>
-		<key>SortOrder</key>
-		<integer>3</integer>
+		<key>CategoryCode</key>
+		<integer>400</integer>
 		<key>CategoryEvents</key>
 		<array>
 			<dict>
+				<key>EventCode</key>
+				<integer>401</integer>
 				<key>EventTitle</key>
 				<string>Fighting</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>402</integer>
 				<key>EventTitle</key>
 				<string>Flagrant misconduct</string>
 			</dict>
 			<dict>
+				<key>EventCode</key>
+				<integer>403</integer>
 				<key>EventTitle</key>
 				<string>Use of tobacco</string>
 			</dict>

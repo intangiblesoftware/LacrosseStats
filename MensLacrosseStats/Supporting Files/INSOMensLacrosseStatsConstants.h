@@ -15,8 +15,11 @@ extern NSString * const INSODefaultShouldImportCategoriesAndEventsKey;
 
 // Import Keys
 extern NSString * const INSOEventTitleKey;
+extern NSString * const INSOEventCodeKey;
 extern NSString * const INSOCategoryTitleKey;
-extern NSString * const INSOCategorySortOrderKey;
+extern NSString * const INSOCategoryCodeKey;
 extern NSString * const INSOCategoryEventsKey;
+
+extern const NSInteger INSOExplusionPenaltyDuration; 
 
 @end

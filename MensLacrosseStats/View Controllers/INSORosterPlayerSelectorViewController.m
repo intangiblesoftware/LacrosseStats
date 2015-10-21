@@ -22,6 +22,7 @@ static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
 @property (nonatomic, weak) IBOutlet UICollectionView* playersCollectionView;
 
 // IBAction
+- (IBAction)doneAddingEvent:(UIStoryboardSegue*)sender;
 
 // Private properties
 @property (nonatomic) NSArray* rosterArray;
@@ -55,6 +56,10 @@ static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
 }
 
 #pragma mark - IBActions
+- (void)doneAddingEvent:(UIStoryboardSegue *)sender
+{
+    [self.navigationController popToViewController:self animated:YES]; 
+}
 
 #pragma mark - Private Properties
 - (NSArray*)rosterArray
@@ -122,6 +127,11 @@ static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
     }
         
     return CGSizeMake(width, height);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES]; 
 }
 
 

@@ -199,7 +199,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
         
         [fetchRequest setFetchBatchSize:20];
         
-        NSSortDescriptor* sortByCategory = [NSSortDescriptor sortDescriptorWithKey:@"categorySortOrder" ascending:YES];
+        NSSortDescriptor* sortByCategory = [NSSortDescriptor sortDescriptorWithKey:@"categoryCode" ascending:YES];
         NSSortDescriptor* sortByTitle = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
         [fetchRequest setSortDescriptors:@[sortByCategory, sortByTitle]];
         

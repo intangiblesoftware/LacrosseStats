@@ -14,9 +14,13 @@
 NSString * const INSODefaultShouldImportCategoriesAndEventsKey = @"INSOShouldImportCategoriesKey";
 
 #pragma mark - Import keys
-NSString * const INSOEventTitleKey        = @"EventTitle";
-NSString * const INSOCategoryTitleKey     = @"CategoryTitle";
-NSString * const INSOCategorySortOrderKey = @"SortOrder";
-NSString * const INSOCategoryEventsKey    = @"CategoryEvents";
+NSString * const INSOEventTitleKey     = @"EventTitle";
+NSString * const INSOEventCodeKey      = @"EventCode";
+NSString * const INSOCategoryTitleKey  = @"CategoryTitle";
+NSString * const INSOCategoryCodeKey   = @"CategoryCode";
+NSString * const INSOCategoryEventsKey = @"CategoryEvents";
+
+#pragma mark - Other constants
+const NSInteger INSOExplusionPenaltyDuration = (48 * 60); 
 
 @end

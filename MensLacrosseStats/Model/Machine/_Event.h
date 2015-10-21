@@ -4,7 +4,8 @@
 @import CoreData;
 
 extern const struct EventAttributes {
-	__unsafe_unretained NSString *categorySortOrder;
+	__unsafe_unretained NSString *categoryCode;
+	__unsafe_unretained NSString *eventCode;
 	__unsafe_unretained NSString *isDefalut;
 	__unsafe_unretained NSString *title;
 } EventAttributes;
@@ -28,13 +29,21 @@ extern const struct EventRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) EventID* objectID;
 
-@property (nonatomic, strong) NSNumber* categorySortOrder;
+@property (nonatomic, strong) NSNumber* categoryCode;
 
-@property (atomic) float categorySortOrderValue;
-- (float)categorySortOrderValue;
-- (void)setCategorySortOrderValue:(float)value_;
+@property (atomic) int16_t categoryCodeValue;
+- (int16_t)categoryCodeValue;
+- (void)setCategoryCodeValue:(int16_t)value_;
 
-//- (BOOL)validateCategorySortOrder:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateCategoryCode:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* eventCode;
+
+@property (atomic) int16_t eventCodeValue;
+- (int16_t)eventCodeValue;
+- (void)setEventCodeValue:(int16_t)value_;
+
+//- (BOOL)validateEventCode:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* isDefalut;
 
@@ -83,11 +92,17 @@ extern const struct EventRelationships {
 
 @interface _Event (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveCategorySortOrder;
-- (void)setPrimitiveCategorySortOrder:(NSNumber*)value;
+- (NSNumber*)primitiveCategoryCode;
+- (void)setPrimitiveCategoryCode:(NSNumber*)value;
 
-- (float)primitiveCategorySortOrderValue;
-- (void)setPrimitiveCategorySortOrderValue:(float)value_;
+- (int16_t)primitiveCategoryCodeValue;
+- (void)setPrimitiveCategoryCodeValue:(int16_t)value_;
+
+- (NSNumber*)primitiveEventCode;
+- (void)setPrimitiveEventCode:(NSNumber*)value;
+
+- (int16_t)primitiveEventCodeValue;
+- (void)setPrimitiveEventCodeValue:(int16_t)value_;
 
 - (NSNumber*)primitiveIsDefalut;
 - (void)setPrimitiveIsDefalut:(NSNumber*)value;

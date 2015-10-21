@@ -6,18 +6,19 @@
 //  Copyright © 2015 Jim Dabrowski. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 #ifndef INSOMensLacrosseStats_h
 #define INSOMensLacrosseStats_h
 
 typedef NS_ENUM(NSUInteger, INSOCategoryCode) {
-    INSOCategoryCodeGameAction     = 1,
-    INSOCategoryCodePersonalFouls  = 2,
-    INSOCategoryCodeTechnicalFouls = 3,
-    INSOCategoryCodeExpulsionFouls = 4
+    INSOCategoryCodeGameAction     = 100,
+    INSOCategoryCodePersonalFouls  = 200,
+    INSOCategoryCodeTechnicalFouls = 300,
+    INSOCategoryCodeExpulsionFouls = 400
 };
 
 typedef NS_ENUM(NSInteger, INSOEventCode) {
-    INSOEventCodeGameActions     = 1,
     INSOEventCodeGoal            = 101,
     INSOEventCodeAssist          = 102,
     INSOEventCodeSave            = 103,
@@ -35,9 +36,10 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeEMO             = 115,
     INSOEventCodeGoalAllowed     = 116,
     INSOEventCodeShotOnGoal      = 117,
+    INSOEventCodeInterception    = 118,
+    INSOEventCodeManDown         = 119,
     
-    INSOEventCodePersonalFouls            = 2,
-    INSOEventCodeCrosscheck               = 201,
+    INSOEventCodeCrossCheck               = 201,
     INSOEventCodeIllegalBodyCheck         = 202,
     INSOEventCodeCheckInvolvingHeadOrNeck = 203,
     INSOEventCodeIllegalCrosse            = 204,
@@ -47,7 +49,6 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeUnnecessaryRoughness     = 208,
     INSOEventCodeUnsportsmanlikeConduct   = 209,
     
-    INSOEventCodeTechnicalFouls            = 3,
     INSOEventCodeCreaseViolation           = 301,
     INSOEventCodeGoalkeeperInterference    = 302,
     INSOEventCodeHolding                   = 303,
@@ -62,7 +63,6 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeWithholdingBallFromPlay   = 312,
     INSOEventCodeTargetingHeadOrNeck       = 313,
     
-    INSOEventCodeExplusionFouls     = 4,
     INSOEventCodeFighting           = 401,
     INSOEventCodeFlagrantMisconduct = 402,
     INSOEventCodeTobacco            = 403,

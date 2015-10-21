@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B9108A911BC07FE9000450F8 /* MensLacrosseStatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9108A901BC07FE9000450F8 /* MensLacrosseStatsTests.m */; settings = {ASSET_TAGS = (); }; };
-		B9108A951BC08680000450F8 /* Categories.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9108A941BC08680000450F8 /* Categories.plist */; settings = {ASSET_TAGS = (); }; };
 		B935AB411BC9C9E1006AEA3A /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB3F1BC9C9E1006AEA3A /* Event.m */; settings = {ASSET_TAGS = (); }; };
 		B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB451BC9C9F2006AEA3A /* _Event.m */; settings = {ASSET_TAGS = (); }; };
 		B935AB4A1BC9CA6C006AEA3A /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB491BC9CA6C006AEA3A /* EventCategory.m */; settings = {ASSET_TAGS = (); }; };
@@ -30,7 +29,6 @@
 		B99FDD671BB46957006FB373 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD641BB46957006FB373 /* main.m */; settings = {ASSET_TAGS = (); }; };
 		B99FDD6D1BB46A12006FB373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD691BB46A12006FB373 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		B99FDD6E1BB46A12006FB373 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD6B1BB46A12006FB373 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		B99FDD701BB47908006FB373 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD6F1BB47908006FB373 /* Events.plist */; settings = {ASSET_TAGS = (); }; };
 		B9A1853A1BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A185391BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B9A308EC1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A308EB1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m */; settings = {ASSET_TAGS = (); }; };
 		B9B6297B1BB4D78500CE362E /* INSOGameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B6297A1BB4D78500CE362E /* INSOGameTableViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -39,6 +37,7 @@
 		B9CF5BBB1BB967EC00AF51DF /* INSOGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BBA1BB967EC00AF51DF /* INSOGameTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */; settings = {ASSET_TAGS = (); }; };
 		B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */; settings = {ASSET_TAGS = (); }; };
+		B9FB297A1BD72BF500A56821 /* INSOPenaltyTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FB29791BD72BF500A56821 /* INSOPenaltyTimeViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,9 +59,6 @@
 
 /* Begin PBXFileReference section */
 		B9108A901BC07FE9000450F8 /* MensLacrosseStatsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MensLacrosseStatsTests.m; sourceTree = "<group>"; };
-		B9108A941BC08680000450F8 /* Categories.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Categories.plist; sourceTree = "<group>"; };
-		B9108A9A1BC0898A000450F8 /* INSOEventFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOEventFactory.h; sourceTree = "<group>"; };
-		B9108A9B1BC0898A000450F8 /* INSOEventFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOEventFactory.m; sourceTree = "<group>"; };
 		B935AB3E1BC9C9E1006AEA3A /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		B935AB3F1BC9C9E1006AEA3A /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		B935AB441BC9C9F2006AEA3A /* _Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Event.h; sourceTree = "<group>"; };
@@ -100,7 +96,6 @@
 		B99FDD641BB46957006FB373 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B99FDD6A1BB46A12006FB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B99FDD6C1BB46A12006FB373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B99FDD6F1BB47908006FB373 /* Events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
 		B99FDD711BB47A4A006FB373 /* INSOMensLacrosseStatsEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INSOMensLacrosseStatsEnum.h; sourceTree = "<group>"; };
 		B9A185381BD5AE3200741727 /* INSOGameEventSelectorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameEventSelectorTableViewController.h; sourceTree = "<group>"; };
 		B9A185391BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameEventSelectorTableViewController.m; sourceTree = "<group>"; };
@@ -122,6 +117,8 @@
 		B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOHeaderCollectionReusableView.m; sourceTree = "<group>"; };
 		B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOMensLacrosseStatsConstants.h; sourceTree = "<group>"; };
 		B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMensLacrosseStatsConstants.m; sourceTree = "<group>"; };
+		B9FB29781BD72BF500A56821 /* INSOPenaltyTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOPenaltyTimeViewController.h; sourceTree = "<group>"; };
+		B9FB29791BD72BF500A56821 /* INSOPenaltyTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPenaltyTimeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,8 +149,6 @@
 		B9108A991BC0898A000450F8 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B9108A9A1BC0898A000450F8 /* INSOEventFactory.h */,
-				B9108A9B1BC0898A000450F8 /* INSOEventFactory.m */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -223,13 +218,15 @@
 				B991A66C1BB76F14004FD794 /* INSOGameDetailViewController.m */,
 				B991A66E1BB77D5C004FD794 /* INSOGameEditViewController.h */,
 				B991A66F1BB77D5C004FD794 /* INSOGameEditViewController.m */,
+				B9A185381BD5AE3200741727 /* INSOGameEventSelectorTableViewController.h */,
+				B9A185391BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m */,
 				B9B629791BB4D78500CE362E /* INSOGameTableViewController.h */,
 				B9B6297A1BB4D78500CE362E /* INSOGameTableViewController.m */,
+				B9FB29781BD72BF500A56821 /* INSOPenaltyTimeViewController.h */,
+				B9FB29791BD72BF500A56821 /* INSOPenaltyTimeViewController.m */,
 				B9A308EA1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.h */,
 				B9A308EB1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m */,
 				B9CF5BB81BB967EC00AF51DF /* TableViewCells */,
-				B9A185381BD5AE3200741727 /* INSOGameEventSelectorTableViewController.h */,
-				B9A185391BD5AE3200741727 /* INSOGameEventSelectorTableViewController.m */,
 			);
 			name = "View Controllers";
 			path = "MensLacrosseStats/View Controllers";
@@ -249,13 +246,11 @@
 				B9637FC81BCC8B070033DED3 /* GameEvents.plist */,
 				B99FDD611BB46957006FB373 /* MensLacrosseStatsAppDelegate.h */,
 				B99FDD621BB46957006FB373 /* MensLacrosseStatsAppDelegate.m */,
-				B99FDD6F1BB47908006FB373 /* Events.plist */,
 				B99FDD631BB46957006FB373 /* Info.plist */,
 				B99FDD641BB46957006FB373 /* main.m */,
 				B99FDD711BB47A4A006FB373 /* INSOMensLacrosseStatsEnum.h */,
 				B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */,
 				B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */,
-				B9108A941BC08680000450F8 /* Categories.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -444,11 +439,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B99FDD701BB47908006FB373 /* Events.plist in Resources */,
 				B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */,
 				B99FDD6D1BB46A12006FB373 /* LaunchScreen.storyboard in Resources */,
 				B99FDD5F1BB46907006FB373 /* Assets.xcassets in Resources */,
-				B9108A951BC08680000450F8 /* Categories.plist in Resources */,
 				B99FDD6E1BB46A12006FB373 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +475,7 @@
 				B99FDD521BB46865006FB373 /* MensLacrosseStats.xcdatamodeld in Sources */,
 				B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */,
 				B9CF5BBB1BB967EC00AF51DF /* INSOGameTableViewCell.m in Sources */,
+				B9FB297A1BD72BF500A56821 /* INSOPenaltyTimeViewController.m in Sources */,
 				B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.m in Sources */,
 				B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m in Sources */,
 				B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */,

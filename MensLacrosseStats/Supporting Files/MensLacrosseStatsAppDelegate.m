@@ -68,15 +68,16 @@
         // Create an event category object for each item at the root.
         EventCategory* category = [EventCategory insertInManagedObjectContext:self.managedObjectContext];
         category.title = categoryDictionary[INSOCategoryTitleKey];
-        category.sortOrder = categoryDictionary[INSOCategorySortOrderKey];
+        category.categoryCode = categoryDictionary[INSOCategoryCodeKey];
         
         // Now create event objects within each category
         NSArray* eventsArray = categoryDictionary[INSOCategoryEventsKey];
         for (NSDictionary* eventDictionary in eventsArray) {
             Event* event = [Event insertInManagedObjectContext:self.managedObjectContext];
             event.title = eventDictionary[INSOEventTitleKey];
+            event.eventCode = eventDictionary[INSOEventCodeKey];
             event.isDefalutValue = YES;
-            event.categorySortOrder = category.sortOrder;
+            event.categoryCode = category.categoryCode;
             event.category = category; 
         }
     }

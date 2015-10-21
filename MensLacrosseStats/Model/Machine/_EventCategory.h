@@ -4,7 +4,7 @@
 @import CoreData;
 
 extern const struct EventCategoryAttributes {
-	__unsafe_unretained NSString *sortOrder;
+	__unsafe_unretained NSString *categoryCode;
 	__unsafe_unretained NSString *title;
 } EventCategoryAttributes;
 
@@ -23,13 +23,13 @@ extern const struct EventCategoryRelationships {
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) EventCategoryID* objectID;
 
-@property (nonatomic, strong) NSNumber* sortOrder;
+@property (nonatomic, strong) NSNumber* categoryCode;
 
-@property (atomic) float sortOrderValue;
-- (float)sortOrderValue;
-- (void)setSortOrderValue:(float)value_;
+@property (atomic) int16_t categoryCodeValue;
+- (int16_t)categoryCodeValue;
+- (void)setCategoryCodeValue:(int16_t)value_;
 
-//- (BOOL)validateSortOrder:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateCategoryCode:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* title;
 
@@ -51,11 +51,11 @@ extern const struct EventCategoryRelationships {
 
 @interface _EventCategory (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveSortOrder;
-- (void)setPrimitiveSortOrder:(NSNumber*)value;
+- (NSNumber*)primitiveCategoryCode;
+- (void)setPrimitiveCategoryCode:(NSNumber*)value;
 
-- (float)primitiveSortOrderValue;
-- (void)setPrimitiveSortOrderValue:(float)value_;
+- (int16_t)primitiveCategoryCodeValue;
+- (void)setPrimitiveCategoryCodeValue:(int16_t)value_;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;

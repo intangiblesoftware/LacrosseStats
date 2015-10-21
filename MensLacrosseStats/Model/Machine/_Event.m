@@ -4,7 +4,8 @@
 #import "_Event.h"
 
 const struct EventAttributes EventAttributes = {
-	.categorySortOrder = @"categorySortOrder",
+	.categoryCode = @"categoryCode",
+	.eventCode = @"eventCode",
 	.isDefalut = @"isDefalut",
 	.title = @"title",
 };
@@ -41,8 +42,13 @@ const struct EventRelationships EventRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-	if ([key isEqualToString:@"categorySortOrderValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"categorySortOrder"];
+	if ([key isEqualToString:@"categoryCodeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"categoryCode"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"eventCodeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"eventCode"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -55,24 +61,44 @@ const struct EventRelationships EventRelationships = {
 	return keyPaths;
 }
 
-@dynamic categorySortOrder;
+@dynamic categoryCode;
 
-- (float)categorySortOrderValue {
-	NSNumber *result = [self categorySortOrder];
-	return [result floatValue];
+- (int16_t)categoryCodeValue {
+	NSNumber *result = [self categoryCode];
+	return [result shortValue];
 }
 
-- (void)setCategorySortOrderValue:(float)value_ {
-	[self setCategorySortOrder:@(value_)];
+- (void)setCategoryCodeValue:(int16_t)value_ {
+	[self setCategoryCode:@(value_)];
 }
 
-- (float)primitiveCategorySortOrderValue {
-	NSNumber *result = [self primitiveCategorySortOrder];
-	return [result floatValue];
+- (int16_t)primitiveCategoryCodeValue {
+	NSNumber *result = [self primitiveCategoryCode];
+	return [result shortValue];
 }
 
-- (void)setPrimitiveCategorySortOrderValue:(float)value_ {
-	[self setPrimitiveCategorySortOrder:@(value_)];
+- (void)setPrimitiveCategoryCodeValue:(int16_t)value_ {
+	[self setPrimitiveCategoryCode:@(value_)];
+}
+
+@dynamic eventCode;
+
+- (int16_t)eventCodeValue {
+	NSNumber *result = [self eventCode];
+	return [result shortValue];
+}
+
+- (void)setEventCodeValue:(int16_t)value_ {
+	[self setEventCode:@(value_)];
+}
+
+- (int16_t)primitiveEventCodeValue {
+	NSNumber *result = [self primitiveEventCode];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveEventCodeValue:(int16_t)value_ {
+	[self setPrimitiveEventCode:@(value_)];
 }
 
 @dynamic isDefalut;

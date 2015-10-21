@@ -6,6 +6,9 @@
 //  Copyright © 2015 Intangible Software. All rights reserved.
 //
 
+#import "INSOMensLacrosseStatsEnum.h"
+#import "INSOMensLacrosseStatsConstants.h"
+
 #import "MensLacrosseStatsAppDelegate.h"
 
 #import "INSOGameEventSelectorTableViewController.h"
@@ -19,13 +22,8 @@
 #import "Game.h"
 
 static NSString * const INSOGameEventCellIdentifier = @"GameEventCell";
-
-typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
-    INSOEventSelectorSectionIndexGameActions,
-    INSOEventSelectorSectionIndexPersonalFouls,
-    INSOEventSelectorSectionIndexTechnicalFouls,
-    INSOEventSelectorSectionIndexExpulsionFouls
-};
+static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSegue";
+static NSString * const INSOSetPenaltyTimeSegueIdentifier = @"SetPenaltyTimeSegue";
 
 @interface INSOGameEventSelectorTableViewController ()
 
@@ -40,15 +38,6 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
 @property (nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (nonatomic) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic) NSArray* eventArray;
-
-// Private Methods
-- (void)configureGameEventCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
-
-// Navigation
-- (void)prepareForSetPenaltyTimeSegue:(UIStoryboardSegue*)segue sender:(NSIndexPath*)indexPath;
-- (void)prepareForShotResultSegue:(UIStoryboardSegue*)segue sender:(NSIndexPath*)indexPath;
-
-// Delegation
 
 @end
 
@@ -79,20 +68,16 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
     gameEvent.timestamp = [NSDate date];
     
     // Set its relations
-    gameEvent.event = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
+    Event* event = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
+    gameEvent.event = event;
     gameEvent.game = self.rosterPlayer.game;
     gameEvent.player = self.rosterPlayer;
     
-    /*
     // If it's an expulsion foul
-    if ([gameEvent isExpulsionEvent]) {
+    if (event.categoryCodeValue == INSOCategoryCodeExpulsionFouls) {
         // Set penalty duration
-        gameEvent.penaltyDurationValue = 3600;
-        
-        // Expel the player
-        gameEvent.rosterPlayer.playingStatusValue = INSOPlayingStatusExpelled;
+        gameEvent.penaltyDurationValue = INSOExplusionPenaltyDuration;
     }
-     */
 
     /*
     // If it's a faceoff
@@ -123,64 +108,9 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
         // Make sure the two are linked
         faceoffLostEvent.parentEvent = gameEvent;
         
-    } else if (gameEvent.event.codeValue == EventCodeFaceoffLost) {
-        // Create a faceoff won event for the other team
-        // Create a new gameEvent
-        GameEvent* faceoffWonEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-        
-        // Set its properties
-        faceoffWonEvent.periodValue = gameEvent.periodValue;
-        faceoffWonEvent.timeRemainingValue = gameEvent.timeRemainingValue;
-        faceoffWonEvent.timestamp = [NSDate date];
-        
-        // Set its relations
-        faceoffWonEvent.event = [Event eventForCode:EventCodeFaceoffWon inManagedObjectContext:self.managedObjectContext];
-        faceoffWonEvent.game = gameEvent.game;
-        
-        // Somehow need to set the opposing roster player
-        Team* team = gameEvent.rosterPlayer.roster.team;
-        if ([gameEvent.game.homeTeam isEqual:team]) {
-            Roster* roster = [Roster rosterForTeam:gameEvent.game.visitingTeam inGame:gameEvent.game inManagedObjectContext:gameEvent.managedObjectContext];
-            faceoffWonEvent.rosterPlayer = roster.teamPlayer;
-        } else {
-            Roster* roster = [Roster rosterForTeam:gameEvent.game.homeTeam inGame:gameEvent.game inManagedObjectContext:gameEvent.managedObjectContext];
-            faceoffWonEvent.rosterPlayer = roster.teamPlayer;
-        }
-        
-        // Make sure the two are linked
-        faceoffWonEvent.parentEvent = gameEvent;
     }
      */
     
-    /*
-    // If its a caused turnover, need to credit other team with a turnover
-    if (gameEvent.event.codeValue == EventCodeCausedTurnover) {
-        // Create a new gameEvent
-        GameEvent* turnoverEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-        
-        // Set its properties
-        turnoverEvent.periodValue = gameEvent.periodValue;
-        turnoverEvent.timeRemainingValue = gameEvent.timeRemainingValue;
-        turnoverEvent.timestamp = [NSDate date];
-        
-        // Set its relations
-        turnoverEvent.event = [Event eventForCode:EventCodeTurnover inManagedObjectContext:self.managedObjectContext];
-        turnoverEvent.game = gameEvent.game;
-        
-        // Somehow need to set the opposing roster player
-        Team* team = gameEvent.rosterPlayer.roster.team;
-        if ([gameEvent.game.homeTeam isEqual:team]) {
-            Roster* roster = [Roster rosterForTeam:gameEvent.game.visitingTeam inGame:gameEvent.game inManagedObjectContext:gameEvent.managedObjectContext];
-            turnoverEvent.rosterPlayer = roster.teamPlayer;
-        } else {
-            Roster* roster = [Roster rosterForTeam:gameEvent.game.homeTeam inGame:gameEvent.game inManagedObjectContext:gameEvent.managedObjectContext];
-            turnoverEvent.rosterPlayer = roster.teamPlayer;
-        }
-        
-        // Make sure the two are linked
-        turnoverEvent.parentEvent = gameEvent;
-    }
-     */
     
     // Save the MOC
     NSError* error;
@@ -189,7 +119,7 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
     }
     
     // Pop to top
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:INSODoneAddingEventSegueIdentifier sender:event];
 }
 
 
@@ -208,41 +138,16 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
 - (NSArray*)eventArray
 {
     if (!_eventArray) {
-        _eventArray = [self.rosterPlayer.game.eventsToRecord allObjects];
+        _eventArray = [self buildEventArray];
     }
     return _eventArray;
 }
-
-- (NSFetchedResultsController*)fetchedResultsController
-{
-    if (!_fetchedResultsController) {
-        
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Event entityName]];
-        
-        [fetchRequest setFetchBatchSize:50];
-        
-        NSSortDescriptor* sortByCategory = [NSSortDescriptor sortDescriptorWithKey:@"categorySortOrder" ascending:YES];
-        NSSortDescriptor* sortByTitle = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
-        [fetchRequest setSortDescriptors:@[sortByCategory, sortByTitle]];
-        
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.Title" cacheName:nil];
-        
-        NSError *error = nil;
-        if (![_fetchedResultsController performFetch:&error]) {
-            NSLog(@"Error fetching up games %@, %@", error, [error userInfo]);
-        }
-    }
-    
-    return _fetchedResultsController;
-}
-
-
 
 #pragma mark - Private Methods
 - (void)configureGameEventCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     //Event* event = (Event*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    Event* event = self.eventArray[indexPath.row]; 
+    Event* event = self.eventArray[indexPath.section][indexPath.row];
     
     // Set the title
     cell.textLabel.text = event.title;
@@ -250,31 +155,89 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
     // Set the accessory to none
     cell.accessoryType = UITableViewCellAccessoryNone;
     
-    /*
     // Re-set it depending on condition
-    if (indexPath.section == INSOEventSelectorSectionIndexGameActions) {
+    if (event.categoryCodeValue == INSOCategoryCodeGameAction) {
         // here it depends on the row
-        EventCode code = event.codeValue;
-        if (code == EventCodeShot || code == EventCodeGoal) {
+        if (event.eventCodeValue == INSOEventCodeShot || event.eventCodeValue == INSOEventCodeGoal) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else if ([indexPath isEqual:self.selectedIndexPath]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-    } else if (indexPath.section == INSOEventSelectorSectionIndexExpulsionFouls) {
+    } else if (event.categoryCodeValue == INSOCategoryCodeExpulsionFouls) {
         // Expulsion fouls don't go anywhere
         cell.accessoryType = UITableViewCellAccessoryNone;
-    } else if (indexPath.section == INSOEventSelectorSectionIndexPersonalFouls || indexPath.section == INSOEventSelectorSectionIndexTechnicalFouls) {
+    } else if (event.categoryCodeValue == INSOCategoryCodePersonalFouls || event.categoryCodeValue == INSOCategoryCodeTechnicalFouls) {
         // All other fouls and we gotta seque
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-     */
+}
+
+- (NSArray*)buildEventArray
+{
+    NSMutableArray* events = [NSMutableArray new];
+    
+    // Now put all events into sub-arrays
+    NSMutableArray* actionEvents        = [NSMutableArray new];
+    NSMutableArray* personalFoulEvents  = [NSMutableArray new];
+    NSMutableArray* technicalFoulEvents = [NSMutableArray new];
+    NSMutableArray* expulsionFoulEvents = [NSMutableArray new];
+    
+    // I need to find a better way to do this.
+    // This is brittle and will not last.
+    for (Event* event in self.rosterPlayer.game.eventsToRecord) {
+        if (event.categoryCodeValue == INSOCategoryCodeGameAction) {
+            [actionEvents addObject:event];
+        } else if (event.categoryCodeValue == INSOCategoryCodePersonalFouls) {
+            [personalFoulEvents addObject:event];
+        } else if (event.categoryCodeValue == INSOCategoryCodeTechnicalFouls) {
+            [technicalFoulEvents addObject:event];
+        } else if (event.categoryCodeValue == INSOCategoryCodeExpulsionFouls) {
+            [expulsionFoulEvents addObject:event];
+        }
+    }
+    
+    // Now sort each sub-array
+    [actionEvents sortUsingComparator:^NSComparisonResult(Event*  _Nonnull event1, Event*  _Nonnull event2) {
+        return [event1.title compare:event2.title];
+    }];
+    
+    [personalFoulEvents sortUsingComparator:^NSComparisonResult(Event*  _Nonnull event1, Event*  _Nonnull event2) {
+        return [event1.title compare:event2.title];
+    }];
+    
+    [technicalFoulEvents sortUsingComparator:^NSComparisonResult(Event*  _Nonnull event1, Event*  _Nonnull event2) {
+        return [event1.title compare:event2.title];
+    }];
+    
+    [expulsionFoulEvents sortUsingComparator:^NSComparisonResult(Event*  _Nonnull event1, Event*  _Nonnull event2) {
+        return [event1.title compare:event2.title];
+    }];
+    
+    // Now add sub-arrays to main array
+    if ([actionEvents count] > 0) {
+        [events addObject:actionEvents];
+    }
+    
+    if ([personalFoulEvents count] > 0) {
+        [events addObject:personalFoulEvents];
+    }
+    
+    if ([technicalFoulEvents count] > 0) {
+        [events addObject:technicalFoulEvents];
+    }
+    
+    if ([expulsionFoulEvents count] > 0) {
+        [events addObject:expulsionFoulEvents];
+    }
+    
+    return events;
 }
 
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"SetPenaltyTimeSegue"]) {
+    if ([segue.identifier isEqualToString:INSOSetPenaltyTimeSegueIdentifier]) {
         [self prepareForSetPenaltyTimeSegue:segue sender:sender];
     }
     
@@ -316,16 +279,12 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    //return [self.fetchedResultsController.sections count];
-    return 1;
+    return [self.eventArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    //return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
-    return [self.eventArray count];
+    return [self.eventArray[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -340,16 +299,14 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-//    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-//    return [sectionInfo name];
-    Event* event = [self.eventArray firstObject];
+    Event* event = [self.eventArray[section] firstObject];
     return event.category.title;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Set up old and new selection
-    //UITableViewCell* oldSelectedCell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
+    UITableViewCell* oldSelectedCell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
     UITableViewCell* newSelectedCell = [tableView cellForRowAtIndexPath:indexPath];
     
     if ([self.selectedIndexPath isEqual:indexPath]) {
@@ -367,24 +324,21 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
         // Selecting new cell
         self.selectedIndexPath = indexPath;
         
-        /*
+        Event* selectedEvent = self.eventArray[indexPath.section][indexPath.row];
+        
         // if its a foul event, just push the time view controller
-        if (indexPath.section == INSOEventSelectorSectionIndexPersonalFouls || indexPath.section == INSOEventSelectorSectionIndexTechnicalFouls) {
+        if (selectedEvent.categoryCodeValue == INSOCategoryCodePersonalFouls || selectedEvent.categoryCodeValue == INSOCategoryCodeTechnicalFouls) {
             
-            [self performSegueWithIdentifier:@"SetPenaltyTimeSegue" sender:indexPath];
+            [self performSegueWithIdentifier:INSOSetPenaltyTimeSegueIdentifier sender:indexPath];
             
             // Clean up the event selector in case we come back to it.
             self.selectedIndexPath = nil;
             oldSelectedCell.accessoryType = UITableViewCellAccessoryNone;
             self.doneButton.enabled = NO;
         } else {
-            // Set the selected index
-            Event* event = (Event*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-            EventCode eventCode = event.codeValue;
-            
             // Shots or goals go to shot result selector
-            if (eventCode == EventCodeShot || eventCode == EventCodeGoal) {
-                [self performSegueWithIdentifier:@"ShotResultSegue" sender:indexPath];
+            if (selectedEvent.eventCodeValue == INSOEventCodeShot || selectedEvent.eventCodeValue == INSOEventCodeGoal) {
+                //[self performSegueWithIdentifier:@"ShotResultSegue" sender:indexPath];
                 
                 // Clean up the event selector in case we come back to it.
                 self.selectedIndexPath = nil;
@@ -396,10 +350,9 @@ typedef NS_ENUM(NSUInteger, INSOEventSelectorSectionIndex) {
                 newSelectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
                 
                 // Enable the done button
-                self.navigationItem.rightBarButtonItem.enabled = YES;
+                self.doneButton.enabled = YES;
             }
         }
-         */
     }
     
     // Finally, unselect the cell
