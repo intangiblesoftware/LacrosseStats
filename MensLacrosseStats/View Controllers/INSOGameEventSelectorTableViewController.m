@@ -68,7 +68,7 @@ static NSString * const INSOSetPenaltyTimeSegueIdentifier = @"SetPenaltyTimeSegu
     gameEvent.timestamp = [NSDate date];
     
     // Set its relations
-    Event* event = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
+    Event* event = self.eventArray[self.selectedIndexPath.section][self.selectedIndexPath.row];
     gameEvent.event = event;
     gameEvent.game = self.rosterPlayer.game;
     gameEvent.player = self.rosterPlayer;

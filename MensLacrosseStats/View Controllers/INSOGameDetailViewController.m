@@ -6,16 +6,23 @@
 //  Copyright © 2015 Intangible Software. All rights reserved.
 //
 
+#import "MensLacrosseStatsAppDelegate.h"
+
 #import "INSOGameDetailViewController.h"
 #import "INSOGameEditViewController.h"
 #import "INSORosterPlayerSelectorViewController.h"
+#import "INSOStatsViewController.h"
+#import "INSOMensLacrosseStatsEnum.h"
 
 #import "Game.h"
+#import "GameEvent.h"
+#import "Event.h"
 
 static NSString * INSOEditGameSegueIdentifier = @"EditGameSegue";
 static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
+static NSString * INSOGameStatsSegueIdentifier = @"GameStatsSegue";
 
-@interface INSOGameDetailViewController ()
+@interface INSOGameDetailViewController () <NSFetchedResultsControllerDelegate>
 // IBOutlets
 @property (nonatomic, weak) IBOutlet UILabel* gameDateTimeLabel;
 @property (nonatomic, weak) IBOutlet UILabel* homeTeamLabel;
@@ -24,11 +31,12 @@ static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
 @property (nonatomic, weak) IBOutlet UILabel* visitingScoreLabel;
 @property (nonatomic, weak) IBOutlet UILabel* locationLabel;
 
-@property (nonatomic, weak) IBOutlet UITableView* statsTableView;
-
 // IBActions
 
 // Private Properties
+@property (nonatomic) NSFetchedResultsController* homeScoreFRC;
+@property (nonatomic) NSFetchedResultsController* visitorScoreFRC;
+@property (nonatomic) NSManagedObjectContext* managedObjectContext;
 
 // Private Methods
 
@@ -39,6 +47,9 @@ static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.game.homeScoreValue = [self.homeScoreFRC.fetchedObjects count];
+    self.game.visitorScoreValue = [self.visitorScoreFRC.fetchedObjects count]; 
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,6 +67,62 @@ static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
 #pragma mark - IBActions
 
 #pragma mark - Private Properties
+- (NSFetchedResultsController*)homeScoreFRC
+{
+    if (!_homeScoreFRC) {
+        NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:[GameEvent entityName]];
+        [request setFetchBatchSize:50];
+        
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@", self.game, @(INSOEventCodeGoal)];
+        request.predicate = predicate;
+        
+        NSSortDescriptor* sortByTimestamp = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
+        request.sortDescriptors = @[sortByTimestamp];
+        
+        _homeScoreFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        _homeScoreFRC.delegate = self;
+        
+        NSError* error = nil;
+        if (![_homeScoreFRC performFetch:&error]) {
+            // Error fetching games
+            NSLog(@"Error fetching games: %@", error.localizedDescription);
+        }
+    }
+    return _homeScoreFRC;
+}
+
+- (NSFetchedResultsController*)visitorScoreFRC
+{
+    if (!_visitorScoreFRC) {
+        NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:[GameEvent entityName]];
+        [request setFetchBatchSize:50];
+        
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@", self.game, @(INSOEventCodeGoalAllowed)];
+        request.predicate = predicate;
+        
+        NSSortDescriptor* sortByTimestamp = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
+        request.sortDescriptors = @[sortByTimestamp];
+        
+        _visitorScoreFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        _visitorScoreFRC.delegate = self;
+        
+        NSError* error = nil;
+        if (![_visitorScoreFRC performFetch:&error]) {
+            // Error fetching games
+            NSLog(@"Error fetching games: %@", error.localizedDescription);
+        }
+    }
+    return _visitorScoreFRC;
+}
+
+- (NSManagedObjectContext*)managedObjectContext
+{
+    if (!_managedObjectContext) {
+        MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        _managedObjectContext = appDelegate.managedObjectContext;
+    }
+    return _managedObjectContext;
+}
 
 #pragma mark - Private Methods
 - (void)configureView
@@ -87,6 +154,10 @@ static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
     if ([segue.identifier isEqualToString:INSORecordStatsSegueIdentifier]) {
         [self prepareForRecordStatsSegue:segue sender:sender]; 
     }
+    
+    if ([segue.identifier isEqualToString:INSOGameStatsSegueIdentifier]) {
+        [self prepareForGameStatsSegue:segue sender:sender]; 
+    }
 }
 
 - (void)prepareForGameEditSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -101,5 +172,25 @@ static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
     dest.game = self.game; 
 }
 
+- (void)prepareForGameStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    INSOStatsViewController* dest = segue.destinationViewController;
+    dest.game = self.game; 
+}
+
+#pragma mark - Delegates
+#pragma mark - NSFetchedResultsControllerDelegate
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    if ([controller isEqual:self.homeScoreFRC]) {
+        self.game.homeScoreValue = [self.homeScoreFRC.fetchedObjects count];
+    }
+    
+    if ([controller isEqual:self.visitorScoreFRC]) {
+        self.game.visitorScoreValue = [self.visitorScoreFRC.fetchedObjects count];
+    }
+    
+    [self configureView]; 
+}
 
 @end

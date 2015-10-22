@@ -12,6 +12,8 @@
 		B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB451BC9C9F2006AEA3A /* _Event.m */; settings = {ASSET_TAGS = (); }; };
 		B935AB4A1BC9CA6C006AEA3A /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB491BC9CA6C006AEA3A /* EventCategory.m */; settings = {ASSET_TAGS = (); }; };
 		B935AB4D1BC9CA78006AEA3A /* _EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB4C1BC9CA78006AEA3A /* _EventCategory.m */; settings = {ASSET_TAGS = (); }; };
+		B9471E611BD8719900379D96 /* INSOStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9471E601BD8719900379D96 /* INSOStatsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		B9471E631BD872CA00379D96 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9471E621BD872CA00379D96 /* CoreData.framework */; };
 		B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */; settings = {ASSET_TAGS = (); }; };
 		B95D943A1BBCB2F000E56AD9 /* _RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94391BBCB2F000E56AD9 /* _RosterPlayer.m */; settings = {ASSET_TAGS = (); }; };
 		B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -67,6 +69,9 @@
 		B935AB491BC9CA6C006AEA3A /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
 		B935AB4B1BC9CA78006AEA3A /* _EventCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _EventCategory.h; sourceTree = "<group>"; };
 		B935AB4C1BC9CA78006AEA3A /* _EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _EventCategory.m; sourceTree = "<group>"; };
+		B9471E5F1BD8719900379D96 /* INSOStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOStatsViewController.h; sourceTree = "<group>"; };
+		B9471E601BD8719900379D96 /* INSOStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOStatsViewController.m; sourceTree = "<group>"; };
+		B9471E621BD872CA00379D96 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B95D94351BBCB2E500E56AD9 /* RosterPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterPlayer.h; sourceTree = "<group>"; };
 		B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterPlayer.m; sourceTree = "<group>"; };
 		B95D94381BBCB2F000E56AD9 /* _RosterPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RosterPlayer.h; sourceTree = "<group>"; };
@@ -126,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9471E631BD872CA00379D96 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +233,8 @@
 				B9A308EA1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.h */,
 				B9A308EB1BD3BC0700CB2467 /* INSORosterPlayerSelectorViewController.m */,
 				B9CF5BB81BB967EC00AF51DF /* TableViewCells */,
+				B9471E5F1BD8719900379D96 /* INSOStatsViewController.h */,
+				B9471E601BD8719900379D96 /* INSOStatsViewController.m */,
 			);
 			name = "View Controllers";
 			path = "MensLacrosseStats/View Controllers";
@@ -267,6 +275,7 @@
 		B9C7A7271BADA3B30082DA8B = {
 			isa = PBXGroup;
 			children = (
+				B9471E621BD872CA00379D96 /* CoreData.framework */,
 				B9C7A7321BADA3B30082DA8B /* MensLacrosseStats */,
 				B9C7A74F1BADA3B30082DA8B /* MensLacrosseStatsTests */,
 				B9C7A7311BADA3B30082DA8B /* Products */,
@@ -476,6 +485,7 @@
 				B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */,
 				B9CF5BBB1BB967EC00AF51DF /* INSOGameTableViewCell.m in Sources */,
 				B9FB297A1BD72BF500A56821 /* INSOPenaltyTimeViewController.m in Sources */,
+				B9471E611BD8719900379D96 /* INSOStatsViewController.m in Sources */,
 				B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.m in Sources */,
 				B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m in Sources */,
 				B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */,
