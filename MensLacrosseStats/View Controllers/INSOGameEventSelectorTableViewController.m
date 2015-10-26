@@ -12,8 +12,9 @@
 #import "MensLacrosseStatsAppDelegate.h"
 
 #import "INSOGameEventSelectorTableViewController.h"
-//#import "INSOPenaltyTimeViewController.h"
-//#import "INSOShotResultViewController.h"
+#import "INSOPenaltyTimeViewController.h"
+#import "INSOShotResultViewController.h"
+#import "INSOFaceoffWonViewController.h"
 
 #import "RosterPlayer.h"
 #import "GameEvent.h"
@@ -21,9 +22,11 @@
 #import "EventCategory.h"
 #import "Game.h"
 
-static NSString * const INSOGameEventCellIdentifier = @"GameEventCell";
+static NSString * const INSOGameEventCellIdentifier        = @"GameEventCell";
 static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSegue";
-static NSString * const INSOSetPenaltyTimeSegueIdentifier = @"SetPenaltyTimeSegue";
+static NSString * const INSOSetPenaltyTimeSegueIdentifier  = @"SetPenaltyTimeSegue";
+static NSString * const INSOShotResultSegueIdentifier      = @"ShotResultSegue";
+static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
 
 @interface INSOGameEventSelectorTableViewController ()
 
@@ -78,39 +81,6 @@ static NSString * const INSOSetPenaltyTimeSegueIdentifier = @"SetPenaltyTimeSegu
         // Set penalty duration
         gameEvent.penaltyDurationValue = INSOExplusionPenaltyDuration;
     }
-
-    /*
-    // If it's a faceoff
-    if (gameEvent.event.codeValue == EventCodeFaceoffWon) {
-        // Create a faceoff lost event for the other team
-        // Create a new gameEvent
-        GameEvent* faceoffLostEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-        
-        // Set its properties
-        faceoffLostEvent.periodValue = gameEvent.periodValue;
-        faceoffLostEvent.timeRemainingValue = gameEvent.timeRemainingValue;
-        faceoffLostEvent.timestamp = [NSDate date];
-        
-        // Set its relations
-        faceoffLostEvent.event = [Event eventForCode:EventCodeFaceoffLost  inManagedObjectContext:self.managedObjectContext];
-        faceoffLostEvent.game = gameEvent.game;
-        
-        // Somehow need to set the opposing roster player
-        Team* team = gameEvent.rosterPlayer.roster.team;
-        if ([gameEvent.game.homeTeam isEqual:team]) {
-            Roster* roster = [Roster rosterForTeam:gameEvent.game.visitingTeam inGame:gameEvent.game inManagedObjectContext:gameEvent.managedObjectContext];
-            faceoffLostEvent.rosterPlayer = roster.teamPlayer;
-        } else {
-            Roster* roster = [Roster rosterForTeam:gameEvent.game.homeTeam inGame:gameEvent.game inManagedObjectContext:gameEvent.managedObjectContext];
-            faceoffLostEvent.rosterPlayer = roster.teamPlayer;
-        }
-        
-        // Make sure the two are linked
-        faceoffLostEvent.parentEvent = gameEvent;
-        
-    }
-     */
-    
     
     // Save the MOC
     NSError* error;
@@ -158,7 +128,7 @@ static NSString * const INSOSetPenaltyTimeSegueIdentifier = @"SetPenaltyTimeSegu
     // Re-set it depending on condition
     if (event.categoryCodeValue == INSOCategoryCodeGameAction) {
         // here it depends on the row
-        if (event.eventCodeValue == INSOEventCodeShot || event.eventCodeValue == INSOEventCodeGoal) {
+        if (event.eventCodeValue == INSOEventCodeShot || event.eventCodeValue == INSOEventCodeGoal || event.eventCodeValue == INSOEventCodeFaceoffWon) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else if ([indexPath isEqual:self.selectedIndexPath]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -241,38 +211,40 @@ static NSString * const INSOSetPenaltyTimeSegueIdentifier = @"SetPenaltyTimeSegu
         [self prepareForSetPenaltyTimeSegue:segue sender:sender];
     }
     
-    if ([segue.identifier isEqualToString:@"ShotResultSegue"]) {
+    if ([segue.identifier isEqualToString:INSOShotResultSegueIdentifier]) {
         [self prepareForShotResultSegue:segue sender:sender];
+    }
+    
+    if ([segue.identifier isEqualToString:INSOFaceoffWonSegueIdentifier]) {
+        [self prepareForFaceoffWonSegue:segue sender:sender];
     }
 }
 
 - (void)prepareForSetPenaltyTimeSegue:(UIStoryboardSegue*)segue sender:(NSIndexPath*)indexPath
 {
-    /*
     // Need to send along roster player and the event code
     INSOPenaltyTimeViewController* dest = segue.destinationViewController;
     dest.rosterPlayer = self.rosterPlayer;
-    dest.event = (Event*)[self.fetchedResultsController objectAtIndexPath:indexPath];
-    dest.period = self.period;
-    dest.timeRemaining = self.timeRemaining;
-     */
+    dest.event = self.eventArray[indexPath.section][indexPath.row];
 }
 
 - (void)prepareForShotResultSegue:(UIStoryboardSegue*)segue sender:(NSIndexPath*)indexPath
 {
-    /*
     INSOShotResultViewController* dest = segue.destinationViewController;
     dest.rosterPlayer = self.rosterPlayer;
-    dest.period = self.period;
-    dest.timeRemaining = self.timeRemaining;
     
-    Event* selectedEvent = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if (selectedEvent.codeValue == EventCodeGoal) {
+    Event* selectedEvent = self.eventArray[indexPath.section][indexPath.row];
+    if (selectedEvent.eventCodeValue == INSOEventCodeGoal) {
         dest.initialResultSegment = INSOGoalResultGoal;
     } else {
         dest.initialResultSegment = INSOGoalResultNone;
     }
-     */
+}
+
+- (void)prepareForFaceoffWonSegue:(UIStoryboardSegue*)segue sender:(NSIndexPath*)indexPath
+{
+    INSOFaceoffWonViewController* dest = segue.destinationViewController;
+    dest.faceoffWinner = self.rosterPlayer; 
 }
 
 #pragma mark - Delegation
@@ -338,12 +310,16 @@ static NSString * const INSOSetPenaltyTimeSegueIdentifier = @"SetPenaltyTimeSegu
         } else {
             // Shots or goals go to shot result selector
             if (selectedEvent.eventCodeValue == INSOEventCodeShot || selectedEvent.eventCodeValue == INSOEventCodeGoal) {
-                //[self performSegueWithIdentifier:@"ShotResultSegue" sender:indexPath];
+                [self performSegueWithIdentifier:INSOShotResultSegueIdentifier sender:indexPath];
                 
                 // Clean up the event selector in case we come back to it.
                 self.selectedIndexPath = nil;
                 oldSelectedCell.accessoryType = UITableViewCellAccessoryNone;
                 self.doneButton.enabled = NO;
+            } else if (selectedEvent.eventCodeValue == INSOEventCodeFaceoffWon) {
+                // Need to go to ground-ball event selector
+                [self performSegueWithIdentifier:INSOFaceoffWonSegueIdentifier sender:indexPath];
+                
             } else {
                 // Set the checkmarks
                 oldSelectedCell.accessoryType = UITableViewCellAccessoryNone;

@@ -58,7 +58,7 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
 {
     // Create a game with now as the game date time
     Game* newGame = [Game insertInManagedObjectContext:self.managedObjectContext];
-    newGame.gameDateTime = [NSDate date];
+    newGame.gameDateTime = [self newGameStartDateTime]; 
     
     // Set up events to record
     NSArray* defaultEvents = [Event fetchDefaultEvents:self.managedObjectContext];
@@ -137,6 +137,17 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
     cell.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", game.visitorScore];
     
     cell.locationLabel.text = game.location;
+}
+
+- (NSDate*)newGameStartDateTime
+{
+    NSDate* currentDate = [NSDate date];
+    NSDateComponents* components = [[NSCalendar currentCalendar] components: (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:currentDate];
+    NSInteger minutes = components.minute;
+    float minuteUnit = ceil((float) minutes / 30.0);
+    minutes = minuteUnit * 30;
+    [components setMinute:minutes];
+    return [[NSCalendar currentCalendar] dateFromComponents:components];
 }
 
 #pragma mark - Navigation

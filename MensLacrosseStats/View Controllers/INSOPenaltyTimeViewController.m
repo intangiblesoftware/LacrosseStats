@@ -121,26 +121,25 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
 - (IBAction)done:(id)sender
 {
     // Create the penalty game event
-    GameEvent* penaltyEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    GameEvent* penaltyGameEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
     
     // Set its properties
-    penaltyEvent.timestamp = [NSDate date];
-    
-    penaltyEvent.penaltyDurationValue = [self penaltyDuration];
+    penaltyGameEvent.timestamp = [NSDate date];
+    penaltyGameEvent.penaltyDurationValue = [self penaltyDuration];
     
     // Set its relations
-    penaltyEvent.event = self.event;
-    penaltyEvent.game = self.rosterPlayer.game;
-    penaltyEvent.player = self.rosterPlayer;
+    penaltyGameEvent.event = self.event;
+    penaltyGameEvent.game = self.rosterPlayer.game;
+    penaltyGameEvent.player = self.rosterPlayer;
     
     // And now, if this creates an extra-man opportunity, create one of those as well.
     if (self.manDownSwitch.isOn) {
-        GameEvent* manDownEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+        GameEvent* manDownGameEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
         
-        manDownEvent.timestamp = [NSDate date];
-        
-        //emoEvent.event = [Event eventForCode:EventCodeEMO inManagedObjectContext:self.managedObjectContext];
-        manDownEvent.game = self.rosterPlayer.game;
+        manDownGameEvent.player = self.rosterPlayer.game.teamPlayer; 
+        manDownGameEvent.timestamp = [NSDate date];
+        manDownGameEvent.event = [Event eventForCode:INSOEventCodeManDown inManagedObjectContext:self.managedObjectContext];
+        manDownGameEvent.game = self.rosterPlayer.game;
     }
     
     // Save the MOC
@@ -150,7 +149,7 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
     }
     
     // And pop to root
-    [self performSegueWithIdentifier:INSODoneAddingEventSegueIdentifier sender:penaltyEvent]; 
+    [self performSegueWithIdentifier:INSODoneAddingEventSegueIdentifier sender:penaltyGameEvent];
 }
 
 #pragma mark - Private Properties

@@ -120,6 +120,9 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 
 - (void)done:(id)sender
 {
+    // Put away keyboard if necessary.
+    [self.view endEditing:YES];
+    
     // Just save the changes that have already been made.
     NSError* error = nil;
     if (![self.managedObjectContext save:&error]) {

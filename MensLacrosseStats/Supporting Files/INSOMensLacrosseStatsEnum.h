@@ -68,4 +68,11 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeTobacco            = 403,
 };
 
+typedef NS_ENUM(NSInteger, INSOGoalResult) {
+    INSOGoalResultNone = -1,
+    INSOGoalResultMiss,
+    INSOGoalResultSave,
+    INSOGoalResultGoal
+};
+
 #endif /* INSOMensLacrosseStats_h */
