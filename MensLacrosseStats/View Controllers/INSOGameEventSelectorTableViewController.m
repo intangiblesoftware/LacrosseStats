@@ -39,7 +39,6 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
 // Private Properties
 @property (nonatomic) NSIndexPath * selectedIndexPath;
 @property (nonatomic) NSManagedObjectContext * managedObjectContext;
-@property (nonatomic) NSFetchedResultsController* fetchedResultsController;
 @property (nonatomic) NSArray* eventArray;
 
 @end

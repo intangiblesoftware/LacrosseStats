@@ -175,7 +175,11 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="YhN-Gh-jrp"/>
                                     <barButtonItem image="edit" id="vHi-bt-sqy"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="flE-qE-0Cu"/>
-                                    <barButtonItem image="undo" id="e96-DU-yxq"/>
+                                    <barButtonItem image="undo" id="e96-DU-yxq">
+                                        <connections>
+                                            <action selector="tappedUndo:" destination="QR8-MM-38V" id="hI8-Zk-ljd"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="TUI-bg-gY6"/>
                                 </items>
                             </toolbar>
@@ -278,6 +282,7 @@
                     </view>
                     <connections>
                         <outlet property="playersCollectionView" destination="w1y-HK-Jqc" id="Xpc-lr-UgR"/>
+                        <outlet property="undoButton" destination="e96-DU-yxq" id="nVL-sD-BQB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSn-we-BRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
