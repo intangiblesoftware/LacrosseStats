@@ -11,6 +11,7 @@
 @class Game;
 
 @interface INSOGameEditViewController : UIViewController
+
 // Public Properties
 @property (nonatomic) Game* game; 
 

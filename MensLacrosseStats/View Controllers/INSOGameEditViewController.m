@@ -55,7 +55,6 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 @property (nonatomic) UIDatePicker* datePicker;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic) NSArray* playersArray;
-@property (nonatomic) NSArray* statsArray;
 @property (nonatomic) NSMutableSet* selectedStats;
 @property (nonatomic) NSFetchedResultsController* eventsFRC;
 
@@ -184,14 +183,6 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
         _playersArray = tempArray;
     }
     return _playersArray; 
-}
-
-- (NSArray*)statsArray
-{
-    if (!_statsArray) {
-        _statsArray = [NSArray new];
-    }
-    return _statsArray;
 }
 
 - (NSFetchedResultsController*)eventsFRC

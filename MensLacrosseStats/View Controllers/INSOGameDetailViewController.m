@@ -12,6 +12,7 @@
 #import "INSOGameEditViewController.h"
 #import "INSORosterPlayerSelectorViewController.h"
 #import "INSOMensLacrosseStatsEnum.h"
+#import "INSOGameStatsViewController.h"
 
 #import "Game.h"
 #import "GameEvent.h"
@@ -173,7 +174,8 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
 
 - (void)prepareForGameStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-
+    INSOGameStatsViewController* dest = segue.destinationViewController;
+    dest.game = self.game;
 }
 
 #pragma mark - Delegates

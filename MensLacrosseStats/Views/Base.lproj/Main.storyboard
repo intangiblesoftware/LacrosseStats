@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="189"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gpH-0H-jmj" id="zFS-yY-hBi">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="189"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="188.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Game Date and Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwJ-w5-6aR">
@@ -301,7 +301,7 @@
                         <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameEventCell" textLabel="2PG-GY-vHY" style="IBUITableViewCellStyleDefault" id="IIh-mj-O6D">
-                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IIh-mj-O6D" id="B7J-pm-4h4">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -702,6 +702,9 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ik-kc-On8">
                                 <rect key="frame" x="20" y="178" width="560" height="377"/>
                                 <animations/>
+                                <connections>
+                                    <segue destination="qgc-hz-wfQ" kind="embed" id="E6y-7v-Mjy"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <animations/>
@@ -744,6 +747,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uei-bX-g86" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="797" y="465"/>
+        </scene>
+        <!--Game Stats View Controller-->
+        <scene sceneID="HIN-I8-IFp">
+            <objects>
+                <viewController id="qgc-hz-wfQ" customClass="INSOGameStatsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ntb-XH-fRV"/>
+                        <viewControllerLayoutGuide type="bottom" id="UN3-zm-m3P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="s3K-UT-88D">
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="377"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oFW-zt-kqb">
+                                <rect key="frame" x="20" y="2" width="520" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="Game Stats"/>
+                                    <segment title="Player Stats"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KPT-Fe-wvw">
+                                <rect key="frame" x="20" y="38" width="520" height="339"/>
+                                <animations/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="25C-S5-MjX">
+                                        <rect key="frame" x="0.0" y="49.5" width="520" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="25C-S5-MjX" id="0pX-IJ-RTi">
+                                            <rect key="frame" x="0.0" y="0.0" width="520" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="oFW-zt-kqb" firstAttribute="trailing" secondItem="s3K-UT-88D" secondAttribute="trailingMargin" id="6Eq-pD-EK1"/>
+                            <constraint firstItem="oFW-zt-kqb" firstAttribute="leading" secondItem="s3K-UT-88D" secondAttribute="leadingMargin" id="EWw-Gx-Oph"/>
+                            <constraint firstItem="KPT-Fe-wvw" firstAttribute="top" secondItem="oFW-zt-kqb" secondAttribute="bottom" constant="8" id="Lix-kW-4rA"/>
+                            <constraint firstItem="UN3-zm-m3P" firstAttribute="top" secondItem="KPT-Fe-wvw" secondAttribute="bottom" id="Lms-hK-TDO"/>
+                            <constraint firstItem="KPT-Fe-wvw" firstAttribute="leading" secondItem="s3K-UT-88D" secondAttribute="leadingMargin" id="WyH-a9-dMk"/>
+                            <constraint firstItem="KPT-Fe-wvw" firstAttribute="trailing" secondItem="s3K-UT-88D" secondAttribute="trailingMargin" id="abE-6d-DYi"/>
+                            <constraint firstItem="oFW-zt-kqb" firstAttribute="top" secondItem="Ntb-XH-fRV" secondAttribute="bottom" constant="2" id="vdY-Zk-xni"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4KP-tL-aOs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="797" y="1220.5"/>
         </scene>
         <!--Penalty Time View Controller-->
         <scene sceneID="QSs-ir-3Nb">
@@ -1043,7 +1101,6 @@
         <!--Event List Editor View Controller-->
         <scene sceneID="LXC-FN-FKq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ael-vY-nah" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="hoR-dO-Zsg" customClass="INSOEventListEditorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SU6-xX-gI7"/>
@@ -1078,11 +1135,11 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BfI-1X-h5S" id="4YI-gA-kUH">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2v2-sI-Vyf">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="44"/>
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1124,6 +1181,7 @@
                         <outlet property="eventTable" destination="1cL-vm-3VL" id="V3I-VN-h6g"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ael-vY-nah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2329" y="1332"/>
         </scene>
