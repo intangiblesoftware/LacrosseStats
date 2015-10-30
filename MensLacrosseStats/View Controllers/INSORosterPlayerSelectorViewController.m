@@ -13,6 +13,7 @@
 #import "INSORosterPlayerSelectorViewController.h"
 #import "INSOPlayerCollectionViewCell.h"
 #import "INSOGameEventSelectorTableViewController.h"
+#import "INSOEventListEditorViewController.h"
 
 #import "Game.h"
 #import "GameEvent.h"
@@ -22,6 +23,11 @@
 // Constants
 static NSString * const INSORosterPlayerCellReuseIdentifier = @"RosterPlayerCell";
 static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
+
+static NSString * const INSOShowEventListEditorSegueIdentifier = @"ShowEventListEditorSegue";
+static NSString * const INSOShowEventSelectorSegueIdentifier = @"ShowEventSelectorSegue"; 
+
+static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 @interface INSORosterPlayerSelectorViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
 // IBOutlets
@@ -80,27 +86,29 @@ static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
 {
     GameEvent* lastGameEvent = [[self.fetchedResultsController fetchedObjects] firstObject];
     
+    NSString* title = NSLocalizedString(@"Undo Last Event", nil);
+    
     NSString* message;
     NSString* messageFormatString;
     if (lastGameEvent.player.isTeamValue) {
-        messageFormatString = NSLocalizedString(@"Delete the last %@ event?", nil);
+        messageFormatString = NSLocalizedString(@"Undo the %@ event?", nil);
         message = [NSString stringWithFormat:messageFormatString, [lastGameEvent.event.title lowercaseString]];
     } else {
-        messageFormatString = NSLocalizedString(@"Delete the last %@ event by #%@?", nil);
+        messageFormatString = NSLocalizedString(@"Undo the %@ event by #%@?", nil);
         message = [NSString stringWithFormat:messageFormatString, [lastGameEvent.event.title lowercaseString], lastGameEvent.player.number];
     }
     
-    UIAlertController* deleteAlert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction* deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController* undoAlert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction* undoAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Undo", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.managedObjectContext deleteObject:lastGameEvent];
     }];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    [deleteAlert addAction:cancelAction];
-    [deleteAlert addAction:deleteAction];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+    [undoAlert addAction:cancelAction];
+    [undoAlert addAction:undoAction];
     
-    [self presentViewController:deleteAlert animated:YES completion:nil];
+    [self presentViewController:undoAlert animated:YES completion:nil];
     
-    deleteAlert.view.tintColor = [UIColor scorebookBlue];
+    undoAlert.view.tintColor = [UIColor scorebookBlue];
     
 }
 
@@ -120,7 +128,6 @@ static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
 
 - (NSManagedObjectContext*)managedObjectContext
 {
-    // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
         MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
@@ -163,11 +170,27 @@ static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:INSOShowEventListEditorSegueIdentifier]) {
+        [self prepareForShowEventListEditorSegue:segue sender:sender];
+    }
+    if ([segue.identifier isEqualToString:INSOShowEventSelectorSegueIdentifier]) {
+        [self prepareForShowEventSelectorSegue:segue sender:sender];
+    }
+}
+
+- (void)prepareForShowEventListEditorSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    INSOEventListEditorViewController* dest = segue.destinationViewController;
+    dest.game = self.game;
+}
+
+- (void)prepareForShowEventSelectorSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
     UICollectionViewCell* cell = (UICollectionViewCell*)sender;
     NSIndexPath* indexPath = [self.playersCollectionView indexPathForCell:cell];
     RosterPlayer* player = self.rosterArray[indexPath.row];
     INSOGameEventSelectorTableViewController* dest = segue.destinationViewController;
-    dest.rosterPlayer = player; 
+    dest.rosterPlayer = player;
 }
 
 #pragma mark - Delegate
@@ -195,8 +218,8 @@ static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height = 50.0;
-    CGFloat width = 50.0;
+    CGFloat height = INSODefaultPlayerCellSize;
+    CGFloat width = INSODefaultPlayerCellSize;
     
     RosterPlayer* player = self.rosterArray[indexPath.row];
     if (player.isTeamValue) {
@@ -209,7 +232,8 @@ static NSString * const INSOTeamPlayerCellReuseIdentifier   = @"TeamPlayerCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES]; 
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:INSOShowEventSelectorSegueIdentifier sender:[collectionView cellForItemAtIndexPath:indexPath]];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

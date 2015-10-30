@@ -11,16 +11,15 @@
 #import "INSOGameDetailViewController.h"
 #import "INSOGameEditViewController.h"
 #import "INSORosterPlayerSelectorViewController.h"
-#import "INSOStatsViewController.h"
 #import "INSOMensLacrosseStatsEnum.h"
 
 #import "Game.h"
 #import "GameEvent.h"
 #import "Event.h"
 
-static NSString * INSOEditGameSegueIdentifier = @"EditGameSegue";
+static NSString * INSOEditGameSegueIdentifier    = @"EditGameSegue";
 static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
-static NSString * INSOGameStatsSegueIdentifier = @"GameStatsSegue";
+static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
 
 @interface INSOGameDetailViewController () <NSFetchedResultsControllerDelegate>
 // IBOutlets
@@ -174,8 +173,7 @@ static NSString * INSOGameStatsSegueIdentifier = @"GameStatsSegue";
 
 - (void)prepareForGameStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    INSOStatsViewController* dest = segue.destinationViewController;
-    dest.game = self.game; 
+
 }
 
 #pragma mark - Delegates

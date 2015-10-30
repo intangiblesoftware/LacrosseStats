@@ -1,5 +1,5 @@
 //
-//  INSOStatsViewController.h
+//  INSOEventListEditorViewController.h
 //  MensLacrosseStats
 //
 //  Created by James Dabrowski on 10/21/15.
@@ -10,7 +10,7 @@
 
 @class Game;
 
-@interface INSOStatsViewController : UIViewController
+@interface INSOEventListEditorViewController : UIViewController
 
 @property (nonatomic) Game* game; 
 

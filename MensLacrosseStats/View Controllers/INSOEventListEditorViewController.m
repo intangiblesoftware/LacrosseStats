@@ -1,5 +1,5 @@
 //
-//  INSOStatsViewController.m
+//  INSOEventListEditorViewController.m
 //  MensLacrosseStats
 //
 //  Created by James Dabrowski on 10/21/15.
@@ -15,22 +15,36 @@
 
 #import "MensLacrosseStatsAppDelegate.h"
 
-#import "INSOStatsViewController.h"
+#import "INSOEventListEditorViewController.h"
 
-@interface INSOStatsViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
+@interface INSOEventListEditorViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, UINavigationBarDelegate>
 
-@property (nonatomic, weak) IBOutlet UITableView* statsTable;
+// IBOutlets
+@property (nonatomic, weak) IBOutlet UITableView* eventTable;
 
+// IBActions
+- (IBAction)done:(id)sender;
+
+// Private Properties
 @property (nonatomic) NSFetchedResultsController* gameEventsFRC;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 
 @end
 
-@implementation INSOStatsViewController
+@implementation INSOEventListEditorViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.eventTable setEditing:YES animated:YES];
+    self.eventTable.alwaysBounceVertical = NO;
+    self.eventTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,7 +61,7 @@
         NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@", self.game];
         request.predicate = predicate; 
         
-        NSSortDescriptor* sortByTimestamp = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
+        NSSortDescriptor* sortByTimestamp = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO];
         [request setSortDescriptors:@[sortByTimestamp]];
         
         _gameEventsFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -72,6 +86,12 @@
     return _managedObjectContext;
 }
 
+#pragma mark - IBActions
+- (void)done:(id)sender
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil]; 
+}
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -92,25 +112,38 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        GameEvent* event = [self.gameEventsFRC objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:event];
+    }
+    
+    NSError* error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Error saving MOC after deleting game event: %@", error.localizedDescription);
+    }
+}
+
 #pragma mark - NSFetchedResultsControllerDelegate
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.statsTable beginUpdates];
+    [self.eventTable beginUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
     switch (type) {
         case NSFetchedResultsChangeInsert:
-            [self.statsTable insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.eventTable insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         case NSFetchedResultsChangeDelete:
-            [self.statsTable deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.eventTable deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         case NSFetchedResultsChangeUpdate:
-            [self.statsTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.eventTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         case NSFetchedResultsChangeMove:
-            [self.statsTable reloadData];
+            [self.eventTable reloadData];
         default:
             break;
     }
@@ -118,7 +151,13 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.statsTable endUpdates];
+    [self.eventTable endUpdates];
+}
+
+#pragma mark - Navigation Bar Delegate
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached; 
 }
 
 @end

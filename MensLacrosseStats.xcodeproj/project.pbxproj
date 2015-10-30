@@ -12,7 +12,7 @@
 		B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB451BC9C9F2006AEA3A /* _Event.m */; };
 		B935AB4A1BC9CA6C006AEA3A /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB491BC9CA6C006AEA3A /* EventCategory.m */; };
 		B935AB4D1BC9CA78006AEA3A /* _EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB4C1BC9CA78006AEA3A /* _EventCategory.m */; };
-		B9471E611BD8719900379D96 /* INSOStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9471E601BD8719900379D96 /* INSOStatsViewController.m */; };
+		B9471E611BD8719900379D96 /* INSOEventListEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9471E601BD8719900379D96 /* INSOEventListEditorViewController.m */; };
 		B9471E631BD872CA00379D96 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9471E621BD872CA00379D96 /* CoreData.framework */; };
 		B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */; };
 		B95D943A1BBCB2F000E56AD9 /* _RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94391BBCB2F000E56AD9 /* _RosterPlayer.m */; };
@@ -71,8 +71,8 @@
 		B935AB491BC9CA6C006AEA3A /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
 		B935AB4B1BC9CA78006AEA3A /* _EventCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _EventCategory.h; sourceTree = "<group>"; };
 		B935AB4C1BC9CA78006AEA3A /* _EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _EventCategory.m; sourceTree = "<group>"; };
-		B9471E5F1BD8719900379D96 /* INSOStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOStatsViewController.h; sourceTree = "<group>"; };
-		B9471E601BD8719900379D96 /* INSOStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOStatsViewController.m; sourceTree = "<group>"; };
+		B9471E5F1BD8719900379D96 /* INSOEventListEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOEventListEditorViewController.h; sourceTree = "<group>"; };
+		B9471E601BD8719900379D96 /* INSOEventListEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOEventListEditorViewController.m; sourceTree = "<group>"; };
 		B9471E621BD872CA00379D96 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B95D94351BBCB2E500E56AD9 /* RosterPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterPlayer.h; sourceTree = "<group>"; };
 		B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterPlayer.m; sourceTree = "<group>"; };
@@ -241,8 +241,8 @@
 				B9728BF91BDD6B7C00CFCCA4 /* INSOShotResultViewController.h */,
 				B9728BFA1BDD6B7C00CFCCA4 /* INSOShotResultViewController.m */,
 				B9CF5BB81BB967EC00AF51DF /* TableViewCells */,
-				B9471E5F1BD8719900379D96 /* INSOStatsViewController.h */,
-				B9471E601BD8719900379D96 /* INSOStatsViewController.m */,
+				B9471E5F1BD8719900379D96 /* INSOEventListEditorViewController.h */,
+				B9471E601BD8719900379D96 /* INSOEventListEditorViewController.m */,
 				B9728BFC1BDDA71A00CFCCA4 /* INSOFaceoffWonViewController.h */,
 				B9728BFD1BDDA71A00CFCCA4 /* INSOFaceoffWonViewController.m */,
 			);
@@ -496,7 +496,7 @@
 				B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */,
 				B9CF5BBB1BB967EC00AF51DF /* INSOGameTableViewCell.m in Sources */,
 				B9FB297A1BD72BF500A56821 /* INSOPenaltyTimeViewController.m in Sources */,
-				B9471E611BD8719900379D96 /* INSOStatsViewController.m in Sources */,
+				B9471E611BD8719900379D96 /* INSOEventListEditorViewController.m in Sources */,
 				B9728BFE1BDDA71A00CFCCA4 /* INSOFaceoffWonViewController.m in Sources */,
 				B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.m in Sources */,
 				B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m in Sources */,
