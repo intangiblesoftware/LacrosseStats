@@ -19,8 +19,14 @@ NSString * const INSOEventCodeKey      = @"EventCode";
 NSString * const INSOCategoryTitleKey  = @"CategoryTitle";
 NSString * const INSOCategoryCodeKey   = @"CategoryCode";
 NSString * const INSOCategoryEventsKey = @"CategoryEvents";
+NSString * const INSOStatCategoryKey   = @"StatCategory"; 
 
 #pragma mark - Other constants
-const NSInteger INSOExplusionPenaltyDuration = (48 * 60); 
+const NSInteger INSOExplusionPenaltyTime = (48 * 60);
+
+NSString * const INSOTitleKey = @"title";
+NSString * const INSOEventsKey = @"events"; 
+NSString * const INSOPenaltyTimeKey = @"penaltyTime"; 
+NSString * const INSOPenaltyCountKey = @"penaltyCount";
 
 @end

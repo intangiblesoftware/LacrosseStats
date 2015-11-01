@@ -19,7 +19,14 @@ extern NSString * const INSOEventCodeKey;
 extern NSString * const INSOCategoryTitleKey;
 extern NSString * const INSOCategoryCodeKey;
 extern NSString * const INSOCategoryEventsKey;
+extern NSString * const INSOStatCategoryKey; 
 
-extern const NSInteger INSOExplusionPenaltyDuration; 
+extern const NSInteger INSOExplusionPenaltyTime;
+
+// Some other keys
+extern NSString * const INSOTitleKey;
+extern NSString * const INSOEventsKey;
+extern NSString * const INSOPenaltyTimeKey;
+extern NSString * const INSOPenaltyCountKey;
 
 @end

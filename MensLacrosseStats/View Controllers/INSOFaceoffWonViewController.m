@@ -17,7 +17,10 @@
 #import "Event.h"
 
 static NSString * const PlayerCellIdentifier = @"PlayerCell";
+
 static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSegue";
+
+static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 @interface INSOFaceoffWonViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 // IBOutlets
@@ -84,9 +87,6 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
         NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
         NSMutableArray* roster = [[NSMutableArray alloc] initWithArray:[self.faceoffWinner.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
         
-        // Remove the current player and the team player
-        [roster removeObjectIdenticalTo:self.faceoffWinner.game.teamPlayer];
-        
         _rosterArray = roster;
     }
     return _rosterArray;
@@ -107,7 +107,11 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
 - (void)configureRosterPlayerCell:(INSOPlayerCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     RosterPlayer * rosterPlayer = self.rosterArray[indexPath.row];
-    cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
+    if (rosterPlayer.isTeamValue) {
+        cell.playerNumberLabel.text = NSLocalizedString(@"Team Player", nil);
+    } else {
+        cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
+    }
     
     if ([indexPath isEqual:self.selectedIndexPath]) {
         [self.playerCollection selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
@@ -155,15 +159,12 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    INSOPlayerCollectionViewCell *cell = (INSOPlayerCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:PlayerCellIdentifier forIndexPath:indexPath];
-    
     // Configure the cell
+    INSOPlayerCollectionViewCell *cell = (INSOPlayerCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:PlayerCellIdentifier forIndexPath:indexPath];
     [self configureRosterPlayerCell:cell atIndexPath:indexPath];
-    
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // Hold on to the selected indexpath
@@ -177,5 +178,18 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
     [collectionView reloadData];
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = INSODefaultPlayerCellSize;
+    CGFloat width = INSODefaultPlayerCellSize;
+    
+    RosterPlayer* player = self.rosterArray[indexPath.row];
+    if (player.isTeamValue) {
+        UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)collectionView.collectionViewLayout;
+        width = collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right;
+    }
+    
+    return CGSizeMake(width, height);
+}
 
 @end

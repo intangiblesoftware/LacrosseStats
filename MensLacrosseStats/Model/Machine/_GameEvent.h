@@ -5,7 +5,6 @@
 
 extern const struct GameEventAttributes {
 	__unsafe_unretained NSString *isExtraManGoal;
-	__unsafe_unretained NSString *penaltyDuration;
 	__unsafe_unretained NSString *penaltyTime;
 	__unsafe_unretained NSString *timestamp;
 } GameEventAttributes;
@@ -36,14 +35,6 @@ extern const struct GameEventRelationships {
 - (void)setIsExtraManGoalValue:(BOOL)value_;
 
 //- (BOOL)validateIsExtraManGoal:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* penaltyDuration;
-
-@property (atomic) int16_t penaltyDurationValue;
-- (int16_t)penaltyDurationValue;
-- (void)setPenaltyDurationValue:(int16_t)value_;
-
-//- (BOOL)validatePenaltyDuration:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* penaltyTime;
 
@@ -78,12 +69,6 @@ extern const struct GameEventRelationships {
 
 - (BOOL)primitiveIsExtraManGoalValue;
 - (void)setPrimitiveIsExtraManGoalValue:(BOOL)value_;
-
-- (NSNumber*)primitivePenaltyDuration;
-- (void)setPrimitivePenaltyDuration:(NSNumber*)value;
-
-- (int16_t)primitivePenaltyDurationValue;
-- (void)setPrimitivePenaltyDurationValue:(int16_t)value_;
 
 - (NSNumber*)primitivePenaltyTime;
 - (void)setPrimitivePenaltyTime:(NSNumber*)value;

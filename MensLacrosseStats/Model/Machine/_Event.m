@@ -7,6 +7,7 @@ const struct EventAttributes EventAttributes = {
 	.categoryCode = @"categoryCode",
 	.eventCode = @"eventCode",
 	.isDefalut = @"isDefalut",
+	.statCategory = @"statCategory",
 	.title = @"title",
 };
 
@@ -54,6 +55,11 @@ const struct EventRelationships EventRelationships = {
 	}
 	if ([key isEqualToString:@"isDefalutValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"isDefalut"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"statCategoryValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"statCategory"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -119,6 +125,26 @@ const struct EventRelationships EventRelationships = {
 
 - (void)setPrimitiveIsDefalutValue:(BOOL)value_ {
 	[self setPrimitiveIsDefalut:@(value_)];
+}
+
+@dynamic statCategory;
+
+- (int16_t)statCategoryValue {
+	NSNumber *result = [self statCategory];
+	return [result shortValue];
+}
+
+- (void)setStatCategoryValue:(int16_t)value_ {
+	[self setStatCategory:@(value_)];
+}
+
+- (int16_t)primitiveStatCategoryValue {
+	NSNumber *result = [self primitiveStatCategory];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveStatCategoryValue:(int16_t)value_ {
+	[self setPrimitiveStatCategory:@(value_)];
 }
 
 @dynamic title;

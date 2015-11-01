@@ -125,7 +125,7 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
     
     // Set its properties
     penaltyGameEvent.timestamp = [NSDate date];
-    penaltyGameEvent.penaltyDurationValue = [self penaltyDuration];
+    penaltyGameEvent.penaltyTimeValue = [self penaltyTime];
     
     // Set its relations
     penaltyGameEvent.event = self.event;
@@ -184,18 +184,18 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
 - (BOOL)shouldEnableDoneButton
 {
     // Only let them hit Done if penalty time is > 0
-    return [self penaltyDuration] > 0;
+    return [self penaltyTime] > 0;
 }
 
-- (NSInteger)penaltyDuration
+- (NSInteger)penaltyTime
 {
-    NSInteger penaltyDuration = 0;
+    NSInteger penaltyTime = 0;
     
-    penaltyDuration += [self.stack[minutesPosition] integerValue] * 60;
-    penaltyDuration += [self.stack[tensPosition] integerValue] * 10;
-    penaltyDuration += [self.stack[digitsPosition] integerValue];
+    penaltyTime += [self.stack[minutesPosition] integerValue] * 60;
+    penaltyTime += [self.stack[tensPosition] integerValue] * 10;
+    penaltyTime += [self.stack[digitsPosition] integerValue];
     
-    return penaltyDuration;
+    return penaltyTime;
 }
 
 @end

@@ -78,7 +78,8 @@
             event.eventCode = eventDictionary[INSOEventCodeKey];
             event.isDefalutValue = YES;
             event.categoryCode = category.categoryCode;
-            event.category = category; 
+            event.category = category;
+            event.statCategory = eventDictionary[INSOStatCategoryKey];
         }
     }
     

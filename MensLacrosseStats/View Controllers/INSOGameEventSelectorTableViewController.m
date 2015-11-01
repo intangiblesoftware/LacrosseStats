@@ -77,8 +77,8 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
     
     // If it's an expulsion foul
     if (event.categoryCodeValue == INSOCategoryCodeExpulsionFouls) {
-        // Set penalty duration
-        gameEvent.penaltyDurationValue = INSOExplusionPenaltyDuration;
+        // Set penalty time
+        gameEvent.penaltyTimeValue = INSOExplusionPenaltyTime;
     }
     
     // Save the MOC

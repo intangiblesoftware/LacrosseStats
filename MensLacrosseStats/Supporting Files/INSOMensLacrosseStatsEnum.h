@@ -75,4 +75,12 @@ typedef NS_ENUM(NSInteger, INSOGoalResult) {
     INSOGoalResultGoal
 };
 
+typedef NS_ENUM(NSUInteger, INSOStatCategory) {
+    INSOStatCategoryNone,
+    INSOStatCategoryFielding,
+    INSOStatCategoryScoring,
+    INSOStatCategoryPenalty,
+    INSOStatCategoryExpulsion
+};
+
 #endif /* INSOMensLacrosseStats_h */

@@ -7,6 +7,7 @@ extern const struct EventAttributes {
 	__unsafe_unretained NSString *categoryCode;
 	__unsafe_unretained NSString *eventCode;
 	__unsafe_unretained NSString *isDefalut;
+	__unsafe_unretained NSString *statCategory;
 	__unsafe_unretained NSString *title;
 } EventAttributes;
 
@@ -52,6 +53,14 @@ extern const struct EventRelationships {
 - (void)setIsDefalutValue:(BOOL)value_;
 
 //- (BOOL)validateIsDefalut:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* statCategory;
+
+@property (atomic) int16_t statCategoryValue;
+- (int16_t)statCategoryValue;
+- (void)setStatCategoryValue:(int16_t)value_;
+
+//- (BOOL)validateStatCategory:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* title;
 
@@ -109,6 +118,12 @@ extern const struct EventRelationships {
 
 - (BOOL)primitiveIsDefalutValue;
 - (void)setPrimitiveIsDefalutValue:(BOOL)value_;
+
+- (NSNumber*)primitiveStatCategory;
+- (void)setPrimitiveStatCategory:(NSNumber*)value;
+
+- (int16_t)primitiveStatCategoryValue;
+- (void)setPrimitiveStatCategoryValue:(int16_t)value_;
 
 - (NSString*)primitiveTitle;
 - (void)setPrimitiveTitle:(NSString*)value;
