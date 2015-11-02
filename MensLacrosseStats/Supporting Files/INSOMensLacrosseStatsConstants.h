@@ -28,5 +28,8 @@ extern NSString * const INSOTitleKey;
 extern NSString * const INSOEventsKey;
 extern NSString * const INSOPenaltyTimeKey;
 extern NSString * const INSOPenaltyCountKey;
+extern NSString * const INSOPlayerKey;
+extern NSString * const INSOStatsKey;
+extern NSString * const INSOStatValueKey;
 
 @end

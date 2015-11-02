@@ -19,16 +19,28 @@
 #import "EventCategory.h"
 #import "Event.h"
 #import "GameEvent.h"
+#import "RosterPlayer.h"
+
+typedef NS_ENUM(NSUInteger, INSOStatSourceIndex) {
+    INSOStatSourceIndexGame,
+    INSOStatSourceIndexPlayer
+};
 
 static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
 
 @interface INSOGameStatsViewController () <UITableViewDataSource, UITableViewDelegate>
+
 // IBOutlets
 @property (nonatomic, weak) IBOutlet UITableView* statsTable;
+@property (nonatomic, weak) IBOutlet UISegmentedControl* statSourceSegmentedControl;
+
+// IBAction
+- (IBAction)changeStats:(id)sender;
 
 // Private Properties
 @property (nonatomic) INSOGameEventCounter* eventCounter;
-@property (nonatomic) NSArray* eventStatsArray;
+@property (nonatomic) NSArray* gameStatsArray;
+@property (nonatomic) NSArray* playerStatsArray;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 
 @end
@@ -44,7 +56,8 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
 {
     [super viewWillAppear:animated];
     
-    self.eventStatsArray = nil;
+    self.gameStatsArray = nil;
+    self.playerStatsArray = nil;
     [self.statsTable reloadData]; 
 }
 
@@ -54,9 +67,9 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
 }
 
 #pragma mark - Private Properties
-- (NSArray*)eventStatsArray
+- (NSArray*)gameStatsArray
 {
-    if (!_eventStatsArray) {
+    if (!_gameStatsArray) {
         NSMutableArray* temp = [NSMutableArray new];
         
         // Add fielding sub-array
@@ -74,9 +87,31 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         // Add penalty sub-array
         [temp addObject:[self penaltyEvents]];
         
-        _eventStatsArray = temp;
+        _gameStatsArray = temp;
     }
-    return _eventStatsArray;
+    return _gameStatsArray;
+}
+
+- (NSArray*)playerStatsArray
+{
+    if (!_playerStatsArray) {
+        NSMutableArray* temp = [NSMutableArray new];
+        
+        for (RosterPlayer* rosterPlayer in self.game.players) {
+            NSDictionary* playerStatsDictionary = [self statsDictionaryForPlayer:rosterPlayer];
+            [temp addObject:playerStatsDictionary];
+        }
+        
+        [temp sortUsingComparator:^NSComparisonResult(NSDictionary*  _Nonnull dictionary1, NSDictionary*  _Nonnull dictionary2) {
+            RosterPlayer* rp1 = dictionary1[INSOPlayerKey];
+            RosterPlayer* rp2 = dictionary2[INSOPlayerKey];
+            return [rp1.number compare:rp2.number];
+        }];
+        
+        _playerStatsArray = temp;
+    }
+    
+    return _playerStatsArray;
 }
 
 - (INSOGameEventCounter*)eventCounter
@@ -87,34 +122,56 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
     return _eventCounter;
 }
 
+- (NSManagedObjectContext*)managedObjectContext
+{
+    if (!_managedObjectContext) {
+        MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        _managedObjectContext = appDelegate.managedObjectContext;
+    }
+    return _managedObjectContext;
+}
+
+#pragma mark - IBActions
+- (void)changeStats:(id)sender
+{
+    [self.statsTable reloadData]; 
+}
+
 #pragma mark - Private Methods
 - (void)configureGameStatCell:(INSOGameStatTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary* sectionDictionary = self.eventStatsArray[indexPath.section];
-    
-    if ([sectionDictionary[INSOTitleKey] isEqualToString:NSLocalizedString(@"Penalties", nil)]) {
-        NSNumber* penaltyCount = sectionDictionary[INSOPenaltyCountKey];
-        NSString* penaltiesString;
-        if ([penaltyCount integerValue] == 1) {
-            penaltiesString = NSLocalizedString(@"penalty", nil);
+    if (self.statSourceSegmentedControl.selectedSegmentIndex == INSOStatSourceIndexGame) {
+        NSDictionary* sectionDictionary = self.gameStatsArray[indexPath.section];
+        if ([sectionDictionary[INSOTitleKey] isEqualToString:NSLocalizedString(@"Penalties", nil)]) {
+            NSNumber* penaltyCount = sectionDictionary[INSOPenaltyCountKey];
+            NSString* penaltiesString;
+            if ([penaltyCount integerValue] == 1) {
+                penaltiesString = NSLocalizedString(@"penalty", nil);
+            } else {
+                penaltiesString = NSLocalizedString(@"penalties", nil);
+            }
+            
+            cell.statNameLabel.text = [NSString stringWithFormat:@"%@ %@", penaltyCount, penaltiesString];
+            
+            double penaltyTime = [sectionDictionary[INSOPenaltyTimeKey] doubleValue];
+            NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
+            penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
+            penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+            
+            cell.statCountLabel.text = [penaltyTimeFormatter stringFromTimeInterval:penaltyTime];
+            
         } else {
-            penaltiesString = NSLocalizedString(@"penalties", nil);
+            NSArray* eventsArray = sectionDictionary[INSOEventsKey];
+            Event* event = [eventsArray objectAtIndex:indexPath.row];
+            cell.statNameLabel.text = event.title;
+            cell.statCountLabel.text = [NSString stringWithFormat:@"%@", [self.eventCounter eventCount:event.eventCodeValue]];
         }
-        
-        cell.statNameLabel.text = [NSString stringWithFormat:@"%@ %@", penaltyCount, penaltiesString];
-        
-        double penaltyTime = [sectionDictionary[INSOPenaltyTimeKey] doubleValue];
-        NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
-        penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
-        penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
-        
-        cell.statCountLabel.text = [penaltyTimeFormatter stringFromTimeInterval:penaltyTime];
-        
     } else {
-        NSArray* eventsArray = sectionDictionary[INSOEventsKey];
-        Event* event = [eventsArray objectAtIndex:indexPath.row];
-        cell.statNameLabel.text = event.title;
-        cell.statCountLabel.text = [NSString stringWithFormat:@"%@", [self.eventCounter eventCount:event.eventCodeValue]];
+        NSDictionary* sectionDictionary = self.playerStatsArray[indexPath.section];
+        NSArray* statsArray = sectionDictionary[INSOStatsKey];
+        NSDictionary* cellDictionary = statsArray[indexPath.row];
+        cell.statNameLabel.text = cellDictionary[INSOTitleKey];
+        cell.statCountLabel.text = [NSString stringWithFormat:@"%@", cellDictionary[INSOStatValueKey]];
     }
 }
 
@@ -172,25 +229,95 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
     return @{INSOTitleKey:title, INSOPenaltyCountKey:penaltyCount, INSOPenaltyTimeKey:penaltyTime, INSOEventsKey:@[@"Should I really be doing this?"]};
 }
 
+- (NSDictionary*)statsDictionaryForPlayer:(RosterPlayer*)rosterPlayer
+{
+    NSMutableDictionary* statsDictionary = [NSMutableDictionary new];
+    [statsDictionary setObject:rosterPlayer forKey:INSOPlayerKey];
+    
+    // Now build the player's stats array
+    NSMutableArray* statsArray = [NSMutableArray new];
+    Event* event;
+    NSNumber* eventCount;
+    
+    // Groundballs
+    event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.managedObjectContext];
+    eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+    [statsArray addObject:@{INSOTitleKey:event.title, INSOStatValueKey:eventCount}];
+    
+    // Shots
+    event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
+    eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+    [statsArray addObject:@{INSOTitleKey:event.title, INSOStatValueKey:eventCount}];
+
+    // Goals
+    event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.managedObjectContext];
+    eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+    [statsArray addObject:@{INSOTitleKey:event.title, INSOStatValueKey:eventCount}];
+
+    // Assists
+    event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.managedObjectContext];
+    eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+    [statsArray addObject:@{INSOTitleKey:event.title, INSOStatValueKey:eventCount}];
+
+    // Shots on goal
+    event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.managedObjectContext];
+    eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+    [statsArray addObject:@{INSOTitleKey:event.title, INSOStatValueKey:eventCount}];
+
+    // Shots
+    event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.managedObjectContext];
+    eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+    [statsArray addObject:@{INSOTitleKey:event.title, INSOStatValueKey:eventCount}];
+
+    // And now penalties
+    
+    [statsDictionary setObject:statsArray forKey:INSOStatsKey];
+    
+    return statsDictionary;
+}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.eventStatsArray count];
+    if (self.statSourceSegmentedControl.selectedSegmentIndex == INSOStatSourceIndexGame) {
+        return [self.gameStatsArray count];
+    } else {
+        return [self.playerStatsArray count];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSDictionary* sectionDictionary = self.eventStatsArray[section];
-    return [sectionDictionary[INSOEventsKey] count];
+    if (self.statSourceSegmentedControl.selectedSegmentIndex == INSOStatSourceIndexGame) {
+        NSDictionary* sectionDictionary = self.gameStatsArray[section];
+        return [sectionDictionary[INSOEventsKey] count];
+    } else {
+        NSDictionary* sectionDictionary = self.playerStatsArray[section];
+        return [sectionDictionary[INSOStatsKey] count];
+    }
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSDictionary* sectionDictionary = self.eventStatsArray[section];
-    return sectionDictionary[INSOTitleKey];
+    if (self.statSourceSegmentedControl.selectedSegmentIndex == INSOStatSourceIndexGame) {
+        NSDictionary* sectionDictionary = self.gameStatsArray[section];
+        return sectionDictionary[INSOTitleKey];
+    } else {
+        NSDictionary* sectionDictionary = self.playerStatsArray[section];
+        RosterPlayer* player = sectionDictionary[INSOPlayerKey];
+        
+        NSString* title;
+        if (player.isTeamValue) {
+            title = NSLocalizedString(@"Team", nil);
+        } else {
+            title = [NSString stringWithFormat:@"#%@", player.number];
+        }
+        return title;
+    }
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     INSOGameStatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:INSOGameStatsCellIdentifier forIndexPath:indexPath];
     
     [self configureGameStatCell:cell atIndexPath:indexPath]; 

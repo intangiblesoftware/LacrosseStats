@@ -767,6 +767,9 @@
                                     <segment title="Game Stats"/>
                                     <segment title="Player Stats"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeStats:" destination="qgc-hz-wfQ" eventType="valueChanged" id="pP8-0v-USz"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KPT-Fe-wvw">
                                 <rect key="frame" x="20" y="38" width="520" height="339"/>
@@ -832,6 +835,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="statSourceSegmentedControl" destination="oFW-zt-kqb" id="68h-xM-8IL"/>
                         <outlet property="statsTable" destination="KPT-Fe-wvw" id="U2p-mn-86c"/>
                     </connections>
                 </viewController>
