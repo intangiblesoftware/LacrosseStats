@@ -30,6 +30,8 @@ extern NSString * const INSOPenaltyTimeKey;
 extern NSString * const INSOPenaltyCountKey;
 extern NSString * const INSOPlayerKey;
 extern NSString * const INSOStatsKey;
+extern NSString * const INSOSectionTitleKey; 
+extern NSString * const INSOStatTitleKey; 
 extern NSString * const INSOStatValueKey;
 
 @end

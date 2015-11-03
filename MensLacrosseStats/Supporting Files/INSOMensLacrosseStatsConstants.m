@@ -30,6 +30,8 @@ NSString * const INSOPenaltyTimeKey = @"penaltyTime";
 NSString * const INSOPenaltyCountKey = @"penaltyCount";
 NSString * const INSOPlayerKey = @"player";
 NSString * const INSOStatsKey = @"stats";
-NSString * const INSOStatValueKey = @"statValue"; 
+NSString * const INSOSectionTitleKey = @"sectionTitle"; 
+NSString * const INSOStatTitleKey = @"statTitle";
+NSString * const INSOStatValueKey = @"statValue";
 
 @end

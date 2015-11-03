@@ -475,7 +475,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id2-uk-nTg">
-                                                    <rect key="frame" x="8" y="15" width="72" height="21"/>
+                                                    <rect key="frame" x="24" y="15" width="72" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -499,7 +499,7 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="Zay-vC-YU2" secondAttribute="trailing" constant="4" id="0Oo-bZ-vpn"/>
                                             <constraint firstItem="Zay-vC-YU2" firstAttribute="centerY" secondItem="SJb-Et-m6L" secondAttribute="centerY" id="6oA-P8-DXx"/>
                                             <constraint firstItem="Zay-vC-YU2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="id2-uk-nTg" secondAttribute="trailing" constant="8" id="G1r-MQ-cFO"/>
-                                            <constraint firstItem="id2-uk-nTg" firstAttribute="leading" secondItem="SJb-Et-m6L" secondAttribute="leadingMargin" id="QTG-sC-AFw"/>
+                                            <constraint firstItem="id2-uk-nTg" firstAttribute="leading" secondItem="SJb-Et-m6L" secondAttribute="leadingMargin" constant="16" id="QTG-sC-AFw"/>
                                             <constraint firstItem="id2-uk-nTg" firstAttribute="centerY" secondItem="SJb-Et-m6L" secondAttribute="centerY" id="VMi-nN-LEt"/>
                                         </constraints>
                                         <size key="customSize" width="410" height="50"/>
@@ -800,6 +800,7 @@
                                                 </label>
                                             </subviews>
                                             <animations/>
+                                            <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
                                                 <constraint firstItem="UBV-jr-Oiw" firstAttribute="leading" secondItem="0pX-IJ-RTi" secondAttribute="leadingMargin" id="Jt0-wx-YBf"/>
                                                 <constraint firstItem="9J0-I5-gGX" firstAttribute="bottom" secondItem="0pX-IJ-RTi" secondAttribute="bottomMargin" id="NW1-jU-can"/>
