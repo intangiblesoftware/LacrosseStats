@@ -60,6 +60,9 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
     Game* newGame = [Game insertInManagedObjectContext:self.managedObjectContext];
     newGame.gameDateTime = [self newGameStartDateTime]; 
     
+    // Team to record
+    newGame.teamWatching = newGame.homeTeam;
+    
     // Set up events to record
     NSArray* defaultEvents = [Event fetchDefaultEvents:self.managedObjectContext];
     NSSet* eventSet = [NSSet setWithArray:defaultEvents];

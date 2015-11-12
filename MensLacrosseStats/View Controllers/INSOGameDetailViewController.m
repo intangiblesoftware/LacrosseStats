@@ -22,7 +22,7 @@ static NSString * INSOEditGameSegueIdentifier    = @"EditGameSegue";
 static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
 static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
 
-@interface INSOGameDetailViewController () <NSFetchedResultsControllerDelegate>
+@interface INSOGameDetailViewController ()
 // IBOutlets
 @property (nonatomic, weak) IBOutlet UILabel* gameDateTimeLabel;
 @property (nonatomic, weak) IBOutlet UILabel* homeTeamLabel;
@@ -34,9 +34,9 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
 // IBActions
 
 // Private Properties
-@property (nonatomic) NSFetchedResultsController* homeScoreFRC;
-@property (nonatomic) NSFetchedResultsController* visitorScoreFRC;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic) NSInteger countOfGoals;
+@property (nonatomic) NSInteger countOfGoalsAllowed;
 
 // Private Methods
 
@@ -47,9 +47,6 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.game.homeScoreValue = [self.homeScoreFRC.fetchedObjects count];
-    self.game.visitorScoreValue = [self.visitorScoreFRC.fetchedObjects count]; 
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,53 +64,35 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
 #pragma mark - IBActions
 
 #pragma mark - Private Properties
-- (NSFetchedResultsController*)homeScoreFRC
-{
-    if (!_homeScoreFRC) {
-        NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:[GameEvent entityName]];
-        [request setFetchBatchSize:50];
-        
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@", self.game, @(INSOEventCodeGoal)];
-        request.predicate = predicate;
-        
-        NSSortDescriptor* sortByTimestamp = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
-        request.sortDescriptors = @[sortByTimestamp];
-        
-        _homeScoreFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        _homeScoreFRC.delegate = self;
-        
-        NSError* error = nil;
-        if (![_homeScoreFRC performFetch:&error]) {
-            // Error fetching games
-            NSLog(@"Error fetching games: %@", error.localizedDescription);
-        }
-    }
-    return _homeScoreFRC;
-}
-
-- (NSFetchedResultsController*)visitorScoreFRC
-{
-    if (!_visitorScoreFRC) {
-        NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:[GameEvent entityName]];
-        [request setFetchBatchSize:50];
-        
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@", self.game, @(INSOEventCodeGoalAllowed)];
-        request.predicate = predicate;
-        
-        NSSortDescriptor* sortByTimestamp = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
-        request.sortDescriptors = @[sortByTimestamp];
-        
-        _visitorScoreFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        _visitorScoreFRC.delegate = self;
-        
-        NSError* error = nil;
-        if (![_visitorScoreFRC performFetch:&error]) {
-            // Error fetching games
-            NSLog(@"Error fetching games: %@", error.localizedDescription);
-        }
-    }
-    return _visitorScoreFRC;
-}
+//- (NSFetchedResultsController*)visitorScoreFRC
+//{
+//    if (!_visitorScoreFRC) {
+//        NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:[GameEvent entityName]];
+//        [request setFetchBatchSize:50];
+//        
+//        INSOEventCode eventCode;
+//        if ([self.game.teamWatching isEqualToString:self.game.visitingTeam]) {
+//            eventCode = INSOEventCodeGoal;
+//        } else {
+//            eventCode = INSOEventCodeGoalAllowed;
+//        }
+//        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@", self.game, @(eventCode)];
+//        request.predicate = predicate;
+//        
+//        NSSortDescriptor* sortByTimestamp = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
+//        request.sortDescriptors = @[sortByTimestamp];
+//        
+//        _visitorScoreFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+//        _visitorScoreFRC.delegate = self;
+//        
+//        NSError* error = nil;
+//        if (![_visitorScoreFRC performFetch:&error]) {
+//            // Error fetching games
+//            NSLog(@"Error fetching games: %@", error.localizedDescription);
+//        }
+//    }
+//    return _visitorScoreFRC;
+//}
 
 - (NSManagedObjectContext*)managedObjectContext
 {
@@ -122,6 +101,24 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;
+}
+
+- (NSInteger)countOfGoals
+{
+    NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
+        return gameEvent.event.eventCodeValue == INSOEventCodeGoal;
+    }];
+    
+    return [goals count];
+}
+
+- (NSInteger)countOfGoalsAllowed
+{
+    NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
+        return gameEvent.event.eventCodeValue == INSOEventCodeGoalAllowed;
+    }];
+    
+    return [goals count];
 }
 
 #pragma mark - Private Methods
@@ -136,10 +133,26 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
     self.gameDateTimeLabel.text = [formatter stringFromDate:self.game.gameDateTime];
     
     self.homeTeamLabel.text = self.game.homeTeam;
-    self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", self.game.homeScore];
-    
     self.visitingTeamLabel.text = self.game.visitingTeam;
-    self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", self.game.visitorScore];
+
+    NSInteger goals = self.countOfGoals;
+    NSInteger goalsAllowed = self.countOfGoalsAllowed;
+    
+    if ([self.game.homeTeam isEqualToString:self.game.teamWatching]) {
+        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(goals)];
+        self.game.homeScoreValue = goals;
+    } else {
+        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(goalsAllowed)];
+        self.game.homeScoreValue = goalsAllowed;
+    }
+    
+    if ([self.game.visitingTeam isEqualToString:self.game.teamWatching]) {
+        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(goals)];
+        self.game.visitorScoreValue = goals;
+    } else {
+        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(goalsAllowed)];
+        self.game.visitorScoreValue = goalsAllowed;
+    }
     
     self.locationLabel.text = self.game.location;
 }
@@ -178,19 +191,5 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
     dest.game = self.game;
 }
 
-#pragma mark - Delegates
-#pragma mark - NSFetchedResultsControllerDelegate
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
-    if ([controller isEqual:self.homeScoreFRC]) {
-        self.game.homeScoreValue = [self.homeScoreFRC.fetchedObjects count];
-    }
-    
-    if ([controller isEqual:self.visitorScoreFRC]) {
-        self.game.visitorScoreValue = [self.visitorScoreFRC.fetchedObjects count];
-    }
-    
-    [self configureView]; 
-}
 
 @end

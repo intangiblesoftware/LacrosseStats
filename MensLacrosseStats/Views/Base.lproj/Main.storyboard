@@ -409,7 +409,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Game Location" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZpK-ud-iYG">
-                                <rect key="frame" x="20" y="156" width="560" height="30"/>
+                                <rect key="frame" x="20" y="215" width="560" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
@@ -418,7 +418,7 @@
                                 </connections>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HVk-W0-lKo">
-                                <rect key="frame" x="20" y="202" width="560" height="29"/>
+                                <rect key="frame" x="20" y="261" width="560" height="29"/>
                                 <animations/>
                                 <segments>
                                     <segment title="Players in Game"/>
@@ -429,7 +429,7 @@
                                 </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SLF-12-xUe">
-                                <rect key="frame" x="20" y="238" width="560" height="362"/>
+                                <rect key="frame" x="20" y="297" width="560" height="303"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t6x-J9-yQl">
@@ -513,7 +513,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfu-YQ-k18">
-                                            <rect key="frame" x="8" y="30" width="109" height="21"/>
+                                            <rect key="frame" x="8" y="29" width="109" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -534,6 +534,24 @@
                                     <outlet property="delegate" destination="IUH-d5-REB" id="7id-Xd-hg4"/>
                                 </connections>
                             </collectionView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="m2L-c3-bvx">
+                                <rect key="frame" x="20" y="179" width="560" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="Home Team"/>
+                                    <segment title="Visiting Team"/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchTeamRecordingStatsFor:" destination="IUH-d5-REB" eventType="valueChanged" id="Y3n-ah-WWp"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record stats for:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWC-Db-0qy">
+                                <rect key="frame" x="20" y="156" width="94" height="15"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
@@ -541,11 +559,15 @@
                             <constraint firstItem="SLF-12-xUe" firstAttribute="trailing" secondItem="02E-eU-rGP" secondAttribute="trailingMargin" id="86x-rR-nw2"/>
                             <constraint firstItem="fpz-s4-Fk2" firstAttribute="trailing" secondItem="02E-eU-rGP" secondAttribute="trailingMargin" id="9mH-ZE-M71"/>
                             <constraint firstItem="OoL-ZU-C40" firstAttribute="leading" secondItem="02E-eU-rGP" secondAttribute="leading" id="CTI-eQ-ehu"/>
+                            <constraint firstItem="RWC-Db-0qy" firstAttribute="top" secondItem="O04-MA-OMe" secondAttribute="bottom" constant="8" id="ENz-0A-IL6"/>
+                            <constraint firstItem="m2L-c3-bvx" firstAttribute="top" secondItem="O04-MA-OMe" secondAttribute="bottom" constant="8" id="EXh-ml-vmO"/>
+                            <constraint firstItem="m2L-c3-bvx" firstAttribute="trailing" secondItem="02E-eU-rGP" secondAttribute="trailingMargin" id="Ejb-fT-ja1"/>
                             <constraint firstItem="SLF-12-xUe" firstAttribute="leading" secondItem="02E-eU-rGP" secondAttribute="leadingMargin" id="FIn-fg-K75"/>
                             <constraint firstItem="OMO-fc-zGx" firstAttribute="leading" secondItem="02E-eU-rGP" secondAttribute="leadingMargin" id="Fr0-Vi-K0f"/>
                             <constraint firstItem="OoL-ZU-C40" firstAttribute="top" secondItem="zyU-Dv-ztd" secondAttribute="bottom" id="GUW-fh-FXi"/>
                             <constraint firstItem="ZpK-ud-iYG" firstAttribute="top" secondItem="O04-MA-OMe" secondAttribute="bottom" constant="8" id="IN6-Dh-LIx"/>
                             <constraint firstItem="HVk-W0-lKo" firstAttribute="trailing" secondItem="02E-eU-rGP" secondAttribute="trailingMargin" id="J3f-xs-Bcd"/>
+                            <constraint firstItem="m2L-c3-bvx" firstAttribute="top" secondItem="RWC-Db-0qy" secondAttribute="bottom" constant="8" id="MBF-BG-Szp"/>
                             <constraint firstItem="O04-MA-OMe" firstAttribute="width" secondItem="fpz-s4-Fk2" secondAttribute="width" id="MGQ-3l-ToX"/>
                             <constraint firstItem="fpz-s4-Fk2" firstAttribute="top" secondItem="OMO-fc-zGx" secondAttribute="bottom" constant="8" id="OMM-FA-KlD"/>
                             <constraint firstItem="ZpK-ud-iYG" firstAttribute="trailing" secondItem="02E-eU-rGP" secondAttribute="trailingMargin" id="PPw-oI-Ho2"/>
@@ -554,14 +576,23 @@
                             <constraint firstItem="OMO-fc-zGx" firstAttribute="trailing" secondItem="02E-eU-rGP" secondAttribute="trailingMargin" id="VDd-Rf-GqE"/>
                             <constraint firstItem="CcF-Hf-51l" firstAttribute="top" secondItem="SLF-12-xUe" secondAttribute="bottom" id="Vjf-5B-ocv"/>
                             <constraint firstItem="HVk-W0-lKo" firstAttribute="leading" secondItem="02E-eU-rGP" secondAttribute="leadingMargin" id="Xma-zS-nqK"/>
+                            <constraint firstItem="m2L-c3-bvx" firstAttribute="leading" secondItem="02E-eU-rGP" secondAttribute="leadingMargin" id="aOK-kB-3RT"/>
                             <constraint firstItem="ZpK-ud-iYG" firstAttribute="leading" secondItem="02E-eU-rGP" secondAttribute="leadingMargin" id="bCZ-cO-qln"/>
                             <constraint firstAttribute="trailing" secondItem="OoL-ZU-C40" secondAttribute="trailing" id="kQI-c6-vEn"/>
                             <constraint firstItem="HVk-W0-lKo" firstAttribute="top" secondItem="ZpK-ud-iYG" secondAttribute="bottom" constant="16" id="nf2-Rk-0xW"/>
                             <constraint firstItem="fpz-s4-Fk2" firstAttribute="leading" secondItem="O04-MA-OMe" secondAttribute="trailing" constant="16" id="og2-OP-itv"/>
                             <constraint firstItem="O04-MA-OMe" firstAttribute="top" secondItem="OMO-fc-zGx" secondAttribute="bottom" constant="8" id="q0m-wD-Y4x"/>
                             <constraint firstItem="OMO-fc-zGx" firstAttribute="top" secondItem="OoL-ZU-C40" secondAttribute="bottom" constant="16" id="rGy-la-nsl"/>
+                            <constraint firstItem="ZpK-ud-iYG" firstAttribute="top" secondItem="m2L-c3-bvx" secondAttribute="bottom" constant="8" id="x3Z-po-VYO"/>
                             <constraint firstItem="SLF-12-xUe" firstAttribute="top" secondItem="HVk-W0-lKo" secondAttribute="bottom" constant="8" id="zY1-Ob-Rsf"/>
+                            <constraint firstItem="RWC-Db-0qy" firstAttribute="leading" secondItem="02E-eU-rGP" secondAttribute="leadingMargin" id="zq0-Qa-t81"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="EXh-ml-vmO"/>
+                                <exclude reference="IN6-Dh-LIx"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="xRO-CF-kDb" id="xrX-ub-AGf"/>
@@ -571,6 +602,7 @@
                         <outlet property="locationField" destination="ZpK-ud-iYG" id="zcq-rZ-P5e"/>
                         <outlet property="playerStatCollectionView" destination="SLF-12-xUe" id="Pv7-No-bIh"/>
                         <outlet property="playerStatSegmentedControl" destination="HVk-W0-lKo" id="5DM-u5-pJq"/>
+                        <outlet property="teamToRecordSegmentedControl" destination="m2L-c3-bvx" id="iuf-sU-9Vy"/>
                         <outlet property="visitingTeamField" destination="fpz-s4-Fk2" id="90c-Uf-6A4"/>
                     </connections>
                 </viewController>

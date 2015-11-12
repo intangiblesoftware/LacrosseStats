@@ -80,26 +80,21 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (void)done:(id)sender
 {
     // Create the necessary events
-    GameEvent* shotEvent;
-    GameEvent* shotOnGoalEvent;
-    GameEvent* goalEvent;
-    GameEvent* assistEvent;
-    
     if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultMiss) {
-        shotEvent =[self createShotEvent];
+        [self createShotEvent];
     } else if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultSave) {
-        shotEvent = [self createShotEvent];
-        shotOnGoalEvent = [self createShotOnGoalEvent];
+        [self createShotEvent];
+        [self createShotOnGoalEvent];
         
     } else if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultGoal) {
-        shotEvent = [self createShotEvent];
-        shotOnGoalEvent = [self createShotOnGoalEvent];
-        goalEvent = [self createGoalEvent];
+        [self createShotEvent];
+        [self createShotOnGoalEvent];
+        [self createGoalEvent];
         
         // Now need to see if there is an assist
         if (self.selectedIndexPath) {
             // We have an assist
-            assistEvent = [self createAssistEvent];
+            [self createAssistEvent];
         }
     }
     
@@ -281,6 +276,11 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (GameEvent*)createShotEvent
 {
+    // Just bail right away if we aren't recording shots.
+    if (![self gameEventsContainsEvent:INSOEventCodeShot]) {
+        return nil;
+    }
+    
     // Create the shot game event
     GameEvent* shotEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
     
@@ -297,6 +297,11 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (GameEvent*)createGoalEvent
 {
+    // Just bail right away if we aren't recording goals.
+    if (![self gameEventsContainsEvent:INSOEventCodeGoal]) {
+        return nil;
+    }
+    
     // Create the goal game event
     GameEvent* goalEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
     
@@ -314,6 +319,11 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (GameEvent*)createShotOnGoalEvent
 {
+    // Just bail right away if we aren't recording shots on goal.
+    if (![self gameEventsContainsEvent:INSOEventCodeShotOnGoal]) {
+        return nil;
+    }
+
     GameEvent* shotOnGoalEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
     
     shotOnGoalEvent.timestamp = [NSDate date];
@@ -326,6 +336,11 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (GameEvent*)createAssistEvent
 {
+    // Just bail right away if we aren't recording assists.
+    if (![self gameEventsContainsEvent:INSOEventCodeAssist]) {
+        return nil;
+    }
+
     GameEvent* assistEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
     
     assistEvent.timestamp = [NSDate date];

@@ -27,6 +27,11 @@ typedef NS_ENUM(NSUInteger, INSOPlayerStatSegment) {
     INSOPlayerStatSegmentStats
 };
 
+typedef NS_ENUM(NSUInteger, INSOTeamToRecordSegmentIndex) {
+    INSOTeamToRecordSegmentIndexHomeTeam,
+    INSOTeamToRecordSegmentIndexVisitingTeam
+};
+
 static NSString * const INSOPlayerCellIdentifier = @"PlayerCell";
 static NSString * const INSOStatCellIdentifier = @"StatCell";
 static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
@@ -39,6 +44,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 @property (nonatomic, weak) IBOutlet UITextField* gameDateTimeField;
 @property (nonatomic, weak) IBOutlet UITextField* homeTeamField;
 @property (nonatomic, weak) IBOutlet UITextField* visitingTeamField;
+@property (nonatomic, weak) IBOutlet UISegmentedControl* teamToRecordSegmentedControl;
 @property (nonatomic, weak) IBOutlet UITextField* locationField;
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl* playerStatSegmentedControl;
@@ -49,6 +55,7 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
 - (IBAction)switchPlayerStatSegment:(id)sender;
+- (IBAction)switchTeamRecordingStatsFor:(id)sender;
 
 // Private Properties
 @property (nonatomic) UIToolbar* datePickerToolbar;
@@ -137,6 +144,11 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     [self.playerStatCollectionView reloadData]; 
 }
 
+- (void)switchTeamRecordingStatsFor:(id)sender
+{
+    self.game.teamWatching = [self.teamToRecordSegmentedControl titleForSegmentAtIndex:self.teamToRecordSegmentedControl.selectedSegmentIndex]; 
+}
+
 #pragma mark - Private Properties
 - (UIToolbar*)datePickerToolbar
 {
@@ -217,6 +229,15 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     
     self.homeTeamField.text = self.game.homeTeam;
     self.visitingTeamField.text = self.game.visitingTeam;
+    
+    [self.teamToRecordSegmentedControl setTitle:self.game.homeTeam forSegmentAtIndex:INSOTeamToRecordSegmentIndexHomeTeam];
+    [self.teamToRecordSegmentedControl setTitle:self.game.visitingTeam forSegmentAtIndex:INSOTeamToRecordSegmentIndexVisitingTeam];
+    if ([self.game.homeTeam isEqualToString:self.game.teamWatching]) {
+        [self.teamToRecordSegmentedControl setSelectedSegmentIndex:INSOTeamToRecordSegmentIndexHomeTeam];
+    } else {
+        [self.teamToRecordSegmentedControl setSelectedSegmentIndex:INSOTeamToRecordSegmentIndexVisitingTeam]; 
+    }
+    
     self.locationField.text = self.game.location;
     
     self.doneButton.enabled = [self shouldEnableDoneButton]; 
@@ -317,9 +338,17 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
         [self.homeTeamField becomeFirstResponder];
     } else if ([textField isEqual:self.homeTeamField]) {
         self.game.homeTeam = [self.homeTeamField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [self.teamToRecordSegmentedControl setTitle:self.game.homeTeam forSegmentAtIndex:INSOTeamToRecordSegmentIndexHomeTeam];
+        if (self.teamToRecordSegmentedControl.selectedSegmentIndex == INSOTeamToRecordSegmentIndexHomeTeam) {
+            self.game.teamWatching = self.game.homeTeam;
+        }
         [self.visitingTeamField becomeFirstResponder];
     } else if ([textField isEqual:self.visitingTeamField]) {
         self.game.visitingTeam = [self.visitingTeamField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [self.teamToRecordSegmentedControl setTitle:self.game.visitingTeam forSegmentAtIndex:INSOTeamToRecordSegmentIndexVisitingTeam];
+        if (self.teamToRecordSegmentedControl.selectedSegmentIndex == INSOTeamToRecordSegmentIndexVisitingTeam) {
+            self.game.teamWatching = self.game.visitingTeam; 
+        }
         [self.locationField becomeFirstResponder];
     } else if ([textField isEqual:self.locationField]) {
         self.game.location = [self.locationField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
