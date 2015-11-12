@@ -41,6 +41,10 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
 @property (nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (nonatomic) NSArray* eventArray;
 
+- (BOOL) shouldShowFaceoffWonResultView;
+- (BOOL) shouldShowShotResultView;
+- (BOOL) shouldShowGoalResultView;
+
 @end
 
 @implementation INSOGameEventSelectorTableViewController
@@ -56,7 +60,6 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
         self.navigationItem.title = [NSString stringWithFormat:@"%@", self.rosterPlayer.number];
     }
     self.doneButton.enabled = NO;
-    
 }
 
 
@@ -126,11 +129,31 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
     
     // Re-set it depending on condition
     if (event.categoryCodeValue == INSOCategoryCodeGameAction) {
-        // here it depends on the row
-        if (event.eventCodeValue == INSOEventCodeShot || event.eventCodeValue == INSOEventCodeGoal || event.eventCodeValue == INSOEventCodeFaceoffWon) {
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        } else if ([indexPath isEqual:self.selectedIndexPath]) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        // here it depends on the row and whether we're also recording other things
+        if (event.eventCodeValue == INSOEventCodeShot) {
+            if ([self shouldShowShotResultView]) {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            } else {
+                if ([indexPath isEqual:self.selectedIndexPath]) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }
+            }
+        } else if (event.eventCodeValue == INSOEventCodeGoal) {
+            if ([self shouldShowGoalResultView]) {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            } else {
+                if ([indexPath isEqual:self.selectedIndexPath]) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }
+            }
+        } else if (event.eventCodeValue == INSOEventCodeFaceoffWon) {
+            if ([self shouldShowFaceoffWonResultView]) {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            } else {
+                if ([indexPath isEqual:self.selectedIndexPath]) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }
+            }
         }
     } else if (event.categoryCodeValue == INSOCategoryCodeExpulsionFouls) {
         // Expulsion fouls don't go anywhere
@@ -200,6 +223,34 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
     }
     
     return events;
+}
+
+- (BOOL)shouldShowFaceoffWonResultView
+{
+    Event* groundballEvent = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.managedObjectContext];
+    return [self.rosterPlayer.game.eventsToRecord containsObject:groundballEvent];
+}
+
+- (BOOL)shouldShowGoalResultView
+{
+    // Show the goal result if they are recording either EMOs or assists.
+    Event* extraManEvent = [Event eventForCode:INSOEventCodeEMO inManagedObjectContext:self.managedObjectContext];
+    Event* assistEvent = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.managedObjectContext];
+    
+    return ([self.rosterPlayer.game.eventsToRecord containsObject:extraManEvent] || [self.rosterPlayer.game.eventsToRecord containsObject:assistEvent]);
+}
+
+- (BOOL)shouldShowShotResultView
+{
+    // Show the shot result view if the are doing any of the following:
+    // save, goals, or assists
+    Event* saveEvent = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.managedObjectContext];
+    Event* extraManEvent = [Event eventForCode:INSOEventCodeEMO inManagedObjectContext:self.managedObjectContext];
+    Event* assistEvent = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.managedObjectContext];
+    
+    return ([self.rosterPlayer.game.eventsToRecord containsObject:extraManEvent] ||
+            [self.rosterPlayer.game.eventsToRecord containsObject:assistEvent]   ||
+            [self.rosterPlayer.game.eventsToRecord containsObject:saveEvent]);
 }
 
 
@@ -308,17 +359,16 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
             self.doneButton.enabled = NO;
         } else {
             // Shots or goals go to shot result selector
-            if (selectedEvent.eventCodeValue == INSOEventCodeShot || selectedEvent.eventCodeValue == INSOEventCodeGoal) {
-                [self performSegueWithIdentifier:INSOShotResultSegueIdentifier sender:indexPath];
-                
-                // Clean up the event selector in case we come back to it.
+            if (selectedEvent.eventCodeValue == INSOEventCodeShot && [self shouldShowShotResultView]) {
                 self.selectedIndexPath = nil;
-                oldSelectedCell.accessoryType = UITableViewCellAccessoryNone;
-                self.doneButton.enabled = NO;
-            } else if (selectedEvent.eventCodeValue == INSOEventCodeFaceoffWon) {
+                [self performSegueWithIdentifier:INSOShotResultSegueIdentifier sender:indexPath];
+            } else if (selectedEvent.eventCodeValue == INSOEventCodeGoal && [self shouldShowGoalResultView]) {
+                self.selectedIndexPath = nil;
+                [self performSegueWithIdentifier:INSOShotResultSegueIdentifier sender:indexPath];
+            } else if (selectedEvent.eventCodeValue == INSOEventCodeFaceoffWon && [self shouldShowFaceoffWonResultView]) {
                 // Need to go to ground-ball event selector
+                self.selectedIndexPath = nil; 
                 [self performSegueWithIdentifier:INSOFaceoffWonSegueIdentifier sender:indexPath];
-                
             } else {
                 // Set the checkmarks
                 oldSelectedCell.accessoryType = UITableViewCellAccessoryNone;

@@ -43,6 +43,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 @property (nonatomic) NSArray* rosterArray;
 @property (nonatomic) NSIndexPath* selectedIndexPath;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic) NSSet* eventsToRecord;
 
 // Private Methods
 - (BOOL)shouldEnableDoneButton;
@@ -61,29 +62,16 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     [super viewDidLoad];
     
-    // Really? iOS automatically adds 44px at top of collectionview unless I tell it otherwise?
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
     self.shotResultSegment.selectedSegmentIndex = self.initialResultSegment;
+
+    // I want to make sure all are hidden to start
+    self.extraManLabel.alpha = 0.0;
+    self.extraManSwitch.alpha = 0.0;
+    self.assistTitleLabel.alpha = 0.0;
+    self.assistCollection.alpha = 0.0;
+
+    [self configureView];
     
-    // Show or hide the whole goal-result thing depending on what we start with
-    CGFloat alpha = 0.0;
-    if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultGoal) {
-        alpha = 1.0;
-    }
-    self.extraManLabel.alpha    = alpha;
-    self.extraManSwitch.alpha   = alpha;
-
-    // Only want to show the assist option if we have players other
-    // than the guy who scored.
-    if ([self.rosterArray count] > 0) {
-        self.assistTitleLabel.alpha = alpha;
-        self.assistCollection.alpha = alpha;
-    } else {
-        self.assistTitleLabel.alpha = 0.0;
-        self.assistCollection.alpha = 0.0; 
-    }
-
     self.doneButton.enabled = [self shouldEnableDoneButton];
 }
 
@@ -131,18 +119,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     // Show or hide the assist roster as needed
     self.rosterArray = nil;
     [self.assistCollection reloadData];
-    
-    // Show or hide the assist label as well
-    CGFloat alpha = 0.0;
-    if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultGoal) {
-        alpha = 1.0;
-    }
-    [UIView animateWithDuration:0.25 animations:^{
-        self.assistTitleLabel.alpha = alpha;
-        self.extraManLabel.alpha = alpha;
-        self.extraManSwitch.alpha = alpha;
-        self.assistCollection.alpha = alpha; 
-    }];
+    [self configureView];
 }
 
 #pragma mark - Private Properties
@@ -174,8 +151,110 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     return _managedObjectContext;
 }
 
+- (NSSet*)eventsToRecord
+{
+    if (!_eventsToRecord) {
+        _eventsToRecord = self.rosterPlayer.game.eventsToRecord;
+    }
+    return _eventsToRecord;
+}
 
 #pragma mark - Private Methods
+- (void)configureView
+{
+    // Disable those segments we can't go to
+    [self.shotResultSegment setEnabled:[self canRecordMiss] forSegmentAtIndex:INSOGoalResultMiss];
+    [self.shotResultSegment setEnabled:[self canRecordSave] forSegmentAtIndex:INSOGoalResultSave];
+    [self.shotResultSegment setEnabled:[self canRecordGoal] forSegmentAtIndex:INSOGoalResultGoal];
+    
+    // Show or hide rest of view depending on circumstances
+    [UIView animateWithDuration:0.25 animations:^{
+        self.shotResultSegment.alpha = 1.0;
+        self.extraManLabel.alpha = [self extraManAlpha];
+        self.extraManSwitch.alpha = [self extraManAlpha];
+        self.assistTitleLabel.alpha = [self assistAlpha];
+        self.assistCollection.alpha = [self assistAlpha];
+    }];
+}
+
+- (CGFloat)assistAlpha
+{
+    CGFloat alpha = 0.0;
+    if ([self canRecordAssist]) {
+        alpha = 1.0;
+    }
+    return alpha;
+}
+
+- (CGFloat)extraManAlpha
+{
+    CGFloat alpha = 0.0;
+    if ([self canRecordEMO]) {
+        alpha = 1.0;
+    }
+    return alpha;
+}
+
+- (BOOL)canRecordMiss
+{
+    BOOL canRecord = YES;
+    if (self.initialResultSegment == INSOGoalResultGoal) {
+        canRecord = NO;
+    }
+    return canRecord;
+}
+
+- (BOOL)canRecordSave
+{
+    BOOL canRecord = YES;
+    if (self.initialResultSegment == INSOGoalResultGoal) {
+        canRecord = NO;
+    }
+    if (![self gameEventsContainsEvent:INSOEventCodeSave]) {
+        canRecord = NO;
+    }
+    return canRecord;
+}
+
+- (BOOL)canRecordGoal
+{
+    return [self gameEventsContainsEvent:INSOEventCodeGoal];
+}
+
+- (BOOL)canRecordEMO
+{
+    BOOL canRecord = YES;
+    
+    // If the result isn't a goal, we can't record an EMO goal now can we.
+    if (self.shotResultSegment.selectedSegmentIndex != INSOGoalResultGoal) {
+        canRecord = NO;
+    }
+    
+    // Nor can we record it if they aren't recording EMOs.
+    if (![self gameEventsContainsEvent:INSOEventCodeEMO]) {
+        canRecord = NO;
+    }
+    
+    return canRecord;
+}
+
+- (BOOL)canRecordAssist
+{
+    BOOL canRecord = YES;
+    
+    // If the result isn't a goal, we can't record an assist now can we.
+    if (self.shotResultSegment.selectedSegmentIndex != INSOGoalResultGoal) {
+        canRecord = NO;
+    }
+    
+    // Nor can we record it if we aren't recording assists
+    if (![self gameEventsContainsEvent:INSOEventCodeAssist]) {
+        canRecord = NO;
+    }
+    
+    return canRecord;
+}
+
 - (BOOL)shouldEnableDoneButton
 {
     // Enable if any button is selected
@@ -259,6 +338,15 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     }
     
     return assistEvent;
+}
+
+- (BOOL)gameEventsContainsEvent:(INSOEventCode)eventCode
+{
+    NSSet* gameEvents = self.rosterPlayer.game.eventsToRecord;
+    NSSet* matchingEvents = [gameEvents objectsPassingTest:^BOOL(Event*  _Nonnull event, BOOL * _Nonnull stop) {
+        return event.eventCodeValue == eventCode;
+    }];
+    return [matchingEvents count] > 0;
 }
 
 #pragma mark - Delegates
