@@ -16,6 +16,7 @@
 		B935AB4D1BC9CA78006AEA3A /* _EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB4C1BC9CA78006AEA3A /* _EventCategory.m */; };
 		B9471E611BD8719900379D96 /* INSOEventListEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9471E601BD8719900379D96 /* INSOEventListEditorViewController.m */; };
 		B9471E631BD872CA00379D96 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9471E621BD872CA00379D96 /* CoreData.framework */; };
+		B95391041BF57DD800C5B6D0 /* INSOExportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95391031BF57DD800C5B6D0 /* INSOExportViewController.m */; };
 		B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */; };
 		B95D943A1BBCB2F000E56AD9 /* _RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94391BBCB2F000E56AD9 /* _RosterPlayer.m */; };
 		B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */; };
@@ -82,6 +83,8 @@
 		B9471E5F1BD8719900379D96 /* INSOEventListEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOEventListEditorViewController.h; sourceTree = "<group>"; };
 		B9471E601BD8719900379D96 /* INSOEventListEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOEventListEditorViewController.m; sourceTree = "<group>"; };
 		B9471E621BD872CA00379D96 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B95391021BF57DD800C5B6D0 /* INSOExportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOExportViewController.h; sourceTree = "<group>"; };
+		B95391031BF57DD800C5B6D0 /* INSOExportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOExportViewController.m; sourceTree = "<group>"; };
 		B95D94351BBCB2E500E56AD9 /* RosterPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterPlayer.h; sourceTree = "<group>"; };
 		B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterPlayer.m; sourceTree = "<group>"; };
 		B95D94381BBCB2F000E56AD9 /* _RosterPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _RosterPlayer.h; sourceTree = "<group>"; };
@@ -179,6 +182,15 @@
 			path = "Custom Classes";
 			sourceTree = "<group>";
 		};
+		B95391011BF57B7F00C5B6D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9471E621BD872CA00379D96 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		B9880D2B1BBA2A62008771B4 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +273,8 @@
 				B9CF5BB81BB967EC00AF51DF /* TableViewCells */,
 				B928F2681BE2F66D0028DD51 /* INSOGameStatsViewController.h */,
 				B928F2691BE2F66D0028DD51 /* INSOGameStatsViewController.m */,
+				B95391021BF57DD800C5B6D0 /* INSOExportViewController.h */,
+				B95391031BF57DD800C5B6D0 /* INSOExportViewController.m */,
 			);
 			name = "View Controllers";
 			path = "MensLacrosseStats/View Controllers";
@@ -301,7 +315,6 @@
 		B9C7A7271BADA3B30082DA8B = {
 			isa = PBXGroup;
 			children = (
-				B9471E621BD872CA00379D96 /* CoreData.framework */,
 				B9C7A7321BADA3B30082DA8B /* MensLacrosseStats */,
 				B9C7A74F1BADA3B30082DA8B /* MensLacrosseStatsTests */,
 				B9C7A7311BADA3B30082DA8B /* Products */,
@@ -325,6 +338,7 @@
 				B9CF5BB01BB967CF00AF51DF /* Class Categories */,
 				B9CF5BB41BB967DD00AF51DF /* Class Override */,
 				B9108A991BC0898A000450F8 /* Custom Classes */,
+				B95391011BF57B7F00C5B6D0 /* Frameworks */,
 				B99FDD4F1BB46865006FB373 /* Model */,
 				B99FDD601BB46957006FB373 /* Supporting Files */,
 				B99FDD531BB46881006FB373 /* View Controllers */,
@@ -525,6 +539,7 @@
 				B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */,
 				B9CF5BB71BB967DD00AF51DF /* INSOPickerTextField.m in Sources */,
 				B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */,
+				B95391041BF57DD800C5B6D0 /* INSOExportViewController.m in Sources */,
 				B991A6651BB75FAF004FD794 /* _Game.m in Sources */,
 				B991A66D1BB76F14004FD794 /* INSOGameDetailViewController.m in Sources */,
 				B99FDD671BB46957006FB373 /* main.m in Sources */,

@@ -55,7 +55,7 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
     
     // Set up the navigation bar
     if (self.rosterPlayer.isTeamValue) {
-        self.navigationItem.title = @"Action";
+        self.navigationItem.title = NSLocalizedString(@"Action", nil);
     } else {
         self.navigationItem.title = [NSString stringWithFormat:@"%@", self.rosterPlayer.number];
     }
