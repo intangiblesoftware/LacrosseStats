@@ -34,6 +34,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 @property (nonatomic) NSArray* rosterArray;
 @property (nonatomic) NSIndexPath* selectedIndexPath;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic) CGFloat cellWidth;
 
 // Private Methods
 - (void)configureRosterPlayerCell:(INSOPlayerCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -53,11 +54,15 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         instructionString = [NSString stringWithFormat:@"Select the player that won the groundball (if any)."];
     }
     self.instructionLabel.text = instructionString;
+    
+    self.cellWidth = INSODefaultPlayerCellSize;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
+    [super viewDidLayoutSubviews];
+    
+    [self layoutAssistCollection]; 
 }
 
 #pragma mark - IBActions
@@ -122,6 +127,32 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     }
 }
 
+- (void)layoutAssistCollection
+{
+    CGFloat initialCellWidth = INSODefaultPlayerCellSize;
+    CGFloat interItemSpacing = 0.0;
+    CGFloat collectionViewWidth = 0.0;
+    NSInteger cellsPerRow = 0;
+    CGFloat remainingSpace = 0.0;
+    
+    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.playerCollection.collectionViewLayout;
+    
+    collectionViewWidth = self.playerCollection.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - 1;
+    
+    cellsPerRow = (int)collectionViewWidth / (int)initialCellWidth;
+    remainingSpace = collectionViewWidth - (cellsPerRow * initialCellWidth);
+    
+    if (cellsPerRow > 1) {
+        interItemSpacing = remainingSpace / (cellsPerRow - 1);
+    }
+    
+    self.cellWidth = initialCellWidth;
+    layout.minimumInteritemSpacing = interItemSpacing;
+    layout.minimumLineSpacing = interItemSpacing;
+    
+    self.playerCollection.collectionViewLayout = layout;
+}
+
 - (GameEvent*)createFaceoffWonEvent
 {
     GameEvent* faceoffWonEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
@@ -180,8 +211,8 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height = INSODefaultPlayerCellSize;
-    CGFloat width = INSODefaultPlayerCellSize;
+    CGFloat height = self.cellWidth;
+    CGFloat width = self.cellWidth;
     
     RosterPlayer* player = self.rosterArray[indexPath.row];
     if (player.isTeamValue) {

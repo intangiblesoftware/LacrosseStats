@@ -42,7 +42,6 @@
 {
     [super viewDidAppear:animated];
     
-    [self.eventTable setEditing:YES animated:YES];
     self.eventTable.alwaysBounceVertical = NO;
     self.eventTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }

@@ -32,16 +32,16 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 @interface INSORosterPlayerSelectorViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate>
 // IBOutlets
 @property (nonatomic, weak) IBOutlet UICollectionView* playersCollectionView;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem* undoButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint* playerCollectionHeightConstraint;
 
 // IBAction
 - (IBAction)doneAddingEvent:(UIStoryboardSegue*)sender;
-- (IBAction)tappedUndo:(id)sender;
 
 // Private properties
 @property (nonatomic) NSArray* rosterArray;
 @property (nonatomic) NSFetchedResultsController* fetchedResultsController;
-@property (nonatomic) NSManagedObjectContext* managedObjectContext; 
+@property (nonatomic) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic) CGFloat cellWidth;
 
 // Private methods
 
@@ -51,12 +51,9 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 #pragma mark - Lifecycle
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.undoButton.enabled = [[self.fetchedResultsController fetchedObjects] count] > 0;
+    [super viewDidLoad];
+    
+    self.cellWidth = INSODefaultPlayerCellSize;
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,6 +66,8 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     // We no longer transition to orientation, we transition to size. So use this instead.
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     
+    //[self resizePlayerCollection];
+    
     // Once we transition to size,
     // invalidate the content size and invalidate the layout.
     // This will redraw the cells of the proper size.
@@ -76,40 +75,17 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     [self.playersCollectionView.collectionViewLayout invalidateLayout];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [self layoutPlayerCollection];
+    
+    [self resizePlayerCollection];
+}
+
 #pragma mark - IBActions
 - (void)doneAddingEvent:(UIStoryboardSegue *)sender
 {
     [self.navigationController popToViewController:self animated:YES]; 
-}
-
-- (void)tappedUndo:(id)sender
-{
-    GameEvent* lastGameEvent = [[self.fetchedResultsController fetchedObjects] firstObject];
-    
-    NSString* title = NSLocalizedString(@"Undo Last Event", nil);
-    
-    NSString* message;
-    NSString* messageFormatString;
-    if (lastGameEvent.player.isTeamValue) {
-        messageFormatString = NSLocalizedString(@"Undo the %@ event?", nil);
-        message = [NSString stringWithFormat:messageFormatString, [lastGameEvent.event.title lowercaseString]];
-    } else {
-        messageFormatString = NSLocalizedString(@"Undo the %@ event by #%@?", nil);
-        message = [NSString stringWithFormat:messageFormatString, [lastGameEvent.event.title lowercaseString], lastGameEvent.player.number];
-    }
-    
-    UIAlertController* undoAlert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction* undoAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Undo", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self.managedObjectContext deleteObject:lastGameEvent];
-    }];
-    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-    [undoAlert addAction:cancelAction];
-    [undoAlert addAction:undoAction];
-    
-    [self presentViewController:undoAlert animated:YES completion:nil];
-    
-    undoAlert.view.tintColor = [UIColor scorebookBlue];
-    
 }
 
 #pragma mark - Private Properties
@@ -167,6 +143,53 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
 }
 
+- (void)layoutPlayerCollection
+{
+    CGFloat initialCellWidth = INSODefaultPlayerCellSize;
+    CGFloat interItemSpacing = 0.0;
+    CGFloat collectionViewWidth = 0.0;
+    NSInteger cellsPerRow = 0;
+    CGFloat remainingSpace = 0.0;
+    
+    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.playersCollectionView.collectionViewLayout;
+    
+    collectionViewWidth = self.playersCollectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - 1;
+    
+    cellsPerRow = (int)collectionViewWidth / (int)initialCellWidth;
+    remainingSpace = collectionViewWidth - (cellsPerRow * initialCellWidth);
+    
+    if (cellsPerRow > 1) {
+        interItemSpacing = remainingSpace / (cellsPerRow - 1);
+    }
+    
+    self.cellWidth = initialCellWidth;
+    layout.minimumInteritemSpacing = interItemSpacing;
+    layout.minimumLineSpacing = interItemSpacing;
+    
+    self.playersCollectionView.collectionViewLayout = layout;
+}
+
+- (void)resizePlayerCollection
+{
+    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.playersCollectionView.collectionViewLayout;
+    CGFloat collectionViewWidth = self.playersCollectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - 1;
+    NSInteger cellsPerRow = (int)collectionViewWidth / (int)self.cellWidth;
+    NSInteger rows = ceil([self.rosterArray count] / (float)cellsPerRow);
+    rows += 1;
+    CGFloat collectionViewHeight = (rows * self.cellWidth) + (layout.minimumLineSpacing * (rows - 1)) + layout.sectionInset.top + layout.sectionInset.bottom;
+    
+    CGFloat viewHeight = self.view.frame.size.height;
+    CGFloat maxHeight = viewHeight / 2.0;
+    if (collectionViewHeight > maxHeight) {
+        collectionViewHeight = maxHeight;
+    }
+    self.playerCollectionHeightConstraint.constant = collectionViewHeight;
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.playersCollectionView.collectionViewLayout invalidateLayout];
+    }];
+}
+
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -218,15 +241,15 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height = INSODefaultPlayerCellSize;
-    CGFloat width = INSODefaultPlayerCellSize;
+    CGFloat height = self.cellWidth;
+    CGFloat width = self.cellWidth;
     
     RosterPlayer* player = self.rosterArray[indexPath.row];
+    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)collectionView.collectionViewLayout;
     if (player.isTeamValue) {
-        UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)collectionView.collectionViewLayout;
         width = collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right;
     }
-        
+            
     return CGSizeMake(width, height);
 }
 
@@ -240,7 +263,6 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.managedObjectContext processPendingChanges];
-    self.undoButton.enabled = [[self.fetchedResultsController fetchedObjects] count] > 0;
 }
 
 @end

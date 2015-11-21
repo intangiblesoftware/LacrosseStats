@@ -36,6 +36,8 @@ static NSString * const INSOPlayerCellIdentifier = @"PlayerCell";
 static NSString * const INSOStatCellIdentifier = @"StatCell";
 static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 
+static const CGFloat INSODefaultPlayerCellSize = 50.0;
+
 @interface INSOGameEditViewController () <UINavigationBarDelegate, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 // IBOutlet
 @property (nonatomic, weak) IBOutlet UIBarButtonItem* cancelButton;
@@ -49,7 +51,9 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 
 @property (nonatomic, weak) IBOutlet UISegmentedControl* playerStatSegmentedControl;
 
-@property (nonatomic, weak) IBOutlet UICollectionView* playerStatCollectionView; 
+@property (nonatomic, weak) IBOutlet UICollectionView* playerStatCollectionView;
+
+@property (nonatomic) CGFloat cellWidth;
 
 // IBActions
 - (IBAction)cancel:(id)sender;
@@ -107,9 +111,11 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     [self.playerStatCollectionView.collectionViewLayout invalidateLayout];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
+    [super viewDidLayoutSubviews];
+    
+    [self layoutPlayerStatCollection];
 }
 
 #pragma mark - IBActions
@@ -315,6 +321,32 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
     [self.managedObjectContext deleteObject:playerToDelete];
 }
 
+- (void)layoutPlayerStatCollection
+{
+    CGFloat initialCellWidth = INSODefaultPlayerCellSize;
+    CGFloat interItemSpacing = 0.0;
+    CGFloat collectionViewWidth = 0.0;
+    NSInteger cellsPerRow = 0;
+    CGFloat remainingSpace = 0.0;
+    
+    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.playerStatCollectionView.collectionViewLayout;
+    
+    collectionViewWidth = self.playerStatCollectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - 1;
+    
+    cellsPerRow = (int)collectionViewWidth / (int)initialCellWidth;
+    remainingSpace = collectionViewWidth - (cellsPerRow * initialCellWidth);
+    
+    if (cellsPerRow > 1) {
+        interItemSpacing = remainingSpace / (cellsPerRow - 1);
+    }
+    
+    self.cellWidth = initialCellWidth;
+    layout.minimumInteritemSpacing = interItemSpacing;
+    layout.minimumLineSpacing = interItemSpacing;
+    
+    self.playerStatCollectionView.collectionViewLayout = layout;
+}
+
 #pragma mark - Delegate Methods
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
 {
@@ -420,18 +452,22 @@ static NSString * const INSOHeaderViewIdentifier = @"HeaderView";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.playerStatSegmentedControl.selectedSegmentIndex == INSOPlayerStatSegmentPlayer) {
-        return CGSizeMake(50.0, 50.0);
-    } else {
+    CGFloat height = self.cellWidth;
+    CGFloat width = self.cellWidth;
+
+    if (self.playerStatSegmentedControl.selectedSegmentIndex == INSOPlayerStatSegmentStats) {
         CGFloat collectionWidth = collectionView.frame.size.width;
         UICollectionViewFlowLayout* flowLayout = (UICollectionViewFlowLayout*)collectionViewLayout;
         collectionWidth -= (flowLayout.sectionInset.left + flowLayout.sectionInset.right);
-        return CGSizeMake(collectionWidth, 44.0);
+        width = collectionWidth;
     }
+    
+    return CGSizeMake(width, height);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
+    
     if (self.playerStatSegmentedControl.selectedSegmentIndex == INSOPlayerStatSegmentPlayer) {
         return CGSizeZero;
     } else {

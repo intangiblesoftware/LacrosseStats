@@ -44,6 +44,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 @property (nonatomic) NSIndexPath* selectedIndexPath;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic) NSSet* eventsToRecord;
+@property (nonatomic) CGFloat cellWidth;
 
 // Private Methods
 - (BOOL)shouldEnableDoneButton;
@@ -69,12 +70,17 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     self.extraManSwitch.alpha = 0.0;
     self.assistTitleLabel.alpha = 0.0;
     self.assistCollection.alpha = 0.0;
+    self.cellWidth = INSODefaultPlayerCellSize; 
 
     [self configureView];
     
     self.doneButton.enabled = [self shouldEnableDoneButton];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [self layoutAssistCollection];
+}
 
 #pragma mark - IBActions
 - (void)done:(id)sender
@@ -170,6 +176,32 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         self.assistTitleLabel.alpha = [self assistAlpha];
         self.assistCollection.alpha = [self assistAlpha];
     }];
+}
+
+- (void)layoutAssistCollection
+{
+    CGFloat initialCellWidth = INSODefaultPlayerCellSize;
+    CGFloat interItemSpacing = 0.0;
+    CGFloat collectionViewWidth = 0.0;
+    NSInteger cellsPerRow = 0;
+    CGFloat remainingSpace = 0.0;
+    
+    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.assistCollection.collectionViewLayout;
+    
+    collectionViewWidth = self.assistCollection.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - 1;
+    
+    cellsPerRow = (int)collectionViewWidth / (int)initialCellWidth;
+    remainingSpace = collectionViewWidth - (cellsPerRow * initialCellWidth);
+    
+    if (cellsPerRow > 1) {
+        interItemSpacing = remainingSpace / (cellsPerRow - 1);
+    }
+    
+    self.cellWidth = initialCellWidth;
+    layout.minimumInteritemSpacing = interItemSpacing;
+    layout.minimumLineSpacing = interItemSpacing;
+    
+    self.assistCollection.collectionViewLayout = layout;
 }
 
 - (CGFloat)assistAlpha
@@ -394,8 +426,8 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height = INSODefaultPlayerCellSize;
-    CGFloat width = INSODefaultPlayerCellSize;
+    CGFloat height = self.cellWidth;
+    CGFloat width = self.cellWidth;
     
     RosterPlayer* player = self.rosterArray[indexPath.row];
     if (player.isTeamValue) {
