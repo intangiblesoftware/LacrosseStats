@@ -28,7 +28,7 @@
         // Need to import positions
         [self importCategoriesAndEvents];
     }
-
+    
     return YES;
 }
 

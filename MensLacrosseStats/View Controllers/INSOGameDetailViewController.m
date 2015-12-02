@@ -13,6 +13,7 @@
 #import "INSORosterPlayerSelectorViewController.h"
 #import "INSOMensLacrosseStatsEnum.h"
 #import "INSOGameStatsViewController.h"
+#import "INSOExportStatsViewController.h"
 
 #import "Game.h"
 #import "GameEvent.h"
@@ -21,6 +22,7 @@
 static NSString * INSOEditGameSegueIdentifier    = @"EditGameSegue";
 static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
 static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
+static NSString * INSOExportStatsSegueIdentifier = @"ExportStatsSegue";
 
 @interface INSOGameDetailViewController ()
 // IBOutlets
@@ -171,6 +173,10 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
     if ([segue.identifier isEqualToString:INSOGameStatsSegueIdentifier]) {
         [self prepareForGameStatsSegue:segue sender:sender]; 
     }
+    
+    if ([segue.identifier isEqualToString:INSOExportStatsSegueIdentifier]) {
+        [self prepareForExportStatsSegue:segue sender:sender];
+    }
 }
 
 - (void)prepareForGameEditSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -189,6 +195,13 @@ static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
 {
     INSOGameStatsViewController* dest = segue.destinationViewController;
     dest.game = self.game;
+}
+
+- (void)prepareForExportStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    UINavigationController* navigationController = segue.destinationViewController;
+    INSOExportStatsViewController* exportStatsViewController = [navigationController.viewControllers firstObject];
+    exportStatsViewController.game = self.game; 
 }
 
 
