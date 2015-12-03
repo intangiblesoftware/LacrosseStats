@@ -34,4 +34,7 @@ extern NSString * const INSOSectionTitleKey;
 extern NSString * const INSOStatTitleKey; 
 extern NSString * const INSOStatValueKey;
 
+// MaxPreps Company ID
+extern NSString * const INSOMaxPrepsCompanyID; 
+
 @end

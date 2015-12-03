@@ -1,5 +1,14 @@
 #import "Event.h"
 
+static NSString * const INSOMaxPrepsGoal = @"Goal";
+static NSString * const INSOMaxPrepsAssists = @"Assists";
+static NSString * const INSOMaxPrepsShotsOnGoal = @"ShotsOnGoal";
+static NSString * const INSOMaxPrepsGroundballs = @"GroundBalls";
+static NSString * const INSOMaxPrepsInterceptions = @"Interceptions";
+static NSString * const INSOMaxPrepsFaceoffWon = @"FaceoffWon";
+static NSString * const INSOMaxPrepsGoalsAgainst = @"GoalsAgainst";
+static NSString * const INSOMaxPrepsSaves = @"Saves";
+
 @interface Event ()
 
 // Private interface goes here.
@@ -28,5 +37,37 @@
     return  matchingEvent;
 }
 
+- (NSString*)maxPrepsTitle
+{
+    switch (self.eventCodeValue) {
+        case INSOEventCodeGoal:
+            return INSOMaxPrepsGoal;
+            break;
+        case INSOEventCodeAssist:
+            return INSOMaxPrepsAssists;
+            break;
+        case INSOEventCodeShotOnGoal:
+            return INSOMaxPrepsShotsOnGoal;
+            break;
+        case INSOEventCodeGroundball:
+            return INSOMaxPrepsGroundballs;
+            break;
+        case INSOEventCodeInterception:
+            return INSOMaxPrepsInterceptions;
+            break;
+        case INSOEventCodeFaceoffWon:
+            return INSOMaxPrepsFaceoffWon;
+            break;
+        case INSOEventCodeGoalAllowed:
+            return INSOMaxPrepsGoalsAgainst;
+            break;
+        case INSOEventCodeSave:
+            return INSOMaxPrepsSaves;
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
 
 @end

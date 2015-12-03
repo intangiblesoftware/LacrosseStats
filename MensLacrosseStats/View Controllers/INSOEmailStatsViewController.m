@@ -39,6 +39,10 @@
     
     if (self.isExportingForMaxPreps) {
         self.title = NSLocalizedString(@"MaxPreps Export", nil) ;
+        [self.exportToggleLabel removeFromSuperview];
+        [self.exportToggleSwitch removeFromSuperview];
+        self.messageLabel.text = NSLocalizedString(@"The app will export all stats collected in a format compatible for sending to MaxPreps.", nil);
+        self.messageLabel.font = [UIFont systemFontOfSize:17.0];
     } else {
         self.title = NSLocalizedString(@"Email Export", nil) ;
     }
@@ -68,23 +72,32 @@
     
     // Now actually prepare the stats file
     INSOEmailStatsFileGenerator* fileGenerator = [[INSOEmailStatsFileGenerator alloc] initWithGame:self.game];
-    if (self.exportToggleSwitch.isOn) {
-        [fileGenerator createGameStatsDataFileForRecordedStats:^(NSData *gameStatsData) {
-            self.exportToggleSwitch.enabled = YES;
-            self.prepareStatsButton.enabled = YES;
-            [self.activityIndicator stopAnimating];
-
-            [self prepareEmailMessageForStatsData:gameStatsData];
-        }];
-    } else {
-        [fileGenerator createGameStatsDataFileForAllStats:^(NSData *gameStatsData) {
-            self.exportToggleSwitch.enabled = YES;
+    if (self.isExportingForMaxPreps) {
+        [fileGenerator createMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
             self.prepareStatsButton.enabled = YES;
             [self.activityIndicator stopAnimating];
             
-            [self prepareEmailMessageForStatsData:gameStatsData];
+            [self prepareEmailMessageForMaxPrepsData:gameStatsData];
         }];
-
+    } else {
+        // Not exporting for max preps so configure differently
+        if (self.exportToggleSwitch.isOn) {
+            [fileGenerator createGameStatsDataFileForRecordedStats:^(NSData *gameStatsData) {
+                self.exportToggleSwitch.enabled = YES;
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+                [self prepareEmailMessageForStatsData:gameStatsData];
+            }];
+        } else {
+            [fileGenerator createGameStatsDataFileForAllStats:^(NSData *gameStatsData) {
+                self.exportToggleSwitch.enabled = YES;
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+                [self prepareEmailMessageForStatsData:gameStatsData];
+            }];
+        }
     }
 }
 
@@ -120,6 +133,37 @@
     }
 }
 
+- (void)prepareEmailMessageForMaxPrepsData:(NSData*)maxPrepsData
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController* mailViewcontroller = [[MFMailComposeViewController alloc] init];
+        mailViewcontroller.mailComposeDelegate = self;
+        
+        // Get subject
+        NSString* subject = [self maxPrepsMessageSubject];
+        
+        // Get body
+        NSString* body = [self maxPrepsMessageBody];
+        
+        // Now set these things
+        [mailViewcontroller setSubject:subject];
+        [mailViewcontroller setMessageBody:body isHTML:NO];
+        
+        // Add attachment(s)
+        NSString* fileName = NSLocalizedString(@"MaxPrepsExport.txt", nil);
+        [mailViewcontroller addAttachmentData:maxPrepsData mimeType:@"text/plain" fileName:fileName];
+        
+        [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookBlue]];
+        
+        // Display the view to mail the message.
+        [self presentViewController:mailViewcontroller animated:YES completion:nil];
+        
+    } else {
+        // unable to send mail. Hmmm;
+        NSLog(@"Unable to send email.");
+    }
+}
+
 - (NSString*)mailMessageSubject
 {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
@@ -131,12 +175,34 @@
     return subject;
 }
 
+- (NSString*)maxPrepsMessageSubject
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    
+    NSString* localizedSubjectString = NSLocalizedString(@"MaxPreps Export for %@ vs. %@ on %@", nil);
+    NSString* subject = [NSString stringWithFormat:localizedSubjectString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime]];
+    
+    return subject;
+}
+
 - (NSString*)mailMessageBody
 {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     
     NSString* localizedSubjectString = NSLocalizedString(@"Game stats for %@ vs. %@ on %@ at %@.\n", nil);
+    NSString* subject = [NSString stringWithFormat:localizedSubjectString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime], self.game.location];
+    
+    return subject;
+}
+
+- (NSString*)maxPrepsMessageBody
+{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    
+    NSString* localizedSubjectString = NSLocalizedString(@"MaxPreps file export for %@ vs. %@ on %@ at %@.\n", nil);
     NSString* subject = [NSString stringWithFormat:localizedSubjectString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime], self.game.location];
     
     return subject;
