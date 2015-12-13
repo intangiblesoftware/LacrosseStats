@@ -9,15 +9,27 @@
 #import "MensLacrosseStatsAppDelegate.h"
 
 #import "INSOMensLacrosseStatsConstants.h"
+#import "INSOReceiptValidator.h"
 
 #import "Event.h"
 #import "EventCategory.h"
+#import "Game.h"
+#import "RosterPlayer.h"
 
 @interface MensLacrosseStatsAppDelegate ()
 
 @end
 
 @implementation MensLacrosseStatsAppDelegate
+
+@synthesize receiptValidator = _receiptValidator;
+- (INSOReceiptValidator*)receiptValidator
+{
+    if (!_receiptValidator) {
+        _receiptValidator = [[INSOReceiptValidator alloc] init];
+    }
+    return _receiptValidator;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -27,6 +39,20 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:INSODefaultShouldImportCategoriesAndEventsKey]) {
         // Need to import positions
         [self importCategoriesAndEvents];
+    }
+    
+    // Validate the in-app purchase receipt
+    [self.receiptValidator validateReceipt]; 
+    
+    // Count number of games in the app. If 0, then add one automatically.
+    NSFetchRequest* fetchGames = [NSFetchRequest fetchRequestWithEntityName:[Game entityName]];
+    NSError* error = nil;
+    NSInteger gameCount = [self.managedObjectContext countForFetchRequest:fetchGames error:&error];
+    
+    if (gameCount != NSNotFound) {
+        if (gameCount == 0) {
+            [self addGame]; 
+        }
     }
     
     return YES;
@@ -93,6 +119,43 @@
         // Imported, so set import key to no
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:INSODefaultShouldImportCategoriesAndEventsKey];
     }
+}
+
+- (void)addGame
+{
+    // Create a game with now as the game date time
+    Game* newGame = [Game insertInManagedObjectContext:self.managedObjectContext];
+    newGame.gameDateTime = [self newGameStartDateTime];
+    
+    // Team to record
+    newGame.teamWatching = newGame.homeTeam;
+    
+    // Set up events to record
+    NSArray* defaultEvents = [Event fetchDefaultEvents:self.managedObjectContext];
+    NSSet* eventSet = [NSSet setWithArray:defaultEvents];
+    [newGame addEventsToRecord:eventSet];
+    
+    // Give the game a team player
+    RosterPlayer* teamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+    teamPlayer.numberValue = INSOTeamPlayerNumber;
+    teamPlayer.isTeamValue = YES;
+    [newGame addPlayersObject:teamPlayer];
+    
+    NSError* error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Error saving MOC after creating new game: %@", error.localizedDescription);
+    }
+}
+
+- (NSDate*)newGameStartDateTime
+{
+    NSDate* currentDate = [NSDate date];
+    NSDateComponents* components = [[NSCalendar currentCalendar] components: (NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:currentDate];
+    NSInteger minutes = components.minute;
+    float minuteUnit = ceil((float) minutes / 30.0);
+    minutes = minuteUnit * 30;
+    [components setMinute:minutes];
+    return [[NSCalendar currentCalendar] dateFromComponents:components];
 }
 
 #pragma mark - Core Data stack

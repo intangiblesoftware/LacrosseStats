@@ -43,8 +43,10 @@
         [self.exportToggleSwitch removeFromSuperview];
         self.messageLabel.text = NSLocalizedString(@"The app will export all stats collected in a format compatible for sending to MaxPreps.", nil);
         self.messageLabel.font = [UIFont systemFontOfSize:17.0];
+        [self.prepareStatsButton setTitle:NSLocalizedString(@"Prepare MaxPreps File", nil) forState:UIControlStateNormal]; 
     } else {
         self.title = NSLocalizedString(@"Email Export", nil) ;
+        [self.prepareStatsButton setTitle:NSLocalizedString(@"Prepare .CSV File", nil) forState:UIControlStateNormal];
     }
 }
 

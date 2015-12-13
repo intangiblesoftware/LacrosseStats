@@ -107,22 +107,6 @@
 			</dict>
 			<dict>
 				<key>EventCode</key>
-				<integer>113</integer>
-				<key>EventTitle</key>
-				<string>Entered game</string>
-				<key>StatCategory</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>EventCode</key>
-				<integer>114</integer>
-				<key>EventTitle</key>
-				<string>Left game</string>
-				<key>StatCategory</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>EventCode</key>
 				<integer>115</integer>
 				<key>EventTitle</key>
 				<string>Extra-man opportunity</string>
