@@ -13,6 +13,7 @@
 #import "INSOGameTableViewController.h"
 #import "INSOGameTableViewCell.h"
 #import "INSOGameDetailViewController.h"
+#import "INSOReceiptValidator.h"
 
 #import "Game.h"
 #import "Event.h"
@@ -20,6 +21,7 @@
 
 static NSString * const INSOGameCellIdentifier = @"GameCell";
 static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegue";
+static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegue";
 
 @interface INSOGameTableViewController () <NSFetchedResultsControllerDelegate>
 // IBOutlets
@@ -56,27 +58,20 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
 #pragma mark - IBActions
 - (void)addGame:(id)sender
 {
-    // Create a game with now as the game date time
-    Game* newGame = [Game insertInManagedObjectContext:self.managedObjectContext];
-    newGame.gameDateTime = [self newGameStartDateTime]; 
-    
-    // Team to record
-    newGame.teamWatching = newGame.homeTeam;
-    
-    // Set up events to record
-    NSArray* defaultEvents = [Event fetchDefaultEvents:self.managedObjectContext];
-    NSSet* eventSet = [NSSet setWithArray:defaultEvents];
-    [newGame addEventsToRecord:eventSet];
-
-    // Give the game a team player
-    RosterPlayer* teamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
-    teamPlayer.numberValue = INSOTeamPlayerNumber;
-    teamPlayer.isTeamValue = YES; 
-    [newGame addPlayersObject:teamPlayer]; 
-    
-    NSError* error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Error saving MOC after creating new game: %@", error.localizedDescription);
+    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+    if (appDelegate.receiptValidator.appIsPurchased && !appDelegate.receiptValidator.appPurchaseExpired) {
+        // If the app is purchased, just create a new game. No hoo-hoo.
+        [self createNewGame];
+    } else {
+        // Now we gotta see how many games there are.
+        // If there is one already, don't let 'em create a new one.
+        // Instead, show the buy me! modal.
+        NSInteger numberOfGames = [[[self.gamesFRC sections] objectAtIndex:0] numberOfObjects];
+        if (numberOfGames >= 1) {
+            [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
+        } else {
+            [self createNewGame]; 
+        }
     }
 }
 
@@ -153,11 +148,41 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
     return [[NSCalendar currentCalendar] dateFromComponents:components];
 }
 
+- (void)createNewGame
+{
+    // Create a game with now as the game date time
+    Game* newGame = [Game insertInManagedObjectContext:self.managedObjectContext];
+    newGame.gameDateTime = [self newGameStartDateTime];
+    
+    // Team to record
+    newGame.teamWatching = newGame.homeTeam;
+    
+    // Set up events to record
+    NSArray* defaultEvents = [Event fetchDefaultEvents:self.managedObjectContext];
+    NSSet* eventSet = [NSSet setWithArray:defaultEvents];
+    [newGame addEventsToRecord:eventSet];
+    
+    // Give the game a team player
+    RosterPlayer* teamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+    teamPlayer.numberValue = INSOTeamPlayerNumber;
+    teamPlayer.isTeamValue = YES;
+    [newGame addPlayersObject:teamPlayer];
+    
+    NSError* error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Error saving MOC after creating new game: %@", error.localizedDescription);
+    }
+}
+
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:INSOShowGameDetailSegueIdentifier]) {
         [self prepareForShowGameDetailSegue:segue sender:sender];
+    }
+    
+    if ([segue.identifier isEqualToString:INSOShowPurchaseModalSegueIdentifier]) {
+        [self prepareForShowPurchaseModalSegue:segue sender:sender];
     }
 }
 
@@ -167,6 +192,11 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
     Game* selectedGame = [self.gamesFRC objectAtIndexPath:indexPath];
     INSOGameDetailViewController* dest = segue.destinationViewController;
     dest.game = selectedGame; 
+}
+
+- (void)prepareForShowPurchaseModalSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    // Nothing to do here, yet.
 }
 
 #pragma mark - Table view data source

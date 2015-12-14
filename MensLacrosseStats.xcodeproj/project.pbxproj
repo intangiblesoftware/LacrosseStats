@@ -49,6 +49,7 @@
 		B9CF5BB71BB967DD00AF51DF /* INSOPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */; };
 		B9CF5BBB1BB967EC00AF51DF /* INSOGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BBA1BB967EC00AF51DF /* INSOGameTableViewCell.m */; };
 		B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */; };
+		B9DCC3F51C1E5AA900382BD8 /* INSOPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */; };
 		B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,8 @@
 		B9CF5BBA1BB967EC00AF51DF /* INSOGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameTableViewCell.m; sourceTree = "<group>"; };
 		B9DBC3BA1BC4B82600983F5B /* INSOHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOHeaderCollectionReusableView.h; sourceTree = "<group>"; };
 		B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOHeaderCollectionReusableView.m; sourceTree = "<group>"; };
+		B9DCC3F31C1E5AA900382BD8 /* INSOPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOPurchaseViewController.h; sourceTree = "<group>"; };
+		B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPurchaseViewController.m; sourceTree = "<group>"; };
 		B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOMensLacrosseStatsConstants.h; sourceTree = "<group>"; };
 		B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMensLacrosseStatsConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -252,12 +255,12 @@
 		B9880D2B1BBA2A62008771B4 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				B9DBC3BA1BC4B82600983F5B /* INSOHeaderCollectionReusableView.h */,
+				B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */,
 				B9880D2C1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.h */,
 				B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m */,
 				B95D943B1BBCC47500E56AD9 /* INSOStatCollectionViewCell.h */,
 				B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */,
-				B9DBC3BA1BC4B82600983F5B /* INSOHeaderCollectionReusableView.h */,
-				B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -314,6 +317,8 @@
 				B916A1211C1DB38C00E754A3 /* Game */,
 				B916A12E1C1DB42800E754A3 /* Record Stats */,
 				B9CF5BB81BB967EC00AF51DF /* TableViewCells */,
+				B9DCC3F31C1E5AA900382BD8 /* INSOPurchaseViewController.h */,
+				B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */,
 			);
 			name = "View Controllers";
 			path = "MensLacrosseStats/View Controllers";
@@ -418,10 +423,10 @@
 		B9CF5BB81BB967EC00AF51DF /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				B9CF5BB91BB967EC00AF51DF /* INSOGameTableViewCell.h */,
-				B9CF5BBA1BB967EC00AF51DF /* INSOGameTableViewCell.m */,
 				B928F26B1BE2F9000028DD51 /* INSOGameStatTableViewCell.h */,
 				B928F26C1BE2F9000028DD51 /* INSOGameStatTableViewCell.m */,
+				B9CF5BB91BB967EC00AF51DF /* INSOGameTableViewCell.h */,
+				B9CF5BBA1BB967EC00AF51DF /* INSOGameTableViewCell.m */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9DCC3F51C1E5AA900382BD8 /* INSOPurchaseViewController.m in Sources */,
 				B916A13C1C1DB42800E754A3 /* INSOFaceoffWonViewController.m in Sources */,
 				B92AF5A61C1CA043001043CA /* INSOReceiptValidator.m in Sources */,
 				B935AB411BC9C9E1006AEA3A /* Event.m in Sources */,
