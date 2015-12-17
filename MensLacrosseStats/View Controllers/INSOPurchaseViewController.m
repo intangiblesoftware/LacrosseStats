@@ -11,19 +11,35 @@
 #import "INSOPurchaseViewController.h"
 #import "INSOReceiptValidator.h"
 
+
+static NSString * const INSOEmailStatsSegueIdentifier = @"EmailStatsSegue";
+static NSString * const INSOMaxPrepsExportSegueIdentifier = @"MaxPrepsSegue";
+
+static const CGFloat INSODefaultButtonHeight = 50.0;
+
+
 @interface INSOPurchaseViewController () <UINavigationBarDelegate>
 
 // IBOutlets
-@property (nonatomic, weak) IBOutlet UILabel* messageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *purchaseButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint* purchaseButtonHeightConstraint;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView* activityIndicator;
+
+@property (weak, nonatomic) IBOutlet UILabel *restorePurchaseLabel;
+@property (weak, nonatomic) IBOutlet UIButton *restorePurchaseButton;
 
 // IBActions
-- (IBAction)cancel:(id)sender;
+- (IBAction)done:(id)sender;
 - (IBAction)purchase:(id)sender;
 - (IBAction)restorePurchase:(id)sender;
 
 // Private properties
 
 // Private methods
+- (NSString*)localizedAppNotPurchasedMessage;
+- (NSString*)localizedAppPurchaseExpiredMessage;
+- (NSString*)localizedAppPurchasedMessage;
 
 
 @end
@@ -33,6 +49,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Just in case
+    [self.activityIndicator stopAnimating];
 
     MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
     if (appDelegate.receiptValidator.appIsPurchased && appDelegate.receiptValidator.appPurchaseExpired) {
@@ -48,30 +67,79 @@
 }
 
 #pragma mark - IBActions
-- (void)cancel:(id)sender
+- (void)done:(id)sender
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)purchase:(id)sender
 {
-    
+    [self.activityIndicator startAnimating];
+
+    [UIView animateWithDuration:0.3 animations:^{
+        self.purchaseButton.alpha = 0.0;
+    }];
 }
 
 - (void)restorePurchase:(id)sender
 {
+    // Just going to revalidate receipt for now
+    // Which actually just generates random shit.
+    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.receiptValidator validateReceipt];
     
+    // Re-configure the view to match.
+    if (appDelegate.receiptValidator.appIsPurchased) {
+        [self configureViewForAppPurchased];
+    } else {
+        [self configureViewForAppNotPurchased];
+    }
 }
 
 #pragma mark - Private methods
 - (NSString*)localizedAppNotPurchasedMessage
 {
-    return NSLocalizedString(@"Adding additional games and the ability to export stats is available through a %@ in-app purchase. Your purchase will enable adding games and exporting stats for %@. ", nil);
+    return NSLocalizedString(@"Adding additional games and exporting stats is available through a %@ in-app purchase. Your purchase will enable adding games and exporting stats for %@. ", nil);
 }
 
 - (NSString*)localizedAppPurchaseExpiredMessage
 {
     return NSLocalizedString(@"Your purchase of Men’s Lacrosse Stats expired on %@. Tap the button below to purchase %@ of access for %@.", nil);
+}
+
+- (NSString*)localizedAppPurchasedMessage
+{
+    return NSLocalizedString(@"Thank you for purchasing full access to Men’s Lacrosse Stats. You have access to all features of the app until %@.", nil);
+}
+
+- (void)configureViewForAppNotPurchased
+{
+    // Start with the message
+    NSString* messageString = [NSString stringWithFormat:[self localizedAppNotPurchasedMessage], @"$4.99", @"1 year"];
+    self.messageLabel.text = messageString;
+    
+    // And the buy now button
+    NSString* purchaseButtonString = NSLocalizedString(@"Purchase 1 year of access for $4.99", nil);
+    [self.purchaseButton setTitle:purchaseButtonString forState:UIControlStateNormal];
+    self.purchaseButtonHeightConstraint.constant = INSODefaultButtonHeight;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+        self.purchaseButton.alpha = 1.0;
+    }];
+    
+    // Disable exporting buttons
+}
+
+- (void)configureViewForAppPurchased
+{
+    // App has been purchased, but might be expired
+    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+    if (appDelegate.receiptValidator.appPurchaseExpired) {
+        [self configureViewForAppPurchaseExpired];
+    } else {
+        [self configureViewForAppPurchaseActive];
+    }
+    
 }
 
 - (void)configureViewForAppPurchaseExpired
@@ -85,13 +153,42 @@
     // Start with the message
     NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchaseExpiredMessage], [formatter stringFromDate:appExpirationDate], @"1 year", @"$4.99"];
     self.messageLabel.text = messageString;
+    
+    // And the buy now button.
+    NSString* purchaseButtonString = NSLocalizedString(@"Purchase 1 year of access for $4.99", nil);
+    [self.purchaseButton setTitle:purchaseButtonString forState:UIControlStateNormal];
+    self.purchaseButtonHeightConstraint.constant = INSODefaultButtonHeight;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view updateConstraints];
+        self.purchaseButton.alpha = 1.0;
+    }];
+    
+    // Disable export buttons.
 }
 
-- (void)configureViewForAppNotPurchased
+- (void)configureViewForAppPurchaseActive
 {
+    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+    NSDate* appExpirationDate = appDelegate.receiptValidator.appExpirationDate;
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    
     // Start with the message
-    NSString* messageString = [NSString stringWithFormat:[self localizedAppNotPurchasedMessage], @"$4.99", @"1 year"];
+    NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchasedMessage], [formatter stringFromDate:appExpirationDate]];
     self.messageLabel.text = messageString;
+    
+    // Hide/remove the purchase button?
+    self.purchaseButtonHeightConstraint.constant = 0.0;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+        self.purchaseButton.alpha = 0.0;
+    }];
+    
+    // And the restore purchase stuff?
+    
+    // Export
+
 }
 
 @end

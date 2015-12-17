@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Game;
+
 @interface INSOPurchaseViewController : UIViewController
+
+@property (nonatomic) Game* game;
 
 @end

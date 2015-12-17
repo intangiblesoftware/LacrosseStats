@@ -14,15 +14,18 @@
 #import "INSOMensLacrosseStatsEnum.h"
 #import "INSOGameStatsViewController.h"
 #import "INSOExportStatsViewController.h"
+#import "INSOReceiptValidator.h"
 
 #import "Game.h"
 #import "GameEvent.h"
 #import "Event.h"
 
-static NSString * INSOEditGameSegueIdentifier    = @"EditGameSegue";
-static NSString * INSORecordStatsSegueIdentifier = @"RecordStatsSegue";
-static NSString * INSOGameStatsSegueIdentifier   = @"GameStatsSegue";
-static NSString * INSOExportStatsSegueIdentifier = @"ExportStatsSegue";
+static NSString * INSOEditGameSegueIdentifier          = @"EditGameSegue";
+static NSString * INSORecordStatsSegueIdentifier       = @"RecordStatsSegue";
+static NSString * INSOGameStatsSegueIdentifier         = @"GameStatsSegue";
+static NSString * INSOExportStatsSegueIdentifier       = @"ExportStatsSegue";
+static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegue";
+
 
 @interface INSOGameDetailViewController ()
 // IBOutlets
@@ -34,6 +37,8 @@ static NSString * INSOExportStatsSegueIdentifier = @"ExportStatsSegue";
 @property (nonatomic, weak) IBOutlet UILabel* locationLabel;
 
 // IBActions
+- (IBAction)editGame:(id)sender;
+- (IBAction)recordStats:(id)sender;
 
 // Private Properties
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
@@ -64,38 +69,27 @@ static NSString * INSOExportStatsSegueIdentifier = @"ExportStatsSegue";
 }
 
 #pragma mark - IBActions
+- (void)recordStats:(id)sender
+{
+    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+    if (appDelegate.receiptValidator.appIsPurchased && appDelegate.receiptValidator.appPurchaseExpired) {
+        [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
+    } else {
+        [self performSegueWithIdentifier:INSORecordStatsSegueIdentifier sender:self];
+    }
+}
+
+- (void)editGame:(id)sender
+{
+    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+    if (appDelegate.receiptValidator.appIsPurchased && appDelegate.receiptValidator.appPurchaseExpired) {
+        [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
+    } else {
+        [self performSegueWithIdentifier:INSOEditGameSegueIdentifier sender:self];
+    }
+}
 
 #pragma mark - Private Properties
-//- (NSFetchedResultsController*)visitorScoreFRC
-//{
-//    if (!_visitorScoreFRC) {
-//        NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:[GameEvent entityName]];
-//        [request setFetchBatchSize:50];
-//        
-//        INSOEventCode eventCode;
-//        if ([self.game.teamWatching isEqualToString:self.game.visitingTeam]) {
-//            eventCode = INSOEventCodeGoal;
-//        } else {
-//            eventCode = INSOEventCodeGoalAllowed;
-//        }
-//        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@", self.game, @(eventCode)];
-//        request.predicate = predicate;
-//        
-//        NSSortDescriptor* sortByTimestamp = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
-//        request.sortDescriptors = @[sortByTimestamp];
-//        
-//        _visitorScoreFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-//        _visitorScoreFRC.delegate = self;
-//        
-//        NSError* error = nil;
-//        if (![_visitorScoreFRC performFetch:&error]) {
-//            // Error fetching games
-//            NSLog(@"Error fetching games: %@", error.localizedDescription);
-//        }
-//    }
-//    return _visitorScoreFRC;
-//}
-
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
