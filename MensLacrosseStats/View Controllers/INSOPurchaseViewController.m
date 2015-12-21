@@ -32,6 +32,8 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
 @property (weak, nonatomic) IBOutlet UILabel *restorePurchaseLabel;
 @property (weak, nonatomic) IBOutlet UIButton *restorePurchaseButton;
 
+@property (weak, nonatomic) IBOutlet UIView* embededExportOptionsView;
+
 // IBActions
 - (IBAction)done:(id)sender;
 - (IBAction)purchase:(id)sender;
@@ -130,7 +132,9 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
         self.purchaseButton.alpha = 1.0;
     }];
     
-    // Disable exporting buttons
+    // Disable exporting options
+    self.embededExportOptionsView.alpha = 0.5;
+    self.embededExportOptionsView.userInteractionEnabled = NO;
 }
 
 - (void)configureViewForAppPurchased
@@ -141,8 +145,7 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
         [self configureViewForAppPurchaseExpired];
     } else {
         [self configureViewForAppPurchaseActive];
-    }
-    
+    }    
 }
 
 - (void)configureViewForAppPurchaseExpired
@@ -167,6 +170,8 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
     }];
     
     // Disable export buttons.
+    self.embededExportOptionsView.alpha = 0.5;
+    self.embededExportOptionsView.userInteractionEnabled = NO;
 }
 
 - (void)configureViewForAppPurchaseActive
@@ -191,6 +196,8 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
     // And the restore purchase stuff?
     
     // Export
+    self.embededExportOptionsView.alpha = 1.0;
+    self.embededExportOptionsView.userInteractionEnabled = YES;
 
 }
 

@@ -1793,6 +1793,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="UJO-9a-63t" id="VOi-nv-zMZ"/>
+                        <outlet property="embededExportOptionsView" destination="0o2-Lg-KCb" id="F8o-Fn-XUN"/>
                         <outlet property="messageLabel" destination="2KC-pC-tFr" id="IJK-we-GWP"/>
                         <outlet property="purchaseButton" destination="gEI-qB-Isj" id="sS7-0H-Umr"/>
                         <outlet property="restorePurchaseButton" destination="5V7-Jq-9S6" id="H9A-s5-IgI"/>
