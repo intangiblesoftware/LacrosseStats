@@ -51,6 +51,7 @@
 		B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */; };
 		B9DCC3F51C1E5AA900382BD8 /* INSOPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */; };
 		B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */; };
+		B9EF9EF91C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EF9EF81C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,8 @@
 		B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPurchaseViewController.m; sourceTree = "<group>"; };
 		B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOMensLacrosseStatsConstants.h; sourceTree = "<group>"; };
 		B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMensLacrosseStatsConstants.m; sourceTree = "<group>"; };
+		B9EF9EF71C24E9FA00A8E91F /* INSOExportOptionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOExportOptionsTableViewController.h; sourceTree = "<group>"; };
+		B9EF9EF81C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOExportOptionsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +206,8 @@
 			children = (
 				B916A11B1C1DB32100E754A3 /* INSOEmailStatsViewController.h */,
 				B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */,
+				B9EF9EF71C24E9FA00A8E91F /* INSOExportOptionsTableViewController.h */,
+				B9EF9EF81C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m */,
 				B916A11D1C1DB32100E754A3 /* INSOExportStatsViewController.h */,
 				B916A11E1C1DB32100E754A3 /* INSOExportStatsViewController.m */,
 			);
@@ -611,6 +616,7 @@
 				B916A12B1C1DB38C00E754A3 /* INSOGameEditViewController.m in Sources */,
 				B95D943A1BBCB2F000E56AD9 /* _RosterPlayer.m in Sources */,
 				B935AB4D1BC9CA78006AEA3A /* _EventCategory.m in Sources */,
+				B9EF9EF91C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m in Sources */,
 				B9880D2E1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m in Sources */,
 				B928F26D1BE2F9000028DD51 /* INSOGameStatTableViewCell.m in Sources */,
 				B916A13E1C1DB42800E754A3 /* INSOPenaltyTimeViewController.m in Sources */,

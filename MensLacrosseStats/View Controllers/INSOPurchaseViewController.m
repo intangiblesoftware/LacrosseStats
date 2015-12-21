@@ -10,15 +10,18 @@
 
 #import "INSOPurchaseViewController.h"
 #import "INSOReceiptValidator.h"
+#import "INSOExportOptionsTableViewController.h"
+#import "INSOEmailStatsViewController.h"
 
 
 static NSString * const INSOEmailStatsSegueIdentifier = @"EmailStatsSegue";
 static NSString * const INSOMaxPrepsExportSegueIdentifier = @"MaxPrepsSegue";
+static NSString * const INSOEmbededExportTableSegueIdentifier = @"EmbededExportTableSegue";
 
 static const CGFloat INSODefaultButtonHeight = 50.0;
 
 
-@interface INSOPurchaseViewController () <UINavigationBarDelegate>
+@interface INSOPurchaseViewController () <UINavigationBarDelegate, INSOStatsExportDelegate>
 
 // IBOutlets
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
@@ -189,6 +192,38 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
     
     // Export
 
+}
+
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:INSOEmbededExportTableSegueIdentifier]) {
+        INSOExportOptionsTableViewController* dest = segue.destinationViewController;
+        dest.delegate = self;
+    }
+    
+    if ([segue.identifier isEqualToString:INSOEmailStatsSegueIdentifier]) {
+        INSOEmailStatsViewController* dest = segue.destinationViewController;
+        dest.game = self.game;
+        dest.isExportingForMaxPreps = NO;
+    }
+    
+    if ([segue.identifier isEqualToString:INSOMaxPrepsExportSegueIdentifier]) {
+        INSOEmailStatsViewController* dest = segue.destinationViewController;
+        dest.game = self.game;
+        dest.isExportingForMaxPreps = YES;
+    }
+}
+
+#pragma mark - INSOExportDelegate
+- (void)didSelectEmailStats
+{
+    [self performSegueWithIdentifier:INSOEmailStatsSegueIdentifier sender:self];
+}
+
+- (void)didSelectMaxPrepsExport
+{
+    [self performSegueWithIdentifier:INSOMaxPrepsExportSegueIdentifier sender:self]; 
 }
 
 @end
