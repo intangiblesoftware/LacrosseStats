@@ -7,14 +7,14 @@
 //
 
 #import "MensLacrosseStatsAppDelegate.h"
+#import "INSOProductManager.h"
 
 #import "INSOGameDetailViewController.h"
 #import "INSOGameEditViewController.h"
 #import "INSORosterPlayerSelectorViewController.h"
 #import "INSOMensLacrosseStatsEnum.h"
 #import "INSOGameStatsViewController.h"
-#import "INSOExportStatsViewController.h"
-#import "INSOReceiptValidator.h"
+#import "INSOPurchaseViewController.h"
 
 #import "Game.h"
 #import "GameEvent.h"
@@ -71,8 +71,7 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 #pragma mark - IBActions
 - (void)recordStats:(id)sender
 {
-    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-    if (appDelegate.receiptValidator.appIsPurchased && appDelegate.receiptValidator.appPurchaseExpired) {
+    if ([[INSOProductManager sharedManager] isPurchased] && [[INSOProductManager sharedManager] purchaseExpired]) {
         [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
     } else {
         [self performSegueWithIdentifier:INSORecordStatsSegueIdentifier sender:self];
@@ -81,8 +80,7 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 
 - (void)editGame:(id)sender
 {
-    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-    if (appDelegate.receiptValidator.appIsPurchased && appDelegate.receiptValidator.appPurchaseExpired) {
+    if ([[INSOProductManager sharedManager] isPurchased] && [[INSOProductManager sharedManager] purchaseExpired]) {
         [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
     } else {
         [self performSegueWithIdentifier:INSOEditGameSegueIdentifier sender:self];
@@ -194,8 +192,8 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 - (void)prepareForExportStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
     UINavigationController* navigationController = segue.destinationViewController;
-    INSOExportStatsViewController* exportStatsViewController = [navigationController.viewControllers firstObject];
-    exportStatsViewController.game = self.game; 
+    INSOPurchaseViewController* purchaseViewController = [navigationController.viewControllers firstObject];
+    purchaseViewController.game = self.game;
 }
 
 

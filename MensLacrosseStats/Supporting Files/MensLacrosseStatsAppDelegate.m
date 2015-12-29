@@ -9,7 +9,7 @@
 #import "MensLacrosseStatsAppDelegate.h"
 
 #import "INSOMensLacrosseStatsConstants.h"
-#import "INSOReceiptValidator.h"
+#import "INSOProductManager.h"
 
 #import "Event.h"
 #import "EventCategory.h"
@@ -22,6 +22,7 @@
 
 @implementation MensLacrosseStatsAppDelegate
 
+/*
 @synthesize receiptValidator = _receiptValidator;
 - (INSOReceiptValidator*)receiptValidator
 {
@@ -30,6 +31,7 @@
     }
     return _receiptValidator;
 }
+ */
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -42,7 +44,8 @@
     }
     
     // Validate the in-app purchase receipt
-    [self.receiptValidator validateReceipt]; 
+    //[self.receiptValidator validateReceipt];
+    [[INSOProductManager sharedManager] validateReceipt]; 
     
     // Count number of games in the app. If 0, then add one automatically.
     NSFetchRequest* fetchGames = [NSFetchRequest fetchRequestWithEntityName:[Game entityName]];

@@ -47,7 +47,7 @@
     
     if (_appIsPurchased) {
         NSDate* now = [NSDate date];
-        NSInteger purchasedDaysAgo = arc4random_uniform(2 * 365);
+        NSInteger purchasedDaysAgo = arc4random_uniform(1.5 * 365);
         
         _appPurchaseDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:-purchasedDaysAgo toDate:now options:kNilOptions];
         _appExpirationDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitYear value:1 toDate:_appPurchaseDate options:kNilOptions];

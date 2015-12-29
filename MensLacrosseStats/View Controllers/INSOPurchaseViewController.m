@@ -6,27 +6,26 @@
 //  Copyright © 2015 Intangible Software. All rights reserved.
 //
 
-#import "MensLacrosseStatsAppDelegate.h"
+@import StoreKit;
+
+#import "INSOProductManager.h"
 
 #import "INSOPurchaseViewController.h"
-#import "INSOReceiptValidator.h"
 #import "INSOExportOptionsTableViewController.h"
 #import "INSOEmailStatsViewController.h"
-
 
 static NSString * const INSOEmailStatsSegueIdentifier = @"EmailStatsSegue";
 static NSString * const INSOMaxPrepsExportSegueIdentifier = @"MaxPrepsSegue";
 static NSString * const INSOEmbededExportTableSegueIdentifier = @"EmbededExportTableSegue";
 
-static const CGFloat INSODefaultButtonHeight = 50.0;
-
+static const CGFloat INSODefaultAnimationDuration = 0.25;
 
 @interface INSOPurchaseViewController () <UINavigationBarDelegate, INSOStatsExportDelegate>
 
 // IBOutlets
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *purchaseButton;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* purchaseButtonHeightConstraint;
+
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView* activityIndicator;
 
 @property (weak, nonatomic) IBOutlet UILabel *restorePurchaseLabel;
@@ -46,7 +45,6 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
 - (NSString*)localizedAppPurchaseExpiredMessage;
 - (NSString*)localizedAppPurchasedMessage;
 
-
 @end
 
 @implementation INSOPurchaseViewController
@@ -54,16 +52,8 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Just in case
-    [self.activityIndicator stopAnimating];
 
-    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-    if (appDelegate.receiptValidator.appIsPurchased && appDelegate.receiptValidator.appPurchaseExpired) {
-        [self configureViewForAppPurchaseExpired];
-    } else {
-        [self configureViewForAppNotPurchased];
-    }
+    [self configureView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,32 +69,28 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
 
 - (void)purchase:(id)sender
 {
+    // Set up the UI for purchasing
     [self.activityIndicator startAnimating];
-
-    [UIView animateWithDuration:0.3 animations:^{
-        self.purchaseButton.alpha = 0.0;
-    }];
+    self.purchaseButton.enabled = NO;
+    
+    // Now purchase
+    [[INSOProductManager sharedManager] purchaseProduct];
 }
 
 - (void)restorePurchase:(id)sender
 {
-    // Just going to revalidate receipt for now
-    // Which actually just generates random shit.
-    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate.receiptValidator validateReceipt];
+    // Set up the UI as if for purchasing
+    [self.activityIndicator startAnimating];
+    self.purchaseButton.enabled = NO;
     
-    // Re-configure the view to match.
-    if (appDelegate.receiptValidator.appIsPurchased) {
-        [self configureViewForAppPurchased];
-    } else {
-        [self configureViewForAppNotPurchased];
-    }
+    // And restore.
+    [[INSOProductManager sharedManager] restorePurchase];
 }
 
 #pragma mark - Private methods
 - (NSString*)localizedAppNotPurchasedMessage
 {
-    return NSLocalizedString(@"Adding additional games and exporting stats is available through a %@ in-app purchase. Your purchase will enable adding games and exporting stats for %@. ", nil);
+    return NSLocalizedString(@"Adding additional games and exporting stats is available through a %@ in-app purchase. Your purchase will enable these features for %@. ", nil);
 }
 
 - (NSString*)localizedAppPurchaseExpiredMessage
@@ -114,91 +100,135 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
 
 - (NSString*)localizedAppPurchasedMessage
 {
-    return NSLocalizedString(@"Thank you for purchasing full access to Men’s Lacrosse Stats. You have access to all features of the app until %@.", nil);
+    return NSLocalizedString(@"Thank you for purchasing full access to Men’s Lacrosse Stats. All features of the app are enabled until %@.", nil);
+}
+
+- (NSString*)localizedPurchaseButtonTitle
+{
+    return NSLocalizedString(@"Purchase %@ of access for %@", nil);
+}
+
+- (NSString*)localizedProductPriceString
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    return [numberFormatter stringFromNumber:[[INSOProductManager sharedManager] productPrice]];
+}
+
+- (void)configureView
+{
+    // Re-configure the view to match.
+    if ([[INSOProductManager sharedManager] isPurchased]) {
+        if ([[INSOProductManager sharedManager] purchaseExpired]) {
+            [self configureViewForAppPurchaseExpired];
+        } else {
+            [self configureViewForAppPurchaseActive];
+        }
+    } else {
+        [self configureViewForAppNotPurchased];
+    }
 }
 
 - (void)configureViewForAppNotPurchased
 {
     // Start with the message
-    NSString* messageString = [NSString stringWithFormat:[self localizedAppNotPurchasedMessage], @"$4.99", @"1 year"];
-    self.messageLabel.text = messageString;
+    NSString* messageString = [NSString stringWithFormat:[self localizedAppNotPurchasedMessage], [self localizedProductPriceString], [[INSOProductManager sharedManager] productTitle]];
     
     // And the buy now button
-    NSString* purchaseButtonString = NSLocalizedString(@"Purchase 1 year of access for $4.99", nil);
-    [self.purchaseButton setTitle:purchaseButtonString forState:UIControlStateNormal];
-    self.purchaseButtonHeightConstraint.constant = INSODefaultButtonHeight;
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view layoutIfNeeded];
-        self.purchaseButton.alpha = 1.0;
-    }];
+    NSString* purchaseButtonString = [NSString stringWithFormat:[[self localizedPurchaseButtonTitle] capitalizedString], [[[INSOProductManager sharedManager] productTitle] capitalizedString], [self localizedProductPriceString]];
     
-    // Disable exporting options
-    self.embededExportOptionsView.alpha = 0.5;
-    self.embededExportOptionsView.userInteractionEnabled = NO;
-}
+    [self.activityIndicator stopAnimating];
 
-- (void)configureViewForAppPurchased
-{
-    // App has been purchased, but might be expired
-    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-    if (appDelegate.receiptValidator.appPurchaseExpired) {
-        [self configureViewForAppPurchaseExpired];
-    } else {
-        [self configureViewForAppPurchaseActive];
-    }    
+    [UIView animateWithDuration:INSODefaultAnimationDuration animations:^{
+        self.messageLabel.text = messageString;
+
+        [self.purchaseButton setTitle:purchaseButtonString forState:UIControlStateNormal];
+        [self.restorePurchaseButton setTitle:NSLocalizedString(@"Restore Purchase", nil) forState:UIControlStateNormal];
+
+        self.purchaseButton.hidden = NO;
+        self.purchaseButton.enabled = YES;
+        self.restorePurchaseLabel.hidden = NO;
+        self.restorePurchaseButton.hidden = NO;
+
+        self.embededExportOptionsView.alpha = 0.5;
+        self.embededExportOptionsView.userInteractionEnabled = NO;
+    }];
 }
 
 - (void)configureViewForAppPurchaseExpired
 {
-    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-    NSDate* appExpirationDate = appDelegate.receiptValidator.appExpirationDate;
+    NSDate* appExpirationDate = [[INSOProductManager sharedManager] expirationDate];
     
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
     
     // Start with the message
-    NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchaseExpiredMessage], [formatter stringFromDate:appExpirationDate], @"1 year", @"$4.99"];
-    self.messageLabel.text = messageString;
+    NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchaseExpiredMessage], [formatter stringFromDate:appExpirationDate], [[INSOProductManager sharedManager] productTitle], [self localizedProductPriceString]];
     
     // And the buy now button.
-    NSString* purchaseButtonString = NSLocalizedString(@"Purchase 1 year of access for $4.99", nil);
-    [self.purchaseButton setTitle:purchaseButtonString forState:UIControlStateNormal];
-    self.purchaseButtonHeightConstraint.constant = INSODefaultButtonHeight;
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view updateConstraints];
-        self.purchaseButton.alpha = 1.0;
-    }];
+    NSString* purchaseButtonString = [NSString stringWithFormat:[[self localizedPurchaseButtonTitle] capitalizedString], [[[INSOProductManager sharedManager] productTitle] capitalizedString], [self localizedProductPriceString]];
     
-    // Disable export buttons.
-    self.embededExportOptionsView.alpha = 0.5;
-    self.embededExportOptionsView.userInteractionEnabled = NO;
+    [self.activityIndicator stopAnimating];
+
+    [UIView animateWithDuration:INSODefaultAnimationDuration animations:^{
+        self.messageLabel.text = messageString;
+
+        [self.purchaseButton setTitle:purchaseButtonString forState:UIControlStateNormal];
+        [self.restorePurchaseButton setTitle:NSLocalizedString(@"Restore Purchase", nil) forState:UIControlStateNormal];
+        
+        self.purchaseButton.hidden = NO;
+        self.purchaseButton.enabled = YES;
+        self.restorePurchaseLabel.hidden = NO;
+        self.restorePurchaseButton.hidden = NO;
+
+        self.embededExportOptionsView.alpha = 0.5;
+        self.embededExportOptionsView.userInteractionEnabled = NO;
+    }];
 }
 
 - (void)configureViewForAppPurchaseActive
 {
-    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-    NSDate* appExpirationDate = appDelegate.receiptValidator.appExpirationDate;
+    NSDate* appExpirationDate = [[INSOProductManager sharedManager] expirationDate];
     
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
     
     // Start with the message
     NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchasedMessage], [formatter stringFromDate:appExpirationDate]];
-    self.messageLabel.text = messageString;
     
-    // Hide/remove the purchase button?
-    self.purchaseButtonHeightConstraint.constant = 0.0;
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.view layoutIfNeeded];
-        self.purchaseButton.alpha = 0.0;
-    }];
-    
-    // And the restore purchase stuff?
-    
-    // Export
-    self.embededExportOptionsView.alpha = 1.0;
-    self.embededExportOptionsView.userInteractionEnabled = YES;
+    [self.activityIndicator stopAnimating];
 
+    [UIView animateWithDuration:INSODefaultAnimationDuration animations:^{
+        self.messageLabel.text = messageString;
+
+        [self.purchaseButton setTitle:@"" forState:UIControlStateNormal];
+        [self.restorePurchaseButton setTitle:@"" forState:UIControlStateNormal];
+        
+        self.purchaseButton.hidden = YES;
+        self.restorePurchaseLabel.hidden = YES;
+        self.restorePurchaseButton.hidden = YES;
+
+        self.embededExportOptionsView.alpha = 1.0;
+        self.embededExportOptionsView.userInteractionEnabled = YES;
+    }];
+}
+
+- (void)configureViewForStoreUnavailable
+{
+    [self.activityIndicator stopAnimating];
+    
+    [UIView animateWithDuration:INSODefaultAnimationDuration animations:^{
+        self.messageLabel.text = NSLocalizedString(@"Unable to connect with the App Store. This may be because this device is not connected to the internet or because the App Store is currently unavailable.", nil);
+        [self.purchaseButton setTitle:@"" forState:UIControlStateNormal];
+        [self.restorePurchaseButton setTitle:@"" forState:UIControlStateNormal];
+        
+        self.purchaseButton.hidden = YES;
+        self.restorePurchaseLabel.hidden = YES;
+        self.restorePurchaseButton.hidden = YES;
+        
+        self.embededExportOptionsView.alpha = 0.5;
+        self.embededExportOptionsView.userInteractionEnabled = NO;
+    }];
 }
 
 #pragma mark - Navigation
@@ -221,6 +251,32 @@ static const CGFloat INSODefaultButtonHeight = 50.0;
         dest.isExportingForMaxPreps = YES;
     }
 }
+
+#pragma mark - Purchase Helpers
+- (void)completeTransaction:(SKPaymentTransaction*)transaction
+{
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    [self configureView];
+}
+
+- (void)transactionFailed:(SKPaymentTransaction*)transaction
+{
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    [self configureView];
+}
+
+- (void)transactionRestored:(SKPaymentTransaction*)transaction
+{
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    [self configureView];
+}
+
+#pragma mark - SKProductsRequestDelegate
+
+#pragma mark - SKPymentTransactionObserver
 
 #pragma mark - INSOExportDelegate
 - (void)didSelectEmailStats

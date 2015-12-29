@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="189"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gpH-0H-jmj" id="zFS-yY-hBi">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="188.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="189"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Game Date and Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwJ-w5-6aR">
@@ -235,7 +235,7 @@
             <objects>
                 <tableViewController id="ylh-dc-iVj" customClass="INSOExportOptionsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ruf-xW-704">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="325"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                         <sections>
@@ -562,7 +562,7 @@
                         <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameEventCell" textLabel="2PG-GY-vHY" style="IBUITableViewCellStyleDefault" id="IIh-mj-O6D">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IIh-mj-O6D" id="B7J-pm-4h4">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1042,10 +1042,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GameStatsCell" id="25C-S5-MjX" customClass="INSOGameStatTableViewCell">
-                                        <rect key="frame" x="0.0" y="49.5" width="520" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="520" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="25C-S5-MjX" id="0pX-IJ-RTi">
-                                            <rect key="frame" x="0.0" y="0.0" width="520" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="520" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBV-jr-Oiw">
@@ -1421,8 +1421,8 @@
                                     <outlet property="delegate" destination="hoR-dO-Zsg" id="f7P-sf-Z2Z"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to delete events from the list. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6R-uS-cGA">
-                                <rect key="frame" x="141" y="8" width="278" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to delete events from the list. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6R-uS-cGA">
+                                <rect key="frame" x="127" y="8" width="307" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1719,44 +1719,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KC-pC-tFr">
-                                <rect key="frame" x="20" y="72" width="560" height="61"/>
-                                <string key="text">Adding additional games and the ability to export stats is available throught a $4.99 in-app purchase. Your purchase will enable adding games and exporting stats for 1 year. </string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEI-qB-Isj">
-                                <rect key="frame" x="20" y="141" width="560" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gEU-fE-XKT">
+                                <rect key="frame" x="20" y="72" width="560" height="240"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KC-pC-tFr">
+                                        <rect key="frame" x="18" y="0.0" width="524" height="61"/>
+                                        <string key="text">Adding additional games and the ability to export stats is available throught a $4.99 in-app purchase. Your purchase will enable adding games and exporting stats for 1 year. </string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="eWs-wf-xmQ">
+                                        <rect key="frame" x="262" y="69" width="37" height="37"/>
+                                        <color key="color" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEI-qB-Isj">
+                                        <rect key="frame" x="0.0" y="114" width="560" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="999" constant="50" id="kDy-dC-xVd"/>
+                                        </constraints>
+                                        <state key="normal" title="Puchase 1 year of access for $4.99"/>
+                                        <connections>
+                                            <action selector="purchase:" destination="MGh-Ma-DBn" eventType="touchUpInside" id="gk5-M4-NTz"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already purchased Men‘s Lacrosse Stats? Tap Restore Purchase below to reactivate your purchase. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1a-l3-as3">
+                                        <rect key="frame" x="10" y="172" width="542" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V7-Jq-9S6">
+                                        <rect key="frame" x="227" y="212" width="107" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="Restore Purchase"/>
+                                        <state key="disabled" title=" "/>
+                                        <connections>
+                                            <action selector="restorePurchase:" destination="MGh-Ma-DBn" eventType="touchUpInside" id="sBa-Ua-uaP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="yk4-Gu-R9H"/>
+                                    <constraint firstAttribute="bottom" secondItem="5V7-Jq-9S6" secondAttribute="bottom" constant="8" id="DkS-zV-vzR"/>
+                                    <constraint firstItem="gEI-qB-Isj" firstAttribute="leading" secondItem="gEU-fE-XKT" secondAttribute="leading" id="UwF-11-WHP"/>
+                                    <constraint firstAttribute="trailing" secondItem="gEI-qB-Isj" secondAttribute="trailing" id="oEl-TW-CcA"/>
                                 </constraints>
-                                <state key="normal" title="Puchase 1 year of access for $4.99"/>
-                                <connections>
-                                    <action selector="purchase:" destination="MGh-Ma-DBn" eventType="touchUpInside" id="gk5-M4-NTz"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already purchased Men‘s Lacrosse Stats? Tap Restore Purchase below to reactivate your purchase. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1a-l3-as3">
-                                <rect key="frame" x="20" y="199" width="560" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V7-Jq-9S6">
-                                <rect key="frame" x="247" y="239" width="107" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="Restore Purchase"/>
-                                <connections>
-                                    <action selector="restorePurchase:" destination="MGh-Ma-DBn" eventType="touchUpInside" id="sBa-Ua-uaP"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UJO-9a-63t">
-                                <rect key="frame" x="282" y="147" width="37" height="37"/>
-                                <color key="color" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DkS-zV-vzR"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0o2-Lg-KCb">
-                                <rect key="frame" x="20" y="275" width="560" height="325"/>
+                                <rect key="frame" x="20" y="320" width="560" height="280"/>
                                 <connections>
                                     <segue destination="ylh-dc-iVj" kind="embed" identifier="EmbededExportTableSegue" id="ZzL-c3-Uxh"/>
                                 </connections>
@@ -1764,25 +1780,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="0o2-Lg-KCb" firstAttribute="top" secondItem="5V7-Jq-9S6" secondAttribute="bottom" constant="8" id="3Kn-Xf-nw6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gEI-qB-Isj" secondAttribute="trailing" id="6rS-fa-gk3"/>
-                            <constraint firstItem="2KC-pC-tFr" firstAttribute="leading" secondItem="BiL-l1-92z" secondAttribute="leadingMargin" id="A3S-pc-0gV"/>
-                            <constraint firstItem="5V7-Jq-9S6" firstAttribute="top" secondItem="r1a-l3-as3" secondAttribute="bottom" constant="8" id="Aq6-k9-xFS"/>
-                            <constraint firstItem="2KC-pC-tFr" firstAttribute="top" secondItem="2D3-Ab-5bB" secondAttribute="bottom" constant="8" id="Dp7-3R-cI8"/>
-                            <constraint firstItem="gEI-qB-Isj" firstAttribute="leading" secondItem="BiL-l1-92z" secondAttribute="leadingMargin" id="HTP-Mg-VLy"/>
+                            <constraint firstItem="0o2-Lg-KCb" firstAttribute="top" secondItem="gEU-fE-XKT" secondAttribute="bottom" constant="8" id="2lB-QX-X0Z"/>
                             <constraint firstItem="0o2-Lg-KCb" firstAttribute="trailing" secondItem="BiL-l1-92z" secondAttribute="trailingMargin" id="JgN-NB-Vz2"/>
-                            <constraint firstItem="2KC-pC-tFr" firstAttribute="trailing" secondItem="BiL-l1-92z" secondAttribute="trailingMargin" id="MT8-X3-t5C"/>
+                            <constraint firstItem="gEU-fE-XKT" firstAttribute="leading" secondItem="BiL-l1-92z" secondAttribute="leadingMargin" id="LpD-MJ-X9I"/>
                             <constraint firstItem="0o2-Lg-KCb" firstAttribute="leading" secondItem="BiL-l1-92z" secondAttribute="leadingMargin" id="Mcy-u5-DAZ"/>
-                            <constraint firstItem="r1a-l3-as3" firstAttribute="top" secondItem="gEI-qB-Isj" secondAttribute="bottom" constant="8" id="NKK-KD-H6T"/>
-                            <constraint firstItem="r1a-l3-as3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2KC-pC-tFr" secondAttribute="bottom" constant="8" id="QZe-Nz-fAP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gEU-fE-XKT" secondAttribute="trailing" id="Nj8-Fm-roE"/>
                             <constraint firstItem="Xyg-Ff-r9i" firstAttribute="top" secondItem="0o2-Lg-KCb" secondAttribute="bottom" id="UsK-os-EFJ"/>
-                            <constraint firstItem="gEI-qB-Isj" firstAttribute="top" secondItem="2KC-pC-tFr" secondAttribute="bottom" constant="8" id="Xw0-D1-pZF"/>
-                            <constraint firstItem="5V7-Jq-9S6" firstAttribute="centerX" secondItem="BiL-l1-92z" secondAttribute="centerX" id="ZXj-Qu-9on"/>
-                            <constraint firstItem="r1a-l3-as3" firstAttribute="leading" secondItem="BiL-l1-92z" secondAttribute="leadingMargin" id="c5V-w9-Udw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="r1a-l3-as3" secondAttribute="trailing" id="hxO-Zi-Kxe"/>
-                            <constraint firstItem="UJO-9a-63t" firstAttribute="centerX" secondItem="gEI-qB-Isj" secondAttribute="centerX" id="k4U-5l-tcZ"/>
-                            <constraint firstItem="UJO-9a-63t" firstAttribute="centerY" secondItem="gEI-qB-Isj" secondAttribute="centerY" id="pua-2b-a7E"/>
+                            <constraint firstItem="gEU-fE-XKT" firstAttribute="top" secondItem="2D3-Ab-5bB" secondAttribute="bottom" constant="8" id="sXI-NV-VUY"/>
+                            <constraint firstItem="gEU-fE-XKT" firstAttribute="top" secondItem="BiL-l1-92z" secondAttribute="topMargin" constant="8" id="xVR-m8-TFA"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="xVR-m8-TFA"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ZrE-o4-c6s">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="2SQ-1Y-bH0">
@@ -1792,7 +1803,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="UJO-9a-63t" id="VOi-nv-zMZ"/>
+                        <outlet property="activityIndicator" destination="eWs-wf-xmQ" id="fh2-lH-HOm"/>
                         <outlet property="embededExportOptionsView" destination="0o2-Lg-KCb" id="F8o-Fn-XUN"/>
                         <outlet property="messageLabel" destination="2KC-pC-tFr" id="IJK-we-GWP"/>
                         <outlet property="purchaseButton" destination="gEI-qB-Isj" id="sS7-0H-Umr"/>

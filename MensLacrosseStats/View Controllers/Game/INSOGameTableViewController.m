@@ -8,6 +8,7 @@
 
 @import CoreData;
 
+#import "INSOProductManager.h"
 #import "MensLacrosseStatsAppDelegate.h"
 
 #import "INSOGameTableViewController.h"
@@ -58,8 +59,7 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 #pragma mark - IBActions
 - (void)addGame:(id)sender
 {
-    MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-    if (appDelegate.receiptValidator.appIsPurchased && !appDelegate.receiptValidator.appPurchaseExpired) {
+    if ([[INSOProductManager sharedManager] isPurchased] && ![[INSOProductManager sharedManager] purchaseExpired]) {
         // If the app is purchased, just create a new game. No hoo-hoo.
         [self createNewGame];
     } else {
