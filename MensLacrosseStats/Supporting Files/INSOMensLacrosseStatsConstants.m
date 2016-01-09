@@ -34,6 +34,9 @@ NSString * const INSOSectionTitleKey = @"sectionTitle";
 NSString * const INSOStatTitleKey = @"statTitle";
 NSString * const INSOStatValueKey = @"statValue";
 
+#pragma mark - Product Identifier
+NSString * const INSOMensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.menslacrossestats.1year";
+
 NSString * const INSOMaxPrepsCompanyID = @"9bfb842d-9e44-45f2-9bf8-203e2847bb66";
 
 @end

@@ -8,10 +8,9 @@
 
 @import StoreKit;
 
-#import "INSOValidateReceipt.h"
-#import "INSOProductManager.h"
+#import "INSOMensLacrosseStatsConstants.h"
 
-static NSString * const INSOMensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.menslacrossestats.1year";
+#import "INSOProductManager.h"
 
 @interface INSOProductManager () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
@@ -75,43 +74,26 @@ static NSString * const INSOMensLacrosseStatsOneYearProductIdentifier = @"com.in
 #pragma mark - Public Methods
 - (void)validateReceipt
 {
-    ValidateReceipt_CheckInAppPurchases(@[INSOMensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
-        if (isPresent) {
-            NSLog(@"Receipt present. Saving info.");
-            // Receipt is present and presumably is valid
-            
-            // May have multiple purchase dates, need to get the latest one.
-            NSDate* originalPurchaseDate = purchaseInfo[ValidateReceipt_INAPP_ATTRIBUTETYPE_ORIGINALPURCHASEDATE];
-            _purchaseDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
-            if ([originalPurchaseDate compare:_purchaseDate] == NSOrderedDescending) {
-                _purchaseDate = originalPurchaseDate;
-                _appStoreUnavailable = NO;
-                _isPurchased = YES;
-                
-                NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:_purchaseDate];
-                components.year += 1;
-                _expirationDate = [[NSCalendar currentCalendar] dateFromComponents:components];
-            }
-        } else {
-            // Receipt is not present
-            NSLog(@"receipt not present.");
-            NSLog(@"Gotta go do something else.");
-        }
-        
-        // Now go get products
-        [self requestProductsFromAppStore];
-        
-    }, self);
+
 }
 
 - (void)purchaseProduct
 {
-    
+    if (self.oneYearProduct && !self.appStoreUnavailable) {
+        SKPayment* payment = [SKPayment paymentWithProduct:self.oneYearProduct];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+    }
 }
 
 - (void)restorePurchase
 {
-    
+    // Just tell they payment queue to restore transactions.
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
+- (void)refreshProducts
+{
+    [self requestProductsFromAppStore];
 }
 
 #pragma mark - Private Methods
@@ -124,29 +106,56 @@ static NSString * const INSOMensLacrosseStatsOneYearProductIdentifier = @"com.in
     [productsRequest start];
 }
 
+#pragma mark - INSOProductPurchaseDelegate
 - (void)completeTransaction:(SKPaymentTransaction*)transaction
 {
+    [self validateReceipt];
+    
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    if ([self.delegate respondsToSelector:@selector(transactionCompleted)]) {
+        [self.delegate transactionCompleted];
+    }
 }
 
 - (void)transactionFailed:(SKPaymentTransaction*)transaction
 {
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    if ([self.delegate respondsToSelector:@selector(transactionFailed)]) {
+        [self.delegate transactionFailed];
+    }
 }
 
 - (void)transactionRestored:(SKPaymentTransaction*)transaction
 {
+    [self validateReceipt];
+    
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    if ([self.delegate respondsToSelector:@selector(transactionRestored)]) {
+        [self.delegate transactionRestored];
+    }
 }
+
 #pragma mark - SKProductsRequestDelegate
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
+    _appStoreUnavailable = NO;
     self.oneYearProduct = [response.products firstObject];
+    
+    if ([self.delegate respondsToSelector:@selector(productsRefreshed)]) {
+        [self.delegate productsRefreshed];
+    }
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
     _appStoreUnavailable = YES;
+    
+    if ([self.delegate respondsToSelector:@selector(productsRefreshed)]) {
+        [self.delegate productsRefreshed];
+    }
 }
 
 #pragma mark - SKPymentTransactionObserver

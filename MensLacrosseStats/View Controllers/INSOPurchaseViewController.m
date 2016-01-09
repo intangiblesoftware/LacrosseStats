@@ -20,7 +20,7 @@ static NSString * const INSOEmbededExportTableSegueIdentifier = @"EmbededExportT
 
 static const CGFloat INSODefaultAnimationDuration = 0.25;
 
-@interface INSOPurchaseViewController () <UINavigationBarDelegate, INSOStatsExportDelegate>
+@interface INSOPurchaseViewController () <UINavigationBarDelegate, INSOStatsExportDelegate, INSOProductPurchaseDelegate>
 
 // IBOutlets
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
@@ -52,8 +52,18 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Become the product purchase delegate
+    [INSOProductManager sharedManager].delegate = self;
+    [[INSOProductManager sharedManager] refreshProducts]; 
 
     [self configureView];
+}
+
+- (void)dealloc
+{
+    // Just being safe.
+    [INSOProductManager sharedManager].delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,7 +128,9 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
 - (void)configureView
 {
     // Re-configure the view to match.
-    if ([[INSOProductManager sharedManager] isPurchased]) {
+    if ([[INSOProductManager sharedManager] appStoreUnavailable]) {
+        [self configureViewForStoreUnavailable];
+    } else if ([[INSOProductManager sharedManager] isPurchased]) {
         if ([[INSOProductManager sharedManager] purchaseExpired]) {
             [self configureViewForAppPurchaseExpired];
         } else {
@@ -252,31 +264,26 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
     }
 }
 
-#pragma mark - Purchase Helpers
-- (void)completeTransaction:(SKPaymentTransaction*)transaction
+#pragma mark - INSOProductPurchaseDelegate
+- (void)productsRefreshed
 {
-    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-    
+    [self configureView]; 
+}
+
+- (void)transactionCompleted
+{
     [self configureView];
 }
 
-- (void)transactionFailed:(SKPaymentTransaction*)transaction
+- (void)transactionFailed
 {
-    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-    
     [self configureView];
 }
 
-- (void)transactionRestored:(SKPaymentTransaction*)transaction
+- (void)transactionRestored
 {
-    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-    
     [self configureView];
 }
-
-#pragma mark - SKProductsRequestDelegate
-
-#pragma mark - SKPymentTransactionObserver
 
 #pragma mark - INSOExportDelegate
 - (void)didSelectEmailStats
