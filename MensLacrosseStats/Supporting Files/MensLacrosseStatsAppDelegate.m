@@ -19,21 +19,10 @@
 
 @interface MensLacrosseStatsAppDelegate ()
 
-@property (nonatomic) INSOReceiptValidator* receiptValidator;
 
 @end
 
 @implementation MensLacrosseStatsAppDelegate
-
-
-- (INSOReceiptValidator*)receiptValidator
-{
-    if (!_receiptValidator) {
-        _receiptValidator = [[INSOReceiptValidator alloc] init];
-    }
-    return _receiptValidator;
-}
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -45,8 +34,8 @@
         [self importCategoriesAndEvents];
     }
     
-    // Validate the in-app purchase receipt
-    [self.receiptValidator validateReceipt]; 
+    // Refresh our product
+    [[INSOProductManager sharedManager] refreshProduct]; 
     
     // Count number of games in the app. If 0, then add one automatically.
     NSFetchRequest* fetchGames = [NSFetchRequest fetchRequestWithEntityName:[Game entityName]];

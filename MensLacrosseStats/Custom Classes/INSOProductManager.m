@@ -9,12 +9,13 @@
 @import StoreKit;
 
 #import "INSOMensLacrosseStatsConstants.h"
-
+#import "INSOReceiptValidator.h"
 #import "INSOProductManager.h"
 
 @interface INSOProductManager () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
 // Private Properties
+@property (nonatomic) INSOReceiptValidator* receiptValidator;
 @property (nonatomic) SKProduct* oneYearProduct;
 
 // Private Methods
@@ -38,19 +39,34 @@
     self = [super init];
     if (self) {
         // Custom initialization here.
-        _appStoreUnavailable = YES;
-        _isPurchased = NO;
-        _purchaseDate = nil;
-        _expirationDate = nil;            
+        _canPurchaseProduct = NO;
+        
+        _receiptValidator = [[INSOReceiptValidator alloc] init];
+        [_receiptValidator validateReceipt];
     }
+    
     return self;
 }
 
 #pragma mark - Public Properties
-- (BOOL)purchaseExpired
+- (BOOL)productIsPurchased
 {
-    NSDate* now = [NSDate date];
-    return [_expirationDate compare:now] == NSOrderedAscending;
+    return self.receiptValidator.appIsPurchased;
+}
+
+- (BOOL)productPurchaseExpired
+{
+    return self.receiptValidator.appPurchaseExpired; 
+}
+
+- (NSDate*)productPurchaseDate
+{
+    return self.receiptValidator.appPurchaseDate;
+}
+
+- (NSDate*)productExpirationDate
+{
+    return self.receiptValidator.appExpirationDate; 
 }
 
 - (NSDecimalNumber*)productPrice
@@ -72,14 +88,9 @@
 }
 
 #pragma mark - Public Methods
-- (void)validateReceipt
-{
-
-}
-
 - (void)purchaseProduct
 {
-    if (self.oneYearProduct && !self.appStoreUnavailable) {
+    if (self.oneYearProduct && self.canPurchaseProduct) {
         SKPayment* payment = [SKPayment paymentWithProduct:self.oneYearProduct];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
     }
@@ -91,10 +102,14 @@
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
-- (void)refreshProducts
+- (void)refreshProduct
 {
+    [self.receiptValidator validateReceipt];
+    
     [self requestProductsFromAppStore];
 }
+
+#pragma mark - Private Properties
 
 #pragma mark - Private Methods
 - (void)requestProductsFromAppStore
@@ -109,12 +124,10 @@
 #pragma mark - INSOProductPurchaseDelegate
 - (void)completeTransaction:(SKPaymentTransaction*)transaction
 {
-    [self validateReceipt];
-    
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
-    if ([self.delegate respondsToSelector:@selector(transactionCompleted)]) {
-        [self.delegate transactionCompleted];
+    if ([self.delegate respondsToSelector:@selector(didPurchaseProduct)]) {
+        [self.delegate didPurchaseProduct];
     }
 }
 
@@ -122,39 +135,36 @@
 {
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
-    if ([self.delegate respondsToSelector:@selector(transactionFailed)]) {
-        [self.delegate transactionFailed];
+    if ([self.delegate respondsToSelector:@selector(productPurchaseFailed)]) {
+        [self.delegate productPurchaseFailed];
     }
 }
 
 - (void)transactionRestored:(SKPaymentTransaction*)transaction
 {
-    [self validateReceipt];
-    
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
-    if ([self.delegate respondsToSelector:@selector(transactionRestored)]) {
-        [self.delegate transactionRestored];
+    if ([self.delegate respondsToSelector:@selector(didRestorePurchase)]) {
+        [self.delegate didRestorePurchase];
     }
 }
 
 #pragma mark - SKProductsRequestDelegate
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
-    _appStoreUnavailable = NO;
+    _canPurchaseProduct = YES;
     self.oneYearProduct = [response.products firstObject];
     
-    if ([self.delegate respondsToSelector:@selector(productsRefreshed)]) {
-        [self.delegate productsRefreshed];
+    if ([self.delegate respondsToSelector:@selector(didRefreshProduct)]) {
+        [self.delegate didRefreshProduct];
     }
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    _appStoreUnavailable = YES;
-    
-    if ([self.delegate respondsToSelector:@selector(productsRefreshed)]) {
-        [self.delegate productsRefreshed];
+    _canPurchaseProduct = NO;
+    if ([self.delegate respondsToSelector:@selector(didRefreshProduct)]) {
+        [self.delegate didRefreshProduct];
     }
 }
 

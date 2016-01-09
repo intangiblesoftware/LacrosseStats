@@ -71,7 +71,7 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 #pragma mark - IBActions
 - (void)recordStats:(id)sender
 {
-    if ([[INSOProductManager sharedManager] isPurchased] && [[INSOProductManager sharedManager] purchaseExpired]) {
+    if ([[INSOProductManager sharedManager] productIsPurchased] && ![[INSOProductManager sharedManager] productPurchaseExpired]) {
         [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
     } else {
         [self performSegueWithIdentifier:INSORecordStatsSegueIdentifier sender:self];
@@ -80,7 +80,7 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 
 - (void)editGame:(id)sender
 {
-    if ([[INSOProductManager sharedManager] isPurchased] && [[INSOProductManager sharedManager] purchaseExpired]) {
+    if ([[INSOProductManager sharedManager] productIsPurchased] && ![[INSOProductManager sharedManager] productPurchaseExpired]) {
         [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
     } else {
         [self performSegueWithIdentifier:INSOEditGameSegueIdentifier sender:self];

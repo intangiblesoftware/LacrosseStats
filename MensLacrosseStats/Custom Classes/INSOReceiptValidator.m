@@ -43,10 +43,8 @@
 {
     INSOValidateInAppPurchase_CheckInAppPurchases(@[INSOMensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
         if (isPresent) {
-            NSLog(@"%@ found in receipt, processing…", INSOMensLacrosseStatsOneYearProductIdentifier );
             [self processPurchaseInfo:purchaseInfo];
         } else {
-            NSLog(@"%@ not found in receipt. First pass.", INSOMensLacrosseStatsOneYearProductIdentifier);
             _appPurchaseDate = nil;
             _appIsPurchased = NO;
             _appExpirationDate = nil;
@@ -64,11 +62,8 @@
     NSDate* originalPurchaseDate = purchaseInfo[INSOValidateInAppPurchase_INAPP_ATTRIBUTETYPE_ORIGINALPURCHASEDATE];
     if ([originalPurchaseDate compare:_appPurchaseDate] == NSOrderedDescending) {
         _appPurchaseDate = originalPurchaseDate;
-        NSLog(@"app purchase date: %@", _appPurchaseDate);
         _appIsPurchased = YES;
-        NSLog(@"app is purchased %@", _appIsPurchased ? @"Yes" : @"No");
         _appExpirationDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitYear value:1 toDate:_appPurchaseDate options:kNilOptions];
-        NSLog(@"app expiration date: %@", _appExpirationDate);
     }
 }
 
@@ -77,10 +72,8 @@
 {
     INSOValidateReceipt_CheckInAppPurchases(@[INSOMensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
         if (isPresent) {
-            NSLog(@"%@ found in receipt, processing…", INSOMensLacrosseStatsOneYearProductIdentifier );
             [self processPurchaseInfo:purchaseInfo];
         } else {
-            NSLog(@"%@ not found in receipt after refresh.", INSOMensLacrosseStatsOneYearProductIdentifier);
             _appPurchaseDate = nil;
             _appIsPurchased = NO;
             _appExpirationDate = nil;
@@ -94,7 +87,6 @@
     _appPurchaseDate = nil;
     _appIsPurchased = NO;
     _appExpirationDate = nil;
-    NSLog(@"Boo, my receipt request did fail with error: %@", error.localizedDescription);
 }
 
 @end

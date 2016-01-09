@@ -59,7 +59,7 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 #pragma mark - IBActions
 - (void)addGame:(id)sender
 {
-    if ([[INSOProductManager sharedManager] isPurchased] && ![[INSOProductManager sharedManager] purchaseExpired]) {
+    if ([[INSOProductManager sharedManager] productIsPurchased] && ![[INSOProductManager sharedManager] productPurchaseExpired]) {
         // If the app is purchased, just create a new game. No hoo-hoo.
         [self createNewGame];
     } else {

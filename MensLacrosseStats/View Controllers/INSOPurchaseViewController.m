@@ -20,7 +20,7 @@ static NSString * const INSOEmbededExportTableSegueIdentifier = @"EmbededExportT
 
 static const CGFloat INSODefaultAnimationDuration = 0.25;
 
-@interface INSOPurchaseViewController () <UINavigationBarDelegate, INSOStatsExportDelegate, INSOProductPurchaseDelegate>
+@interface INSOPurchaseViewController () <UINavigationBarDelegate, INSOStatsExportDelegate, INSOProductManagerDelegate>
 
 // IBOutlets
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
@@ -55,7 +55,7 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
     
     // Become the product purchase delegate
     [INSOProductManager sharedManager].delegate = self;
-    [[INSOProductManager sharedManager] refreshProducts]; 
+    [[INSOProductManager sharedManager] refreshProduct];
 
     [self configureView];
 }
@@ -128,10 +128,10 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
 - (void)configureView
 {
     // Re-configure the view to match.
-    if ([[INSOProductManager sharedManager] appStoreUnavailable]) {
+    if (![[INSOProductManager sharedManager] canPurchaseProduct]) {
         [self configureViewForStoreUnavailable];
-    } else if ([[INSOProductManager sharedManager] isPurchased]) {
-        if ([[INSOProductManager sharedManager] purchaseExpired]) {
+    } else if ([[INSOProductManager sharedManager] productIsPurchased]) {
+        if ([[INSOProductManager sharedManager] productPurchaseExpired]) {
             [self configureViewForAppPurchaseExpired];
         } else {
             [self configureViewForAppPurchaseActive];
@@ -169,7 +169,7 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
 
 - (void)configureViewForAppPurchaseExpired
 {
-    NSDate* appExpirationDate = [[INSOProductManager sharedManager] expirationDate];
+    NSDate* appExpirationDate = [[INSOProductManager sharedManager] productExpirationDate];
     
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -200,7 +200,7 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
 
 - (void)configureViewForAppPurchaseActive
 {
-    NSDate* appExpirationDate = [[INSOProductManager sharedManager] expirationDate];
+    NSDate* appExpirationDate = [[INSOProductManager sharedManager] productExpirationDate];
     
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -265,22 +265,22 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
 }
 
 #pragma mark - INSOProductPurchaseDelegate
-- (void)productsRefreshed
+- (void)didRefreshProduct
 {
     [self configureView]; 
 }
 
-- (void)transactionCompleted
+- (void)didPurchaseProduct
 {
     [self configureView];
 }
 
-- (void)transactionFailed
+- (void)productPurchaseFailed
 {
     [self configureView];
 }
 
-- (void)transactionRestored
+- (void)didRestorePurchase
 {
     [self configureView];
 }

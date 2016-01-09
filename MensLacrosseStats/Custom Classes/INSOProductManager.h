@@ -8,39 +8,37 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol INSOProductPurchaseDelegate;
+@protocol INSOProductManagerDelegate;
 
 @interface INSOProductManager : NSObject
 
 +(instancetype)sharedManager;
 
-@property (nonatomic, weak) id<INSOProductPurchaseDelegate> delegate;
+@property (nonatomic, weak) id<INSOProductManagerDelegate> delegate;
+// Public Properties
+@property (nonatomic, readonly) BOOL canPurchaseProduct;
 
-@property (nonatomic, readonly) BOOL    appStoreUnavailable; 
+@property (nonatomic, readonly) BOOL productIsPurchased;
+@property (nonatomic, readonly) BOOL productPurchaseExpired;
 
-@property (nonatomic, readonly) BOOL    isPurchased;
-@property (nonatomic, readonly) BOOL    purchaseExpired;
+@property (nonatomic, readonly) NSDate *productPurchaseDate;
+@property (nonatomic, readonly) NSDate *productExpirationDate;
 
-@property (nonatomic, readonly) NSDate* purchaseDate;
-@property (nonatomic, readonly) NSDate* expirationDate;
+@property (nonatomic, readonly) NSDecimalNumber *productPrice;
+@property (nonatomic, readonly) NSString        *productTitle;
 
-@property (nonatomic, readonly) NSDecimalNumber* productPrice;
-@property (nonatomic, readonly) NSString* productTitle;
-
-- (void)refreshProducts; 
-
-- (void)validateReceipt;
-
+// Public Methods
+- (void)refreshProduct;
 - (void)purchaseProduct;
 - (void)restorePurchase;
 
 @end
 
-@protocol INSOProductPurchaseDelegate <NSObject>
+@protocol INSOProductManagerDelegate <NSObject>
 
-- (void)productsRefreshed; 
-- (void)transactionCompleted;
-- (void)transactionFailed;
-- (void)transactionRestored; 
+- (void)didRefreshProduct;
+- (void)didPurchaseProduct;
+- (void)productPurchaseFailed;
+- (void)didRestorePurchase; 
 
 @end
