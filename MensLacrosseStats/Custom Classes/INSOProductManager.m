@@ -92,6 +92,7 @@
 {
     if (self.oneYearProduct && self.canPurchaseProduct) {
         SKPayment* payment = [SKPayment paymentWithProduct:self.oneYearProduct];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
     }
 }
@@ -99,6 +100,7 @@
 - (void)restorePurchase
 {
     // Just tell they payment queue to restore transactions.
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
@@ -126,6 +128,8 @@
 {
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
+    [self.receiptValidator validateReceipt];
+    
     if ([self.delegate respondsToSelector:@selector(didPurchaseProduct)]) {
         [self.delegate didPurchaseProduct];
     }
@@ -143,6 +147,8 @@
 - (void)transactionRestored:(SKPaymentTransaction*)transaction
 {
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+    
+    [self.receiptValidator validateReceipt]; 
     
     if ([self.delegate respondsToSelector:@selector(didRestorePurchase)]) {
         [self.delegate didRestorePurchase];
@@ -189,6 +195,15 @@
             default:
                 break;
         }
+    }
+}
+
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    [self.receiptValidator validateReceipt];
+    
+    if ([self.delegate respondsToSelector:@selector(didRestorePurchase)]) {
+        [self.delegate didRestorePurchase];
     }
 }
 
