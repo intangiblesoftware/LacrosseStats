@@ -19,6 +19,7 @@
 
 @interface MensLacrosseStatsAppDelegate ()
 
+@property (nonatomic) INSOReceiptValidator* receiptValidator;
 
 @end
 

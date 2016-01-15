@@ -128,16 +128,18 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
 - (void)configureView
 {
     // Re-configure the view to match.
-    if (![[INSOProductManager sharedManager] canPurchaseProduct]) {
-        [self configureViewForStoreUnavailable];
-    } else if ([[INSOProductManager sharedManager] productIsPurchased]) {
-        if ([[INSOProductManager sharedManager] productPurchaseExpired]) {
-            [self configureViewForAppPurchaseExpired];
+    if ([[INSOProductManager sharedManager] canPurchaseProduct]) {
+        if ([[INSOProductManager sharedManager] productIsPurchased]) {
+            if ([[INSOProductManager sharedManager] productPurchaseExpired]) {
+                [self configureViewForAppPurchaseExpired];
+            } else {
+                [self configureViewForAppPurchaseActive];
+            }
         } else {
-            [self configureViewForAppPurchaseActive];
+            [self configureViewForAppNotPurchased];
         }
     } else {
-        [self configureViewForAppNotPurchased];
+        [self configureViewForStoreUnavailable];
     }
 }
 

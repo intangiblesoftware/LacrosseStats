@@ -14,7 +14,6 @@
 #import "INSOGameTableViewController.h"
 #import "INSOGameTableViewCell.h"
 #import "INSOGameDetailViewController.h"
-#import "INSOReceiptValidator.h"
 
 #import "Game.h"
 #import "Event.h"
@@ -24,8 +23,9 @@ static NSString * const INSOGameCellIdentifier = @"GameCell";
 static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegue";
 static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegue";
 
-@interface INSOGameTableViewController () <NSFetchedResultsControllerDelegate>
+@interface INSOGameTableViewController () <NSFetchedResultsControllerDelegate, INSOProductManagerDelegate>
 // IBOutlets
+@property (nonatomic, weak) IBOutlet UIBarButtonItem* addButton;
 
 // IBActions
 - (IBAction)addGame:(id)sender;
@@ -48,12 +48,22 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 {
     [super viewDidLoad];
     
+    self.addButton.enabled = NO; 
+    
+    [INSOProductManager sharedManager].delegate = self;
+    [[INSOProductManager sharedManager] refreshProduct];
+    
     [self configureTableView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc
+{
+    [INSOProductManager sharedManager].delegate = nil;
 }
 
 #pragma mark - IBActions
@@ -264,6 +274,12 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+#pragma mark - INSOProductManagerDelegate
+- (void)didRefreshProduct
+{
+    self.addButton.enabled = YES;
 }
 
 @end

@@ -148,7 +148,7 @@
 {
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
     
-    [self.receiptValidator validateReceipt]; 
+    //[self.receiptValidator validateReceipt];
     
     if ([self.delegate respondsToSelector:@selector(didRestorePurchase)]) {
         [self.delegate didRestorePurchase];

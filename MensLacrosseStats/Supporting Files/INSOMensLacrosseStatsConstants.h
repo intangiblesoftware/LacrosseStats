@@ -38,6 +38,7 @@ extern NSString * const INSOStatValueKey;
 extern NSString * const INSOMensLacrosseStatsOneYearProductIdentifier;
 
 // MaxPreps Company ID
-extern NSString * const INSOMaxPrepsCompanyID; 
+extern NSString * const INSOMaxPrepsCompanyID;
+
 
 @end
