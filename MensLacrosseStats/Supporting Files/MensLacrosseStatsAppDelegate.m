@@ -28,7 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{INSODefaultShouldImportCategoriesAndEventsKey:@(YES)}];
-    
+        
     // Now, load up database if necessary
     if ([[NSUserDefaults standardUserDefaults] boolForKey:INSODefaultShouldImportCategoriesAndEventsKey]) {
         // Need to import positions

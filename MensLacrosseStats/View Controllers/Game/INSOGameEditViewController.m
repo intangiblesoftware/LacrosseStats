@@ -353,6 +353,11 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     return UIBarPositionTopAttached; 
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

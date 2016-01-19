@@ -9,11 +9,13 @@
         <scene sceneID="vCb-ne-LPl">
             <objects>
                 <navigationController id="dH8-O6-okS" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8KU-cy-MAA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="8KU-cy-MAA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -37,7 +39,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="189"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gpH-0H-jmj" id="zFS-yY-hBi">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="189"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="188.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Game Date and Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwJ-w5-6aR">
@@ -120,6 +122,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Games" id="4tb-7K-njw">
                         <barButtonItem key="rightBarButtonItem" image="add" id="WEg-ZT-Nst">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="addGame:" destination="Xr9-7A-QNT" id="2Fk-wd-mRz"/>
                             </connections>
@@ -146,21 +149,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IV4-QF-0VP">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <items>
-                                    <navigationItem id="Qxn-hG-9bT">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nZU-li-NSX">
-                                            <connections>
-                                                <action selector="done:" destination="1PR-sH-DmU" id="055-XL-mtB"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="1PR-sH-DmU" id="bbb-DZ-mZ0"/>
-                                </connections>
-                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SM2-al-zUn">
                                 <rect key="frame" x="20" y="80" width="560" height="61"/>
                                 <string key="text">Adding additional games and the ability to export stats is available throught a $4.99 in-app purchase. Your purchase will enable adding games and exporting stats for 1 year. </string>
@@ -197,6 +185,27 @@
                                 <rect key="frame" x="282" y="155" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="IV4-QF-0VP">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem id="Qxn-hG-9bT">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nZU-li-NSX">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="done:" destination="1PR-sH-DmU" id="055-XL-mtB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="1PR-sH-DmU" id="bbb-DZ-mZ0"/>
+                                </connections>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -563,7 +572,7 @@
                         <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameEventCell" textLabel="2PG-GY-vHY" style="IBUITableViewCellStyleDefault" id="IIh-mj-O6D">
-                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IIh-mj-O6D" id="B7J-pm-4h4">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -588,6 +597,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="slk-tp-ymI">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="QH7-sr-slF">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="done:" destination="MmU-7h-xJp" id="Rsx-2S-qJ1"/>
                             </connections>
@@ -619,10 +629,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OoL-ZU-C40">
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="OoL-ZU-C40">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Edit Game" id="g9j-iw-qPq">
@@ -1008,7 +1020,7 @@
                         <outlet property="visitingTeamLabel" destination="SHb-JA-1lK" id="DgW-au-iFF"/>
                         <segue destination="1PR-sH-DmU" kind="presentation" identifier="ShowPurchaseModalSegue" id="a9r-cS-bXF"/>
                         <segue destination="QR8-MM-38V" kind="show" identifier="RecordStatsSegue" id="FJZ-J1-5Fc"/>
-                        <segue destination="IUH-d5-REB" kind="presentation" identifier="EditGameSegue" modalTransitionStyle="flipHorizontal" id="fGY-tx-DkF"/>
+                        <segue destination="IUH-d5-REB" kind="presentation" identifier="EditGameSegue" modalPresentationStyle="currentContext" modalTransitionStyle="flipHorizontal" id="fGY-tx-DkF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uei-bX-g86" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1043,10 +1055,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GameStatsCell" id="25C-S5-MjX" customClass="INSOGameStatTableViewCell">
-                                        <rect key="frame" x="0.0" y="50" width="520" height="44"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="520" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="25C-S5-MjX" id="0pX-IJ-RTi">
-                                            <rect key="frame" x="0.0" y="0.0" width="520" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="520" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBV-jr-Oiw">
@@ -1353,6 +1365,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="SFj-v5-qLG">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="6BD-N9-jQw">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="done:" destination="kmu-VM-urr" id="aAt-m7-2XX"/>
                             </connections>
@@ -1571,6 +1584,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="BWC-zu-lY1">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="COW-Ln-0Fz">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="done:" destination="FdL-4M-1G1" id="74q-zw-g7B"/>
                             </connections>
@@ -1671,6 +1685,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="JUN-uk-nwM">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="N9b-td-4M9">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="done:" destination="lwk-Ia-42T" id="yLA-2Q-1XW"/>
                             </connections>
@@ -1692,11 +1707,13 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VP6-Zh-obW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Bw-aU-Mjk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="7Bw-aU-Mjk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1798,6 +1815,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZrE-o4-c6s">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="2SQ-1Y-bH0">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="done:" destination="MGh-Ma-DBn" id="C2v-2b-0cc"/>
                             </connections>
@@ -1833,5 +1851,5 @@
         <segue reference="G1t-yZ-Bkl"/>
         <segue reference="4R1-dK-ILg"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" red="0.0" green="0.23137254901960785" blue="0.43529411764705883" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -84,6 +84,11 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
         gameEvent.penaltyTimeValue = INSOExplusionPenaltyTime;
     }
     
+    // If it's a shot on goal, we also need to create a shot event
+    if (event.eventCodeValue == INSOEventCodeShotOnGoal) {
+        [self createShotEvent];
+    }
+    
     // Save the MOC
     NSError* error;
     if (![self.managedObjectContext save:&error]) {
@@ -253,6 +258,19 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
             [self.rosterPlayer.game.eventsToRecord containsObject:saveEvent]);
 }
 
+- (void)createShotEvent
+{
+    // Create the appropriate game event
+    GameEvent* gameEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    
+    // Set its properties
+    gameEvent.timestamp = [NSDate date];
+    
+    // Set its relations
+    gameEvent.event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
+    gameEvent.game = self.rosterPlayer.game;
+    gameEvent.player = self.rosterPlayer;
+}
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

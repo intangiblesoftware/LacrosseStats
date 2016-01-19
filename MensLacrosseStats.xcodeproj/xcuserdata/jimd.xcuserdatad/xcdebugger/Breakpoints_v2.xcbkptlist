@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MensLacrosseStats/View Controllers/INSOPurchaseViewController.m"
-            timestampString = "474516434.915194"
+            timestampString = "474678777.540197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "-didPurchaseProduct"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,22 +74,6 @@
             startingLineNumber = "97"
             endingLineNumber = "97"
             landmarkName = "-restorePurchase:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MensLacrosseStats/Custom Classes/INSOProductManager.m"
-            timestampString = "474514123.32098"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "-completeTransaction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

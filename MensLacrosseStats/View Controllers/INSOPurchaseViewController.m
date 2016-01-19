@@ -266,6 +266,17 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
     }
 }
 
+#pragma mark - UINavigationBarDelegate
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - INSOProductPurchaseDelegate
 - (void)didRefreshProduct
 {

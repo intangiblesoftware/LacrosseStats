@@ -36,6 +36,7 @@
 
 @protocol INSOProductManagerDelegate <NSObject>
 
+@optional
 - (void)didRefreshProduct;
 - (void)didPurchaseProduct;
 - (void)productPurchaseFailed;
