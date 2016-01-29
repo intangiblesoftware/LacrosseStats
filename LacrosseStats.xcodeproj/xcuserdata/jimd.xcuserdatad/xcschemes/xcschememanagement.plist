@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>WomensLacrosseStats.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>B9C7A7561BADA3B30082DA8B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9D732441C5B082300FEADFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
