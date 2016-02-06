@@ -94,7 +94,7 @@
 		B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.m */; };
 		B9CF5BB71BB967DD00AF51DF /* INSOPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */; };
 		B9CF5BBB1BB967EC00AF51DF /* INSOGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BBA1BB967EC00AF51DF /* INSOGameTableViewCell.m */; };
-		B9D732551C5B082300FEADFF /* WomensLacrosseStats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9D732531C5B082300FEADFF /* WomensLacrosseStats.xcdatamodeld */; };
+		B9D083141C668DA0001AA9F4 /* INSODrawResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D083131C668DA0001AA9F4 /* INSODrawResultViewController.m */; };
 		B9D732571C5B082300FEADFF /* Womens.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9D732561C5B082300FEADFF /* Womens.xcassets */; };
 		B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */; };
 		B9DCC3F51C1E5AA900382BD8 /* INSOPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */; };
@@ -208,6 +208,8 @@
 		B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPickerTextField.m; sourceTree = "<group>"; };
 		B9CF5BB91BB967EC00AF51DF /* INSOGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameTableViewCell.h; sourceTree = "<group>"; };
 		B9CF5BBA1BB967EC00AF51DF /* INSOGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameTableViewCell.m; sourceTree = "<group>"; };
+		B9D083121C668DA0001AA9F4 /* INSODrawResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSODrawResultViewController.h; sourceTree = "<group>"; };
+		B9D083131C668DA0001AA9F4 /* INSODrawResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSODrawResultViewController.m; sourceTree = "<group>"; };
 		B9D732451C5B082300FEADFF /* WomensLacrosseStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WomensLacrosseStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9D732541C5B082300FEADFF /* WomensLacrosseStats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WomensLacrosseStats.xcdatamodel; sourceTree = "<group>"; };
 		B9D732561C5B082300FEADFF /* Womens.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Womens.xcassets; sourceTree = "<group>"; };
@@ -270,16 +272,16 @@
 		B9108A991BC0898A000450F8 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B9E3EB641C415A3200D121C5 /* INSOValidateInAppPurchase.h */,
-				B9E719491C2F31F600EDD670 /* INSOValidateReceipt.h */,
 				B932E5081C088CA10099F8A4 /* INSOEmailStatsFileGenerator.h */,
 				B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */,
 				B9A5DB9D1BE55856004B72A4 /* INSOGameEventCounter.h */,
 				B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */,
-				B92AF5A41C1CA043001043CA /* INSOReceiptValidator.h */,
-				B92AF5A51C1CA043001043CA /* INSOReceiptValidator.m */,
 				B9E719461C2F282000EDD670 /* INSOProductManager.h */,
 				B9E719471C2F282000EDD670 /* INSOProductManager.m */,
+				B92AF5A41C1CA043001043CA /* INSOReceiptValidator.h */,
+				B92AF5A51C1CA043001043CA /* INSOReceiptValidator.m */,
+				B9E3EB641C415A3200D121C5 /* INSOValidateInAppPurchase.h */,
+				B9E719491C2F31F600EDD670 /* INSOValidateReceipt.h */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -356,8 +358,8 @@
 		B97FD18C1C5B0B1F000BC548 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B97FD19C1C5B0B8E000BC548 /* WomensMain.storyboard */,
 				B97FD1991C5B0B86000BC548 /* WomensLaunchScreen.storyboard */,
+				B97FD19C1C5B0B8E000BC548 /* WomensMain.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -550,6 +552,8 @@
 				B97FD1841C5B0AAE000BC548 /* Supporting Files */,
 				B9D732561C5B082300FEADFF /* Womens.xcassets */,
 				B9D732531C5B082300FEADFF /* WomensLacrosseStats.xcdatamodeld */,
+				B9D083121C668DA0001AA9F4 /* INSODrawResultViewController.h */,
+				B9D083131C668DA0001AA9F4 /* INSODrawResultViewController.m */,
 			);
 			path = WomensLacrosseStats;
 			sourceTree = "<group>";
@@ -831,6 +835,7 @@
 				B97FD1BC1C5B9647000BC548 /* INSOShotResultViewController.m in Sources */,
 				B97FD1891C5B0AAE000BC548 /* WomensAppDelegate.m in Sources */,
 				B97FD1C41C5B9AA8000BC548 /* _RosterPlayer.m in Sources */,
+				B9D083141C668DA0001AA9F4 /* INSODrawResultViewController.m in Sources */,
 				B97FD1A31C5B0E2B000BC548 /* INSOProductManager.m in Sources */,
 				B97FD1AE1C5B9607000BC548 /* INSOHeaderCollectionReusableView.m in Sources */,
 				B97FD1B31C5B961F000BC548 /* INSOGameDetailViewController.m in Sources */,
@@ -844,7 +849,6 @@
 				B97FD1C61C5B9B55000BC548 /* INSOGameTableViewCell.m in Sources */,
 				B97FD1A11C5B0E25000BC548 /* INSOGameEventCounter.m in Sources */,
 				B97FD1B71C5B9634000BC548 /* INSOEventListEditorViewController.m in Sources */,
-				B9D732551C5B082300FEADFF /* WomensLacrosseStats.xcdatamodeld in Sources */,
 				B97FD1B21C5B9619000BC548 /* INSOExportOptionsTableViewController.m in Sources */,
 				B97FD1A21C5B0E28000BC548 /* INSOReceiptValidator.m in Sources */,
 				B97FD1AA1C5B95B9000BC548 /* RosterPlayer.m in Sources */,

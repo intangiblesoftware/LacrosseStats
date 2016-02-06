@@ -107,23 +107,15 @@
 			</dict>
 			<dict>
 				<key>EventCode</key>
-				<integer>119</integer>
+				<integer>151</integer>
 				<key>EventTitle</key>
-				<string>Foul</string>
+				<string>8m Free position</string>
 				<key>StatCategory</key>
 				<integer>3</integer>
 			</dict>
 			<dict>
 				<key>EventCode</key>
-				<integer>120</integer>
-				<key>EventTitle</key>
-				<string>8m Free position awarded</string>
-				<key>StatCategory</key>
-				<integer>3</integer>
-			</dict>
-			<dict>
-				<key>EventCode</key>
-				<integer>121</integer>
+				<integer>152</integer>
 				<key>EventTitle</key>
 				<string>8m Free position shot</string>
 				<key>StatCategory</key>
@@ -131,23 +123,7 @@
 			</dict>
 			<dict>
 				<key>EventCode</key>
-				<integer>122</integer>
-				<key>EventTitle</key>
-				<string>Yellow card</string>
-				<key>StatCategory</key>
-				<integer>3</integer>
-			</dict>
-			<dict>
-				<key>EventCode</key>
-				<integer>123</integer>
-				<key>EventTitle</key>
-				<string>Red card</string>
-				<key>StatCategory</key>
-				<integer>4</integer>
-			</dict>
-			<dict>
-				<key>EventCode</key>
-				<integer>124</integer>
+				<integer>153</integer>
 				<key>EventTitle</key>
 				<string>Draw control</string>
 				<key>StatCategory</key>
@@ -155,7 +131,7 @@
 			</dict>
 			<dict>
 				<key>EventCode</key>
-				<integer>125</integer>
+				<integer>154</integer>
 				<key>EventTitle</key>
 				<string>Draw possession</string>
 				<key>StatCategory</key>
@@ -163,11 +139,61 @@
 			</dict>
 			<dict>
 				<key>EventCode</key>
-				<integer>126</integer>
+				<integer>155</integer>
 				<key>EventTitle</key>
 				<string>Draw taken</string>
 				<key>StatCategory</key>
 				<integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>CategoryTitle</key>
+		<string>Fouls</string>
+		<key>CategoryCode</key>
+		<integer>200</integer>
+		<key>CategoryEvents</key>
+		<array>
+			<dict>
+				<key>EventCode</key>
+				<integer>251</integer>
+				<key>EventTitle</key>
+				<string>Foul</string>
+				<key>StatCategory</key>
+				<integer>3</integer>
+			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>252</integer>
+				<key>EventTitle</key>
+				<string>Green card</string>
+				<key>StatCategory</key>
+				<integer>3</integer>
+			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>253</integer>
+				<key>EventTitle</key>
+				<string>Yellow card</string>
+				<key>StatCategory</key>
+				<integer>3</integer>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>CategoryTitle</key>
+		<string>Expulsion Fouls</string>
+		<key>CategoryCode</key>
+		<integer>400</integer>
+		<key>CategoryEvents</key>
+		<array>
+			<dict>
+				<key>EventCode</key>
+				<integer>451</integer>
+				<key>EventTitle</key>
+				<string>Red card</string>
+				<key>StatCategory</key>
+				<integer>4</integer>
 			</dict>
 		</array>
 	</dict>

@@ -39,6 +39,12 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeInterception    = 118,
     INSOEventCodeManDown         = 119,
     
+    INSOEventCode8mFreePosition = 151,
+    INSOEventCode8mFreePositionShot = 152,
+    INSOEventCodeDrawControl = 153,
+    INSOEventCodeDrawPossession = 154,
+    INSOEventCodeDrawTaken = 155,
+    
     INSOEventCodeCrossCheck               = 201,
     INSOEventCodeIllegalBodyCheck         = 202,
     INSOEventCodeCheckInvolvingHeadOrNeck = 203,
@@ -48,6 +54,10 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeTripping                 = 207,
     INSOEventCodeUnnecessaryRoughness     = 208,
     INSOEventCodeUnsportsmanlikeConduct   = 209,
+    
+    INSOEventCodeMinorFoul = 251,
+    INSOEventCodeGreenCard = 252,
+    INSOEventCodeYellowCard = 253,
     
     INSOEventCodeCreaseViolation           = 301,
     INSOEventCodeGoalkeeperInterference    = 302,
@@ -66,6 +76,8 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeFighting           = 401,
     INSOEventCodeFlagrantMisconduct = 402,
     INSOEventCodeTobacco            = 403,
+    
+    INSOEventCodeRedCard = 451
 };
 
 typedef NS_ENUM(NSInteger, INSOGoalResult) {

@@ -15,6 +15,7 @@
 #import "INSOPenaltyTimeViewController.h"
 #import "INSOShotResultViewController.h"
 #import "INSOFaceoffWonViewController.h"
+#import "INSODrawResultViewController.h"
 
 #import "RosterPlayer.h"
 #import "GameEvent.h"
@@ -27,6 +28,7 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
 static NSString * const INSOSetPenaltyTimeSegueIdentifier  = @"SetPenaltyTimeSegue";
 static NSString * const INSOShotResultSegueIdentifier      = @"ShotResultSegue";
 static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
+static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
 
 @interface INSOGameEventSelectorTableViewController ()
 
@@ -159,6 +161,14 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
                     cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 }
             }
+        } else if (event.eventCodeValue == INSOEventCodeDrawTaken) {
+            if ([self shouldShowDrawResultView]) {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            } else {
+                if ([indexPath isEqual:self.selectedIndexPath]) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                }
+            }
         }
     } else if (event.categoryCodeValue == INSOCategoryCodeExpulsionFouls) {
         // Expulsion fouls don't go anywhere
@@ -236,6 +246,12 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
     return [self.rosterPlayer.game.eventsToRecord containsObject:groundballEvent];
 }
 
+- (BOOL)shouldShowDrawResultView
+{
+    Event* drawPossessionEvent = [Event eventForCode:INSOEventCodeDrawPossession inManagedObjectContext:self.managedObjectContext];
+    return [self.rosterPlayer.game.eventsToRecord containsObject:drawPossessionEvent];
+}
+
 - (BOOL)shouldShowGoalResultView
 {
     // Show the goal result if they are recording either EMOs or assists.
@@ -286,6 +302,10 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
     if ([segue.identifier isEqualToString:INSOFaceoffWonSegueIdentifier]) {
         [self prepareForFaceoffWonSegue:segue sender:sender];
     }
+    
+    if ([segue.identifier isEqualToString:INSODrawResultSegueIdentifier]) {
+        [self prepareForDrawResultSegue:segue sender:sender]; 
+    }
 }
 
 - (void)prepareForSetPenaltyTimeSegue:(UIStoryboardSegue*)segue sender:(NSIndexPath*)indexPath
@@ -313,6 +333,12 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
 {
     INSOFaceoffWonViewController* dest = segue.destinationViewController;
     dest.faceoffWinner = self.rosterPlayer; 
+}
+
+- (void)prepareForDrawResultSegue:(UIStoryboardSegue *)segue sender:(NSIndexPath *)indexPath
+{
+    INSODrawResultViewController *dest = segue.destinationViewController;
+    dest.center = self.rosterPlayer;
 }
 
 #pragma mark - Delegation
@@ -387,6 +413,10 @@ static NSString * const INSOFaceoffWonSegueIdentifier      = @"FaceoffWonSegue";
                 // Need to go to ground-ball event selector
                 self.selectedIndexPath = nil; 
                 [self performSegueWithIdentifier:INSOFaceoffWonSegueIdentifier sender:indexPath];
+            } else if (selectedEvent.eventCodeValue == INSOEventCodeDrawTaken && [self shouldShowDrawResultView]) {
+                // Need to go to draw result view
+                self.selectedIndexPath = nil;
+                [self performSegueWithIdentifier:INSODrawResultSegueIdentifier sender:indexPath];
             } else {
                 // Set the checkmarks
                 oldSelectedCell.accessoryType = UITableViewCellAccessoryNone;
