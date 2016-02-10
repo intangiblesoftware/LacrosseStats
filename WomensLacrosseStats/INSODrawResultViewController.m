@@ -38,6 +38,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 @property (nonatomic) NSIndexPath* selectedIndexPath;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic) CGFloat cellWidth;
+@property (nonatomic) BOOL canRecordDrawControl; 
 
 // Private Methods
 - (void)configureRosterPlayerCell:(INSOPlayerCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -50,9 +51,12 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     [super viewDidLoad];
     
-    [self configureView]; 
-    
     self.cellWidth = INSODefaultPlayerCellSize;
+    
+    Event* drawControlEvent = [Event eventForCode:INSOEventCodeDrawControl inManagedObjectContext:self.managedObjectContext];
+    self.canRecordDrawControl = [self.center.game.eventsToRecord containsObject:drawControlEvent];
+
+    [self configureView];
 }
 
 - (void)viewDidLayoutSubviews
@@ -124,7 +128,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     self.instructionLabel.text = instructionString;
     
     CGFloat transparency = 0.0;
-    if (self.wonDrawControlSwitch.isOn) {
+    if (self.wonDrawControlSwitch.isOn && self.canRecordDrawControl) {
         transparency = 1.0;
     }
     
@@ -223,7 +227,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (BOOL)shouldEnableDoneButton
 {
-    if (self.wonDrawControlSwitch.isOn) {
+    if (self.wonDrawControlSwitch.isOn && self.canRecordDrawControl) {
         return self.selectedIndexPath != nil;
     } else {
         return YES;
