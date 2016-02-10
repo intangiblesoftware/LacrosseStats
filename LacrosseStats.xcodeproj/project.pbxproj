@@ -21,6 +21,7 @@
 		B916A1401C1DB42800E754A3 /* INSOShotResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A13A1C1DB42800E754A3 /* INSOShotResultViewController.m */; };
 		B928F26D1BE2F9000028DD51 /* INSOGameStatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B928F26C1BE2F9000028DD51 /* INSOGameStatTableViewCell.m */; };
 		B92AF5A61C1CA043001043CA /* INSOReceiptValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B92AF5A51C1CA043001043CA /* INSOReceiptValidator.m */; };
+		B930A3641C6ADB260093153E /* INSOWomensGameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B930A3631C6ADB260093153E /* INSOWomensGameStatsViewController.m */; };
 		B932E50A1C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */; };
 		B935AB411BC9C9E1006AEA3A /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB3F1BC9C9E1006AEA3A /* Event.m */; };
 		B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB451BC9C9F2006AEA3A /* _Event.m */; };
@@ -150,6 +151,8 @@
 		B928F26C1BE2F9000028DD51 /* INSOGameStatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameStatTableViewCell.m; sourceTree = "<group>"; };
 		B92AF5A41C1CA043001043CA /* INSOReceiptValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOReceiptValidator.h; sourceTree = "<group>"; };
 		B92AF5A51C1CA043001043CA /* INSOReceiptValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOReceiptValidator.m; sourceTree = "<group>"; };
+		B930A3621C6ADB260093153E /* INSOWomensGameStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOWomensGameStatsViewController.h; sourceTree = "<group>"; };
+		B930A3631C6ADB260093153E /* INSOWomensGameStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOWomensGameStatsViewController.m; sourceTree = "<group>"; };
 		B932E5081C088CA10099F8A4 /* INSOEmailStatsFileGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOEmailStatsFileGenerator.h; sourceTree = "<group>"; };
 		B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOEmailStatsFileGenerator.m; sourceTree = "<group>"; };
 		B935AB3E1BC9C9E1006AEA3A /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
@@ -211,7 +214,6 @@
 		B9D083121C668DA0001AA9F4 /* INSODrawResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSODrawResultViewController.h; sourceTree = "<group>"; };
 		B9D083131C668DA0001AA9F4 /* INSODrawResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSODrawResultViewController.m; sourceTree = "<group>"; };
 		B9D732451C5B082300FEADFF /* WomensLacrosseStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WomensLacrosseStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9D732541C5B082300FEADFF /* WomensLacrosseStats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WomensLacrosseStats.xcdatamodel; sourceTree = "<group>"; };
 		B9D732561C5B082300FEADFF /* Womens.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Womens.xcassets; sourceTree = "<group>"; };
 		B9DBC3BA1BC4B82600983F5B /* INSOHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOHeaderCollectionReusableView.h; sourceTree = "<group>"; };
 		B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOHeaderCollectionReusableView.m; sourceTree = "<group>"; };
@@ -548,12 +550,13 @@
 		B9D732461C5B082300FEADFF /* WomensLacrosseStats */ = {
 			isa = PBXGroup;
 			children = (
-				B97FD18C1C5B0B1F000BC548 /* Views */,
-				B97FD1841C5B0AAE000BC548 /* Supporting Files */,
-				B9D732561C5B082300FEADFF /* Womens.xcassets */,
-				B9D732531C5B082300FEADFF /* WomensLacrosseStats.xcdatamodeld */,
+				B930A3621C6ADB260093153E /* INSOWomensGameStatsViewController.h */,
+				B930A3631C6ADB260093153E /* INSOWomensGameStatsViewController.m */,
 				B9D083121C668DA0001AA9F4 /* INSODrawResultViewController.h */,
 				B9D083131C668DA0001AA9F4 /* INSODrawResultViewController.m */,
+				B97FD1841C5B0AAE000BC548 /* Supporting Files */,
+				B97FD18C1C5B0B1F000BC548 /* Views */,
+				B9D732561C5B082300FEADFF /* Womens.xcassets */,
 			);
 			path = WomensLacrosseStats;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				B97FD1A81C5B95B2000BC548 /* Game.m in Sources */,
 				B97FD1B01C5B960E000BC548 /* INSOStatCollectionViewCell.m in Sources */,
 				B97FD1C01C5B9A96000BC548 /* _Event.m in Sources */,
+				B930A3641C6ADB260093153E /* INSOWomensGameStatsViewController.m in Sources */,
 				B97FD1A61C5B95AB000BC548 /* Event.m in Sources */,
 				B97FD19F1C5B0E15000BC548 /* NSManagedObject+GameEventAggregate.m in Sources */,
 				B97FD1AF1C5B960B000BC548 /* INSOPlayerCollectionViewCell.m in Sources */,
@@ -1167,16 +1171,6 @@
 			);
 			currentVersion = B99FDD511BB46865006FB373 /* MensLacrosseStats.xcdatamodel */;
 			path = MensLacrosseStats.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		B9D732531C5B082300FEADFF /* WomensLacrosseStats.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				B9D732541C5B082300FEADFF /* WomensLacrosseStats.xcdatamodel */,
-			);
-			currentVersion = B9D732541C5B082300FEADFF /* WomensLacrosseStats.xcdatamodel */;
-			path = WomensLacrosseStats.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
