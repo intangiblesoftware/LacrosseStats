@@ -51,22 +51,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MensLacrosseStats/Custom Classes/INSOReceiptValidator.m"
-            timestampString = "474516464.269145"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-processPurchaseInfo:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MensLacrosseStats/View Controllers/INSOPurchaseViewController.m"
             timestampString = "474516434.915194"
             startingColumnNumber = "9223372036854775807"
@@ -75,54 +59,6 @@
             endingLineNumber = "97"
             landmarkName = "-restorePurchase:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MensLacrosseStats/Custom Classes/INSOReceiptValidator.m"
-            timestampString = "474516464.269145"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-requestDidFinish:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[INSOReceiptValidator requestDidFinish:]"
-                  moduleName = "MensLacrosseStats"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jimd/Developer/MensLacrosseStats/MensLacrosseStats/Custom%20Classes/INSOReceiptValidator.m"
-                  timestampString = "474514208.391543"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__41-[INSOReceiptValidator requestDidFinish:]_block_invoke"
-                  moduleName = "MensLacrosseStats"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jimd/Developer/MensLacrosseStats/MensLacrosseStats/Custom%20Classes/INSOReceiptValidator.m"
-                  timestampString = "474514208.391755"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "73"
-                  endingLineNumber = "73"
-                  offsetFromSymbolStart = "84">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

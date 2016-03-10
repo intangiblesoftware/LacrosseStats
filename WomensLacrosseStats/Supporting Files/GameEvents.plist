@@ -107,6 +107,14 @@
 			</dict>
 			<dict>
 				<key>EventCode</key>
+				<integer>119</integer>
+				<key>EventTitle</key>
+				<string>Man-down</string>
+				<key>StatCategory</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>EventCode</key>
 				<integer>151</integer>
 				<key>EventTitle</key>
 				<string>Draw control</string>
@@ -126,6 +134,14 @@
 				<integer>153</integer>
 				<key>EventTitle</key>
 				<string>Draw taken</string>
+				<key>StatCategory</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>154</integer>
+				<key>EventTitle</key>
+				<string>Man-up</string>
 				<key>StatCategory</key>
 				<integer>1</integer>
 			</dict>
@@ -158,7 +174,7 @@
 				<key>EventCode</key>
 				<integer>253</integer>
 				<key>EventTitle</key>
-				<string>Foul</string>
+				<string>Minor Foul</string>
 				<key>StatCategory</key>
 				<integer>3</integer>
 			</dict>
@@ -175,6 +191,14 @@
 				<integer>255</integer>
 				<key>EventTitle</key>
 				<string>Yellow card</string>
+				<key>StatCategory</key>
+				<integer>3</integer>
+			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>256</integer>
+				<key>EventTitle</key>
+				<string>Major Foul</string>
 				<key>StatCategory</key>
 				<integer>3</integer>
 			</dict>

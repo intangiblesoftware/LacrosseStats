@@ -126,7 +126,7 @@
     NSMutableArray* gameStatsArray = [NSMutableArray new];
     
     // First line is company ID
-    [gameStatsArray addObject:INSOMaxPrepsCompanyID];
+    [gameStatsArray addObject:INSOMaxPrepsMensLacrosseCompanyID];
     
     // Then comes the header (maxPreps style!)
     NSArray* headerRow = [self maxPrepsHeaderRow];
