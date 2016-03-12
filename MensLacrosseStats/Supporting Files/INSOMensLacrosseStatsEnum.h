@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeDrawControl     = 151,
     INSOEventCodeDrawPossession  = 152,
     INSOEventCodeDrawTaken       = 153,
-    INSOEventCodeManUp           = 153,
+    INSOEventCodeManUp           = 154,
     
     INSOEventCodeCrossCheck               = 201,
     INSOEventCodeIllegalBodyCheck         = 202,

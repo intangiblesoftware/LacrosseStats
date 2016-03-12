@@ -90,11 +90,15 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         [self createShotEvent];
     } else if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultSave) {
         [self createShotEvent];
-        [self createShotOnGoalEvent];
+        if (!self.is8mShot) {
+            [self createShotOnGoalEvent];
+        }
         
     } else if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultGoal) {
         [self createShotEvent];
-        [self createShotOnGoalEvent];
+        if (!self.is8mShot) {
+            [self createShotOnGoalEvent];
+        }
         [self createGoalEvent];
         
         // Now need to see if there is an assist
@@ -258,7 +262,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     }
     
     // Nor can we record it if they aren't recording EMOs.
-    if (![self gameEventsContainsEvent:INSOEventCodeEMO]) {
+    if (![self gameEventsContainsEvent:INSOEventCodeEMO] && ![self gameEventsContainsEvent:INSOEventCodeManUp]) {
         canRecord = NO;
     }
     
@@ -309,7 +313,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (GameEvent*)createShotEvent
 {
     // Just bail right away if we aren't recording shots.
-    if (![self gameEventsContainsEvent:INSOEventCodeShot]) {
+    if (![self gameEventsContainsEvent:INSOEventCodeShot] && ![self gameEventsContainsEvent:INSOEventCode8mFreePositionShot]) {
         return nil;
     }
     
@@ -320,7 +324,11 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     shotEvent.timestamp = [NSDate date];
     
     // Set its relations
-    shotEvent.event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
+    if (self.is8mShot) {
+        shotEvent.event = [Event eventForCode:INSOEventCode8mFreePositionShot inManagedObjectContext:self.managedObjectContext];
+    } else {
+        shotEvent.event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
+    }
     shotEvent.game = self.rosterPlayer.game;
     shotEvent.player = self.rosterPlayer;
     

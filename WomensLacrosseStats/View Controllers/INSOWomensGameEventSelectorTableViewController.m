@@ -315,6 +315,8 @@ static NSString * const INSOMajorFoulResultSegueIdentifier = @"MajorFoulResultSe
     } else {
         dest.initialResultSegment = INSOGoalResultNone;
     }
+    
+    dest.is8mShot = (selectedEvent.eventCodeValue == INSOEventCode8mFreePositionShot);
 }
 
 - (void)prepareForFaceoffWonSegue:(UIStoryboardSegue*)segue sender:(NSIndexPath*)indexPath

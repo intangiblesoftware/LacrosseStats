@@ -77,7 +77,14 @@ static NSString * const INSOWomensBundleIdentifier = @"com.intangiblesoftware.wo
         _appPurchaseDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
     
-    NSDate* originalPurchaseDate = purchaseInfo[INSOValidateInAppPurchase_INAPP_ATTRIBUTETYPE_ORIGINALPURCHASEDATE];
+    NSDate* originalPurchaseDate = nil;
+    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bundleID isEqualToString:INSOMensBundleIdentifier]) {
+        originalPurchaseDate = purchaseInfo[INSOValidateInAppPurchase_INAPP_ATTRIBUTETYPE_ORIGINALPURCHASEDATE];
+    } else if ([bundleID isEqualToString:INSOWomensBundleIdentifier]) {
+        originalPurchaseDate = purchaseInfo[INSOWomensInApp_INAPP_ATTRIBUTETYPE_ORIGINALPURCHASEDATE];
+    }
+    
     if ([originalPurchaseDate compare:_appPurchaseDate] == NSOrderedDescending) {
         _appPurchaseDate = originalPurchaseDate;
         _appIsPurchased = YES;
