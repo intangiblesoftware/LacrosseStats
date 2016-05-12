@@ -131,7 +131,7 @@
     [gameStatsArray addObject:INSOMaxPrepsMensLacrosseCompanyID];
     
     // Then comes the header (maxPreps style!)
-    NSArray* headerRow = [self boysHeaderArray];
+    NSArray* headerRow = [self maxPrepsBoysHeaderRow];
     [gameStatsArray addObject:[headerRow componentsJoinedByString:@"|"]];
     
     // Now data rows for each person in the game (but not the team player!)
@@ -158,7 +158,7 @@
     [gameStatsArray addObject:INSOMaxPrepsWomensLacrosseCompanyID];
     
     // Then comes the header (maxPreps style!)
-    NSArray* headerRow = [self girlsHeaderArray];
+    NSArray* headerRow = [self maxPrepsGirlsHeaderRow];
     [gameStatsArray addObject:[headerRow componentsJoinedByString:@"|"]];
     
     // Now data rows for each person in the game (but not the team player!)

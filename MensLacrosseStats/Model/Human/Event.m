@@ -1,6 +1,6 @@
 #import "Event.h"
 
-static NSString * const INSOMaxPrepsGoal = @"Goal";
+static NSString * const INSOMaxPrepsGoal = @"Goals";
 static NSString * const INSOMaxPrepsAssists = @"Assists";
 static NSString * const INSOMaxPrepsShotsOnGoal = @"ShotsOnGoal";
 static NSString * const INSOMaxPrepsGroundballs = @"GroundBalls";

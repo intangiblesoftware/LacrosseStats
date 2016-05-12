@@ -63,6 +63,15 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     [self configureView];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSError* error = nil;
+    [self.managedObjectContext save:&error];
+    if (error) {
+        NSLog(@"Error saving context after a game: %@", error.localizedDescription); 
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

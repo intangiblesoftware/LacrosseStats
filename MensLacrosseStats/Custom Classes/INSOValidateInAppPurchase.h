@@ -3,7 +3,7 @@
 //
 // Platform                   : iOS
 // CFBundleIdentifier         : com.intangiblesoftware.menslacrossestats
-// CFBundleVersion            : 7
+// CFBundleVersion            : 8
 // Prefix                     : INSOValidateInAppPurchase
 // Success Behavior           : CheckInApp
 // Failure Behavior           : RefreshReceipt
@@ -128,7 +128,7 @@ extern "C" {
         INSOValidateInAppPurchase_InAppAttributeTypeCancellationDate = 1712,
         
         // Storage key base value
-        INSOValidateInAppPurchase_StoreNone = 1079,
+        INSOValidateInAppPurchase_StoreNone = 3926,
         // Bundle identifier
         INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleId = INSOValidateInAppPurchase_StoreNone + (INSOValidateInAppPurchase_ReceiptAttributeTypeBundleId << 2),
         INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleIdData = INSOValidateInAppPurchase_StoreNone + (INSOValidateInAppPurchase_ReceiptAttributeTypeBundleId << 2) + 1,
@@ -185,48 +185,42 @@ extern "C" {
     
     // Shared context for receipt validation
     typedef struct _INSOValidateInAppPurchase_CheckingContext {
-        CFTypeRef dummy000C;
         CFTypeRef dummy0003;
+        CFTypeRef dummy0009;
+        CFTypeRef main_bundle;
         CFTypeRef inapp_identifiers;
-        CFTypeRef dummy0004;
         CFTypeRef dummy0008;
-        CFTypeRef receipt_dict;
-        CFTypeRef dummy0002;
-        CFTypeRef inapp_block;
-        CFTypeRef guid_data;
-        CFTypeRef dummy0000;
-        CFTypeRef dummy000A;
-        CFTypeRef dummy000B;
         CFTypeRef receipt_data;
+        CFTypeRef dummy000B;
+        CFTypeRef receipt_dict;
+        CFTypeRef dummy0000;
+        CFTypeRef dummy0007;
+        CFTypeRef dummy000A;
         CFTypeRef dummy0001;
         CFTypeRef dummy0005;
-        CFTypeRef request_delegate;
-        CFTypeRef dummy0007;
-        CFTypeRef dummy0006;
-        CFTypeRef main_bundle;
-        CFTypeRef dummy0009;
         CFTypeRef ca_data;
+        CFTypeRef request_delegate;
+        CFTypeRef dummy000D;
+        CFTypeRef dummy0006;
+        CFTypeRef dummy0004;
+        CFTypeRef dummy000C;
+        CFTypeRef dummy0002;
+        CFTypeRef guid_data;
+        CFTypeRef inapp_block;
     } INSOValidateInAppPurchase_CheckingContext;
     
     // Shared context for receipt parsing
     typedef struct _INSOValidateInAppPurchase_ParsingContext {
         CFTypeRef dummy0001;
-        struct _INSOValidateInAppPurchase_ParsingContext * parent;
-        CFTypeRef dummy0006;
-        CFTypeRef dummy0003;
-        CFTypeRef dummy0008;
-        CFTypeRef dummy0009;
-        CFTypeRef dummy0007;
-        CFTypeRef dummy0000;
-        CFTypeRef dummy0004;
-        CFTypeRef dummy000A;
-        const unsigned char * ptr;
-        CFTypeRef dummy0005;
-        CFTypeRef dummy000B;
-        CFTypeRef dummy000C;
         const unsigned char * end;
+        CFTypeRef dummy0004;
+        CFTypeRef dummy0003;
         CFTypeRef dummy0002;
+        const unsigned char * ptr;
+        CFTypeRef dummy0000;
         CFTypeRef dictionary;
+        CFTypeRef dummy0005;
+        struct _INSOValidateInAppPurchase_ParsingContext * parent;
     } INSOValidateInAppPurchase_ParsingContext;
     
     // Symbol ASN1_get_object
@@ -413,1041 +407,1139 @@ extern "C" {
     
     // Table for storing strings
     static const char *INSOValidateInAppPurchase_Strings[483] = {
-        // "" / M(None) / S(0) / L(0)
-        "\x1a\xf3\x59\xe1\xbe\x13\x94\xcb\x2a\x35\x7c\x85\x3d\x9f\x05\xc6\x44\x06\x36\xb7\xdc\x53\x9a\xe3\xfa\x06\xef\xad\x0d\x96\x0c\x29",
-        // "dlsym" / M(Xor3) / S(191) / L(5)
-        "\xab\xa3\xbc\xb6\xa2\xcf\x24\x6d\xb3\x38\x6a\xb0\x71\x50\x82\x02",
-        // "CFArrayGetValueAtIndex" / M(Xor4) / S(11) / L(22)
-        "\xbe\xbb\xbc\x8f\x8f\x9c\x84\xba\x98\x89\xab\x9c\x91\x88\x98\xbc\x89\xb4\x93\x99\x98\x85\xfd",
-        // "" / M(None) / S(0) / L(0)
-        "\x01\xf6\x0c\xbc\xc0\xe3\x04\xca\xf2\x4a\x59\xa2\xe6\x05\x2a\x56\x4e\x53\xf4\xaa\xd5\x84\x22\x65\xb0\xbd\xba\x9d\x1b\xb2\x0e\xf7",
-        // "" / M(None) / S(0) / L(0)
-        "\xb5\x83\x46\x66\xb3\xbd\x3d\x85\x29\x67\x4f\x45\x0f\x72\xec\x1d\x88\x86\xba\x1b\xe2\x3c\x14\xa9\x42\x73\xe5\x29\x10\xe8\x6a\x99",
-        // "EVP_DigestFinal" / M(Rot) / S(109) / L(15)
-        "\xb2\xc3\xbd\xcc\xb1\xd6\xd4\xd2\xe0\xe1\xb3\xd6\xdb\xce\xd9\x6d",
-        // "ASN1_INTEGER_free" / M(Xor2) / S(82) / L(17)
-        "\x01\x13\x0e\x71\x1f\x09\x0e\x14\x05\x07\x05\x12\x1f\x26\x32\x25\x25\x40",
-        // "objc_msgSend" / M(Rot) / S(27) / L(12)
-        "\x8a\x7d\x85\x7e\x7a\x88\x8e\x82\x6e\x80\x89\x7f\x1b\xfd\x3e\xf4",
-        // "EVP_DigestFinal" / M(Xor4) / S(230) / L(15)
-        "\x25\x36\x30\x3f\x24\x09\x07\x05\x13\x14\x26\x09\x0e\x01\x0c\x60",
-        // "" / M(None) / S(0) / L(0)
-        "\x92\x72\xd4\x47\x84\x02\x72\xaf\x0f\x34\x74\xff\x3f\x3f\xfe\xd4\xd5\xc2\xf7\x93\x49\x74\x87\x6b\xea\x70\x0c\x77\x93\x41\x04\x5b",
-        // "X509_STORE_add_cert" / M(Xor4) / S(22) / L(19)
-        "\xe0\x8d\x88\x81\xe7\xeb\xec\xf7\xea\xfd\xe7\xd9\xdc\xdc\xe7\xdb\xdd\xca\xcc\xb8",
-        // "EVP_get_digestbyname" / M(Xor3) / S(152) / L(20)
-        "\xe8\xfb\xfd\xf2\xca\xc8\xd9\xf2\xc9\xc4\xca\xc8\xde\xd9\xcf\xd4\xc3\xcc\xc0\xc8\xad",
-        // "CFArrayAppendValue" / M(Xor1) / S(76) / L(18)
-        "\x0f\x0a\x0d\x3e\x3e\x2d\x35\x0d\x3c\x3c\x29\x22\x28\x1a\x2d\x20\x39\x29\x4c",
-        // "%02X" / M(Rot) / S(43) / L(4)
-        "\x50\x5b\x5d\x83\x2b\xae\xdb\x19\xfd\x28\xbb\xab\xb3\x1c\x83\x85",
-        // "CFDateFormatterCreateDateFromString" / M(Rot) / S(207) / L(35)
-        "\x12\x15\x13\x30\x43\x34\x15\x3e\x41\x3c\x30\x43\x43\x34\x41\x12\x41\x34\x30\x43\x34\x13\x30\x43\x34\x15\x41\x3e\x3c\x22\x43\x41\x38\x3d\x36\xcf",
-        // "CFDataGetBytePtr" / M(Xor4) / S(94) / L(16)
-        "\x7d\x78\x7a\x5f\x4a\x5f\x79\x5b\x4a\x7c\x47\x4a\x5b\x6e\x4a\x4c\x3e",
-        // "BIO_free" / M(Xor2) / S(126) / L(8)
-        "\x2c\x27\x21\x31\x08\x1c\x0b\x0b\x6e\xe7\x48\xaf\x13\x56\xb6\xc3",
-        // "PKCS7_free" / M(Xor1) / S(33) / L(10)
-        "\x71\x6a\x62\x72\x16\x7e\x47\x53\x44\x44\x21\xff\x91\x09\x65\xa3",
-        // "" / M(None) / S(0) / L(0)
-        "\xf9\x1c\xe1\x01\xe8\x92\x34\x66\xb7\x72\xbf\xfe\xff\x50\xdd\x40\xb1\x2c\xf7\x9e\x84\x86\xe5\x0a\x61\x2c\x8d\x55\x4c\x05\x8c\xf4",
-        // "sk_value" / M(Xor1) / S(182) / L(8)
-        "\xc5\xdd\xe9\xc0\xd7\xda\xc3\xd3\xb6\xcc\xa0\xc6\xf9\x1b\xa5\xef",
-        // "1.2.840.113635.100.6.11.1" / M(Xor1) / S(127) / L(25)
-        "\x4e\x51\x4d\x51\x47\x4b\x4f\x51\x4e\x4e\x4c\x49\x4c\x4a\x51\x4e\x4f\x4f\x51\x49\x51\x4e\x4e\x51\x4e\x7f\x3a\x85\x9c\xa4\x0b\x12\xfb\xaa",
-        // "CFDateCompare" / M(Xor2) / S(229) / L(13)
-        "\xb6\xb3\xb1\x94\x81\x90\xb6\x9a\x98\x85\x94\x87\x90\xf5\x28\x2a",
-        // "CFDateFormatterCreateDateFromString" / M(Xor1) / S(210) / L(35)
-        "\x91\x94\x96\xb3\xa6\xb7\x94\xbd\xa0\xbf\xb3\xa6\xa6\xb7\xa0\x91\xa0\xb7\xb3\xa6\xb7\x96\xb3\xa6\xb7\x94\xa0\xbd\xbf\x81\xa6\xa0\xbb\xbc\xb5\xd2",
-        // "BIO_write" / M(Xor4) / S(183) / L(9)
-        "\x32\x39\x3f\x2f\x07\x02\x19\x04\x15\x70\xcc\x39\x8f\xe4\xc3\xac",
-        // "" / M(None) / S(0) / L(0)
-        "\x7c\xd0\xf3\x5c\xcf\x46\xd5\xba\xcd\x68\x40\x12\xbf\x6e\xe4\xe2\xee\xcb\x15\x5f\x43\xa9\xd0\xa3\x67\x19\xd1\x55\x31\x42\x3b\x1d",
-        // "SKReceiptRefreshRequest" / M(Xor2) / S(98) / L(23)
-        "\x11\x09\x10\x27\x21\x27\x2b\x32\x36\x10\x27\x24\x30\x27\x31\x2a\x10\x27\x33\x37\x27\x31\x36\x42\x69\x47\x2b\x64\x70\xcc\x9b\x93",
-        // "%02x" / M(Xor4) / S(69) / L(4)
-        "\x75\x60\x62\x28\x50\x78\xb5\xb6\x7f\xd4\x69\xf3\x9a\x37\xd1\x6e",
-        // "EVP_DigestInit" / M(Rot) / S(149) / L(14)
-        "\xda\xeb\xe5\xf4\xd9\xfe\xfc\xfa\x08\x09\xde\x03\xfe\x09\x95\x39",
-        // "" / M(None) / S(0) / L(0)
-        "\x3f\x3c\x5d\x19\x5d\x17\xa7\xf3\xea\x32\x5d\x4a\xf8\xda\x6e\xda\x7d\x88\x3f\x9e\x42\xbd\x78\x59\xe3\xc7\xd3\x6c\x6c\xdd\x0a\xd8",
-        // "%02X:" / M(Xor3) / S(237) / L(5)
-        "\xd8\xcd\xcf\xa5\xc7\xfd\xda\x96\x4e\xa6\x01\x8c\x9e\xee\x55\x83",
-        // "" / M(None) / S(0) / L(0)
-        "\x86\xfa\x65\x9c\x63\xf4\x05\x85\x1a\x2d\x3c\x09\x81\x84\xe1\xfd\x26\x33\x86\xf4\x15\x19\x53\x03\xe2\x92\x1b\x84\x65\xe6\xca\x89",
-        // "d2i_PKCS7_bio" / M(Xor2) / S(93) / L(13)
-        "\x29\x7f\x24\x12\x1d\x06\x0e\x1e\x7a\x12\x2f\x24\x22\x4d\xcf\xe4",
-        // "" / M(None) / S(0) / L(0)
-        "\xe6\x8c\xd7\x41\x03\xa7\x9f\x92\x8e\xa4\x4d\x3f\x9d\x3e\x94\xcb\xc5\x5b\x9f\xea\xcd\x55\x3f\x42\xa4\x75\xee\x48\x9d\x5e\x21\xd1",
-        // "CFNumberCreate" / M(Xor1) / S(201) / L(14)
-        "\x8a\x8f\x87\xbc\xa4\xab\xac\xbb\x8a\xbb\xac\xa8\xbd\xac\xc9\x2b",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Rot) / S(221) / L(36)
-        "\x20\x23\x1f\x52\x4b\x41\x49\x42\x24\x42\x51\x33\x3e\x49\x52\x42\x23\x4c\x4f\x26\x4b\x43\x4c\x21\x46\x40\x51\x46\x4c\x4b\x3e\x4f\x56\x28\x42\x56\xdd",
-        // "kCFBundleIdentifierKey" / M(Rot) / S(87) / L(22)
-        "\xc2\x9a\x9d\x99\xcc\xc5\xbb\xc3\xbc\xa0\xbb\xbc\xc5\xcb\xc0\xbd\xc0\xbc\xc9\xa2\xbc\xd0\x57",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Xor4) / S(160) / L(29)
-        "\xab\x83\x86\x94\xb9\xb0\xa5\x84\xa9\xa3\xb4\xa9\xaf\xae\xa1\xb2\xb9\x8b\xa5\xb9\x83\xa1\xac\xac\x82\xa1\xa3\xab\xb3\xc0\xad\x12\xe5\x38\xb0\x1b\xd5\x1f",
-        // "kCFDateFormatterTimeZone" / M(Xor2) / S(241) / L(24)
-        "\xbb\x93\x96\x94\xb1\xa4\xb5\x96\xbf\xa2\xbd\xb1\xa4\xa4\xb5\xa2\x84\xb9\xbd\xb5\x8a\xbf\xbe\xb5\xd0\x29\x13\x23\x5c\x8d\xdf\x3f\x21",
-        // "c2i_ASN1_INTEGER" / M(Xor2) / S(33) / L(16)
-        "\x53\x02\x59\x6f\x71\x63\x7e\x01\x6f\x79\x7e\x64\x75\x77\x75\x62\x30",
-        // "" / M(None) / S(0) / L(0)
-        "\x23\x37\xa9\xbd\x43\x5b\x3b\xa8\x0f\x39\xea\x3c\x81\x2c\x10\x63\xd0\x3d\x6f\x69\x23\x6c\x7f\xe1\x91\x71\xc1\x3a\xc9\x8b\x33\xac",
-        // "alloc" / M(Xor1) / S(85) / L(5)
-        "\x34\x39\x39\x3a\x36\x55\x5c\xfb\x8a\x58\xe9\x68\x61\x12\x12\xfa",
-        // "CFDictionaryCreateMutable" / M(Xor1) / S(238) / L(25)
-        "\xad\xa8\xaa\x87\x8d\x9a\x87\x81\x80\x8f\x9c\x97\xad\x9c\x8b\x8f\x9a\x8b\xa3\x9b\x9a\x8f\x8c\x82\x8b\xee\xab\xfd\xef\x4b\x7e\xe1\x88\xbf",
-        // "X509_digest" / M(Xor3) / S(126) / L(11)
-        "\xd6\xbb\xbe\xb7\xd1\xea\xe7\xe9\xeb\xfd\xfa\x8e\xc6\x3e\x56\xfd",
-        // "" / M(None) / S(0) / L(0)
-        "\x8f\x0e\xcc\xae\x5d\xb3\x13\x88\xf7\x29\xd6\x41\xa9\xf4\x6c\x4f\xb3\x4b\xbb\x7a\x2b\xa4\x26\xe7\xa7\xbf\xb5\xe1\x89\xac\x99\x64",
-        // "CFDateFormatterSetProperty" / M(Xor1) / S(50) / L(26)
-        "\x71\x74\x76\x53\x46\x57\x74\x5d\x40\x5f\x53\x46\x46\x57\x40\x61\x57\x46\x62\x40\x5d\x42\x57\x40\x46\x4b\x32\x1b\x90\x0b\x10\xc5\x9c\x93\x95",
-        // "CFAbsoluteTimeGetCurrent" / M(Xor4) / S(51) / L(24)
-        "\xd0\xd5\xd2\xf1\xe0\xfc\xff\xe6\xe7\xf6\xc7\xfa\xfe\xf6\xd4\xf6\xe7\xd0\xe6\xe1\xe1\xf6\xfd\xe7\x93\x3a\x27\x87\xb5\xce\x0d\xaa\xd0",
-        // "UIDevice" / M(Rot) / S(194) / L(8)
-        "\x17\x0b\x06\x27\x38\x2b\x25\x27\xc2\x72\x2a\x20\x2b\x10\x9b\xec",
-        // "" / M(None) / S(0) / L(0)
-        "\xd8\x82\x82\xf3\x5f\x57\x59\xe7\x3e\x6f\x5f\x34\xa3\x30\x7a\x8b\x3c\x8a\x01\x3e\xc9\x53\x57\x7d\x50\xc6\x69\x55\xb4\xe7\x49\x13",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Rot) / S(54) / L(40)
-        "\x6c\x67\x67\x9b\x6b\x98\x6c\x6c\x68\x99\x6b\x6f\x69\x97\x66\x6e\x9c\x9c\x6b\x6e\x9a\x67\x6a\x97\x9b\x68\x68\x6a\x6b\x68\x9a\x67\x6f\x6e\x9a\x9c\x6c\x99\x6c\x66\x36\xee\xa2\xc6\x29\x71\xa3\x51\x64",
-        // "PKCS7_get0_signers" / M(Rot) / S(182) / L(18)
-        "\x06\x01\xf9\x09\xed\x15\x1d\x1b\x2a\xe6\x15\x29\x1f\x1d\x24\x1b\x28\x29\xb6",
-        // "sk_num" / M(Xor4) / S(214) / L(6)
-        "\x13\x0b\x3f\x0e\x15\x0d\x60\xd3\x5c\x0c\xf4\xa9\xe8\x47\xb4\x6f",
-        // "kCFBundleIdentifierKey" / M(Xor2) / S(208) / L(22)
-        "\xac\x84\x81\x85\xb2\xa9\xa3\xab\xa2\x8e\xa3\xa2\xa9\xb3\xae\xa1\xae\xa2\xb5\x8c\xa2\xbe\xc7",
-        // "" / M(None) / S(0) / L(0)
-        "\xea\xec\xf5\x5c\x46\x5b\x88\xcf\xe1\x89\xae\x4a\x90\xfa\xd3\x0b\x6a\x7e\xd0\x7d\x36\xd6\xec\xdf\xc8\xa0\xfb\x79\x20\xf2\xad\xd2",
-        // "CFReadStreamCreateWithFile" / M(Xor1) / S(231) / L(26)
-        "\xa4\xa1\xb5\x82\x86\x83\xb4\x93\x95\x82\x86\x8a\xa4\x95\x82\x86\x93\x82\xb0\x8e\x93\x8f\xa1\x8e\x8b\x82\xe7\x9d\x3e\x75\xc7\xf3\xff\x3e\x0a",
-        // "" / M(None) / S(0) / L(0)
-        "\xb3\x5f\x50\xe1\x41\x0a\x96\x76\x04\xef\xc8\x96\x27\x02\x0f\xc9\xa4\xc3\x3d\x7b\xe7\xaa\x9e\x1e\xcf\xad\x01\x07\x03\xed\xb4\x3e",
-        // "identifierForVendor" / M(Xor2) / S(222) / L(19)
-        "\xa3\xae\xaf\xa4\xbe\xa3\xac\xa3\xaf\xb8\x8c\xa5\xb8\x9c\xaf\xa4\xae\xa5\xb8\xca",
-        // "" / M(None) / S(0) / L(0)
-        "\x41\xcf\x4b\x71\x38\xdb\x51\x01\x51\x26\xe5\xe2\x1c\x32\x2c\x75\x32\xc4\x94\x83\x83\x7f\xe1\x09\x53\xfe\xcb\x33\xb0\x69\x5b\xa7",
-        // "ASN1_get_object" / M(Xor1) / S(9) / L(15)
-        "\x48\x5a\x47\x38\x56\x6e\x6c\x7d\x56\x66\x6b\x63\x6c\x6a\x7d\x09",
-        // "" / M(None) / S(0) / L(0)
-        "\xe7\xc9\x34\x2e\x5a\xf8\x56\xda\xdd\x5f\x98\x66\x53\x52\x6a\x34\x74\x1e\x59\xf6\xfd\xfa\x97\x74\x0a\x66\xfd\xf7\x75\x67\xa7\xb0",
-        // "X509_STORE_free" / M(Xor2) / S(241) / L(15)
-        "\xb9\xd4\xd1\xd8\xbe\xb2\xb5\xae\xb3\xa4\xbe\x87\x93\x84\x84\xe1",
-        // "CC_SHA1_Final" / M(Xor1) / S(87) / L(13)
-        "\x14\x14\x08\x04\x1f\x16\x66\x08\x11\x3e\x39\x36\x3b\x57\xae\x1a",
-        // "/usr/lib/libSystem.dylib" / M(Rot) / S(74) / L(24)
-        "\x79\xbf\xbd\xbc\x79\xb6\xb3\xac\x79\xb6\xb3\xac\x9d\xc3\xbd\xbe\xaf\xb7\x78\xae\xc3\xb6\xb3\xac\x4a\x23\xb0\x8f\xa6\xe3\x1a\x2c\x63",
-        // "dlopen" / M(Xor3) / S(19) / L(6)
-        "\x47\x4f\x4c\x53\x46\x4d\x23\xbd\x08\xbc\xf2\x78\x85\xee\x3c\xbb",
-        // "CFArrayGetCount" / M(Xor1) / S(88) / L(15)
-        "\x1b\x1e\x19\x2a\x2a\x39\x21\x1f\x3d\x2c\x1b\x37\x2d\x36\x2c\x58",
-        // "" / M(None) / S(0) / L(0)
-        "\x7a\xc7\xe8\xa9\xb8\xac\x82\x08\xfb\xc1\xd5\xee\x91\x50\xae\x24\x3d\x57\xa4\xbe\xf4\x48\x03\xee\x76\x8a\x1e\x4d\x96\x19\x47\x87",
-        // "CFArrayAppendValue" / M(Rot) / S(171) / L(18)
-        "\xee\xf1\xec\x1d\x1d\x0c\x24\xec\x1b\x1b\x10\x19\x0f\x01\x0c\x17\x20\x10\xab",
-        // "identifierForVendor" / M(Xor4) / S(98) / L(19)
-        "\xc1\xcc\xcd\xc6\xdc\xc1\xce\xc1\xcd\xda\xee\xc7\xda\xfe\xcd\xc6\xcc\xc7\xda\xa8",
-        // "currentDevice" / M(Xor4) / S(158) / L(13)
-        "\x83\x95\x92\x92\x85\x8e\x94\xa4\x85\x96\x89\x83\x85\xe0\x8a\x44",
-        // "Apple Root CA" / M(Xor2) / S(176) / L(13)
-        "\xe1\xd0\xd0\xcc\xc5\x80\xf2\xcf\xcf\xd4\x80\xe3\xe1\xa0\x43\xc8",
-        // "RTLD_MAIN_ONLY" / M(Xor2) / S(14) / L(14)
-        "\x4c\x4a\x52\x5a\x41\x53\x5f\x57\x50\x41\x51\x50\x52\x47\x1e\x7d",
-        // "" / M(None) / S(0) / L(0)
-        "\x56\x00\xcd\x1e\x50\x88\x78\x1c\xde\x0d\xd6\xb2\x43\xc9\x11\xfe\x91\xac\x69\x16\xd8\xa1\x36\x8b\xe8\xb8\x03\xeb\xf2\x9c\x9e\xfc",
-        // "CFDictionaryGetValue" / M(Rot) / S(234) / L(20)
-        "\x2d\x30\x2e\x53\x4d\x5e\x53\x59\x58\x4b\x5c\x63\x31\x4f\x5e\x40\x4b\x56\x5f\x4f\xea",
-        // "" / M(None) / S(0) / L(0)
-        "\x4a\x06\xf4\x64\x84\x23\xf2\x65\x9e\x6a\x63\x27\x17\x0e\xdf\xa9\x18\x44\x48\x71\x50\xd2\x63\x7e\x8e\x66\x57\x48\x06\x63\x6f\xb3",
-        // "CFDataCreateMutable" / M(Xor3) / S(134) / L(19)
-        "\xd9\xdc\xde\xfb\xee\xfb\xd9\xe8\xff\xfb\xee\xff\xd7\xef\xee\xfb\xf8\xf6\xff\x9a",
-        // "%02X:" / M(Xor4) / S(36) / L(5)
-        "\x65\x70\x72\x18\x7a\x40\x9e\x3f\xa3\x39\x52\x54\xdb\x25\xea\xda",
-        // "com.intangiblesoftware.menslacrossestats" / M(Xor4) / S(190) / L(40)
-        "\x3d\x31\x33\x70\x37\x30\x2a\x3f\x30\x39\x37\x3c\x32\x3b\x2d\x31\x38\x2a\x29\x3f\x2c\x3b\x70\x33\x3b\x30\x2d\x32\x3f\x3d\x2c\x31\x2d\x2d\x3b\x2d\x2a\x3f\x2a\x2d\x5e\x37\x19\xb6\xa6\x1d\xf2\xf5\x1d",
-        // "CFEqual" / M(Xor2) / S(157) / L(7)
-        "\xce\xcb\xc8\xfc\xf8\xec\xe1\x8d\x54\xc0\xf5\x69\x20\x4e\xd3\x04",
-        // "SHA1" / M(Rot) / S(105) / L(4)
-        "\xbc\xb1\xaa\x9a\x69\xc9\x1a\x39\x5b\x90\x43\x7d\xdc\xae\x4d\x6a",
-        // "SHA1" / M(Xor4) / S(211) / L(4)
-        "\x63\x78\x71\x01\x30\xf9\x86\xfd\xe9\x0d\xe7\xfd\xa5\x0e\xab\x5a",
-        // "strncmp" / M(Rot) / S(79) / L(7)
-        "\xc2\xc3\xc1\xbd\xb2\xbc\xbf\x4f\xc8\x38\xa9\x60\xb2\x52\xf4\x1a",
-        // "CFReadStreamClose" / M(Rot) / S(216) / L(17)
-        "\x1b\x1e\x2a\x3d\x39\x3c\x2b\x4c\x4a\x3d\x39\x45\x1b\x44\x47\x4b\x3d\xd8",
-        // "NSBundle" / M(Xor4) / S(93) / L(8)
-        "\x9e\x83\x92\xa5\xbe\xb4\xbc\xb5\xd0\x16\xb7\x0a\x43\xbf\x22\x0e",
-        // "BIO_write" / M(Xor4) / S(81) / L(9)
-        "\x52\x59\x5f\x4f\x67\x62\x79\x64\x75\x10\x63\xe0\xc0\x74\x5e\xa5",
-        // "OpenSSL_add_all_digests" / M(Xor2) / S(110) / L(23)
-        "\x01\x3e\x2b\x20\x1d\x1d\x02\x11\x2f\x2a\x2a\x11\x2f\x22\x22\x11\x2a\x27\x29\x2b\x3d\x3a\x3d\x4e\xb8\x5b\x2f\xe1\x0d\xf1\x1c\x5a",
-        // "X509_STORE_new" / M(Xor1) / S(249) / L(14)
-        "\xa1\xcc\xc9\xc0\xa6\xaa\xad\xb6\xab\xbc\xa6\x97\x9c\x8e\xf9\x12",
-        // "CC_SHA1" / M(Rot) / S(197) / L(7)
-        "\x08\x08\x24\x18\x0d\x06\xf6\xc5\x72\x18\x1d\x1c\x42\xaa\x92\x0c",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Xor1) / S(113) / L(29)
-        "\x1a\x32\x37\x25\x08\x01\x14\x35\x18\x12\x05\x18\x1e\x1f\x10\x03\x08\x3a\x14\x08\x32\x10\x1d\x1d\x33\x10\x12\x1a\x02\x71\xaa\x04\xd2\xa2\xf0\xb5\xff\x5b",
-        // "" / M(None) / S(0) / L(0)
-        "\x45\xde\x77\x04\xd1\xfa\x4b\xea\xe9\x4d\xf0\x51\xc6\xab\xc5\xe5\x01\x8d\x9c\x7c\x08\x19\xb5\xa4\x76\xd0\x03\xe9\xee\xd8\x37\x3e",
-        // "" / M(None) / S(0) / L(0)
-        "\xec\xac\x54\x50\xed\x96\x49\x8c\xe1\xc9\xce\xad\x3d\xb6\x91\xe4\x7b\xe0\x24\xbd\x47\xa1\x87\x98\x02\xc5\xd9\x2b\x3d\xaa\x57\x8f",
-        // "CFBundleVersion" / M(Xor3) / S(73) / L(15)
-        "\x1a\x1f\x1b\x2c\x37\x3d\x35\x3c\x0f\x3c\x2b\x2a\x30\x36\x37\x59",
-        // "CFDateFormatterSetFormat" / M(Xor4) / S(60) / L(24)
-        "\xff\xfa\xf8\xdd\xc8\xd9\xfa\xd3\xce\xd1\xdd\xc8\xc8\xd9\xce\xef\xd9\xc8\xfa\xd3\xce\xd1\xdd\xc8\xbc\x30\xad\xa8\x39\x67\x19\x1c\x42",
-        // "setjmp" / M(Xor1) / S(139) / L(6)
-        "\xf8\xee\xff\xe1\xe6\xfb\x8b\x58\xf2\x79\xd3\x8a\x53\x82\x44\x82",
-        // "" / M(None) / S(0) / L(0)
-        "\x55\x68\x5b\xfe\xd8\x6f\x5a\x27\x67\xc0\x2f\x6f\xf8\x0a\xb8\x04\xce\x7f\x88\x7b\x52\x36\xe8\x0a\x1e\x18\x1f\x9f\xab\xd8\x4d\x64",
-        // "ASN1_OBJECT_free" / M(Xor4) / S(122) / L(16)
-        "\x5b\x49\x54\x2b\x45\x55\x58\x50\x5f\x59\x4e\x45\x7c\x68\x7f\x7f\x1a",
-        // "ASN1_INTEGER_get" / M(Xor4) / S(36) / L(16)
-        "\x25\x37\x2a\x55\x3b\x2d\x2a\x30\x21\x23\x21\x36\x3b\x03\x01\x10\x64",
-        // "CFStringCreateWithBytes" / M(Xor4) / S(67) / L(23)
-        "\x23\x26\x33\x14\x12\x09\x0e\x07\x23\x12\x05\x01\x14\x05\x37\x09\x14\x08\x22\x19\x14\x05\x13\x60\x7c\xea\x33\x75\x25\xee\x9d\x38",
-        // "UIDevice" / M(Xor3) / S(1) / L(8)
-        "\x44\x58\x55\x74\x67\x78\x72\x74\x11\x67\x39\x63\x95\x1c\x06\x90",
-        // "BIO_new" / M(Rot) / S(144) / L(7)
-        "\xd2\xd9\xdf\xef\xfe\xf5\x07\x90\x62\x5d\x1e\x18\x8c\x8b\x5f\x5d",
-        // "SHA1_Update" / M(Xor2) / S(143) / L(11)
-        "\xcc\xd7\xde\xae\xc0\xca\xef\xfb\xfe\xeb\xfa\x9f\x3b\xd1\x29\x89",
-        // "dlsym" / M(Rot) / S(35) / L(5)
-        "\x87\x8f\x96\x9c\x90\x23\x88\x83\x58\x4c\xbc\xda\xc1\x75\x91\xf1",
-        // "OBJ_txt2obj" / M(Rot) / S(174) / L(11)
-        "\xfd\xf0\xf8\x0d\x22\x26\x22\xe0\x1d\x10\x18\xae\x56\x07\xc5\x8c",
-        // "objc_getClass" / M(Rot) / S(56) / L(13)
-        "\xa7\x9a\xa2\x9b\x97\x9f\x9d\xac\x7b\xa4\x99\xab\xab\x38\xdf\xc6",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor3) / S(132) / L(31)
-        "\xcf\xe7\xe2\xf0\xdd\xd4\xc1\xe0\xcd\xc7\xd0\xcd\xcb\xca\xc5\xd6\xdd\xf2\xc5\xc8\xd1\xc1\xe7\xc5\xc8\xc8\xe6\xc5\xc7\xcf\xd7\xa4",
-        // "Apple Root CA" / M(Xor1) / S(200) / L(13)
-        "\x89\xb8\xb8\xa4\xad\xe8\x9a\xa7\xa7\xbc\xe8\x8b\x89\xc8\xae\x75",
-        // "BIO_write" / M(Xor4) / S(78) / L(9)
-        "\xa2\xa9\xaf\xbf\x97\x92\x89\x94\x85\xe0\x94\xde\xb5\x64\xe2\x0e",
-        // "CFArrayGetCount" / M(Xor4) / S(154) / L(15)
-        "\xe3\xe6\xe1\xd2\xd2\xc1\xd9\xe7\xc5\xd4\xe3\xcf\xd5\xce\xd4\xa0",
-        // "" / M(None) / S(0) / L(0)
-        "\x39\xde\x0a\x2a\xba\xc6\xeb\x99\x15\xed\x92\x10\x2b\xf8\x18\x35\xb2\x8b\xe7\x2c\x9f\x38\x24\xa1\x0f\xee\x35\xb5\xa4\xe4\xc2\x90",
-        // "appStoreReceiptURL" / M(Xor1) / S(57) / L(18)
-        "\x58\x49\x49\x6a\x4d\x56\x4b\x5c\x6b\x5c\x5a\x5c\x50\x49\x4d\x6c\x6b\x75\x39",
-        // "CFDictionaryAddValue" / M(Xor4) / S(172) / L(20)
-        "\x5f\x5a\x58\x75\x7f\x68\x75\x73\x72\x7d\x6e\x65\x5d\x78\x78\x4a\x7d\x70\x69\x79\x1c",
-        // "dlopen" / M(Xor2) / S(78) / L(6)
-        "\x3a\x32\x31\x2e\x3b\x30\x5e\x84\x69\xf8\xcc\xec\x78\xe2\xaa\xa4",
-        // "" / M(None) / S(0) / L(0)
-        "\xf0\x85\xaa\x74\x0b\x20\x01\xf7\x6b\x79\x2f\xe5\x05\x82\x7b\x19\x10\x9f\x57\x4a\x88\x1f\x38\xcc\xaa\xb3\xf6\xbc\x5d\xe8\x66\x9c",
-        // "" / M(None) / S(0) / L(0)
-        "\x2f\xf0\x0d\xfd\x99\xfc\x2e\xe3\x0a\x0b\xb5\x38\xee\xd5\xfa\xb3\x07\x07\x3f\x76\x0d\xdc\x13\x1d\xfe\xb5\x10\x7e\xd8\xc9\x61\x99",
-        // "" / M(None) / S(0) / L(0)
-        "\xd8\xa5\x65\xcb\x30\x5b\x6c\xc2\xa7\x19\xdf\x91\xee\x90\x78\x68\x84\xd4\xf9\x2f\x2c\xe6\x6b\xad\x0b\x4f\x99\xd4\x97\x8d\x63\xff",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor2) / S(123) / L(31)
-        "\x30\x18\x1d\x0f\x22\x2b\x3e\x1f\x32\x38\x2f\x32\x34\x35\x3a\x29\x22\x0d\x3a\x37\x2e\x3e\x18\x3a\x37\x37\x19\x3a\x38\x30\x28\x5b",
-        // "%02X" / M(Xor4) / S(186) / L(4)
-        "\x85\x90\x92\xf8\xa0\x05\x4b\xef\x6c\x94\x57\x48\xf4\xb5\x96\xbf",
-        // "CFDataCreate" / M(Xor3) / S(43) / L(12)
-        "\x78\x7d\x7f\x5a\x4f\x5a\x78\x49\x5e\x5a\x4f\x5e\x3b\x73\xf2\x1a",
-        // "7" / M(Xor3) / S(210) / L(1)
-        "\xd5\xe2\x81\x7a\xc8\x91\x14\x22\x39\x29\xf6\x59\xd4\x49\xdf\x12",
-        // "CFBundleGetMainBundle" / M(Xor1) / S(51) / L(21)
-        "\x70\x75\x71\x46\x5d\x57\x5f\x56\x74\x56\x47\x7e\x52\x5a\x5d\x71\x46\x5d\x57\x5f\x56\x33",
-        // "appStoreReceiptURL" / M(Xor1) / S(68) / L(18)
-        "\x25\x34\x34\x17\x30\x2b\x36\x21\x16\x21\x27\x21\x2d\x34\x30\x11\x16\x08\x44",
-        // "" / M(None) / S(0) / L(0)
-        "\xdd\xf8\x05\xb3\xa0\xa1\x61\x52\xb7\x88\x50\x7b\x68\x35\x65\x9c\xdc\x5b\xaa\x92\x60\x72\x8b\xd7\x54\x31\xd5\x4f\x47\xd0\x69\x11",
-        // "" / M(None) / S(0) / L(0)
-        "\x5f\x41\xae\x72\xfd\xe8\x69\x92\x93\x50\xc6\x66\x71\xd7\xaa\x73\xf9\xca\x34\x2a\x2c\xc8\xcf\x20\xb3\x43\x62\x16\x62\x42\xa4\xc9",
-        // "X509_NAME_get_text_by_NID" / M(Rot) / S(247) / L(25)
-        "\x4f\x2c\x27\x30\x56\x45\x38\x44\x3c\x56\x5e\x5c\x6b\x56\x6b\x5c\x6f\x6b\x56\x59\x70\x56\x45\x40\x3b\xf7\x1a\x14\x6c\x5b\x93\xde\xad\x82",
-        // "CFReadStreamRead" / M(Xor4) / S(226) / L(16)
-        "\x41\x44\x50\x67\x63\x66\x51\x76\x70\x67\x63\x6f\x50\x67\x63\x66\x02",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Rot) / S(130) / L(59)
-        "\xb8\xb3\xbc\xb3\xc7\xbc\xb7\xc4\xbc\xb8\xb8\xbc\xb4\xc5\xbc\xb7\xbb\xbc\xb5\xc3\xbc\xb2\xba\xbc\xc8\xc8\xbc\xb7\xba\xbc\xc6\xb3\xbc\xb6\xc3\xbc\xc7\xb4\xbc\xb4\xb6\xbc\xb7\xb4\xbc\xc6\xb3\xbc\xbb\xba\xbc\xc6\xc8\xbc\xb8\xc5\xbc\xb8\xb2\x82\xcf\x99\xb0\xf5\xf0\xf7\x71\x4b",
-        // "sk_value" / M(Rot) / S(120) / L(8)
-        "\xeb\xe3\xd7\xee\xd9\xe4\xed\xdd\x78\x6c\xee\x11\x5e\xad\x85\xa6",
-        // "CFBundleIdentifier" / M(Xor3) / S(33) / L(18)
-        "\x77\x72\x76\x41\x5a\x50\x58\x51\x7d\x50\x51\x5a\x40\x5d\x52\x5d\x51\x46\x34",
-        // "sha1" / M(Xor1) / S(119) / L(4)
-        "\x04\x1f\x16\x46\x77\x67\xf9\xed\xfa\x02\x26\xcd\xfe\x2b\x83\xd3",
-        // "setDelegate:" / M(Xor3) / S(73) / L(12)
-        "\x2a\x3c\x2d\x1d\x3c\x35\x3c\x3e\x38\x2d\x3c\x63\x59\x3f\x80\x26",
-        // "" / M(None) / S(0) / L(0)
-        "\xf0\xc7\x29\x11\x93\x60\xdb\xa3\xa2\xad\x71\xaf\xb5\x72\x7f\x3f\xaa\xd2\xbc\xf6\xbd\xcf\xa0\x6a\x93\xa1\x54\xf2\x43\x3e\x0d\x17",
-        // "" / M(None) / S(0) / L(0)
-        "\x96\xc1\xd9\x95\x6e\x91\xad\x24\xca\xd7\x7b\xa1\x05\x07\x05\x68\xb9\x93\xd9\x56\x6f\xd6\x8d\x0a\xd9\x97\x03\x1a\x4c\x1e\x58\xe9",
-        // "" / M(None) / S(0) / L(0)
-        "\xe3\x37\x49\x2f\x09\x15\x72\x7d\x7c\x9f\xbd\x3a\xaf\x0d\x37\xfd\x0a\x7b\xe4\xd7\xbe\x0b\x25\x8b\xa2\xef\x52\xe5\xc0\xf2\xa7\x85",
-        // "" / M(None) / S(0) / L(0)
-        "\x51\x9a\xc0\x10\xdc\xd7\xc5\xef\xf8\x7f\xd8\x70\x11\x4f\x32\x37\xb2\x00\x41\x4c\xdd\xbf\x76\x55\x56\xc0\x0f\x9d\x6a\x0f\x54\xb9",
-        // "" / M(None) / S(0) / L(0)
-        "\x26\x85\xf8\x13\x25\x78\x2e\x9e\x8c\x03\xb9\x91\x37\x9d\x9a\x96\x6a\x62\x73\x54\xaa\x7b\x1e\x84\x3c\xf3\xa5\x46\xdd\xda\xd8\x1a",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Xor3) / S(60) / L(29)
-        "\x09\x21\x24\x36\x1b\x12\x07\x26\x0b\x01\x16\x0b\x0d\x0c\x03\x10\x1b\x29\x07\x1b\x21\x03\x0e\x0e\x20\x03\x01\x09\x11\x62\xde\x18\xd1\x8e\xaf\x7f\x1c\x24",
-        // "CFReadStreamOpen" / M(Xor2) / S(195) / L(16)
-        "\x91\x94\x80\xb7\xb3\xb6\x81\xa6\xa0\xb7\xb3\xbf\x9d\xa2\xb7\xbc\xd2",
-        // "mainBundle" / M(Rot) / S(86) / L(10)
-        "\xc3\xb7\xbf\xc4\x98\xcb\xc4\xba\xc2\xbb\x56\xc1\x25\xd8\xc6\xe4",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor4) / S(244) / L(66)
-        "\xf3\x8f\xa5\xaf\xa8\xb9\xb1\xf3\x90\xb5\xbe\xae\xbd\xae\xa5\xf3\x9a\xae\xbd\xb1\xb9\xab\xb3\xae\xb7\xaf\xf3\x9f\xb3\xae\xb9\x9a\xb3\xa9\xb2\xb8\xbd\xa8\xb5\xb3\xb2\xf2\xba\xae\xbd\xb1\xb9\xab\xb3\xae\xb7\xf3\x9f\xb3\xae\xb9\x9a\xb3\xa9\xb2\xb8\xbd\xa8\xb5\xb3\xb2\xdc",
-        // "CFBundleGetIdentifier" / M(Xor1) / S(115) / L(21)
-        "\x30\x35\x31\x06\x1d\x17\x1f\x16\x34\x16\x07\x3a\x17\x16\x1d\x07\x1a\x15\x1a\x16\x01\x73",
-        // "com.intangiblesoftware.menslacrossestats" / M(Xor2) / S(152) / L(40)
-        "\xca\xc6\xc4\x87\xc0\xc7\xdd\xc8\xc7\xce\xc0\xcb\xc5\xcc\xda\xc6\xcf\xdd\xde\xc8\xdb\xcc\x87\xc4\xcc\xc7\xda\xc5\xc8\xca\xdb\xc6\xda\xda\xcc\xda\xdd\xc8\xdd\xda\xa9\xd9\x6e\x69\x25\x1c\x35\xa9\x79",
-        // "sel_registerName" / M(Xor1) / S(213) / L(16)
-        "\xa6\xb0\xb9\x8a\xa7\xb0\xb2\xbc\xa6\xa1\xb0\xa7\x9b\xb4\xb8\xb0\xd5",
-        // "CFStringCompare" / M(Xor4) / S(170) / L(15)
-        "\xe3\xe6\xf3\xd4\xd2\xc9\xce\xc7\xe3\xcf\xcd\xd0\xc1\xd2\xc5\xa0",
-        // "BIO_free" / M(Xor2) / S(247) / L(8)
-        "\xa5\xae\xa8\xb8\x81\x95\x82\x82\xe7\x26\xcc\x4b\x76\x25\x9a\x25",
-        // "" / M(None) / S(0) / L(0)
-        "\xaf\x5c\x57\xbe\xb4\x52\xc3\x2f\x2b\xfb\x4d\x2c\xed\x53\x28\x46\xa1\x6e\x33\xe0\x28\xe7\x5e\x5e\x61\x74\x9c\x47\x01\xbe\x20\xd7",
-        // "Apple Root CA" / M(Xor3) / S(104) / L(13)
-        "\x39\x08\x08\x14\x1d\x58\x2a\x17\x17\x0c\x58\x3b\x39\x78\x81\xc0",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Rot) / S(250) / L(59)
-        "\x30\x2b\x34\x2b\x5f\x34\x2f\x5c\x34\x30\x30\x34\x2c\x5d\x34\x2f\x33\x34\x2d\x5b\x34\x2a\x32\x34\x60\x60\x34\x2f\x32\x34\x5e\x2b\x34\x2e\x5b\x34\x5f\x2c\x34\x2c\x2e\x34\x2f\x2c\x34\x5e\x2b\x34\x33\x32\x34\x5e\x60\x34\x30\x5d\x34\x30\x2a\xfa\x7e\xc4\x44\x51\x90\x3b\xa2\xa0",
-        // "com.intangiblesoftware.menslacrossestats" / M(Xor4) / S(18) / L(40)
-        "\x11\x1d\x1f\x5c\x1b\x1c\x06\x13\x1c\x15\x1b\x10\x1e\x17\x01\x1d\x14\x06\x05\x13\x00\x17\x5c\x1f\x17\x1c\x01\x1e\x13\x11\x00\x1d\x01\x01\x17\x01\x06\x13\x06\x01\x72\x72\xad\x10\x9e\x32\xf7\xfd\x27",
-        // "7" / M(Xor4) / S(170) / L(1)
-        "\x97\xa0\x90\x58\x8f\x11\x5d\x4c\xe8\xe9\xe9\x7e\x86\xcf\xa7\x9f",
-        // "ASN1_OBJECT_free" / M(Xor4) / S(187) / L(16)
-        "\x2a\x38\x25\x5a\x34\x24\x29\x21\x2e\x28\x3f\x34\x0d\x19\x0e\x0e\x6b",
-        // "CFDateFormatterCreate" / M(Xor1) / S(188) / L(21)
-        "\xff\xfa\xf8\xdd\xc8\xd9\xfa\xd3\xce\xd1\xdd\xc8\xc8\xd9\xce\xff\xce\xd9\xdd\xc8\xd9\xbc",
-        // "CFDataAppendBytes" / M(Xor3) / S(27) / L(17)
-        "\x6e\x6b\x69\x4c\x59\x4c\x6c\x5d\x5d\x48\x43\x49\x6f\x54\x59\x48\x5e\x2d",
-        // "PKCS7_free" / M(Xor1) / S(133) / L(10)
-        "\xd5\xce\xc6\xd6\xb2\xda\xe3\xf7\xe0\xe0\x85\x84\xc1\xb3\x08\x66",
-        // "X509_get_ext_by_OBJ" / M(Xor3) / S(37) / L(19)
-        "\x61\x0c\x09\x00\x66\x5e\x5c\x4d\x66\x5c\x41\x4d\x66\x5b\x40\x66\x76\x7b\x73\x39",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor2) / S(7) / L(59)
-        "\x75\x72\x79\x72\x06\x79\x76\x01\x79\x75\x75\x79\x71\x00\x79\x76\x7a\x79\x70\x02\x79\x73\x7b\x79\x05\x05\x79\x76\x7b\x79\x07\x72\x79\x77\x02\x79\x06\x71\x79\x71\x77\x79\x76\x71\x79\x07\x72\x79\x7a\x7b\x79\x07\x05\x79\x75\x00\x79\x75\x73\x43\xd1\xf5\x70\x4e\xa8\xfa\xf9\x35",
-        // "EVP_MD_CTX_init" / M(Xor4) / S(98) / L(15)
-        "\x65\x76\x70\x7f\x6d\x64\x7f\x63\x74\x78\x7f\x49\x4e\x49\x54\x20",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor3) / S(58) / L(32)
-        "\x22\x22\x22\x22\x7c\x76\x7c\x16\x16\x7c\x76\x7c\x3f\x3f\x7c\x0f\x7c\x13\x13\x7c\x61\x7c\x36\x36\x7c\x61\x7c\x28\x28\x7c\x01\x7c\x5b",
-        // "setjmp" / M(Xor4) / S(52) / L(6)
-        "\x33\x25\x34\x2a\x2d\x30\x40\xce\xfb\x2a\x2b\xbf\xb3\x11\x4b\xa0",
-        // "kCFDateFormatterTimeZone" / M(Xor2) / S(146) / L(24)
-        "\xd8\xf0\xf5\xf7\xd2\xc7\xd6\xf5\xdc\xc1\xde\xd2\xc7\xc7\xd6\xc1\xe7\xda\xde\xd6\xe9\xdc\xdd\xd6\xb3\xbe\x92\xe0\x66\x78\x50\xf8\x21",
-        // "X509_get_ext_by_OBJ" / M(Xor2) / S(147) / L(19)
-        "\xdf\xb2\xb7\xbe\xd8\xe0\xe2\xf3\xd8\xe2\xff\xf3\xd8\xe5\xfe\xd8\xc8\xc5\xcd\x87",
-        // "PKCS7_verify" / M(Xor4) / S(75) / L(12)
-        "\xe0\xfb\xf3\xe3\x87\xef\xc6\xd5\xc2\xd9\xd6\xc9\xb0\xe0\x1b\x2c",
-        // "" / M(None) / S(0) / L(0)
-        "\x34\x7d\xdf\x0f\x72\x59\x52\x9a\x0e\xbd\x20\x3f\xf4\xf5\x77\xbf\x46\xe0\x1e\x27\x9e\x74\x43\x4e\xd9\x4f\x4b\x2a\xcd\x96\x55\x3c",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor2) / S(227) / L(31)
-        "\xa8\x80\x85\x97\xba\xb3\xa6\x87\xaa\xa0\xb7\xaa\xac\xad\xa2\xb1\xba\x95\xa2\xaf\xb6\xa6\x80\xa2\xaf\xaf\x81\xa2\xa0\xa8\xb0\xc3",
-        // "CFBundleGetMainBundle" / M(Xor3) / S(201) / L(21)
-        "\x9c\x99\x9d\xaa\xb1\xbb\xb3\xba\x98\xba\xab\x92\xbe\xb6\xb1\x9d\xaa\xb1\xbb\xb3\xba\xdf",
-        // "CFDateFormatterSetProperty" / M(Xor2) / S(78) / L(26)
-        "\x2e\x2b\x29\x0c\x19\x08\x2b\x02\x1f\x00\x0c\x19\x19\x08\x1f\x3e\x08\x19\x3d\x1f\x02\x1d\x08\x1f\x19\x14\x6d\x05\xa7\xf9\x59\x66\x2b\x3e\xa6",
-        // "" / M(None) / S(0) / L(0)
-        "\x0e\xb7\x0c\x7c\x22\xed\x03\x65\x08\x00\x26\x56\xe6\x55\x36\x66\x45\x99\xd4\x09\x31\xe2\x88\x99\x4e\x80\x51\x4d\x20\x76\x57\xf5",
-        // "." / M(Rot) / S(51) / L(1)
-        "\x61\x33\xa5\x58\x79\xf7\xb3\xaf\x33\x1d\xce\x1b\x4a\x01\x73\x2b",
-        // "%02x:" / M(Xor3) / S(147) / L(5)
-        "\x86\x93\x91\xdb\x99\xa3\xf6\xa5\x5d\x19\xb4\x0d\x76\xb4\xfd\x49",
-        // "strncmp" / M(Xor2) / S(209) / L(7)
-        "\xb2\xb5\xb3\xaf\xa2\xac\xb1\xc1\x10\xcc\x8c\x37\xf1\x6b\xf0\x0f",
-        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Xor3) / S(61) / L(39)
-        "\x2e\x2b\x39\x04\x00\x08\x37\x02\x03\x08\x2e\x1f\x08\x0c\x19\x08\x3a\x04\x19\x05\x39\x04\x00\x08\x24\x03\x19\x08\x1f\x1b\x0c\x01\x2b\x1f\x02\x00\x2a\x20\x39\x6d\x5f\xdb\x26\x87\xf8\x90\xde\xeb",
-        // "CC_SHA1_Update" / M(Xor3) / S(128) / L(14)
-        "\xd3\xd3\xcf\xc3\xd8\xd1\xa1\xcf\xc5\xe0\xf4\xf1\xe4\xf5\x90\xdf",
-        // "CFBundleShortVersionString" / M(Xor1) / S(155) / L(26)
-        "\xd8\xdd\xd9\xee\xf5\xff\xf7\xfe\xc8\xf3\xf4\xe9\xef\xcd\xfe\xe9\xe8\xf2\xf4\xf5\xc8\xef\xe9\xf2\xf5\xfc\x9b\x3f\xc3\x8e\x58\x0c\xde\xc5\xb8",
-        // "alloc" / M(Xor4) / S(219) / L(5)
-        "\xd1\xdc\xdc\xdf\xd3\xb0\x34\xe1\xc7\x1d\xbb\xf9\x58\x56\x83\x3a",
-        // "X509_digest" / M(Xor2) / S(194) / L(11)
-        "\x8a\xe7\xe2\xeb\x8d\xb6\xbb\xb5\xb7\xa1\xa6\xd2\x6a\x2a\xbe\x26",
-        // "ASN1_get_object" / M(Xor4) / S(172) / L(15)
-        "\x81\x93\x8e\xf1\x9f\xa7\xa5\xb4\x9f\xaf\xa2\xaa\xa5\xa3\xb4\xc0",
-        // "CFBundleIdentifier" / M(Xor1) / S(150) / L(18)
-        "\xd5\xd0\xd4\xe3\xf8\xf2\xfa\xf3\xdf\xf2\xf3\xf8\xe2\xff\xf0\xff\xf3\xe4\x96",
-        // "%02x:" / M(Xor1) / S(11) / L(5)
-        "\x2e\x3b\x39\x73\x31\x0b\x23\x81\x50\xfa\xac\xca\x48\x5b\x70\xae",
-        // "" / M(None) / S(0) / L(0)
-        "\x24\x6f\x00\xc9\x55\x1a\xdf\xef\xff\xe2\xbb\xe7\x5a\xe0\x5a\x3c\x68\x0b\x82\x39\x8f\x20\x57\xa1\x81\x3e\x35\x6d\x44\x4a\xe8\x92",
-        // "CFArrayGetValueAtIndex" / M(Rot) / S(14) / L(22)
-        "\x51\x54\x4f\x80\x80\x6f\x87\x55\x73\x82\x64\x6f\x7a\x83\x73\x4f\x82\x57\x7c\x72\x73\x86\x0e",
-        // "longjmp" / M(Xor1) / S(36) / L(7)
-        "\x48\x4b\x4a\x43\x4e\x49\x54\x24\x3a\x7c\x29\xbe\x7f\xd2\x82\x7b",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor1) / S(62) / L(36)
-        "\x7d\x78\x7c\x4b\x50\x5a\x52\x5b\x79\x5b\x4a\x68\x5f\x52\x4b\x5b\x78\x51\x4c\x77\x50\x58\x51\x7a\x57\x5d\x4a\x57\x51\x50\x5f\x4c\x47\x75\x5b\x47\x3e",
-        // "" / M(None) / S(0) / L(0)
-        "\x5f\x41\xaf\x44\x38\x21\xf4\x91\x56\x17\x46\x97\x59\x4e\xb9\x8e\x4a\x66\x52\xcb\x96\x3f\x4f\x55\x1b\xe8\x30\x23\xc7\x04\xeb\x10",
-        // "init" / M(Xor4) / S(245) / L(4)
-        "\x39\x3e\x39\x24\x50\x39\xbc\x63\x0e\xbd\x6b\x29\xf5\x94\x67\xf1",
-        // "" / M(None) / S(0) / L(0)
-        "\x44\xe1\x4f\x55\x2f\xae\x75\xe7\xbc\xb1\x37\x31\x87\x11\xc5\xbd\x42\x04\x2f\xc9\xa8\xf7\xd2\x5b\xcd\xc1\xa6\x0f\x86\x13\xdf\x72",
-        // "kCFTypeArrayCallBacks" / M(Xor4) / S(119) / L(21)
-        "\x51\x79\x7c\x6e\x43\x4a\x5f\x7b\x48\x48\x5b\x43\x79\x5b\x56\x56\x78\x5b\x59\x51\x49\x3a",
-        // "" / M(None) / S(0) / L(0)
-        "\x8a\x8d\x3f\x0c\x10\xc2\x98\x86\x15\xc2\x7c\xf5\xbf\xd1\x9c\xac\x33\x82\xac\xa6\x52\xc0\x19\x34\x02\xcf\xd2\x53\x97\x64\x36\xf4",
-        // "CFDictionaryCreateMutable" / M(Xor4) / S(149) / L(25)
-        "\x89\x8c\x8e\xa3\xa9\xbe\xa3\xa5\xa4\xab\xb8\xb3\x89\xb8\xaf\xab\xbe\xaf\x87\xbf\xbe\xab\xa8\xa6\xaf\xca\x8a\x9a\xb7\xbc\x92\x7d\x58\x4e",
-        // "d2i_X509_bio" / M(Xor3) / S(123) / L(12)
-        "\xef\xb9\xe2\xd4\xd3\xbe\xbb\xb2\xd4\xe9\xe2\xe4\x8b\xf6\xae\x9b",
-        // "CFReadStreamRead" / M(Rot) / S(114) / L(16)
-        "\xb5\xb8\xc4\xd7\xd3\xd6\xc5\xe6\xe4\xd7\xd3\xdf\xc4\xd7\xd3\xd6\x72",
-        // "RTLD_MAIN_ONLY" / M(Xor3) / S(194) / L(14)
-        "\x80\x86\x9e\x96\x8d\x9f\x93\x9b\x9c\x8d\x9d\x9c\x9e\x8b\xd2\x96",
-        // "CFDictionaryAddValue" / M(Xor1) / S(180) / L(20)
-        "\xf7\xf2\xf0\xdd\xd7\xc0\xdd\xdb\xda\xd5\xc6\xcd\xf5\xd0\xd0\xe2\xd5\xd8\xc1\xd1\xb4",
-        // "CFReadStreamOpen" / M(Xor1) / S(177) / L(16)
-        "\xf2\xf7\xe3\xd4\xd0\xd5\xe2\xc5\xc3\xd4\xd0\xdc\xfe\xc1\xd4\xdf\xb1",
-        // "" / M(None) / S(0) / L(0)
-        "\xcf\x33\x6c\x9a\x97\x4e\x33\x25\x40\x50\x90\x8f\x81\xf8\xcc\xff\x40\xf0\x36\x8b\x9f\xbc\xaf\xb9\x15\xb7\x10\x9e\x32\xb0\x4d\xbe",
-        // "dlopen" / M(Xor3) / S(108) / L(6)
-        "\x18\x10\x13\x0c\x19\x12\x7c\x80\x0b\xec\x07\x8e\x3a\x08\xbf\xdb",
-        // "longjmp" / M(Xor4) / S(187) / L(7)
-        "\xdc\xdf\xde\xd7\xda\xdd\xc0\xb0\xb1\x0b\x71\x5a\x10\x9a\xf0\x30",
-        // "" / M(None) / S(0) / L(0)
-        "\xde\x55\x8c\x1a\x63\x55\x0a\x9c\xdb\x40\xbc\x06\x26\x88\x14\xb0\x63\x94\xb0\x5a\x85\x3a\xef\x29\x93\xee\x8f\x7f\x82\x90\x69\x0e",
-        // "CFDateFormatterSetProperty" / M(Rot) / S(100) / L(26)
-        "\xa7\xaa\xa8\xc5\xd8\xc9\xaa\xd3\xd6\xd1\xc5\xd8\xd8\xc9\xd6\xb7\xc9\xd8\xb4\xd6\xd3\xd4\xc9\xd6\xd8\xdd\x64\x80\x44\x9e\x7e\x14\xa6\x99\x0d",
-        // "1.2.840.113635.100.6.11.1" / M(Rot) / S(5) / L(25)
-        "\x36\x33\x37\x33\x3d\x39\x35\x33\x36\x36\x38\x3b\x38\x3a\x33\x36\x35\x35\x33\x3b\x33\x36\x36\x33\x36\x05\x64\x39\x54\xd0\x7e\xe4\xac\x53",
-        // "mainBundle" / M(Xor1) / S(20) / L(10)
-        "\x79\x75\x7d\x7a\x56\x61\x7a\x70\x78\x71\x14\xff\xa3\x44\x91\x4d",
-        // "identifierForVendor" / M(Xor3) / S(130) / L(19)
-        "\xff\xf2\xf3\xf8\xe2\xff\xf0\xff\xf3\xe4\xd0\xf9\xe4\xc0\xf3\xf8\xf2\xf9\xe4\x96",
-        // "SHA1_Init" / M(Rot) / S(181) / L(9)
-        "\x08\xfd\xf6\xe6\x14\xfe\x23\x1e\x29\xb5\x41\xb4\x33\xaa\x9c\xa1",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor3) / S(141) / L(40)
-        "\x88\x8f\x8f\xfb\x8b\xfc\x88\x88\x8c\xfd\x8b\x87\x8d\xff\x8e\x86\xf8\xf8\x8b\x86\xfa\x8f\x8a\xff\xfb\x8c\x8c\x8a\x8b\x8c\xfa\x8f\x87\x86\xfa\xf8\x88\xfd\x88\x8e\xbe\xa4\xfc\xb7\x1f\xb1\x63\x7f\x82",
-        // "getUUIDBytes:" / M(Xor3) / S(185) / L(13)
-        "\xae\xac\xbd\x9c\x9c\x80\x8d\x8b\xb0\xbd\xac\xba\xf3\xc9\x16\x23",
-        // "." / M(Xor1) / S(209) / L(1)
-        "\xff\xd1\x8c\x27\x01\x5a\xa6\xc4\x05\xe0\xc5\x37\x71\x56\x53\xe1",
-        // "CFDataGetBytePtr" / M(Xor3) / S(178) / L(16)
-        "\x80\x85\x87\xa2\xb7\xa2\x84\xa6\xb7\x81\xba\xb7\xa6\x93\xb7\xb1\xc3",
-        // "SHA1_Final" / M(Rot) / S(76) / L(10)
-        "\x9f\x94\x8d\x7d\xab\x92\xb5\xba\xad\xb8\x4c\x62\x0b\x75\x1b\x98",
-        // "" / M(None) / S(0) / L(0)
-        "\xd6\x0f\x55\x0b\xff\x3e\x13\x70\x5e\x79\xc7\x2d\x84\xf9\xeb\x3e\x95\xa8\x33\x80\x55\x23\x04\x71\x61\xff\xd2\x37\x5a\xf8\x4b\x20",
-        // "ASN1_get_object" / M(Xor1) / S(66) / L(15)
-        "\x03\x11\x0c\x73\x1d\x25\x27\x36\x1d\x2d\x20\x28\x27\x21\x36\x42",
-        // "" / M(None) / S(0) / L(0)
-        "\x6e\x4b\xc7\x99\x38\xa9\xc4\xaf\x31\xa2\x99\x8d\x6a\xd3\xae\x55\xaf\x29\x4a\xe1\x20\x3f\xc7\xf0\xa4\xf7\x5a\x1c\x26\xb6\x29\x02",
-        // "start" / M(Xor4) / S(39) / L(5)
-        "\x03\x04\x11\x02\x04\x70\xd4\xef\x10\x41\x13\x97\xd9\xaf\x96\x5a",
-        // "" / M(None) / S(0) / L(0)
-        "\x5b\xd7\xfb\x7f\x2a\x5f\xc2\x69\x66\x5e\xfb\xbd\xad\x28\xd4\x9e\x87\x32\xfb\x0b\x5d\x10\x7b\x1b\x7a\xee\x71\xbe\xc6\x21\xaf\x1d",
-        // "" / M(None) / S(0) / L(0)
-        "\x96\x1b\x29\xdd\xee\x9b\x2a\x6e\xe2\x4d\x53\xcd\x4a\xcf\xde\x4b\x92\xaa\xf7\x5c\x7a\xda\xd5\xdd\x7c\x61\xca\x5a\x85\x01\x8d\xd0",
-        // "" / M(None) / S(0) / L(0)
-        "\x33\x98\xcf\x4f\x9d\xd2\x08\x61\x4d\x2c\xde\xc0\x12\x67\x70\x61\xd1\xa9\xa4\x8f\x9a\x72\xf9\xb7\xbc\x63\x76\x01\x0e\x23\xad\xbf",
-        // "EVP_get_digestbyname" / M(Xor2) / S(36) / L(20)
-        "\x74\x67\x61\x6e\x56\x54\x45\x6e\x55\x58\x56\x54\x42\x45\x53\x48\x5f\x50\x5c\x54\x31",
-        // "" / M(None) / S(0) / L(0)
-        "\xd4\x78\xb3\xa6\x27\x10\x77\xd5\x75\x04\xe5\x83\x49\xb2\x12\xc4\x4b\x21\xac\x05\x1d\xe9\xec\xe6\xef\xd0\xda\x1d\x03\x99\x28\xbe",
-        // "X509_free" / M(Xor4) / S(206) / L(9)
-        "\xb8\xd5\xd0\xd9\xbf\x86\x92\x85\x85\xe0\x91\xf5\x47\x09\xa8\xb8",
-        // "" / M(None) / S(0) / L(0)
-        "\x94\xec\xa1\x42\x5d\x73\x8e\xc6\xed\xeb\x5f\xdf\xfb\xc5\xd2\xff\xef\x73\x7e\xdc\xeb\x06\x92\xfb\x5a\x02\xd2\x69\x06\x88\x4e\x0f",
-        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Xor1) / S(151) / L(39)
-        "\xd4\xd1\xc3\xfe\xfa\xf2\xcd\xf8\xf9\xf2\xd4\xe5\xf2\xf6\xe3\xf2\xc0\xfe\xe3\xff\xc3\xfe\xfa\xf2\xde\xf9\xe3\xf2\xe5\xe1\xf6\xfb\xd1\xe5\xf8\xfa\xd0\xda\xc3\x97\xed\xe0\x6c\xa6\xd4\xb9\x86\x89",
-        // "X509_STORE_new" / M(Xor3) / S(47) / L(14)
-        "\x67\x0a\x0f\x06\x60\x6c\x6b\x70\x6d\x7a\x60\x51\x5a\x48\x3f\xdd",
-        // "" / M(None) / S(0) / L(0)
-        "\x7d\x35\x74\xcc\xe5\xd3\x8e\x00\x8f\x2f\x13\x01\x65\xf7\xb9\x74\x22\x97\xb1\xad\xc3\x5f\xae\xf3\x62\x33\x27\x8d\xf5\xe4\x79\x1a",
-        // "BIO_free" / M(Rot) / S(220) / L(8)
-        "\x1e\x25\x2b\x3b\x42\x4e\x41\x41\xdc\x73\x4d\x81\x1b\xfd\xf8\x95",
-        // "" / M(None) / S(0) / L(0)
-        "\x35\xc3\x0b\x0a\x90\xf9\x08\x46\x8c\xe0\xa2\x06\x8c\x2e\xd7\x08\xe4\xdf\xb9\xaf\x1f\x9a\x43\x04\x27\xcd\x03\xf4\x2f\xa0\x50\x3a",
-        // "7" / M(Rot) / S(4) / L(1)
-        "\x3b\x04\x72\x7b\xc2\xd1\x94\xa1\x39\x68\xac\xf3\x6d\xa0\x2c\xfa",
-        // "sk_num" / M(Xor4) / S(230) / L(6)
-        "\x13\x0b\x3f\x0e\x15\x0d\x60\x70\x1d\xb4\x76\x3f\xe3\xe8\x24\x75",
-        // "" / M(None) / S(0) / L(0)
-        "\xf4\x41\x42\x6f\xd9\xcf\xc3\xa0\x8a\x62\x99\xc5\x07\x02\xf9\x00\x7e\x5b\x33\x4d\x80\x75\x9d\xb3\x0a\x09\x0b\xbe\xc9\x9d\xab\x60",
-        // "d2i_PKCS7_bio" / M(Xor3) / S(51) / L(13)
-        "\x27\x71\x2a\x1c\x13\x08\x00\x10\x74\x1c\x21\x2a\x2c\x43\x24\x4e",
-        // "" / M(None) / S(0) / L(0)
-        "\x20\x3c\xda\x85\x4c\xf9\x6f\x23\x06\x9e\xc2\xe4\x3f\x17\x81\xd5\x0c\x09\x61\x8a\xe3\xa5\x45\xbe\x5c\x8a\x9c\x11\x99\x78\x78\xca",
-        // "exit" / M(Xor1) / S(227) / L(4)
-        "\x86\x9b\x8a\x97\xe3\x8f\xe5\x0a\x4e\xe9\xb5\x67\xce\xdc\xe9\xa8",
-        // "EVP_get_digestbyname" / M(Xor1) / S(230) / L(20)
-        "\xa3\xb0\xb6\xb9\x81\x83\x92\xb9\x82\x8f\x81\x83\x95\x92\x84\x9f\x88\x87\x8b\x83\xe6",
-        // "c2i_ASN1_INTEGER" / M(Xor2) / S(58) / L(16)
-        "\x48\x19\x42\x74\x6a\x78\x65\x1a\x74\x62\x65\x7f\x6e\x6c\x6e\x79\x2b",
-        // "" / M(None) / S(0) / L(0)
-        "\x64\x65\x75\x91\x37\xa1\x66\x8a\xfe\x61\xdb\x0b\x40\x40\x38\xfb\x63\xd4\x3b\x5e\xee\xe3\x05\x29\x5a\x65\x68\xb0\x1e\xf7\xfb\x49",
-        // "CFDataCreate" / M(Xor4) / S(145) / L(12)
-        "\x53\x56\x54\x71\x64\x71\x53\x62\x75\x71\x64\x75\x10\x07\x57\xaa",
-        // "EVP_DigestUpdate" / M(Xor2) / S(190) / L(16)
-        "\xea\xf9\xff\xf0\xeb\xc6\xc8\xca\xdc\xdb\xfa\xdf\xcb\xce\xdb\xca\xaf",
-        // "%02X:" / M(Xor4) / S(206) / L(5)
-        "\xc5\xd0\xd2\xb8\xda\xe0\x95\xbf\x3e\xd9\xbd\x73\xb2\xee\xb4\xd3",
-        // "strlen" / M(Rot) / S(62) / L(6)
-        "\xb1\xb2\xb0\xaa\xa3\xac\x3e\x75\x7c\xcf\xd1\xbe\xdd\x25\xe4\x09",
-        // "CFDateFormatterCreateDateFromString" / M(Xor1) / S(103) / L(35)
-        "\x24\x21\x23\x06\x13\x02\x21\x08\x15\x0a\x06\x13\x13\x02\x15\x24\x15\x02\x06\x13\x02\x23\x06\x13\x02\x21\x15\x08\x0a\x34\x13\x15\x0e\x09\x00\x67",
-        // "init" / M(Xor1) / S(64) / L(4)
-        "\x29\x2e\x29\x34\x40\x2f\x76\xce\x40\x3d\xcb\xaa\xd8\x3d\xae\x1d",
-        // "CFDataCreateMutable" / M(Xor3) / S(95) / L(19)
-        "\x30\x35\x37\x12\x07\x12\x30\x01\x16\x12\x07\x16\x3e\x06\x07\x12\x11\x1f\x16\x73",
-        // "PKCS7_verify" / M(Xor3) / S(148) / L(12)
-        "\xf4\xef\xe7\xf7\x93\xfb\xd2\xc1\xd6\xcd\xc2\xdd\xa4\x82\x01\x56",
-        // "CFDictionarySetValue" / M(Xor3) / S(42) / L(20)
-        "\x7c\x79\x7b\x56\x5c\x4b\x56\x50\x51\x5e\x4d\x46\x6c\x5a\x4b\x69\x5e\x53\x4a\x5a\x3f",
-        // "CFBundleIdentifier" / M(Rot) / S(196) / L(18)
-        "\x07\x0a\x06\x39\x32\x28\x30\x29\x0d\x28\x29\x32\x38\x2d\x2a\x2d\x29\x36\xc4",
-        // "setDelegate:" / M(Xor4) / S(209) / L(12)
-        "\x63\x75\x64\x54\x75\x7c\x75\x77\x71\x64\x75\x2a\x10\x57\xfa\xe9",
-        // "CFEqual" / M(Xor1) / S(129) / L(7)
-        "\xc2\xc7\xc4\xf0\xf4\xe0\xed\x81\xf7\x23\xda\xca\x16\xa1\x7c\x4b",
-        // "start" / M(Xor3) / S(92) / L(5)
-        "\x1f\x18\x0d\x1e\x18\x6c\xf2\x9e\x45\xf4\x8b\x5a\xff\x33\x95\x63",
-        // "" / M(None) / S(0) / L(0)
-        "\xe1\x6d\x91\x1c\xd3\xd9\x6c\x58\x06\x20\x81\xb6\x9d\x0e\x38\xcf\x9d\x26\x7c\xa0\xb6\x61\x7d\x17\x03\x11\xff\x8c\xa0\xbb\xf9\x41",
-        // "CFNumberCreate" / M(Xor4) / S(144) / L(14)
-        "\x43\x46\x4e\x75\x6d\x62\x65\x72\x43\x72\x65\x61\x74\x65\x00\x68",
-        // "/usr/lib/libobjc.dylib" / M(Xor1) / S(55) / L(22)
-        "\x18\x42\x44\x45\x18\x5b\x5e\x55\x18\x5b\x5e\x55\x58\x55\x5d\x54\x19\x53\x4e\x5b\x5e\x55\x37",
-        // "" / M(None) / S(0) / L(0)
-        "\x37\xd2\x68\xdb\x6c\xf0\xd7\xf1\xaf\xb9\xd0\x66\xb7\xdb\x25\x08\x09\xdb\x6e\x64\xeb\x8f\xd7\x97\x54\x7a\xd2\xad\xe3\x6b\x32\x01",
-        // "kCFDateFormatterTimeZone" / M(Xor3) / S(214) / L(24)
-        "\x9c\xb4\xb1\xb3\x96\x83\x92\xb1\x98\x85\x9a\x96\x83\x83\x92\x85\xa3\x9e\x9a\x92\xad\x98\x99\x92\xf7\x0d\xf2\xa0\x90\xc9\x31\xa1\x62",
-        // "c2i_ASN1_INTEGER" / M(Xor4) / S(21) / L(16)
-        "\x06\x57\x0c\x3a\x24\x36\x2b\x54\x3a\x2c\x2b\x31\x20\x22\x20\x37\x65",
-        // "CFArrayCreateMutable" / M(Xor1) / S(86) / L(20)
-        "\x15\x10\x17\x24\x24\x37\x2f\x15\x24\x33\x37\x22\x33\x1b\x23\x22\x37\x34\x3a\x33\x56",
-        // "" / M(None) / S(0) / L(0)
-        "\x42\x06\x82\x98\x14\x5c\xac\x5c\x96\x4c\xb6\xaa\x9c\xe8\x23\x9b\x3a\xb2\x00\xa4\x6f\x32\x75\x01\xdb\x8d\x40\xdd\xe1\xd9\xe9\x08",
-        // "setjmp" / M(Xor3) / S(162) / L(6)
-        "\xc1\xd7\xc6\xd8\xdf\xc2\xb2\xa9\x83\x21\x18\x69\xe4\x66\x52\xb8",
-        // "" / M(None) / S(0) / L(0)
-        "\xaf\x15\xc4\xe8\xcd\xbe\x7f\x70\xd0\x32\xa9\xba\x9e\x31\x85\x3f\xc7\xee\xaf\xb1\xaf\xd3\x97\xe2\xfd\x0f\x96\x6d\x5e\x70\x4c\xed",
-        // "objc_lookUpClass" / M(Rot) / S(147) / L(16)
-        "\x02\xf5\xfd\xf6\xf2\xff\x02\x02\xfe\xe8\x03\xd6\xff\xf4\x06\x06\x93",
-        // "EVP_DigestUpdate" / M(Rot) / S(2) / L(16)
-        "\x47\x58\x52\x61\x46\x6b\x69\x67\x75\x76\x57\x72\x66\x63\x76\x67\x02",
-        // "CC_SHA1" / M(Xor1) / S(212) / L(7)
-        "\x97\x97\x8b\x87\x9c\x95\xe5\xd4\x53\x02\x4f\x26\x5b\x32\xb6\x86",
-        // "/usr/lib/libSystem.dylib" / M(Xor1) / S(28) / L(24)
-        "\x33\x69\x6f\x6e\x33\x70\x75\x7e\x33\x70\x75\x7e\x4f\x65\x6f\x68\x79\x71\x32\x78\x65\x70\x75\x7e\x1c\x1a\xbc\x0f\x9f\x3d\xea\x0a\xb7",
-        // "" / M(None) / S(0) / L(0)
-        "\x53\x2f\xbf\xdb\x3f\x29\xbc\xac\x95\x00\xef\xc5\x17\x8f\xab\xb9\xf3\x0b\x84\x7c\x25\x42\x04\xeb\x01\xe5\xf7\x0c\x2f\xff\x92\xa9",
-        // "CFDataGetLength" / M(Xor4) / S(249) / L(15)
-        "\xd3\xd6\xd4\xf1\xe4\xf1\xd7\xf5\xe4\xdc\xf5\xfe\xf7\xe4\xf8\x90",
-        // "sk_num" / M(Xor2) / S(245) / L(6)
-        "\x96\x8e\xba\x8b\x90\x88\xe5\x9f\x85\xd4\x45\x82\x34\x63\x33\x87",
-        // "" / M(None) / S(0) / L(0)
-        "\x9d\x76\xe0\x67\x59\xdf\x66\x39\xef\x7f\x32\x49\x5e\x08\x80\xbc\x20\x19\xf5\xdf\x70\xc4\x15\xe1\xa8\x05\xcc\x7a\xa6\x30\xf1\xe3",
-        // "CFDateCreate" / M(Xor4) / S(202) / L(12)
-        "\xe3\xe6\xe4\xc1\xd4\xc5\xe3\xd2\xc5\xc1\xd4\xc5\xa0\xd7\x8d\xc3",
-        // "ASN1_INTEGER_get" / M(Xor3) / S(168) / L(16)
-        "\xf8\xea\xf7\x88\xe6\xf0\xf7\xed\xfc\xfe\xfc\xeb\xe6\xde\xdc\xcd\xb9",
-        // "" / M(None) / S(0) / L(0)
-        "\xa9\xb0\x7c\x42\x89\x17\xe0\xce\xb0\xb6\xc7\x3b\xe4\xdf\x31\x59\x02\x4d\x6f\x09\x13\x90\xd1\x47\xba\xd6\xa2\xfd\x4d\x69\xbc\x59",
-        // "PKCS7_get0_signers" / M(Xor4) / S(32) / L(18)
-        "\x30\x2b\x23\x33\x57\x3f\x07\x05\x14\x50\x3f\x13\x09\x07\x0e\x05\x12\x13\x60",
-        // "sel_registerName" / M(Xor1) / S(221) / L(16)
-        "\xae\xb8\xb1\x82\xaf\xb8\xba\xb4\xae\xa9\xb8\xaf\x93\xbc\xb0\xb8\xdd",
-        // "" / M(None) / S(0) / L(0)
-        "\xc9\x26\xa5\x39\x17\xac\xa5\x6c\xf1\x37\xdd\x17\x45\x4c\x4b\x90\x08\x8d\x0e\x46\xd4\xbf\xca\x48\xce\x47\xf8\x8b\xaf\x2c\xb3\xd9",
-        // "ASN1_INTEGER_get" / M(Xor4) / S(157) / L(16)
-        "\x2c\x3e\x23\x5c\x32\x24\x23\x39\x28\x2a\x28\x3f\x32\x0a\x08\x19\x6d",
-        // "CFRelease" / M(Xor2) / S(11) / L(9)
-        "\x58\x5d\x49\x7e\x77\x7e\x7a\x68\x7e\x1b\x99\xe0\xe0\x56\xd1\xb3",
-        // "CFStringCreateWithCString" / M(Xor2) / S(239) / L(25)
-        "\x8e\x8b\x9e\xb9\xbf\xa4\xa3\xaa\x8e\xbf\xa8\xac\xb9\xa8\x9a\xa4\xb9\xa5\x8e\x9e\xb9\xbf\xa4\xa3\xaa\xcd\xf9\x9a\xe4\x20\xd5\xff\x82\x7f",
-        // "" / M(None) / S(0) / L(0)
-        "\x5a\x14\xd9\x9c\x18\x42\xd2\xa7\xd9\x40\x5d\xca\xc7\x18\x5f\xfa\x8e\x13\x78\xbd\xb5\xc4\x0f\x41\x0f\xb2\x03\x73\xc6\x1f\x7f\x87",
-        // "sk_free" / M(Xor3) / S(150) / L(7)
-        "\xd5\xcd\xf9\xc0\xd4\xc3\xc3\xa6\x62\x2a\x7a\x8e\xe9\x47\x30\x96",
-        // "" / M(None) / S(0) / L(0)
-        "\xa6\x77\xed\xa7\xf3\xb8\x79\x47\xd7\x2a\xc5\xa6\x44\x80\x9c\x0b\x44\xea\x0e\x9f\x3c\xa4\x96\x20\x44\xf4\xf5\x6d\x07\x47\x79\x89",
-        // "CFStringCompare" / M(Xor2) / S(135) / L(15)
-        "\xd4\xd1\xc4\xe3\xe5\xfe\xf9\xf0\xd4\xf8\xfa\xe7\xf6\xe5\xf2\x97",
-        // "currentDevice" / M(Xor1) / S(0) / L(13)
-        "\x63\x75\x72\x72\x65\x6e\x74\x44\x65\x76\x69\x63\x65\x00\x1a\xf8",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Rot) / S(46) / L(40)
-        "\x64\x5f\x5f\x93\x63\x90\x64\x64\x60\x91\x63\x67\x61\x8f\x5e\x66\x94\x94\x63\x66\x92\x5f\x62\x8f\x93\x60\x60\x62\x63\x60\x92\x5f\x67\x66\x92\x94\x64\x91\x64\x5e\x2e\x9a\xa4\x1a\x46\xa6\x0b\xd5\x11",
-        // "CFDictionaryCreateMutable" / M(Xor4) / S(68) / L(25)
-        "\x4b\x4e\x4c\x61\x6b\x7c\x61\x67\x66\x69\x7a\x71\x4b\x7a\x6d\x69\x7c\x6d\x45\x7d\x7c\x69\x6a\x64\x6d\x08\x85\x42\x18\x69\x4b\xa6\xee\x3d",
-        // "CFDictionarySetValue" / M(Xor3) / S(142) / L(20)
-        "\xe0\xe5\xe7\xca\xc0\xd7\xca\xcc\xcd\xc2\xd1\xda\xf0\xc6\xd7\xf5\xc2\xcf\xd6\xc6\xa3",
-        // "BIO_new" / M(Xor3) / S(9) / L(7)
-        "\x5b\x50\x56\x46\x77\x7c\x6e\x19\x4a\xe7\x5d\xd9\x4f\xe4\x08\xb7",
-        // "X509_digest" / M(Xor1) / S(242) / L(11)
-        "\xaa\xc7\xc2\xcb\xad\x96\x9b\x95\x97\x81\x86\xf2\xcc\x99\xd9\x31",
-        // "NSBundle" / M(Xor1) / S(13) / L(8)
-        "\x43\x5e\x4f\x78\x63\x69\x61\x68\x0d\x94\x7d\x61\x42\xc9\xa6\x0a",
-        // "setDelegate:" / M(Xor2) / S(38) / L(12)
-        "\x45\x53\x42\x72\x53\x5a\x53\x51\x57\x42\x53\x0c\x36\x0d\xf6\x72",
-        // "" / M(None) / S(0) / L(0)
-        "\x20\x4d\xcf\xa7\x28\x66\xa4\x1e\x31\x6d\xa3\x1b\x97\x15\x83\xc2\x66\x7b\x24\x79\x30\xad\x2b\xa4\x40\x11\xc7\x23\xc8\x8a\xed\xba",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor1) / S(124) / L(59)
-        "\x4a\x4d\x46\x4d\x19\x46\x49\x1e\x46\x4a\x4a\x46\x4e\x1f\x46\x49\x45\x46\x4f\x1d\x46\x4c\x44\x46\x1a\x1a\x46\x49\x44\x46\x18\x4d\x46\x48\x1d\x46\x19\x4e\x46\x4e\x48\x46\x49\x4e\x46\x18\x4d\x46\x45\x44\x46\x18\x1a\x46\x4a\x1f\x46\x4a\x4c\x7c\x03\xda\x70\x8b\xa7\x4f\xd2\x66",
-        // "" / M(None) / S(0) / L(0)
-        "\x7c\x8b\x6e\x83\x74\xeb\x5b\xfa\x35\x3e\x19\xd8\x16\xc1\x53\x07\xfb\x96\xe6\x8a\x89\x8b\xd7\x82\xd5\xce\x44\x53\x51\x18\xd3\xc4",
-        // "EVP_DigestInit" / M(Xor4) / S(73) / L(14)
-        "\xd5\xc6\xc0\xcf\xd4\xf9\xf7\xf5\xe3\xe4\xd9\xfe\xf9\xe4\x90\x04",
-        // "" / M(None) / S(0) / L(0)
-        "\x1c\x35\xed\x72\x7c\x75\xa5\x9d\xb2\x39\x5f\x39\x46\xdd\x96\xaf\x87\x7b\x7b\x04\xa8\x4f\xf3\x3c\xe0\x16\x53\x6b\xef\xe5\x4a\x5e",
-        // "sel_registerName" / M(Xor2) / S(208) / L(16)
-        "\xb2\xa4\xad\x9e\xb3\xa4\xa6\xa8\xb2\xb5\xa4\xb3\x8f\xa0\xac\xa4\xc1",
-        // "CFBundleUnloadExecutable" / M(Xor2) / S(247) / L(24)
-        "\x95\x90\x94\xa3\xb8\xb2\xba\xb3\x83\xb8\xba\xb9\xb7\xb2\x93\xae\xb3\xb5\xa3\xa2\xb7\xb4\xba\xb3\xd6\xca\x12\xfc\xa7\xaf\x71\x95\x1d",
-        // "CFDataGetLength" / M(Xor4) / S(61) / L(15)
-        "\x93\x96\x94\xb1\xa4\xb1\x97\xb5\xa4\x9c\xb5\xbe\xb7\xa4\xb8\xd0",
-        // "CFRelease" / M(Xor2) / S(65) / L(9)
-        "\x12\x17\x03\x34\x3d\x34\x30\x22\x34\x51\xc5\x5c\xd4\xcd\x31\x38",
-        // "%02x" / M(Xor4) / S(68) / L(4)
-        "\x65\x70\x72\x38\x40\x8d\x59\x49\x7e\xa1\x9b\xcd\x01\x1f\xf6\x30",
-        // "X509_free" / M(Xor3) / S(65) / L(9)
-        "\x09\x64\x61\x68\x0e\x37\x23\x34\x34\x51\xa0\x77\x25\x05\x56\xf4",
-        // "" / M(None) / S(0) / L(0)
-        "\xf4\x83\xfc\x8c\x7e\xf7\xad\x79\xd0\xc3\xa4\xf4\xd7\x13\x5a\x16\xd2\x2d\x23\x2c\xf7\x2d\x4e\x43\x44\xde\x5f\x1a\xf8\xb0\xdb\xbc",
-        // "CFArrayGetValueAtIndex" / M(Xor2) / S(240) / L(22)
-        "\xa4\xa1\xa6\x95\x95\x86\x9e\xa0\x82\x93\xb1\x86\x8b\x92\x82\xa6\x93\xae\x89\x83\x82\x9f\xe7",
-        // "" / M(None) / S(0) / L(0)
-        "\x57\x98\x1f\x0c\x2b\xeb\x5b\x46\xda\xa6\x87\x15\x26\xf0\xb2\xb9\xbd\xb7\xc3\xa8\xd2\x2e\x85\x35\x72\xea\xad\xc2\xa9\x2b\x67\x04",
-        // "longjmp" / M(Rot) / S(214) / L(7)
-        "\x42\x45\x44\x3d\x40\x43\x46\xd6\x14\xff\x8f\x1d\xe3\x6c\x7d\xc9",
-        // "" / M(None) / S(0) / L(0)
-        "\xf4\xa4\x7a\x41\x5c\x55\x29\x60\x79\xc6\xb4\xb0\x9f\x04\x43\x1d\x5f\x37\xa1\xb0\x9a\x5d\x6e\x8d\x84\x0e\x42\x48\x5f\x1a\x83\x2c",
-        // "SHA1_Update" / M(Xor4) / S(94) / L(11)
-        "\xb3\xa8\xa1\xd1\xbf\xb5\x90\x84\x81\x94\x85\xe0\xff\xab\x0e\x8f",
-        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Rot) / S(109) / L(39)
-        "\xb0\xb3\xc1\xd6\xda\xd2\xc7\xdc\xdb\xd2\xb0\xdf\xd2\xce\xe1\xd2\xc4\xd6\xe1\xd5\xc1\xd6\xda\xd2\xb6\xdb\xe1\xd2\xdf\xe3\xce\xd9\xb3\xdf\xdc\xda\xb4\xba\xc1\x6d\xc6\xc5\xde\x31\x06\xcd\x3b\x46",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor4) / S(172) / L(40)
-        "\xda\xdd\xdd\xa9\xd9\xae\xda\xda\xde\xaf\xd9\xd5\xdf\xad\xdc\xd4\xaa\xaa\xd9\xd4\xa8\xdd\xd8\xad\xa9\xde\xde\xd8\xd9\xde\xa8\xdd\xd5\xd4\xa8\xaa\xda\xaf\xda\xdc\xec\xe0\x1c\xc2\x57\xdc\x08\x95\x10",
-        // "getUUIDBytes:" / M(Xor3) / S(230) / L(13)
-        "\x91\x93\x82\xa3\xa3\xbf\xb2\xb4\x8f\x82\x93\x85\xcc\xf6\x6c\xa0",
-        // "RTLD_MAIN_ONLY" / M(Rot) / S(161) / L(14)
-        "\xf3\xf5\xed\xe5\x00\xee\xe2\xea\xef\x00\xf0\xef\xed\xfa\xa1\xd9",
-        // "" / M(None) / S(0) / L(0)
-        "\x6b\xc0\x25\xd3\x30\x18\x4c\x48\xe0\x0e\xc4\x08\xd5\x53\x27\x10\xd2\x10\x42\xc6\x67\xb5\xe6\xcf\x27\xf9\xbc\x79\x32\xb1\x9f\x05",
-        // "" / M(None) / S(0) / L(0)
-        "\x95\xb4\xe0\xc8\x0b\x8f\xe3\x09\xbf\xa9\x03\xa8\x11\x28\x7f\xa8\xd4\xb7\x86\xc6\x9a\x2d\x78\x17\x68\x28\xd3\xeb\x08\xf1\xba\x07",
-        // "" / M(None) / S(0) / L(0)
-        "\xfc\x22\x50\x2a\x90\x9c\x90\x21\x1c\x4b\x89\x72\x90\x15\x29\xe1\x24\x47\xf8\xfc\x22\xc3\x32\x0c\xf3\x3c\x48\xc5\x12\xc5\x86\x26",
-        // "currentDevice" / M(Xor3) / S(167) / L(13)
-        "\xd4\xc2\xc5\xc5\xd2\xd9\xc3\xf3\xd2\xc1\xde\xd4\xd2\xb7\x21\x83",
-        // "SKReceiptRefreshRequest" / M(Xor2) / S(85) / L(23)
-        "\x26\x3e\x27\x10\x16\x10\x1c\x05\x01\x27\x10\x13\x07\x10\x06\x1d\x27\x10\x04\x00\x10\x06\x01\x75\xcb\xba\xef\x47\x2f\xb6\xce\x66",
-        // "BIO_s_mem" / M(Xor3) / S(30) / L(9)
-        "\x6c\x67\x61\x71\x5d\x71\x43\x4b\x43\x2e\x87\x26\x4b\xdf\x4b\xed",
-        // "CFAbsoluteTimeGetCurrent" / M(Xor2) / S(255) / L(24)
-        "\x9d\x98\x9f\xbc\xad\xb1\xb2\xab\xaa\xbb\x8a\xb7\xb3\xbb\x99\xbb\xaa\x9d\xab\xac\xac\xbb\xb0\xaa\xde\xa2\x2a\x63\x1e\xd4\xd9\xbc\x36",
-        // "CC_SHA1_Init" / M(Rot) / S(202) / L(12)
-        "\x0d\x0d\x29\x1d\x12\x0b\xfb\x29\x13\x38\x33\x3e\xca\xe8\x51\xb7",
-        // "" / M(None) / S(0) / L(0)
-        "\xd4\x13\x68\xb0\x0c\xc0\xbf\xa5\xb4\xa3\xa1\xa6\xba\x60\x75\x76\xb4\x45\x8d\x94\x58\xf7\x19\xbf\xdb\x9b\x28\x87\x71\x2c\x5a\x86",
-        // "CFDataCreate" / M(Xor4) / S(104) / L(12)
-        "\xc3\xc6\xc4\xe1\xf4\xe1\xc3\xf2\xe5\xe1\xf4\xe5\x80\x4d\xbc\xf3",
-        // "CFDictionaryAddValue" / M(Xor4) / S(29) / L(20)
-        "\x22\x27\x25\x08\x02\x15\x08\x0e\x0f\x00\x13\x18\x20\x05\x05\x37\x00\x0d\x14\x04\x61",
-        // "X509_STORE_add_cert" / M(Xor4) / S(39) / L(19)
-        "\x54\x39\x3c\x35\x53\x5f\x58\x43\x5e\x49\x53\x6d\x68\x68\x53\x6f\x69\x7e\x78\x0c",
-        // "exit" / M(Xor2) / S(33) / L(4)
-        "\x54\x49\x58\x45\x31\x7c\x44\x90\x49\xd3\xab\xe7\xbf\x57\x0a\x3e",
-        // "" / M(None) / S(0) / L(0)
-        "\xa8\xcf\x5f\x9d\x79\xa4\x17\xcc\x00\xe8\xb0\x00\x09\xd4\x05\x06\x1b\x55\xe5\x65\xc5\x18\xfc\x63\x66\x6d\xdb\x62\xa2\xec\x8e\x90",
-        // "kCFBundleIdentifierKey" / M(Xor1) / S(151) / L(22)
-        "\xfc\xd4\xd1\xd5\xe2\xf9\xf3\xfb\xf2\xde\xf3\xf2\xf9\xe3\xfe\xf1\xfe\xf2\xe5\xdc\xf2\xee\x97",
-        // "CFReadStreamClose" / M(Xor4) / S(244) / L(17)
-        "\x6b\x6e\x7a\x4d\x49\x4c\x7b\x5c\x5a\x4d\x49\x45\x6b\x44\x47\x5b\x4d\x28",
-        // "objc_lookUpClass" / M(Xor1) / S(172) / L(16)
-        "\xc3\xce\xc6\xcf\xf3\xc0\xc3\xc3\xc7\xf9\xdc\xef\xc0\xcd\xdf\xdf\xac",
-        // "SHA1_Init" / M(Xor4) / S(161) / L(9)
-        "\x43\x58\x51\x21\x4f\x59\x7e\x79\x64\x10\xeb\x62\x59\x01\xfa\x7d",
-        // "CFArrayGetCount" / M(Xor4) / S(211) / L(15)
-        "\x73\x76\x71\x42\x42\x51\x49\x77\x55\x44\x73\x5f\x45\x5e\x44\x30",
-        // "alloc" / M(Rot) / S(121) / L(5)
-        "\xda\xe5\xe5\xe8\xdc\x79\x9c\xdb\x9d\x89\x52\x9d\xc2\xe9\x04\x1b",
-        // "ASN1_INTEGER_free" / M(Xor3) / S(193) / L(17)
-        "\x92\x80\x9d\xe2\x8c\x9a\x9d\x87\x96\x94\x96\x81\x8c\xb5\xa1\xb6\xb6\xd3",
-        // "kCFTypeArrayCallBacks" / M(Rot) / S(25) / L(21)
-        "\x84\x5c\x5f\x6d\x92\x89\x7e\x5a\x8b\x8b\x7a\x92\x5c\x7a\x85\x85\x5b\x7a\x7c\x84\x8c\x19",
-        // "" / M(None) / S(0) / L(0)
-        "\x29\xae\xdd\xd5\xd1\x63\xda\x84\x07\xd0\x31\xdd\x44\xa9\xdd\x5d\x5d\x29\x6c\x29\x0b\xb8\xaf\x3a\xda\x8d\xa2\xb8\xbc\xb1\x6f\x0a",
-        // "start" / M(Xor1) / S(4) / L(5)
-        "\x77\x70\x65\x76\x70\x04\x45\x76\xde\x50\x40\x00\xf6\xb1\xa6\xe9",
-        // "EVP_DigestFinal" / M(Xor4) / S(109) / L(15)
-        "\x95\x86\x80\x8f\x94\xb9\xb7\xb5\xa3\xa4\x96\xb9\xbe\xb1\xbc\xd0",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor3) / S(178) / L(66)
-        "\xda\xa6\x8c\x86\x81\x90\x98\xda\xb9\x9c\x97\x87\x94\x87\x8c\xda\xb3\x87\x94\x98\x90\x82\x9a\x87\x9e\x86\xda\xb6\x9a\x87\x90\xb3\x9a\x80\x9b\x91\x94\x81\x9c\x9a\x9b\xdb\x93\x87\x94\x98\x90\x82\x9a\x87\x9e\xda\xb6\x9a\x87\x90\xb3\x9a\x80\x9b\x91\x94\x81\x9c\x9a\x9b\xf5",
-        // "." / M(Xor2) / S(113) / L(1)
-        "\x4f\x61\xca\x3c\xbf\xf5\x1d\x26\xb2\x4e\x35\x21\xcb\xe9\x85\xa6",
-        // "PKCS7_get0_signers" / M(Rot) / S(186) / L(18)
-        "\x0a\x05\xfd\x0d\xf1\x19\x21\x1f\x2e\xea\x19\x2d\x23\x21\x28\x1f\x2c\x2d\xba",
-        // "EVP_DigestUpdate" / M(Xor3) / S(45) / L(16)
-        "\x7b\x68\x6e\x61\x7a\x57\x59\x5b\x4d\x4a\x6b\x4e\x5a\x5f\x4a\x5b\x3e",
-        // "SKReceiptRefreshRequest" / M(Rot) / S(167) / L(23)
-        "\xfa\xf2\xf9\x0c\x0a\x0c\x10\x17\x1b\xf9\x0c\x0d\x19\x0c\x1a\x0f\xf9\x0c\x18\x1c\x0c\x1a\x1b\xa7\xf2\xbb\xd9\xd0\xfb\xed\xef\xec",
-        // "SHA1_Init" / M(Xor1) / S(65) / L(9)
-        "\x12\x09\x00\x70\x1e\x08\x2f\x28\x35\x41\xb9\x07\x74\xf0\x14\x40",
-        // "" / M(None) / S(0) / L(0)
-        "\x66\x72\x5f\xd6\xc1\x2f\xd5\x31\x6f\x6e\xa1\xc3\xd5\xaf\x47\x29\x20\xc4\xe2\xfc\x11\xe4\xf5\x0d\x5a\x70\xfc\x70\xbe\xe9\x5a\x5c",
-        // "EVP_MD_CTX_init" / M(Xor1) / S(217) / L(15)
-        "\x9c\x8f\x89\x86\x94\x9d\x86\x9a\x8d\x81\x86\xb0\xb7\xb0\xad\xd9",
-        // "" / M(None) / S(0) / L(0)
-        "\xcb\x41\xbb\xca\xc1\x47\x40\xf8\x7b\x13\x7f\xdf\xba\x0b\xb1\x3e\x1d\xae\xbf\x0a\xfc\x1e\xac\x66\x2c\x34\x8b\xc7\x2d\x6d\x2f\xb0",
-        // "sk_value" / M(Xor1) / S(83) / L(8)
-        "\x20\x38\x0c\x25\x32\x3f\x26\x36\x53\x4f\xcf\xc1\xf4\xe3\x84\x32",
-        // "CFAbsoluteTimeGetCurrent" / M(Rot) / S(47) / L(24)
-        "\x72\x75\x70\x91\xa2\x9e\x9b\xa4\xa3\x94\x83\x98\x9c\x94\x76\x94\xa3\x72\xa4\xa1\xa1\x94\x9d\xa3\x2f\x25\x5a\x87\xeb\xbd\x85\xd6\x14",
-        // "CFReadStreamRead" / M(Xor4) / S(114) / L(16)
-        "\xd1\xd4\xc0\xf7\xf3\xf6\xc1\xe6\xe0\xf7\xf3\xff\xc0\xf7\xf3\xf6\x92",
-        // "objc_getClass" / M(Xor2) / S(217) / L(13)
-        "\xa6\xab\xa3\xaa\x96\xae\xac\xbd\x8a\xa5\xa8\xba\xba\xc9\xce\xab",
-        // "CFReadStreamClose" / M(Xor1) / S(70) / L(17)
-        "\x05\x00\x14\x23\x27\x22\x15\x32\x34\x23\x27\x2b\x05\x2a\x29\x35\x23\x46",
-        // "" / M(None) / S(0) / L(0)
-        "\xe9\xbd\x6f\x4d\x6c\x7d\x8c\xfc\xb5\x2b\x9b\x14\x7d\x7c\xcb\x88\x8f\xe7\x6a\xad\x72\x6b\x4b\x51\xdc\x15\xc7\x35\x40\x05\x5b\xee",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor4) / S(254) / L(36)
-        "\xf5\xf0\xf4\xc3\xd8\xd2\xda\xd3\xf1\xd3\xc2\xe0\xd7\xda\xc3\xd3\xf0\xd9\xc4\xff\xd8\xd0\xd9\xf2\xdf\xd5\xc2\xdf\xd9\xd8\xd7\xc4\xcf\xfd\xd3\xcf\xb6",
-        // "%02x:" / M(Rot) / S(139) / L(5)
-        "\xb0\xbb\xbd\x03\xc5\x8b\xb7\xca\x86\xd9\x64\x2a\xf0\xd9\x85\xe9",
-        // "X509_STORE_free" / M(Xor4) / S(242) / L(15)
-        "\x78\x15\x10\x19\x7f\x73\x74\x6f\x72\x65\x7f\x46\x52\x45\x45\x20",
-        // "CFDataGetBytePtr" / M(Xor3) / S(1) / L(16)
-        "\x51\x54\x56\x73\x66\x73\x55\x77\x66\x50\x6b\x66\x77\x42\x66\x60\x12",
-        // "CFBundleGetMainBundle" / M(Xor3) / S(65) / L(21)
-        "\x14\x11\x15\x22\x39\x33\x3b\x32\x10\x32\x23\x1a\x36\x3e\x39\x15\x22\x39\x33\x3b\x32\x57",
-        // "CFDateFormatterCreate" / M(Xor4) / S(151) / L(21)
-        "\xb9\xbc\xbe\x9b\x8e\x9f\xbc\x95\x88\x97\x9b\x8e\x8e\x9f\x88\xb9\x88\x9f\x9b\x8e\x9f\xfa",
-        // "SHA1" / M(Xor4) / S(108) / L(4)
-        "\x93\x88\x81\xf1\xc0\x89\xda\xd7\x40\xab\x4c\xc9\x72\xdc\x12\x65",
-        // "" / M(None) / S(0) / L(0)
-        "\x38\x79\x4a\x65\xc1\xa2\x85\x82\x08\x16\x51\xed\x51\xd6\x4d\x2f\x2b\x9f\x4a\x99\x83\x65\xe5\xa4\x89\x47\xf8\x3c\x5d\x60\xdf\xaa",
-        // "X509_NAME_get_text_by_NID" / M(Xor3) / S(213) / L(25)
-        "\xaf\xc2\xc7\xce\xa8\xb9\xb6\xba\xb2\xa8\x90\x92\x83\xa8\x83\x92\x8f\x83\xa8\x95\x8e\xa8\xb9\xbe\xb3\xf7\x7b\x94\x0b\x5a\xbe\x9c\x7c\xa9",
-        // "" / M(None) / S(0) / L(0)
-        "\xc2\x0b\x42\xad\xf6\x8f\xbb\xa7\x8e\x6d\xd7\x45\x71\x40\x1d\x99\xe8\x69\x33\x38\x9e\xcc\x3c\x78\xc5\xbd\x55\x55\x20\xa1\x69\x67",
-        // "X509_get_ext_by_OBJ" / M(Xor1) / S(3) / L(19)
-        "\x5b\x36\x33\x3a\x5c\x64\x66\x77\x5c\x66\x7b\x77\x5c\x61\x7a\x5c\x4c\x41\x49\x03",
-        // "CFDataAppendBytes" / M(Xor4) / S(105) / L(17)
-        "\x21\x24\x26\x03\x16\x03\x23\x12\x12\x07\x0c\x06\x20\x1b\x16\x07\x11\x62",
-        // "CFDateFormatterCreate" / M(Xor1) / S(48) / L(21)
-        "\x73\x76\x74\x51\x44\x55\x76\x5f\x42\x5d\x51\x44\x44\x55\x42\x73\x42\x55\x51\x44\x55\x30",
-        // "CFBundleUnloadExecutable" / M(Xor4) / S(232) / L(24)
-        "\xab\xae\xaa\x9d\x86\x8c\x84\x8d\xbd\x86\x84\x87\x89\x8c\xad\x90\x8d\x8b\x9d\x9c\x89\x8a\x84\x8d\xe8\xfe\x2f\xd6\xcb\xf3\x43\xc7\x09",
-        // "" / M(None) / S(0) / L(0)
-        "\xee\x3b\x13\xe5\x85\x0c\x27\x47\xd9\x17\x87\x3b\x48\xac\xd4\x28\xe4\x41\x08\x70\x15\x66\x1b\xc5\xd0\x7c\xcb\xf2\x0c\x45\x78\xc8",
-        // "" / M(None) / S(0) / L(0)
-        "\xb2\x23\x01\x68\x57\xcb\x4a\x23\x03\x53\xfc\x7c\x2a\xf5\x8d\x70\xea\xfc\xbf\x93\x11\xac\xc0\x09\xbf\x0f\xa5\xe5\xab\xa8\x8d\x56",
-        // "CFDateCreate" / M(Rot) / S(62) / L(12)
-        "\x81\x84\x82\x9f\xb2\xa3\x81\xb0\xa3\x9f\xb2\xa3\x3e\xe9\x30\x2f",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor1) / S(71) / L(59)
-        "\x71\x76\x7d\x76\x02\x7d\x72\x05\x7d\x71\x71\x7d\x75\x04\x7d\x72\x7e\x7d\x74\x06\x7d\x77\x7f\x7d\x01\x01\x7d\x72\x7f\x7d\x03\x76\x7d\x73\x06\x7d\x02\x75\x7d\x75\x73\x7d\x72\x75\x7d\x03\x76\x7d\x7e\x7f\x7d\x03\x01\x7d\x71\x04\x7d\x71\x77\x47\x81\x90\x1c\x37\x47\x52\x48\xc4",
-        // "strncmp" / M(Xor3) / S(108) / L(7)
-        "\x0f\x08\x0e\x12\x1f\x11\x0c\x7c\xc4\x9a\x42\x24\x3d\xaf\x77\xf5",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Rot) / S(160) / L(40)
-        "\xd6\xd1\xd1\x05\xd5\x02\xd6\xd6\xd2\x03\xd5\xd9\xd3\x01\xd0\xd8\x06\x06\xd5\xd8\x04\xd1\xd4\x01\x05\xd2\xd2\xd4\xd5\xd2\x04\xd1\xd9\xd8\x04\x06\xd6\x03\xd6\xd0\xa0\xea\x28\x5b\x87\x46\x45\xec\xb5",
-        // "CC_SHA1_Init" / M(Xor1) / S(210) / L(12)
-        "\x91\x91\x8d\x81\x9a\x93\xe3\x8d\x9b\xbc\xbb\xa6\xd2\xa9\xf7\x22",
-        // "d2i_PKCS7_bio" / M(Rot) / S(182) / L(13)
-        "\x1a\xe8\x1f\x15\x06\x01\xf9\x09\xed\x15\x18\x1f\x25\xb6\xa8\x34",
-        // "CFDictionaryGetValue" / M(Xor2) / S(199) / L(20)
-        "\x91\x94\x96\xbb\xb1\xa6\xbb\xbd\xbc\xb3\xa0\xab\x95\xb7\xa6\x84\xb3\xbe\xa7\xb7\xd2",
-        // "SHA1_Final" / M(Xor1) / S(14) / L(10)
-        "\x5d\x46\x4f\x3f\x51\x48\x67\x60\x6f\x62\x0e\x1b\xf1\x9e\xdb\xf5",
-        // "X509_STORE_new" / M(Xor2) / S(150) / L(14)
-        "\xde\xb3\xb6\xbf\xd9\xd5\xd2\xc9\xd4\xc3\xd9\xe8\xe3\xf1\x86\xad",
-        // "objc_getClass" / M(Rot) / S(90) / L(13)
-        "\xc9\xbc\xc4\xbd\xb9\xc1\xbf\xce\x9d\xc6\xbb\xcd\xcd\x5a\xb2\xe7",
-        // "1.2.840.113635.100.6.11.1" / M(Xor3) / S(100) / L(25)
-        "\xb7\xa8\xb4\xa8\xbe\xb2\xb6\xa8\xb7\xb7\xb5\xb0\xb5\xb3\xa8\xb7\xb6\xb6\xa8\xb0\xa8\xb7\xb7\xa8\xb7\x86\x47\x02\x9c\x95\x70\x69\x5a\x22",
-        // "/usr/lib/libSystem.dylib" / M(Xor4) / S(182) / L(24)
-        "\x59\x03\x05\x04\x59\x1a\x1f\x14\x59\x1a\x1f\x14\x25\x0f\x05\x02\x13\x1b\x58\x12\x0f\x1a\x1f\x14\x76\x0a\x05\x7a\xae\x2e\xaf\x3b\x80",
-        // "CFBundleShortVersionString" / M(Xor2) / S(73) / L(26)
-        "\x29\x2c\x28\x1f\x04\x0e\x06\x0f\x39\x02\x05\x18\x1e\x3c\x0f\x18\x19\x03\x05\x04\x39\x1e\x18\x03\x04\x0d\x6a\x8a\x39\xd0\xae\xec\x6d\xef\xbf",
-        // "CC_SHA1_Init" / M(Xor3) / S(77) / L(12)
-        "\x1e\x1e\x02\x0e\x15\x1c\x6c\x02\x14\x33\x34\x29\x5d\xd1\x0c\x16",
-        // "X509_free" / M(Xor4) / S(108) / L(9)
-        "\x98\xf5\xf0\xf9\x9f\xa6\xb2\xa5\xa5\xc0\x4a\x7d\x2b\x68\xd6\x00",
-        // "CFBundleGetIdentifier" / M(Xor2) / S(115) / L(21)
-        "\x26\x23\x27\x10\x0b\x01\x09\x00\x22\x00\x11\x2c\x01\x00\x0b\x11\x0c\x03\x0c\x00\x17\x65",
-        // "SHA1_Update" / M(Rot) / S(59) / L(11)
-        "\x8e\x83\x7c\x6c\x9a\x90\xab\x9f\x9c\xaf\xa0\x3b\xef\x64\xb4\x24",
-        // "getUUIDBytes:" / M(Xor4) / S(78) / L(13)
-        "\x87\x85\x94\xb5\xb5\xa9\xa4\xa2\x99\x94\x85\x93\xda\xe0\xcb\xe3",
-        // "CC_SHA1" / M(Rot) / S(29) / L(7)
-        "\x60\x60\x7c\x70\x65\x5e\x4e\x1d\x4f\x31\x3b\x56\x29\xfa\xf7\xcc",
-        // "CFDateCompare" / M(Xor4) / S(168) / L(13)
-        "\xc3\xc6\xc4\xe1\xf4\xe5\xc3\xef\xed\xf0\xe1\xf2\xe5\x80\xaf\x1b",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor4) / S(211) / L(32)
-        "\x4a\x4a\x4a\x4a\x14\x1e\x14\x7e\x7e\x14\x1e\x14\x57\x57\x14\x67\x14\x7b\x7b\x14\x09\x14\x5e\x5e\x14\x09\x14\x40\x40\x14\x69\x14\x33",
-        // "CFReadStreamCreateWithFile" / M(Rot) / S(219) / L(26)
-        "\x1e\x21\x2d\x40\x3c\x3f\x2e\x4f\x4d\x40\x3c\x48\x1e\x4d\x40\x3c\x4f\x40\x32\x44\x4f\x43\x21\x44\x47\x40\xdb\x4f\x78\x98\xb5\xdb\x0e\x0b\x10",
-        // "objc_msgSend" / M(Xor2) / S(82) / L(12)
-        "\x2d\x20\x28\x21\x1d\x2f\x31\x25\x11\x27\x2c\x26\x42\xa6\xbc\xb7",
-        // "" / M(None) / S(0) / L(0)
-        "\x4c\x33\x4a\x81\xfc\x6a\x4c\x67\xfb\x75\xc8\x8a\xdf\x6b\x98\x02\xf6\x1a\x3d\x41\x3f\x6f\x68\x16\xb8\xc2\xc2\x99\x5a\xa0\xcb\x95",
-        // "CFStringCreateWithBytes" / M(Xor4) / S(19) / L(23)
-        "\x23\x26\x33\x14\x12\x09\x0e\x07\x23\x12\x05\x01\x14\x05\x37\x09\x14\x08\x22\x19\x14\x05\x13\x60\xc8\xf4\x97\xa0\xe3\x42\x61\x8f",
-        // "/usr/lib/libobjc.dylib" / M(Xor4) / S(160) / L(22)
-        "\x4f\x15\x13\x12\x4f\x0c\x09\x02\x4f\x0c\x09\x02\x0f\x02\x0a\x03\x4e\x04\x19\x0c\x09\x02\x60",
-        // "" / M(None) / S(0) / L(0)
-        "\x81\x1f\xe2\xc5\x37\xaf\x3a\xd1\x72\xeb\x5f\x30\x9d\xfa\xa2\x9f\x76\xc4\xdb\x66\x0a\x5f\xea\x42\x7f\x75\xca\xdd\x6c\x4d\x97\x46",
-        // "strlen" / M(Rot) / S(74) / L(6)
-        "\xbd\xbe\xbc\xb6\xaf\xb8\x4a\x75\xdc\x1e\xd4\x21\x9b\xca\x4f\x2b",
-        // "" / M(None) / S(0) / L(0)
-        "\x4c\x9d\xae\x4e\x80\xc5\xbc\x26\x4a\xff\x86\xc1\x25\xf0\x68\x3f\x1e\x4d\xfd\x09\x60\x9f\x01\x8e\x51\x2e\xd0\x5c\x93\x4b\x64\x9b",
-        // "" / M(None) / S(0) / L(0)
-        "\x70\xb7\x59\xa9\x13\xb4\xfb\xca\x06\x9b\xb8\xd2\xf3\x2b\xb6\xc4\xa1\xe8\xfa\x35\xde\x01\x20\x3c\xdb\x4a\x08\xb8\x86\x94\x3b\xce",
-        // "CFNumberCreate" / M(Rot) / S(212) / L(14)
-        "\x17\x1a\x22\x49\x41\x36\x39\x46\x17\x46\x39\x35\x48\x39\xd4\x7e",
-        // "objc_msgSend" / M(Xor4) / S(3) / L(12)
-        "\x5f\x52\x5a\x53\x6f\x5d\x43\x57\x63\x55\x5e\x54\x30\x88\x8b\xed",
-        // "CFDateCompare" / M(Xor2) / S(133) / L(13)
-        "\xd6\xd3\xd1\xf4\xe1\xf0\xd6\xfa\xf8\xe5\xf4\xe7\xf0\x95\x4b\xb3",
-        // "" / M(None) / S(0) / L(0)
-        "\x4e\x42\xb2\xc6\xb0\x88\x97\xc7\x9c\xdb\x5b\x6c\x58\x01\x9d\x45\x76\x2f\xfc\x73\xe8\x09\x75\x0d\x9a\x22\x9d\xb3\xc4\xf3\xc4\xfa",
-        // "X509_STORE_add_cert" / M(Xor4) / S(193) / L(19)
-        "\x4c\x21\x24\x2d\x4b\x47\x40\x5b\x46\x51\x4b\x75\x70\x70\x4b\x77\x71\x66\x60\x14",
-        // "EVP_DigestInit" / M(Rot) / S(160) / L(14)
-        "\xe5\xf6\xf0\xff\xe4\x09\x07\x05\x13\x14\xe9\x0e\x09\x14\xa0\xe2",
-        // "CFStringCreateWithCString" / M(Xor2) / S(181) / L(25)
-        "\xd4\xd1\xc4\xe3\xe5\xfe\xf9\xf0\xd4\xe5\xf2\xf6\xe3\xf2\xc0\xfe\xe3\xff\xd4\xc4\xe3\xe5\xfe\xf9\xf0\x97\x6a\x29\xd7\xf9\x63\xf1\x7e\x46",
-        // "sk_free" / M(Xor2) / S(137) / L(7)
-        "\xea\xf2\xc6\xff\xeb\xfc\xfc\x99\x4e\x84\xbb\x5c\x2a\x41\x19\xbf",
-        // "" / M(None) / S(0) / L(0)
-        "\x2a\xfc\xef\x0f\x3c\xc6\x13\x27\x87\x7e\x5a\x0e\xf6\x6f\xab\x91\xb2\x33\xbe\x24\x06\x4b\xb4\x3f\xf1\x0c\x72\xab\x44\xdc\x66\x64",
-        // "CFStringCreateWithBytes" / M(Xor2) / S(231) / L(23)
-        "\x84\x81\x94\xb3\xb5\xae\xa9\xa0\x84\xb5\xa2\xa6\xb3\xa2\x90\xae\xb3\xaf\x85\xbe\xb3\xa2\xb4\xc7\x58\xff\x8d\xe3\xe0\x78\x91\x2e",
-        // "appStoreReceiptURL" / M(Xor1) / S(7) / L(18)
-        "\x66\x77\x77\x54\x73\x68\x75\x62\x55\x62\x64\x62\x6e\x77\x73\x52\x55\x4b\x07",
-        // "objc_lookUpClass" / M(Rot) / S(231) / L(16)
-        "\x56\x49\x51\x4a\x46\x53\x56\x56\x52\x3c\x57\x2a\x53\x48\x5a\x5a\xe7",
-        // "X509_NAME_get_text_by_NID" / M(Xor1) / S(119) / L(25)
-        "\x2f\x42\x47\x4e\x28\x39\x36\x3a\x32\x28\x10\x12\x03\x28\x03\x12\x0f\x03\x28\x15\x0e\x28\x39\x3e\x33\x77\x2c\xd8\x18\x81\xb0\x0a\xf7\x6b",
-        // "CC_SHA1_Final" / M(Xor1) / S(83) / L(13)
-        "\x10\x10\x0c\x00\x1b\x12\x62\x0c\x15\x3a\x3d\x32\x3f\x53\x46\xca",
-        // "EVP_MD_CTX_init" / M(Xor4) / S(88) / L(15)
-        "\xc5\xd6\xd0\xdf\xcd\xc4\xdf\xc3\xd4\xd8\xdf\xe9\xee\xe9\xf4\x80",
-        // "UIDevice" / M(Xor3) / S(196) / L(8)
-        "\x81\x9d\x90\xb1\xa2\xbd\xb7\xb1\xd4\xe9\xd6\xd0\xa3\x64\xa5\xe9",
-        // "dlsym" / M(Xor4) / S(146) / L(5)
-        "\x44\x4c\x53\x59\x4d\x20\x2c\x28\xb9\x81\xb7\x64\x75\x38\xc9\xae",
-        // "" / M(None) / S(0) / L(0)
-        "\x56\xa5\xfb\x5d\x0f\xb8\x04\xfb\xdf\xa2\xb8\xaf\x6d\x3e\x3b\x1e\xc5\x65\x88\xce\x50\xab\xd2\x3e\x3b\xbe\x51\xa7\x85\xda\x61\xd0",
-        // "" / M(None) / S(0) / L(0)
-        "\x89\xbe\x63\x64\xa3\x10\xd1\x4c\x6e\xe5\xb9\xbd\x6e\x87\x06\xa9\x42\x93\x67\x95\xc8\x8b\x36\x15\xf1\x30\x3f\xfe\x91\xd6\x2c\xc4",
-        // "CFArrayCreateMutable" / M(Xor2) / S(42) / L(20)
-        "\x7c\x79\x7e\x4d\x4d\x5e\x46\x7c\x4d\x5a\x5e\x4b\x5a\x72\x4a\x4b\x5e\x5d\x53\x5a\x3f",
-        // "" / M(None) / S(0) / L(0)
-        "\xf0\x17\x39\x9e\x5c\x04\x75\x83\x56\x38\x86\x91\xd7\x88\xe1\xe9\xe7\x02\xce\x0b\x66\x3f\x78\x8f\x0b\xa6\x87\x13\x0e\x75\x3f\x9a",
-        // "CFBundleUnloadExecutable" / M(Xor1) / S(230) / L(24)
-        "\xa5\xa0\xa4\x93\x88\x82\x8a\x83\xb3\x88\x8a\x89\x87\x82\xa3\x9e\x83\x85\x93\x92\x87\x84\x8a\x83\xe6\xec\x6c\xf7\x5e\xdb\x39\xa4\x3b",
-        // "sha1" / M(Xor2) / S(230) / L(4)
-        "\x85\x9e\x97\xc7\xf6\x18\x92\x39\x46\xc6\xcb\x91\x5d\x28\xb3\xfa",
-        // "" / M(None) / S(0) / L(0)
-        "\xc2\xc5\x1f\xd5\x81\xfc\x5e\x90\x5a\x0c\xe4\x02\xd2\xc4\xb4\x5d\xe1\x3f\x0d\x93\x9d\xaf\xcc\x67\xd5\xc9\x43\x8c\x65\x11\x62\xa0",
-        // "NSBundle" / M(Xor1) / S(11) / L(8)
-        "\x45\x58\x49\x7e\x65\x6f\x67\x6e\x0b\x84\x15\x0c\xd2\x36\xcc\x62",
-        // "PKCS7_free" / M(Rot) / S(64) / L(10)
-        "\x90\x8b\x83\x93\x77\x9f\xa6\xb2\xa5\xa5\x40\xe5\x0e\x60\xd4\x01",
-        // "X509_STORE_free" / M(Xor4) / S(160) / L(15)
-        "\x58\x35\x30\x39\x5f\x53\x54\x4f\x52\x45\x5f\x66\x72\x65\x65\x00",
-        // "ASN1_OBJECT_free" / M(Xor2) / S(202) / L(16)
-        "\x9a\x88\x95\xea\x84\x94\x99\x91\x9e\x98\x8f\x84\xbd\xa9\xbe\xbe\xdb",
-        // "CC_SHA1_Update" / M(Xor2) / S(200) / L(14)
-        "\x9b\x9b\x87\x8b\x90\x99\xe9\x87\x8d\xa8\xbc\xb9\xac\xbd\xd8\x2d",
-        // "d2i_X509_bio" / M(Rot) / S(42) / L(12)
-        "\x8e\x5c\x93\x89\x82\x5f\x5a\x63\x89\x8c\x93\x99\x2a\xb2\xc0\xb4",
-        // "%02X" / M(Rot) / S(219) / L(4)
-        "\x00\x0b\x0d\x33\xdb\x0e\x62\xea\xca\x4a\x6f\x6c\x18\xb9\xb1\xc9",
-        // "sk_free" / M(Xor3) / S(162) / L(7)
-        "\xc1\xd9\xed\xd4\xc0\xd7\xd7\xb2\x44\x82\xb1\x54\x12\xf8\xd0\x1c",
-        // "CFDateFormatterSetFormat" / M(Xor3) / S(22) / L(24)
-        "\x74\x71\x73\x56\x43\x52\x71\x58\x45\x5a\x56\x43\x43\x52\x45\x64\x52\x43\x71\x58\x45\x5a\x56\x43\x37\xa3\xc3\xdc\x37\x0e\x85\x83\x0a",
-        // "OpenSSL_add_all_digests" / M(Xor2) / S(242) / L(23)
-        "\x9d\xa2\xb7\xbc\x81\x81\x9e\x8d\xb3\xb6\xb6\x8d\xb3\xbe\xbe\x8d\xb6\xbb\xb5\xb7\xa1\xa6\xa1\xd2\x9a\xf9\x24\x2e\xc3\xe2\xd2\x41",
-        // "CFReadStreamOpen" / M(Xor3) / S(27) / L(16)
-        "\x6f\x6a\x7e\x49\x4d\x48\x7f\x58\x5e\x49\x4d\x41\x63\x5c\x49\x42\x2c",
-        // "" / M(None) / S(0) / L(0)
-        "\xd0\xf0\xd9\xfa\x95\x4c\x69\xaf\x10\x46\x64\xb6\xb2\x01\x21\x44\x1d\x2f\x8d\xae\x24\xd3\xa6\xa1\xde\xa3\xec\xd7\x1c\x7b\x91\x90",
-        // "CFBundleGetIdentifier" / M(Rot) / S(56) / L(21)
-        "\x7b\x7e\x7a\xad\xa6\x9c\xa4\x9d\x7f\x9d\xac\x81\x9c\x9d\xa6\xac\xa1\x9e\xa1\x9d\xaa\x38",
-        // "" / M(None) / S(0) / L(0)
-        "\xc5\x9e\x80\x65\xed\x4f\xb4\x35\x25\x69\x6e\xfe\x61\xa4\x65\x55\x61\x3f\x55\x96\x2b\x6a\x84\xd6\x9b\x03\x90\x95\x38\x41\x66\x7b",
-        // "" / M(None) / S(0) / L(0)
-        "\xae\x0e\xe8\x5d\xe9\x61\xfa\xa3\x13\xe7\xc8\x01\xd4\xb1\x8d\x82\xb0\xb6\xee\x44\x28\x64\x7a\x35\xcc\x3c\x7f\xea\x40\x23\x3a\x16",
-        // "ASN1_INTEGER_free" / M(Xor3) / S(229) / L(17)
-        "\xb6\xa4\xb9\xc6\xa8\xbe\xb9\xa3\xb2\xb0\xb2\xa5\xa8\x91\x85\x92\x92\xf7",
-        // "CFDictionaryGetValue" / M(Xor3) / S(88) / L(20)
-        "\x2e\x2b\x29\x04\x0e\x19\x04\x02\x03\x0c\x1f\x14\x2a\x08\x19\x3b\x0c\x01\x18\x08\x6d",
-        // "CC_SHA1_Final" / M(Xor3) / S(185) / L(13)
-        "\x8a\x8a\x96\x9a\x81\x88\xf8\x96\x8f\xa0\xa7\xa8\xa5\xc9\x7b\xb7",
-        // "SHA1_Final" / M(Rot) / S(188) / L(10)
-        "\x0f\x04\xfd\xed\x1b\x02\x25\x2a\x1d\x28\xbc\x3b\xd2\xf0\x80\x70",
-        // "CC_SHA1_Update" / M(Xor1) / S(125) / L(14)
-        "\x3e\x3e\x22\x2e\x35\x3c\x4c\x22\x28\x0d\x19\x1c\x09\x18\x7d\x58",
-        // "OBJ_txt2obj" / M(Xor3) / S(195) / L(11)
-        "\x9c\x91\x99\x8c\xa7\xab\xa7\xe1\xbc\xb1\xb9\xd3\x4c\xe6\x12\xd6",
-        // "%02x" / M(Xor3) / S(152) / L(4)
-        "\x8d\x98\x9a\xd0\xa8\x3c\x80\x3b\x06\x40\xa2\xa3\x0a\xcb\xfd\xec",
-        // "CFDateCreate" / M(Xor3) / S(182) / L(12)
-        "\x85\x80\x82\xa7\xb2\xa3\x85\xb4\xa3\xa7\xb2\xa3\xc6\xbe\xf4\xd7",
-        // "PKCS7_verify" / M(Xor3) / S(160) / L(12)
-        "\xe0\xfb\xf3\xe3\x87\xef\xc6\xd5\xc2\xd9\xd6\xc9\xb0\x6a\x88\x6a",
-        // "" / M(None) / S(0) / L(0)
-        "\x3f\xac\x24\xf1\x7c\x0e\x7e\x43\x91\x0f\x37\xa1\x9c\x42\xa0\xf5\x71\xd9\xfe\xf1\x28\xf3\x0d\xa1\x8e\x26\xb5\xee\x37\x71\x8e\x86",
-        // "" / M(None) / S(0) / L(0)
-        "\x3f\x6a\x85\x38\x90\x04\x0f\x82\x81\xca\x13\x54\x71\xf3\x1c\xcc\x11\x07\x23\xe3\xb9\x0a\x06\x24\xeb\xe8\xa8\x3b\x58\xdc\x9d\x3f",
-        // "" / M(None) / S(0) / L(0)
-        "\xca\x79\xe2\x91\x21\x01\x7a\xbe\xe1\xa2\x63\x7d\xc5\xb9\xf7\x31\xda\x78\x33\xee\x98\xfd\x57\xd4\xc0\x81\xa9\x68\x0c\xa0\xc5\x6f",
-        // "" / M(None) / S(0) / L(0)
-        "\x77\x55\x05\xfc\x2b\xe6\xe5\xc2\x1e\x67\x04\x4b\x03\xbf\x63\x0a\x68\xb7\x0c\xe5\x04\x73\x52\xfe\xec\x43\x89\xa4\x19\xfd\x11\x83",
-        // "CFEqual" / M(Xor4) / S(122) / L(7)
-        "\xe3\xe6\xe5\xd1\xd5\xc1\xcc\xa0\xd4\x8c\x40\x24\xcf\x06\x7a\x40",
-        // "CFStringCompare" / M(Xor2) / S(209) / L(15)
-        "\x82\x87\x92\xb5\xb3\xa8\xaf\xa6\x82\xae\xac\xb1\xa0\xb3\xa4\xc1",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Rot) / S(143) / L(32)
-        "\x08\x08\x08\x08\xb6\xbc\xb6\xdc\xdc\xb6\xbc\xb6\xf3\xf3\xb6\xe3\xb6\xd7\xd7\xb6\xc9\xb6\xfc\xfc\xb6\xc9\xb6\x02\x02\xb6\xe9\xb6\x8f",
-        // "mainBundle" / M(Xor4) / S(174) / L(10)
-        "\x8d\x81\x89\x8e\xa2\x95\x8e\x84\x8c\x85\xe0\x11\xe7\xaa\xb3\x1f",
-        // "CFArrayAppendValue" / M(Xor2) / S(28) / L(18)
-        "\x4c\x49\x4e\x7d\x7d\x6e\x76\x4e\x7f\x7f\x6a\x61\x6b\x59\x6e\x63\x7a\x6a\x0f",
-        // "OBJ_txt2obj" / M(Xor2) / S(207) / L(11)
-        "\x90\x9d\x95\x80\xab\xa7\xab\xed\xb0\xbd\xb5\xdf\x18\xad\x0e\x13",
-        // "CFDataCreateMutable" / M(Xor1) / S(114) / L(19)
-        "\x31\x34\x36\x13\x06\x13\x31\x00\x17\x13\x06\x17\x3f\x07\x06\x13\x10\x1e\x17\x72",
-        // "CFDataAppendBytes" / M(Xor1) / S(152) / L(17)
-        "\xdb\xde\xdc\xf9\xec\xf9\xd9\xe8\xe8\xfd\xf6\xfc\xda\xe1\xec\xfd\xeb\x98",
-        // "CFBundleVersion" / M(Rot) / S(20) / L(15)
-        "\x57\x5a\x56\x89\x82\x78\x80\x79\x6a\x79\x86\x87\x7d\x83\x82\x14",
-        // "" / M(None) / S(0) / L(0)
-        "\x2a\x1f\x38\x87\x88\x4c\x4b\xaa\x8c\x25\xd7\x9f\x93\x23\x12\x31\x49\xc2\xa9\xa4\xd1\xdf\x76\xbc\x75\x62\x19\xc8\xde\x1b\x21\xde",
-        // "" / M(None) / S(0) / L(0)
-        "\x0f\x2d\x64\xc0\x27\x84\xc7\x94\x16\x6c\x57\x99\x67\x9d\xf5\xe7\x6c\x80\x4c\x04\xed\x54\xf1\x89\xab\x74\x38\x7c\xc9\xf8\x79\xeb",
-        // "" / M(None) / S(0) / L(0)
-        "\xa4\x94\x4f\x4a\xe7\xa8\x8c\x9e\x88\x51\x0c\x16\x5b\xe6\x18\x7c\x2c\x42\x93\xf4\x7c\x71\x6d\x54\x37\xd4\xe5\xb0\x62\xa1\x39\x6d",
-        // "CFDataGetLength" / M(Xor4) / S(146) / L(15)
-        "\x63\x66\x64\x41\x54\x41\x67\x45\x54\x6c\x45\x4e\x47\x54\x48\x20",
-        // "CFStringCreateWithCString" / M(Xor4) / S(241) / L(25)
-        "\x41\x44\x51\x76\x70\x6b\x6c\x65\x41\x70\x67\x63\x76\x67\x55\x6b\x76\x6a\x41\x51\x76\x70\x6b\x6c\x65\x02\x47\x1c\x29\x19\x24\x03\xd8\x26",
-        // "init" / M(Xor2) / S(179) / L(4)
-        "\xca\xcd\xca\xd7\xa3\xb2\x4b\x20\x6d\x52\xa7\xd0\x70\x0e\x28\xcc",
-        // "OpenSSL_add_all_digests" / M(Xor4) / S(163) / L(23)
-        "\x2f\x10\x05\x0e\x33\x33\x2c\x3f\x01\x04\x04\x3f\x01\x0c\x0c\x3f\x04\x09\x07\x05\x13\x14\x13\x60\xf3\x12\x96\xab\x06\xf5\x7e\x00",
-        // "exit" / M(Xor1) / S(47) / L(4)
-        "\x4a\x57\x46\x5b\x2f\xf8\x96\xb2\x42\x68\x16\x58\x31\xf9\x4d\x76",
-        // "CFBundleVersion" / M(Xor3) / S(63) / L(15)
-        "\x0c\x09\x0d\x3a\x21\x2b\x23\x2a\x19\x2a\x3d\x3c\x26\x20\x21\x4f",
-        // "CFArrayCreateMutable" / M(Xor4) / S(107) / L(20)
+        // "8" / M(Xor2) / S(118) / L(1)
+        "\x5e\x66\x24\x8e\xe3\xbf\x9b\xaa\xd9\x9d\xbd\x64\x85\x6f\xfe\xed",
+        // "%02x:" / M(Rot) / S(95) / L(5)
+        "\x84\x8f\x91\xd7\x99\x5f\xe8\x63\x59\xe7\x1d\xd3\xee\xc9\x82\xf7",
+        // "CFRelease" / M(Rot) / S(23) / L(9)
+        "\x5a\x5d\x69\x7c\x83\x7c\x78\x8a\x7c\x17\xa0\x56\x52\x6a\xd9\x51",
+        // "Apple Root CA" / M(Xor2) / S(52) / L(13)
+        "\x65\x54\x54\x48\x41\x04\x76\x4b\x4b\x50\x04\x67\x65\x24\x97\x56",
+        // "RTLD_MAIN_ONLY" / M(Xor4) / S(93) / L(14)
+        "\x82\x84\x9c\x94\x8f\x9d\x91\x99\x9e\x8f\x9f\x9e\x9c\x89\xd0\x37",
+        // "/usr/lib/libSystem.dylib" / M(Xor1) / S(210) / L(24)
+        "\xfd\xa7\xa1\xa0\xfd\xbe\xbb\xb0\xfd\xbe\xbb\xb0\x81\xab\xa1\xa6\xb7\xbf\xfc\xb6\xab\xbe\xbb\xb0\xd2\x28\x9a\x30\x86\x60\x2c\x19\xe6",
+        // "%02x" / M(Rot) / S(4) / L(4)
+        "\x29\x34\x36\x7c\x04\x8d\x2d\x39\x1d\x36\x7a\xa9\xac\xd2\x58\xda",
+        // "" / M(None) / S(0) / L(0)
+        "\x23\x17\xf3\xd6\x35\x29\x38\x27\x6e\x86\x71\xbb\xb9\xd4\x42\xae\x63\xfe\x38\x2a\x1d\xf2\x7d\x99\xa6\x8b\xa2\xc7\x26\xca\xf4\xc7",
+        // "SHA1_Init" / M(Xor1) / S(253) / L(9)
+        "\xae\xb5\xbc\xcc\xa2\xb4\x93\x94\x89\xfd\x2d\x28\x84\xaf\xf8\x2b",
+        // "" / M(None) / S(0) / L(0)
+        "\x1e\xb2\xb5\x88\xd0\xcc\xdd\xc2\x11\xaf\xb9\x6c\x6e\x04\x0c\x4e\xc4\x2b\x2e\xef\x95\x25\x19\x45\x17\xa7\x0f\x98\x94\xe7\x99\x8d",
+        // "CFDataGetLength" / M(Rot) / S(245) / L(15)
+        "\x38\x3b\x39\x56\x69\x56\x3c\x5a\x69\x41\x5a\x63\x5c\x69\x5d\xf5",
+        // "CFDateFormatterCreate" / M(Xor1) / S(172) / L(21)
+        "\xef\xea\xe8\xcd\xd8\xc9\xea\xc3\xde\xc1\xcd\xd8\xd8\xc9\xde\xef\xde\xc9\xcd\xd8\xc9\xac",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor2) / S(64) / L(40)
+        "\x47\x40\x40\x34\x44\x33\x47\x47\x43\x32\x44\x48\x42\x30\x41\x49\x37\x37\x44\x49\x35\x40\x45\x30\x34\x43\x43\x45\x44\x43\x35\x40\x48\x49\x35\x37\x47\x32\x47\x41\x71\x8c\x8e\x1c\x18\x15\x81\x00\x7e",
+        // "strncmp" / M(Xor2) / S(205) / L(7)
+        "\xae\xa9\xaf\xb3\xbe\xb0\xad\xdd\x87\x45\x93\x3d\x46\x30\x3d\xfd",
+        // "BIO_free" / M(Xor4) / S(56) / L(8)
+        "\xc2\xc9\xcf\xdf\xe6\xf2\xe5\xe5\x80\x33\xab\x0f\x81\x1a\x06\xeb",
+        // "ASN1_OBJECT_free" / M(Xor2) / S(134) / L(16)
+        "\xd6\xc4\xd9\xa6\xc8\xd8\xd5\xdd\xd2\xd4\xc3\xc8\xf1\xe5\xf2\xf2\x97",
+        // "" / M(None) / S(0) / L(0)
+        "\x57\x5c\x90\xef\xb9\x29\xef\x3a\x4a\x32\x4c\x71\x02\x26\x1c\x6d\xe8\x28\x3a\xa2\xba\x17\xff\x41\x94\xd8\xae\x1c\x13\x65\x1f\xe3",
+        // "identifierForVendor" / M(Xor1) / S(90) / L(19)
+        "\x33\x3e\x3f\x34\x2e\x33\x3c\x33\x3f\x28\x1c\x35\x28\x0c\x3f\x34\x3e\x35\x28\x5a",
+        // "kCFTypeDictionaryValueCallBacks" / M(Xor2) / S(183) / L(31)
+        "\xfc\xd4\xd1\xc3\xee\xe7\xf2\xd3\xfe\xf4\xe3\xfe\xf8\xf9\xf6\xe5\xee\xc1\xf6\xfb\xe2\xf2\xd4\xf6\xfb\xfb\xd5\xf6\xf4\xfc\xe4\x97",
+        // "CFBundleShortVersionString" / M(Xor3) / S(19) / L(26)
+        "\x75\x70\x74\x43\x58\x52\x5a\x53\x65\x5e\x59\x44\x42\x60\x53\x44\x45\x5f\x59\x58\x65\x42\x44\x5f\x58\x51\x36\xb8\x03\x7d\x3d\xdd\x8e\x4e\xaf",
+        // "CFReadStreamClose" / M(Rot) / S(64) / L(17)
+        "\x83\x86\x92\xa5\xa1\xa4\x93\xb4\xb2\xa5\xa1\xad\x83\xac\xaf\xb3\xa5\x40",
+        // "" / M(None) / S(0) / L(0)
+        "\xba\x2f\x23\x23\x03\xcc\x62\xa9\xab\xb3\x53\x9a\x10\xec\xed\x15\xf6\x17\x84\x78\xf5\x7c\xc7\x81\xca\x62\x0e\x1b\x20\xef\x63\x05",
+        // "setDelegate:" / M(Rot) / S(77) / L(12)
+        "\xc0\xb2\xc1\x91\xb2\xb9\xb2\xb4\xae\xc1\xb2\x87\x4d\xd3\x95\xbf",
+        // "ASN1_INTEGER_get" / M(Rot) / S(36) / L(16)
+        "\x65\x77\x72\x55\x83\x6d\x72\x78\x69\x6b\x69\x76\x83\x8b\x89\x98\x24",
+        // "CFDateFormatterCreate" / M(Xor4) / S(40) / L(21)
+        "\x33\x36\x34\x11\x04\x15\x36\x1f\x02\x1d\x11\x04\x04\x15\x02\x33\x02\x15\x11\x04\x15\x70",
+        // "/usr/lib/libobjc.dylib" / M(Rot) / S(201) / L(22)
+        "\xf8\x3e\x3c\x3b\xf8\x35\x32\x2b\xf8\x35\x32\x2b\x38\x2b\x33\x2c\xf7\x2d\x42\x35\x32\x2b\xc9",
+        // "CFDictionaryAddValue" / M(Xor2) / S(73) / L(20)
+        "\x1f\x1a\x18\x35\x3f\x28\x35\x33\x32\x3d\x2e\x25\x1d\x38\x38\x0a\x3d\x30\x29\x39\x5c",
+        // "CFArrayGetCount" / M(Rot) / S(239) / L(15)
+        "\x32\x35\x30\x61\x61\x50\x68\x36\x54\x63\x32\x5e\x64\x5d\x63\xef",
+        // "X509_STORE_free" / M(Rot) / S(142) / L(15)
+        "\xe6\xc3\xbe\xc7\xed\xe1\xe2\xdd\xe0\xd3\xed\xf4\x00\xf3\xf3\x8e",
+        // "mainBundle" / M(Xor1) / S(10) / L(10)
+        "\x67\x6b\x63\x64\x48\x7f\x64\x6e\x66\x6f\x0a\x7f\xda\x1a\x5a\xd5",
+        // "sk_free" / M(Rot) / S(82) / L(7)
+        "\xc5\xbd\xb1\xb8\xc4\xb7\xb7\x52\x10\x88\xce\xf4\xab\xd0\x46\x64",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor4) / S(152) / L(40)
+        "\x2e\x29\x29\x5d\x2d\x5a\x2e\x2e\x2a\x5b\x2d\x21\x2b\x59\x28\x20\x5e\x5e\x2d\x20\x5c\x29\x2c\x59\x5d\x2a\x2a\x2c\x2d\x2a\x5c\x29\x21\x20\x5c\x5e\x2e\x5b\x2e\x28\x18\xc4\x9e\x48\x57\xe3\x27\x03\xc6",
+        // "kCFBundleIdentifierKey" / M(Xor3) / S(35) / L(22)
+        "\x51\x79\x7c\x78\x4f\x54\x5e\x56\x5f\x73\x5e\x5f\x54\x4e\x53\x5c\x53\x5f\x48\x71\x5f\x43\x3a",
+        // "UIDevice" / M(Xor4) / S(128) / L(8)
+        "\x55\x49\x44\x65\x76\x69\x63\x65\x00\x38\x29\x5e\xe4\x61\x55\x3f",
+        // "" / M(None) / S(0) / L(0)
+        "\x8d\xd8\x8c\x07\xa0\x32\xa3\x28\xe9\x6e\xfb\xdf\xfb\xa2\x74\x7c\xa8\xf3\x11\x84\x68\xf9\x0b\xff\x01\x77\x43\xd9\xc9\xb1\x1a\x04",
+        // "CFReadStreamCreateWithFile" / M(Xor4) / S(247) / L(26)
+        "\x86\x83\x97\xa0\xa4\xa1\x96\xb1\xb7\xa0\xa4\xa8\x86\xb7\xa0\xa4\xb1\xa0\x92\xac\xb1\xad\x83\xac\xa9\xa0\xc5\x6d\xe8\xe8\x4a\x81\x1c\x80\x39",
+        // "" / M(None) / S(0) / L(0)
+        "\xd0\x29\x60\x55\xb5\xa2\x9d\x54\x03\x65\xfb\x2f\x51\x1c\x80\xc7\x18\xa3\x19\x90\x1e\xcf\xc8\x6b\x63\x00\x9b\xa1\x3e\x6a\xba\xaf",
+        // "CFDictionaryGetValue" / M(Rot) / S(100) / L(20)
+        "\xa7\xaa\xa8\xcd\xc7\xd8\xcd\xd3\xd2\xc5\xd6\xdd\xab\xc9\xd8\xba\xc5\xd0\xd9\xc9\x64",
+        // "kCFDateFormatterTimeZone" / M(Xor1) / S(30) / L(24)
+        "\x75\x5d\x58\x5a\x7f\x6a\x7b\x58\x71\x6c\x73\x7f\x6a\x6a\x7b\x6c\x4a\x77\x73\x7b\x44\x71\x70\x7b\x1e\x7b\x21\x26\x28\x39\xa9\x26\x97",
+        // "CFDictionaryGetValue" / M(Rot) / S(227) / L(20)
+        "\x26\x29\x27\x4c\x46\x57\x4c\x52\x51\x44\x55\x5c\x2a\x48\x57\x39\x44\x4f\x58\x48\xe3",
+        // "sel_registerName" / M(Xor3) / S(113) / L(16)
+        "\xf1\xe7\xee\xdd\xf0\xe7\xe5\xeb\xf1\xf6\xe7\xf0\xcc\xe3\xef\xe7\x82",
+        // "CFReadStreamRead" / M(Xor1) / S(222) / L(16)
+        "\x9d\x98\x8c\xbb\xbf\xba\x8d\xaa\xac\xbb\xbf\xb3\x8c\xbb\xbf\xba\xde",
+        // "init" / M(Xor2) / S(65) / L(4)
+        "\x38\x3f\x38\x25\x51\xeb\xf5\x89\x30\xf9\x32\xb7\x3a\x13\x38\x47",
+        // "CFBundleShortVersionString" / M(Rot) / S(151) / L(26)
+        "\xda\xdd\xd9\x0c\x05\xfb\x03\xfc\xea\xff\x06\x09\x0b\xed\xfc\x09\x0a\x00\x06\x05\xea\x0b\x09\x00\x05\xfe\x97\x5d\xfd\xdd\xc0\xb2\xec\xbe\x0c",
+        // "NSBundle" / M(Xor2) / S(247) / L(8)
+        "\xa9\xb4\xa5\x92\x89\x83\x8b\x82\xe7\xf9\x9d\xda\xff\x0c\xf8\xf8",
+        // "kCFTypeArrayCallBacks" / M(Xor2) / S(163) / L(21)
+        "\xde\xf6\xf3\xe1\xcc\xc5\xd0\xf4\xc7\xc7\xd4\xcc\xf6\xd4\xd9\xd9\xf7\xd4\xd6\xde\xc6\xb5",
+        // "CFDataCreateMutable" / M(Xor2) / S(34) / L(19)
+        "\x75\x70\x72\x57\x42\x57\x75\x44\x53\x57\x42\x53\x7b\x43\x42\x57\x54\x5a\x53\x36",
+        // "" / M(None) / S(0) / L(0)
+        "\x0b\x88\xf1\x41\xdb\x34\x50\x7d\xf1\x0f\xa0\xac\xb2\x44\xb0\x60\x90\x9b\x2e\xd4\x6e\x7f\x3d\xea\x7b\xf4\x99\xd4\x08\x2f\x26\xda",
+        // "" / M(None) / S(0) / L(0)
+        "\x9b\xfa\xe2\xc5\xf3\xd0\xc0\x46\xef\xb1\xc9\xe7\x4e\x84\xdd\x4e\xc8\x26\x47\x1c\x6f\x0c\x51\x9a\x66\x15\x55\x5c\x01\xfa\xa1\x14",
+        // "CFDateFormatterSetFormat" / M(Xor1) / S(226) / L(24)
+        "\xa1\xa4\xa6\x83\x96\x87\xa4\x8d\x90\x8f\x83\x96\x96\x87\x90\xb1\x87\x96\xa4\x8d\x90\x8f\x83\x96\xe2\x8c\x63\x4a\x37\x88\xbe\x39\xe8",
+        // "" / M(None) / S(0) / L(0)
+        "\xe3\x36\xb9\xdb\xa1\xef\x9b\xdd\x10\x2c\xdb\x1c\x48\xec\xad\x22\x73\x07\x9a\xa0\xf9\x8a\x1d\x34\xcd\xb9\xc2\x74\xa0\x35\x39\x71",
+        // "com.intangiblesoftware.menslacrossestats" / M(Xor2) / S(14) / L(40)
+        "\x5c\x50\x52\x11\x56\x51\x4b\x5e\x51\x58\x56\x5d\x53\x5a\x4c\x50\x59\x4b\x48\x5e\x4d\x5a\x11\x52\x5a\x51\x4c\x53\x5e\x5c\x4d\x50\x4c\x4c\x5a\x4c\x4b\x5e\x4b\x4c\x3f\xc0\x7b\xee\x72\x78\x5a\x63\xf5",
+        // "CFDateFormatterSetProperty" / M(Xor1) / S(30) / L(26)
+        "\x5d\x58\x5a\x7f\x6a\x7b\x58\x71\x6c\x73\x7f\x6a\x6a\x7b\x6c\x4d\x7b\x6a\x4e\x6c\x71\x6e\x7b\x6c\x6a\x67\x1e\x01\x75\x2e\xc2\x13\xb2\x86\x9d",
+        // "CFDataAppendBytes" / M(Xor1) / S(84) / L(17)
+        "\x17\x12\x10\x35\x20\x35\x15\x24\x24\x31\x3a\x30\x16\x2d\x20\x31\x27\x54",
+        // "objc_lookUpClass" / M(Xor2) / S(99) / L(16)
+        "\x1d\x10\x18\x11\x2d\x1e\x1d\x1d\x19\x27\x02\x31\x1e\x13\x01\x01\x72",
+        // "X509_free" / M(Xor4) / S(72) / L(9)
+        "\xd8\xb5\xb0\xb9\xdf\xe6\xf2\xe5\xe5\x80\x53\x03\xad\x9d\xdf\x6e",
+        // "d2i_X509_bio" / M(Rot) / S(214) / L(12)
+        "\x3a\x08\x3f\x35\x2e\x0b\x06\x0f\x35\x38\x3f\x45\xd6\xfa\xac\x7a",
+        // "CFArrayGetValueAtIndex" / M(Xor1) / S(156) / L(22)
+        "\xdf\xda\xdd\xee\xee\xfd\xe5\xdb\xf9\xe8\xca\xfd\xf0\xe9\xf9\xdd\xe8\xd5\xf2\xf8\xf9\xe4\x9c",
+        // "PKCS7_free" / M(Rot) / S(241) / L(10)
+        "\x41\x3c\x34\x44\x28\x50\x57\x63\x56\x56\xf1\x7a\x3f\x37\x76\x84",
+        // "CFArrayGetValueAtIndex" / M(Xor3) / S(71) / L(22)
+        "\x1d\x18\x1f\x2c\x2c\x3f\x27\x19\x3b\x2a\x08\x3f\x32\x2b\x3b\x1f\x2a\x17\x30\x3a\x3b\x26\x5e",
+        // "" / M(None) / S(0) / L(0)
+        "\xf2\x7f\x4e\x39\xec\x56\x47\x12\x32\x9e\xe7\x22\x09\xf2\xd9\x2b\xb6\x48\xf1\xd5\xfb\x22\xea\x9f\x33\x04\x82\x8f\xeb\x3a\x24\x24",
+        // "EVP_get_digestbyname" / M(Xor4) / S(178) / L(20)
+        "\xdf\xcc\xca\xc5\xfd\xff\xee\xc5\xfe\xf3\xfd\xff\xe9\xee\xf8\xe3\xf4\xfb\xf7\xff\x9a",
+        // "" / M(None) / S(0) / L(0)
+        "\xc7\x1d\x48\x56\xb8\x7d\x83\x89\x3b\x77\x06\x82\x55\x51\xbc\x70\xbe\x23\xc1\xbf\x81\x97\x68\x9b\x1b\x3e\xef\x5a\x6d\x36\x8c\x0a",
+        // "CFEqual" / M(Xor1) / S(230) / L(7)
+        "\xa5\xa0\xa3\x97\x93\x87\x8a\xe6\x7f\xee\x53\x7a\x9d\x1e\xcb\x3e",
+        // "" / M(None) / S(0) / L(0)
+        "\xfa\xfe\x93\xb7\xcd\x36\xce\xd4\xb5\x25\x38\x8e\x3e\x33\x1b\xd2\x0e\x4c\x5a\xdb\x97\x95\x64\x5a\x51\x7b\xc8\x5b\x66\xa3\xcb\xbe",
+        // "CC_SHA1" / M(Xor3) / S(0) / L(7)
+        "\x53\x53\x4f\x43\x58\x51\x21\x10\x7a\x5c\x4b\xbc\xb0\xfb\xeb\xc4",
+        // "sk_value" / M(Xor2) / S(148) / L(8)
+        "\xf7\xef\xdb\xf2\xe5\xe8\xf1\xe1\x84\x7c\xbb\x17\x5b\xf0\x81\x94",
+        // "objc_getClass" / M(Rot) / S(133) / L(13)
+        "\xf4\xe7\xef\xe8\xe4\xec\xea\xf9\xc8\xf1\xe6\xf8\xf8\x85\xbd\x01",
+        // "CFStringCompare" / M(Xor4) / S(227) / L(15)
+        "\x73\x76\x63\x44\x42\x59\x5e\x57\x73\x5f\x5d\x40\x51\x42\x55\x30",
+        // "BIO_free" / M(Xor3) / S(211) / L(8)
+        "\xa1\xaa\xac\xbc\x85\x91\x86\x86\xe3\x92\x89\x39\xab\x5d\x3a\x5b",
+        // "CFDateFormatterCreateDateFromString" / M(Xor4) / S(142) / L(35)
+        "\xbb\xbe\xbc\x99\x8c\x9d\xbe\x97\x8a\x95\x99\x8c\x8c\x9d\x8a\xbb\x8a\x9d\x99\x8c\x9d\xbc\x99\x8c\x9d\xbe\x8a\x97\x95\xab\x8c\x8a\x91\x96\x9f\xf8",
+        // "X509_STORE_new" / M(Xor3) / S(91) / L(14)
+        "\x33\x5e\x5b\x52\x34\x38\x3f\x24\x39\x2e\x34\x05\x0e\x1c\x6b\xc3",
+        // "sk_num" / M(Rot) / S(34) / L(6)
+        "\x95\x8d\x81\x90\x97\x8f\x22\x71\x5a\x33\xa9\xcf\xed\x24\x07\xfd",
+        // "" / M(None) / S(0) / L(0)
+        "\x60\x86\xff\xb9\x20\xf8\x8a\xe5\x1b\xcc\x4c\xfc\x9c\x0d\x66\x2d\xb4\x27\xee\x5d\xe1\xef\x52\x3a\x4d\x99\xb4\xd9\x45\xfd\xf1\xf0",
+        // "" / M(None) / S(0) / L(0)
+        "\xe7\xf9\xd4\xed\x88\xe8\x34\x7a\x18\x42\xbf\xe8\xbf\x81\x09\x5f\xb0\xd5\xfb\xbe\x85\x4c\x12\x2b\x59\x33\xd4\x4a\x7e\xb2\x4c\x47",
+        // "" / M(None) / S(0) / L(0)
+        "\x9b\xd1\x71\xc3\xc0\x0f\x75\x66\x05\xeb\xdc\xf2\xf5\xd0\x09\x7d\x0e\xc0\xbc\x53\x9d\x66\x6c\xcf\x99\x3f\x3d\x28\x52\xa9\xd6\x32",
+        // "EVP_DigestFinal" / M(Rot) / S(201) / L(15)
+        "\x0e\x1f\x19\x28\x0d\x32\x30\x2e\x3c\x3d\x0f\x32\x37\x2a\x35\xc9",
+        // "" / M(None) / S(0) / L(0)
+        "\x7c\xac\xb1\x8a\x7a\x6d\xfd\x32\xc2\x23\x75\x3b\x70\x9a\xf8\x29\x8b\xb3\xdc\x66\x41\x81\x7c\x29\xe0\x44\x56\x14\x33\xa3\x7e\x43",
+        // "" / M(None) / S(0) / L(0)
+        "\x5f\xea\x42\x0c\xe4\x30\xf3\xef\x02\x1c\xb9\xc9\x40\x60\xcf\xc8\x76\x27\x19\x7f\x1e\xb2\x21\x9e\x95\x6f\x78\x8d\x33\x45\xfc\x93",
+        // "CFDataGetLength" / M(Xor2) / S(185) / L(15)
+        "\xea\xef\xed\xc8\xdd\xc8\xee\xcc\xdd\xe5\xcc\xc7\xce\xdd\xc1\xa9",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor2) / S(83) / L(59)
+        "\x21\x26\x2d\x26\x52\x2d\x22\x55\x2d\x21\x21\x2d\x25\x54\x2d\x22\x2e\x2d\x24\x56\x2d\x27\x2f\x2d\x51\x51\x2d\x22\x2f\x2d\x53\x26\x2d\x23\x56\x2d\x52\x25\x2d\x25\x23\x2d\x22\x25\x2d\x53\x26\x2d\x2e\x2f\x2d\x53\x51\x2d\x21\x54\x2d\x21\x27\x17\x47\x61\xd4\xac\x5c\x67\x5b\x1b",
+        // "strncmp" / M(Xor4) / S(203) / L(7)
+        "\xc3\xc4\xc2\xde\xd3\xdd\xc0\xb0\x4b\x22\xb1\x46\xd1\xaa\xaf\x68",
+        // "CFBundleIdentifier" / M(Xor4) / S(112) / L(18)
+        "\x13\x16\x12\x25\x3e\x34\x3c\x35\x19\x34\x35\x3e\x24\x39\x36\x39\x35\x22\x50",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor4) / S(90) / L(36)
+        "\x41\x44\x40\x77\x6c\x66\x6e\x67\x45\x67\x76\x54\x63\x6e\x77\x67\x44\x6d\x70\x4b\x6c\x64\x6d\x46\x6b\x61\x76\x6b\x6d\x6c\x63\x70\x7b\x49\x67\x7b\x02",
+        // "" / M(None) / S(0) / L(0)
+        "\x4c\xdb\x3a\x22\x51\x05\x0a\x15\x47\xb4\xfe\x71\x41\x64\x36\x18\xc4\xe2\x15\x29\xf4\x52\xce\x92\x13\x0e\xca\xb0\x22\x54\x9a\x7d",
+        // "" / M(None) / S(0) / L(0)
+        "\x3e\x00\xdc\x5d\x63\x8d\x3a\xe7\x86\xb1\x03\xf0\xae\xfe\x88\x18\x26\xa1\x8d\xd4\x25\xad\x6b\x29\x29\x2c\x2d\x08\x37\x06\xb3\x86",
+        // "X509_STORE_new" / M(Rot) / S(37) / L(14)
+        "\x7d\x5a\x55\x5e\x84\x78\x79\x74\x77\x6a\x84\x93\x8a\x9c\x25\xb8",
+        // "CFDataGetBytePtr" / M(Xor4) / S(110) / L(16)
+        "\x0d\x08\x0a\x2f\x3a\x2f\x09\x2b\x3a\x0c\x37\x3a\x2b\x1e\x3a\x3c\x4e",
+        // "sha1" / M(Xor4) / S(114) / L(4)
+        "\x53\x48\x41\x11\x20\xe8\xc1\xbf\xcf\x41\xdf\xff\x71\xb6\x0d\xb0",
+        // "" / M(None) / S(0) / L(0)
+        "\x9e\xf5\xc7\xe4\xa8\xe0\xba\x5f\x79\xa0\x93\x4f\xf6\xff\x1b\xe9\x9b\x42\xb3\xdd\x57\x54\x2f\xb5\x31\x34\xc6\x94\x47\x91\xb2\x90",
+        // "" / M(None) / S(0) / L(0)
+        "\xb3\x6a\x11\x80\x2d\x20\x7e\x6d\x28\xe8\x10\x93\x9f\xeb\xe7\x2a\xcc\x81\xb0\x8f\x3f\x3f\x3d\x9e\x74\xe2\x2b\xb4\x6e\xf4\x24\xf0",
+        // "" / M(None) / S(0) / L(0)
+        "\x2b\x1c\x0e\x68\x98\xcf\x3d\xff\x14\x98\x04\xed\xce\xbe\x7e\x43\x88\x92\x5c\xe8\xb5\x3d\x8f\xf3\x18\x1d\xb7\xf5\x97\x6a\x9b\x31",
+        // "EVP_MD_CTX_init" / M(Xor2) / S(244) / L(15)
+        "\xa1\xb2\xb4\xbb\xa9\xa0\xbb\xa7\xb0\xbc\xbb\x8d\x8a\x8d\x90\xe4",
+        // "CFDataCreate" / M(Rot) / S(109) / L(12)
+        "\xb0\xb3\xb1\xce\xe1\xce\xb0\xdf\xd2\xce\xe1\xd2\x6d\x15\x20\x28",
+        // "CFAbsoluteTimeGetCurrent" / M(Xor3) / S(235) / L(24)
+        "\x4f\x4a\x4d\x6e\x7f\x63\x60\x79\x78\x69\x58\x65\x61\x69\x4b\x69\x78\x4f\x79\x7e\x7e\x69\x62\x78\x0c\xbb\x59\x59\x74\x57\xa7\xda\xdc",
+        // "X509_get_ext_by_OBJ" / M(Xor1) / S(17) / L(19)
+        "\x49\x24\x21\x28\x4e\x76\x74\x65\x4e\x74\x69\x65\x4e\x73\x68\x4e\x5e\x53\x5b\x11",
+        // "ASN1_INTEGER_get" / M(Xor2) / S(80) / L(16)
+        "\x00\x12\x0f\x70\x1e\x08\x0f\x15\x04\x06\x04\x13\x1e\x26\x24\x35\x41",
+        // "" / M(None) / S(0) / L(0)
+        "\x0e\x29\xa4\xf3\x8a\x83\x18\x5b\x1c\x0e\xb8\x8e\x37\x21\x7b\x75\xf2\x31\x5a\xde\x81\xd0\x41\xed\x7a\xb7\xcd\x2a\x31\xb6\x21\xbb",
+        // "8" / M(Rot) / S(144) / L(1)
+        "\xc8\x90\x46\x31\xca\xa7\xd4\x7f\x43\x9d\x3c\x59\xff\x34\x11\xc8",
+        // "BIO_s_mem" / M(Xor4) / S(218) / L(9)
+        "\xe2\xe9\xef\xff\xd3\xff\xcd\xc5\xcd\xa0\xae\xd4\x93\xf8\x0b\xe3",
+        // "SHA1_Final" / M(Xor3) / S(216) / L(10)
+        "\xbb\xa0\xa9\xd9\xb7\xae\x81\x86\x89\x84\xe8\x48\x7a\xca\x24\xe6",
+        // "" / M(None) / S(0) / L(0)
+        "\x78\xdb\xa0\x6b\x34\x77\x69\x4f\x69\xb0\xe5\x51\xb8\xd3\x65\xe4\x2a\x0d\x96\xbf\xb8\xde\xfa\x0c\x7a\x2c\xef\xf2\xbd\x2d\x57\xaa",
+        // "BIO_free" / M(Xor1) / S(10) / L(8)
+        "\x48\x43\x45\x55\x6c\x78\x6f\x6f\x0a\x30\x53\xdd\x30\xd1\x8c\x39",
+        // "" / M(None) / S(0) / L(0)
+        "\x5f\x2f\x6c\xd4\x22\x59\xa8\x70\x3e\x8c\xf1\xbc\x8f\xaf\x54\x35\xd4\xf9\xfd\x1a\x07\x3b\x6f\x7c\xcb\x63\xd9\x3e\x66\xa8\x7d\x44",
+        // "com.intangiblesoftware.menslacrossestats" / M(Xor1) / S(20) / L(40)
+        "\x77\x7b\x79\x3a\x7d\x7a\x60\x75\x7a\x73\x7d\x76\x78\x71\x67\x7b\x72\x60\x63\x75\x66\x71\x3a\x79\x71\x7a\x67\x78\x75\x77\x66\x7b\x67\x67\x71\x67\x60\x75\x60\x67\x14\x1f\xda\xe7\x7c\x68\x8f\x2f\xe7",
+        // "setDelegate:" / M(Rot) / S(69) / L(12)
+        "\xb8\xaa\xb9\x89\xaa\xb1\xaa\xac\xa6\xb9\xaa\x7f\x45\x8c\x47\x1c",
+        // "" / M(None) / S(0) / L(0)
+        "\x1c\x02\x92\x95\xb6\x39\xc4\xed\xf0\x8d\xdd\xcd\xb1\x86\x15\x60\x22\x30\x1a\xed\xa6\x42\x3e\xb5\x95\x14\x24\x45\xbc\x26\x9f\xf4",
+        // "" / M(None) / S(0) / L(0)
+        "\xe2\x34\x68\x38\x67\xfb\xe5\x12\x8b\xeb\x27\xfa\xec\xf7\xcf\xeb\x13\x29\xe3\xc4\x75\xfb\x15\x1c\x34\xfa\x72\xe7\x69\x57\x7a\xff",
+        // "" / M(None) / S(0) / L(0)
+        "\xf4\x74\x8d\x1b\x96\x19\xeb\x8b\x5c\x56\xf1\x07\xb6\xb0\x8e\x35\x5e\xa8\xb4\x15\xe5\x6a\xe8\xb2\xf0\x41\xf1\xd7\x77\x78\x37\xc7",
+        // "objc_msgSend" / M(Xor2) / S(94) / L(12)
+        "\x21\x2c\x24\x2d\x11\x23\x3d\x29\x1d\x2b\x20\x2a\x4e\x86\x3e\xb5",
+        // "" / M(None) / S(0) / L(0)
+        "\x52\x8c\x87\xfb\x85\x47\x97\xe8\xee\x98\x2c\x42\x59\xee\x5c\x97\xbf\xe1\xf1\x85\x9a\x40\x8f\xc4\x31\xb6\xcb\x29\x18\x49\x75\x3b",
+        // "CFArrayAppendValue" / M(Xor4) / S(231) / L(18)
+        "\x66\x63\x64\x57\x57\x44\x5c\x64\x55\x55\x40\x4b\x41\x73\x44\x49\x50\x40\x25",
+        // "X509_STORE_add_cert" / M(Rot) / S(141) / L(19)
+        "\xe5\xc2\xbd\xc6\xec\xe0\xe1\xdc\xdf\xd2\xec\xee\xf1\xf1\xec\xf0\xf2\xff\x01\x8d",
+        // "X509_digest" / M(Xor4) / S(206) / L(11)
+        "\xb8\xd5\xd0\xd9\xbf\x84\x89\x87\x85\x93\x94\xe0\xd3\x47\x67\x34",
+        // "CFStringCreateWithCString" / M(Rot) / S(43) / L(25)
+        "\x6e\x71\x7e\x9f\x9d\x94\x99\x92\x6e\x9d\x90\x8c\x9f\x90\x82\x94\x9f\x93\x6e\x7e\x9f\x9d\x94\x99\x92\x2b\x9a\x50\x57\xfd\x2e\xdd\xe8\x43",
+        // "appStoreReceiptURL" / M(Xor3) / S(32) / L(18)
+        "\x52\x43\x43\x60\x47\x5c\x41\x56\x61\x56\x50\x56\x5a\x43\x47\x66\x61\x7f\x33",
+        // "%02x" / M(Xor4) / S(48) / L(4)
+        "\x25\x30\x32\x78\x00\x4b\x09\xe7\x8c\x54\x38\xf3\x6d\xcc\x91\xbe",
+        // "d2i_PKCS7_bio" / M(Xor4) / S(82) / L(13)
+        "\x44\x12\x49\x7f\x70\x6b\x63\x73\x17\x7f\x42\x49\x4f\x20\x1f\x3a",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor3) / S(6) / L(32)
+        "\x5e\x5e\x5e\x5e\x00\x0a\x00\x6a\x6a\x00\x0a\x00\x43\x43\x00\x73\x00\x6f\x6f\x00\x1d\x00\x4a\x4a\x00\x1d\x00\x54\x54\x00\x7d\x00\x27",
+        // "" / M(None) / S(0) / L(0)
+        "\x39\x4e\x91\x71\x35\x9c\xce\x26\xb5\x6c\x11\x13\x68\xbc\x6f\xad\x3d\x4c\x0c\xdf\x5e\x44\x7b\xb3\x3d\x2d\xe8\xe7\x8f\x92\x96\x01",
+        // "BIO_write" / M(Xor2) / S(138) / L(9)
+        "\xd8\xd3\xd5\xc5\xed\xe8\xf3\xee\xff\x9a\xd9\x2c\x76\xbe\x9c\x24",
+        // "SHA1_Update" / M(Rot) / S(74) / L(11)
+        "\x9d\x92\x8b\x7b\xa9\x9f\xba\xae\xab\xbe\xaf\x4a\xa7\xda\x1e\x9d",
+        // "CFArrayCreateMutable" / M(Xor1) / S(118) / L(20)
+        "\x35\x30\x37\x04\x04\x17\x0f\x35\x04\x13\x17\x02\x13\x3b\x03\x02\x17\x14\x1a\x13\x76",
+        // "d2i_X509_bio" / M(Xor3) / S(183) / L(12)
+        "\xa3\xf5\xae\x98\x9f\xf2\xf7\xfe\x98\xa5\xae\xa8\xc7\xc1\xca\x71",
+        // "OpenSSL_add_all_digests" / M(Xor2) / S(74) / L(23)
+        "\x25\x1a\x0f\x04\x39\x39\x26\x35\x0b\x0e\x0e\x35\x0b\x06\x06\x35\x0e\x03\x0d\x0f\x19\x1e\x19\x6a\x6a\x8b\x5d\xb7\x5c\x74\x5d\xd8",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor3) / S(185) / L(36)
+        "\x9d\x98\x9c\xab\xb0\xba\xb2\xbb\x99\xbb\xaa\x88\xbf\xb2\xab\xbb\x98\xb1\xac\x97\xb0\xb8\xb1\x9a\xb7\xbd\xaa\xb7\xb1\xb0\xbf\xac\xa7\x95\xbb\xa7\xde",
+        // "strlen" / M(Rot) / S(24) / L(6)
+        "\x8b\x8c\x8a\x84\x7d\x86\x18\x5e\xbc\x57\x19\x49\x52\xfa\x41\x65",
+        // "CFDataAppendBytes" / M(Xor2) / S(117) / L(17)
+        "\x24\x21\x23\x06\x13\x06\x26\x17\x17\x02\x09\x03\x25\x1e\x13\x02\x14\x67",
+        // "OBJ_txt2obj" / M(Xor2) / S(223) / L(11)
+        "\x80\x8d\x85\x90\xbb\xb7\xbb\xfd\xa0\xad\xa5\xcf\x18\x51\x30\x4c",
+        // "alloc" / M(Xor3) / S(81) / L(5)
+        "\x00\x0d\x0d\x0e\x02\x61\x98\x01\x63\xb8\x9b\x56\xe8\xf8\x54\x30",
+        // "CFDictionarySetValue" / M(Xor2) / S(234) / L(20)
+        "\xbc\xb9\xbb\x96\x9c\x8b\x96\x90\x91\x9e\x8d\x86\xac\x9a\x8b\xa9\x9e\x93\x8a\x9a\xff",
+        // "" / M(None) / S(0) / L(0)
+        "\x69\x51\x0e\x1d\xea\x10\x0e\x48\x28\xfc\xfd\x8a\x54\xdb\xfc\x0c\xf2\x3b\xf5\x63\xf2\xd5\xca\x62\x51\x9f\xde\x84\xf7\x38\xd2\x9a",
+        // "EVP_DigestUpdate" / M(Xor1) / S(57) / L(16)
+        "\x7c\x6f\x69\x66\x7d\x50\x5e\x5c\x4a\x4d\x6c\x49\x5d\x58\x4d\x5c\x39",
+        // "ASN1_OBJECT_free" / M(Rot) / S(55) / L(16)
+        "\x78\x8a\x85\x68\x96\x86\x79\x81\x7c\x7a\x8b\x96\x9d\xa9\x9c\x9c\x37",
+        // "X509_digest" / M(Xor1) / S(126) / L(11)
+        "\x26\x4b\x4e\x47\x21\x1a\x17\x19\x1b\x0d\x0a\x7e\x5b\x16\x28\xdf",
+        // "BIO_write" / M(Xor1) / S(157) / L(9)
+        "\xdf\xd4\xd2\xc2\xea\xef\xf4\xe9\xf8\x9d\x94\x8e\xe2\x16\x83\x9b",
+        // "exit" / M(Xor1) / S(91) / L(4)
+        "\x3e\x23\x32\x2f\x5b\xee\xf1\x60\x62\xda\xbd\x4e\xbb\xab\xb3\x94",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor2) / S(57) / L(40)
+        "\x3e\x39\x39\x4d\x3d\x4a\x3e\x3e\x3a\x4b\x3d\x31\x3b\x49\x38\x30\x4e\x4e\x3d\x30\x4c\x39\x3c\x49\x4d\x3a\x3a\x3c\x3d\x3a\x4c\x39\x31\x30\x4c\x4e\x3e\x4b\x3e\x38\x08\x9e\xbf\xdd\x8e\xfb\x8d\x0d\xd8",
+        // "" / M(None) / S(0) / L(0)
+        "\x8a\xcc\x39\x21\x0d\x74\xc9\x8a\x8d\x03\xdf\xd8\xc1\x5b\xd8\x6b\x47\xda\x23\xbd\x39\x76\x0a\x75\x23\x56\x19\x29\x32\x2f\xb6\xdf",
+        // "" / M(None) / S(0) / L(0)
+        "\x8b\x77\x6e\x2c\x97\xcc\x5c\x14\xbf\xad\x6c\x18\xdb\xbe\xc9\xa2\xa4\x0e\xe1\xf4\xa7\x9c\xf9\xe6\xc1\xb3\x7b\xb8\x70\xf3\x9c\x0f",
+        // "SHA1_Update" / M(Rot) / S(167) / L(11)
+        "\xfa\xef\xe8\xd8\x06\xfc\x17\x0b\x08\x1b\x0c\xa7\xff\xc5\x2b\x92",
+        // "X509_get_ext_by_OBJ" / M(Xor1) / S(111) / L(19)
+        "\x37\x5a\x5f\x56\x30\x08\x0a\x1b\x30\x0a\x17\x1b\x30\x0d\x16\x30\x20\x2d\x25\x6f",
+        // "CFDictionaryCreateMutable" / M(Xor4) / S(144) / L(25)
+        "\x63\x66\x64\x49\x43\x54\x49\x4f\x4e\x41\x52\x59\x63\x52\x45\x41\x54\x45\x6d\x55\x54\x41\x42\x4c\x45\x20\x87\x20\x6f\x39\x95\x0c\xbc\xf4",
+        // "c2i_ASN1_INTEGER" / M(Xor2) / S(109) / L(16)
+        "\x1f\x4e\x15\x23\x3d\x2f\x32\x4d\x23\x35\x32\x28\x39\x3b\x39\x2e\x7c",
+        // "1.2.840.113635.100.6.11.1" / M(Xor3) / S(177) / L(25)
+        "\xe2\xfd\xe1\xfd\xeb\xe7\xe3\xfd\xe2\xe2\xe0\xe5\xe0\xe6\xfd\xe2\xe3\xe3\xfd\xe5\xfd\xe2\xe2\xfd\xe2\xd3\xd4\xbf\x29\xa6\x50\x52\x62\xf6",
+        // "BIO_s_mem" / M(Xor4) / S(198) / L(9)
+        "\x22\x29\x2f\x3f\x13\x3f\x0d\x05\x0d\x60\x5a\x1f\x58\xbe\xcd\x9a",
+        // "CFReadStreamCreateWithFile" / M(Xor2) / S(185) / L(26)
+        "\xd9\xdc\xc8\xff\xfb\xfe\xc9\xee\xe8\xff\xfb\xf7\xd9\xe8\xff\xfb\xee\xff\xcd\xf3\xee\xf2\xdc\xf3\xf6\xff\x9a\x8d\x4d\xfc\xfa\xc5\x39\x3f\x5e",
+        // "NSBundle" / M(Xor4) / S(57) / L(8)
+        "\xde\xc3\xd2\xe5\xfe\xf4\xfc\xf5\x90\xb3\x6f\x0f\x10\x3e\x08\x00",
+        // "BIO_write" / M(Xor4) / S(131) / L(9)
+        "\x72\x79\x7f\x6f\x47\x42\x59\x44\x55\x30\x26\x47\xd4\x0e\x1c\x82",
+        // "" / M(None) / S(0) / L(0)
+        "\x8e\xbc\xdb\xcd\xdb\x56\x0b\x24\x6b\xa0\x59\xc9\x3e\x4a\xc4\x36\xee\xa3\xf7\xdb\xa6\x9c\x10\x34\x8c\xeb\x1f\x9e\x40\xfb\xaf\x17",
+        // "" / M(None) / S(0) / L(0)
+        "\x3d\xf9\x05\x45\xb7\x0c\x98\xf6\xdb\x32\xa9\x17\xa4\xdf\x3f\x35\x94\x03\x4c\xfb\x47\x2f\xab\x0b\x5e\xd6\x8f\xbf\x0b\x01\xc8\x56",
+        // "currentDevice" / M(Xor1) / S(3) / L(13)
+        "\x60\x76\x71\x71\x66\x6d\x77\x47\x66\x75\x6a\x60\x66\x03\xa3\xf1",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor1) / S(118) / L(59)
+        "\x40\x47\x4c\x47\x13\x4c\x43\x14\x4c\x40\x40\x4c\x44\x15\x4c\x43\x4f\x4c\x45\x17\x4c\x46\x4e\x4c\x10\x10\x4c\x43\x4e\x4c\x12\x47\x4c\x42\x17\x4c\x13\x44\x4c\x44\x42\x4c\x43\x44\x4c\x12\x47\x4c\x4f\x4e\x4c\x12\x10\x4c\x40\x15\x4c\x40\x46\x76\x57\xb1\xd6\x67\x44\x4c\xd7\x5e",
+        // "" / M(None) / S(0) / L(0)
+        "\x5d\xeb\x6b\xea\x80\x25\x3a\x98\x67\x7c\x71\xbd\xd2\xe2\xde\xaf\xab\x73\xa9\xeb\x0f\x02\x41\x14\x78\x4b\xd0\xa9\x55\xd4\x29\x41",
+        // "longjmp" / M(Rot) / S(23) / L(7)
+        "\x83\x86\x85\x7e\x81\x84\x87\x17\x7e\xa7\xe2\xf8\x3a\x61\xca\x56",
+        // "OBJ_txt2obj" / M(Xor1) / S(74) / L(11)
+        "\x05\x08\x00\x15\x3e\x32\x3e\x78\x25\x28\x20\x4a\x44\x0a\x4d\x22",
+        // "identifierForVendor" / M(Xor3) / S(158) / L(19)
+        "\xdb\xd6\xd7\xdc\xc6\xdb\xd4\xdb\xd7\xc0\xf4\xdd\xc0\xe4\xd7\xdc\xd6\xdd\xc0\xb2",
+        // "" / M(None) / S(0) / L(0)
+        "\xb3\x40\x5a\x4c\x5c\xbe\x9c\x73\x4a\x0f\xec\xdb\xa1\x8f\xc0\x74\x0d\x16\x74\xbb\x56\xe1\x52\x81\x6b\xcb\x95\xba\x75\x67\x89\xc3",
+        // "CFNumberCreate" / M(Xor4) / S(16) / L(14)
+        "\x43\x46\x4e\x75\x6d\x62\x65\x72\x43\x72\x65\x61\x74\x65\x00\x7c",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor1) / S(126) / L(66)
+        "\x51\x2d\x07\x0d\x0a\x1b\x13\x51\x32\x17\x1c\x0c\x1f\x0c\x07\x51\x38\x0c\x1f\x13\x1b\x09\x11\x0c\x15\x0d\x51\x3d\x11\x0c\x1b\x38\x11\x0b\x10\x1a\x1f\x0a\x17\x11\x10\x50\x18\x0c\x1f\x13\x1b\x09\x11\x0c\x15\x51\x3d\x11\x0c\x1b\x38\x11\x0b\x10\x1a\x1f\x0a\x17\x11\x10\x7e",
+        // "dlopen" / M(Xor4) / S(143) / L(6)
+        "\x94\x9c\x9f\x80\x95\x9e\xf0\xd3\x84\x1e\x0f\x36\xeb\x16\xa5\x81",
+        // "CFStringCompare" / M(Xor3) / S(173) / L(15)
+        "\xfe\xfb\xee\xc9\xcf\xd4\xd3\xda\xfe\xd2\xd0\xcd\xdc\xcf\xd8\xbd",
+        // "strlen" / M(Xor4) / S(246) / L(6)
+        "\x13\x14\x12\x0c\x05\x0e\x60\x13\xe8\x92\xa3\x47\x1a\x6c\x54\xb9",
+        // "CFDateCompare" / M(Xor4) / S(52) / L(13)
+        "\x03\x06\x04\x21\x34\x25\x03\x2f\x2d\x30\x21\x32\x25\x40\x4c\xb9",
+        // "CFDictionarySetValue" / M(Rot) / S(6) / L(20)
+        "\x49\x4c\x4a\x6f\x69\x7a\x6f\x75\x74\x67\x78\x7f\x59\x6b\x7a\x5c\x67\x72\x7b\x6b\x06",
+        // "" / M(None) / S(0) / L(0)
+        "\x2f\xe7\x81\xa8\x35\xc6\x6e\xe6\x85\x7b\x97\x0d\xda\xba\xf0\x27\xac\x0d\xea\x6e\xac\xc2\x84\x57\xd6\xe9\x43\xad\xdf\x9f\x0b\x5d",
+        // "kCFTypeArrayCallBacks" / M(Xor2) / S(225) / L(21)
+        "\x9c\xb4\xb1\xa3\x8e\x87\x92\xb6\x85\x85\x96\x8e\xb4\x96\x9b\x9b\xb5\x96\x94\x9c\x84\xf7",
+        // "RTLD_MAIN_ONLY" / M(Xor1) / S(170) / L(14)
+        "\xf8\xfe\xe6\xee\xf5\xe7\xeb\xe3\xe4\xf5\xe5\xe4\xe6\xf3\xaa\x23",
+        // "CFBundleIdentifier" / M(Xor3) / S(2) / L(18)
+        "\x56\x53\x57\x60\x7b\x71\x79\x70\x5c\x71\x70\x7b\x61\x7c\x73\x7c\x70\x67\x15",
+        // "start" / M(Xor1) / S(200) / L(5)
+        "\xbb\xbc\xa9\xba\xbc\xc8\xa0\xe4\xa4\xba\x83\x88\x89\xbe\x23\xd9",
+        // "CFDictionaryCreateMutable" / M(Xor2) / S(145) / L(25)
+        "\xf0\xf5\xf7\xda\xd0\xc7\xda\xdc\xdd\xd2\xc1\xca\xf0\xc1\xd6\xd2\xc7\xd6\xfe\xc6\xc7\xd2\xd1\xdf\xd6\xb3\xdb\xa8\x7e\xd2\x86\x53\xd6\x3d",
+        // "CFBundleGetIdentifier" / M(Xor3) / S(191) / L(21)
+        "\x96\x93\x97\xa0\xbb\xb1\xb9\xb0\x92\xb0\xa1\x9c\xb1\xb0\xbb\xa1\xbc\xb3\xbc\xb0\xa7\xd5",
+        // "RTLD_MAIN_ONLY" / M(Rot) / S(158) / L(14)
+        "\xf0\xf2\xea\xe2\xfd\xeb\xdf\xe7\xec\xfd\xed\xec\xea\xf7\x9e\x34",
+        // "" / M(None) / S(0) / L(0)
+        "\x1f\x45\xf4\x0f\x26\x91\x9a\x95\xdb\xd2\x38\x24\x6d\x2f\x89\x5b\xe6\xa4\x53\xf1\xb7\x1f\x5e\x7a\x29\xf2\x83\xe3\xd7\xfa\xb4\x4c",
+        // "BIO_s_mem" / M(Xor1) / S(80) / L(9)
+        "\x12\x19\x1f\x0f\x23\x0f\x3d\x35\x3d\x50\xcd\x90\x6d\xfb\x07\x5b",
+        // "" / M(None) / S(0) / L(0)
+        "\xf9\x6c\x16\xeb\x11\x18\x39\x54\xcd\x10\x9a\x80\x56\x29\xa2\x0c\x92\x12\xa9\x0d\x3f\x24\xee\x75\x56\x82\xc7\x7a\x4e\x10\x68\x21",
+        // "CC_SHA1_Init" / M(Xor4) / S(89) / L(12)
+        "\xd3\xd3\xcf\xc3\xd8\xd1\xa1\xcf\xd9\xfe\xf9\xe4\x90\xe9\xe1\xb4",
+        // "CC_SHA1_Update" / M(Xor2) / S(36) / L(14)
+        "\x77\x77\x6b\x67\x7c\x75\x05\x6b\x61\x44\x50\x55\x40\x51\x34\x8b",
+        // "sha1" / M(Xor1) / S(215) / L(4)
+        "\xa4\xbf\xb6\xe6\xd7\x16\x9c\x17\xc0\xa6\x3f\xea\xe1\x04\x48\xcf",
+        // "SHA1_Final" / M(Xor2) / S(154) / L(10)
+        "\xd9\xc2\xcb\xbb\xd5\xcc\xe3\xe4\xeb\xe6\x8a\xc1\x20\xa2\xba\x03",
+        // "" / M(None) / S(0) / L(0)
+        "\x7b\xc5\xc5\xf7\x21\xc7\x9a\x65\x93\x22\x9a\xca\xeb\x00\x7b\x06\x63\xaa\xae\xef\xd9\x9f\x3c\xaa\xa5\xad\xa3\x0b\x51\xa5\xe9\xd9",
+        // "" / M(None) / S(0) / L(0)
+        "\xea\x7f\xc9\xdb\x0a\x3a\x19\x30\xe2\x03\x15\xc8\x0f\x5b\xa7\x0c\x76\x60\x08\xb4\x37\x4c\x59\xfe\xac\xbf\x8b\xcd\x89\xef\x3b\xaa",
+        // "BIO_new" / M(Xor1) / S(183) / L(7)
+        "\xf5\xfe\xf8\xe8\xd9\xd2\xc0\xb7\x0b\xc6\x16\xf6\x6c\x5a\x16\x12",
+        // "" / M(None) / S(0) / L(0)
+        "\xd0\xd8\x4d\x02\xbe\x69\x5c\x10\x60\xc8\xe9\xed\x0f\x65\xec\x26\x49\x58\x43\x33\x2e\xfb\x13\xb6\x44\xa3\x1e\x2b\xa2\x9a\xac\x19",
+        // "com.intangiblesoftware.menslacrossestats" / M(Xor1) / S(122) / L(40)
+        "\x19\x15\x17\x54\x13\x14\x0e\x1b\x14\x1d\x13\x18\x16\x1f\x09\x15\x1c\x0e\x0d\x1b\x08\x1f\x54\x17\x1f\x14\x09\x16\x1b\x19\x08\x15\x09\x09\x1f\x09\x0e\x1b\x0e\x09\x7a\xd7\x7c\xb4\xfb\xdf\xa8\xfb\x0b",
+        // "currentDevice" / M(Xor3) / S(58) / L(13)
+        "\x29\x3f\x38\x38\x2f\x24\x3e\x0e\x2f\x3c\x23\x29\x2f\x4a\x37\x32",
+        // "" / M(None) / S(0) / L(0)
+        "\x34\xba\xf3\x8c\xa9\x9e\x3a\xf6\x5a\x4b\xd6\xc3\xe3\x5f\xf9\x69\x98\x20\x27\x12\xb4\xe5\xcc\x4b\xe3\x12\x9d\x28\x5c\xaa\xc1\xe4",
+        // "EVP_DigestFinal" / M(Xor4) / S(25) / L(15)
+        "\xd5\xc6\xc0\xcf\xd4\xf9\xf7\xf5\xe3\xe4\xd6\xf9\xfe\xf1\xfc\x90",
+        // "CFRelease" / M(Xor4) / S(184) / L(9)
+        "\xc3\xc6\xd2\xe5\xec\xe5\xe1\xf3\xe5\x80\xde\x26\xc9\xb3\x4d\x75",
+        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Xor2) / S(185) / L(39)
+        "\xca\xcf\xdd\xe0\xe4\xec\xd3\xe6\xe7\xec\xca\xfb\xec\xe8\xfd\xec\xde\xe0\xfd\xe1\xdd\xe0\xe4\xec\xc0\xe7\xfd\xec\xfb\xff\xe8\xe5\xcf\xfb\xe6\xe4\xce\xc4\xdd\x89\xc7\x80\x75\x2f\x34\x9a\x55\x4c",
+        // "EVP_DigestInit" / M(Xor3) / S(12) / L(14)
+        "\x59\x4a\x4c\x43\x58\x75\x7b\x79\x6f\x68\x55\x72\x75\x68\x1c\x28",
+        // "" / M(None) / S(0) / L(0)
+        "\x77\x5e\x1a\x9f\x32\x3b\xa4\x20\x5a\x66\x7e\x8f\x3a\x74\x2a\x90\xe9\x07\x71\xf9\xe9\xd7\x4b\x31\xca\x92\xff\xbc\xd5\x88\x47\x0f",
+        // "kCFTypeDictionaryValueCallBacks" / M(Xor4) / S(111) / L(31)
+        "\x8b\xa3\xa6\xb4\x99\x90\x85\xa4\x89\x83\x94\x89\x8f\x8e\x81\x92\x99\xb6\x81\x8c\x95\x85\xa3\x81\x8c\x8c\xa2\x81\x83\x8b\x93\xe0",
+        // "CFDateFormatterSetFormat" / M(Xor4) / S(152) / L(24)
+        "\xdb\xde\xdc\xf9\xec\xfd\xde\xf7\xea\xf5\xf9\xec\xec\xfd\xea\xcb\xfd\xec\xde\xf7\xea\xf5\xf9\xec\x98\x4b\xed\x46\x48\x78\x89\x42\xd0",
+        // "SHA1_Update" / M(Xor4) / S(123) / L(11)
+        "\xe3\xf8\xf1\x81\xef\xe5\xc0\xd4\xd1\xc4\xd5\xb0\x3c\x49\xc6\x57",
+        // "" / M(None) / S(0) / L(0)
+        "\xf4\x48\x75\xfe\xa0\x2f\xda\x5f\x6c\xd6\x5e\xda\x83\x13\x42\x1e\x12\xe5\xc3\x64\xba\xb7\xaa\xc5\x5f\x0a\x01\xbe\xe9\x74\xdc\xbd",
+        // "objc_lookUpClass" / M(Xor3) / S(63) / L(16)
+        "\x3f\x32\x3a\x33\x0f\x3c\x3f\x3f\x3b\x05\x20\x13\x3c\x31\x23\x23\x50",
+        // "appStoreReceiptURL" / M(Rot) / S(213) / L(18)
+        "\x36\x45\x45\x28\x49\x44\x47\x3a\x27\x3a\x38\x3a\x3e\x45\x49\x2a\x27\x21\xd5",
+        // "CFArrayAppendValue" / M(Xor3) / S(200) / L(18)
+        "\x98\x9d\x9a\xa9\xa9\xba\xa2\x9a\xab\xab\xbe\xb5\xbf\x8d\xba\xb7\xae\xbe\xdb",
+        // "kCFBundleIdentifierKey" / M(Xor2) / S(19) / L(22)
+        "\x6f\x47\x42\x46\x71\x6a\x60\x68\x61\x4d\x60\x61\x6a\x70\x6d\x62\x6d\x61\x76\x4f\x61\x7d\x04",
+        // "1.2.840.113635.100.6.11.1" / M(Xor4) / S(144) / L(25)
+        "\x11\x0e\x12\x0e\x18\x14\x10\x0e\x11\x11\x13\x16\x13\x15\x0e\x11\x10\x10\x0e\x16\x0e\x11\x11\x0e\x11\x20\x70\x68\x32\x50\x87\x37\xf0\xa4",
+        // "sel_registerName" / M(Xor1) / S(121) / L(16)
+        "\x0a\x1c\x15\x26\x0b\x1c\x1e\x10\x0a\x0d\x1c\x0b\x37\x18\x14\x1c\x79",
+        // "1.2.840.113635.100.6.11.1" / M(Xor3) / S(107) / L(25)
+        "\xbc\xa3\xbf\xa3\xb5\xb9\xbd\xa3\xbc\xbc\xbe\xbb\xbe\xb8\xa3\xbc\xbd\xbd\xa3\xbb\xa3\xbc\xbc\xa3\xbc\x8d\x47\x8b\x26\x58\x47\x00\x31\x4e",
+        // "CFDateFormatterCreateDateFromString" / M(Xor3) / S(11) / L(35)
+        "\x6c\x69\x6b\x4e\x5b\x4a\x69\x40\x5d\x42\x4e\x5b\x5b\x4a\x5d\x6c\x5d\x4a\x4e\x5b\x4a\x6b\x4e\x5b\x4a\x69\x5d\x40\x42\x7c\x5b\x5d\x46\x41\x48\x2f",
+        // "" / M(None) / S(0) / L(0)
+        "\x0a\x45\x93\x9a\xb5\xa1\xa4\x17\xb3\x03\xb3\x59\x6b\x4b\x97\x77\x8e\xdd\x34\xd4\x65\x97\x8e\xbe\x6a\xad\xec\x42\x7e\x4e\xac\xfd",
+        // "" / M(None) / S(0) / L(0)
+        "\x01\x72\xe5\x7b\x62\x1e\xc0\x97\x2a\x2c\x01\xd6\x71\xb1\x2d\xa2\xf0\x2f\xb5\xd8\x0f\xcf\x1d\x11\xee\x78\xaf\x42\xb1\xa9\x18\x27",
+        // "CFBundleIdentifier" / M(Rot) / S(77) / L(18)
+        "\x90\x93\x8f\xc2\xbb\xb1\xb9\xb2\x96\xb1\xb2\xbb\xc1\xb6\xb3\xb6\xb2\xbf\x4d",
+        // "" / M(None) / S(0) / L(0)
+        "\xc7\xd0\xca\x6b\xf6\xc2\x73\x5e\xd2\x06\x30\xe6\x6d\x64\x9a\x76\x42\x39\xbb\xa8\x9d\xd1\xa6\x75\x36\xc9\xc7\x0f\x53\x3d\x60\xc8",
+        // "d2i_X509_bio" / M(Xor4) / S(15) / L(12)
+        "\x94\xc2\x99\xaf\xa8\xc5\xc0\xc9\xaf\x92\x99\x9f\xf0\xb5\xa9\xe4",
+        // "ASN1_INTEGER_free" / M(Xor4) / S(17) / L(17)
+        "\x73\x61\x7c\x03\x6d\x7b\x7c\x66\x77\x75\x77\x60\x6d\x54\x40\x57\x57\x32",
+        // "" / M(None) / S(0) / L(0)
+        "\xe6\x18\x8e\xbb\xb3\x9b\xeb\x03\x09\x4c\xd0\x99\x1a\x58\x49\x72\x1a\x73\x8c\x73\x33\x4e\x8c\xaf\x49\x16\x3c\x9a\xfc\x69\x4b\x91",
+        // "setjmp" / M(Xor1) / S(55) / L(6)
+        "\x44\x52\x43\x5d\x5a\x47\x37\x56\xdd\x20\xa6\x90\xe6\x63\x2e\x70",
+        // "/usr/lib/libSystem.dylib" / M(Xor3) / S(248) / L(24)
+        "\x36\x6c\x6a\x6b\x36\x75\x70\x7b\x36\x75\x70\x7b\x4a\x60\x6a\x6d\x7c\x74\x37\x7d\x60\x75\x70\x7b\x19\xa3\x25\xb5\x6f\xb7\x60\x18\x8d",
+        // "OBJ_txt2obj" / M(Xor3) / S(187) / L(11)
+        "\x84\x89\x81\x94\xbf\xb3\xbf\xf9\xa4\xa9\xa1\xcb\x77\x5a\x90\x19",
+        // "" / M(None) / S(0) / L(0)
+        "\xb8\x01\x56\x1a\x90\x83\x5c\x7f\x8f\x8d\x4d\xe5\x1e\x0c\x3c\xbf\x36\x67\xd1\xb7\x5e\x82\xb9\x72\xa9\x4a\x86\xbd\x4c\x62\x32\x47",
+        // "PKCS7_verify" / M(Xor1) / S(23) / L(12)
+        "\x47\x5c\x54\x44\x20\x48\x61\x72\x65\x7e\x71\x6e\x17\x10\xa9\x52",
+        // "CC_SHA1_Init" / M(Rot) / S(62) / L(12)
+        "\x81\x81\x9d\x91\x86\x7f\x6f\x9d\x87\xac\xa7\xb2\x3e\x75\xda\xd8",
+        // "CFAbsoluteTimeGetCurrent" / M(Xor3) / S(159) / L(24)
+        "\x83\x86\x81\xa2\xb3\xaf\xac\xb5\xb4\xa5\x94\xa9\xad\xa5\x87\xa5\xb4\x83\xb5\xb2\xb2\xa5\xae\xb4\xc0\xff\x08\x9d\x07\xb0\xd5\x68\x96",
+        // "PKCS7_verify" / M(Xor1) / S(108) / L(12)
+        "\x3c\x27\x2f\x3f\x5b\x33\x1a\x09\x1e\x05\x0a\x15\x6c\x87\x42\xd0",
+        // "mainBundle" / M(Xor2) / S(242) / L(10)
+        "\x8f\x83\x8b\x8c\xa0\x97\x8c\x86\x8e\x87\xe2\x0f\xbc\x80\x95\xfa",
+        // "CFStringCreateWithCString" / M(Xor3) / S(65) / L(25)
+        "\x20\x25\x30\x17\x11\x0a\x0d\x04\x20\x11\x06\x02\x17\x06\x34\x0a\x17\x0b\x20\x30\x17\x11\x0a\x0d\x04\x63\x0d\x6f\xde\x7a\xfd\x1f\xf4\x71",
+        // "X509_free" / M(Xor2) / S(42) / L(9)
+        "\x62\x0f\x0a\x03\x65\x5c\x48\x5f\x5f\x3a\x77\x9b\x08\xb4\xaa\xc6",
+        // "" / M(None) / S(0) / L(0)
+        "\xa9\x33\x8a\x48\x9d\x88\xff\x79\xa2\xd7\xfe\x80\x12\x57\xd9\x14\xda\xc2\xe1\x69\xf9\x48\x59\xcf\x52\x55\x10\xa7\x3a\xae\x1b\x6d",
+        // "" / M(None) / S(0) / L(0)
+        "\xf9\xa9\xb7\x8b\x42\xd9\x25\xaf\x14\xa1\xf4\x37\x47\x13\x97\x72\x40\x97\xea\x05\x6c\xce\xfb\xc6\x6e\xb7\xf8\xa4\x99\x13\x9a\x2e",
+        // "ASN1_get_object" / M(Xor4) / S(200) / L(15)
+        "\xc1\xd3\xce\xb1\xdf\xe7\xe5\xf4\xdf\xef\xe2\xea\xe5\xe3\xf4\x80",
+        // "kCFDateFormatterTimeZone" / M(Rot) / S(114) / L(24)
+        "\xdd\xb5\xb8\xb6\xd3\xe6\xd7\xb8\xe1\xe4\xdf\xd3\xe6\xe6\xd7\xe4\xc6\xdb\xdf\xd7\xcc\xe1\xe0\xd7\x72\x54\x8c\xf6\x27\xa7\x6d\x9f\x68",
+        // "" / M(None) / S(0) / L(0)
+        "\x24\xc6\x5b\xd9\xfd\x1d\x90\xef\x2d\x31\xad\x5a\x86\x43\x96\x6d\xc9\x87\xd5\x78\xf6\x36\x2f\xf0\x55\x28\xe3\xdb\xa4\x14\xbc\xe7",
+        // "currentDevice" / M(Xor2) / S(220) / L(13)
+        "\xaf\xb9\xbe\xbe\xa9\xa2\xb8\x88\xa9\xba\xa5\xaf\xa9\xcc\xb2\xc6",
+        // "" / M(None) / S(0) / L(0)
+        "\xde\x34\xad\x81\x4d\x82\xe8\x5d\x16\x6e\xfe\x25\xfe\x84\xe6\xcd\x22\x30\x20\x14\xc6\x72\x23\xc1\x3f\x0c\x32\x7d\x69\x27\x79\x86",
+        // "CFBundleUnloadExecutable" / M(Rot) / S(82) / L(24)
+        "\x95\x98\x94\xc7\xc0\xb6\xbe\xb7\xa7\xc0\xbe\xc1\xb3\xb6\x97\xca\xb7\xb5\xc7\xc6\xb3\xb4\xbe\xb7\x52\x3b\x63\x4d\xeb\x8e\x61\xa2\x41",
+        // "alloc" / M(Xor1) / S(181) / L(5)
+        "\xd4\xd9\xd9\xda\xd6\xb5\xd4\x41\x6a\xd3\x3f\x6b\x43\xb4\x04\xb1",
+        // "SHA1" / M(Xor3) / S(79) / L(4)
+        "\x0c\x17\x1e\x6e\x5f\xcc\xae\xbb\xc2\x55\xaf\xc3\x24\x43\x17\x08",
+        // "" / M(None) / S(0) / L(0)
+        "\xbd\x07\xde\x3b\xbe\xf5\x86\x1f\x24\x22\xd4\xe5\xde\x4f\x93\x64\x40\x2a\x58\x49\x2b\x2a\x5b\x38\x45\x07\x39\x17\x1f\x66\x9c\xca",
+        // "" / M(None) / S(0) / L(0)
+        "\xdb\x53\xe6\xb1\xc8\xa2\xb6\x10\x7a\xed\x20\x81\xda\xc0\xa5\x00\x7c\xae\xa1\xc6\x49\xc0\x12\x3d\xf3\x05\x23\xe8\x32\xaf\x2e\x68",
+        // "" / M(None) / S(0) / L(0)
+        "\x78\xd1\x92\xa1\xda\x60\x6f\xda\x85\x5e\x04\x30\xaf\xe6\x20\x63\x7c\x3d\x31\xe7\x88\x63\xd5\xa5\xbf\x3f\x19\x22\x18\x9f\x87\xe2",
+        // "kCFTypeDictionaryValueCallBacks" / M(Xor3) / S(64) / L(31)
+        "\x0b\x23\x26\x34\x19\x10\x05\x24\x09\x03\x14\x09\x0f\x0e\x01\x12\x19\x36\x01\x0c\x15\x05\x23\x01\x0c\x0c\x22\x01\x03\x0b\x13\x60",
+        // "" / M(None) / S(0) / L(0)
+        "\x29\x3f\xc8\x79\xef\x29\xd2\x34\x68\x17\x30\x0a\x34\xf1\x31\xff\xf0\xfd\x3a\x62\xca\xf5\xb0\xcc\x20\x94\x5a\x0a\x0c\x5a\x78\xa9",
+        // "%02x:" / M(Xor3) / S(87) / L(5)
+        "\x42\x57\x55\x1f\x5d\x67\x7c\xdf\x18\x8e\xaf\xb0\x52\x22\xba\xfc",
+        // "CFDateFormatterSetProperty" / M(Xor4) / S(0) / L(26)
+        "\x43\x46\x44\x61\x74\x65\x46\x6f\x72\x6d\x61\x74\x74\x65\x72\x53\x65\x74\x50\x72\x6f\x70\x65\x72\x74\x79\x00\xf6\x94\xa6\x1f\xb2\xcc\xe3\x2a",
+        // "PKCS7_free" / M(Xor4) / S(141) / L(10)
+        "\x80\x9b\x93\x83\xe7\x8f\xb6\xa2\xb5\xb5\xd0\xb5\x8e\xf1\x0a\x81",
+        // "setjmp" / M(Xor1) / S(206) / L(6)
+        "\xbd\xab\xba\xa4\xa3\xbe\xce\x47\xb0\x25\xc0\x8f\x74\x92\x4d\x46",
+        // "CC_SHA1_Final" / M(Xor2) / S(53) / L(13)
+        "\x66\x66\x7a\x76\x6d\x64\x14\x7a\x63\x4c\x4b\x44\x49\x25\xc0\x55",
+        // "" / M(None) / S(0) / L(0)
+        "\x87\x45\xf2\xe8\x86\x26\x67\x52\xd6\x86\x27\x4a\x0a\xfa\xc1\x8c\xcf\x5b\x57\x43\xb2\x9a\xb9\x2f\x2f\xcb\xcb\x46\x93\x39\x9d\x5b",
+        // "exit" / M(Xor3) / S(143) / L(4)
+        "\xfa\xe7\xf6\xeb\x9f\xfe\xf4\x58\xe3\x1e\x8e\x7d\x33\xeb\xc9\x66",
+        // "" / M(None) / S(0) / L(0)
+        "\xdd\x3b\x58\x50\x03\xcd\x0e\x5a\x9f\x08\x0f\x3f\xb3\x06\x49\x66\x78\xbf\x37\x9e\x32\xd8\x91\x53\x0c\x9c\xb2\x0e\xab\xf5\xcc\x73",
+        // "" / M(None) / S(0) / L(0)
+        "\xf3\x65\xfb\x96\xe4\x0a\x5e\x42\x4a\xbe\xff\x91\x87\x55\xfe\x0e\x4f\x76\x71\xb6\x72\x0b\x55\x06\x7c\xe5\x93\xe4\x1c\x99\xe2\x75",
+        // "SHA1_Init" / M(Xor2) / S(145) / L(9)
+        "\xd2\xc9\xc0\xb0\xde\xc8\xef\xe8\xf5\x81\xc0\x5a\x15\xf2\x53\xaf",
+        // "/usr/lib/libobjc.dylib" / M(Xor3) / S(115) / L(22)
+        "\xa5\xff\xf9\xf8\xa5\xe6\xe3\xe8\xa5\xe6\xe3\xe8\xe5\xe8\xe0\xe9\xa4\xee\xf3\xe6\xe3\xe8\x8a",
+        // "CFBundleGetIdentifier" / M(Xor3) / S(111) / L(21)
+        "\xc6\xc3\xc7\xf0\xeb\xe1\xe9\xe0\xc2\xe0\xf1\xcc\xe1\xe0\xeb\xf1\xec\xe3\xec\xe0\xf7\x85",
+        // "CC_SHA1" / M(Rot) / S(113) / L(7)
+        "\xb4\xb4\xd0\xc4\xb9\xb2\xa2\x71\x4e\x74\x19\xd2\xf2\x57\xd6\xea",
+        // "sk_value" / M(Xor3) / S(82) / L(8)
+        "\x11\x09\x3d\x14\x03\x0e\x17\x07\x62\xa5\x22\xec\xce\xd9\x12\x7d",
+        // "" / M(None) / S(0) / L(0)
+        "\x26\xc9\x7c\x87\xd0\x98\xc5\xdb\xf1\x5f\xb7\x46\x15\x03\xfe\x8f\x9a\xee\x54\x16\x89\x35\x25\x5e\xd5\x77\x50\xa4\x1f\x8a\x69\x7d",
+        // "%02X" / M(Xor4) / S(87) / L(4)
+        "\x55\x40\x42\x28\x70\x5b\x87\x68\xa9\x5e\xa0\xf2\xb4\x09\xc0\x37",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Rot) / S(32) / L(66)
+        "\x4f\x73\x99\x93\x94\x85\x8d\x4f\x6c\x89\x82\x92\x81\x92\x99\x4f\x66\x92\x81\x8d\x85\x97\x8f\x92\x8b\x93\x4f\x63\x8f\x92\x85\x66\x8f\x95\x8e\x84\x81\x94\x89\x8f\x8e\x4e\x86\x92\x81\x8d\x85\x97\x8f\x92\x8b\x4f\x63\x8f\x92\x85\x66\x8f\x95\x8e\x84\x81\x94\x89\x8f\x8e\x20",
+        // "OpenSSL_add_all_digests" / M(Xor4) / S(206) / L(23)
+        "\x8f\xb0\xa5\xae\x93\x93\x8c\x9f\xa1\xa4\xa4\x9f\xa1\xac\xac\x9f\xa4\xa9\xa7\xa5\xb3\xb4\xb3\xc0\x0f\x08\xd0\x44\x45\xba\xb8\xff",
+        // "kCFDateFormatterTimeZone" / M(Rot) / S(253) / L(24)
+        "\x68\x40\x43\x41\x5e\x71\x62\x43\x6c\x6f\x6a\x5e\x71\x71\x62\x6f\x51\x66\x6a\x62\x57\x6c\x6b\x62\xfd\x76\x12\x89\xfa\x10\x74\x0d\xb7",
+        // "d2i_PKCS7_bio" / M(Xor4) / S(79) / L(13)
+        "\x94\xc2\x99\xaf\xa0\xbb\xb3\xa3\xc7\xaf\x92\x99\x9f\xf0\x9c\x34",
+        // "" / M(None) / S(0) / L(0)
+        "\xd9\x14\x92\xb9\xaf\x60\x44\x9d\xbd\x54\xdb\x68\xf1\x0f\xed\x67\xc4\xff\xf4\xa0\x84\xfd\xdf\x57\x21\xa7\x73\x9a\x48\x95\x71\x32",
+        // "" / M(None) / S(0) / L(0)
+        "\xe7\xfa\xfe\x53\x9d\x92\x8c\x7c\x72\x54\x60\xae\x82\x7b\x36\xab\xaf\x5b\x9f\x94\xd6\x23\xd2\xac\xa7\x14\xf0\xf2\x76\x69\xfe\xa5",
+        // "identifierForVendor" / M(Xor2) / S(62) / L(19)
+        "\x43\x4e\x4f\x44\x5e\x43\x4c\x43\x4f\x58\x6c\x45\x58\x7c\x4f\x44\x4e\x45\x58\x2a",
+        // "SKReceiptRefreshRequest" / M(Rot) / S(126) / L(23)
+        "\xd1\xc9\xd0\xe3\xe1\xe3\xe7\xee\xf2\xd0\xe3\xe4\xf0\xe3\xf1\xe6\xd0\xe3\xef\xf3\xe3\xf1\xf2\x7e\x21\xb5\x19\xb2\x21\x24\x57\xa9",
+        // "X509_NAME_get_text_by_NID" / M(Xor1) / S(51) / L(25)
+        "\x6b\x06\x03\x0a\x6c\x7d\x72\x7e\x76\x6c\x54\x56\x47\x6c\x47\x56\x4b\x47\x6c\x51\x4a\x6c\x7d\x7a\x77\x33\xe6\xa6\x67\x66\xc9\xa0\x35\xca",
+        // "ASN1_OBJECT_free" / M(Xor2) / S(86) / L(16)
+        "\x06\x14\x09\x76\x18\x08\x05\x0d\x02\x04\x13\x18\x21\x35\x22\x22\x47",
+        // "SHA1_Init" / M(Xor2) / S(157) / L(9)
+        "\xde\xc5\xcc\xbc\xd2\xc4\xe3\xe4\xf9\x8d\xaa\x8d\x1a\xde\xe2\xae",
+        // "CFBundleGetMainBundle" / M(Xor3) / S(63) / L(21)
+        "\x16\x13\x17\x20\x3b\x31\x39\x30\x12\x30\x21\x18\x34\x3c\x3b\x17\x20\x3b\x31\x39\x30\x55",
+        // "sk_num" / M(Xor2) / S(178) / L(6)
+        "\xd1\xc9\xfd\xcc\xd7\xcf\xa2\xae\xfb\xf6\x26\x85\x61\x4b\x16\xa3",
+        // "ASN1_get_object" / M(Xor3) / S(165) / L(15)
+        "\xf4\xe6\xfb\x84\xea\xd2\xd0\xc1\xea\xda\xd7\xdf\xd0\xd6\xc1\xb5",
+        // "EVP_MD_CTX_init" / M(Xor2) / S(69) / L(15)
+        "\x10\x03\x05\x0a\x18\x11\x0a\x16\x01\x0d\x0a\x3c\x3b\x3c\x21\x55",
+        // "CFArrayCreateMutable" / M(Xor3) / S(178) / L(20)
         "\x84\x81\x86\xb5\xb5\xa6\xbe\x84\xb5\xa2\xa6\xb3\xa2\x8a\xb2\xb3\xa6\xa5\xab\xa2\xc7",
-        // "CFRelease" / M(Xor2) / S(28) / L(9)
-        "\x4f\x4a\x5e\x69\x60\x69\x6d\x7f\x69\x0c\x9a\x40\xf8\x60\x46\x27",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor2) / S(10) / L(66)
-        "\x66\x1a\x30\x3a\x3d\x2c\x24\x66\x05\x20\x2b\x3b\x28\x3b\x30\x66\x0f\x3b\x28\x24\x2c\x3e\x26\x3b\x22\x3a\x66\x0a\x26\x3b\x2c\x0f\x26\x3c\x27\x2d\x28\x3d\x20\x26\x27\x67\x2f\x3b\x28\x24\x2c\x3e\x26\x3b\x22\x66\x0a\x26\x3b\x2c\x0f\x26\x3c\x27\x2d\x28\x3d\x20\x26\x27\x49",
-        // "sha1" / M(Xor1) / S(139) / L(4)
-        "\xf8\xe3\xea\xba\x8b\x3a\x0a\xf1\x1a\x3d\x80\x5c\xfd\x10\x60\x79",
-        // "strlen" / M(Xor3) / S(108) / L(6)
-        "\x0f\x08\x0e\x10\x19\x12\x7c\x00\x75\x87\xfe\x63\xc9\xd8\x3f\x17",
-        // "d2i_X509_bio" / M(Xor2) / S(227) / L(12)
-        "\x97\xc1\x9a\xac\xab\xc6\xc3\xca\xac\x91\x9a\x9c\xf3\x42\xc4\xfe",
-        // "BIO_new" / M(Xor2) / S(91) / L(7)
-        "\x09\x02\x04\x14\x25\x2e\x3c\x4b\xe3\xc0\xc1\x68\x66\x10\xef\xbc",
+        // "CFDataGetBytePtr" / M(Xor4) / S(138) / L(16)
+        "\x69\x6c\x6e\x4b\x5e\x4b\x6d\x4f\x5e\x68\x53\x5e\x4f\x7a\x5e\x58\x2a",
+        // "longjmp" / M(Xor3) / S(112) / L(7)
+        "\xec\xef\xee\xe7\xea\xed\xf0\x80\xcd\x75\xf0\x8c\x21\x9a\xf5\x11",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor2) / S(120) / L(59)
+        "\x0a\x0d\x06\x0d\x59\x06\x09\x5e\x06\x0a\x0a\x06\x0e\x5f\x06\x09\x05\x06\x0f\x5d\x06\x0c\x04\x06\x5a\x5a\x06\x09\x04\x06\x58\x0d\x06\x08\x5d\x06\x59\x0e\x06\x0e\x08\x06\x09\x0e\x06\x58\x0d\x06\x05\x04\x06\x58\x5a\x06\x0a\x5f\x06\x0a\x0c\x3c\xed\xbf\x0a\xc1\x26\x69\xfe\xc4",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor4) / S(142) / L(59)
+        "\x8e\x89\x82\x89\xfd\x82\x8d\xfa\x82\x8e\x8e\x82\x8a\xfb\x82\x8d\x81\x82\x8b\xf9\x82\x88\x80\x82\xfe\xfe\x82\x8d\x80\x82\xfc\x89\x82\x8c\xf9\x82\xfd\x8a\x82\x8a\x8c\x82\x8d\x8a\x82\xfc\x89\x82\x81\x80\x82\xfc\xfe\x82\x8e\xfb\x82\x8e\x88\xb8\x58\x39\x96\xd3\xbb\x82\x0e\xb1",
         // "" / M(None) / S(0) / L(0)
-        "\x80\x1a\xbf\x68\xb9\x6c\xbe\x66\x4e\x64\xbe\xce\xe1\x14\x3e\xc1\xe2\x7b\x87\x2c\x67\xc9\xb0\x83\xf8\x6d\x44\x66\x69\x75\xb4\xe3",
+        "\x17\xd6\xcc\xd5\x8f\xd5\xf4\x9c\x24\x30\x7c\x5b\xde\xcc\x80\x92\x1e\x1b\xb8\xae\xf4\x47\xa1\xfc\x1e\x60\x69\x83\x38\xe6\xdf\x09",
         // "" / M(None) / S(0) / L(0)
-        "\xd0\xad\xf9\x30\x07\xd8\x73\x52\xbc\xeb\x14\xd3\x0a\xa4\x07\xef\x23\x88\xef\x3d\xd9\x3e\xc3\xa8\x03\x01\x73\x1b\x73\x00\x31\x99",
-        // "CFDictionarySetValue" / M(Xor3) / S(19) / L(20)
-        "\x6b\x6e\x6c\x41\x4b\x5c\x41\x47\x46\x49\x5a\x51\x7b\x4d\x5c\x7e\x49\x44\x5d\x4d\x28",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor4) / S(5) / L(59)
-        "\x62\x65\x6e\x65\x31\x6e\x61\x36\x6e\x62\x62\x6e\x66\x37\x6e\x61\x6d\x6e\x67\x35\x6e\x64\x6c\x6e\x32\x32\x6e\x61\x6c\x6e\x30\x65\x6e\x60\x35\x6e\x31\x66\x6e\x66\x60\x6e\x61\x66\x6e\x30\x65\x6e\x6d\x6c\x6e\x30\x32\x6e\x62\x37\x6e\x62\x64\x54\xc2\x98\x45\x11\x5a\x01\x1a\x99",
-        // "CFReadStreamCreateWithFile" / M(Xor3) / S(77) / L(26)
-        "\x33\x36\x22\x15\x11\x14\x23\x04\x02\x15\x11\x1d\x33\x02\x15\x11\x04\x15\x27\x19\x04\x18\x36\x19\x1c\x15\x70\xbf\x5d\x41\xd9\x2f\xfb\xf8\x95",
+        "\x0e\xa3\x66\x70\x3b\xf7\xd4\x66\x90\xac\xd7\x53\x7a\x60\x0d\x0a\x78\xb8\xbd\x4b\xd4\xda\x52\x13\xc9\x15\x49\x07\xd8\x8a\xe7\xa0",
         // "" / M(None) / S(0) / L(0)
-        "\xbd\x13\x12\xf2\x67\xe2\x67\xc2\xed\xdd\xc2\x31\x42\x75\xf8\x6d\x25\x94\xba\xe2\xf2\x59\xb0\xfa\xc8\x13\xe9\x20\xa0\x63\x70\x1a",
-        // "BIO_s_mem" / M(Xor1) / S(20) / L(9)
-        "\x56\x5d\x5b\x4b\x67\x4b\x79\x71\x79\x14\x81\x42\x15\x35\x65\x45",
+        "\xce\xed\x0c\x86\x4d\x0a\x78\xa0\x67\xd4\xee\x14\xb7\x04\xa9\x77\x46\xea\x27\xf1\xff\x40\x2b\x9f\x73\xf3\x50\x9a\x16\xb3\xdb\x33",
+        // "dlsym" / M(Xor4) / S(47) / L(5)
+        "\x94\x9c\x83\x89\x9d\xf0\xd9\x59\x52\x0d\x15\x58\xb2\x0a\x27\x77",
+        // "CFArrayGetCount" / M(Xor3) / S(54) / L(15)
+        "\x05\x00\x07\x34\x34\x27\x3f\x01\x23\x32\x05\x29\x33\x28\x32\x46",
+        // "SKReceiptRefreshRequest" / M(Xor3) / S(131) / L(23)
+        "\xf0\xe8\xf1\xc6\xc0\xc6\xca\xd3\xd7\xf1\xc6\xc5\xd1\xc6\xd0\xcb\xf1\xc6\xd2\xd6\xc6\xd0\xd7\xa3\x98\xb0\x15\x9e\x71\x91\x83\x82",
+        // "CFDateFormatterCreateDateFromString" / M(Rot) / S(243) / L(35)
+        "\x36\x39\x37\x54\x67\x58\x39\x62\x65\x60\x54\x67\x67\x58\x65\x36\x65\x58\x54\x67\x58\x37\x54\x67\x58\x39\x65\x62\x60\x46\x67\x65\x5c\x61\x5a\xf3",
         // "" / M(None) / S(0) / L(0)
-        "\x85\x99\xd3\xc5\xd4\x0b\x8a\x06\x1f\x1e\x89\x8f\x35\xc3\x78\xe4\x61\x16\x60\x1e\xdf\x37\x32\xac\x66\x4b\x8b\xe5\x53\x0b\xca\x3e",
-        // "/usr/lib/libobjc.dylib" / M(Xor2) / S(173) / L(22)
-        "\x95\xcf\xc9\xc8\x95\xd6\xd3\xd8\x95\xd6\xd3\xd8\xd5\xd8\xd0\xd9\x94\xde\xc3\xd6\xd3\xd8\xba",
-        // "CFDateFormatterSetFormat" / M(Xor1) / S(95) / L(24)
-        "\x1c\x19\x1b\x3e\x2b\x3a\x19\x30\x2d\x32\x3e\x2b\x2b\x3a\x2d\x0c\x3a\x2b\x19\x30\x2d\x32\x3e\x2b\x5f\xa3\xa8\xe9\x2e\xff\xc8\x23\xfc",
-        // "BIO_s_mem" / M(Xor1) / S(218) / L(9)
-        "\x98\x93\x95\x85\xa9\x85\xb7\xbf\xb7\xda\xbc\x31\x61\x75\x50\x64",
+        "\xbd\xbd\x3c\xfe\x35\x43\x3f\xb2\xd3\xfb\x96\xc8\x57\xf8\x8e\xfe\x1a\x82\x78\xcd\xb6\x97\x9d\x74\x30\x1b\xf5\x68\x48\x91\x98\x4c",
         // "" / M(None) / S(0) / L(0)
-        "\x22\xd0\xa3\x3c\xe3\xc3\xa3\x53\x5f\x8d\x38\x27\xb9\x7c\x4c\x84\xc7\xc4\x19\x60\x36\xe5\x77\x0c\x66\x22\xcd\xbf\x2a\x5a\x18\x68",
+        "\x96\xa3\x9b\x15\xc1\xa2\x08\xc6\x4e\xcc\x4f\x0b\xb5\x6e\x2c\xc2\xa5\x51\x7e\xc2\xb1\xf5\x57\x7e\x93\x0a\xa1\xcb\x37\x38\x94\xf7",
         // "" / M(None) / S(0) / L(0)
-        "\xeb\xaf\xf1\x9c\x5b\xe8\x0b\x15\xa0\x41\x8b\x0d\x7c\x4b\x6d\xd1\x4e\x41\x59\xf9\x83\x24\xaf\x6b\xd8\xa3\xfb\xd7\x0c\x3e\x23\x2b",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor3) / S(212) / L(40)
-        "\x33\x34\x34\x40\x30\x47\x33\x33\x37\x46\x30\x3c\x36\x44\x35\x3d\x43\x43\x30\x3d\x41\x34\x31\x44\x40\x37\x37\x31\x30\x37\x41\x34\x3c\x3d\x41\x43\x33\x46\x33\x35\x05\xaa\x7f\x76\x2e\x46\x79\xf2\xa8",
-        // "CFBundleShortVersionString" / M(Xor3) / S(87) / L(26)
-        "\x39\x3c\x38\x0f\x14\x1e\x16\x1f\x29\x12\x15\x08\x0e\x2c\x1f\x08\x09\x13\x15\x14\x29\x0e\x08\x13\x14\x1d\x7a\x7a\xf4\x84\x25\x97\x60\x94\x3e",
+        "\xba\x30\x9d\x43\xc6\x76\x40\xc4\xec\xc5\xe6\xe3\x59\xf4\x4f\x08\xbd\xf9\x98\x5b\x6f\xe4\x10\xe5\xf6\x4a\xba\x77\x1e\xb2\xe5\x0a",
+        // "CFReadStreamCreateWithFile" / M(Xor2) / S(131) / L(26)
+        "\xe3\xe6\xf2\xc5\xc1\xc4\xf3\xd4\xd2\xc5\xc1\xcd\xe3\xd2\xc5\xc1\xd4\xc5\xf7\xc9\xd4\xc8\xe6\xc9\xcc\xc5\xa0\x1b\x0c\x10\xaf\x79\x6d\x2b\x01",
         // "" / M(None) / S(0) / L(0)
-        "\x50\x91\x11\xa4\xcd\xf0\x32\x14\xe1\x7d\xc0\x8d\x5c\x9a\x70\xf2\xb6\x35\xc9\x70\x47\x35\x7d\x2d\x1b\xdd\x25\x72\x9e\x56\x31\x0d",
-        // "kCFTypeArrayCallBacks" / M(Xor4) / S(133) / L(21)
-        "\x05\x2d\x28\x3a\x17\x1e\x0b\x2f\x1c\x1c\x0f\x17\x2d\x0f\x02\x02\x2c\x0f\x0d\x05\x1d\x6e",
+        "\x26\xca\x8d\x0a\x96\x55\xe8\x40\x18\x49\x53\xeb\xb1\x83\x86\xed\x9c\x37\xf8\x73\x54\xa2\xb1\x0f\x0e\xaa\x13\xd6\x44\x8d\x49\x9e",
+        // "start" / M(Xor1) / S(176) / L(5)
+        "\xc3\xc4\xd1\xc2\xc4\xb0\xe0\x3c\x49\x50\xb2\xae\x25\x92\x05\xdf",
+        // "PKCS7_free" / M(Xor4) / S(44) / L(10)
+        "\x90\x8b\x83\x93\xf7\x9f\xa6\xb2\xa5\xa5\xc0\xbb\xfe\x3d\x36\x7f",
+        // "EVP_MD_CTX_init" / M(Xor3) / S(126) / L(15)
+        "\xcb\xd8\xde\xd1\xc3\xca\xd1\xcd\xda\xd6\xd1\xe7\xe0\xe7\xfa\x8e",
+        // "BIO_new" / M(Xor2) / S(252) / L(7)
+        "\xae\xa5\xa3\xb3\x82\x89\x9b\xec\x8e\x6e\x31\x66\x4a\x1c\x2c\x73",
+        // "." / M(Xor1) / S(15) / L(1)
+        "\x21\x0f\x23\xce\xc6\xc9\x53\x4d\x6a\x3c\x1e\x41\x25\x34\x75\xb9",
+        // "%02X" / M(Xor1) / S(118) / L(4)
+        "\x53\x46\x44\x2e\x76\x5e\xf4\x4d\xe7\x1a\xed\x2e\xd9\xde\xa8\x0d",
+        // "BIO_new" / M(Rot) / S(245) / L(7)
+        "\x37\x3e\x44\x54\x63\x5a\x6c\xf5\x13\xb5\x83\xc7\xd0\xf8\xed\xed",
         // "" / M(None) / S(0) / L(0)
-        "\xfc\x44\xbd\x7a\x01\x50\x17\x44\xc0\x65\x79\xbc\xa3\xf6\x6d\x06\x1c\xe5\x59\x6b\x7d\x94\x41\xdc\xea\x02\xec\x62\x27\xfc\xf2\x31",
+        "\x84\x76\xa0\xe3\x83\xa9\xad\xbd\xe6\xc9\x51\xe3\x72\x61\xcc\x4d\x0a\xf4\xfb\x29\x10\x9a\xcf\x5e\x1b\x3f\x91\xce\x93\xbe\x8e\xab",
+        // "EVP_get_digestbyname" / M(Xor1) / S(112) / L(20)
+        "\x35\x26\x20\x2f\x17\x15\x04\x2f\x14\x19\x17\x15\x03\x04\x12\x09\x1e\x11\x1d\x15\x70",
+        // "strncmp" / M(Xor4) / S(104) / L(7)
+        "\xf3\xf4\xf2\xee\xe3\xed\xf0\x80\x8f\x0b\xc0\xea\x10\x72\x3e\xa3",
+        // "sk_free" / M(Xor2) / S(197) / L(7)
+        "\xa6\xbe\x8a\xb3\xa7\xb0\xb0\xd5\x8c\x71\xae\xa2\xe0\x33\xc2\xed",
+        // "getUUIDBytes:" / M(Rot) / S(210) / L(13)
+        "\x39\x37\x46\x27\x27\x1b\x16\x14\x4b\x46\x37\x45\x0c\xd2\xfd\x6e",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Rot) / S(65) / L(59)
+        "\x77\x72\x7b\x72\xa6\x7b\x76\xa3\x7b\x77\x77\x7b\x73\xa4\x7b\x76\x7a\x7b\x74\xa2\x7b\x71\x79\x7b\xa7\xa7\x7b\x76\x79\x7b\xa5\x72\x7b\x75\xa2\x7b\xa6\x73\x7b\x73\x75\x7b\x76\x73\x7b\xa5\x72\x7b\x7a\x79\x7b\xa5\xa7\x7b\x77\xa4\x7b\x77\x71\x41\x0c\x9e\x7f\xc7\x0b\x2e\xa5\x77",
+        // "" / M(None) / S(0) / L(0)
+        "\x0b\x2e\xc6\x40\x8f\x97\x10\xde\x54\xeb\x24\x26\xa6\x21\xa0\xe9\xe8\x54\x3b\x2a\x0f\x7c\x88\x66\x38\xdc\x29\xb1\x31\x4e\xf0\xaf",
+        // "init" / M(Rot) / S(204) / L(4)
+        "\x35\x3a\x35\x40\xcc\xfb\x44\x74\xe0\xdf\x15\xb8\xea\x95\x36\xf3",
+        // "" / M(None) / S(0) / L(0)
+        "\xd8\x4f\x46\xf3\x07\x80\x91\x2c\x8e\x8a\x09\xff\x37\x9f\x2c\xed\x5a\x6b\x49\xf8\x42\xd0\x2a\xb8\x2d\xd8\xc0\x1f\x3f\xfc\xae\x7c",
+        // "CFBundleVersion" / M(Xor3) / S(224) / L(15)
+        "\xb3\xb6\xb2\x85\x9e\x94\x9c\x95\xa6\x95\x82\x83\x99\x9f\x9e\xf0",
+        // "CFReadStreamRead" / M(Xor1) / S(62) / L(16)
+        "\x7d\x78\x6c\x5b\x5f\x5a\x6d\x4a\x4c\x5b\x5f\x53\x6c\x5b\x5f\x5a\x3e",
+        // "" / M(None) / S(0) / L(0)
+        "\xd5\xd8\x02\x67\x48\xa3\x53\x2b\x37\xa4\xf7\x03\x63\x3f\x7d\x17\x2b\x4b\x9b\x5e\xda\x18\x65\x15\x80\x1b\xaf\x04\xba\xc8\x9e\x68",
+        // "X509_STORE_free" / M(Xor4) / S(141) / L(15)
+        "\x88\xe5\xe0\xe9\x8f\x83\x84\x9f\x82\x95\x8f\xb6\xa2\xb5\xb5\xd0",
+        // "" / M(None) / S(0) / L(0)
+        "\x6f\x3b\xa1\x6b\x62\xe5\xba\x9c\xa9\x1b\xcf\x4c\x8e\x2d\x38\x2c\x21\xc2\xf5\xaf\x95\x99\xf2\x75\x89\x91\x59\x67\x53\x82\x7b\x74",
+        // "objc_getClass" / M(Xor1) / S(166) / L(13)
+        "\xc9\xc4\xcc\xc5\xf9\xc1\xc3\xd2\xe5\xca\xc7\xd5\xd5\xa6\x92\xdd",
+        // "ASN1_INTEGER_free" / M(Xor2) / S(254) / L(17)
+        "\xad\xbf\xa2\xdd\xb3\xa5\xa2\xb8\xa9\xab\xa9\xbe\xb3\x8a\x9e\x89\x89\xec",
+        // "X509_NAME_get_text_by_NID" / M(Rot) / S(17) / L(25)
+        "\x69\x46\x41\x4a\x70\x5f\x52\x5e\x56\x70\x78\x76\x85\x70\x85\x76\x89\x85\x70\x73\x8a\x70\x5f\x5a\x55\x11\x08\xc2\xac\xa3\x0e\x12\x1a\x56",
+        // "objc_msgSend" / M(Xor3) / S(167) / L(12)
+        "\xd8\xd5\xdd\xd4\xe8\xda\xc4\xd0\xe4\xd2\xd9\xd3\xb7\x40\x9b\x52",
+        // "UIDevice" / M(Xor4) / S(254) / L(8)
+        "\xb5\xa9\xa4\x85\x96\x89\x83\x85\xe0\x0c\xec\x0e\xac\xcd\xad\x22",
+        // "" / M(None) / S(0) / L(0)
+        "\x1e\xf3\x35\xaa\x7d\x0b\x3b\xb1\x8c\x04\x3f\x67\x34\xce\x89\x90\xdf\x1d\xd2\x80\xb7\x8a\xa0\xba\x07\xe8\x17\x53\x3a\x0d\xb7\xe2",
+        // "X509_STORE_new" / M(Xor3) / S(66) / L(14)
+        "\x0a\x67\x62\x6b\x0d\x01\x06\x1d\x00\x17\x0d\x3c\x37\x25\x52\x73",
+        // "" / M(None) / S(0) / L(0)
+        "\x8d\xad\xf4\xc6\xf5\x94\xde\xa4\x3e\x1f\x15\x44\x05\xee\x0f\x4d\x9d\xba\x97\xda\x59\xf6\x7e\xfb\x24\x15\x12\x51\x54\x5c\x82\x73",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor2) / S(252) / L(40)
+        "\xfb\xfc\xfc\xa8\xf8\xaf\xfb\xfb\xff\xae\xf8\xf4\xfe\xac\xfd\xf5\xab\xab\xf8\xf5\xa9\xfc\xf9\xac\xa8\xff\xff\xf9\xf8\xff\xa9\xfc\xf4\xf5\xa9\xab\xfb\xae\xfb\xfd\xcd\x83\xf6\xb9\xde\xff\x69\xd2\x03",
+        // "exit" / M(Xor2) / S(221) / L(4)
+        "\xa8\xb5\xa4\xb9\xcd\xf7\x5f\x0e\xe4\x38\xfb\x6d\x8c\xa2\xbe\xac",
+        // "c2i_ASN1_INTEGER" / M(Xor1) / S(86) / L(16)
+        "\x35\x64\x3f\x09\x17\x05\x18\x67\x09\x1f\x18\x02\x13\x11\x13\x04\x56",
+        // "%02x:" / M(Xor4) / S(23) / L(5)
+        "\x55\x40\x42\x08\x4a\x70\x2f\xa8\xa9\xb9\x4b\x90\xc1\x97\x62\xb7",
+        // "CFDataAppendBytes" / M(Xor2) / S(87) / L(17)
+        "\x06\x03\x01\x24\x31\x24\x04\x35\x35\x20\x2b\x21\x07\x3c\x31\x20\x36\x45",
+        // "" / M(None) / S(0) / L(0)
+        "\x9d\xfa\x08\x81\x22\x35\x4b\x90\x23\xf4\x86\x4d\x60\x30\x4c\x6d\xab\x7c\x31\x3c\xa3\xf2\x1d\x07\x21\x64\x04\xc2\x32\xd1\x8f\x65",
+        // "sha1" / M(Xor2) / S(131) / L(4)
+        "\xe0\xfb\xf2\xa2\x93\x1a\x56\x93\x02\xe7\x43\xdb\x98\x91\x13\xa9",
+        // "" / M(None) / S(0) / L(0)
+        "\xb0\x3e\x54\x39\x7b\xa5\xe8\xba\x59\xef\x7f\x5b\xfa\x5e\xd8\x01\x72\x83\xa2\x9d\xb2\xbc\xd4\x54\x5f\x61\x38\x2c\x9a\x7f\xd3\x24",
+        // "CFEqual" / M(Rot) / S(125) / L(7)
+        "\xc0\xc3\xc2\xee\xf2\xde\xe9\x7d\xdb\x88\x17\xb0\x8a\x35\x18\x99",
+        // "CFDataGetLength" / M(Xor4) / S(94) / L(15)
+        "\xa3\xa6\xa4\x81\x94\x81\xa7\x85\x94\xac\x85\x8e\x87\x94\x88\xe0",
+        // "%02X:" / M(Xor3) / S(106) / L(5)
+        "\x5f\x4a\x48\x22\x40\x7a\x7e\xdd\x57\x66\xf1\x19\x04\xde\xcc\xe1",
+        // "SHA1" / M(Xor2) / S(232) / L(4)
+        "\xab\xb0\xb9\xc9\xf8\xb3\x3f\xd5\x38\xf2\xfc\xcf\xd5\x58\xe5\x53",
+        // "PKCS7_get0_signers" / M(Rot) / S(118) / L(18)
+        "\xc6\xc1\xb9\xc9\xad\xd5\xdd\xdb\xea\xa6\xd5\xe9\xdf\xdd\xe4\xdb\xe8\xe9\x76",
+        // "" / M(None) / S(0) / L(0)
+        "\x60\x24\xa1\xf5\xab\x19\xf7\xe6\x1f\x1b\x8c\x22\x70\x0b\x16\x12\xf6\x51\x2e\x6b\x6c\x47\x5f\x9f\xf0\xd5\xb7\xb3\x7a\x57\xb4\xbb",
+        // "" / M(None) / S(0) / L(0)
+        "\xd3\x77\xf7\x0c\x07\x80\xee\x9a\x6b\xb4\xbf\x1c\x66\xa8\x04\x09\x66\x98\xfd\xff\xd3\x07\x92\x9f\xee\xe1\xf6\xe9\x14\x9d\xcc\xf5",
+        // "CFDataCreateMutable" / M(Rot) / S(123) / L(19)
+        "\xbe\xc1\xbf\xdc\xef\xdc\xbe\xed\xe0\xdc\xef\xe0\xc8\xf0\xef\xdc\xdd\xe7\xe0\x7b",
+        // "" / M(None) / S(0) / L(0)
+        "\xce\x2f\x9c\xe1\xa2\xe7\x45\x30\x97\x1a\xba\x13\x60\x3e\x0e\xd6\xd7\x6f\xd6\x30\xe4\x15\x54\xd3\x8b\xcc\x47\x31\x1f\x88\x4e\x8d",
+        // "strlen" / M(Xor1) / S(106) / L(6)
+        "\x19\x1e\x18\x06\x0f\x04\x6a\x73\x55\xa3\x7b\xc4\x28\x1b\xc8\xf7",
+        // "dlsym" / M(Xor1) / S(174) / L(5)
+        "\xca\xc2\xdd\xd7\xc3\xae\xca\x8e\x63\x0c\xef\x32\xde\x55\x69\x44",
+        // "PKCS7_verify" / M(Rot) / S(224) / L(12)
+        "\x30\x2b\x23\x33\x17\x3f\x56\x45\x52\x49\x46\x59\xe0\xec\x3a\x9c",
+        // "SKReceiptRefreshRequest" / M(Xor1) / S(177) / L(23)
+        "\xe2\xfa\xe3\xd4\xd2\xd4\xd8\xc1\xc5\xe3\xd4\xd7\xc3\xd4\xc2\xd9\xe3\xd4\xc0\xc4\xd4\xc2\xc5\xb1\x2b\xb3\x9e\x75\xb2\x34\xb7\xdc",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor3) / S(234) / L(36)
+        "\x4c\x49\x4d\x7a\x61\x6b\x63\x6a\x48\x6a\x7b\x59\x6e\x63\x7a\x6a\x49\x60\x7d\x46\x61\x69\x60\x4b\x66\x6c\x7b\x66\x60\x61\x6e\x7d\x76\x44\x6a\x76\x0f",
+        // "CFBundleGetMainBundle" / M(Xor1) / S(205) / L(21)
+        "\x8e\x8b\x8f\xb8\xa3\xa9\xa1\xa8\x8a\xa8\xb9\x80\xac\xa4\xa3\x8f\xb8\xa3\xa9\xa1\xa8\xcd",
+        // "" / M(None) / S(0) / L(0)
+        "\xab\x86\xb0\x1a\xee\x6d\xc3\xf6\x6c\xa1\x40\xf8\x6e\x20\x13\xb5\x5b\x3c\x49\xa4\xad\x2e\x49\x7a\xab\x17\x10\x0c\xa7\xbd\xae\x87",
+        // "CC_SHA1_Update" / M(Xor2) / S(89) / L(14)
+        "\x0a\x0a\x16\x1a\x01\x08\x78\x16\x1c\x39\x2d\x28\x3d\x2c\x49\x56",
+        // "" / M(None) / S(0) / L(0)
+        "\xfd\xfb\xa8\x25\x10\x0c\x66\xa6\x7d\x57\x6c\x23\xab\x08\x2f\xfb\xb3\xe5\xbe\xac\x7c\x0f\xad\x4b\xca\xa8\x58\xb4\xe4\x0c\x6a\x7c",
+        // "objc_lookUpClass" / M(Xor4) / S(168) / L(16)
+        "\x47\x4a\x42\x4b\x77\x44\x47\x47\x43\x7d\x58\x6b\x44\x49\x5b\x5b\x28",
+        // "CFStringCreateWithCString" / M(Xor4) / S(173) / L(25)
+        "\xb9\xbc\xa9\x8e\x88\x93\x94\x9d\xb9\x88\x9f\x9b\x8e\x9f\xad\x93\x8e\x92\xb9\xa9\x8e\x88\x93\x94\x9d\xfa\x6d\xf2\x84\xc3\xfa\x81\x5e\x42",
+        // "ASN1_get_object" / M(Xor4) / S(174) / L(15)
+        "\xa1\xb3\xae\xd1\xbf\x87\x85\x94\xbf\x8f\x82\x8a\x85\x83\x94\xe0",
+        // "CFReadStreamClose" / M(Xor4) / S(164) / L(17)
+        "\xcb\xce\xda\xed\xe9\xec\xdb\xfc\xfa\xed\xe9\xe5\xcb\xe4\xe7\xfb\xed\x88",
+        // "dlsym" / M(Xor3) / S(75) / L(5)
+        "\x3f\x37\x28\x22\x36\x5b\xc1\x63\xb6\x42\xee\xce\xe5\x1e\x64\xa8",
+        // "" / M(None) / S(0) / L(0)
+        "\x5c\xae\x92\xa3\xbd\xd7\xc7\x51\x32\x69\x10\xdb\xc8\x11\x20\x29\xf6\x20\xfa\x6f\x86\x73\x8d\x38\xb1\x23\xaa\x22\x1e\xd3\x95\x9b",
+        // "getUUIDBytes:" / M(Xor3) / S(229) / L(13)
+        "\x92\x90\x81\xa0\xa0\xbc\xb1\xb7\x8c\x81\x90\x86\xcf\xf5\x19\x71",
+        // "CFStringCreateWithBytes" / M(Xor1) / S(191) / L(23)
+        "\xfc\xf9\xec\xcb\xcd\xd6\xd1\xd8\xfc\xcd\xda\xde\xcb\xda\xe8\xd6\xcb\xd7\xfd\xc6\xcb\xda\xcc\xbf\xc8\xc3\xd4\xfb\x20\xa6\x5b\xa6",
+        // "sk_free" / M(Xor1) / S(222) / L(7)
+        "\xad\xb5\x81\xb8\xac\xbb\xbb\xde\x46\xa1\x5c\xda\x16\x86\x70\x8a",
+        // "appStoreReceiptURL" / M(Xor3) / S(35) / L(18)
+        "\x57\x46\x46\x65\x42\x59\x44\x53\x64\x53\x55\x53\x5f\x46\x42\x63\x64\x7a\x36",
+        // "CC_SHA1_Update" / M(Xor4) / S(60) / L(14)
+        "\x83\x83\x9f\x93\x88\x81\xf1\x9f\x95\xb0\xa4\xa1\xb4\xa5\xc0\x75",
+        // "" / M(None) / S(0) / L(0)
+        "\x76\x26\xc0\xb8\x41\x77\x3e\xac\x1f\x0b\x42\x2f\x73\xe5\x25\x89\x62\x5e\xc4\xcf\x3d\x8a\xf0\x6b\x60\x07\xab\x8f\xa1\x13\xb6\xc7",
+        // "CFStringCreateWithBytes" / M(Rot) / S(255) / L(23)
+        "\x42\x45\x52\x73\x71\x68\x6d\x66\x42\x71\x64\x60\x73\x64\x56\x68\x73\x67\x41\x78\x73\x64\x72\xff\x81\xd7\xe0\x96\xec\x93\xe1\xad",
+        // "CFArrayGetValueAtIndex" / M(Xor2) / S(58) / L(22)
+        "\x6e\x6b\x6c\x5f\x5f\x4c\x54\x6a\x48\x59\x7b\x4c\x41\x58\x48\x6c\x59\x64\x43\x49\x48\x55\x2d",
+        // "CFDataCreate" / M(Xor2) / S(180) / L(12)
+        "\xe7\xe2\xe0\xc5\xd0\xc5\xe7\xd6\xc1\xc5\xd0\xc1\xa4\x30\xca\x41",
+        // "" / M(None) / S(0) / L(0)
+        "\x4a\x4f\x2d\x7c\xeb\x82\x4e\xdc\xf3\xdd\x4f\x36\x1b\xb2\x10\x88\x45\x8c\x73\x42\x14\x68\x54\x02\x02\xcd\xf9\x41\xb6\xef\x95\x0a",
+        // "sel_registerName" / M(Xor2) / S(236) / L(16)
+        "\x8e\x98\x91\xa2\x8f\x98\x9a\x94\x8e\x89\x98\x8f\xb3\x9c\x90\x98\xfd",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor2) / S(150) / L(66)
+        "\xfa\x86\xac\xa6\xa1\xb0\xb8\xfa\x99\xbc\xb7\xa7\xb4\xa7\xac\xfa\x93\xa7\xb4\xb8\xb0\xa2\xba\xa7\xbe\xa6\xfa\x96\xba\xa7\xb0\x93\xba\xa0\xbb\xb1\xb4\xa1\xbc\xba\xbb\xfb\xb3\xa7\xb4\xb8\xb0\xa2\xba\xa7\xbe\xfa\x96\xba\xa7\xb0\x93\xba\xa0\xbb\xb1\xb4\xa1\xbc\xba\xbb\xd5",
+        // "longjmp" / M(Rot) / S(162) / L(7)
+        "\x0e\x11\x10\x09\x0c\x0f\x12\xa2\x73\xf5\x10\x8b\x46\xd1\x10\x7f",
+        // "CFDataCreate" / M(Xor2) / S(247) / L(12)
+        "\xa4\xa1\xa3\x86\x93\x86\xa4\x95\x82\x86\x93\x82\xe7\x58\xaa\xc8",
+        // "" / M(None) / S(0) / L(0)
+        "\x6b\x41\x4e\x89\xcb\x50\x31\x55\xd3\x9a\x11\x4f\xe0\x15\xad\x84\x4c\x17\x0e\x2b\xc9\xd9\xae\x27\x94\xab\x6a\x0c\x01\x4a\x24\x7a",
+        // "kCFTypeArrayCallBacks" / M(Xor1) / S(245) / L(21)
+        "\x9e\xb6\xb3\xa1\x8c\x85\x90\xb4\x87\x87\x94\x8c\xb6\x94\x99\x99\xb7\x94\x96\x9e\x86\xf5",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Xor2) / S(28) / L(29)
+        "\x51\x79\x7c\x6e\x43\x4a\x5f\x7e\x53\x59\x4e\x53\x55\x54\x5b\x48\x43\x71\x5f\x43\x79\x5b\x56\x56\x78\x5b\x59\x51\x49\x3a\x86\xe8\x80\xe0\xed\x99\x5b\x86",
+        // "CFReadStreamOpen" / M(Xor3) / S(239) / L(16)
+        "\x43\x46\x52\x65\x61\x64\x53\x74\x72\x65\x61\x6d\x4f\x70\x65\x6e\x00",
+        // "CFBundleGetMainBundle" / M(Xor3) / S(229) / L(21)
+        "\xb8\xbd\xb9\x8e\x95\x9f\x97\x9e\xbc\x9e\x8f\xb6\x9a\x92\x95\xb9\x8e\x95\x9f\x97\x9e\xfb",
+        // "EVP_get_digestbyname" / M(Xor1) / S(116) / L(20)
+        "\x31\x22\x24\x2b\x13\x11\x00\x2b\x10\x1d\x13\x11\x07\x00\x16\x0d\x1a\x15\x19\x11\x74",
+        // "PKCS7_get0_signers" / M(Xor4) / S(114) / L(18)
+        "\x26\x3d\x35\x25\x41\x29\x11\x13\x02\x46\x29\x05\x1f\x11\x18\x13\x04\x05\x76",
+        // "" / M(None) / S(0) / L(0)
+        "\x09\xcf\x76\x76\x21\x24\x45\x45\x00\x27\x51\x7a\xe1\x2f\x22\x48\xc9\x90\x71\xb9\xea\x3e\x31\xc0\x9b\x04\xdb\xc3\xd8\xb8\xb5\x64",
+        // "" / M(None) / S(0) / L(0)
+        "\xd6\xfe\x75\x72\x8b\xa4\x95\x19\xba\xf3\x58\xc5\xf4\x35\x69\xf0\x98\xa9\x7f\xcd\x8a\x4c\x90\xa7\x96\x94\x49\x42\x08\xfd\xc6\xe2",
+        // "" / M(None) / S(0) / L(0)
+        "\x50\x95\x1c\x56\xba\xc1\xc1\x34\xcb\x7e\x11\xbe\x3e\x7a\x9f\x9a\xb8\x72\xb2\x87\x14\xb4\xbc\x1d\xbc\xd9\xf4\x62\x67\xdb\x87\x6f",
+        // "CFBundleUnloadExecutable" / M(Xor2) / S(227) / L(24)
+        "\x81\x84\x80\xb7\xac\xa6\xae\xa7\x97\xac\xae\xad\xa3\xa6\x87\xba\xa7\xa1\xb7\xb6\xa3\xa0\xae\xa7\xc2\x98\x5d\x72\x7e\xb8\xad\x33\x43",
+        // "CFArrayAppendValue" / M(Xor2) / S(216) / L(18)
+        "\x88\x8d\x8a\xb9\xb9\xaa\xb2\x8a\xbb\xbb\xae\xa5\xaf\x9d\xaa\xa7\xbe\xae\xcb",
+        // "CFDictionaryCreateMutable" / M(Xor4) / S(106) / L(25)
+        "\x57\x52\x50\x7d\x77\x60\x7d\x7b\x7a\x75\x66\x6d\x57\x66\x71\x75\x60\x71\x59\x61\x60\x75\x76\x78\x71\x14\x23\xab\x1e\x69\x4e\xd7\xa6\x2a",
+        // "alloc" / M(Xor3) / S(151) / L(5)
+        "\xc6\xcb\xcb\xc8\xc4\xa7\x53\x67\x5a\x6e\x83\x67\x0c\x2c\x43\xf0",
+        // "CFReadStreamRead" / M(Xor3) / S(238) / L(16)
+        "\xbc\xb9\xad\x9a\x9e\x9b\xac\x8b\x8d\x9a\x9e\x92\xad\x9a\x9e\x9b\xff",
+        // "" / M(None) / S(0) / L(0)
+        "\x90\x9d\x49\xca\xe9\xa0\x4d\x01\x94\xe7\x41\x08\xe4\x75\xf6\x64\x00\x65\x91\xc4\x60\x83\xbe\x72\xcf\xa3\x7d\x12\x94\xfe\xa0\xfa",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor1) / S(18) / L(40)
+        "\x24\x23\x23\x77\x27\x70\x24\x24\x20\x71\x27\x2b\x21\x73\x22\x2a\x74\x74\x27\x2a\x76\x23\x26\x73\x77\x20\x20\x26\x27\x20\x76\x23\x2b\x2a\x76\x74\x24\x71\x24\x22\x12\x65\xf6\xc4\x39\x77\x06\x57\x52",
+        // "NSBundle" / M(Xor2) / S(9) / L(8)
+        "\x57\x4a\x5b\x6c\x77\x7d\x75\x7c\x19\xa4\xad\x58\xf8\x3a\xc6\x24",
+        // "." / M(Xor2) / S(45) / L(1)
+        "\x13\x3d\xa4\xbd\x76\x44\x88\x02\x9b\xb9\x20\x7d\x3d\xba\xc5\x0f",
+        // "%02X" / M(Xor3) / S(103) / L(4)
+        "\x52\x47\x45\x2f\x77\xda\xe9\x17\xf5\x8c\xf0\xb1\x48\x16\x47\x73",
+        // "CFBundleVersion" / M(Xor4) / S(75) / L(15)
+        "\xf3\xf6\xf2\xc5\xde\xd4\xdc\xd5\xe6\xd5\xc2\xc3\xd9\xdf\xde\xb0",
+        // "CFDateFormatterSetProperty" / M(Rot) / S(106) / L(26)
+        "\xad\xb0\xae\xcb\xde\xcf\xb0\xd9\xdc\xd7\xcb\xde\xde\xcf\xdc\xbd\xcf\xde\xba\xdc\xd9\xda\xcf\xdc\xde\xe3\x6a\x5b\xfa\x69\xc7\x64\x31\x53\x6d",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor4) / S(223) / L(32)
+        "\xc6\xc6\xc6\xc6\x98\x92\x98\xf2\xf2\x98\x92\x98\xdb\xdb\x98\xeb\x98\xf7\xf7\x98\x85\x98\xd2\xd2\x98\x85\x98\xcc\xcc\x98\xe5\x98\xbf",
+        // "CFReadStreamClose" / M(Rot) / S(34) / L(17)
+        "\x65\x68\x74\x87\x83\x86\x75\x96\x94\x87\x83\x8f\x65\x8e\x91\x95\x87\x22",
+        // "" / M(None) / S(0) / L(0)
+        "\x89\xc4\xfd\xbe\x5a\xd3\x58\x43\x67\xe0\xad\xe6\x8b\x9b\x91\xec\xce\x55\xe7\x3c\x9c\x89\x5c\x77\xfa\xbd\xe9\x0a\x9f\x6a\xd9\xe9",
+        // "CFDateFormatterCreate" / M(Xor4) / S(131) / L(21)
+        "\x01\x04\x06\x23\x36\x27\x04\x2d\x30\x2f\x23\x36\x36\x27\x30\x01\x30\x27\x23\x36\x27\x42",
+        // "X509_STORE_add_cert" / M(Xor1) / S(243) / L(19)
+        "\xab\xc6\xc3\xca\xac\xa0\xa7\xbc\xa1\xb6\xac\x92\x97\x97\xac\x90\x96\x81\x87\xf3",
+        // "dlopen" / M(Xor3) / S(184) / L(6)
+        "\xac\xa4\xa7\xb8\xad\xa6\xc8\x06\x2c\x82\x00\xfc\xd6\x47\xea\x91",
+        // "" / M(None) / S(0) / L(0)
+        "\x8e\x28\x5b\x34\x7c\xa2\x37\x79\x10\x22\x9c\x6e\x9e\x11\x88\x98\xb8\xaa\x58\x01\x17\x58\x35\x65\xdc\xc2\x01\xdb\x1f\xd0\x3a\xce",
+        // "CFNumberCreate" / M(Xor2) / S(156) / L(14)
+        "\xcf\xca\xc2\xf9\xe1\xee\xe9\xfe\xcf\xfe\xe9\xed\xf8\xe9\x8c\x16",
+        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Rot) / S(9) / L(39)
+        "\x4c\x4f\x5d\x72\x76\x6e\x63\x78\x77\x6e\x4c\x7b\x6e\x6a\x7d\x6e\x60\x72\x7d\x71\x5d\x72\x76\x6e\x52\x77\x7d\x6e\x7b\x7f\x6a\x75\x4f\x7b\x78\x76\x50\x56\x5d\x09\x5d\x3a\xa1\x25\x1e\x63\x1e\x11",
+        // "" / M(None) / S(0) / L(0)
+        "\x7e\x9e\x80\xa9\xfb\xde\x2f\xef\xbf\x1d\x22\xf0\x56\x4d\x96\xc8\x58\x5f\x98\x1f\x2f\x47\xcd\xa3\x39\xf4\xb6\x40\x0a\xe6\xcd\xe0",
+        // "" / M(None) / S(0) / L(0)
+        "\x99\x9c\xe5\x6e\x79\x51\x02\x30\x39\xab\x08\x83\xd6\xaf\xaa\xcc\x13\x3a\x6a\x3d\xfb\x68\x8d\xda\x68\xc8\x7c\x3c\x60\x5a\x4d\x52",
+        // "/usr/lib/libSystem.dylib" / M(Rot) / S(70) / L(24)
+        "\x75\xbb\xb9\xb8\x75\xb2\xaf\xa8\x75\xb2\xaf\xa8\x99\xbf\xb9\xba\xab\xb3\x74\xaa\xbf\xb2\xaf\xa8\x46\x09\x2b\x8d\x32\xe1\x88\x32\x51",
+        // "X509_digest" / M(Xor1) / S(138) / L(11)
+        "\xd2\xbf\xba\xb3\xd5\xee\xe3\xed\xef\xf9\xfe\x8a\x53\x7f\x4b\x4b",
+        // "CFEqual" / M(Xor3) / S(137) / L(7)
+        "\xda\xdf\xdc\xe8\xec\xf8\xf5\x99\xe8\xd5\xcc\xdf\xfe\xda\xe7\xa2",
+        // "objc_msgSend" / M(Xor2) / S(15) / L(12)
+        "\x70\x7d\x75\x7c\x40\x72\x6c\x78\x4c\x7a\x71\x7b\x1f\x99\xf0\xab",
+        // "EVP_DigestFinal" / M(Xor3) / S(194) / L(15)
+        "\x97\x84\x82\x8d\x96\xbb\xb5\xb7\xa1\xa6\x94\xbb\xbc\xb3\xbe\xd2",
+        // "EVP_DigestInit" / M(Rot) / S(69) / L(14)
+        "\x8a\x9b\x95\xa4\x89\xae\xac\xaa\xb8\xb9\x8e\xb3\xae\xb9\x45\x5a",
+        // "CC_SHA1_Init" / M(Xor2) / S(86) / L(12)
+        "\x05\x05\x19\x15\x0e\x07\x77\x19\x0f\x28\x2f\x32\x46\x4c\x33\xb5",
+        // "start" / M(Xor4) / S(19) / L(5)
+        "\x43\x44\x51\x42\x44\x30\xe8\x15\x6a\x41\x4d\x25\xca\xba\x10\xb0",
+        // "CFArrayGetCount" / M(Xor2) / S(68) / L(15)
+        "\x17\x12\x15\x26\x26\x35\x2d\x13\x31\x20\x17\x3b\x21\x3a\x20\x54",
+        // "CFDataGetBytePtr" / M(Rot) / S(173) / L(16)
+        "\xf0\xf3\xf1\x0e\x21\x0e\xf4\x12\x21\xef\x26\x21\x12\xfd\x21\x1f\xad",
+        // "CFRelease" / M(Rot) / S(205) / L(9)
+        "\x10\x13\x1f\x32\x39\x32\x2e\x40\x32\xcd\x37\xb2\x4d\x68\xe5\x36",
+        // "CFStringCompare" / M(Xor1) / S(214) / L(15)
+        "\x95\x90\x85\xa2\xa4\xbf\xb8\xb1\x95\xb9\xbb\xa6\xb7\xa4\xb3\xd6",
+        // "OpenSSL_add_all_digests" / M(Xor4) / S(255) / L(23)
+        "\xaf\x90\x85\x8e\xb3\xb3\xac\xbf\x81\x84\x84\xbf\x81\x8c\x8c\xbf\x84\x89\x87\x85\x93\x94\x93\xe0\xb7\x71\x80\xa1\x6c\xf4\x9b\x1e",
+        // "CFBundleUnloadExecutable" / M(Xor4) / S(228) / L(24)
+        "\x27\x22\x26\x11\x0a\x00\x08\x01\x31\x0a\x08\x0b\x05\x00\x21\x1c\x01\x07\x11\x10\x05\x06\x08\x01\x64\xcf\x57\xbc\x5f\x25\x9f\x15\x1f",
+        // "SHA1" / M(Xor4) / S(101) / L(4)
+        "\x03\x18\x11\x61\x50\xc4\xc9\x97\xa5\x64\x44\x63\x01\x14\x9d\xb8",
+        // "sk_num" / M(Xor3) / S(65) / L(6)
+        "\x22\x3a\x0e\x3f\x24\x3c\x51\x7d\x9a\xc8\xc6\xe8\x8f\x50\x42\x55",
+        // "c2i_ASN1_INTEGER" / M(Xor3) / S(177) / L(16)
+        "\xa1\xf0\xab\x9d\x83\x91\x8c\xf3\x9d\x8b\x8c\x96\x87\x85\x87\x90\xc2",
+        // "" / M(None) / S(0) / L(0)
+        "\xfa\x9d\x6e\xf3\xb9\x6e\x08\x14\x02\xc5\xb4\xba\xbc\xe6\x8d\xd9\xb4\xdd\x9b\x95\x6b\xe1\x39\x3a\xd4\xce\x8e\x3e\xa7\x27\xe7\x72",
+        // "" / M(None) / S(0) / L(0)
+        "\x01\xcd\x8f\x8d\x9d\xfd\x19\xfe\x0d\xb0\x97\xda\x8e\x6e\x97\x5b\xec\x03\xe9\x3b\xb7\xf3\xca\x47\x54\x65\x5f\x97\x11\x5e\xcd\x91",
+        // "%02X:" / M(Xor4) / S(64) / L(5)
+        "\x25\x30\x32\x58\x3a\x00\x90\xfd\x29\x08\x39\x1a\xf3\x04\x79\x88",
+        // "" / M(None) / S(0) / L(0)
+        "\x9e\xca\x94\x65\xaa\xb5\x00\x81\x04\xf0\x04\xa2\xb3\xbe\x38\x1a\x63\x72\x91\x7b\xf0\x00\xd5\x28\x3e\xcf\x97\xce\x9e\xee\xa1\x13",
+        // "UIDevice" / M(Xor4) / S(253) / L(8)
+        "\x85\x99\x94\xb5\xa6\xb9\xb3\xb5\xd0\xbf\x4e\x71\x23\x24\xae\x66",
+        // "ASN1_INTEGER_free" / M(Xor1) / S(141) / L(17)
+        "\xcc\xde\xc3\xbc\xd2\xc4\xc3\xd9\xc8\xca\xc8\xdf\xd2\xeb\xff\xe8\xe8\x8d",
+        // "CFBundleShortVersionString" / M(Xor3) / S(197) / L(26)
+        "\xab\xae\xaa\x9d\x86\x8c\x84\x8d\xbb\x80\x87\x9a\x9c\xbe\x8d\x9a\x9b\x81\x87\x86\xbb\x9c\x9a\x81\x86\x8f\xe8\x48\xff\x79\xba\xb2\x1b\x8f\xb2",
+        // "CFReadStreamOpen" / M(Xor1) / S(109) / L(16)
+        "\x2e\x2b\x3f\x08\x0c\x09\x3e\x19\x1f\x08\x0c\x00\x22\x1d\x08\x03\x6d",
+        // "setDelegate:" / M(Xor2) / S(98) / L(12)
+        "\x01\x17\x06\x36\x17\x1e\x17\x15\x13\x06\x17\x48\x72\x14\xed\xe8",
+        // "kCFBundleIdentifierKey" / M(Xor4) / S(204) / L(22)
+        "\x3f\x17\x12\x16\x21\x3a\x30\x38\x31\x1d\x30\x31\x3a\x20\x3d\x32\x3d\x31\x26\x1f\x31\x2d\x54",
+        // "X509_STORE_add_cert" / M(Xor2) / S(98) / L(19)
+        "\x2e\x43\x46\x4f\x29\x25\x22\x39\x24\x33\x29\x17\x12\x12\x29\x15\x13\x04\x02\x76",
+        // "CFNumberCreate" / M(Xor4) / S(133) / L(14)
+        "\x13\x16\x1e\x25\x3d\x32\x35\x22\x13\x22\x35\x31\x24\x35\x50\x89",
+        // "setjmp" / M(Xor3) / S(96) / L(6)
+        "\x03\x15\x04\x1a\x1d\x00\x70\x2c\x95\x8f\xbf\xa5\x59\x7c\x62\xee",
+        // "CFDictionarySetValue" / M(Rot) / S(191) / L(20)
+        "\x02\x05\x03\x28\x22\x33\x28\x2e\x2d\x20\x31\x38\x12\x24\x33\x15\x20\x2b\x34\x24\xbf",
+        // "EVP_DigestInit" / M(Xor4) / S(129) / L(14)
+        "\x55\x46\x40\x4f\x54\x79\x77\x75\x63\x64\x59\x7e\x79\x64\x10\x9f",
+        // "objc_getClass" / M(Xor2) / S(100) / L(13)
+        "\x1b\x16\x1e\x17\x2b\x13\x11\x00\x37\x18\x15\x07\x07\x74\xa2\x3c",
+        // "CC_SHA1_Final" / M(Xor1) / S(95) / L(13)
+        "\x1c\x1c\x00\x0c\x17\x1e\x6e\x00\x19\x36\x31\x3e\x33\x5f\xf6\x18",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Xor1) / S(221) / L(29)
+        "\xb6\x9e\x9b\x89\xa4\xad\xb8\x99\xb4\xbe\xa9\xb4\xb2\xb3\xbc\xaf\xa4\x96\xb8\xa4\x9e\xbc\xb1\xb1\x9f\xbc\xbe\xb6\xae\xdd\x1c\xea\x0d\x54\xeb\x03\x15\xf4",
+        // "CFBundleVersion" / M(Rot) / S(213) / L(15)
+        "\x18\x1b\x17\x4a\x43\x39\x41\x3a\x2b\x3a\x47\x48\x3e\x44\x43\xd5",
+        // "" / M(None) / S(0) / L(0)
+        "\xc1\x15\x8c\xc0\x7a\x5b\x02\x23\x77\x5f\xb5\x38\xbd\xa8\x6f\x0a\xbb\xb0\x35\x6a\xf4\xec\x70\xfc\xc6\xcc\x28\x89\x37\x62\xc3\x82",
+        // "d2i_PKCS7_bio" / M(Xor1) / S(73) / L(13)
+        "\x2d\x7b\x20\x16\x19\x02\x0a\x1a\x7e\x16\x2b\x20\x26\x49\x62\xda",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor4) / S(219) / L(32)
+        "\x42\x42\x42\x42\x1c\x16\x1c\x76\x76\x1c\x16\x1c\x5f\x5f\x1c\x6f\x1c\x73\x73\x1c\x01\x1c\x56\x56\x1c\x01\x1c\x48\x48\x1c\x61\x1c\x3b",
+        // "Apple Root CA" / M(Rot) / S(20) / L(13)
+        "\x55\x84\x84\x80\x79\x34\x66\x83\x83\x88\x34\x57\x55\x14\xb9\xeb",
+        // "X509_free" / M(Xor2) / S(29) / L(9)
+        "\x55\x38\x3d\x34\x52\x6b\x7f\x68\x68\x0d\x99\x3d\xf2\x06\xaf\xa2",
+        // "CFAbsoluteTimeGetCurrent" / M(Xor1) / S(203) / L(24)
+        "\x88\x8d\x8a\xa9\xb8\xa4\xa7\xbe\xbf\xae\x9f\xa2\xa6\xae\x8c\xae\xbf\x88\xbe\xb9\xb9\xae\xa5\xbf\xcb\x01\x7e\x5d\x10\x17\xe5\x54\x9a",
+        // "CFDateCreate" / M(Xor2) / S(246) / L(12)
+        "\xa5\xa0\xa2\x87\x92\x83\xa5\x94\x83\x87\x92\x83\xe6\x1a\xd4\x11",
+        // "" / M(None) / S(0) / L(0)
+        "\x93\x36\x1a\x70\x1c\xd0\xcf\x07\xb3\x30\xd8\xf4\xb9\x80\x5b\x79\xff\x3c\xd7\xf0\x34\xb8\x8c\x7f\x54\xc7\x42\xcd\x0b\x09\x1a\xc2",
+        // "" / M(None) / S(0) / L(0)
+        "\x2e\xfe\xfc\x68\x82\xe1\x5c\x3a\x38\xa4\x5a\x76\x19\x35\x4f\xb1\x77\xdf\xee\x39\x2b\xd1\x46\x44\xa5\x13\x31\xc6\x7f\x5b\x96\x6e",
+        // "" / M(None) / S(0) / L(0)
+        "\x15\xc1\x2d\x1a\x24\x17\xd7\xa2\x75\xc2\xb1\x83\x7e\x07\x21\x78\xbd\xbb\x84\x0d\xa9\x66\xa9\xfe\x0f\x00\xc5\x2d\x94\x7a\x03\xa1",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Rot) / S(74) / L(40)
+        "\x80\x7b\x7b\xaf\x7f\xac\x80\x80\x7c\xad\x7f\x83\x7d\xab\x7a\x82\xb0\xb0\x7f\x82\xae\x7b\x7e\xab\xaf\x7c\x7c\x7e\x7f\x7c\xae\x7b\x83\x82\xae\xb0\x80\xad\x80\x7a\x4a\xdf\x8e\x98\x8a\x95\xeb\x5b\x7f",
+        // "CC_SHA1" / M(Rot) / S(201) / L(7)
+        "\x0c\x0c\x28\x1c\x11\x0a\xfa\xc9\x7a\xdb\x69\x94\x86\xc8\xec\x12",
+        // "getUUIDBytes:" / M(Xor4) / S(186) / L(13)
+        "\xc7\xc5\xd4\xf5\xf5\xe9\xe4\xe2\xd9\xd4\xc5\xd3\x9a\xa0\xe0\x11",
+        // "" / M(None) / S(0) / L(0)
+        "\xd8\x68\x3f\x55\xb3\x86\x34\x3d\x0d\x08\xb4\x58\x28\x75\x50\xb3\x89\xa8\x46\x2e\x97\x53\xc0\x6e\x95\x7e\x54\x12\x58\x63\x6c\x13",
+        // "8" / M(Rot) / S(222) / L(1)
+        "\x16\xde\x05\x10\x59\x65\x34\x60\xa5\x13\x14\x9f\xe0\xcd\x87\x40",
+        // "CFReadStreamOpen" / M(Rot) / S(199) / L(16)
+        "\x0a\x0d\x19\x2c\x28\x2b\x1a\x3b\x39\x2c\x28\x34\x16\x37\x2c\x35\xc7",
+        // "ASN1_INTEGER_get" / M(Xor4) / S(153) / L(16)
+        "\x68\x7a\x67\x18\x76\x60\x67\x7d\x6c\x6e\x6c\x7b\x76\x4e\x4c\x5d\x29",
+        // "CFStringCreateWithBytes" / M(Xor3) / S(83) / L(23)
+        "\x30\x35\x20\x07\x01\x1a\x1d\x14\x30\x01\x16\x12\x07\x16\x24\x1a\x07\x1b\x31\x0a\x07\x16\x00\x73\xdd\xef\x68\xf9\xbf\x77\x6a\xec",
+        // "CFDateCompare" / M(Rot) / S(145) / L(13)
+        "\xd4\xd7\xd5\xf2\x05\xf6\xd4\x00\xfe\x01\xf2\x03\xf6\x91\xca\xf1",
+        // "dlopen" / M(Xor4) / S(74) / L(6)
+        "\xc4\xcc\xcf\xd0\xc5\xce\xa0\x7a\xd2\xa9\x00\x0a\xe6\x47\x00\x4a",
+        // "CC_SHA1_Final" / M(Xor1) / S(83) / L(13)
+        "\x10\x10\x0c\x00\x1b\x12\x62\x0c\x15\x3a\x3d\x32\x3f\x53\x24\x58",
+        // "" / M(None) / S(0) / L(0)
+        "\xc4\x3e\xbd\x49\x4b\x2f\x67\xa1\x43\x8c\x1f\xb0\xf2\x9a\x91\x04\x56\xc8\x8c\x5b\x8a\xc1\x8c\x13\x7b\xcb\x7b\x9d\xef\x72\xbf\x3b",
+        // "" / M(None) / S(0) / L(0)
+        "\x27\x40\x44\x43\xa2\x91\x03\x23\x17\x87\xfd\xee\x32\xa2\x65\xff\x70\x44\x4a\x9e\x63\x41\x86\xdf\x5f\xaa\x6c\xd4\xe4\x4c\x8c\x38",
+        // "CFDictionaryAddValue" / M(Xor3) / S(240) / L(20)
+        "\x46\x43\x41\x6c\x66\x71\x6c\x6a\x6b\x64\x77\x7c\x44\x61\x61\x53\x64\x69\x70\x60\x05",
+        // "." / M(Rot) / S(13) / L(1)
+        "\x3b\x0d\xcb\x52\xe1\xe7\x84\xe4\xc8\xd8\x3c\xe7\xa8\x77\x31\x54",
+        // "CFDictionaryAddValue" / M(Xor3) / S(88) / L(20)
+        "\x2e\x2b\x29\x04\x0e\x19\x04\x02\x03\x0c\x1f\x14\x2c\x09\x09\x3b\x0c\x01\x18\x08\x6d",
+        // "/usr/lib/libobjc.dylib" / M(Xor2) / S(156) / L(22)
+        "\xa4\xfe\xf8\xf9\xa4\xe7\xe2\xe9\xa4\xe7\xe2\xe9\xe4\xe9\xe1\xe8\xa5\xef\xf2\xe7\xe2\xe9\x8b",
+        // "" / M(None) / S(0) / L(0)
+        "\x24\x59\x19\x0c\x0a\xee\xb3\x54\x06\xaa\x56\x1b\x91\x8c\xbe\x17\xc8\x32\xfa\x6b\x71\x0b\xee\x7b\xc5\xfe\x5b\x9b\x68\x0a\x62\x09",
+        // "X509_get_ext_by_OBJ" / M(Xor1) / S(255) / L(19)
+        "\xa7\xca\xcf\xc6\xa0\x98\x9a\x8b\xa0\x9a\x87\x8b\xa0\x9d\x86\xa0\xb0\xbd\xb5\xff",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Xor2) / S(40) / L(29)
+        "\x65\x4d\x48\x5a\x77\x7e\x6b\x4a\x67\x6d\x7a\x67\x61\x60\x6f\x7c\x77\x45\x6b\x77\x4d\x6f\x62\x62\x4c\x6f\x6d\x65\x7d\x0e\xb7\xde\xa8\x9c\xe5\x2d\x12\xba",
+        // "init" / M(Xor2) / S(127) / L(4)
+        "\x06\x01\x06\x1b\x6f\x0e\x7f\x26\xfe\x13\xee\xbe\x2c\x2a\x2b\x02",
+        // "X509_STORE_free" / M(Xor2) / S(188) / L(15)
+        "\xf4\x99\x9c\x95\xf3\xff\xf8\xe3\xfe\xe9\xf3\xca\xde\xc9\xc9\xac",
+        // "CFDictionaryGetValue" / M(Xor1) / S(118) / L(20)
+        "\x35\x30\x32\x1f\x15\x02\x1f\x19\x18\x17\x04\x0f\x31\x13\x02\x20\x17\x1a\x03\x13\x76",
+        // "EVP_DigestUpdate" / M(Xor2) / S(250) / L(16)
+        "\xae\xbd\xbb\xb4\xaf\x82\x8c\x8e\x98\x9f\xbe\x9b\x8f\x8a\x9f\x8e\xeb",
+        // "CFDateCompare" / M(Xor4) / S(129) / L(13)
+        "\x53\x56\x54\x71\x64\x75\x53\x7f\x7d\x60\x71\x62\x75\x10\x28\x18",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor2) / S(211) / L(59)
+        "\xa1\xa6\xad\xa6\xd2\xad\xa2\xd5\xad\xa1\xa1\xad\xa5\xd4\xad\xa2\xae\xad\xa4\xd6\xad\xa7\xaf\xad\xd1\xd1\xad\xa2\xaf\xad\xd3\xa6\xad\xa3\xd6\xad\xd2\xa5\xad\xa5\xa3\xad\xa2\xa5\xad\xd3\xa6\xad\xae\xaf\xad\xd3\xd1\xad\xa1\xd4\xad\xa1\xa7\x97\xa3\x90\xc2\x75\x79\xd8\xd5\x0a",
+        // "mainBundle" / M(Xor4) / S(48) / L(10)
+        "\x6d\x61\x69\x6e\x42\x75\x6e\x64\x6c\x65\x00\xed\xbd\x2c\xd8\x83",
+        // "sk_value" / M(Xor4) / S(111) / L(8)
+        "\x83\x9b\xaf\x86\x91\x9c\x85\x95\xf0\x57\xbd\x07\x8d\x22\x3f\x60",
+        // "SHA1_Final" / M(Rot) / S(200) / L(10)
+        "\x1b\x10\x09\xf9\x27\x0e\x31\x36\x29\x34\xc8\x01\x5a\x5b\xf5\x1e",
+        // "CFDataCreateMutable" / M(Xor2) / S(222) / L(19)
+        "\x89\x8c\x8e\xab\xbe\xab\x89\xb8\xaf\xab\xbe\xaf\x87\xbf\xbe\xab\xa8\xa6\xaf\xca",
+        // "PKCS7_get0_signers" / M(Rot) / S(92) / L(18)
+        "\xac\xa7\x9f\xaf\x93\xbb\xc3\xc1\xd0\x8c\xbb\xcf\xc5\xc3\xca\xc1\xce\xcf\x5c",
+        // "Apple Root CA" / M(Rot) / S(188) / L(13)
+        "\xfd\x2c\x2c\x28\x21\xdc\x0e\x2b\x2b\x30\xdc\xff\xfd\xbc\x01\xde",
+        // "" / M(None) / S(0) / L(0)
+        "\xb4\x06\x21\xcc\x7c\xcd\xa9\x43\xbb\x76\xa8\x19\x8f\x71\xbf\x07\xeb\xc7\x6f\xdc\xa4\x35\x7c\x19\x69\xaa\x34\x72\xe1\xe4\x92\x54",
+        // "CFBundleGetIdentifier" / M(Xor3) / S(180) / L(21)
+        "\x89\x8c\x88\xbf\xa4\xae\xa6\xaf\x8d\xaf\xbe\x83\xae\xaf\xa4\xbe\xa3\xac\xa3\xaf\xb8\xca",
+        // "%02x" / M(Xor1) / S(113) / L(4)
+        "\x54\x41\x43\x09\x71\xe9\xf4\xd4\x5c\x3b\x9b\x99\x2e\xf8\xef\x7c",
+        // "" / M(None) / S(0) / L(0)
+        "\x40\x9d\xc8\x51\xf5\x93\xcb\xa8\xa5\xf8\x91\xf0\xeb\x34\x4b\xf0\xfe\xe2\xa9\xec\x44\x25\xb6\x69\x05\x31\xeb\x99\xb8\xf1\x82\x1a",
+        // "CFArrayCreateMutable" / M(Xor1) / S(55) / L(20)
+        "\x74\x71\x76\x45\x45\x56\x4e\x74\x45\x52\x56\x43\x52\x7a\x42\x43\x56\x55\x5b\x52\x37",
+        // "X509_NAME_get_text_by_NID" / M(Xor4) / S(179) / L(25)
+        "\x9e\xf3\xf6\xff\x99\x88\x87\x8b\x83\x99\xa1\xa3\xb2\x99\xb2\xa3\xbe\xb2\x99\xa4\xbf\x99\x88\x8f\x82\xc6\xf8\xa2\x6e\xb2\x9f\x34\xab\xeb",
+        // "CFDateCreate" / M(Xor4) / S(18) / L(12)
+        "\x63\x66\x64\x41\x54\x45\x63\x52\x45\x41\x54\x45\x20\xa2\xff\xd5",
+        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Xor3) / S(243) / L(39)
+        "\x60\x65\x77\x4a\x4e\x46\x79\x4c\x4d\x46\x60\x51\x46\x42\x57\x46\x74\x4a\x57\x4b\x77\x4a\x4e\x46\x6a\x4d\x57\x46\x51\x55\x42\x4f\x65\x51\x4c\x4e\x64\x6e\x77\x23\x2d\x02\x5e\xf4\x88\x37\x36\x9f",
+        // "CFDateCreate" / M(Rot) / S(26) / L(12)
+        "\x5d\x60\x5e\x7b\x8e\x7f\x5d\x8c\x7f\x7b\x8e\x7f\x1a\xaf\xde\xcd",
+        // "EVP_DigestUpdate" / M(Xor3) / S(190) / L(16)
+        "\x8a\x99\x9f\x90\x8b\xa6\xa8\xaa\xbc\xbb\x9a\xbf\xab\xae\xbb\xaa\xcf",
+        // "CFDateFormatterSetFormat" / M(Xor3) / S(171) / L(24)
+        "\x8f\x8a\x88\xad\xb8\xa9\x8a\xa3\xbe\xa1\xad\xb8\xb8\xa9\xbe\x9f\xa9\xb8\x8a\xa3\xbe\xa1\xad\xb8\xcc\x94\xed\xb7\x94\x00\xc0\xb9\x3a",
+        // "%02X:" / M(Xor3) / S(73) / L(5)
+        "\x7c\x69\x6b\x01\x63\x59\x73\xd4\xf8\x25\x34\xd2\x4f\x4a\x3e\xb1",
     };
     
     // Table for storing pointers
     static void *INSOValidateInAppPurchase_Pointers[483] = {
         ((void *) NULL),
-        ((void *) dlsym),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) EVP_DigestFinal),
-        ((void *) ASN1_INTEGER_free),
+        ((void *) RTLD_MAIN_ONLY),
         ((void *) NULL),
-        ((void *) EVP_DigestFinal),
         ((void *) NULL),
-        ((void *) X509_STORE_add_cert),
+        ((void *) NULL),
+        ((void *) SHA1_Init),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strncmp),
+        ((void *) BIO_free),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) ASN1_INTEGER_get),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_free),
+        ((void *) NULL),
+        ((void *) sk_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_free),
+        ((void *) d2i_X509_bio),
+        ((void *) NULL),
+        ((void *) PKCS7_free),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) EVP_get_digestbyname),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) BIO_free),
-        ((void *) PKCS7_free),
-        ((void *) NULL),
         ((void *) sk_value),
         ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_free),
+        ((void *) NULL),
+        ((void *) X509_STORE_new),
+        ((void *) sk_num),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestFinal),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strncmp),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_new),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_MD_CTX_init),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_get_ext_by_OBJ),
+        ((void *) ASN1_INTEGER_get),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_s_mem),
+        ((void *) SHA1_Final),
+        ((void *) NULL),
+        ((void *) BIO_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_add_cert),
+        ((void *) X509_digest),
+        ((void *) CFStringCreateWithCString),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) d2i_PKCS7_bio),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_write),
+        ((void *) SHA1_Update),
+        ((void *) NULL),
+        ((void *) d2i_X509_bio),
+        ((void *) OpenSSL_add_all_digests),
+        ((void *) NULL),
+        ((void *) strlen),
+        ((void *) NULL),
+        ((void *) OBJ_txt2obj),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestUpdate),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) X509_digest),
+        ((void *) BIO_write),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Update),
+        ((void *) X509_get_ext_by_OBJ),
+        ((void *) NULL),
+        ((void *) c2i_ASN1_INTEGER),
+        ((void *) NULL),
+        ((void *) BIO_s_mem),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) BIO_write),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) EVP_DigestInit),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) d2i_PKCS7_bio),
+        ((void *) OBJ_txt2obj),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) c2i_ASN1_INTEGER),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_digest),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_get0_signers),
-        ((void *) sk_num),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_get_object),
-        ((void *) NULL),
-        ((void *) X509_STORE_free),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) dlopen),
         ((void *) NULL),
-        ((void *) NULL),
+        ((void *) strlen),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1457,105 +1549,30 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) RTLD_MAIN_ONLY),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1),
-        ((void *) SHA1),
-        ((void *) strncmp),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_write),
-        ((void *) OpenSSL_add_all_digests),
-        ((void *) X509_STORE_new),
+        ((void *) BIO_s_mem),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) SHA1_Final),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_OBJECT_free),
-        ((void *) ASN1_INTEGER_get),
-        ((void *) CFStringCreateWithBytes),
         ((void *) NULL),
         ((void *) BIO_new),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestFinal),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) SHA1_Update),
-        ((void *) dlsym),
-        ((void *) OBJ_txt2obj),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_write),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) dlopen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_NAME_get_text_by_NID),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_value),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_OBJECT_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_free),
-        ((void *) X509_get_ext_by_OBJ),
-        ((void *) NULL),
-        ((void *) EVP_MD_CTX_init),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_get_ext_by_OBJ),
-        ((void *) PKCS7_verify),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strncmp),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_digest),
-        ((void *) ASN1_get_object),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1569,24 +1586,20 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) d2i_X509_bio),
-        ((void *) NULL),
-        ((void *) RTLD_MAIN_ONLY),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) dlopen),
+        ((void *) ASN1_INTEGER_free),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) OBJ_txt2obj),
+        ((void *) NULL),
+        ((void *) PKCS7_verify),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) PKCS7_verify),
         ((void *) NULL),
-        ((void *) SHA1_Init),
+        ((void *) CFStringCreateWithCString),
+        ((void *) X509_free),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Final),
         ((void *) NULL),
         ((void *) ASN1_get_object),
         ((void *) NULL),
@@ -1594,109 +1607,17 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) EVP_get_digestbyname),
         ((void *) NULL),
-        ((void *) X509_free),
+        ((void *) SHA1),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) X509_STORE_new),
         ((void *) NULL),
-        ((void *) BIO_free),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) sk_num),
         ((void *) NULL),
-        ((void *) d2i_PKCS7_bio),
         ((void *) NULL),
+        ((void *) PKCS7_free),
         ((void *) NULL),
-        ((void *) EVP_get_digestbyname),
-        ((void *) c2i_ASN1_INTEGER),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestUpdate),
-        ((void *) NULL),
-        ((void *) strlen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_verify),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) c2i_ASN1_INTEGER),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestUpdate),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_num),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_INTEGER_get),
-        ((void *) NULL),
-        ((void *) PKCS7_get0_signers),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_INTEGER_get),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithCString),
-        ((void *) NULL),
-        ((void *) sk_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_new),
-        ((void *) X509_digest),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestInit),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Update),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) RTLD_MAIN_ONLY),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_s_mem),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_add_cert),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1705,87 +1626,32 @@ extern "C" {
         ((void *) SHA1_Init),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) ASN1_INTEGER_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestFinal),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_get0_signers),
-        ((void *) EVP_DigestUpdate),
-        ((void *) NULL),
-        ((void *) SHA1_Init),
-        ((void *) NULL),
-        ((void *) EVP_MD_CTX_init),
         ((void *) NULL),
         ((void *) sk_value),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1),
-        ((void *) NULL),
-        ((void *) X509_NAME_get_text_by_NID),
-        ((void *) NULL),
-        ((void *) X509_get_ext_by_OBJ),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strncmp),
-        ((void *) NULL),
+        ((void *) OpenSSL_add_all_digests),
         ((void *) NULL),
         ((void *) d2i_PKCS7_bio),
         ((void *) NULL),
-        ((void *) SHA1_Final),
-        ((void *) X509_STORE_new),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_free),
-        ((void *) NULL),
-        ((void *) SHA1_Update),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithBytes),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strlen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_add_cert),
-        ((void *) EVP_DigestInit),
-        ((void *) CFStringCreateWithCString),
-        ((void *) sk_free),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithBytes),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) X509_NAME_get_text_by_NID),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) SHA1_Init),
         ((void *) NULL),
+        ((void *) sk_num),
+        ((void *) ASN1_get_object),
         ((void *) EVP_MD_CTX_init),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) NULL),
         ((void *) dlsym),
         ((void *) NULL),
@@ -1796,28 +1662,54 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) NULL),
         ((void *) PKCS7_free),
-        ((void *) X509_STORE_free),
-        ((void *) ASN1_OBJECT_free),
+        ((void *) EVP_MD_CTX_init),
+        ((void *) BIO_new),
         ((void *) NULL),
-        ((void *) d2i_X509_bio),
         ((void *) NULL),
+        ((void *) BIO_new),
+        ((void *) NULL),
+        ((void *) EVP_get_digestbyname),
+        ((void *) strncmp),
         ((void *) sk_free),
         ((void *) NULL),
-        ((void *) OpenSSL_add_all_digests),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_free),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) ASN1_INTEGER_free),
+        ((void *) X509_NAME_get_text_by_NID),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) SHA1_Final),
         ((void *) NULL),
-        ((void *) OBJ_txt2obj),
+        ((void *) X509_STORE_new),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) NULL),
+        ((void *) c2i_ASN1_INTEGER),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1),
+        ((void *) PKCS7_get0_signers),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strlen),
+        ((void *) dlsym),
         ((void *) PKCS7_verify),
         ((void *) NULL),
         ((void *) NULL),
@@ -1826,44 +1718,146 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) OBJ_txt2obj),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
         ((void *) CFStringCreateWithCString),
+        ((void *) ASN1_get_object),
+        ((void *) NULL),
+        ((void *) dlsym),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithBytes),
+        ((void *) sk_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithBytes),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_get_digestbyname),
+        ((void *) PKCS7_get0_signers),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_add_cert),
+        ((void *) dlopen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_digest),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestFinal),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) NULL),
         ((void *) OpenSSL_add_all_digests),
         ((void *) NULL),
+        ((void *) SHA1),
+        ((void *) sk_num),
+        ((void *) c2i_ASN1_INTEGER),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) strlen),
-        ((void *) d2i_X509_bio),
-        ((void *) BIO_new),
+        ((void *) ASN1_INTEGER_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_add_cert),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) d2i_PKCS7_bio),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_free),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) BIO_s_mem),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_s_mem),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) ASN1_INTEGER_get),
+        ((void *) CFStringCreateWithBytes),
+        ((void *) NULL),
+        ((void *) dlopen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_get_ext_by_OBJ),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_free),
+        ((void *) NULL),
+        ((void *) EVP_DigestUpdate),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) sk_value),
+        ((void *) SHA1_Final),
+        ((void *) NULL),
+        ((void *) PKCS7_get0_signers),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_NAME_get_text_by_NID),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestUpdate),
         ((void *) NULL),
         ((void *) NULL),
     };
@@ -1878,170 +1872,171 @@ extern "C" {
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"
     
     // Global variables
-    static int INSOValidateInAppPurchase_RXISIKIUYOPA __unused;
-    static int INSOValidateInAppPurchase_MTVDUBNWFFXW __unused;
-    static int INSOValidateInAppPurchase_BQNXWSRNWARL __unused;
-    static int INSOValidateInAppPurchase_MXGLFWLSHKLP __unused;
-    static int INSOValidateInAppPurchase_DZOPJLLHYYIN __unused;
-    static int INSOValidateInAppPurchase_PUYHTFMFXYPZ __unused;
-    static int INSOValidateInAppPurchase_VJKSSDZGUTFD __unused;
-    static int INSOValidateInAppPurchase_MQSCCVFCIWLM __unused;
+    static int INSOValidateInAppPurchase_DXCGGCQIYEZU __unused;
+    static int INSOValidateInAppPurchase_QPFBUNREZRLS __unused;
+    static int INSOValidateInAppPurchase_PUTBQYHLKEDP __unused;
+    static int INSOValidateInAppPurchase_ITQDLQNCBWRR __unused;
+    static int INSOValidateInAppPurchase_LNARHRVDWKYF __unused;
+    static int INSOValidateInAppPurchase_RKKPBDIXHOLX __unused;
+    static int INSOValidateInAppPurchase_PRYOQFVAIZVP __unused;
+    static int INSOValidateInAppPurchase_MSGECJXGGOPY __unused;
     
     
     // The long jump buffer
     static jmp_buf INSOValidateInAppPurchase_JumpBuf __unused;
     
-#define INSOValidateInAppPurchase_ASN1_get_object_004500AC ((__INSOValidateInAppPurchase_ASN1_get_object) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 172, 172, 16))
-#define INSOValidateInAppPurchase_ASN1_INTEGER_free_00450142 ((__INSOValidateInAppPurchase_ASN1_INTEGER_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction00A, 322, 193, 18))
-#define INSOValidateInAppPurchase_ASN1_INTEGER_get_00BB010A ((__INSOValidateInAppPurchase_ASN1_INTEGER_get) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction00B, 266, 157, 17))
-#define INSOValidateInAppPurchase_ASN1_OBJECT_free_012D019F ((__INSOValidateInAppPurchase_ASN1_OBJECT_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 415, 202, 17))
-#define INSOValidateInAppPurchase_BIO_free_00450010 ((__INSOValidateInAppPurchase_BIO_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 16, 126, 16))
-#define INSOValidateInAppPurchase_BIO_new_00450061 ((__INSOValidateInAppPurchase_BIO_new) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction003, 97, 144, 16))
-#define INSOValidateInAppPurchase_BIO_new_012D0115 ((__INSOValidateInAppPurchase_BIO_new) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction009, 277, 9, 16))
-#define INSOValidateInAppPurchase_BIO_s_mem_004501DB ((__INSOValidateInAppPurchase_BIO_s_mem) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 475, 218, 16))
-#define INSOValidateInAppPurchase_BIO_s_mem_012D01DB ((__INSOValidateInAppPurchase_BIO_s_mem) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 475, 218, 16))
-#define INSOValidateInAppPurchase_BIO_write_00450052 ((__INSOValidateInAppPurchase_BIO_write) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 82, 81, 16))
-#define INSOValidateInAppPurchase_BIO_write_012D0017 ((__INSOValidateInAppPurchase_BIO_write) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 23, 183, 16))
-#define INSOValidateInAppPurchase_c2i_ASN1_INTEGER_012D00F7 ((__INSOValidateInAppPurchase_c2i_ASN1_INTEGER) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 247, 21, 17))
-#define INSOValidateInAppPurchase_CC_SHA1_Final_00FF01AD ((__INSOValidateInAppPurchase_CC_SHA1_Final) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 255, 28, 33, INSOValidateInAppPurchase_ObfuscationFunction009, 429, 185, 16))
-#define INSOValidateInAppPurchase_CFArrayAppendValue_008801BC ((__INSOValidateInAppPurchase_CFArrayAppendValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction007, 444, 28, 19))
-#define INSOValidateInAppPurchase_CFBundleGetMainBundle_01CC00A1 ((__INSOValidateInAppPurchase_CFBundleGetMainBundle) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction009, 161, 201, 22))
-#define INSOValidateInAppPurchase_CFBundleUnloadExecutable_01CC0199 ((__INSOValidateInAppPurchase_CFBundleUnloadExecutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction005, 409, 230, 33))
-#define INSOValidateInAppPurchase_CFDataAppendBytes_01CC01BF ((__INSOValidateInAppPurchase_CFDataAppendBytes) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction006, 447, 152, 18))
-#define INSOValidateInAppPurchase_CFDataCreateMutable_00880049 ((__INSOValidateInAppPurchase_CFDataCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction009, 73, 134, 20))
-#define INSOValidateInAppPurchase_CFDataCreateMutable_008801BE ((__INSOValidateInAppPurchase_CFDataCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction006, 446, 114, 20))
-#define INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F ((__INSOValidateInAppPurchase_CFDataGetBytePtr) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 15, 94, 17))
-#define INSOValidateInAppPurchase_CFDataGetLength_008801C4 ((__INSOValidateInAppPurchase_CFDataGetLength) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 452, 146, 16))
-#define INSOValidateInAppPurchase_CFDateFormatterCreate_01CC0162 ((__INSOValidateInAppPurchase_CFDateFormatterCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction006, 354, 48, 22))
-#define INSOValidateInAppPurchase_CFDateFormatterCreateDateFromString_01CC000E ((__INSOValidateInAppPurchase_CFDateFormatterCreateDateFromString) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction003, 14, 207, 36))
-#define INSOValidateInAppPurchase_CFDictionarySetValue_01CC0114 ((__INSOValidateInAppPurchase_CFDictionarySetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction009, 276, 142, 21))
-#define INSOValidateInAppPurchase_CFNumberCreate_008800F3 ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 243, 144, 16))
-#define INSOValidateInAppPurchase_CFRelease_0088010B ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction007, 267, 11, 16))
-#define INSOValidateInAppPurchase_CFRelease_00880121 ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction008, 289, 65, 16))
-#define INSOValidateInAppPurchase_CFRelease_008801CB ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction008, 459, 28, 16))
-#define INSOValidateInAppPurchase_CFRelease_0147010B ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction007, 267, 11, 16))
-#define INSOValidateInAppPurchase_CFRelease_01CC010B ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction007, 267, 11, 16))
-#define INSOValidateInAppPurchase_CFRelease_01CC0121 ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction008, 289, 65, 16))
-#define INSOValidateInAppPurchase_CFRelease_01CC01CB ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction008, 459, 28, 16))
-#define INSOValidateInAppPurchase_CFTimeZoneCreateWithTimeIntervalFromGMT_014700A7 ((__INSOValidateInAppPurchase_CFTimeZoneCreateWithTimeIntervalFromGMT) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction009, 167, 61, 48))
-#define INSOValidateInAppPurchase_d2i_PKCS7_bio_00BB001F ((__INSOValidateInAppPurchase_d2i_PKCS7_bio) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 31, 93, 16))
-#define INSOValidateInAppPurchase_d2i_PKCS7_bio_012D001F ((__INSOValidateInAppPurchase_d2i_PKCS7_bio) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 31, 93, 16))
-#define INSOValidateInAppPurchase_d2i_X509_bio_012D01A1 ((__INSOValidateInAppPurchase_d2i_X509_bio) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 417, 42, 16))
-#define INSOValidateInAppPurchase_EVP_DigestFinal_012D0005 ((__INSOValidateInAppPurchase_EVP_DigestFinal) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 5, 109, 16))
-#define INSOValidateInAppPurchase_EVP_DigestInit_012D011C ((__INSOValidateInAppPurchase_EVP_DigestInit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 284, 73, 16))
-#define INSOValidateInAppPurchase_EVP_DigestUpdate_004500FD ((__INSOValidateInAppPurchase_EVP_DigestUpdate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 253, 2, 17))
-#define INSOValidateInAppPurchase_EVP_get_digestbyname_00BB000B ((__INSOValidateInAppPurchase_EVP_get_digestbyname) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction009, 11, 152, 21))
-#define INSOValidateInAppPurchase_EVP_MD_CTX_init_012D0099 ((__INSOValidateInAppPurchase_EVP_MD_CTX_init) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction00B, 153, 98, 16))
-#define INSOValidateInAppPurchase_exit_003D00E1 ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 61, 74, 33, INSOValidateInAppPurchase_ObfuscationFunction005, 225, 227, 16))
-#define INSOValidateInAppPurchase_exit_003D013A ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 61, 74, 33, INSOValidateInAppPurchase_ObfuscationFunction008, 314, 33, 16))
-#define INSOValidateInAppPurchase_exit_003D01C8 ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 61, 74, 33, INSOValidateInAppPurchase_ObfuscationFunction006, 456, 47, 16))
-#define INSOValidateInAppPurchase_exit_00FF00E1 ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 255, 28, 33, INSOValidateInAppPurchase_ObfuscationFunction005, 225, 227, 16))
-#define INSOValidateInAppPurchase_exit_00FF01C8 ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 255, 28, 33, INSOValidateInAppPurchase_ObfuscationFunction006, 456, 47, 16))
-#define INSOValidateInAppPurchase_exit_0171013A ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00B, 369, 182, 33, INSOValidateInAppPurchase_ObfuscationFunction008, 314, 33, 16))
-#define INSOValidateInAppPurchase_RXISIKIUYOPA_00880047 ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_RXISIKIUYOPA, 234, 21))
-#define INSOValidateInAppPurchase_RXISIKIUYOPA_008801C4 ((__INSOValidateInAppPurchase_CFDataGetLength) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_RXISIKIUYOPA, 146, 16))
-#define INSOValidateInAppPurchase_RXISIKIUYOPA_01470154 ((__INSOValidateInAppPurchase_CFReadStreamClose) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction005, INSOValidateInAppPurchase_RXISIKIUYOPA, 70, 18))
-#define INSOValidateInAppPurchase_RXISIKIUYOPA_017100FE ((__INSOValidateInAppPurchase_CC_SHA1) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00B, 369, 182, 33, INSOValidateInAppPurchase_ObfuscationFunction005, INSOValidateInAppPurchase_RXISIKIUYOPA, 212, 16))
-#define INSOValidateInAppPurchase_RXISIKIUYOPA_01CC008C ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, INSOValidateInAppPurchase_RXISIKIUYOPA, 170, 16))
-#define INSOValidateInAppPurchase_RXISIKIUYOPA_01CC0151 ((__INSOValidateInAppPurchase_CFAbsoluteTimeGetCurrent) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_RXISIKIUYOPA, 47, 33))
-#define INSOValidateInAppPurchase_MTVDUBNWFFXW_00880184 ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_MTVDUBNWFFXW, 212, 16))
-#define INSOValidateInAppPurchase_MTVDUBNWFFXW_01470021 ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_MTVDUBNWFFXW, 201, 16))
-#define INSOValidateInAppPurchase_MTVDUBNWFFXW_014700F8 ((__INSOValidateInAppPurchase_CFArrayCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction005, INSOValidateInAppPurchase_MTVDUBNWFFXW, 86, 21))
-#define INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC016C ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_MTVDUBNWFFXW, 199, 21))
-#define INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC01AC ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction009, INSOValidateInAppPurchase_MTVDUBNWFFXW, 88, 21))
-#define INSOValidateInAppPurchase_BQNXWSRNWARL_0088003F ((__INSOValidateInAppPurchase_CFArrayGetCount) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_BQNXWSRNWARL, 88, 16))
-#define INSOValidateInAppPurchase_BQNXWSRNWARL_00880047 ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_BQNXWSRNWARL, 234, 21))
-#define INSOValidateInAppPurchase_BQNXWSRNWARL_01470138 ((__INSOValidateInAppPurchase_CFDictionaryAddValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, INSOValidateInAppPurchase_BQNXWSRNWARL, 29, 21))
-#define INSOValidateInAppPurchase_BQNXWSRNWARL_0171016A ((__INSOValidateInAppPurchase_CC_SHA1_Init) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00B, 369, 182, 33, INSOValidateInAppPurchase_ObfuscationFunction005, INSOValidateInAppPurchase_BQNXWSRNWARL, 210, 16))
-#define INSOValidateInAppPurchase_BQNXWSRNWARL_01CC00BA ((__INSOValidateInAppPurchase_CFReadStreamRead) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_BQNXWSRNWARL, 114, 17))
-#define INSOValidateInAppPurchase_BQNXWSRNWARL_01CC0110 ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_BQNXWSRNWARL, 135, 16))
-#define INSOValidateInAppPurchase_MXGLFWLSHKLP_0088017B ((__INSOValidateInAppPurchase_CFReadStreamCreateWithFile) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_MXGLFWLSHKLP, 219, 35))
-#define INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184 ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_MXGLFWLSHKLP, 212, 16))
-#define INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01AC ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction009, INSOValidateInAppPurchase_MXGLFWLSHKLP, 88, 21))
-#define INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01C4 ((__INSOValidateInAppPurchase_CFDataGetLength) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_MXGLFWLSHKLP, 146, 16))
-#define INSOValidateInAppPurchase_DZOPJLLHYYIN_01470022 ((__INSOValidateInAppPurchase_CFBundleGetValueForInfoDictionaryKey) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_DZOPJLLHYYIN, 221, 37))
-#define INSOValidateInAppPurchase_DZOPJLLHYYIN_0147008C ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, INSOValidateInAppPurchase_DZOPJLLHYYIN, 170, 16))
-#define INSOValidateInAppPurchase_DZOPJLLHYYIN_01470166 ((__INSOValidateInAppPurchase_CFDateCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_DZOPJLLHYYIN, 62, 16))
-#define INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC0110 ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_DZOPJLLHYYIN, 135, 16))
-#define INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC01A4 ((__INSOValidateInAppPurchase_CFDateFormatterSetFormat) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_DZOPJLLHYYIN, 22, 33))
-#define INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC01B8 ((__INSOValidateInAppPurchase_CFEqual) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_DZOPJLLHYYIN, 122, 16))
-#define INSOValidateInAppPurchase_PUYHTFMFXYPZ_00880110 ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_PUYHTFMFXYPZ, 135, 16))
-#define INSOValidateInAppPurchase_PUYHTFMFXYPZ_008801A6 ((__INSOValidateInAppPurchase_CFReadStreamOpen) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_PUYHTFMFXYPZ, 27, 17))
-#define INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470022 ((__INSOValidateInAppPurchase_CFBundleGetValueForInfoDictionaryKey) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_PUYHTFMFXYPZ, 221, 37))
-#define INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470095 ((__INSOValidateInAppPurchase_CFDataAppendBytes) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_PUYHTFMFXYPZ, 27, 18))
-#define INSOValidateInAppPurchase_PUYHTFMFXYPZ_014700B8 ((__INSOValidateInAppPurchase_CFDictionaryCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_PUYHTFMFXYPZ, 149, 34))
-#define INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470137 ((__INSOValidateInAppPurchase_CFDataCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, INSOValidateInAppPurchase_PUYHTFMFXYPZ, 104, 16))
-#define INSOValidateInAppPurchase_VJKSSDZGUTFD_00880073 ((__INSOValidateInAppPurchase_CFDataCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction009, INSOValidateInAppPurchase_VJKSSDZGUTFD, 43, 16))
-#define INSOValidateInAppPurchase_VJKSSDZGUTFD_008801A8 ((__INSOValidateInAppPurchase_CFBundleGetIdentifier) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction003, INSOValidateInAppPurchase_VJKSSDZGUTFD, 56, 22))
-#define INSOValidateInAppPurchase_VJKSSDZGUTFD_008801BE ((__INSOValidateInAppPurchase_CFDataCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_VJKSSDZGUTFD, 114, 20))
-#define INSOValidateInAppPurchase_VJKSSDZGUTFD_01470125 ((__INSOValidateInAppPurchase_CFArrayGetValueAtIndex) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_VJKSSDZGUTFD, 240, 23))
-#define INSOValidateInAppPurchase_VJKSSDZGUTFD_01CC0015 ((__INSOValidateInAppPurchase_CFDateCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_VJKSSDZGUTFD, 229, 16))
-#define INSOValidateInAppPurchase_VJKSSDZGUTFD_01CC002C ((__INSOValidateInAppPurchase_CFDateFormatterSetProperty) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_VJKSSDZGUTFD, 50, 35))
-#define INSOValidateInAppPurchase_MQSCCVFCIWLM_003D01AF ((__INSOValidateInAppPurchase_CC_SHA1_Update) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 61, 74, 33, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_MQSCCVFCIWLM, 125, 16))
-#define INSOValidateInAppPurchase_MQSCCVFCIWLM_00880021 ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_MQSCCVFCIWLM, 201, 16))
-#define INSOValidateInAppPurchase_MQSCCVFCIWLM_0147016C ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_MQSCCVFCIWLM, 199, 21))
-#define INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC0073 ((__INSOValidateInAppPurchase_CFDataCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction009, INSOValidateInAppPurchase_MQSCCVFCIWLM, 43, 16))
-#define INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC0095 ((__INSOValidateInAppPurchase_CFDataAppendBytes) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_MQSCCVFCIWLM, 27, 18))
-#define INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC00CA ((__INSOValidateInAppPurchase_CFDataGetBytePtr) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_MQSCCVFCIWLM, 178, 17))
-#define INSOValidateInAppPurchase_kCFBundleIdentifierKey_0088013C ((__INSOValidateInAppPurchase_kCFBundleIdentifierKey) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction006, 316, 151, 23))
-#define INSOValidateInAppPurchase_kCFDateFormatterTimeZone_01CC00F6 ((__INSOValidateInAppPurchase_kCFDateFormatterTimeZone) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 460, 10, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, 246, 214, 33))
-#define INSOValidateInAppPurchase_kCFTypeArrayCallBacks_008800B6 ((__INSOValidateInAppPurchase_kCFTypeArrayCallBacks) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 136, 244, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 182, 119, 22))
-#define INSOValidateInAppPurchase_kCFTypeDictionaryKeyCallBacks_01470024 ((__INSOValidateInAppPurchase_kCFTypeDictionaryKeyCallBacks) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, 36, 160, 38))
-#define INSOValidateInAppPurchase_kCFTypeDictionaryValueCallBacks_014700A0 ((__INSOValidateInAppPurchase_kCFTypeDictionaryValueCallBacks) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 327, 178, 67, INSOValidateInAppPurchase_ObfuscationFunction007, 160, 227, 32))
-#define INSOValidateInAppPurchase_longjmp_003D00B1 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 61, 74, 33, INSOValidateInAppPurchase_ObfuscationFunction006, 177, 36, 16))
-#define INSOValidateInAppPurchase_longjmp_003D00C0 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 61, 74, 33, INSOValidateInAppPurchase_ObfuscationFunction00B, 192, 187, 16))
-#define INSOValidateInAppPurchase_longjmp_003D0127 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 61, 74, 33, INSOValidateInAppPurchase_ObfuscationFunction003, 295, 214, 16))
-#define INSOValidateInAppPurchase_longjmp_00FF00B1 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 255, 28, 33, INSOValidateInAppPurchase_ObfuscationFunction006, 177, 36, 16))
-#define INSOValidateInAppPurchase_longjmp_00FF0127 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 255, 28, 33, INSOValidateInAppPurchase_ObfuscationFunction003, 295, 214, 16))
-#define INSOValidateInAppPurchase_longjmp_017100B1 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00B, 369, 182, 33, INSOValidateInAppPurchase_ObfuscationFunction006, 177, 36, 16))
-#define INSOValidateInAppPurchase_longjmp_01710127 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00B, 369, 182, 33, INSOValidateInAppPurchase_ObfuscationFunction003, 295, 214, 16))
-#define INSOValidateInAppPurchase_OBJ_txt2obj_00BB01BD ((__INSOValidateInAppPurchase_OBJ_txt2obj) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 445, 207, 16))
-#define INSOValidateInAppPurchase_objc_getClass_00F40065 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 101, 56, 16))
-#define INSOValidateInAppPurchase_objc_getClass_00F40153 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 339, 217, 16))
-#define INSOValidateInAppPurchase_objc_getClass_00F4016F ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 367, 90, 16))
-#define INSOValidateInAppPurchase_objc_getClass_017F0065 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 101, 56, 16))
-#define INSOValidateInAppPurchase_objc_getClass_017F0153 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 339, 217, 16))
-#define INSOValidateInAppPurchase_objc_getClass_017F016F ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 367, 90, 16))
-#define INSOValidateInAppPurchase_objc_getClass_01D90065 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 473, 173, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 101, 56, 16))
-#define INSOValidateInAppPurchase_objc_getClass_01D9016F ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 473, 173, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 367, 90, 16))
-#define INSOValidateInAppPurchase_objc_lookUpClass_00F4018F ((__INSOValidateInAppPurchase_objc_lookUpClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 399, 231, 17))
-#define INSOValidateInAppPurchase_objc_lookUpClass_017F013E ((__INSOValidateInAppPurchase_objc_lookUpClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction006, 318, 172, 17))
-#define INSOValidateInAppPurchase_objc_msgSend_00F40007 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 7, 27, 16))
-#define INSOValidateInAppPurchase_objc_msgSend_00F4017C ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction008, 380, 82, 16))
-#define INSOValidateInAppPurchase_objc_msgSend_00F40185 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction00B, 389, 3, 16))
-#define INSOValidateInAppPurchase_objc_msgSend_017F0007 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 7, 27, 16))
-#define INSOValidateInAppPurchase_objc_msgSend_017F017C ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction008, 380, 82, 16))
-#define INSOValidateInAppPurchase_objc_msgSend_017F0185 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction00B, 389, 3, 16))
-#define INSOValidateInAppPurchase_objc_msgSend_01D90007 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 473, 173, 23, INSOValidateInAppPurchase_ObfuscationFunction004, 7, 27, 16))
-#define INSOValidateInAppPurchase_objc_msgSend_01D9017C ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 473, 173, 23, INSOValidateInAppPurchase_ObfuscationFunction008, 380, 82, 16))
-#define INSOValidateInAppPurchase_objc_msgSend_01D90185 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 473, 173, 23, INSOValidateInAppPurchase_ObfuscationFunction00B, 389, 3, 16))
-#define INSOValidateInAppPurchase_OpenSSL_add_all_digests_012D01C7 ((__INSOValidateInAppPurchase_OpenSSL_add_all_digests) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 455, 163, 32))
-#define INSOValidateInAppPurchase_PKCS7_free_00450011 ((__INSOValidateInAppPurchase_PKCS7_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 17, 33, 16))
-#define INSOValidateInAppPurchase_PKCS7_free_00BB0011 ((__INSOValidateInAppPurchase_PKCS7_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 17, 33, 16))
-#define INSOValidateInAppPurchase_PKCS7_get0_signers_00BB0149 ((__INSOValidateInAppPurchase_PKCS7_get0_signers) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 329, 186, 19))
-#define INSOValidateInAppPurchase_PKCS7_verify_00BB01B3 ((__INSOValidateInAppPurchase_PKCS7_verify) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction009, 435, 160, 16))
-#define INSOValidateInAppPurchase_sel_registerName_00F40108 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction005, 264, 221, 17))
-#define INSOValidateInAppPurchase_sel_registerName_00F4011E ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 244, 55, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 286, 208, 17))
-#define INSOValidateInAppPurchase_sel_registerName_017F008B ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction005, 139, 213, 17))
-#define INSOValidateInAppPurchase_sel_registerName_017F0108 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction005, 264, 221, 17))
-#define INSOValidateInAppPurchase_sel_registerName_017F011E ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 383, 160, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 286, 208, 17))
-#define INSOValidateInAppPurchase_sel_registerName_01D90108 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 473, 173, 23, INSOValidateInAppPurchase_ObfuscationFunction005, 264, 221, 17))
-#define INSOValidateInAppPurchase_sel_registerName_01D9011E ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 473, 173, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 286, 208, 17))
-#define INSOValidateInAppPurchase_setjmp_00FF009B ((__INSOValidateInAppPurchase_setjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 255, 28, 33, INSOValidateInAppPurchase_ObfuscationFunction00B, 155, 52, 16))
-#define INSOValidateInAppPurchase_SHA1_012D004D ((__INSOValidateInAppPurchase_SHA1) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 77, 105, 16))
-#define INSOValidateInAppPurchase_SHA1_Final_012D01AE ((__INSOValidateInAppPurchase_SHA1_Final) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 430, 188, 16))
-#define INSOValidateInAppPurchase_SHA1_Init_012D013F ((__INSOValidateInAppPurchase_SHA1_Init) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 319, 161, 16))
-#define INSOValidateInAppPurchase_SHA1_Update_012D0062 ((__INSOValidateInAppPurchase_SHA1_Update) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 98, 143, 16))
-#define INSOValidateInAppPurchase_sk_free_00BB018B ((__INSOValidateInAppPurchase_sk_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 395, 137, 16))
-#define INSOValidateInAppPurchase_sk_num_012D0032 ((__INSOValidateInAppPurchase_sk_num) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction00B, 50, 214, 16))
-#define INSOValidateInAppPurchase_sk_value_00BB007C ((__INSOValidateInAppPurchase_sk_value) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction003, 124, 120, 16))
-#define INSOValidateInAppPurchase_X509_digest_00BB002A ((__INSOValidateInAppPurchase_X509_digest) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction00A, 42, 126, 16))
-#define INSOValidateInAppPurchase_X509_free_00450123 ((__INSOValidateInAppPurchase_X509_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction00A, 291, 65, 16))
-#define INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00BB0097 ((__INSOValidateInAppPurchase_X509_get_ext_by_OBJ) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction009, 187, 194, 16, INSOValidateInAppPurchase_ObfuscationFunction009, 151, 37, 20))
-#define INSOValidateInAppPurchase_X509_NAME_get_text_by_NID_012D0190 ((__INSOValidateInAppPurchase_X509_NAME_get_text_by_NID) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 400, 119, 34))
-#define INSOValidateInAppPurchase_X509_STORE_add_cert_0045000A ((__INSOValidateInAppPurchase_X509_STORE_add_cert) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 10, 22, 20))
-#define INSOValidateInAppPurchase_X509_STORE_free_012D019E ((__INSOValidateInAppPurchase_X509_STORE_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 301, 161, 16, INSOValidateInAppPurchase_ObfuscationFunction00B, 414, 160, 16))
-#define INSOValidateInAppPurchase_X509_STORE_new_004500D8 ((__INSOValidateInAppPurchase_X509_STORE_new) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 69, 14, 16, INSOValidateInAppPurchase_ObfuscationFunction009, 216, 47, 16))
+#define INSOValidateInAppPurchase_ASN1_get_object_00A70156 ((__INSOValidateInAppPurchase_ASN1_get_object) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction00B, 342, 174, 16))
+#define INSOValidateInAppPurchase_ASN1_INTEGER_free_00AC019F ((__INSOValidateInAppPurchase_ASN1_INTEGER_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction005, 415, 141, 18))
+#define INSOValidateInAppPurchase_ASN1_INTEGER_get_00A70017 ((__INSOValidateInAppPurchase_ASN1_INTEGER_get) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 23, 36, 17))
+#define INSOValidateInAppPurchase_ASN1_OBJECT_free_0004000F ((__INSOValidateInAppPurchase_ASN1_OBJECT_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 15, 134, 17))
+#define INSOValidateInAppPurchase_BIO_free_00A70066 ((__INSOValidateInAppPurchase_BIO_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 102, 10, 16))
+#define INSOValidateInAppPurchase_BIO_free_00AC0045 ((__INSOValidateInAppPurchase_BIO_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction00A, 69, 211, 16))
+#define INSOValidateInAppPurchase_BIO_new_00A70120 ((__INSOValidateInAppPurchase_BIO_new) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 288, 252, 16))
+#define INSOValidateInAppPurchase_BIO_new_00AC0120 ((__INSOValidateInAppPurchase_BIO_new) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 288, 252, 16))
+#define INSOValidateInAppPurchase_BIO_s_mem_00040063 ((__INSOValidateInAppPurchase_BIO_s_mem) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction00B, 99, 218, 16))
+#define INSOValidateInAppPurchase_BIO_s_mem_00A70091 ((__INSOValidateInAppPurchase_BIO_s_mem) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction00B, 145, 198, 16))
+#define INSOValidateInAppPurchase_BIO_write_00A70087 ((__INSOValidateInAppPurchase_BIO_write) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction005, 135, 157, 16))
+#define INSOValidateInAppPurchase_BIO_write_00AC0078 ((__INSOValidateInAppPurchase_BIO_write) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 120, 138, 16))
+#define INSOValidateInAppPurchase_c2i_ASN1_INTEGER_00040199 ((__INSOValidateInAppPurchase_c2i_ASN1_INTEGER) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction00A, 409, 177, 17))
+#define INSOValidateInAppPurchase_CC_SHA1_018900F9 ((__INSOValidateInAppPurchase_CC_SHA1) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 393, 70, 33, INSOValidateInAppPurchase_ObfuscationFunction003, 249, 113, 16))
+#define INSOValidateInAppPurchase_CC_SHA1_Update_0189015E ((__INSOValidateInAppPurchase_CC_SHA1_Update) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 393, 70, 33, INSOValidateInAppPurchase_ObfuscationFunction00C, 350, 60, 16))
+#define INSOValidateInAppPurchase_CFArrayCreateMutable_016501DB ((__INSOValidateInAppPurchase_CFArrayCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction005, 475, 55, 21))
+#define INSOValidateInAppPurchase_CFBundleGetMainBundle_0165016C ((__INSOValidateInAppPurchase_CFBundleGetMainBundle) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction009, 364, 229, 22))
+#define INSOValidateInAppPurchase_CFBundleUnloadExecutable_00FD0196 ((__INSOValidateInAppPurchase_CFBundleUnloadExecutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, 406, 228, 33))
+#define INSOValidateInAppPurchase_CFDataAppendBytes_01650035 ((__INSOValidateInAppPurchase_CFDataAppendBytes) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction005, 53, 84, 18))
+#define INSOValidateInAppPurchase_CFDataCreateMutable_009F01D4 ((__INSOValidateInAppPurchase_CFDataCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction008, 468, 222, 20))
+#define INSOValidateInAppPurchase_CFDataGetBytePtr_009F010D ((__INSOValidateInAppPurchase_CFDataGetBytePtr) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 269, 138, 17))
+#define INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192 ((__INSOValidateInAppPurchase_CFDataGetBytePtr) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction004, 402, 173, 17))
+#define INSOValidateInAppPurchase_CFDataGetLength_009F0143 ((__INSOValidateInAppPurchase_CFDataGetLength) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, 323, 94, 16))
+#define INSOValidateInAppPurchase_CFDateFormatterCreateDateFromString_00FD0046 ((__INSOValidateInAppPurchase_CFDateFormatterCreateDateFromString) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 70, 142, 36))
+#define INSOValidateInAppPurchase_CFDictionaryAddValue_016501C4 ((__INSOValidateInAppPurchase_CFDictionaryAddValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, 452, 240, 21))
+#define INSOValidateInAppPurchase_CFDictionaryGetValue_00FD0027 ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction003, 39, 227, 21))
+#define INSOValidateInAppPurchase_CFDictionarySetValue_00FD00A4 ((__INSOValidateInAppPurchase_CFDictionarySetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction003, 164, 6, 21))
+#define INSOValidateInAppPurchase_CFRelease_009F0002 ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction003, 2, 23, 16))
+#define INSOValidateInAppPurchase_CFRelease_009F00BC ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 188, 184, 16))
+#define INSOValidateInAppPurchase_CFRelease_009F0193 ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction004, 403, 205, 16))
+#define INSOValidateInAppPurchase_CFRelease_00FD0002 ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction003, 2, 23, 16))
+#define INSOValidateInAppPurchase_CFRelease_00FD00BC ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 188, 184, 16))
+#define INSOValidateInAppPurchase_CFRelease_00FD0193 ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction004, 403, 205, 16))
+#define INSOValidateInAppPurchase_CFRelease_01650002 ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction003, 2, 23, 16))
+#define INSOValidateInAppPurchase_CFRelease_01650193 ((__INSOValidateInAppPurchase_CFRelease) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction004, 403, 205, 16))
+#define INSOValidateInAppPurchase_CFTimeZoneCreateWithTimeIntervalFromGMT_016501DE ((__INSOValidateInAppPurchase_CFTimeZoneCreateWithTimeIntervalFromGMT) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction009, 478, 243, 48))
+#define INSOValidateInAppPurchase_d2i_PKCS7_bio_000401AE ((__INSOValidateInAppPurchase_d2i_PKCS7_bio) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction005, 430, 73, 16))
+#define INSOValidateInAppPurchase_d2i_X509_bio_0004007B ((__INSOValidateInAppPurchase_d2i_X509_bio) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction00A, 123, 183, 16))
+#define INSOValidateInAppPurchase_EVP_DigestFinal_00A7018D ((__INSOValidateInAppPurchase_EVP_DigestFinal) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction009, 397, 194, 16))
+#define INSOValidateInAppPurchase_EVP_DigestInit_00A7018E ((__INSOValidateInAppPurchase_EVP_DigestInit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction003, 398, 69, 16))
+#define INSOValidateInAppPurchase_EVP_DigestUpdate_00040084 ((__INSOValidateInAppPurchase_EVP_DigestUpdate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction005, 132, 57, 17))
+#define INSOValidateInAppPurchase_EVP_get_digestbyname_0004016D ((__INSOValidateInAppPurchase_EVP_get_digestbyname) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 365, 116, 21))
+#define INSOValidateInAppPurchase_EVP_MD_CTX_init_00AC010B ((__INSOValidateInAppPurchase_EVP_MD_CTX_init) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 267, 69, 16))
+#define INSOValidateInAppPurchase_exit_0005013B ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction005, 5, 210, 33, INSOValidateInAppPurchase_ObfuscationFunction007, 315, 221, 16))
+#define INSOValidateInAppPurchase_exit_00D40088 ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 212, 248, 33, INSOValidateInAppPurchase_ObfuscationFunction005, 136, 91, 16))
+#define INSOValidateInAppPurchase_exit_00D400F3 ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 212, 248, 33, INSOValidateInAppPurchase_ObfuscationFunction009, 243, 143, 16))
+#define INSOValidateInAppPurchase_exit_00D4013B ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 212, 248, 33, INSOValidateInAppPurchase_ObfuscationFunction007, 315, 221, 16))
+#define INSOValidateInAppPurchase_exit_01890088 ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 393, 70, 33, INSOValidateInAppPurchase_ObfuscationFunction005, 136, 91, 16))
+#define INSOValidateInAppPurchase_exit_018900F3 ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 393, 70, 33, INSOValidateInAppPurchase_ObfuscationFunction009, 243, 143, 16))
+#define INSOValidateInAppPurchase_exit_0189013B ((__INSOValidateInAppPurchase_exit) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 393, 70, 33, INSOValidateInAppPurchase_ObfuscationFunction007, 315, 221, 16))
+#define INSOValidateInAppPurchase_DXCGGCQIYEZU_009F0157 ((__INSOValidateInAppPurchase_CFReadStreamClose) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_DXCGGCQIYEZU, 164, 18))
+#define INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5 ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, INSOValidateInAppPurchase_DXCGGCQIYEZU, 133, 16))
+#define INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD009E ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_DXCGGCQIYEZU, 16, 16))
+#define INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD00A1 ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_DXCGGCQIYEZU, 173, 16))
+#define INSOValidateInAppPurchase_DXCGGCQIYEZU_0165009E ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_DXCGGCQIYEZU, 16, 16))
+#define INSOValidateInAppPurchase_QPFBUNREZRLS_009F00A1 ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_QPFBUNREZRLS, 173, 16))
+#define INSOValidateInAppPurchase_QPFBUNREZRLS_009F0162 ((__INSOValidateInAppPurchase_CFDataCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction007, INSOValidateInAppPurchase_QPFBUNREZRLS, 180, 16))
+#define INSOValidateInAppPurchase_QPFBUNREZRLS_009F0167 ((__INSOValidateInAppPurchase_CFDataCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction007, INSOValidateInAppPurchase_QPFBUNREZRLS, 247, 16))
+#define INSOValidateInAppPurchase_QPFBUNREZRLS_00FD00A1 ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_QPFBUNREZRLS, 173, 16))
+#define INSOValidateInAppPurchase_QPFBUNREZRLS_00FD01BF ((__INSOValidateInAppPurchase_CFDateCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_QPFBUNREZRLS, 145, 16))
+#define INSOValidateInAppPurchase_QPFBUNREZRLS_016501A5 ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction00B, INSOValidateInAppPurchase_QPFBUNREZRLS, 133, 16))
+#define INSOValidateInAppPurchase_PUTBQYHLKEDP_009F00AA ((__INSOValidateInAppPurchase_CFDictionaryCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction007, INSOValidateInAppPurchase_PUTBQYHLKEDP, 145, 34))
+#define INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD007F ((__INSOValidateInAppPurchase_CFDataAppendBytes) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction007, INSOValidateInAppPurchase_PUTBQYHLKEDP, 117, 18))
+#define INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD014F ((__INSOValidateInAppPurchase_CFBundleGetValueForInfoDictionaryKey) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_PUTBQYHLKEDP, 234, 37))
+#define INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD01B2 ((__INSOValidateInAppPurchase_CFAbsoluteTimeGetCurrent) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction005, INSOValidateInAppPurchase_PUTBQYHLKEDP, 203, 33))
+#define INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A ((__INSOValidateInAppPurchase_CFDataGetLength) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_PUTBQYHLKEDP, 245, 16))
+#define INSOValidateInAppPurchase_PUTBQYHLKEDP_0165004F ((__INSOValidateInAppPurchase_CFDataGetLength) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_PUTBQYHLKEDP, 185, 16))
+#define INSOValidateInAppPurchase_PUTBQYHLKEDP_016501CD ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_PUTBQYHLKEDP, 118, 21))
+#define INSOValidateInAppPurchase_ITQDLQNCBWRR_009F002E ((__INSOValidateInAppPurchase_CFDataCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_ITQDLQNCBWRR, 34, 20))
+#define INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD0191 ((__INSOValidateInAppPurchase_CFArrayGetCount) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_ITQDLQNCBWRR, 68, 16))
+#define INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD01DD ((__INSOValidateInAppPurchase_CFDateCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_ITQDLQNCBWRR, 18, 16))
+#define INSOValidateInAppPurchase_ITQDLQNCBWRR_0165009E ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_ITQDLQNCBWRR, 16, 16))
+#define INSOValidateInAppPurchase_ITQDLQNCBWRR_01650181 ((__INSOValidateInAppPurchase_CFDateFormatterCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_ITQDLQNCBWRR, 131, 22))
+#define INSOValidateInAppPurchase_ITQDLQNCBWRR_018901C1 ((__INSOValidateInAppPurchase_CC_SHA1_Final) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 393, 70, 33, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_ITQDLQNCBWRR, 83, 16))
+#define INSOValidateInAppPurchase_LNARHRVDWKYF_009F002E ((__INSOValidateInAppPurchase_CFDataCreateMutable) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_LNARHRVDWKYF, 34, 20))
+#define INSOValidateInAppPurchase_LNARHRVDWKYF_009F01D8 ((__INSOValidateInAppPurchase_CFBundleGetIdentifier) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_LNARHRVDWKYF, 180, 22))
+#define INSOValidateInAppPurchase_LNARHRVDWKYF_00D400B0 ((__INSOValidateInAppPurchase_CC_SHA1_Init) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 212, 248, 33, INSOValidateInAppPurchase_ObfuscationFunction00B, INSOValidateInAppPurchase_LNARHRVDWKYF, 89, 16))
+#define INSOValidateInAppPurchase_LNARHRVDWKYF_01650025 ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction004, INSOValidateInAppPurchase_LNARHRVDWKYF, 100, 21))
+#define INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0027 ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction003, INSOValidateInAppPurchase_RKKPBDIXHOLX, 227, 21))
+#define INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0044 ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_RKKPBDIXHOLX, 227, 16))
+#define INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0162 ((__INSOValidateInAppPurchase_CFDataCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction007, INSOValidateInAppPurchase_RKKPBDIXHOLX, 180, 16))
+#define INSOValidateInAppPurchase_RKKPBDIXHOLX_01650185 ((__INSOValidateInAppPurchase_CFNumberCreate) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction007, INSOValidateInAppPurchase_RKKPBDIXHOLX, 156, 16))
+#define INSOValidateInAppPurchase_RKKPBDIXHOLX_016501BC ((__INSOValidateInAppPurchase_CFReadStreamOpen) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction003, INSOValidateInAppPurchase_RKKPBDIXHOLX, 199, 17))
+#define INSOValidateInAppPurchase_RKKPBDIXHOLX_016501E1 ((__INSOValidateInAppPurchase_CFDateFormatterSetFormat) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_RKKPBDIXHOLX, 171, 33))
+#define INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD0034 ((__INSOValidateInAppPurchase_CFDateFormatterSetProperty) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction005, INSOValidateInAppPurchase_PRYOQFVAIZVP, 30, 35))
+#define INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD012E ((__INSOValidateInAppPurchase_CFReadStreamRead) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction005, INSOValidateInAppPurchase_PRYOQFVAIZVP, 62, 17))
+#define INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD014F ((__INSOValidateInAppPurchase_CFBundleGetValueForInfoDictionaryKey) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction00A, INSOValidateInAppPurchase_PRYOQFVAIZVP, 234, 37))
+#define INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD0194 ((__INSOValidateInAppPurchase_CFStringCompare) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_PRYOQFVAIZVP, 214, 16))
+#define INSOValidateInAppPurchase_PRYOQFVAIZVP_01650142 ((__INSOValidateInAppPurchase_CFEqual) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction003, INSOValidateInAppPurchase_PRYOQFVAIZVP, 125, 16))
+#define INSOValidateInAppPurchase_MSGECJXGGOPY_009F010D ((__INSOValidateInAppPurchase_CFDataGetBytePtr) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, INSOValidateInAppPurchase_MSGECJXGGOPY, 138, 17))
+#define INSOValidateInAppPurchase_MSGECJXGGOPY_009F011B ((__INSOValidateInAppPurchase_CFReadStreamCreateWithFile) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_MSGECJXGGOPY, 131, 35))
+#define INSOValidateInAppPurchase_MSGECJXGGOPY_009F013E ((__INSOValidateInAppPurchase_CFDataAppendBytes) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_MSGECJXGGOPY, 87, 18))
+#define INSOValidateInAppPurchase_MSGECJXGGOPY_009F0173 ((__INSOValidateInAppPurchase_CFArrayAppendValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_MSGECJXGGOPY, 216, 19))
+#define INSOValidateInAppPurchase_MSGECJXGGOPY_009F01CD ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_MSGECJXGGOPY, 118, 21))
+#define INSOValidateInAppPurchase_MSGECJXGGOPY_00FD0161 ((__INSOValidateInAppPurchase_CFArrayGetValueAtIndex) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction008, INSOValidateInAppPurchase_MSGECJXGGOPY, 58, 23))
+#define INSOValidateInAppPurchase_MSGECJXGGOPY_016501CD ((__INSOValidateInAppPurchase_CFDictionaryGetValue) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction006, INSOValidateInAppPurchase_MSGECJXGGOPY, 118, 21))
+#define INSOValidateInAppPurchase_kCFBundleIdentifierKey_009F0020 ((__INSOValidateInAppPurchase_kCFBundleIdentifierKey) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction009, 32, 35, 23))
+#define INSOValidateInAppPurchase_kCFDateFormatterTimeZone_009F00FF ((__INSOValidateInAppPurchase_kCFDateFormatterTimeZone) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction004, 255, 253, 33))
+#define INSOValidateInAppPurchase_kCFTypeArrayCallBacks_00FD00A6 ((__INSOValidateInAppPurchase_kCFTypeArrayCallBacks) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 253, 32, 67, INSOValidateInAppPurchase_ObfuscationFunction008, 166, 225, 22))
+#define INSOValidateInAppPurchase_kCFTypeDictionaryKeyCallBacks_0165016A ((__INSOValidateInAppPurchase_kCFTypeDictionaryKeyCallBacks) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction007, 357, 150, 67, INSOValidateInAppPurchase_ObfuscationFunction008, 362, 28, 38))
+#define INSOValidateInAppPurchase_kCFTypeDictionaryValueCallBacks_009F00C0 ((__INSOValidateInAppPurchase_kCFTypeDictionaryValueCallBacks) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 159, 126, 67, INSOValidateInAppPurchase_ObfuscationFunction00C, 192, 111, 32))
+#define INSOValidateInAppPurchase_longjmp_0005009A ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction005, 5, 210, 33, INSOValidateInAppPurchase_ObfuscationFunction004, 154, 23, 16))
+#define INSOValidateInAppPurchase_longjmp_00D4010E ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 212, 248, 33, INSOValidateInAppPurchase_ObfuscationFunction009, 270, 112, 16))
+#define INSOValidateInAppPurchase_longjmp_00D40166 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 212, 248, 33, INSOValidateInAppPurchase_ObfuscationFunction003, 358, 162, 16))
+#define INSOValidateInAppPurchase_longjmp_0189009A ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 393, 70, 33, INSOValidateInAppPurchase_ObfuscationFunction004, 154, 23, 16))
+#define INSOValidateInAppPurchase_longjmp_01890166 ((__INSOValidateInAppPurchase_longjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction003, 393, 70, 33, INSOValidateInAppPurchase_ObfuscationFunction003, 358, 162, 16))
+#define INSOValidateInAppPurchase_OBJ_txt2obj_00A70080 ((__INSOValidateInAppPurchase_OBJ_txt2obj) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 128, 223, 16))
+#define INSOValidateInAppPurchase_objc_getClass_00190043 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 25, 201, 23, INSOValidateInAppPurchase_ObfuscationFunction003, 67, 133, 16))
+#define INSOValidateInAppPurchase_objc_getClass_00190132 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 25, 201, 23, INSOValidateInAppPurchase_ObfuscationFunction005, 306, 166, 16))
+#define INSOValidateInAppPurchase_objc_getClass_00F70043 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 247, 115, 23, INSOValidateInAppPurchase_ObfuscationFunction003, 67, 133, 16))
+#define INSOValidateInAppPurchase_objc_getClass_00F70132 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 247, 115, 23, INSOValidateInAppPurchase_ObfuscationFunction005, 306, 166, 16))
+#define INSOValidateInAppPurchase_objc_getClass_00F701A9 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 247, 115, 23, INSOValidateInAppPurchase_ObfuscationFunction008, 425, 100, 16))
+#define INSOValidateInAppPurchase_objc_getClass_01C70043 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction003, 67, 133, 16))
+#define INSOValidateInAppPurchase_objc_getClass_01C701A9 ((__INSOValidateInAppPurchase_objc_getClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction008, 425, 100, 16))
+#define INSOValidateInAppPurchase_objc_lookUpClass_00190036 ((__INSOValidateInAppPurchase_objc_lookUpClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 25, 201, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 54, 99, 17))
+#define INSOValidateInAppPurchase_objc_lookUpClass_01C70154 ((__INSOValidateInAppPurchase_objc_lookUpClass) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction00B, 340, 168, 17))
+#define INSOValidateInAppPurchase_objc_msgSend_00190135 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 25, 201, 23, INSOValidateInAppPurchase_ObfuscationFunction009, 309, 167, 16))
+#define INSOValidateInAppPurchase_objc_msgSend_0019018C ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 25, 201, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 396, 15, 16))
+#define INSOValidateInAppPurchase_objc_msgSend_00F7006D ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 247, 115, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 109, 94, 16))
+#define INSOValidateInAppPurchase_objc_msgSend_00F70135 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 247, 115, 23, INSOValidateInAppPurchase_ObfuscationFunction009, 309, 167, 16))
+#define INSOValidateInAppPurchase_objc_msgSend_00F7018C ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 247, 115, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 396, 15, 16))
+#define INSOValidateInAppPurchase_objc_msgSend_01C7006D ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 109, 94, 16))
+#define INSOValidateInAppPurchase_objc_msgSend_01C70135 ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction009, 309, 167, 16))
+#define INSOValidateInAppPurchase_objc_msgSend_01C7018C ((__INSOValidateInAppPurchase_objc_msgSend) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 396, 15, 16))
+#define INSOValidateInAppPurchase_OpenSSL_add_all_digests_00040195 ((__INSOValidateInAppPurchase_OpenSSL_add_all_digests) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 405, 255, 32))
+#define INSOValidateInAppPurchase_OpenSSL_add_all_digests_00AC0195 ((__INSOValidateInAppPurchase_OpenSSL_add_all_digests) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 405, 255, 32))
+#define INSOValidateInAppPurchase_PKCS7_free_00A700EF ((__INSOValidateInAppPurchase_PKCS7_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 239, 141, 16))
+#define INSOValidateInAppPurchase_PKCS7_free_00AC011E ((__INSOValidateInAppPurchase_PKCS7_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 286, 44, 16))
+#define INSOValidateInAppPurchase_PKCS7_get0_signers_000401D5 ((__INSOValidateInAppPurchase_PKCS7_get0_signers) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 469, 92, 19))
+#define INSOValidateInAppPurchase_PKCS7_verify_00AC00D7 ((__INSOValidateInAppPurchase_PKCS7_verify) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 215, 23, 16))
+#define INSOValidateInAppPurchase_sel_registerName_00190028 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 25, 201, 23, INSOValidateInAppPurchase_ObfuscationFunction009, 40, 113, 17))
+#define INSOValidateInAppPurchase_sel_registerName_00190164 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 25, 201, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 356, 236, 17))
+#define INSOValidateInAppPurchase_sel_registerName_00F700C9 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 247, 115, 23, INSOValidateInAppPurchase_ObfuscationFunction006, 201, 121, 17))
+#define INSOValidateInAppPurchase_sel_registerName_00F70164 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 247, 115, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 356, 236, 17))
+#define INSOValidateInAppPurchase_sel_registerName_01C70028 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction009, 40, 113, 17))
+#define INSOValidateInAppPurchase_sel_registerName_01C700C9 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction006, 201, 121, 17))
+#define INSOValidateInAppPurchase_sel_registerName_01C70164 ((__INSOValidateInAppPurchase_sel_registerName) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction008, 455, 156, 23, INSOValidateInAppPurchase_ObfuscationFunction007, 356, 236, 17))
+#define INSOValidateInAppPurchase_setjmp_00D400D3 ((__INSOValidateInAppPurchase_setjmp) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00A, 212, 248, 33, INSOValidateInAppPurchase_ObfuscationFunction006, 211, 55, 16))
+#define INSOValidateInAppPurchase_SHA1_00A70197 ((__INSOValidateInAppPurchase_SHA1) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction00B, 407, 101, 16))
+#define INSOValidateInAppPurchase_SHA1_Final_000401D3 ((__INSOValidateInAppPurchase_SHA1_Final) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 467, 200, 16))
+#define INSOValidateInAppPurchase_SHA1_Init_00AC0107 ((__INSOValidateInAppPurchase_SHA1_Init) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 263, 157, 16))
+#define INSOValidateInAppPurchase_SHA1_Update_00040079 ((__INSOValidateInAppPurchase_SHA1_Update) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction004, 121, 74, 16))
+#define INSOValidateInAppPurchase_sk_free_00A70127 ((__INSOValidateInAppPurchase_sk_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 295, 197, 16))
+#define INSOValidateInAppPurchase_sk_num_00AC0198 ((__INSOValidateInAppPurchase_sk_num) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction009, 408, 65, 16))
+#define INSOValidateInAppPurchase_sk_value_000400FA ((__INSOValidateInAppPurchase_sk_value) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction00A, 250, 82, 16))
+#define INSOValidateInAppPurchase_X509_digest_00AC0071 ((__INSOValidateInAppPurchase_X509_digest) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction00C, 113, 206, 16))
+#define INSOValidateInAppPurchase_X509_free_000401B1 ((__INSOValidateInAppPurchase_X509_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction007, 433, 29, 16))
+#define INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00AC008D ((__INSOValidateInAppPurchase_X509_get_ext_by_OBJ) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 141, 111, 20))
+#define INSOValidateInAppPurchase_X509_NAME_get_text_by_NID_00AC0105 ((__INSOValidateInAppPurchase_X509_NAME_get_text_by_NID) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction006, 261, 51, 34))
+#define INSOValidateInAppPurchase_X509_STORE_add_cert_00AC01A4 ((__INSOValidateInAppPurchase_X509_STORE_add_cert) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction004, 172, 158, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 420, 98, 20))
+#define INSOValidateInAppPurchase_X509_STORE_free_00A701CC ((__INSOValidateInAppPurchase_X509_STORE_free) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction006, 167, 170, 16, INSOValidateInAppPurchase_ObfuscationFunction008, 460, 188, 16))
+#define INSOValidateInAppPurchase_X509_STORE_new_00040138 ((__INSOValidateInAppPurchase_X509_STORE_new) INSOValidateInAppPurchase_LookupFunction015(INSOValidateInAppPurchase_ObfuscationFunction00C, 4, 93, 16, INSOValidateInAppPurchase_ObfuscationFunction009, 312, 66, 16))
     
     
     // CodeBlock ObfuscationFunction / M(Rot)
@@ -2055,7 +2050,7 @@ extern "C" {
         char *INSOValidateInAppPurchase_tmp2 = INSOValidateInAppPurchase_tmp1;
         INSOValidateInAppPurchase_ObfuscationFunction003(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
         while(*INSOValidateInAppPurchase_tmp2) { INSOValidateInAppPurchase_tmp2++; }
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[95])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[352])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2069,7 +2064,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateInAppPurchase_ObfuscationFunction004CF(const char *INSOValidateInAppPurchase_p1, int INSOValidateInAppPurchase_p3, int INSOValidateInAppPurchase_p4) {
         char INSOValidateInAppPurchase_tmp1[483];
         INSOValidateInAppPurchase_ObfuscationFunction004(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[394])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[220])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2085,7 +2080,7 @@ extern "C" {
         char *INSOValidateInAppPurchase_tmp2 = INSOValidateInAppPurchase_tmp1;
         INSOValidateInAppPurchase_ObfuscationFunction005(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
         while(*INSOValidateInAppPurchase_tmp2) { INSOValidateInAppPurchase_tmp2++; }
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[95])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[347])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2099,7 +2094,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateInAppPurchase_ObfuscationFunction006CF(const char *INSOValidateInAppPurchase_p1, int INSOValidateInAppPurchase_p3, int INSOValidateInAppPurchase_p4) {
         char INSOValidateInAppPurchase_tmp1[483];
         INSOValidateInAppPurchase_ObfuscationFunction006(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[268])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[114])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2115,7 +2110,7 @@ extern "C" {
         char *INSOValidateInAppPurchase_tmp2 = INSOValidateInAppPurchase_tmp1;
         INSOValidateInAppPurchase_ObfuscationFunction007(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
         while(*INSOValidateInAppPurchase_tmp2) { INSOValidateInAppPurchase_tmp2++; }
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[95])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[347])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2129,7 +2124,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateInAppPurchase_ObfuscationFunction008CF(const char *INSOValidateInAppPurchase_p1, int INSOValidateInAppPurchase_p3, int INSOValidateInAppPurchase_p4) {
         char INSOValidateInAppPurchase_tmp1[483];
         INSOValidateInAppPurchase_ObfuscationFunction008(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[268])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[341])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2145,7 +2140,7 @@ extern "C" {
         char *INSOValidateInAppPurchase_tmp2 = INSOValidateInAppPurchase_tmp1;
         INSOValidateInAppPurchase_ObfuscationFunction009(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
         while(*INSOValidateInAppPurchase_tmp2) { INSOValidateInAppPurchase_tmp2++; }
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[95])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[347])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2159,7 +2154,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateInAppPurchase_ObfuscationFunction00ACF(const char *INSOValidateInAppPurchase_p1, int INSOValidateInAppPurchase_p3, int INSOValidateInAppPurchase_p4) {
         char INSOValidateInAppPurchase_tmp1[483];
         INSOValidateInAppPurchase_ObfuscationFunction00A(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[268])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[341])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2175,7 +2170,7 @@ extern "C" {
         char *INSOValidateInAppPurchase_tmp2 = INSOValidateInAppPurchase_tmp1;
         INSOValidateInAppPurchase_ObfuscationFunction00B(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
         while(*INSOValidateInAppPurchase_tmp2) { INSOValidateInAppPurchase_tmp2++; }
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[95])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[352])(NULL, (const UInt8 *) INSOValidateInAppPurchase_tmp1, (CFIndex) (INSOValidateInAppPurchase_tmp2 - INSOValidateInAppPurchase_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2189,7 +2184,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateInAppPurchase_ObfuscationFunction00CCF(const char *INSOValidateInAppPurchase_p1, int INSOValidateInAppPurchase_p3, int INSOValidateInAppPurchase_p4) {
         char INSOValidateInAppPurchase_tmp1[483];
         INSOValidateInAppPurchase_ObfuscationFunction00C(INSOValidateInAppPurchase_p1, INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_p3, INSOValidateInAppPurchase_p4);
-        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[453])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateInAppPurchase_str1 = ((__INSOValidateInAppPurchase_CFStringCreateWithCString) INSOValidateInAppPurchase_Pointers[341])(NULL, INSOValidateInAppPurchase_tmp1, kCFStringEncodingUTF8);
         return INSOValidateInAppPurchase_str1;
     }
     
@@ -2200,12 +2195,12 @@ extern "C" {
         // Load the library if needed
         if (INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index1] == NULL) {
             INSOValidateInAppPurchase_func1(INSOValidateInAppPurchase_Strings[INSOValidateInAppPurchase_index1], INSOValidateInAppPurchase_tmp1, INSOValidateInAppPurchase_val1, INSOValidateInAppPurchase_len1);
-            INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index1] = ((__INSOValidateInAppPurchase_dlopen) INSOValidateInAppPurchase_Pointers[62])(INSOValidateInAppPurchase_tmp1, RTLD_NOW | RTLD_FIRST);
+            INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index1] = ((__INSOValidateInAppPurchase_dlopen) INSOValidateInAppPurchase_Pointers[387])(INSOValidateInAppPurchase_tmp1, RTLD_NOW | RTLD_FIRST);
         }
         // Load the function if needed
         if (INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index2] == NULL) {
             INSOValidateInAppPurchase_func2(INSOValidateInAppPurchase_Strings[INSOValidateInAppPurchase_index2], INSOValidateInAppPurchase_tmp2, INSOValidateInAppPurchase_val2, INSOValidateInAppPurchase_len2);
-            INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index2] = ((__INSOValidateInAppPurchase_dlsym) INSOValidateInAppPurchase_Pointers[1])(INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index1], INSOValidateInAppPurchase_tmp2);
+            INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index2] = ((__INSOValidateInAppPurchase_dlsym) INSOValidateInAppPurchase_Pointers[332])(INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index1], INSOValidateInAppPurchase_tmp2);
         }
         return INSOValidateInAppPurchase_Pointers[INSOValidateInAppPurchase_index2];
     }
@@ -2218,47 +2213,47 @@ extern "C" {
     inline static void INSOValidateInAppPurchase_GetMainBundle016(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Retrieving main bundle");
         // Retrieve the main bundle
-        INSOValidateInAppPurchase_ctx->main_bundle = INSOValidateInAppPurchase_CFBundleGetMainBundle_01CC00A1();
+        INSOValidateInAppPurchase_ctx->main_bundle = INSOValidateInAppPurchase_CFBundleGetMainBundle_0165016C();
         if (!INSOValidateInAppPurchase_ctx->main_bundle) {
             // Dead code
-            INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_ctx->main_bundle);
-            INSOValidateInAppPurchase_CFBundleUnloadExecutable_01CC0199((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle);
+            INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->main_bundle);
+            INSOValidateInAppPurchase_CFBundleUnloadExecutable_00FD0196((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle);
         }
         // Global variables computation
-        // Set to 340
-        INSOValidateInAppPurchase_RXISIKIUYOPA = 340;
-        // Set to 186
-        INSOValidateInAppPurchase_BQNXWSRNWARL = 186;
-        // Set to 379
-        INSOValidateInAppPurchase_MXGLFWLSHKLP = 379;
-        // Set to 422
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ = 422;
-        // Set to 446
-        INSOValidateInAppPurchase_VJKSSDZGUTFD = 446;
-        // Set to 149
-        INSOValidateInAppPurchase_MQSCCVFCIWLM = 149;
+        // Set to 343
+        INSOValidateInAppPurchase_DXCGGCQIYEZU = 343;
+        // Set to 127
+        INSOValidateInAppPurchase_PUTBQYHLKEDP = 127;
+        // Set to 46
+        INSOValidateInAppPurchase_ITQDLQNCBWRR = 46;
+        // Set to 444
+        INSOValidateInAppPurchase_RKKPBDIXHOLX = 444;
+        // Set to 302
+        INSOValidateInAppPurchase_PRYOQFVAIZVP = 302;
+        // Set to 283
+        INSOValidateInAppPurchase_MSGECJXGGOPY = 283;
     }
 #else
 #define INSOValidateInAppPurchase_GetMainBundle016(INSOValidateInAppPurchase_ctx) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Retrieving main bundle"); \
-INSOValidateInAppPurchase_ctx->main_bundle = INSOValidateInAppPurchase_CFBundleGetMainBundle_01CC00A1(); \
+INSOValidateInAppPurchase_ctx->main_bundle = INSOValidateInAppPurchase_CFBundleGetMainBundle_0165016C(); \
 if (!INSOValidateInAppPurchase_ctx->main_bundle) { \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_ctx->main_bundle); \
-INSOValidateInAppPurchase_CFBundleUnloadExecutable_01CC0199((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle); \
+INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->main_bundle); \
+INSOValidateInAppPurchase_CFBundleUnloadExecutable_00FD0196((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle); \
 } \
-INSOValidateInAppPurchase_RXISIKIUYOPA = 340; \
-INSOValidateInAppPurchase_BQNXWSRNWARL = 186; \
-INSOValidateInAppPurchase_MXGLFWLSHKLP = 379; \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ = 422; \
-INSOValidateInAppPurchase_VJKSSDZGUTFD = 446; \
-INSOValidateInAppPurchase_MQSCCVFCIWLM = 149; \
+INSOValidateInAppPurchase_DXCGGCQIYEZU = 343; \
+INSOValidateInAppPurchase_PUTBQYHLKEDP = 127; \
+INSOValidateInAppPurchase_ITQDLQNCBWRR = 46; \
+INSOValidateInAppPurchase_RKKPBDIXHOLX = 444; \
+INSOValidateInAppPurchase_PRYOQFVAIZVP = 302; \
+INSOValidateInAppPurchase_MSGECJXGGOPY = 283; \
 }
 #endif
     
     
     // CodeBlock LoadReceipt
 #ifdef DEBUG
-    inline static void INSOValidateInAppPurchase_LoadReceipt043(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
+    inline static void INSOValidateInAppPurchase_LoadReceipt040(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         id INSOValidateInAppPurchase_bundleClass, INSOValidateInAppPurchase_bundle;
         CFURLRef INSOValidateInAppPurchase_url1;
         CFReadStreamRef INSOValidateInAppPurchase_stream;
@@ -2273,76 +2268,76 @@ INSOValidateInAppPurchase_MQSCCVFCIWLM = 149; \
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Loading receipt");
         // Get NSBundle class
         char INSOValidateInAppPurchase_str1_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[279]), INSOValidateInAppPurchase_str1_, 13, 16);
+        INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[377]), INSOValidateInAppPurchase_str1_, 9, 16);
         INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_str1_;
-        INSOValidateInAppPurchase_bundleClass = INSOValidateInAppPurchase_objc_getClass_01D9016F(INSOValidateInAppPurchase_str1);
+        INSOValidateInAppPurchase_bundleClass = INSOValidateInAppPurchase_objc_lookUpClass_01C70154(INSOValidateInAppPurchase_str1);
         char INSOValidateInAppPurchase_str2_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[443]), INSOValidateInAppPurchase_str2_, 174, 16);
+        INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[29]), INSOValidateInAppPurchase_str2_, 10, 16);
         INSOValidateInAppPurchase_str2 = INSOValidateInAppPurchase_str2_;
-        INSOValidateInAppPurchase_sel2 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str2);
+        INSOValidateInAppPurchase_sel2 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str2);
         INSOValidateInAppPurchase_bundle = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_bundleClass, INSOValidateInAppPurchase_sel2);
         char INSOValidateInAppPurchase_str3_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[398]), INSOValidateInAppPurchase_str3_, 7, 19);
+        INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[197]), INSOValidateInAppPurchase_str3_, 213, 19);
         INSOValidateInAppPurchase_str3 = INSOValidateInAppPurchase_str3_;
-        INSOValidateInAppPurchase_sel3 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str3);
+        INSOValidateInAppPurchase_sel3 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str3);
         INSOValidateInAppPurchase_url1 = __SAFE_CAST(CFURLRef, ((NSURL *(*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_bundle, INSOValidateInAppPurchase_sel3));
         // Create a stream from the receipt file
-        INSOValidateInAppPurchase_stream = INSOValidateInAppPurchase_MXGLFWLSHKLP_0088017B(kCFAllocatorDefault, INSOValidateInAppPurchase_url1);
-        if (INSOValidateInAppPurchase_stream == NULL || !INSOValidateInAppPurchase_PUYHTFMFXYPZ_008801A6(INSOValidateInAppPurchase_stream)) {
+        INSOValidateInAppPurchase_stream = INSOValidateInAppPurchase_MSGECJXGGOPY_009F011B(kCFAllocatorDefault, INSOValidateInAppPurchase_url1);
+        if (INSOValidateInAppPurchase_stream == NULL || !INSOValidateInAppPurchase_RKKPBDIXHOLX_016501BC(INSOValidateInAppPurchase_stream)) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Error while opening receipt");
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D9016F(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F70043(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[40]), INSOValidateInAppPurchase_str12_, 85, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[129]), INSOValidateInAppPurchase_str12_, 81, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[42]), INSOValidateInAppPurchase_str13_, 65, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[105]), INSOValidateInAppPurchase_str14_, 69, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[169]), INSOValidateInAppPurchase_str15_, 200, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_017100B1(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_00D4010E(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_url1);
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str1);
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_url1);
-            goto INSOValidateInAppPurchase_LoadReceipt043_INSOValidateInAppPurchase_bail;
+            INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_str1);
+            INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_url1);
+            INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_str1);
+            goto INSOValidateInAppPurchase_LoadReceipt040_INSOValidateInAppPurchase_bail;
         }
         // Create the data object that will contains receipt data
-        INSOValidateInAppPurchase_data = INSOValidateInAppPurchase_VJKSSDZGUTFD_008801BE(kCFAllocatorDefault, 0);
+        INSOValidateInAppPurchase_data = INSOValidateInAppPurchase_ITQDLQNCBWRR_009F002E(kCFAllocatorDefault, 0);
         // Read the receipt by chunks
         do {
-            INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_BQNXWSRNWARL_01CC00BA(INSOValidateInAppPurchase_stream, &INSOValidateInAppPurchase_buffer[0], 483);
+            INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD012E(INSOValidateInAppPurchase_stream, &INSOValidateInAppPurchase_buffer[0], 483);
             if (INSOValidateInAppPurchase_count > 0) {
-                INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC0095(INSOValidateInAppPurchase_data, INSOValidateInAppPurchase_buffer, INSOValidateInAppPurchase_count);
+                INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD007F(INSOValidateInAppPurchase_data, INSOValidateInAppPurchase_buffer, INSOValidateInAppPurchase_count);
             }
         } while (INSOValidateInAppPurchase_count > 0);
         // Close the stream
-        INSOValidateInAppPurchase_RXISIKIUYOPA_01470154(INSOValidateInAppPurchase_stream);
-        if (INSOValidateInAppPurchase_ctx->receipt_data) INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_ctx->receipt_data);
+        INSOValidateInAppPurchase_DXCGGCQIYEZU_009F0157(INSOValidateInAppPurchase_stream);
+        if (INSOValidateInAppPurchase_ctx->receipt_data) INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_ctx->receipt_data);
         INSOValidateInAppPurchase_ctx->receipt_data = INSOValidateInAppPurchase_data;
         // Global variables computation
-        // From 422 to 311
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ += 200; INSOValidateInAppPurchase_PUYHTFMFXYPZ /= 2;
-    INSOValidateInAppPurchase_LoadReceipt043_INSOValidateInAppPurchase_bail:
-        if (INSOValidateInAppPurchase_stream) INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_stream);
+        // From 444 to 354
+        INSOValidateInAppPurchase_RKKPBDIXHOLX += 264; INSOValidateInAppPurchase_RKKPBDIXHOLX /= 2;
+    INSOValidateInAppPurchase_LoadReceipt040_INSOValidateInAppPurchase_bail:
+        if (INSOValidateInAppPurchase_stream) INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_stream);
     }
 #else
-#define INSOValidateInAppPurchase_LoadReceipt043(INSOValidateInAppPurchase_ctx) { \
+#define INSOValidateInAppPurchase_LoadReceipt040(INSOValidateInAppPurchase_ctx) { \
 id INSOValidateInAppPurchase_bundleClass, INSOValidateInAppPurchase_bundle; \
 CFURLRef INSOValidateInAppPurchase_url1; \
 CFReadStreamRef INSOValidateInAppPurchase_stream; \
@@ -2356,66 +2351,66 @@ char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOVa
 SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Loading receipt"); \
 char INSOValidateInAppPurchase_str1_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[279]), INSOValidateInAppPurchase_str1_, 13, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[377]), INSOValidateInAppPurchase_str1_, 9, 16); \
 INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_str1_; \
-INSOValidateInAppPurchase_bundleClass = INSOValidateInAppPurchase_objc_getClass_01D9016F(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_bundleClass = INSOValidateInAppPurchase_objc_lookUpClass_01C70154(INSOValidateInAppPurchase_str1); \
 char INSOValidateInAppPurchase_str2_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[443]), INSOValidateInAppPurchase_str2_, 174, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[29]), INSOValidateInAppPurchase_str2_, 10, 16); \
 INSOValidateInAppPurchase_str2 = INSOValidateInAppPurchase_str2_; \
-INSOValidateInAppPurchase_sel2 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str2); \
+INSOValidateInAppPurchase_sel2 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str2); \
 INSOValidateInAppPurchase_bundle = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_bundleClass, INSOValidateInAppPurchase_sel2); \
 char INSOValidateInAppPurchase_str3_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[398]), INSOValidateInAppPurchase_str3_, 7, 19); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[197]), INSOValidateInAppPurchase_str3_, 213, 19); \
 INSOValidateInAppPurchase_str3 = INSOValidateInAppPurchase_str3_; \
-INSOValidateInAppPurchase_sel3 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str3); \
+INSOValidateInAppPurchase_sel3 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str3); \
 INSOValidateInAppPurchase_url1 = __SAFE_CAST(CFURLRef, ((NSURL *(*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_bundle, INSOValidateInAppPurchase_sel3)); \
-INSOValidateInAppPurchase_stream = INSOValidateInAppPurchase_MXGLFWLSHKLP_0088017B(kCFAllocatorDefault, INSOValidateInAppPurchase_url1); \
-if (INSOValidateInAppPurchase_stream == NULL || !INSOValidateInAppPurchase_PUYHTFMFXYPZ_008801A6(INSOValidateInAppPurchase_stream)) { \
+INSOValidateInAppPurchase_stream = INSOValidateInAppPurchase_MSGECJXGGOPY_009F011B(kCFAllocatorDefault, INSOValidateInAppPurchase_url1); \
+if (INSOValidateInAppPurchase_stream == NULL || !INSOValidateInAppPurchase_RKKPBDIXHOLX_016501BC(INSOValidateInAppPurchase_stream)) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Error while opening receipt"); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D9016F(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F70043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[40]), INSOValidateInAppPurchase_str12_, 85, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[129]), INSOValidateInAppPurchase_str12_, 81, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[42]), INSOValidateInAppPurchase_str13_, 65, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[105]), INSOValidateInAppPurchase_str14_, 69, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[169]), INSOValidateInAppPurchase_str15_, 200, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F700C9(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_017100B1(INSOValidateInAppPurchase_JumpBuf, 1); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_url1); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str1); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_url1); \
-goto INSOValidateInAppPurchase_LoadReceipt043_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_00D4010E(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_url1); \
+INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_str1); \
+goto INSOValidateInAppPurchase_LoadReceipt040_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_data = INSOValidateInAppPurchase_VJKSSDZGUTFD_008801BE(kCFAllocatorDefault, 0); \
+INSOValidateInAppPurchase_data = INSOValidateInAppPurchase_ITQDLQNCBWRR_009F002E(kCFAllocatorDefault, 0); \
 do { \
-INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_BQNXWSRNWARL_01CC00BA(INSOValidateInAppPurchase_stream, &INSOValidateInAppPurchase_buffer[0], 483); \
+INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD012E(INSOValidateInAppPurchase_stream, &INSOValidateInAppPurchase_buffer[0], 483); \
 if (INSOValidateInAppPurchase_count > 0) { \
-INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC0095(INSOValidateInAppPurchase_data, INSOValidateInAppPurchase_buffer, INSOValidateInAppPurchase_count); \
+INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD007F(INSOValidateInAppPurchase_data, INSOValidateInAppPurchase_buffer, INSOValidateInAppPurchase_count); \
 } \
 } while (INSOValidateInAppPurchase_count > 0); \
-INSOValidateInAppPurchase_RXISIKIUYOPA_01470154(INSOValidateInAppPurchase_stream); \
-if (INSOValidateInAppPurchase_ctx->receipt_data) INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_ctx->receipt_data); \
+INSOValidateInAppPurchase_DXCGGCQIYEZU_009F0157(INSOValidateInAppPurchase_stream); \
+if (INSOValidateInAppPurchase_ctx->receipt_data) INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_ctx->receipt_data); \
 INSOValidateInAppPurchase_ctx->receipt_data = INSOValidateInAppPurchase_data; \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ += 200; INSOValidateInAppPurchase_PUYHTFMFXYPZ /= 2;  \
-INSOValidateInAppPurchase_LoadReceipt043_INSOValidateInAppPurchase_bail: \
-if (INSOValidateInAppPurchase_stream) INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_stream);     \
+INSOValidateInAppPurchase_RKKPBDIXHOLX += 264; INSOValidateInAppPurchase_RKKPBDIXHOLX /= 2;  \
+INSOValidateInAppPurchase_LoadReceipt040_INSOValidateInAppPurchase_bail: \
+if (INSOValidateInAppPurchase_stream) INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_stream);     \
 }
 #endif
     
@@ -2431,37 +2426,37 @@ if (INSOValidateInAppPurchase_stream) INSOValidateInAppPurchase_CFRelease_01CC01
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Getting device identifier");
         // Get the UIDevice class
         char INSOValidateInAppPurchase_str1_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[96]), INSOValidateInAppPurchase_str1_, 1, 16);
+        INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[310]), INSOValidateInAppPurchase_str1_, 254, 16);
         INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_str1_;
-        INSOValidateInAppPurchase_deviceClass = INSOValidateInAppPurchase_objc_getClass_017F016F(INSOValidateInAppPurchase_str1);
+        INSOValidateInAppPurchase_deviceClass = INSOValidateInAppPurchase_objc_getClass_01C70043(INSOValidateInAppPurchase_str1);
         // Call [UIDevice currentDevice]
         char INSOValidateInAppPurchase_str2_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[273]), INSOValidateInAppPurchase_str2_, 0, 16);
+        INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[227]), INSOValidateInAppPurchase_str2_, 220, 16);
         INSOValidateInAppPurchase_str2 = INSOValidateInAppPurchase_str2_;
-        INSOValidateInAppPurchase_sel2 = INSOValidateInAppPurchase_sel_registerName_00F40108(INSOValidateInAppPurchase_str2);
+        INSOValidateInAppPurchase_sel2 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str2);
         INSOValidateInAppPurchase_device =  ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_deviceClass, INSOValidateInAppPurchase_sel2);
         // Call [device identifierForVendor]
         char INSOValidateInAppPurchase_str3_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[66]), INSOValidateInAppPurchase_str3_, 98, 20);
+        INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[17]), INSOValidateInAppPurchase_str3_, 90, 20);
         INSOValidateInAppPurchase_str3 = INSOValidateInAppPurchase_str3_;
-        INSOValidateInAppPurchase_sel3 = INSOValidateInAppPurchase_sel_registerName_00F40108(INSOValidateInAppPurchase_str3);
+        INSOValidateInAppPurchase_sel3 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str3);
         INSOValidateInAppPurchase_identifier = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_device, INSOValidateInAppPurchase_sel3);
         // Call [identifier getUUIDBytes:INSOValidateInAppPurchase_uuid]
         char INSOValidateInAppPurchase_str4_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[200]), INSOValidateInAppPurchase_str4_, 185, 16);
+        INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[346]), INSOValidateInAppPurchase_str4_, 229, 16);
         INSOValidateInAppPurchase_str4 = INSOValidateInAppPurchase_str4_;
-        INSOValidateInAppPurchase_sel4 = INSOValidateInAppPurchase_sel_registerName_00F40108(INSOValidateInAppPurchase_str4);
+        INSOValidateInAppPurchase_sel4 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str4);
         ((void (*)(id, SEL, uuid_t)) objc_msgSend)(INSOValidateInAppPurchase_identifier, INSOValidateInAppPurchase_sel4, INSOValidateInAppPurchase_uuid);
-        if (INSOValidateInAppPurchase_ctx->guid_data) INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_ctx->guid_data);
-        volatile int INSOValidateInAppPurchase_size = 11; INSOValidateInAppPurchase_size -= 6; INSOValidateInAppPurchase_size *= 3; INSOValidateInAppPurchase_size += 1;
-        INSOValidateInAppPurchase_ctx->guid_data = INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470137(NULL, (const UInt8 *) INSOValidateInAppPurchase_uuid, (CFIndex) INSOValidateInAppPurchase_size);
+        if (INSOValidateInAppPurchase_ctx->guid_data) INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_ctx->guid_data);
+        volatile int INSOValidateInAppPurchase_size = 14; INSOValidateInAppPurchase_size -= 9; INSOValidateInAppPurchase_size *= 3; INSOValidateInAppPurchase_size += 1;
+        INSOValidateInAppPurchase_ctx->guid_data = INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0162(NULL, (const UInt8 *) INSOValidateInAppPurchase_uuid, (CFIndex) INSOValidateInAppPurchase_size);
         // Global variables computation
-        // From 186 to 272
-        INSOValidateInAppPurchase_BQNXWSRNWARL -= 96; INSOValidateInAppPurchase_BQNXWSRNWARL *= 3; INSOValidateInAppPurchase_BQNXWSRNWARL += 2;
-        // Set to 34
-        INSOValidateInAppPurchase_DZOPJLLHYYIN = 34;
-        // From 446 to 424
-        INSOValidateInAppPurchase_VJKSSDZGUTFD += 402; INSOValidateInAppPurchase_VJKSSDZGUTFD /= 2;
+        // From 343 to 161
+        INSOValidateInAppPurchase_DXCGGCQIYEZU += 301; INSOValidateInAppPurchase_DXCGGCQIYEZU /= 4;
+        // From 127 to 335
+        INSOValidateInAppPurchase_PUTBQYHLKEDP -= 44; INSOValidateInAppPurchase_PUTBQYHLKEDP *= 4; INSOValidateInAppPurchase_PUTBQYHLKEDP += 3;
+        // Set to 472
+        INSOValidateInAppPurchase_LNARHRVDWKYF = 472;
     }
 #else
 #define INSOValidateInAppPurchase_GetGUID04E(INSOValidateInAppPurchase_ctx) { \
@@ -2472,30 +2467,30 @@ SEL INSOValidateInAppPurchase_sel2, INSOValidateInAppPurchase_sel3, INSOValidate
 uuid_t INSOValidateInAppPurchase_uuid; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Getting device identifier"); \
 char INSOValidateInAppPurchase_str1_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[96]), INSOValidateInAppPurchase_str1_, 1, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[310]), INSOValidateInAppPurchase_str1_, 254, 16); \
 INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_str1_; \
-INSOValidateInAppPurchase_deviceClass = INSOValidateInAppPurchase_objc_getClass_017F016F(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_deviceClass = INSOValidateInAppPurchase_objc_getClass_01C70043(INSOValidateInAppPurchase_str1); \
 char INSOValidateInAppPurchase_str2_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[273]), INSOValidateInAppPurchase_str2_, 0, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[227]), INSOValidateInAppPurchase_str2_, 220, 16); \
 INSOValidateInAppPurchase_str2 = INSOValidateInAppPurchase_str2_; \
-INSOValidateInAppPurchase_sel2 = INSOValidateInAppPurchase_sel_registerName_00F40108(INSOValidateInAppPurchase_str2); \
+INSOValidateInAppPurchase_sel2 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str2); \
 INSOValidateInAppPurchase_device =  ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_deviceClass, INSOValidateInAppPurchase_sel2); \
 char INSOValidateInAppPurchase_str3_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[66]), INSOValidateInAppPurchase_str3_, 98, 20); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[17]), INSOValidateInAppPurchase_str3_, 90, 20); \
 INSOValidateInAppPurchase_str3 = INSOValidateInAppPurchase_str3_; \
-INSOValidateInAppPurchase_sel3 = INSOValidateInAppPurchase_sel_registerName_00F40108(INSOValidateInAppPurchase_str3); \
+INSOValidateInAppPurchase_sel3 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str3); \
 INSOValidateInAppPurchase_identifier = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_device, INSOValidateInAppPurchase_sel3); \
 char INSOValidateInAppPurchase_str4_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[200]), INSOValidateInAppPurchase_str4_, 185, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[346]), INSOValidateInAppPurchase_str4_, 229, 16); \
 INSOValidateInAppPurchase_str4 = INSOValidateInAppPurchase_str4_; \
-INSOValidateInAppPurchase_sel4 = INSOValidateInAppPurchase_sel_registerName_00F40108(INSOValidateInAppPurchase_str4); \
+INSOValidateInAppPurchase_sel4 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str4); \
 ((void (*)(id, SEL, uuid_t)) objc_msgSend)(INSOValidateInAppPurchase_identifier, INSOValidateInAppPurchase_sel4, INSOValidateInAppPurchase_uuid); \
-if (INSOValidateInAppPurchase_ctx->guid_data) INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_ctx->guid_data); \
-volatile int INSOValidateInAppPurchase_size = 11; INSOValidateInAppPurchase_size -= 6; INSOValidateInAppPurchase_size *= 3; INSOValidateInAppPurchase_size += 1;  \
-INSOValidateInAppPurchase_ctx->guid_data = INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470137(NULL, (const UInt8 *) INSOValidateInAppPurchase_uuid, (CFIndex) INSOValidateInAppPurchase_size); \
-INSOValidateInAppPurchase_BQNXWSRNWARL -= 96; INSOValidateInAppPurchase_BQNXWSRNWARL *= 3; INSOValidateInAppPurchase_BQNXWSRNWARL += 2;  \
-INSOValidateInAppPurchase_DZOPJLLHYYIN = 34; \
-INSOValidateInAppPurchase_VJKSSDZGUTFD += 402; INSOValidateInAppPurchase_VJKSSDZGUTFD /= 2;  \
+if (INSOValidateInAppPurchase_ctx->guid_data) INSOValidateInAppPurchase_CFRelease_01650193(INSOValidateInAppPurchase_ctx->guid_data); \
+volatile int INSOValidateInAppPurchase_size = 14; INSOValidateInAppPurchase_size -= 9; INSOValidateInAppPurchase_size *= 3; INSOValidateInAppPurchase_size += 1;  \
+INSOValidateInAppPurchase_ctx->guid_data = INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0162(NULL, (const UInt8 *) INSOValidateInAppPurchase_uuid, (CFIndex) INSOValidateInAppPurchase_size); \
+INSOValidateInAppPurchase_DXCGGCQIYEZU += 301; INSOValidateInAppPurchase_DXCGGCQIYEZU /= 4;  \
+INSOValidateInAppPurchase_PUTBQYHLKEDP -= 44; INSOValidateInAppPurchase_PUTBQYHLKEDP *= 4; INSOValidateInAppPurchase_PUTBQYHLKEDP += 3;  \
+INSOValidateInAppPurchase_LNARHRVDWKYF = 472; \
 }
 #endif
     
@@ -2506,217 +2501,217 @@ INSOValidateInAppPurchase_VJKSSDZGUTFD += 402; INSOValidateInAppPurchase_VJKSSDZ
         id INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_request;
         char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOValidateInAppPurchase_str13, *INSOValidateInAppPurchase_str14, *INSOValidateInAppPurchase_str15;
         SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15;
-        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction00BCF((INSOValidateInAppPurchase_Strings[145]), 18, 49);
+        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction007CF((INSOValidateInAppPurchase_Strings[51]), 14, 49);
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking bundle identifier");
-        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_DZOPJLLHYYIN_01470022((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle, *INSOValidateInAppPurchase_kCFBundleIdentifierKey_0088013C);
-        if (INSOValidateInAppPurchase_BQNXWSRNWARL_01CC0110(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD014F((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle, *INSOValidateInAppPurchase_kCFBundleIdentifierKey_009F0020);
+        if (INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD00A1(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Bundle identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding()));
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_017F0065(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F701A9(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[42]), INSOValidateInAppPurchase_str13_, 65, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[241]), INSOValidateInAppPurchase_str15_, 92, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_01710127(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_00D40166(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str1);
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str2);
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str1);
+            INSOValidateInAppPurchase_CFRelease_01650002(INSOValidateInAppPurchase_str1);
+            INSOValidateInAppPurchase_CFRelease_01650002(INSOValidateInAppPurchase_str2);
+            INSOValidateInAppPurchase_CFRelease_01650002(INSOValidateInAppPurchase_str1);
         }
         // Global variables computation
-        // From 34 to 272
-        INSOValidateInAppPurchase_DZOPJLLHYYIN -= 7; INSOValidateInAppPurchase_DZOPJLLHYYIN *= 10; INSOValidateInAppPurchase_DZOPJLLHYYIN += 2;
-        // From 311 to 34
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ += 63; INSOValidateInAppPurchase_PUYHTFMFXYPZ /= 11;
-        INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str1);
+        // Set to 161
+        INSOValidateInAppPurchase_QPFBUNREZRLS = 161;
+        // From 302 to 335
+        INSOValidateInAppPurchase_PRYOQFVAIZVP -= 191; INSOValidateInAppPurchase_PRYOQFVAIZVP *= 3; INSOValidateInAppPurchase_PRYOQFVAIZVP += 2;
+        INSOValidateInAppPurchase_CFRelease_01650002(INSOValidateInAppPurchase_str1);
     }
 #else
 #define INSOValidateInAppPurchase_CheckBundleIdentifier05C(INSOValidateInAppPurchase_ctx) { \
 id INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_request; \
 char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOValidateInAppPurchase_str13, *INSOValidateInAppPurchase_str14, *INSOValidateInAppPurchase_str15; \
 SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15; \
-CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction00BCF((INSOValidateInAppPurchase_Strings[145]), 18, 49); \
+CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction007CF((INSOValidateInAppPurchase_Strings[51]), 14, 49); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking bundle identifier"); \
-CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_DZOPJLLHYYIN_01470022((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle, *INSOValidateInAppPurchase_kCFBundleIdentifierKey_0088013C); \
-if (INSOValidateInAppPurchase_BQNXWSRNWARL_01CC0110(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD014F((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle, *INSOValidateInAppPurchase_kCFBundleIdentifierKey_009F0020); \
+if (INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD00A1(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Bundle identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding())); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_017F0065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[42]), INSOValidateInAppPurchase_str13_, 65, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[241]), INSOValidateInAppPurchase_str15_, 92, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_01710127(INSOValidateInAppPurchase_JumpBuf, 1); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str1); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str2); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_longjmp_00D40166(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_CFRelease_01650002(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_CFRelease_01650002(INSOValidateInAppPurchase_str2); \
+INSOValidateInAppPurchase_CFRelease_01650002(INSOValidateInAppPurchase_str1); \
 } \
-INSOValidateInAppPurchase_DZOPJLLHYYIN -= 7; INSOValidateInAppPurchase_DZOPJLLHYYIN *= 10; INSOValidateInAppPurchase_DZOPJLLHYYIN += 2;  \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ += 63; INSOValidateInAppPurchase_PUYHTFMFXYPZ /= 11;  \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_QPFBUNREZRLS = 161; \
+INSOValidateInAppPurchase_PRYOQFVAIZVP -= 191; INSOValidateInAppPurchase_PRYOQFVAIZVP *= 3; INSOValidateInAppPurchase_PRYOQFVAIZVP += 2;  \
+INSOValidateInAppPurchase_CFRelease_01650002(INSOValidateInAppPurchase_str1); \
 }
 #endif
     
     
     // CodeBlock CheckBundleVersion
 #ifdef DEBUG
-    inline static void INSOValidateInAppPurchase_CheckBundleVersion061(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
+    inline static void INSOValidateInAppPurchase_CheckBundleVersion060(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         id INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_request;
         char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOValidateInAppPurchase_str13, *INSOValidateInAppPurchase_str14, *INSOValidateInAppPurchase_str15;
         SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15;
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking bundle version");
-        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction00CCF((INSOValidateInAppPurchase_Strings[146]), 170, 16);
-        CFStringRef INSOValidateInAppPurchase_str2 = INSOValidateInAppPurchase_ObfuscationFunction00ACF((INSOValidateInAppPurchase_Strings[457]), 63, 16);
-        CFStringRef INSOValidateInAppPurchase_str3 = (CFStringRef) INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470022((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle, INSOValidateInAppPurchase_str2);
-        if (INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC0110(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str3, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction003CF((INSOValidateInAppPurchase_Strings[98]), 144, 16);
+        CFStringRef INSOValidateInAppPurchase_str2 = INSOValidateInAppPurchase_ObfuscationFunction003CF((INSOValidateInAppPurchase_Strings[428]), 213, 16);
+        CFStringRef INSOValidateInAppPurchase_str3 = (CFStringRef) INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD014F((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle, INSOValidateInAppPurchase_str2);
+        if (INSOValidateInAppPurchase_QPFBUNREZRLS_009F00A1(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str3, 0) != kCFCompareEqualTo) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Bundle version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str3, CFStringGetSystemEncoding()));
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D9016F(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190132(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[129]), INSOValidateInAppPurchase_str12_, 81, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_017F008B(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_017F008B(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_017F008B(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[241]), INSOValidateInAppPurchase_str15_, 92, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_017F008B(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_00FF00B1(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_0189009A(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
-            INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str2);
-            INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1);
-            INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str2);
+            INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str1);
+            INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str2);
+            INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str1);
         }
         // Global variables computation
-        // From 340 to 71
-        INSOValidateInAppPurchase_RXISIKIUYOPA += 86; INSOValidateInAppPurchase_RXISIKIUYOPA /= 6;
-        // Set to 248
-        INSOValidateInAppPurchase_MTVDUBNWFFXW = 248;
-        // Set to 312
-        INSOValidateInAppPurchase_BQNXWSRNWARL = 312;
-        // From 379 to 452
-        INSOValidateInAppPurchase_MXGLFWLSHKLP -= 229; INSOValidateInAppPurchase_MXGLFWLSHKLP *= 3; INSOValidateInAppPurchase_MXGLFWLSHKLP += 2;
-        // From 272 to 420
-        INSOValidateInAppPurchase_DZOPJLLHYYIN -= 132; INSOValidateInAppPurchase_DZOPJLLHYYIN *= 3;
-        // Set to 184
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ = 184;
-        // From 424 to 44
-        INSOValidateInAppPurchase_VJKSSDZGUTFD += 60; INSOValidateInAppPurchase_VJKSSDZGUTFD /= 11;
-        // From 149 to 115
-        INSOValidateInAppPurchase_MQSCCVFCIWLM += 81; INSOValidateInAppPurchase_MQSCCVFCIWLM /= 2;
-        INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str2);
-        INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1);
+        // From 161 to 421
+        INSOValidateInAppPurchase_DXCGGCQIYEZU -= 56; INSOValidateInAppPurchase_DXCGGCQIYEZU *= 4; INSOValidateInAppPurchase_DXCGGCQIYEZU += 1;
+        // From 161 to 359
+        INSOValidateInAppPurchase_QPFBUNREZRLS -= 72; INSOValidateInAppPurchase_QPFBUNREZRLS *= 4; INSOValidateInAppPurchase_QPFBUNREZRLS += 3;
+        // From 335 to 170
+        INSOValidateInAppPurchase_PUTBQYHLKEDP += 175; INSOValidateInAppPurchase_PUTBQYHLKEDP /= 3;
+        // From 46 to 385
+        INSOValidateInAppPurchase_ITQDLQNCBWRR -= 8; INSOValidateInAppPurchase_ITQDLQNCBWRR *= 10; INSOValidateInAppPurchase_ITQDLQNCBWRR += 5;
+        // From 472 to 46
+        INSOValidateInAppPurchase_LNARHRVDWKYF += 80; INSOValidateInAppPurchase_LNARHRVDWKYF /= 12;
+        // From 354 to 481
+        INSOValidateInAppPurchase_RKKPBDIXHOLX -= 194; INSOValidateInAppPurchase_RKKPBDIXHOLX *= 3; INSOValidateInAppPurchase_RKKPBDIXHOLX += 1;
+        // From 335 to 52
+        INSOValidateInAppPurchase_PRYOQFVAIZVP += 81; INSOValidateInAppPurchase_PRYOQFVAIZVP /= 8;
+        // From 283 to 371
+        INSOValidateInAppPurchase_MSGECJXGGOPY -= 160; INSOValidateInAppPurchase_MSGECJXGGOPY *= 3; INSOValidateInAppPurchase_MSGECJXGGOPY += 2;
+        INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str2);
+        INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str1);
     }
 #else
-#define INSOValidateInAppPurchase_CheckBundleVersion061(INSOValidateInAppPurchase_ctx) { \
+#define INSOValidateInAppPurchase_CheckBundleVersion060(INSOValidateInAppPurchase_ctx) { \
 id INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_request; \
 char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOValidateInAppPurchase_str13, *INSOValidateInAppPurchase_str14, *INSOValidateInAppPurchase_str15; \
 SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking bundle version"); \
-CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction00CCF((INSOValidateInAppPurchase_Strings[146]), 170, 16); \
-CFStringRef INSOValidateInAppPurchase_str2 = INSOValidateInAppPurchase_ObfuscationFunction00ACF((INSOValidateInAppPurchase_Strings[457]), 63, 16); \
-CFStringRef INSOValidateInAppPurchase_str3 = (CFStringRef) INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470022((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle, INSOValidateInAppPurchase_str2); \
-if (INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC0110(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str3, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction003CF((INSOValidateInAppPurchase_Strings[98]), 144, 16); \
+CFStringRef INSOValidateInAppPurchase_str2 = INSOValidateInAppPurchase_ObfuscationFunction003CF((INSOValidateInAppPurchase_Strings[428]), 213, 16); \
+CFStringRef INSOValidateInAppPurchase_str3 = (CFStringRef) INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD014F((CFBundleRef) INSOValidateInAppPurchase_ctx->main_bundle, INSOValidateInAppPurchase_str2); \
+if (INSOValidateInAppPurchase_QPFBUNREZRLS_009F00A1(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str3, 0) != kCFCompareEqualTo) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Bundle version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str3, CFStringGetSystemEncoding())); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D9016F(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190132(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[129]), INSOValidateInAppPurchase_str12_, 81, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_017F008B(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_017F008B(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_017F008B(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[241]), INSOValidateInAppPurchase_str15_, 92, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_017F008B(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C700C9(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF00B1(INSOValidateInAppPurchase_JumpBuf, 1); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str2); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str2); \
+INSOValidateInAppPurchase_longjmp_0189009A(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str2); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str1); \
 } \
-INSOValidateInAppPurchase_RXISIKIUYOPA += 86; INSOValidateInAppPurchase_RXISIKIUYOPA /= 6;  \
-INSOValidateInAppPurchase_MTVDUBNWFFXW = 248; \
-INSOValidateInAppPurchase_BQNXWSRNWARL = 312; \
-INSOValidateInAppPurchase_MXGLFWLSHKLP -= 229; INSOValidateInAppPurchase_MXGLFWLSHKLP *= 3; INSOValidateInAppPurchase_MXGLFWLSHKLP += 2;  \
-INSOValidateInAppPurchase_DZOPJLLHYYIN -= 132; INSOValidateInAppPurchase_DZOPJLLHYYIN *= 3;  \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ = 184; \
-INSOValidateInAppPurchase_VJKSSDZGUTFD += 60; INSOValidateInAppPurchase_VJKSSDZGUTFD /= 11;  \
-INSOValidateInAppPurchase_MQSCCVFCIWLM += 81; INSOValidateInAppPurchase_MQSCCVFCIWLM /= 2;  \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str2); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_DXCGGCQIYEZU -= 56; INSOValidateInAppPurchase_DXCGGCQIYEZU *= 4; INSOValidateInAppPurchase_DXCGGCQIYEZU += 1;  \
+INSOValidateInAppPurchase_QPFBUNREZRLS -= 72; INSOValidateInAppPurchase_QPFBUNREZRLS *= 4; INSOValidateInAppPurchase_QPFBUNREZRLS += 3;  \
+INSOValidateInAppPurchase_PUTBQYHLKEDP += 175; INSOValidateInAppPurchase_PUTBQYHLKEDP /= 3;  \
+INSOValidateInAppPurchase_ITQDLQNCBWRR -= 8; INSOValidateInAppPurchase_ITQDLQNCBWRR *= 10; INSOValidateInAppPurchase_ITQDLQNCBWRR += 5;  \
+INSOValidateInAppPurchase_LNARHRVDWKYF += 80; INSOValidateInAppPurchase_LNARHRVDWKYF /= 12;  \
+INSOValidateInAppPurchase_RKKPBDIXHOLX -= 194; INSOValidateInAppPurchase_RKKPBDIXHOLX *= 3; INSOValidateInAppPurchase_RKKPBDIXHOLX += 1;  \
+INSOValidateInAppPurchase_PRYOQFVAIZVP += 81; INSOValidateInAppPurchase_PRYOQFVAIZVP /= 8;  \
+INSOValidateInAppPurchase_MSGECJXGGOPY -= 160; INSOValidateInAppPurchase_MSGECJXGGOPY *= 3; INSOValidateInAppPurchase_MSGECJXGGOPY += 2;  \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str2); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str1); \
 }
 #endif
     
     
     // CodeBlock GetReceiptInformation
 #ifdef DEBUG
-    inline static void INSOValidateInAppPurchase_GetReceiptInformation064(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
+    inline static void INSOValidateInAppPurchase_GetReceiptInformation063(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         INSOValidateInAppPurchase_ParsingContext INSOValidateInAppPurchase_receipt_context;
         INSOValidateInAppPurchase_ParsingContext *INSOValidateInAppPurchase_current_context;
         CFNumberRef INSOValidateInAppPurchase_key;
@@ -2747,110 +2742,110 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
         const unsigned char *INSOValidateInAppPurchase_num_ptr;
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt");
         // Put the receipt data into a memory buffer
-        INSOValidateInAppPurchase_bio_p7 = INSOValidateInAppPurchase_BIO_new_00450061(INSOValidateInAppPurchase_BIO_s_mem_012D01DB());
-        INSOValidateInAppPurchase_BIO_write_00450052(INSOValidateInAppPurchase_bio_p7, (void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data), (int) INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01C4((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data));
-        INSOValidateInAppPurchase_pkcs7 = INSOValidateInAppPurchase_d2i_PKCS7_bio_012D001F(INSOValidateInAppPurchase_bio_p7, NULL);
+        INSOValidateInAppPurchase_bio_p7 = INSOValidateInAppPurchase_BIO_new_00A70120(INSOValidateInAppPurchase_BIO_s_mem_00A70091());
+        INSOValidateInAppPurchase_BIO_write_00AC0078(INSOValidateInAppPurchase_bio_p7, (void *) INSOValidateInAppPurchase_CFDataGetBytePtr_009F010D((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data), (int) INSOValidateInAppPurchase_CFDataGetLength_009F0143((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data));
+        INSOValidateInAppPurchase_pkcs7 = INSOValidateInAppPurchase_d2i_PKCS7_bio_000401AE(INSOValidateInAppPurchase_bio_p7, NULL);
         if (!INSOValidateInAppPurchase_pkcs7) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
             INSOValidateInAppPurchase_ctx->receipt_data = NULL;
-            goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+            goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
         }
         if (!PKCS7_type_is_signed(INSOValidateInAppPurchase_pkcs7)) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
             INSOValidateInAppPurchase_ctx->receipt_data = NULL;
-            goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+            goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
         }
         if (!PKCS7_type_is_data(INSOValidateInAppPurchase_pkcs7->d.sign->contents)) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
             INSOValidateInAppPurchase_ctx->receipt_data = NULL;
-            goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+            goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
         }
         // Create a formatter to parse ISO-3339 dates
-        INSOValidateInAppPurchase_formatter = INSOValidateInAppPurchase_CFDateFormatterCreate_01CC0162(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle);
-        INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_ObfuscationFunction00ACF((INSOValidateInAppPurchase_Strings[154]), 58, 33);
-        INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC01A4(INSOValidateInAppPurchase_formatter, (CFStringRef) INSOValidateInAppPurchase_value1);
-        INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_value1);
-        INSOValidateInAppPurchase_tz = INSOValidateInAppPurchase_CFTimeZoneCreateWithTimeIntervalFromGMT_014700A7(NULL, 0.0);
-        INSOValidateInAppPurchase_VJKSSDZGUTFD_01CC002C(INSOValidateInAppPurchase_formatter, *INSOValidateInAppPurchase_kCFDateFormatterTimeZone_01CC00F6, INSOValidateInAppPurchase_tz);
-        INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_tz);
+        INSOValidateInAppPurchase_formatter = INSOValidateInAppPurchase_ITQDLQNCBWRR_01650181(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle);
+        INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_ObfuscationFunction00CCF((INSOValidateInAppPurchase_Strings[431]), 219, 33);
+        INSOValidateInAppPurchase_RKKPBDIXHOLX_016501E1(INSOValidateInAppPurchase_formatter, (CFStringRef) INSOValidateInAppPurchase_value1);
+        INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_value1);
+        INSOValidateInAppPurchase_tz = INSOValidateInAppPurchase_CFTimeZoneCreateWithTimeIntervalFromGMT_016501DE(NULL, 0.0);
+        INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD0034(INSOValidateInAppPurchase_formatter, *INSOValidateInAppPurchase_kCFDateFormatterTimeZone_009F00FF, INSOValidateInAppPurchase_tz);
+        INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_tz);
         // Initial context
         INSOValidateInAppPurchase_contentINSOValidateInAppPurchase_content = INSOValidateInAppPurchase_pkcs7->d.sign->contents->d.data;
         INSOValidateInAppPurchase_receipt_context.ptr = INSOValidateInAppPurchase_contentINSOValidateInAppPurchase_content->data;
@@ -2861,173 +2856,173 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
         while(INSOValidateInAppPurchase_current_context->ptr < INSOValidateInAppPurchase_current_context->end) {
             if (!INSOValidateInAppPurchase_current_context->dictionary) {
                 // Create the target dictionary
-                INSOValidateInAppPurchase_current_context->dictionary = INSOValidateInAppPurchase_PUYHTFMFXYPZ_014700B8(kCFAllocatorDefault, (CFIndex) 483, INSOValidateInAppPurchase_kCFTypeDictionaryKeyCallBacks_01470024, INSOValidateInAppPurchase_kCFTypeDictionaryValueCallBacks_014700A0);
+                INSOValidateInAppPurchase_current_context->dictionary = INSOValidateInAppPurchase_PUTBQYHLKEDP_009F00AA(kCFAllocatorDefault, (CFIndex) 483, INSOValidateInAppPurchase_kCFTypeDictionaryKeyCallBacks_0165016A, INSOValidateInAppPurchase_kCFTypeDictionaryValueCallBacks_009F00C0);
                 // Decode payload from ASN.1
-                INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
+                INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
                 if (INSOValidateInAppPurchase_type != V_ASN1_SET) {
                     __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                     char INSOValidateInAppPurchase_str11_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+                    INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
                     INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
                     char INSOValidateInAppPurchase_str12_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
                     INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                     char INSOValidateInAppPurchase_str13_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
                     INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                     char INSOValidateInAppPurchase_str14_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
                     INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
                     ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                     char INSOValidateInAppPurchase_str15_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
                     INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
                     ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                    INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
-                    goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+                    INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
+                    goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
                 }
             }
             // Iterate over attributes
             while(INSOValidateInAppPurchase_current_context->ptr < INSOValidateInAppPurchase_current_context->end) {
                 // Parse attribute sequence
-                INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
+                INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
                 if (INSOValidateInAppPurchase_type != V_ASN1_SEQUENCE) {
                     __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                     char INSOValidateInAppPurchase_str11_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+                    INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
                     INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
                     char INSOValidateInAppPurchase_str12_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
                     INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                     char INSOValidateInAppPurchase_str13_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
                     INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                     char INSOValidateInAppPurchase_str14_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
                     INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
                     ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                     char INSOValidateInAppPurchase_str15_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
                     INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
                     ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                    INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
-                    goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+                    INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
+                    goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
                 }
                 INSOValidateInAppPurchase_seq_end = INSOValidateInAppPurchase_current_context->ptr + INSOValidateInAppPurchase_length;
                 INSOValidateInAppPurchase_attr_type = 0;
                 INSOValidateInAppPurchase_attr_version = 0;
                 // Parse the attribute type
-                INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
+                INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
                 if (INSOValidateInAppPurchase_type != V_ASN1_INTEGER) {
                     __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                     char INSOValidateInAppPurchase_str11_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+                    INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
                     INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
                     char INSOValidateInAppPurchase_str12_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
                     INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                     char INSOValidateInAppPurchase_str13_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
                     INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                     char INSOValidateInAppPurchase_str14_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
                     INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
                     ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                     char INSOValidateInAppPurchase_str15_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
                     INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
                     ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                    INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
-                    goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+                    INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
+                    goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
                 }
-                INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_012D00F7(NULL, &INSOValidateInAppPurchase_current_context->ptr, INSOValidateInAppPurchase_length);
-                INSOValidateInAppPurchase_attr_type = INSOValidateInAppPurchase_ASN1_INTEGER_get_00BB010A(INSOValidateInAppPurchase_value);
-                INSOValidateInAppPurchase_ASN1_INTEGER_free_00450142(INSOValidateInAppPurchase_value);
+                INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_00040199(NULL, &INSOValidateInAppPurchase_current_context->ptr, INSOValidateInAppPurchase_length);
+                INSOValidateInAppPurchase_attr_type = INSOValidateInAppPurchase_ASN1_INTEGER_get_00A70017(INSOValidateInAppPurchase_value);
+                INSOValidateInAppPurchase_ASN1_INTEGER_free_00AC019F(INSOValidateInAppPurchase_value);
                 // Parse the attribute version
-                INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
+                INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
                 if (INSOValidateInAppPurchase_type != V_ASN1_INTEGER) {
                     __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                     char INSOValidateInAppPurchase_str11_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+                    INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
                     INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
                     char INSOValidateInAppPurchase_str12_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
                     INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                     char INSOValidateInAppPurchase_str13_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
                     INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                     char INSOValidateInAppPurchase_str14_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
                     INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
                     ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                     char INSOValidateInAppPurchase_str15_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
                     INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
                     ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                    INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
-                    goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+                    INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
+                    goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
                 }
-                INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_012D00F7(NULL, &INSOValidateInAppPurchase_current_context->ptr, INSOValidateInAppPurchase_length);
-                INSOValidateInAppPurchase_attr_version = INSOValidateInAppPurchase_ASN1_INTEGER_get_00BB010A(INSOValidateInAppPurchase_value);
-                INSOValidateInAppPurchase_ASN1_INTEGER_free_00450142(INSOValidateInAppPurchase_value);
+                INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_00040199(NULL, &INSOValidateInAppPurchase_current_context->ptr, INSOValidateInAppPurchase_length);
+                INSOValidateInAppPurchase_attr_version = INSOValidateInAppPurchase_ASN1_INTEGER_get_00A70017(INSOValidateInAppPurchase_value);
+                INSOValidateInAppPurchase_ASN1_INTEGER_free_00AC019F(INSOValidateInAppPurchase_value);
                 // Check the attribute value
-                INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
+                INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr);
                 if (INSOValidateInAppPurchase_type != V_ASN1_OCTET_STRING) {
                     __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                     char INSOValidateInAppPurchase_str11_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+                    INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
                     INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+                    INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
                     char INSOValidateInAppPurchase_str12_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
                     INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+                    INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                     char INSOValidateInAppPurchase_str13_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
                     INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+                    INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
                     INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                     char INSOValidateInAppPurchase_str14_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
                     INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+                    INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
                     ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                     char INSOValidateInAppPurchase_str15_[483];
-                    INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+                    INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
                     INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+                    INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
                     ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                    INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
-                    goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+                    INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
+                    goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
                 }
                 INSOValidateInAppPurchase_key1 = (INSOValidateInAppPurchase_ReceiptAttributeType) (INSOValidateInAppPurchase_StoreNone + (INSOValidateInAppPurchase_attr_type << 2));
                 INSOValidateInAppPurchase_key2 = (INSOValidateInAppPurchase_ReceiptAttributeType) (INSOValidateInAppPurchase_StoreNone + (INSOValidateInAppPurchase_attr_type << 2) + 1);
@@ -3046,38 +3041,38 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
                         INSOValidateInAppPurchase_str_type = 0;
                         INSOValidateInAppPurchase_str_length = 0;
                         INSOValidateInAppPurchase_str_ptr = INSOValidateInAppPurchase_current_context->ptr;
-                        INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_str_ptr, &INSOValidateInAppPurchase_str_length, &INSOValidateInAppPurchase_str_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_str_ptr);
+                        INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_str_ptr, &INSOValidateInAppPurchase_str_length, &INSOValidateInAppPurchase_str_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_str_ptr);
                         if (INSOValidateInAppPurchase_str_type != V_ASN1_UTF8STRING) {
                             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                             char INSOValidateInAppPurchase_str11_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+                            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
                             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+                            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
                             char INSOValidateInAppPurchase_str12_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
                             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+                            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
                             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                             char INSOValidateInAppPurchase_str13_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
                             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+                            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
                             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                             char INSOValidateInAppPurchase_str14_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
                             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+                            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
                             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                             char INSOValidateInAppPurchase_str15_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
                             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+                            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
                             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                            INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
-                            goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+                            INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
+                            goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
                         }
-                        INSOValidateInAppPurchase_value1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[397])(NULL, (const UInt8 *) INSOValidateInAppPurchase_str_ptr, (CFIndex) INSOValidateInAppPurchase_str_length, kCFStringEncodingUTF8, false);
-                        INSOValidateInAppPurchase_value2 = INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC0073(NULL, (const UInt8 *) INSOValidateInAppPurchase_current_context->ptr, (CFIndex) INSOValidateInAppPurchase_length);
+                        INSOValidateInAppPurchase_value1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[352])(NULL, (const UInt8 *) INSOValidateInAppPurchase_str_ptr, (CFIndex) INSOValidateInAppPurchase_str_length, kCFStringEncodingUTF8, false);
+                        INSOValidateInAppPurchase_value2 = INSOValidateInAppPurchase_QPFBUNREZRLS_009F0167(NULL, (const UInt8 *) INSOValidateInAppPurchase_current_context->ptr, (CFIndex) INSOValidateInAppPurchase_length);
                         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => %s", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, CFStringGetCStringPtr((CFStringRef) INSOValidateInAppPurchase_value1, CFStringGetSystemEncoding()));
                         break;
                     }
@@ -3091,38 +3086,38 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
                         INSOValidateInAppPurchase_str_type = 0;
                         INSOValidateInAppPurchase_str_length = 0;
                         INSOValidateInAppPurchase_str_ptr = INSOValidateInAppPurchase_current_context->ptr;
-                        INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_str_ptr, &INSOValidateInAppPurchase_str_length, &INSOValidateInAppPurchase_str_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_str_ptr);
+                        INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_str_ptr, &INSOValidateInAppPurchase_str_length, &INSOValidateInAppPurchase_str_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_str_ptr);
                         if (INSOValidateInAppPurchase_str_type != V_ASN1_IA5STRING) {
                             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                             char INSOValidateInAppPurchase_str11_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+                            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
                             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+                            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
                             char INSOValidateInAppPurchase_str12_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
                             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+                            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
                             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                             char INSOValidateInAppPurchase_str13_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
                             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+                            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
                             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                             char INSOValidateInAppPurchase_str14_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
                             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+                            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
                             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                             char INSOValidateInAppPurchase_str15_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
                             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+                            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
                             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                            INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
-                            goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+                            INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
+                            goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
                         }
-                        INSOValidateInAppPurchase_value2 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[397])(NULL, (const UInt8 *) INSOValidateInAppPurchase_str_ptr, (CFIndex) INSOValidateInAppPurchase_str_length, kCFStringEncodingASCII, false);
-                        INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFDateFormatterCreateDateFromString_01CC000E(NULL, INSOValidateInAppPurchase_formatter, (CFStringRef) INSOValidateInAppPurchase_value2, NULL);
+                        INSOValidateInAppPurchase_value2 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[352])(NULL, (const UInt8 *) INSOValidateInAppPurchase_str_ptr, (CFIndex) INSOValidateInAppPurchase_str_length, kCFStringEncodingASCII, false);
+                        INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFDateFormatterCreateDateFromString_00FD0046(NULL, INSOValidateInAppPurchase_formatter, (CFStringRef) INSOValidateInAppPurchase_value2, NULL);
                         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => %s", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, CFStringGetCStringPtr((CFStringRef) INSOValidateInAppPurchase_value2, CFStringGetSystemEncoding()));
                         break;
                     }
@@ -3133,40 +3128,40 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
                         INSOValidateInAppPurchase_num_type = 0;
                         INSOValidateInAppPurchase_num_length = 0;
                         INSOValidateInAppPurchase_num_ptr = INSOValidateInAppPurchase_current_context->ptr;
-                        INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_num_ptr, &INSOValidateInAppPurchase_num_length, &INSOValidateInAppPurchase_num_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_num_ptr);
+                        INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_num_ptr, &INSOValidateInAppPurchase_num_length, &INSOValidateInAppPurchase_num_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_num_ptr);
                         if (INSOValidateInAppPurchase_num_type != V_ASN1_INTEGER) {
                             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                             char INSOValidateInAppPurchase_str11_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32);
+                            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
                             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11);
+                            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
                             char INSOValidateInAppPurchase_str12_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
                             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12);
+                            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12);
                             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                             char INSOValidateInAppPurchase_str13_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
                             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13);
+                            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13);
                             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                             char INSOValidateInAppPurchase_str14_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
                             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14);
+                            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14);
                             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                             char INSOValidateInAppPurchase_str15_[483];
-                            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+                            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
                             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15);
+                            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15);
                             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                            INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1);
-                            goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail;
+                            INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
+                            goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail;
                         }
-                        INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_012D00F7(NULL, &INSOValidateInAppPurchase_num_ptr, INSOValidateInAppPurchase_num_length);
-                        INSOValidateInAppPurchase_number = INSOValidateInAppPurchase_ASN1_INTEGER_get_00BB010A(INSOValidateInAppPurchase_value);
-                        INSOValidateInAppPurchase_ASN1_INTEGER_free_00450142(INSOValidateInAppPurchase_value);
-                        INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFNumberCreate_008800F3(NULL, kCFNumberLongType, &INSOValidateInAppPurchase_number);
+                        INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_00040199(NULL, &INSOValidateInAppPurchase_num_ptr, INSOValidateInAppPurchase_num_length);
+                        INSOValidateInAppPurchase_number = INSOValidateInAppPurchase_ASN1_INTEGER_get_00A70017(INSOValidateInAppPurchase_value);
+                        INSOValidateInAppPurchase_ASN1_INTEGER_free_00AC019F(INSOValidateInAppPurchase_value);
+                        INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5(NULL, kCFNumberLongType, &INSOValidateInAppPurchase_number);
                         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => %ld", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, INSOValidateInAppPurchase_number);
                         break;
                     }
@@ -3174,8 +3169,8 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
                     case INSOValidateInAppPurchase_ReceiptAttributeTypeOpaqueValue:
                     case INSOValidateInAppPurchase_ReceiptAttributeTypeHash:
                     {
-                        INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC0073(NULL, (const UInt8 *) INSOValidateInAppPurchase_current_context->ptr, (CFIndex) INSOValidateInAppPurchase_length);
-                        __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => [%lu bytes]", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01C4((CFDataRef) INSOValidateInAppPurchase_value1));
+                        INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_QPFBUNREZRLS_009F0167(NULL, (const UInt8 *) INSOValidateInAppPurchase_current_context->ptr, (CFIndex) INSOValidateInAppPurchase_length);
+                        __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => [%lu bytes]", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, INSOValidateInAppPurchase_CFDataGetLength_009F0143((CFDataRef) INSOValidateInAppPurchase_value1));
                         break;
                     }
                         // Attributes encoded as ASN.1 SET
@@ -3187,27 +3182,27 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
                         INSOValidateInAppPurchase_inapp_context.dictionary = NULL;
                         INSOValidateInAppPurchase_inapp_context.parent = INSOValidateInAppPurchase_current_context;
                         INSOValidateInAppPurchase_current_context = &INSOValidateInAppPurchase_inapp_context;
-                        goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_key;
+                        goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_key;
                     }
                     default:
                         break;
                 }
                 if (INSOValidateInAppPurchase_value1) {
-                    INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_CFNumberCreate_008800F3(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key1);
-                    INSOValidateInAppPurchase_BQNXWSRNWARL_01470138((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value1);
-                    INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_key);
-                    INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_value1);
+                    INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key1);
+                    INSOValidateInAppPurchase_CFDictionaryAddValue_016501C4((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value1);
+                    INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key);
+                    INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_value1);
                 }
                 if (INSOValidateInAppPurchase_value2) {
-                    INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_CFNumberCreate_008800F3(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key2);
-                    INSOValidateInAppPurchase_BQNXWSRNWARL_01470138((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value2);
-                    INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_key);
-                    INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_value2);
+                    INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key2);
+                    INSOValidateInAppPurchase_CFDictionaryAddValue_016501C4((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value2);
+                    INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key);
+                    INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_value2);
                 }
                 // Move past the attribute
                 INSOValidateInAppPurchase_current_context->ptr += INSOValidateInAppPurchase_length;
             }
-        INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_key:
+        INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_key:
             // If the current context is a new one, continue parsing
             if (!INSOValidateInAppPurchase_current_context->dictionary) {
                 continue;
@@ -3216,36 +3211,36 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_str1); \
             if (INSOValidateInAppPurchase_current_context->parent) {
                 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt - Add an InApp purchase");
                 INSOValidateInAppPurchase_key1 = INSOValidateInAppPurchase_StoreReceiptAttributeTypeInAppPurchase;
-                INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_CFNumberCreate_008800F3(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key1);
-                INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_RXISIKIUYOPA_00880047((CFDictionaryRef) INSOValidateInAppPurchase_current_context->parent->dictionary, INSOValidateInAppPurchase_key);
+                INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key1);
+                INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFDictionaryGetValue_00FD0027((CFDictionaryRef) INSOValidateInAppPurchase_current_context->parent->dictionary, INSOValidateInAppPurchase_key);
                 if (!INSOValidateInAppPurchase_value1) {
-                    INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_MTVDUBNWFFXW_014700F8(kCFAllocatorDefault, 0, INSOValidateInAppPurchase_kCFTypeArrayCallBacks_008800B6);
-                    INSOValidateInAppPurchase_CFDictionarySetValue_01CC0114((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->parent->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value1);
-                    INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_value1);
+                    INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFArrayCreateMutable_016501DB(kCFAllocatorDefault, 0, INSOValidateInAppPurchase_kCFTypeArrayCallBacks_00FD00A6);
+                    INSOValidateInAppPurchase_CFDictionarySetValue_00FD00A4((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->parent->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value1);
+                    INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_value1);
                 }
-                INSOValidateInAppPurchase_CFArrayAppendValue_008801BC((CFMutableArrayRef) INSOValidateInAppPurchase_value1, INSOValidateInAppPurchase_current_context->dictionary);
-                INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_current_context->dictionary);
-                INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_key);
+                INSOValidateInAppPurchase_MSGECJXGGOPY_009F0173((CFMutableArrayRef) INSOValidateInAppPurchase_value1, INSOValidateInAppPurchase_current_context->dictionary);
+                INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_current_context->dictionary);
+                INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key);
                 // Switch to parent context
                 INSOValidateInAppPurchase_current_context = INSOValidateInAppPurchase_current_context->parent;
                 // Move past the child context
                 INSOValidateInAppPurchase_current_context->ptr = INSOValidateInAppPurchase_inapp_context.end;
             }
         }
-        if (INSOValidateInAppPurchase_ctx->receipt_dict) INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_ctx->receipt_dict);
+        if (INSOValidateInAppPurchase_ctx->receipt_dict) INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_ctx->receipt_dict);
         INSOValidateInAppPurchase_ctx->receipt_dict = INSOValidateInAppPurchase_receipt_context.dictionary;
         // Global variables computation
-        // From 71 to 452
-        INSOValidateInAppPurchase_RXISIKIUYOPA -= 15; INSOValidateInAppPurchase_RXISIKIUYOPA *= 8; INSOValidateInAppPurchase_RXISIKIUYOPA += 4;
-        // From 115 to 202
-        INSOValidateInAppPurchase_MQSCCVFCIWLM -= 48; INSOValidateInAppPurchase_MQSCCVFCIWLM *= 3; INSOValidateInAppPurchase_MQSCCVFCIWLM += 1;
-    INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail:
-        if (INSOValidateInAppPurchase_pkcs7) INSOValidateInAppPurchase_PKCS7_free_00450011(INSOValidateInAppPurchase_pkcs7);
-        if (INSOValidateInAppPurchase_bio_p7) INSOValidateInAppPurchase_BIO_free_00450010(INSOValidateInAppPurchase_bio_p7);
-        if (INSOValidateInAppPurchase_formatter) INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_formatter);
+        // Set to 79
+        INSOValidateInAppPurchase_PUTBQYHLKEDP = 79;
+        // From 371 to 269
+        INSOValidateInAppPurchase_MSGECJXGGOPY += 167; INSOValidateInAppPurchase_MSGECJXGGOPY /= 2;
+    INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail:
+        if (INSOValidateInAppPurchase_pkcs7) INSOValidateInAppPurchase_PKCS7_free_00AC011E(INSOValidateInAppPurchase_pkcs7);
+        if (INSOValidateInAppPurchase_bio_p7) INSOValidateInAppPurchase_BIO_free_00A70066(INSOValidateInAppPurchase_bio_p7);
+        if (INSOValidateInAppPurchase_formatter) INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_formatter);
     }
 #else
-#define INSOValidateInAppPurchase_GetReceiptInformation064(INSOValidateInAppPurchase_ctx) { \
+#define INSOValidateInAppPurchase_GetReceiptInformation063(INSOValidateInAppPurchase_ctx) { \
 INSOValidateInAppPurchase_ParsingContext INSOValidateInAppPurchase_receipt_context; \
 INSOValidateInAppPurchase_ParsingContext *INSOValidateInAppPurchase_current_context; \
 CFNumberRef INSOValidateInAppPurchase_key; \
@@ -3275,106 +3270,106 @@ int INSOValidateInAppPurchase_num_type; \
 long INSOValidateInAppPurchase_num_length; \
 const unsigned char *INSOValidateInAppPurchase_num_ptr; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt"); \
-INSOValidateInAppPurchase_bio_p7 = INSOValidateInAppPurchase_BIO_new_00450061(INSOValidateInAppPurchase_BIO_s_mem_012D01DB()); \
-INSOValidateInAppPurchase_BIO_write_00450052(INSOValidateInAppPurchase_bio_p7, (void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data), (int) INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01C4((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data)); \
-INSOValidateInAppPurchase_pkcs7 = INSOValidateInAppPurchase_d2i_PKCS7_bio_012D001F(INSOValidateInAppPurchase_bio_p7, NULL); \
+INSOValidateInAppPurchase_bio_p7 = INSOValidateInAppPurchase_BIO_new_00A70120(INSOValidateInAppPurchase_BIO_s_mem_00A70091()); \
+INSOValidateInAppPurchase_BIO_write_00AC0078(INSOValidateInAppPurchase_bio_p7, (void *) INSOValidateInAppPurchase_CFDataGetBytePtr_009F010D((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data), (int) INSOValidateInAppPurchase_CFDataGetLength_009F0143((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data)); \
+INSOValidateInAppPurchase_pkcs7 = INSOValidateInAppPurchase_d2i_PKCS7_bio_000401AE(INSOValidateInAppPurchase_bio_p7, NULL); \
 if (!INSOValidateInAppPurchase_pkcs7) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
 INSOValidateInAppPurchase_ctx->receipt_data = NULL; \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
 if (!PKCS7_type_is_signed(INSOValidateInAppPurchase_pkcs7)) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
 INSOValidateInAppPurchase_ctx->receipt_data = NULL; \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
 if (!PKCS7_type_is_data(INSOValidateInAppPurchase_pkcs7->d.sign->contents)) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
 INSOValidateInAppPurchase_ctx->receipt_data = NULL; \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_formatter = INSOValidateInAppPurchase_CFDateFormatterCreate_01CC0162(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle); \
-INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_ObfuscationFunction00ACF((INSOValidateInAppPurchase_Strings[154]), 58, 33); \
-INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC01A4(INSOValidateInAppPurchase_formatter, (CFStringRef) INSOValidateInAppPurchase_value1); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_value1); \
-INSOValidateInAppPurchase_tz = INSOValidateInAppPurchase_CFTimeZoneCreateWithTimeIntervalFromGMT_014700A7(NULL, 0.0); \
-INSOValidateInAppPurchase_VJKSSDZGUTFD_01CC002C(INSOValidateInAppPurchase_formatter, *INSOValidateInAppPurchase_kCFDateFormatterTimeZone_01CC00F6, INSOValidateInAppPurchase_tz); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_tz); \
+INSOValidateInAppPurchase_formatter = INSOValidateInAppPurchase_ITQDLQNCBWRR_01650181(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle); \
+INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_ObfuscationFunction00CCF((INSOValidateInAppPurchase_Strings[431]), 219, 33); \
+INSOValidateInAppPurchase_RKKPBDIXHOLX_016501E1(INSOValidateInAppPurchase_formatter, (CFStringRef) INSOValidateInAppPurchase_value1); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_value1); \
+INSOValidateInAppPurchase_tz = INSOValidateInAppPurchase_CFTimeZoneCreateWithTimeIntervalFromGMT_016501DE(NULL, 0.0); \
+INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD0034(INSOValidateInAppPurchase_formatter, *INSOValidateInAppPurchase_kCFDateFormatterTimeZone_009F00FF, INSOValidateInAppPurchase_tz); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_tz); \
 INSOValidateInAppPurchase_contentINSOValidateInAppPurchase_content = INSOValidateInAppPurchase_pkcs7->d.sign->contents->d.data; \
 INSOValidateInAppPurchase_receipt_context.ptr = INSOValidateInAppPurchase_contentINSOValidateInAppPurchase_content->data; \
 INSOValidateInAppPurchase_receipt_context.end = INSOValidateInAppPurchase_receipt_context.ptr + INSOValidateInAppPurchase_contentINSOValidateInAppPurchase_content->length; \
@@ -3383,167 +3378,167 @@ INSOValidateInAppPurchase_receipt_context.dictionary = NULL; \
 INSOValidateInAppPurchase_current_context = &INSOValidateInAppPurchase_receipt_context; \
 while(INSOValidateInAppPurchase_current_context->ptr < INSOValidateInAppPurchase_current_context->end) { \
 if (!INSOValidateInAppPurchase_current_context->dictionary) { \
-INSOValidateInAppPurchase_current_context->dictionary = INSOValidateInAppPurchase_PUYHTFMFXYPZ_014700B8(kCFAllocatorDefault, (CFIndex) 483, INSOValidateInAppPurchase_kCFTypeDictionaryKeyCallBacks_01470024, INSOValidateInAppPurchase_kCFTypeDictionaryValueCallBacks_014700A0); \
-INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
+INSOValidateInAppPurchase_current_context->dictionary = INSOValidateInAppPurchase_PUTBQYHLKEDP_009F00AA(kCFAllocatorDefault, (CFIndex) 483, INSOValidateInAppPurchase_kCFTypeDictionaryKeyCallBacks_0165016A, INSOValidateInAppPurchase_kCFTypeDictionaryValueCallBacks_009F00C0); \
+INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
 if (INSOValidateInAppPurchase_type != V_ASN1_SET) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
 } \
 while(INSOValidateInAppPurchase_current_context->ptr < INSOValidateInAppPurchase_current_context->end) { \
-INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
+INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
 if (INSOValidateInAppPurchase_type != V_ASN1_SEQUENCE) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
 INSOValidateInAppPurchase_seq_end = INSOValidateInAppPurchase_current_context->ptr + INSOValidateInAppPurchase_length; \
 INSOValidateInAppPurchase_attr_type = 0; \
 INSOValidateInAppPurchase_attr_version = 0; \
-INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
+INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
 if (INSOValidateInAppPurchase_type != V_ASN1_INTEGER) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_012D00F7(NULL, &INSOValidateInAppPurchase_current_context->ptr, INSOValidateInAppPurchase_length); \
-INSOValidateInAppPurchase_attr_type = INSOValidateInAppPurchase_ASN1_INTEGER_get_00BB010A(INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_ASN1_INTEGER_free_00450142(INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
+INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_00040199(NULL, &INSOValidateInAppPurchase_current_context->ptr, INSOValidateInAppPurchase_length); \
+INSOValidateInAppPurchase_attr_type = INSOValidateInAppPurchase_ASN1_INTEGER_get_00A70017(INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_ASN1_INTEGER_free_00AC019F(INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
 if (INSOValidateInAppPurchase_type != V_ASN1_INTEGER) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_012D00F7(NULL, &INSOValidateInAppPurchase_current_context->ptr, INSOValidateInAppPurchase_length); \
-INSOValidateInAppPurchase_attr_version = INSOValidateInAppPurchase_ASN1_INTEGER_get_00BB010A(INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_ASN1_INTEGER_free_00450142(INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
+INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_00040199(NULL, &INSOValidateInAppPurchase_current_context->ptr, INSOValidateInAppPurchase_length); \
+INSOValidateInAppPurchase_attr_version = INSOValidateInAppPurchase_ASN1_INTEGER_get_00A70017(INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_ASN1_INTEGER_free_00AC019F(INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_current_context->ptr, &INSOValidateInAppPurchase_length, &INSOValidateInAppPurchase_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_current_context->end - INSOValidateInAppPurchase_current_context->ptr); \
 if (INSOValidateInAppPurchase_type != V_ASN1_OCTET_STRING) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
 INSOValidateInAppPurchase_key1 = (INSOValidateInAppPurchase_ReceiptAttributeType) (INSOValidateInAppPurchase_StoreNone + (INSOValidateInAppPurchase_attr_type << 2)); \
 INSOValidateInAppPurchase_key2 = (INSOValidateInAppPurchase_ReceiptAttributeType) (INSOValidateInAppPurchase_StoreNone + (INSOValidateInAppPurchase_attr_type << 2) + 1); \
@@ -3561,38 +3556,38 @@ case INSOValidateInAppPurchase_InAppAttributeTypeOriginalTransactionIdentifer: \
 INSOValidateInAppPurchase_str_type = 0; \
 INSOValidateInAppPurchase_str_length = 0; \
 INSOValidateInAppPurchase_str_ptr = INSOValidateInAppPurchase_current_context->ptr; \
-INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_str_ptr, &INSOValidateInAppPurchase_str_length, &INSOValidateInAppPurchase_str_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_str_ptr); \
+INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_str_ptr, &INSOValidateInAppPurchase_str_length, &INSOValidateInAppPurchase_str_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_str_ptr); \
 if (INSOValidateInAppPurchase_str_type != V_ASN1_UTF8STRING) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_value1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[397])(NULL, (const UInt8 *) INSOValidateInAppPurchase_str_ptr, (CFIndex) INSOValidateInAppPurchase_str_length, kCFStringEncodingUTF8, false); \
-INSOValidateInAppPurchase_value2 = INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC0073(NULL, (const UInt8 *) INSOValidateInAppPurchase_current_context->ptr, (CFIndex) INSOValidateInAppPurchase_length); \
+INSOValidateInAppPurchase_value1 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[352])(NULL, (const UInt8 *) INSOValidateInAppPurchase_str_ptr, (CFIndex) INSOValidateInAppPurchase_str_length, kCFStringEncodingUTF8, false); \
+INSOValidateInAppPurchase_value2 = INSOValidateInAppPurchase_QPFBUNREZRLS_009F0167(NULL, (const UInt8 *) INSOValidateInAppPurchase_current_context->ptr, (CFIndex) INSOValidateInAppPurchase_length); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => %s", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, CFStringGetCStringPtr((CFStringRef) INSOValidateInAppPurchase_value1, CFStringGetSystemEncoding())); \
 break; \
 } \
@@ -3605,38 +3600,38 @@ case INSOValidateInAppPurchase_InAppAttributeTypeSubscriptionExpirationDate: \
 INSOValidateInAppPurchase_str_type = 0; \
 INSOValidateInAppPurchase_str_length = 0; \
 INSOValidateInAppPurchase_str_ptr = INSOValidateInAppPurchase_current_context->ptr; \
-INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_str_ptr, &INSOValidateInAppPurchase_str_length, &INSOValidateInAppPurchase_str_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_str_ptr); \
+INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_str_ptr, &INSOValidateInAppPurchase_str_length, &INSOValidateInAppPurchase_str_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_str_ptr); \
 if (INSOValidateInAppPurchase_str_type != V_ASN1_IA5STRING) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_value2 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[397])(NULL, (const UInt8 *) INSOValidateInAppPurchase_str_ptr, (CFIndex) INSOValidateInAppPurchase_str_length, kCFStringEncodingASCII, false); \
-INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFDateFormatterCreateDateFromString_01CC000E(NULL, INSOValidateInAppPurchase_formatter, (CFStringRef) INSOValidateInAppPurchase_value2, NULL); \
+INSOValidateInAppPurchase_value2 = ((__INSOValidateInAppPurchase_CFStringCreateWithBytes) INSOValidateInAppPurchase_Pointers[352])(NULL, (const UInt8 *) INSOValidateInAppPurchase_str_ptr, (CFIndex) INSOValidateInAppPurchase_str_length, kCFStringEncodingASCII, false); \
+INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFDateFormatterCreateDateFromString_00FD0046(NULL, INSOValidateInAppPurchase_formatter, (CFStringRef) INSOValidateInAppPurchase_value2, NULL); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => %s", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, CFStringGetCStringPtr((CFStringRef) INSOValidateInAppPurchase_value2, CFStringGetSystemEncoding())); \
 break; \
 } \
@@ -3646,48 +3641,48 @@ case INSOValidateInAppPurchase_InAppAttributeTypeWebOrderLineItemId: \
 INSOValidateInAppPurchase_num_type = 0; \
 INSOValidateInAppPurchase_num_length = 0; \
 INSOValidateInAppPurchase_num_ptr = INSOValidateInAppPurchase_current_context->ptr; \
-INSOValidateInAppPurchase_ASN1_get_object_004500AC(&INSOValidateInAppPurchase_num_ptr, &INSOValidateInAppPurchase_num_length, &INSOValidateInAppPurchase_num_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_num_ptr); \
+INSOValidateInAppPurchase_ASN1_get_object_00A70156(&INSOValidateInAppPurchase_num_ptr, &INSOValidateInAppPurchase_num_length, &INSOValidateInAppPurchase_num_type, &INSOValidateInAppPurchase_xclass, INSOValidateInAppPurchase_seq_end - INSOValidateInAppPurchase_num_ptr); \
 if (INSOValidateInAppPurchase_num_type != V_ASN1_INTEGER) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[25]), INSOValidateInAppPurchase_str11_, 98, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01D90065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[234]), INSOValidateInAppPurchase_str13_, 64, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[239]), INSOValidateInAppPurchase_str14_, 209, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F4011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00C0(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_012D00F7(NULL, &INSOValidateInAppPurchase_num_ptr, INSOValidateInAppPurchase_num_length); \
-INSOValidateInAppPurchase_number = INSOValidateInAppPurchase_ASN1_INTEGER_get_00BB010A(INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_ASN1_INTEGER_free_00450142(INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFNumberCreate_008800F3(NULL, kCFNumberLongType, &INSOValidateInAppPurchase_number); \
+INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_c2i_ASN1_INTEGER_00040199(NULL, &INSOValidateInAppPurchase_num_ptr, INSOValidateInAppPurchase_num_length); \
+INSOValidateInAppPurchase_number = INSOValidateInAppPurchase_ASN1_INTEGER_get_00A70017(INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_ASN1_INTEGER_free_00AC019F(INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5(NULL, kCFNumberLongType, &INSOValidateInAppPurchase_number); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => %ld", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, INSOValidateInAppPurchase_number); \
 break; \
 } \
 case INSOValidateInAppPurchase_ReceiptAttributeTypeOpaqueValue: \
 case INSOValidateInAppPurchase_ReceiptAttributeTypeHash: \
 { \
-INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC0073(NULL, (const UInt8 *) INSOValidateInAppPurchase_current_context->ptr, (CFIndex) INSOValidateInAppPurchase_length); \
-__INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => [%lu bytes]", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01C4((CFDataRef) INSOValidateInAppPurchase_value1)); \
+INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_QPFBUNREZRLS_009F0167(NULL, (const UInt8 *) INSOValidateInAppPurchase_current_context->ptr, (CFIndex) INSOValidateInAppPurchase_length); \
+__INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt -       attribute %s%ld => [%lu bytes]", INSOValidateInAppPurchase_current_context->parent ? "--- " : "- ", INSOValidateInAppPurchase_attr_type, INSOValidateInAppPurchase_CFDataGetLength_009F0143((CFDataRef) INSOValidateInAppPurchase_value1)); \
 break; \
 } \
 case INSOValidateInAppPurchase_ReceiptAttributeTypeInAppPurchase: \
@@ -3697,61 +3692,61 @@ INSOValidateInAppPurchase_inapp_context.end = INSOValidateInAppPurchase_inapp_co
 INSOValidateInAppPurchase_inapp_context.dictionary = NULL; \
 INSOValidateInAppPurchase_inapp_context.parent = INSOValidateInAppPurchase_current_context; \
 INSOValidateInAppPurchase_current_context = &INSOValidateInAppPurchase_inapp_context; \
-goto INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_key; \
+goto INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_key; \
 } \
 default: \
 break; \
 } \
 if (INSOValidateInAppPurchase_value1) { \
-INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_CFNumberCreate_008800F3(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key1); \
-INSOValidateInAppPurchase_BQNXWSRNWARL_01470138((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value1); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_value1); \
+INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key1); \
+INSOValidateInAppPurchase_CFDictionaryAddValue_016501C4((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value1); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_value1); \
 } \
 if (INSOValidateInAppPurchase_value2) { \
-INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_CFNumberCreate_008800F3(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key2); \
-INSOValidateInAppPurchase_BQNXWSRNWARL_01470138((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value2); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_value2); \
+INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key2); \
+INSOValidateInAppPurchase_CFDictionaryAddValue_016501C4((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value2); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_value2); \
 } \
 INSOValidateInAppPurchase_current_context->ptr += INSOValidateInAppPurchase_length; \
 } \
-INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_key: \
+INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_key: \
 if (!INSOValidateInAppPurchase_current_context->dictionary) { \
 continue; \
 } \
 if (INSOValidateInAppPurchase_current_context->parent) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Parsing receipt - Add an InApp purchase"); \
 INSOValidateInAppPurchase_key1 = INSOValidateInAppPurchase_StoreReceiptAttributeTypeInAppPurchase; \
-INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_CFNumberCreate_008800F3(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key1); \
-INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_RXISIKIUYOPA_00880047((CFDictionaryRef) INSOValidateInAppPurchase_current_context->parent->dictionary, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_009F01A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_key1); \
+INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFDictionaryGetValue_00FD0027((CFDictionaryRef) INSOValidateInAppPurchase_current_context->parent->dictionary, INSOValidateInAppPurchase_key); \
 if (!INSOValidateInAppPurchase_value1) { \
-INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_MTVDUBNWFFXW_014700F8(kCFAllocatorDefault, 0, INSOValidateInAppPurchase_kCFTypeArrayCallBacks_008800B6); \
-INSOValidateInAppPurchase_CFDictionarySetValue_01CC0114((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->parent->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value1); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_value1); \
+INSOValidateInAppPurchase_value1 = INSOValidateInAppPurchase_CFArrayCreateMutable_016501DB(kCFAllocatorDefault, 0, INSOValidateInAppPurchase_kCFTypeArrayCallBacks_00FD00A6); \
+INSOValidateInAppPurchase_CFDictionarySetValue_00FD00A4((CFMutableDictionaryRef) INSOValidateInAppPurchase_current_context->parent->dictionary, INSOValidateInAppPurchase_key, INSOValidateInAppPurchase_value1); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_value1); \
 } \
-INSOValidateInAppPurchase_CFArrayAppendValue_008801BC((CFMutableArrayRef) INSOValidateInAppPurchase_value1, INSOValidateInAppPurchase_current_context->dictionary); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_current_context->dictionary); \
-INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_MSGECJXGGOPY_009F0173((CFMutableArrayRef) INSOValidateInAppPurchase_value1, INSOValidateInAppPurchase_current_context->dictionary); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_current_context->dictionary); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key); \
 INSOValidateInAppPurchase_current_context = INSOValidateInAppPurchase_current_context->parent; \
 INSOValidateInAppPurchase_current_context->ptr = INSOValidateInAppPurchase_inapp_context.end; \
 } \
 } \
-if (INSOValidateInAppPurchase_ctx->receipt_dict) INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_ctx->receipt_dict); \
+if (INSOValidateInAppPurchase_ctx->receipt_dict) INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_ctx->receipt_dict); \
 INSOValidateInAppPurchase_ctx->receipt_dict = INSOValidateInAppPurchase_receipt_context.dictionary; \
-INSOValidateInAppPurchase_RXISIKIUYOPA -= 15; INSOValidateInAppPurchase_RXISIKIUYOPA *= 8; INSOValidateInAppPurchase_RXISIKIUYOPA += 4;  \
-INSOValidateInAppPurchase_MQSCCVFCIWLM -= 48; INSOValidateInAppPurchase_MQSCCVFCIWLM *= 3; INSOValidateInAppPurchase_MQSCCVFCIWLM += 1;  \
-INSOValidateInAppPurchase_GetReceiptInformation064_INSOValidateInAppPurchase_bail: \
-if (INSOValidateInAppPurchase_pkcs7) INSOValidateInAppPurchase_PKCS7_free_00450011(INSOValidateInAppPurchase_pkcs7); \
-if (INSOValidateInAppPurchase_bio_p7) INSOValidateInAppPurchase_BIO_free_00450010(INSOValidateInAppPurchase_bio_p7); \
-if (INSOValidateInAppPurchase_formatter) INSOValidateInAppPurchase_CFRelease_01CC01CB(INSOValidateInAppPurchase_formatter); \
+INSOValidateInAppPurchase_PUTBQYHLKEDP = 79; \
+INSOValidateInAppPurchase_MSGECJXGGOPY += 167; INSOValidateInAppPurchase_MSGECJXGGOPY /= 2;  \
+INSOValidateInAppPurchase_GetReceiptInformation063_INSOValidateInAppPurchase_bail: \
+if (INSOValidateInAppPurchase_pkcs7) INSOValidateInAppPurchase_PKCS7_free_00AC011E(INSOValidateInAppPurchase_pkcs7); \
+if (INSOValidateInAppPurchase_bio_p7) INSOValidateInAppPurchase_BIO_free_00A70066(INSOValidateInAppPurchase_bio_p7); \
+if (INSOValidateInAppPurchase_formatter) INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_formatter); \
 }
 #endif
     
     
     // CodeBlock CheckReceiptSignature
 #ifdef DEBUG
-    inline static void INSOValidateInAppPurchase_CheckReceiptSignature07D(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
+    inline static void INSOValidateInAppPurchase_CheckReceiptSignature074(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         BIO *INSOValidateInAppPurchase_bio_p7 = NULL;
         PKCS7 *INSOValidateInAppPurchase_pkcs7 = NULL;
         STACK_OF(X509) *INSOValidateInAppPurchase_certificates = NULL;
@@ -3769,301 +3764,301 @@ if (INSOValidateInAppPurchase_formatter) INSOValidateInAppPurchase_CFRelease_01C
         SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15;
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt signature");
         // Put the receipt data into a memory buffer
-        INSOValidateInAppPurchase_bio_p7 = INSOValidateInAppPurchase_BIO_new_012D0115(INSOValidateInAppPurchase_BIO_s_mem_004501DB());
-        INSOValidateInAppPurchase_BIO_write_012D0017(INSOValidateInAppPurchase_bio_p7, (void *) INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC00CA((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data), (int) INSOValidateInAppPurchase_RXISIKIUYOPA_008801C4((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data));
-        INSOValidateInAppPurchase_pkcs7 = INSOValidateInAppPurchase_d2i_PKCS7_bio_00BB001F(INSOValidateInAppPurchase_bio_p7, NULL);
+        INSOValidateInAppPurchase_bio_p7 = INSOValidateInAppPurchase_BIO_new_00AC0120(INSOValidateInAppPurchase_BIO_s_mem_00040063());
+        INSOValidateInAppPurchase_BIO_write_00A70087(INSOValidateInAppPurchase_bio_p7, (void *) INSOValidateInAppPurchase_MSGECJXGGOPY_009F010D((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data), (int) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165004F((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data));
+        INSOValidateInAppPurchase_pkcs7 = INSOValidateInAppPurchase_d2i_PKCS7_bio_000401AE(INSOValidateInAppPurchase_bio_p7, NULL);
         if (!INSOValidateInAppPurchase_pkcs7) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
             INSOValidateInAppPurchase_ctx->receipt_dict = NULL;
-            goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+            goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
         }
         if (!PKCS7_type_is_signed(INSOValidateInAppPurchase_pkcs7)) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
             INSOValidateInAppPurchase_ctx->receipt_dict = NULL;
-            goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+            goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
         }
         if (!PKCS7_type_is_data(INSOValidateInAppPurchase_pkcs7->d.sign->contents)) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
             INSOValidateInAppPurchase_ctx->receipt_dict = NULL;
-            goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+            goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
         }
-        INSOValidateInAppPurchase_OpenSSL_add_all_digests_012D01C7();
+        INSOValidateInAppPurchase_OpenSSL_add_all_digests_00AC0195();
         // Extract the certificates from the receipt.
         // One of them must be the Apple Root CA certificate with the correct fingerprint.
         INSOValidateInAppPurchase_verify = 0;
         INSOValidateInAppPurchase_certificates = INSOValidateInAppPurchase_pkcs7->d.sign->cert;
-        INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_sk_num_012D0032((const _STACK *) INSOValidateInAppPurchase_certificates);
+        INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_sk_num_00AC0198((const _STACK *) INSOValidateInAppPurchase_certificates);
         for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_count; INSOValidateInAppPurchase_index1++) {
-            INSOValidateInAppPurchase_certificate = (X509 *) INSOValidateInAppPurchase_sk_value_00BB007C((const _STACK *) INSOValidateInAppPurchase_certificates, INSOValidateInAppPurchase_index1);
+            INSOValidateInAppPurchase_certificate = (X509 *) INSOValidateInAppPurchase_sk_value_000400FA((const _STACK *) INSOValidateInAppPurchase_certificates, INSOValidateInAppPurchase_index1);
             char INSOValidateInAppPurchase_common_name[483];
             // Check that the X509_NAME_get_text_by_NID function is not tampered with
             // Retrieve the common name
-            INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_NAME_get_text_by_NID_012D0190(INSOValidateInAppPurchase_certificate->cert_info->subject, NID_commonName, INSOValidateInAppPurchase_common_name, 483);
+            INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_NAME_get_text_by_NID_00AC0105(INSOValidateInAppPurchase_certificate->cert_info->subject, NID_commonName, INSOValidateInAppPurchase_common_name, 483);
             if (INSOValidateInAppPurchase_status <= 0) {
                 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                 char INSOValidateInAppPurchase_str11_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+                INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
                 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+                INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
                 char INSOValidateInAppPurchase_str12_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
                 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+                INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
                 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                 char INSOValidateInAppPurchase_str13_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
                 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+                INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
                 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                 char INSOValidateInAppPurchase_str14_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
                 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+                INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
                 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                 char INSOValidateInAppPurchase_str15_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
                 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+                INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
                 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
-                goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+                INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
+                goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
             }
-            volatile unsigned int INSOValidateInAppPurchase_digest_length = 13; INSOValidateInAppPurchase_digest_length -= 7; INSOValidateInAppPurchase_digest_length *= 3; INSOValidateInAppPurchase_digest_length += 2;
+            volatile unsigned int INSOValidateInAppPurchase_digest_length = 6; INSOValidateInAppPurchase_digest_length -= 2; INSOValidateInAppPurchase_digest_length *= 5;
             const EVP_MD *INSOValidateInAppPurchase_digester = EVP_sha1();
             unsigned char INSOValidateInAppPurchase_digest[EVP_MAX_MD_SIZE];
             unsigned int INSOValidateInAppPurchase_len = 0;
             // Check that the X509_digest function is not tampered with
-            INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_digest_00BB002A(NULL, NULL, NULL, &INSOValidateInAppPurchase_len) * 1079;
-            if (INSOValidateInAppPurchase_status == 1079 || INSOValidateInAppPurchase_len > 0) {
+            INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_digest_00AC0071(NULL, INSOValidateInAppPurchase_digester, INSOValidateInAppPurchase_digest, &INSOValidateInAppPurchase_len) * 3926;
+            if (INSOValidateInAppPurchase_status == 3926 || INSOValidateInAppPurchase_len > 0) {
                 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                 char INSOValidateInAppPurchase_str11_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+                INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
                 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+                INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
                 char INSOValidateInAppPurchase_str12_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
                 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+                INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
                 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                 char INSOValidateInAppPurchase_str13_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
                 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+                INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
                 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                 char INSOValidateInAppPurchase_str14_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
                 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+                INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
                 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                 char INSOValidateInAppPurchase_str15_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
                 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+                INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
                 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
-                goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+                INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
+                goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
             }
-            INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_digest_00BB002A(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_digester, INSOValidateInAppPurchase_digest, &INSOValidateInAppPurchase_len) * 1079;
-            if (INSOValidateInAppPurchase_status != 1079 || INSOValidateInAppPurchase_len != INSOValidateInAppPurchase_digest_length) {
+            INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_digest_00AC0071(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_digester, INSOValidateInAppPurchase_digest, &INSOValidateInAppPurchase_len) * 3926;
+            if (INSOValidateInAppPurchase_status != 3926 || INSOValidateInAppPurchase_len != INSOValidateInAppPurchase_digest_length) {
                 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
                 char INSOValidateInAppPurchase_str11_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+                INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
                 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-                INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+                INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
                 char INSOValidateInAppPurchase_str12_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
                 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-                INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+                INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
                 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
                 char INSOValidateInAppPurchase_str13_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
                 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-                INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+                INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
                 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
                 char INSOValidateInAppPurchase_str14_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
                 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-                INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+                INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
                 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
                 char INSOValidateInAppPurchase_str15_[483];
-                INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+                INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
                 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-                INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+                INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
                 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-                INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
-                goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+                INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
+                goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
             }
             char INSOValidateInAppPurchase_fingerprint[483];
             volatile unsigned int INSOValidateInAppPurchase_increment = 1; INSOValidateInAppPurchase_increment -= 1; INSOValidateInAppPurchase_increment *= 4; INSOValidateInAppPurchase_increment += 2;
             for(INSOValidateInAppPurchase_index2 = 0; INSOValidateInAppPurchase_index2 < INSOValidateInAppPurchase_digest_length; INSOValidateInAppPurchase_index2++) {
-                snprintf(&INSOValidateInAppPurchase_fingerprint[INSOValidateInAppPurchase_index2 * INSOValidateInAppPurchase_increment], INSOValidateInAppPurchase_increment + 1, "%02X", INSOValidateInAppPurchase_digest[INSOValidateInAppPurchase_index2]);
+                snprintf(&INSOValidateInAppPurchase_fingerprint[INSOValidateInAppPurchase_index2 * INSOValidateInAppPurchase_increment], INSOValidateInAppPurchase_increment + 1, "%02x", INSOValidateInAppPurchase_digest[INSOValidateInAppPurchase_index2]);
             }
             char INSOValidateInAppPurchase_str3_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[478]), INSOValidateInAppPurchase_str3_, 212, 49);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[439]), INSOValidateInAppPurchase_str3_, 74, 49);
             INSOValidateInAppPurchase_str3 = INSOValidateInAppPurchase_str3_;
             // Check the common name and the fingerprint
             char INSOValidateInAppPurchase_str1_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[143]), INSOValidateInAppPurchase_str1_, 104, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[432]), INSOValidateInAppPurchase_str1_, 20, 16);
             INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_str1_;
-            volatile size_t INSOValidateInAppPurchase_num = 9; INSOValidateInAppPurchase_num -= 5; INSOValidateInAppPurchase_num *= 3; INSOValidateInAppPurchase_num += 1;
-            if (((__INSOValidateInAppPurchase_strncmp) INSOValidateInAppPurchase_Pointers[360])(INSOValidateInAppPurchase_common_name, INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_num) == 0 && ((__INSOValidateInAppPurchase_strncmp) INSOValidateInAppPurchase_Pointers[360])(INSOValidateInAppPurchase_fingerprint, INSOValidateInAppPurchase_str3, INSOValidateInAppPurchase_digest_length * INSOValidateInAppPurchase_increment - 1) == 0) {
-                INSOValidateInAppPurchase_verify = 1079;
+            volatile size_t INSOValidateInAppPurchase_num = 6; INSOValidateInAppPurchase_num -= 3; INSOValidateInAppPurchase_num *= 4; INSOValidateInAppPurchase_num += 1;
+            if (((__INSOValidateInAppPurchase_strncmp) INSOValidateInAppPurchase_Pointers[81])(INSOValidateInAppPurchase_common_name, INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_num) == 0 && ((__INSOValidateInAppPurchase_strncmp) INSOValidateInAppPurchase_Pointers[81])(INSOValidateInAppPurchase_fingerprint, INSOValidateInAppPurchase_str3, INSOValidateInAppPurchase_digest_length * INSOValidateInAppPurchase_increment - 1) == 0) {
+                INSOValidateInAppPurchase_verify = 3926;
                 break;
             }
         }
         // Check that the last selected certificate is right one.
-        if (INSOValidateInAppPurchase_certificate == NULL || INSOValidateInAppPurchase_verify != 1079) {
+        if (INSOValidateInAppPurchase_certificate == NULL || INSOValidateInAppPurchase_verify != 3926) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
-            goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+            INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
+            goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
         }
         // Check that the X509_get_ext_by_OBJ function is not tampered with
         char INSOValidateInAppPurchase_str4_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[368]), INSOValidateInAppPurchase_str4_, 100, 34);
+        INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[202]), INSOValidateInAppPurchase_str4_, 107, 34);
         INSOValidateInAppPurchase_str4 = INSOValidateInAppPurchase_str4_;
-        INSOValidateInAppPurchase_oid = INSOValidateInAppPurchase_OBJ_txt2obj_00BB01BD(INSOValidateInAppPurchase_str4, 0);
-        INSOValidateInAppPurchase_verify = INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00BB0097(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_oid, 0);
-        INSOValidateInAppPurchase_ASN1_OBJECT_free_012D019F(INSOValidateInAppPurchase_oid);
+        INSOValidateInAppPurchase_oid = INSOValidateInAppPurchase_OBJ_txt2obj_00A70080(INSOValidateInAppPurchase_str4, 0);
+        INSOValidateInAppPurchase_verify = INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00AC008D(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_oid, 0);
+        INSOValidateInAppPurchase_ASN1_OBJECT_free_0004000F(INSOValidateInAppPurchase_oid);
         if (INSOValidateInAppPurchase_verify >= 0) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
-            goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+            INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
+            goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
         }
         // Extract the signer certificate from the receipt
         // The certificate must have the extension OID "1.2.840.113635.100.6.11.1"
         char INSOValidateInAppPurchase_str5_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[368]), INSOValidateInAppPurchase_str5_, 100, 34);
+        INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[200]), INSOValidateInAppPurchase_str5_, 144, 34);
         INSOValidateInAppPurchase_str5 = INSOValidateInAppPurchase_str5_;
-        INSOValidateInAppPurchase_certificates = INSOValidateInAppPurchase_PKCS7_get0_signers_00BB0149(INSOValidateInAppPurchase_pkcs7, NULL, 0);
-        INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_sk_num_012D0032((const _STACK *) INSOValidateInAppPurchase_certificates);
+        INSOValidateInAppPurchase_certificates = INSOValidateInAppPurchase_PKCS7_get0_signers_000401D5(INSOValidateInAppPurchase_pkcs7, NULL, 0);
+        INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_sk_num_00AC0198((const _STACK *) INSOValidateInAppPurchase_certificates);
         for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_count; INSOValidateInAppPurchase_index1++) {
-            INSOValidateInAppPurchase_certificate = (X509 *) INSOValidateInAppPurchase_sk_value_00BB007C((const _STACK *) INSOValidateInAppPurchase_certificates, INSOValidateInAppPurchase_index1);
-            INSOValidateInAppPurchase_oid = INSOValidateInAppPurchase_OBJ_txt2obj_00BB01BD(INSOValidateInAppPurchase_str5, 0);
-            INSOValidateInAppPurchase_verify = INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00BB0097(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_oid, 0);
-            INSOValidateInAppPurchase_ASN1_OBJECT_free_012D019F(INSOValidateInAppPurchase_oid);
+            INSOValidateInAppPurchase_certificate = (X509 *) INSOValidateInAppPurchase_sk_value_000400FA((const _STACK *) INSOValidateInAppPurchase_certificates, INSOValidateInAppPurchase_index1);
+            INSOValidateInAppPurchase_oid = INSOValidateInAppPurchase_OBJ_txt2obj_00A70080(INSOValidateInAppPurchase_str5, 0);
+            INSOValidateInAppPurchase_verify = INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00AC008D(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_oid, 0);
+            INSOValidateInAppPurchase_ASN1_OBJECT_free_0004000F(INSOValidateInAppPurchase_oid);
             if (INSOValidateInAppPurchase_verify == -1) {
                 sk_X509_free (INSOValidateInAppPurchase_certificates);
                 INSOValidateInAppPurchase_certificates = NULL;
@@ -4075,46 +4070,46 @@ if (INSOValidateInAppPurchase_formatter) INSOValidateInAppPurchase_CFRelease_01C
         if (INSOValidateInAppPurchase_certificate == NULL || INSOValidateInAppPurchase_verify < 0) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1);
-            goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail;
+            INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
+            goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail;
         }
         // Global variables computation
-        // From 452 to 140
-        INSOValidateInAppPurchase_RXISIKIUYOPA += 248; INSOValidateInAppPurchase_RXISIKIUYOPA /= 5;
-        // From 248 to 33
-        INSOValidateInAppPurchase_MTVDUBNWFFXW += 49; INSOValidateInAppPurchase_MTVDUBNWFFXW /= 9;
-        // From 202 to 364
-        INSOValidateInAppPurchase_MQSCCVFCIWLM -= 81; INSOValidateInAppPurchase_MQSCCVFCIWLM *= 3; INSOValidateInAppPurchase_MQSCCVFCIWLM += 1;
-    INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail:
-        if (INSOValidateInAppPurchase_bio_p7) INSOValidateInAppPurchase_BIO_free_00450010(INSOValidateInAppPurchase_bio_p7);
-        if (INSOValidateInAppPurchase_pkcs7) INSOValidateInAppPurchase_PKCS7_free_00BB0011(INSOValidateInAppPurchase_pkcs7);
+        // From 385 to 158
+        INSOValidateInAppPurchase_ITQDLQNCBWRR += 247; INSOValidateInAppPurchase_ITQDLQNCBWRR /= 4;
+        // Set to 404
+        INSOValidateInAppPurchase_PRYOQFVAIZVP = 404;
+        // From 269 to 461
+        INSOValidateInAppPurchase_MSGECJXGGOPY -= 116; INSOValidateInAppPurchase_MSGECJXGGOPY *= 3; INSOValidateInAppPurchase_MSGECJXGGOPY += 2;
+    INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail:
+        if (INSOValidateInAppPurchase_bio_p7) INSOValidateInAppPurchase_BIO_free_00AC0045(INSOValidateInAppPurchase_bio_p7);
+        if (INSOValidateInAppPurchase_pkcs7) INSOValidateInAppPurchase_PKCS7_free_00A700EF(INSOValidateInAppPurchase_pkcs7);
         if (INSOValidateInAppPurchase_certificates) sk_X509_free (INSOValidateInAppPurchase_certificates);
     }
 #else
-#define INSOValidateInAppPurchase_CheckReceiptSignature07D(INSOValidateInAppPurchase_ctx) { \
+#define INSOValidateInAppPurchase_CheckReceiptSignature074(INSOValidateInAppPurchase_ctx) { \
 BIO *INSOValidateInAppPurchase_bio_p7 = NULL; \
 PKCS7 *INSOValidateInAppPurchase_pkcs7 = NULL; \
 STACK_OF(X509) *INSOValidateInAppPurchase_certificates = NULL; \
@@ -4131,291 +4126,291 @@ id INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_request; \
 char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOValidateInAppPurchase_str13, *INSOValidateInAppPurchase_str14, *INSOValidateInAppPurchase_str15; \
 SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt signature"); \
-INSOValidateInAppPurchase_bio_p7 = INSOValidateInAppPurchase_BIO_new_012D0115(INSOValidateInAppPurchase_BIO_s_mem_004501DB()); \
-INSOValidateInAppPurchase_BIO_write_012D0017(INSOValidateInAppPurchase_bio_p7, (void *) INSOValidateInAppPurchase_MQSCCVFCIWLM_01CC00CA((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data), (int) INSOValidateInAppPurchase_RXISIKIUYOPA_008801C4((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data)); \
-INSOValidateInAppPurchase_pkcs7 = INSOValidateInAppPurchase_d2i_PKCS7_bio_00BB001F(INSOValidateInAppPurchase_bio_p7, NULL); \
+INSOValidateInAppPurchase_bio_p7 = INSOValidateInAppPurchase_BIO_new_00AC0120(INSOValidateInAppPurchase_BIO_s_mem_00040063()); \
+INSOValidateInAppPurchase_BIO_write_00A70087(INSOValidateInAppPurchase_bio_p7, (void *) INSOValidateInAppPurchase_MSGECJXGGOPY_009F010D((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data), (int) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165004F((CFDataRef) INSOValidateInAppPurchase_ctx->receipt_data)); \
+INSOValidateInAppPurchase_pkcs7 = INSOValidateInAppPurchase_d2i_PKCS7_bio_000401AE(INSOValidateInAppPurchase_bio_p7, NULL); \
 if (!INSOValidateInAppPurchase_pkcs7) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
 INSOValidateInAppPurchase_ctx->receipt_dict = NULL; \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
 if (!PKCS7_type_is_signed(INSOValidateInAppPurchase_pkcs7)) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
 INSOValidateInAppPurchase_ctx->receipt_dict = NULL; \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
 if (!PKCS7_type_is_data(INSOValidateInAppPurchase_pkcs7->d.sign->contents)) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
 INSOValidateInAppPurchase_ctx->receipt_dict = NULL; \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_OpenSSL_add_all_digests_012D01C7(); \
+INSOValidateInAppPurchase_OpenSSL_add_all_digests_00AC0195(); \
 INSOValidateInAppPurchase_verify = 0; \
 INSOValidateInAppPurchase_certificates = INSOValidateInAppPurchase_pkcs7->d.sign->cert; \
-INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_sk_num_012D0032((const _STACK *) INSOValidateInAppPurchase_certificates); \
+INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_sk_num_00AC0198((const _STACK *) INSOValidateInAppPurchase_certificates); \
 for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_count; INSOValidateInAppPurchase_index1++) { \
-INSOValidateInAppPurchase_certificate = (X509 *) INSOValidateInAppPurchase_sk_value_00BB007C((const _STACK *) INSOValidateInAppPurchase_certificates, INSOValidateInAppPurchase_index1); \
+INSOValidateInAppPurchase_certificate = (X509 *) INSOValidateInAppPurchase_sk_value_000400FA((const _STACK *) INSOValidateInAppPurchase_certificates, INSOValidateInAppPurchase_index1); \
 char INSOValidateInAppPurchase_common_name[483]; \
-INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_NAME_get_text_by_NID_012D0190(INSOValidateInAppPurchase_certificate->cert_info->subject, NID_commonName, INSOValidateInAppPurchase_common_name, 483); \
+INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_NAME_get_text_by_NID_00AC0105(INSOValidateInAppPurchase_certificate->cert_info->subject, NID_commonName, INSOValidateInAppPurchase_common_name, 483); \
 if (INSOValidateInAppPurchase_status <= 0) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
-volatile unsigned int INSOValidateInAppPurchase_digest_length = 13; INSOValidateInAppPurchase_digest_length -= 7; INSOValidateInAppPurchase_digest_length *= 3; INSOValidateInAppPurchase_digest_length += 2;  \
+volatile unsigned int INSOValidateInAppPurchase_digest_length = 6; INSOValidateInAppPurchase_digest_length -= 2; INSOValidateInAppPurchase_digest_length *= 5;  \
 const EVP_MD *INSOValidateInAppPurchase_digester = EVP_sha1(); \
 unsigned char INSOValidateInAppPurchase_digest[EVP_MAX_MD_SIZE]; \
 unsigned int INSOValidateInAppPurchase_len = 0; \
-INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_digest_00BB002A(NULL, NULL, NULL, &INSOValidateInAppPurchase_len) * 1079; \
-if (INSOValidateInAppPurchase_status == 1079 || INSOValidateInAppPurchase_len > 0) { \
+INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_digest_00AC0071(NULL, INSOValidateInAppPurchase_digester, INSOValidateInAppPurchase_digest, &INSOValidateInAppPurchase_len) * 3926; \
+if (INSOValidateInAppPurchase_status == 3926 || INSOValidateInAppPurchase_len > 0) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_digest_00BB002A(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_digester, INSOValidateInAppPurchase_digest, &INSOValidateInAppPurchase_len) * 1079; \
-if (INSOValidateInAppPurchase_status != 1079 || INSOValidateInAppPurchase_len != INSOValidateInAppPurchase_digest_length) { \
+INSOValidateInAppPurchase_status = INSOValidateInAppPurchase_X509_digest_00AC0071(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_digester, INSOValidateInAppPurchase_digest, &INSOValidateInAppPurchase_len) * 3926; \
+if (INSOValidateInAppPurchase_status != 3926 || INSOValidateInAppPurchase_len != INSOValidateInAppPurchase_digest_length) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
 char INSOValidateInAppPurchase_fingerprint[483]; \
 volatile unsigned int INSOValidateInAppPurchase_increment = 1; INSOValidateInAppPurchase_increment -= 1; INSOValidateInAppPurchase_increment *= 4; INSOValidateInAppPurchase_increment += 2;  \
 for(INSOValidateInAppPurchase_index2 = 0; INSOValidateInAppPurchase_index2 < INSOValidateInAppPurchase_digest_length; INSOValidateInAppPurchase_index2++) { \
-snprintf(&INSOValidateInAppPurchase_fingerprint[INSOValidateInAppPurchase_index2 * INSOValidateInAppPurchase_increment], INSOValidateInAppPurchase_increment + 1, "%02X", INSOValidateInAppPurchase_digest[INSOValidateInAppPurchase_index2]); \
+snprintf(&INSOValidateInAppPurchase_fingerprint[INSOValidateInAppPurchase_index2 * INSOValidateInAppPurchase_increment], INSOValidateInAppPurchase_increment + 1, "%02x", INSOValidateInAppPurchase_digest[INSOValidateInAppPurchase_index2]); \
 } \
 char INSOValidateInAppPurchase_str3_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[478]), INSOValidateInAppPurchase_str3_, 212, 49); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[439]), INSOValidateInAppPurchase_str3_, 74, 49); \
 INSOValidateInAppPurchase_str3 = INSOValidateInAppPurchase_str3_; \
 char INSOValidateInAppPurchase_str1_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[143]), INSOValidateInAppPurchase_str1_, 104, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[432]), INSOValidateInAppPurchase_str1_, 20, 16); \
 INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_str1_; \
-volatile size_t INSOValidateInAppPurchase_num = 9; INSOValidateInAppPurchase_num -= 5; INSOValidateInAppPurchase_num *= 3; INSOValidateInAppPurchase_num += 1;  \
-if (((__INSOValidateInAppPurchase_strncmp) INSOValidateInAppPurchase_Pointers[360])(INSOValidateInAppPurchase_common_name, INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_num) == 0 && ((__INSOValidateInAppPurchase_strncmp) INSOValidateInAppPurchase_Pointers[360])(INSOValidateInAppPurchase_fingerprint, INSOValidateInAppPurchase_str3, INSOValidateInAppPurchase_digest_length * INSOValidateInAppPurchase_increment - 1) == 0) { \
-INSOValidateInAppPurchase_verify = 1079; \
+volatile size_t INSOValidateInAppPurchase_num = 6; INSOValidateInAppPurchase_num -= 3; INSOValidateInAppPurchase_num *= 4; INSOValidateInAppPurchase_num += 1;  \
+if (((__INSOValidateInAppPurchase_strncmp) INSOValidateInAppPurchase_Pointers[81])(INSOValidateInAppPurchase_common_name, INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_num) == 0 && ((__INSOValidateInAppPurchase_strncmp) INSOValidateInAppPurchase_Pointers[81])(INSOValidateInAppPurchase_fingerprint, INSOValidateInAppPurchase_str3, INSOValidateInAppPurchase_digest_length * INSOValidateInAppPurchase_increment - 1) == 0) { \
+INSOValidateInAppPurchase_verify = 3926; \
 break; \
 } \
 } \
-if (INSOValidateInAppPurchase_certificate == NULL || INSOValidateInAppPurchase_verify != 1079) { \
+if (INSOValidateInAppPurchase_certificate == NULL || INSOValidateInAppPurchase_verify != 3926) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
 char INSOValidateInAppPurchase_str4_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[368]), INSOValidateInAppPurchase_str4_, 100, 34); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[202]), INSOValidateInAppPurchase_str4_, 107, 34); \
 INSOValidateInAppPurchase_str4 = INSOValidateInAppPurchase_str4_; \
-INSOValidateInAppPurchase_oid = INSOValidateInAppPurchase_OBJ_txt2obj_00BB01BD(INSOValidateInAppPurchase_str4, 0); \
-INSOValidateInAppPurchase_verify = INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00BB0097(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_oid, 0); \
-INSOValidateInAppPurchase_ASN1_OBJECT_free_012D019F(INSOValidateInAppPurchase_oid); \
+INSOValidateInAppPurchase_oid = INSOValidateInAppPurchase_OBJ_txt2obj_00A70080(INSOValidateInAppPurchase_str4, 0); \
+INSOValidateInAppPurchase_verify = INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00AC008D(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_oid, 0); \
+INSOValidateInAppPurchase_ASN1_OBJECT_free_0004000F(INSOValidateInAppPurchase_oid); \
 if (INSOValidateInAppPurchase_verify >= 0) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
 char INSOValidateInAppPurchase_str5_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[368]), INSOValidateInAppPurchase_str5_, 100, 34); \
+INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[200]), INSOValidateInAppPurchase_str5_, 144, 34); \
 INSOValidateInAppPurchase_str5 = INSOValidateInAppPurchase_str5_; \
-INSOValidateInAppPurchase_certificates = INSOValidateInAppPurchase_PKCS7_get0_signers_00BB0149(INSOValidateInAppPurchase_pkcs7, NULL, 0); \
-INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_sk_num_012D0032((const _STACK *) INSOValidateInAppPurchase_certificates); \
+INSOValidateInAppPurchase_certificates = INSOValidateInAppPurchase_PKCS7_get0_signers_000401D5(INSOValidateInAppPurchase_pkcs7, NULL, 0); \
+INSOValidateInAppPurchase_count = INSOValidateInAppPurchase_sk_num_00AC0198((const _STACK *) INSOValidateInAppPurchase_certificates); \
 for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_count; INSOValidateInAppPurchase_index1++) { \
-INSOValidateInAppPurchase_certificate = (X509 *) INSOValidateInAppPurchase_sk_value_00BB007C((const _STACK *) INSOValidateInAppPurchase_certificates, INSOValidateInAppPurchase_index1); \
-INSOValidateInAppPurchase_oid = INSOValidateInAppPurchase_OBJ_txt2obj_00BB01BD(INSOValidateInAppPurchase_str5, 0); \
-INSOValidateInAppPurchase_verify = INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00BB0097(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_oid, 0); \
-INSOValidateInAppPurchase_ASN1_OBJECT_free_012D019F(INSOValidateInAppPurchase_oid); \
+INSOValidateInAppPurchase_certificate = (X509 *) INSOValidateInAppPurchase_sk_value_000400FA((const _STACK *) INSOValidateInAppPurchase_certificates, INSOValidateInAppPurchase_index1); \
+INSOValidateInAppPurchase_oid = INSOValidateInAppPurchase_OBJ_txt2obj_00A70080(INSOValidateInAppPurchase_str5, 0); \
+INSOValidateInAppPurchase_verify = INSOValidateInAppPurchase_X509_get_ext_by_OBJ_00AC008D(INSOValidateInAppPurchase_certificate, INSOValidateInAppPurchase_oid, 0); \
+INSOValidateInAppPurchase_ASN1_OBJECT_free_0004000F(INSOValidateInAppPurchase_oid); \
 if (INSOValidateInAppPurchase_verify == -1) { \
 sk_X509_free (INSOValidateInAppPurchase_certificates); \
 INSOValidateInAppPurchase_certificates = NULL; \
@@ -4427,38 +4422,38 @@ break; \
 if (INSOValidateInAppPurchase_certificate == NULL || INSOValidateInAppPurchase_verify < 0) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_01C701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00B((INSOValidateInAppPurchase_Strings[170]), INSOValidateInAppPurchase_str12_, 219, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF0127(INSOValidateInAppPurchase_JumpBuf, 1); \
-goto INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
+goto INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_RXISIKIUYOPA += 248; INSOValidateInAppPurchase_RXISIKIUYOPA /= 5;  \
-INSOValidateInAppPurchase_MTVDUBNWFFXW += 49; INSOValidateInAppPurchase_MTVDUBNWFFXW /= 9;  \
-INSOValidateInAppPurchase_MQSCCVFCIWLM -= 81; INSOValidateInAppPurchase_MQSCCVFCIWLM *= 3; INSOValidateInAppPurchase_MQSCCVFCIWLM += 1;  \
-INSOValidateInAppPurchase_CheckReceiptSignature07D_INSOValidateInAppPurchase_bail: \
-if (INSOValidateInAppPurchase_bio_p7) INSOValidateInAppPurchase_BIO_free_00450010(INSOValidateInAppPurchase_bio_p7); \
-if (INSOValidateInAppPurchase_pkcs7) INSOValidateInAppPurchase_PKCS7_free_00BB0011(INSOValidateInAppPurchase_pkcs7); \
+INSOValidateInAppPurchase_ITQDLQNCBWRR += 247; INSOValidateInAppPurchase_ITQDLQNCBWRR /= 4;  \
+INSOValidateInAppPurchase_PRYOQFVAIZVP = 404; \
+INSOValidateInAppPurchase_MSGECJXGGOPY -= 116; INSOValidateInAppPurchase_MSGECJXGGOPY *= 3; INSOValidateInAppPurchase_MSGECJXGGOPY += 2;  \
+INSOValidateInAppPurchase_CheckReceiptSignature074_INSOValidateInAppPurchase_bail: \
+if (INSOValidateInAppPurchase_bio_p7) INSOValidateInAppPurchase_BIO_free_00AC0045(INSOValidateInAppPurchase_bio_p7); \
+if (INSOValidateInAppPurchase_pkcs7) INSOValidateInAppPurchase_PKCS7_free_00A700EF(INSOValidateInAppPurchase_pkcs7); \
 if (INSOValidateInAppPurchase_certificates) sk_X509_free (INSOValidateInAppPurchase_certificates); \
 }
 #endif
@@ -4467,147 +4462,147 @@ if (INSOValidateInAppPurchase_certificates) sk_X509_free (INSOValidateInAppPurch
     // CodeBlock CheckReceiptIdentifier
 #ifndef RECEIGEN_LOOSE_IDENTIFIER_CHECK
 #ifdef DEBUG
-    inline static void INSOValidateInAppPurchase_CheckReceiptIdentifier07E(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
+    inline static void INSOValidateInAppPurchase_CheckReceiptIdentifier07F(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         id INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_request;
         char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOValidateInAppPurchase_str13, *INSOValidateInAppPurchase_str14, *INSOValidateInAppPurchase_str15;
         SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15;
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt identifier");
         INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleId;
-        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction00CCF((INSOValidateInAppPurchase_Strings[75]), 190, 49);
-        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MTVDUBNWFFXW_01470021(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MQSCCVFCIWLM_0147016C((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_key);
-        if (INSOValidateInAppPurchase_RXISIKIUYOPA_01CC008C(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction006CF((INSOValidateInAppPurchase_Strings[184]), 122, 49);
+        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_ITQDLQNCBWRR_0165009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_016501CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_key);
+        if (INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD0194(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding()));
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_017F0153(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F70043(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_017F0108(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[42]), INSOValidateInAppPurchase_str13_, 65, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_017F0108(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_017F0108(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[241]), INSOValidateInAppPurchase_str15_, 92, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_017F0108(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_003D00B1(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
-            INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_key);
-            INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1);
-            INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_key);
-            INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1);
+            INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_key);
+            INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_str1);
+            INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_key);
+            INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_str1);
         }
         // Global variables computation
-        // From 33 to 364
-        INSOValidateInAppPurchase_MTVDUBNWFFXW -= 5; INSOValidateInAppPurchase_MTVDUBNWFFXW *= 13;
-        // From 420 to 140
-        INSOValidateInAppPurchase_DZOPJLLHYYIN += 280; INSOValidateInAppPurchase_DZOPJLLHYYIN /= 5;
-        // From 364 to 33
-        INSOValidateInAppPurchase_MQSCCVFCIWLM += 65; INSOValidateInAppPurchase_MQSCCVFCIWLM /= 13;
-        INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1);
+        // Set to 161
+        INSOValidateInAppPurchase_QPFBUNREZRLS = 161;
+        // Set to 389
+        INSOValidateInAppPurchase_RKKPBDIXHOLX = 389;
+        // From 461 to 461
+        INSOValidateInAppPurchase_MSGECJXGGOPY /= 1;
+        INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_str1);
     }
 #else
-#define INSOValidateInAppPurchase_CheckReceiptIdentifier07E(INSOValidateInAppPurchase_ctx) { \
+#define INSOValidateInAppPurchase_CheckReceiptIdentifier07F(INSOValidateInAppPurchase_ctx) { \
 id INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_request; \
 char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOValidateInAppPurchase_str13, *INSOValidateInAppPurchase_str14, *INSOValidateInAppPurchase_str15; \
 SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt identifier"); \
 INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleId; \
-CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction00CCF((INSOValidateInAppPurchase_Strings[75]), 190, 49); \
-CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MTVDUBNWFFXW_01470021(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MQSCCVFCIWLM_0147016C((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_key); \
-if (INSOValidateInAppPurchase_RXISIKIUYOPA_01CC008C(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction006CF((INSOValidateInAppPurchase_Strings[184]), 122, 49); \
+CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_ITQDLQNCBWRR_0165009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_016501CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_key); \
+if (INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD0194(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding())); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[331]), INSOValidateInAppPurchase_str11_, 167, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_017F0153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F70043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_017F0108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[42]), INSOValidateInAppPurchase_str13_, 65, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_017F0108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_017F0108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[241]), INSOValidateInAppPurchase_str15_, 92, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_017F0108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_003D00B1(INSOValidateInAppPurchase_JumpBuf, 1); \
-INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1); \
-INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_str1); \
 } \
-INSOValidateInAppPurchase_MTVDUBNWFFXW -= 5; INSOValidateInAppPurchase_MTVDUBNWFFXW *= 13;  \
-INSOValidateInAppPurchase_DZOPJLLHYYIN += 280; INSOValidateInAppPurchase_DZOPJLLHYYIN /= 5;  \
-INSOValidateInAppPurchase_MQSCCVFCIWLM += 65; INSOValidateInAppPurchase_MQSCCVFCIWLM /= 13;  \
-INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_QPFBUNREZRLS = 161; \
+INSOValidateInAppPurchase_RKKPBDIXHOLX = 389; \
+INSOValidateInAppPurchase_MSGECJXGGOPY /= 1;  \
+INSOValidateInAppPurchase_CFRelease_00FD00BC(INSOValidateInAppPurchase_str1); \
 }
 #endif
 #endif
     
 #ifdef RECEIGEN_LOOSE_IDENTIFIER_CHECK
 #ifdef DEBUG
-    inline static void INSOValidateInAppPurchase_CheckReceiptIdentifier07E(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
+    inline static void INSOValidateInAppPurchase_CheckReceiptIdentifier07F(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt identifier loosely");
         INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleId;
-        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction00CCF((INSOValidateInAppPurchase_Strings[75]), 190, 49);
-        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MTVDUBNWFFXW_01470021(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MQSCCVFCIWLM_0147016C((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_CFRelease_01CC010B(INSOValidateInAppPurchase_key);
-        if (INSOValidateInAppPurchase_RXISIKIUYOPA_01CC008C(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction006CF((INSOValidateInAppPurchase_Strings[104]), 20, 49);
+        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_ITQDLQNCBWRR_0165009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_016501CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_key);
+        if (INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD0194(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding()));
         }
         // Global variables computation
-        // From 33 to 364
-        INSOValidateInAppPurchase_MTVDUBNWFFXW -= 5; INSOValidateInAppPurchase_MTVDUBNWFFXW *= 13;
-        // From 420 to 140
-        INSOValidateInAppPurchase_DZOPJLLHYYIN += 280; INSOValidateInAppPurchase_DZOPJLLHYYIN /= 5;
-        // From 364 to 33
-        INSOValidateInAppPurchase_MQSCCVFCIWLM += 65; INSOValidateInAppPurchase_MQSCCVFCIWLM /= 13;
-        INSOValidateInAppPurchase_CFRelease_01CC010B(INSOValidateInAppPurchase_str1);
+        // Set to 161
+        INSOValidateInAppPurchase_QPFBUNREZRLS = 161;
+        // Set to 389
+        INSOValidateInAppPurchase_RKKPBDIXHOLX = 389;
+        // From 461 to 461
+        INSOValidateInAppPurchase_MSGECJXGGOPY /= 1;
+        INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str1);
     }
 #else
-#define INSOValidateInAppPurchase_CheckReceiptIdentifier07E(INSOValidateInAppPurchase_ctx) { \
+#define INSOValidateInAppPurchase_CheckReceiptIdentifier07F(INSOValidateInAppPurchase_ctx) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt identifier loosely"); \
 INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleId; \
-CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction00CCF((INSOValidateInAppPurchase_Strings[75]), 190, 49); \
-CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MTVDUBNWFFXW_01470021(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MQSCCVFCIWLM_0147016C((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_01CC010B(INSOValidateInAppPurchase_key); \
-if (INSOValidateInAppPurchase_RXISIKIUYOPA_01CC008C(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction006CF((INSOValidateInAppPurchase_Strings[104]), 20, 49); \
+CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_ITQDLQNCBWRR_0165009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_016501CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_key); \
+if (INSOValidateInAppPurchase_PRYOQFVAIZVP_00FD0194(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding())); \
 } \
-INSOValidateInAppPurchase_MTVDUBNWFFXW -= 5; INSOValidateInAppPurchase_MTVDUBNWFFXW *= 13;  \
-INSOValidateInAppPurchase_DZOPJLLHYYIN += 280; INSOValidateInAppPurchase_DZOPJLLHYYIN /= 5;  \
-INSOValidateInAppPurchase_MQSCCVFCIWLM += 65; INSOValidateInAppPurchase_MQSCCVFCIWLM /= 13;  \
-INSOValidateInAppPurchase_CFRelease_01CC010B(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_QPFBUNREZRLS = 161; \
+INSOValidateInAppPurchase_RKKPBDIXHOLX = 389; \
+INSOValidateInAppPurchase_MSGECJXGGOPY /= 1;  \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_str1); \
 }
 #endif
 #endif
@@ -4622,62 +4617,62 @@ INSOValidateInAppPurchase_CFRelease_01CC010B(INSOValidateInAppPurchase_str1); \
         SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15;
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt version");
         INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleVersion;
-        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction009CF((INSOValidateInAppPurchase_Strings[116]), 210, 16);
-        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MQSCCVFCIWLM_00880021(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC016C((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_key);
-        if (INSOValidateInAppPurchase_DZOPJLLHYYIN_0147008C(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction003CF((INSOValidateInAppPurchase_Strings[443]), 222, 16);
+        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_RKKPBDIXHOLX_01650185(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_009F01CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_key);
+        if (INSOValidateInAppPurchase_QPFBUNREZRLS_00FD00A1(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding()));
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[306]), INSOValidateInAppPurchase_str11_, 85, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F4016F(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F70132(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D9011E(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70164(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D9011E(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70164(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D9011E(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70164(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D9011E(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70164(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_01710127(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
-            INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_key);
-            INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_str1);
-            INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_key);
-            INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_str1);
+            INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_key);
+            INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_str1);
+            INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_key);
+            INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_str1);
         }
         // Global variables computation
-        // From 140 to 254
-        INSOValidateInAppPurchase_RXISIKIUYOPA -= 56; INSOValidateInAppPurchase_RXISIKIUYOPA *= 3; INSOValidateInAppPurchase_RXISIKIUYOPA += 2;
-        // From 364 to 428
-        INSOValidateInAppPurchase_MTVDUBNWFFXW -= 222; INSOValidateInAppPurchase_MTVDUBNWFFXW *= 3; INSOValidateInAppPurchase_MTVDUBNWFFXW += 2;
-        // From 312 to 362
-        INSOValidateInAppPurchase_BQNXWSRNWARL -= 192; INSOValidateInAppPurchase_BQNXWSRNWARL *= 3; INSOValidateInAppPurchase_BQNXWSRNWARL += 2;
-        // Set to 388
-        INSOValidateInAppPurchase_MXGLFWLSHKLP = 388;
-        // From 140 to 440
-        INSOValidateInAppPurchase_DZOPJLLHYYIN -= 52; INSOValidateInAppPurchase_DZOPJLLHYYIN *= 5;
-        // Set to 149
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ = 149;
-        // From 44 to 115
-        INSOValidateInAppPurchase_VJKSSDZGUTFD -= 16; INSOValidateInAppPurchase_VJKSSDZGUTFD *= 4; INSOValidateInAppPurchase_VJKSSDZGUTFD += 3;
-        // From 33 to 431
-        INSOValidateInAppPurchase_MQSCCVFCIWLM -= 5; INSOValidateInAppPurchase_MQSCCVFCIWLM *= 15; INSOValidateInAppPurchase_MQSCCVFCIWLM += 11;
-        INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_str1);
+        // From 421 to 158
+        INSOValidateInAppPurchase_DXCGGCQIYEZU += 211; INSOValidateInAppPurchase_DXCGGCQIYEZU /= 4;
+        // From 161 to 354
+        INSOValidateInAppPurchase_QPFBUNREZRLS -= 73; INSOValidateInAppPurchase_QPFBUNREZRLS *= 4; INSOValidateInAppPurchase_QPFBUNREZRLS += 2;
+        // From 79 to 10
+        INSOValidateInAppPurchase_PUTBQYHLKEDP += 11; INSOValidateInAppPurchase_PUTBQYHLKEDP /= 9;
+        // From 158 to 449
+        INSOValidateInAppPurchase_ITQDLQNCBWRR -= 46; INSOValidateInAppPurchase_ITQDLQNCBWRR *= 4; INSOValidateInAppPurchase_ITQDLQNCBWRR += 1;
+        // Set to 176
+        INSOValidateInAppPurchase_LNARHRVDWKYF = 176;
+        // From 389 to 39
+        INSOValidateInAppPurchase_RKKPBDIXHOLX += 40; INSOValidateInAppPurchase_RKKPBDIXHOLX /= 11;
+        // Set to 322
+        INSOValidateInAppPurchase_PRYOQFVAIZVP = 322;
+        // From 461 to 318
+        INSOValidateInAppPurchase_MSGECJXGGOPY += 175; INSOValidateInAppPurchase_MSGECJXGGOPY /= 2;
+        INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_str1);
     }
 #else
 #define INSOValidateInAppPurchase_CheckReceiptVersion081(INSOValidateInAppPurchase_ctx) { \
@@ -4686,52 +4681,52 @@ char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOVa
 SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt version"); \
 INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleVersion; \
-CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction009CF((INSOValidateInAppPurchase_Strings[116]), 210, 16); \
-CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MQSCCVFCIWLM_00880021(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC016C((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_key); \
-if (INSOValidateInAppPurchase_DZOPJLLHYYIN_0147008C(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction003CF((INSOValidateInAppPurchase_Strings[443]), 222, 16); \
+CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_RKKPBDIXHOLX_01650185(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_009F01CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_key); \
+if (INSOValidateInAppPurchase_QPFBUNREZRLS_00FD00A1(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding())); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[306]), INSOValidateInAppPurchase_str11_, 85, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[334]), INSOValidateInAppPurchase_str11_, 177, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F4016F(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F70132(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[230]), INSOValidateInAppPurchase_str12_, 181, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D9011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01C70164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D9011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01C70164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[127]), INSOValidateInAppPurchase_str14_, 73, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[418]), INSOValidateInAppPurchase_str14_, 98, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D9011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01C70164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[325]), INSOValidateInAppPurchase_str15_, 4, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[400]), INSOValidateInAppPurchase_str15_, 19, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D9011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01C70164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_01710127(INSOValidateInAppPurchase_JumpBuf, 1); \
-INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_str1); \
-INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_longjmp_01890166(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_str1); \
 } \
-INSOValidateInAppPurchase_RXISIKIUYOPA -= 56; INSOValidateInAppPurchase_RXISIKIUYOPA *= 3; INSOValidateInAppPurchase_RXISIKIUYOPA += 2;  \
-INSOValidateInAppPurchase_MTVDUBNWFFXW -= 222; INSOValidateInAppPurchase_MTVDUBNWFFXW *= 3; INSOValidateInAppPurchase_MTVDUBNWFFXW += 2;  \
-INSOValidateInAppPurchase_BQNXWSRNWARL -= 192; INSOValidateInAppPurchase_BQNXWSRNWARL *= 3; INSOValidateInAppPurchase_BQNXWSRNWARL += 2;  \
-INSOValidateInAppPurchase_MXGLFWLSHKLP = 388; \
-INSOValidateInAppPurchase_DZOPJLLHYYIN -= 52; INSOValidateInAppPurchase_DZOPJLLHYYIN *= 5;  \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ = 149; \
-INSOValidateInAppPurchase_VJKSSDZGUTFD -= 16; INSOValidateInAppPurchase_VJKSSDZGUTFD *= 4; INSOValidateInAppPurchase_VJKSSDZGUTFD += 3;  \
-INSOValidateInAppPurchase_MQSCCVFCIWLM -= 5; INSOValidateInAppPurchase_MQSCCVFCIWLM *= 15; INSOValidateInAppPurchase_MQSCCVFCIWLM += 11;  \
-INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_DXCGGCQIYEZU += 211; INSOValidateInAppPurchase_DXCGGCQIYEZU /= 4;  \
+INSOValidateInAppPurchase_QPFBUNREZRLS -= 73; INSOValidateInAppPurchase_QPFBUNREZRLS *= 4; INSOValidateInAppPurchase_QPFBUNREZRLS += 2;  \
+INSOValidateInAppPurchase_PUTBQYHLKEDP += 11; INSOValidateInAppPurchase_PUTBQYHLKEDP /= 9;  \
+INSOValidateInAppPurchase_ITQDLQNCBWRR -= 46; INSOValidateInAppPurchase_ITQDLQNCBWRR *= 4; INSOValidateInAppPurchase_ITQDLQNCBWRR += 1;  \
+INSOValidateInAppPurchase_LNARHRVDWKYF = 176; \
+INSOValidateInAppPurchase_RKKPBDIXHOLX += 40; INSOValidateInAppPurchase_RKKPBDIXHOLX /= 11;  \
+INSOValidateInAppPurchase_PRYOQFVAIZVP = 322; \
+INSOValidateInAppPurchase_MSGECJXGGOPY += 175; INSOValidateInAppPurchase_MSGECJXGGOPY /= 2;  \
+INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_str1); \
 }
 #endif
 #endif
@@ -4741,52 +4736,52 @@ INSOValidateInAppPurchase_CFRelease_008801CB(INSOValidateInAppPurchase_str1); \
     inline static void INSOValidateInAppPurchase_CheckReceiptVersion081(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt version loosely");
         INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleVersion;
-        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction009CF((INSOValidateInAppPurchase_Strings[116]), 210, 16);
-        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MQSCCVFCIWLM_00880021(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC016C((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_key);
-        if (INSOValidateInAppPurchase_DZOPJLLHYYIN_0147008C(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction003CF((INSOValidateInAppPurchase_Strings[443]), 222, 16);
+        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_RKKPBDIXHOLX_01650185(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_009F01CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_key);
+        if (INSOValidateInAppPurchase_QPFBUNREZRLS_00FD00A1(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding()));
         }
         // Global variables computation
-        // From 140 to 254
-        INSOValidateInAppPurchase_RXISIKIUYOPA -= 56; INSOValidateInAppPurchase_RXISIKIUYOPA *= 3; INSOValidateInAppPurchase_RXISIKIUYOPA += 2;
-        // From 364 to 428
-        INSOValidateInAppPurchase_MTVDUBNWFFXW -= 222; INSOValidateInAppPurchase_MTVDUBNWFFXW *= 3; INSOValidateInAppPurchase_MTVDUBNWFFXW += 2;
-        // From 312 to 362
-        INSOValidateInAppPurchase_BQNXWSRNWARL -= 192; INSOValidateInAppPurchase_BQNXWSRNWARL *= 3; INSOValidateInAppPurchase_BQNXWSRNWARL += 2;
-        // Set to 388
-        INSOValidateInAppPurchase_MXGLFWLSHKLP = 388;
-        // From 140 to 440
-        INSOValidateInAppPurchase_DZOPJLLHYYIN -= 52; INSOValidateInAppPurchase_DZOPJLLHYYIN *= 5;
-        // Set to 149
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ = 149;
-        // From 44 to 115
-        INSOValidateInAppPurchase_VJKSSDZGUTFD -= 16; INSOValidateInAppPurchase_VJKSSDZGUTFD *= 4; INSOValidateInAppPurchase_VJKSSDZGUTFD += 3;
-        // From 33 to 431
-        INSOValidateInAppPurchase_MQSCCVFCIWLM -= 5; INSOValidateInAppPurchase_MQSCCVFCIWLM *= 15; INSOValidateInAppPurchase_MQSCCVFCIWLM += 11;
-        INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1);
+        // From 421 to 158
+        INSOValidateInAppPurchase_DXCGGCQIYEZU += 211; INSOValidateInAppPurchase_DXCGGCQIYEZU /= 4;
+        // From 161 to 354
+        INSOValidateInAppPurchase_QPFBUNREZRLS -= 73; INSOValidateInAppPurchase_QPFBUNREZRLS *= 4; INSOValidateInAppPurchase_QPFBUNREZRLS += 2;
+        // From 79 to 10
+        INSOValidateInAppPurchase_PUTBQYHLKEDP += 11; INSOValidateInAppPurchase_PUTBQYHLKEDP /= 9;
+        // From 158 to 449
+        INSOValidateInAppPurchase_ITQDLQNCBWRR -= 46; INSOValidateInAppPurchase_ITQDLQNCBWRR *= 4; INSOValidateInAppPurchase_ITQDLQNCBWRR += 1;
+        // Set to 176
+        INSOValidateInAppPurchase_LNARHRVDWKYF = 176;
+        // From 389 to 39
+        INSOValidateInAppPurchase_RKKPBDIXHOLX += 40; INSOValidateInAppPurchase_RKKPBDIXHOLX /= 11;
+        // Set to 322
+        INSOValidateInAppPurchase_PRYOQFVAIZVP = 322;
+        // From 461 to 318
+        INSOValidateInAppPurchase_MSGECJXGGOPY += 175; INSOValidateInAppPurchase_MSGECJXGGOPY /= 2;
+        INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_str1);
     }
 #else
 #define INSOValidateInAppPurchase_CheckReceiptVersion081(INSOValidateInAppPurchase_ctx) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt version loosely"); \
 INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleVersion; \
-CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction009CF((INSOValidateInAppPurchase_Strings[116]), 210, 16); \
-CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MQSCCVFCIWLM_00880021(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC016C((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_key); \
-if (INSOValidateInAppPurchase_DZOPJLLHYYIN_0147008C(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_ObfuscationFunction003CF((INSOValidateInAppPurchase_Strings[443]), 222, 16); \
+CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_RKKPBDIXHOLX_01650185(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+CFStringRef INSOValidateInAppPurchase_str2 = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_009F01CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_key); \
+if (INSOValidateInAppPurchase_QPFBUNREZRLS_00FD00A1(INSOValidateInAppPurchase_str1, INSOValidateInAppPurchase_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateInAppPurchase_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateInAppPurchase_str2, CFStringGetSystemEncoding())); \
 } \
-INSOValidateInAppPurchase_RXISIKIUYOPA -= 56; INSOValidateInAppPurchase_RXISIKIUYOPA *= 3; INSOValidateInAppPurchase_RXISIKIUYOPA += 2;  \
-INSOValidateInAppPurchase_MTVDUBNWFFXW -= 222; INSOValidateInAppPurchase_MTVDUBNWFFXW *= 3; INSOValidateInAppPurchase_MTVDUBNWFFXW += 2;  \
-INSOValidateInAppPurchase_BQNXWSRNWARL -= 192; INSOValidateInAppPurchase_BQNXWSRNWARL *= 3; INSOValidateInAppPurchase_BQNXWSRNWARL += 2;  \
-INSOValidateInAppPurchase_MXGLFWLSHKLP = 388; \
-INSOValidateInAppPurchase_DZOPJLLHYYIN -= 52; INSOValidateInAppPurchase_DZOPJLLHYYIN *= 5;  \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ = 149; \
-INSOValidateInAppPurchase_VJKSSDZGUTFD -= 16; INSOValidateInAppPurchase_VJKSSDZGUTFD *= 4; INSOValidateInAppPurchase_VJKSSDZGUTFD += 3;  \
-INSOValidateInAppPurchase_MQSCCVFCIWLM -= 5; INSOValidateInAppPurchase_MQSCCVFCIWLM *= 15; INSOValidateInAppPurchase_MQSCCVFCIWLM += 11;  \
-INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1); \
+INSOValidateInAppPurchase_DXCGGCQIYEZU += 211; INSOValidateInAppPurchase_DXCGGCQIYEZU /= 4;  \
+INSOValidateInAppPurchase_QPFBUNREZRLS -= 73; INSOValidateInAppPurchase_QPFBUNREZRLS *= 4; INSOValidateInAppPurchase_QPFBUNREZRLS += 2;  \
+INSOValidateInAppPurchase_PUTBQYHLKEDP += 11; INSOValidateInAppPurchase_PUTBQYHLKEDP /= 9;  \
+INSOValidateInAppPurchase_ITQDLQNCBWRR -= 46; INSOValidateInAppPurchase_ITQDLQNCBWRR *= 4; INSOValidateInAppPurchase_ITQDLQNCBWRR += 1;  \
+INSOValidateInAppPurchase_LNARHRVDWKYF = 176; \
+INSOValidateInAppPurchase_RKKPBDIXHOLX += 40; INSOValidateInAppPurchase_RKKPBDIXHOLX /= 11;  \
+INSOValidateInAppPurchase_PRYOQFVAIZVP = 322; \
+INSOValidateInAppPurchase_MSGECJXGGOPY += 175; INSOValidateInAppPurchase_MSGECJXGGOPY /= 2;  \
+INSOValidateInAppPurchase_CFRelease_009F00BC(INSOValidateInAppPurchase_str1); \
 }
 #endif
 #endif
@@ -4794,11 +4789,11 @@ INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1); \
     
     // CodeBlock CheckReceiptHash
 #ifdef DEBUG
-    inline static void INSOValidateInAppPurchase_CheckReceiptHash08D(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
+    inline static void INSOValidateInAppPurchase_CheckReceiptHash092(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         CFDataRef INSOValidateInAppPurchase_data1, INSOValidateInAppPurchase_data2, INSOValidateInAppPurchase_data3;
         CFMutableDataRef INSOValidateInAppPurchase_data4;
         unsigned char INSOValidateInAppPurchase_digest[483];
-        volatile int INSOValidateInAppPurchase_counter = 8; INSOValidateInAppPurchase_counter -= 3; INSOValidateInAppPurchase_counter *= 4;
+        volatile int INSOValidateInAppPurchase_counter = 6; INSOValidateInAppPurchase_counter -= 2; INSOValidateInAppPurchase_counter *= 5;
         INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value;
         CFNumberRef INSOValidateInAppPurchase_key;
         char *INSOValidateInAppPurchase_str1;
@@ -4807,97 +4802,93 @@ INSOValidateInAppPurchase_CFRelease_00880121(INSOValidateInAppPurchase_str1); \
         SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15;
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt hash");
         INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeOpaqueValue;
-        INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-        INSOValidateInAppPurchase_data1 = (CFDataRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC01AC((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        INSOValidateInAppPurchase_data1 = (CFDataRef) INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0027((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_key);
         INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleIdData;
-        INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-        INSOValidateInAppPurchase_data2 = (CFDataRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC01AC((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        INSOValidateInAppPurchase_data2 = (CFDataRef) INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0027((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_key);
         INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeHash;
-        INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-        INSOValidateInAppPurchase_data3 = (CFDataRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC01AC((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_data4 = INSOValidateInAppPurchase_CFDataCreateMutable_008801BE(NULL, 0);
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470095(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), INSOValidateInAppPurchase_CFDataGetLength_008801C4((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data));
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470095(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data1), INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data1));
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470095(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data2), INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data2));
-        CC_SHA1_CTX INSOValidateInAppPurchase_hashctx1;
-        INSOValidateInAppPurchase_BQNXWSRNWARL_0171016A(&INSOValidateInAppPurchase_hashctx1);
-        INSOValidateInAppPurchase_MQSCCVFCIWLM_003D01AF(&INSOValidateInAppPurchase_hashctx1, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), (CC_LONG) INSOValidateInAppPurchase_CFDataGetLength_008801C4((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data));
-        INSOValidateInAppPurchase_MQSCCVFCIWLM_003D01AF(&INSOValidateInAppPurchase_hashctx1, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data1), (CC_LONG) INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data1));
-        INSOValidateInAppPurchase_MQSCCVFCIWLM_003D01AF(&INSOValidateInAppPurchase_hashctx1, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data2), (CC_LONG) INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data2));
-        INSOValidateInAppPurchase_CC_SHA1_Final_00FF01AD(INSOValidateInAppPurchase_digest, &INSOValidateInAppPurchase_hashctx1);
-        INSOValidateInAppPurchase_OpenSSL_add_all_digests_012D01C7();
+        INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        INSOValidateInAppPurchase_data3 = (CFDataRef) INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0027((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_data4 = INSOValidateInAppPurchase_CFDataCreateMutable_009F01D4(NULL, 0);
+        INSOValidateInAppPurchase_MSGECJXGGOPY_009F013E(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data));
+        INSOValidateInAppPurchase_MSGECJXGGOPY_009F013E(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data1), INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data1));
+        INSOValidateInAppPurchase_MSGECJXGGOPY_009F013E(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data2), INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data2));
+        INSOValidateInAppPurchase_SHA1_00A70197(INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data4), (CC_LONG) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data4), INSOValidateInAppPurchase_digest);
+        INSOValidateInAppPurchase_OpenSSL_add_all_digests_00040195();
         EVP_MD_CTX INSOValidateInAppPurchase_hashctx2;
-        INSOValidateInAppPurchase_EVP_MD_CTX_init_012D0099(&INSOValidateInAppPurchase_hashctx2);
+        INSOValidateInAppPurchase_EVP_MD_CTX_init_00AC010B(&INSOValidateInAppPurchase_hashctx2);
         char INSOValidateInAppPurchase_str1_[483];
-        INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[126]), INSOValidateInAppPurchase_str1_, 119, 16);
+        INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[88]), INSOValidateInAppPurchase_str1_, 114, 16);
         INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_str1_;
         const EVP_MD *INSOValidateInAppPurchase_digester = EVP_get_digestbyname(INSOValidateInAppPurchase_str1);
-        INSOValidateInAppPurchase_EVP_DigestInit_012D011C(&INSOValidateInAppPurchase_hashctx2, INSOValidateInAppPurchase_digester);
-        INSOValidateInAppPurchase_EVP_DigestUpdate_004500FD(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), (size_t) INSOValidateInAppPurchase_CFDataGetLength_008801C4((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data));
-        INSOValidateInAppPurchase_EVP_DigestUpdate_004500FD(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data1), (size_t) INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data1));
-        INSOValidateInAppPurchase_EVP_DigestUpdate_004500FD(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data2), (size_t) INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data2));
-        INSOValidateInAppPurchase_EVP_DigestFinal_012D0005(&INSOValidateInAppPurchase_hashctx2, INSOValidateInAppPurchase_digest, NULL);
-        CFDataRef INSOValidateInAppPurchase_data5 = INSOValidateInAppPurchase_VJKSSDZGUTFD_00880073(NULL, (const UInt8 *) INSOValidateInAppPurchase_digest, INSOValidateInAppPurchase_counter);
-        if (!INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC01B8(INSOValidateInAppPurchase_data3, INSOValidateInAppPurchase_data5)) {
-            __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt hash is invalid");
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data5);
-            __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
-            char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[306]), INSOValidateInAppPurchase_str11_, 85, 32);
-            INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40065(INSOValidateInAppPurchase_str11);
-            char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16);
-            INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12);
-            INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
-            char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[454]), INSOValidateInAppPurchase_str13_, 179, 16);
-            INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13);
-            INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
-            char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[280]), INSOValidateInAppPurchase_str14_, 38, 16);
-            INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14);
-            ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
-            char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[241]), INSOValidateInAppPurchase_str15_, 92, 16);
-            INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15);
-            ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_01710127(INSOValidateInAppPurchase_JumpBuf, 1);
-            // Dead code
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data1);
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data2);
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data4);
-            INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data5);
-            goto INSOValidateInAppPurchase_CheckReceiptHash08D_INSOValidateInAppPurchase_bail;
+        INSOValidateInAppPurchase_EVP_DigestInit_00A7018E(&INSOValidateInAppPurchase_hashctx2, INSOValidateInAppPurchase_digester);
+        INSOValidateInAppPurchase_EVP_DigestUpdate_00040084(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), (size_t) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data));
+        INSOValidateInAppPurchase_EVP_DigestUpdate_00040084(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data1), (size_t) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data1));
+        INSOValidateInAppPurchase_EVP_DigestUpdate_00040084(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data2), (size_t) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data2));
+        INSOValidateInAppPurchase_EVP_DigestFinal_00A7018D(&INSOValidateInAppPurchase_hashctx2, INSOValidateInAppPurchase_digest, NULL);
+        const unsigned char *INSOValidateInAppPurchase_ptr1 = INSOValidateInAppPurchase_digest;
+        const unsigned char *INSOValidateInAppPurchase_ptr2 = INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data3);
+        while(--INSOValidateInAppPurchase_counter >= 0) {
+            if ((*INSOValidateInAppPurchase_ptr1++) != (*INSOValidateInAppPurchase_ptr2++)) {
+                __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt hash is invalid");
+                INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data4);
+                __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
+                char INSOValidateInAppPurchase_str11_[483];
+                INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32);
+                INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
+                INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11);
+                char INSOValidateInAppPurchase_str12_[483];
+                INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16);
+                INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
+                INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190028(INSOValidateInAppPurchase_str12);
+                INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
+                char INSOValidateInAppPurchase_str13_[483];
+                INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16);
+                INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
+                INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190028(INSOValidateInAppPurchase_str13);
+                INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
+                char INSOValidateInAppPurchase_str14_[483];
+                INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16);
+                INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
+                INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190028(INSOValidateInAppPurchase_str14);
+                ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
+                char INSOValidateInAppPurchase_str15_[483];
+                INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16);
+                INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
+                INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190028(INSOValidateInAppPurchase_str15);
+                ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
+                INSOValidateInAppPurchase_longjmp_00D4010E(INSOValidateInAppPurchase_JumpBuf, 1);
+                // Dead code
+                INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data1);
+                INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data2);
+                INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data4);
+                goto INSOValidateInAppPurchase_CheckReceiptHash092_INSOValidateInAppPurchase_bail;
+            }
         }
-        INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data5);
         // Global variables computation
-        // From 254 to 337
-        INSOValidateInAppPurchase_RXISIKIUYOPA -= 142; INSOValidateInAppPurchase_RXISIKIUYOPA *= 3; INSOValidateInAppPurchase_RXISIKIUYOPA += 1;
-        // From 362 to 71
-        INSOValidateInAppPurchase_BQNXWSRNWARL += 135; INSOValidateInAppPurchase_BQNXWSRNWARL /= 7;
-        // From 388 to 388
-        INSOValidateInAppPurchase_MXGLFWLSHKLP /= 1;
-        // From 440 to 358
-        INSOValidateInAppPurchase_DZOPJLLHYYIN += 276; INSOValidateInAppPurchase_DZOPJLLHYYIN /= 2;
-        // From 115 to 21
-        INSOValidateInAppPurchase_VJKSSDZGUTFD += 32; INSOValidateInAppPurchase_VJKSSDZGUTFD /= 7;
-    INSOValidateInAppPurchase_CheckReceiptHash08D_INSOValidateInAppPurchase_bail:
-        INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data4);
+        // Set to 158
+        INSOValidateInAppPurchase_DXCGGCQIYEZU = 158;
+        // From 354 to 447
+        INSOValidateInAppPurchase_QPFBUNREZRLS -= 205; INSOValidateInAppPurchase_QPFBUNREZRLS *= 3;
+        // Set to 434
+        INSOValidateInAppPurchase_PUTBQYHLKEDP = 434;
+        // Set to 477
+        INSOValidateInAppPurchase_ITQDLQNCBWRR = 477;
+        // Set to 37
+        INSOValidateInAppPurchase_LNARHRVDWKYF = 37;
+    INSOValidateInAppPurchase_CheckReceiptHash092_INSOValidateInAppPurchase_bail:
+        INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data4);
     }
 #else
-#define INSOValidateInAppPurchase_CheckReceiptHash08D(INSOValidateInAppPurchase_ctx) { \
+#define INSOValidateInAppPurchase_CheckReceiptHash092(INSOValidateInAppPurchase_ctx) { \
 CFDataRef INSOValidateInAppPurchase_data1, INSOValidateInAppPurchase_data2, INSOValidateInAppPurchase_data3; \
 CFMutableDataRef INSOValidateInAppPurchase_data4; \
 unsigned char INSOValidateInAppPurchase_digest[483]; \
-volatile int INSOValidateInAppPurchase_counter = 8; INSOValidateInAppPurchase_counter -= 3; INSOValidateInAppPurchase_counter *= 4;  \
+volatile int INSOValidateInAppPurchase_counter = 6; INSOValidateInAppPurchase_counter -= 2; INSOValidateInAppPurchase_counter *= 5;  \
 INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value; \
 CFNumberRef INSOValidateInAppPurchase_key; \
 char *INSOValidateInAppPurchase_str1; \
@@ -4906,83 +4897,79 @@ char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOVa
 SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt hash"); \
 INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeOpaqueValue; \
-INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_data1 = (CFDataRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC01AC((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_data1 = (CFDataRef) INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0027((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_key); \
 INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeBundleIdData; \
-INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_data2 = (CFDataRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC01AC((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_data2 = (CFDataRef) INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0027((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_key); \
 INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeHash; \
-INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-INSOValidateInAppPurchase_data3 = (CFDataRef) INSOValidateInAppPurchase_MTVDUBNWFFXW_01CC01AC((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_data4 = INSOValidateInAppPurchase_CFDataCreateMutable_008801BE(NULL, 0); \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470095(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), INSOValidateInAppPurchase_CFDataGetLength_008801C4((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data)); \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470095(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data1), INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data1)); \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ_01470095(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data2), INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data2)); \
-CC_SHA1_CTX INSOValidateInAppPurchase_hashctx1; \
-INSOValidateInAppPurchase_BQNXWSRNWARL_0171016A(&INSOValidateInAppPurchase_hashctx1); \
-INSOValidateInAppPurchase_MQSCCVFCIWLM_003D01AF(&INSOValidateInAppPurchase_hashctx1, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), (CC_LONG) INSOValidateInAppPurchase_CFDataGetLength_008801C4((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data)); \
-INSOValidateInAppPurchase_MQSCCVFCIWLM_003D01AF(&INSOValidateInAppPurchase_hashctx1, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data1), (CC_LONG) INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data1)); \
-INSOValidateInAppPurchase_MQSCCVFCIWLM_003D01AF(&INSOValidateInAppPurchase_hashctx1, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data2), (CC_LONG) INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data2)); \
-INSOValidateInAppPurchase_CC_SHA1_Final_00FF01AD(INSOValidateInAppPurchase_digest, &INSOValidateInAppPurchase_hashctx1); \
-INSOValidateInAppPurchase_OpenSSL_add_all_digests_012D01C7(); \
+INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_00FD009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_data3 = (CFDataRef) INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0027((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_data4 = INSOValidateInAppPurchase_CFDataCreateMutable_009F01D4(NULL, 0); \
+INSOValidateInAppPurchase_MSGECJXGGOPY_009F013E(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data)); \
+INSOValidateInAppPurchase_MSGECJXGGOPY_009F013E(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data1), INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data1)); \
+INSOValidateInAppPurchase_MSGECJXGGOPY_009F013E(INSOValidateInAppPurchase_data4, INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data2), INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data2)); \
+INSOValidateInAppPurchase_SHA1_00A70197(INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data4), (CC_LONG) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data4), INSOValidateInAppPurchase_digest); \
+INSOValidateInAppPurchase_OpenSSL_add_all_digests_00040195(); \
 EVP_MD_CTX INSOValidateInAppPurchase_hashctx2; \
-INSOValidateInAppPurchase_EVP_MD_CTX_init_012D0099(&INSOValidateInAppPurchase_hashctx2); \
+INSOValidateInAppPurchase_EVP_MD_CTX_init_00AC010B(&INSOValidateInAppPurchase_hashctx2); \
 char INSOValidateInAppPurchase_str1_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[126]), INSOValidateInAppPurchase_str1_, 119, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[88]), INSOValidateInAppPurchase_str1_, 114, 16); \
 INSOValidateInAppPurchase_str1 = INSOValidateInAppPurchase_str1_; \
 const EVP_MD *INSOValidateInAppPurchase_digester = EVP_get_digestbyname(INSOValidateInAppPurchase_str1); \
-INSOValidateInAppPurchase_EVP_DigestInit_012D011C(&INSOValidateInAppPurchase_hashctx2, INSOValidateInAppPurchase_digester); \
-INSOValidateInAppPurchase_EVP_DigestUpdate_004500FD(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), (size_t) INSOValidateInAppPurchase_CFDataGetLength_008801C4((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data)); \
-INSOValidateInAppPurchase_EVP_DigestUpdate_004500FD(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data1), (size_t) INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data1)); \
-INSOValidateInAppPurchase_EVP_DigestUpdate_004500FD(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_01CC000F(INSOValidateInAppPurchase_data2), (size_t) INSOValidateInAppPurchase_CFDataGetLength_008801C4(INSOValidateInAppPurchase_data2)); \
-INSOValidateInAppPurchase_EVP_DigestFinal_012D0005(&INSOValidateInAppPurchase_hashctx2, INSOValidateInAppPurchase_digest, NULL); \
-CFDataRef INSOValidateInAppPurchase_data5 = INSOValidateInAppPurchase_VJKSSDZGUTFD_00880073(NULL, (const UInt8 *) INSOValidateInAppPurchase_digest, INSOValidateInAppPurchase_counter); \
-if (!INSOValidateInAppPurchase_DZOPJLLHYYIN_01CC01B8(INSOValidateInAppPurchase_data3, INSOValidateInAppPurchase_data5)) { \
+INSOValidateInAppPurchase_EVP_DigestInit_00A7018E(&INSOValidateInAppPurchase_hashctx2, INSOValidateInAppPurchase_digester); \
+INSOValidateInAppPurchase_EVP_DigestUpdate_00040084(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data), (size_t) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A((CFDataRef) INSOValidateInAppPurchase_ctx->guid_data)); \
+INSOValidateInAppPurchase_EVP_DigestUpdate_00040084(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data1), (size_t) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data1)); \
+INSOValidateInAppPurchase_EVP_DigestUpdate_00040084(&INSOValidateInAppPurchase_hashctx2, (const void *) INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data2), (size_t) INSOValidateInAppPurchase_PUTBQYHLKEDP_0165000A(INSOValidateInAppPurchase_data2)); \
+INSOValidateInAppPurchase_EVP_DigestFinal_00A7018D(&INSOValidateInAppPurchase_hashctx2, INSOValidateInAppPurchase_digest, NULL); \
+const unsigned char *INSOValidateInAppPurchase_ptr1 = INSOValidateInAppPurchase_digest; \
+const unsigned char *INSOValidateInAppPurchase_ptr2 = INSOValidateInAppPurchase_CFDataGetBytePtr_00FD0192(INSOValidateInAppPurchase_data3); \
+while(--INSOValidateInAppPurchase_counter >= 0) { \
+if ((*INSOValidateInAppPurchase_ptr1++) != (*INSOValidateInAppPurchase_ptr2++)) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt hash is invalid"); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data5); \
+INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data4); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[306]), INSOValidateInAppPurchase_str11_, 85, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[260]), INSOValidateInAppPurchase_str11_, 126, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F40065(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00190043(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[373]), INSOValidateInAppPurchase_str12_, 151, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00190028(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[454]), INSOValidateInAppPurchase_str13_, 179, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[459]), INSOValidateInAppPurchase_str13_, 127, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00190028(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[280]), INSOValidateInAppPurchase_str14_, 38, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction004((INSOValidateInAppPurchase_Strings[22]), INSOValidateInAppPurchase_str14_, 77, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00190028(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[241]), INSOValidateInAppPurchase_str15_, 92, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction006((INSOValidateInAppPurchase_Strings[285]), INSOValidateInAppPurchase_str15_, 176, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_01D90108(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00190028(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_01710127(INSOValidateInAppPurchase_JumpBuf, 1); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data1); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data2); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data4); \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data5); \
-goto INSOValidateInAppPurchase_CheckReceiptHash08D_INSOValidateInAppPurchase_bail; \
+INSOValidateInAppPurchase_longjmp_00D4010E(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data1); \
+INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data2); \
+INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data4); \
+goto INSOValidateInAppPurchase_CheckReceiptHash092_INSOValidateInAppPurchase_bail; \
 } \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data5); \
-INSOValidateInAppPurchase_RXISIKIUYOPA -= 142; INSOValidateInAppPurchase_RXISIKIUYOPA *= 3; INSOValidateInAppPurchase_RXISIKIUYOPA += 1;  \
-INSOValidateInAppPurchase_BQNXWSRNWARL += 135; INSOValidateInAppPurchase_BQNXWSRNWARL /= 7;  \
-INSOValidateInAppPurchase_MXGLFWLSHKLP /= 1;  \
-INSOValidateInAppPurchase_DZOPJLLHYYIN += 276; INSOValidateInAppPurchase_DZOPJLLHYYIN /= 2;  \
-INSOValidateInAppPurchase_VJKSSDZGUTFD += 32; INSOValidateInAppPurchase_VJKSSDZGUTFD /= 7;  \
-INSOValidateInAppPurchase_CheckReceiptHash08D_INSOValidateInAppPurchase_bail: \
-INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data4); \
+} \
+INSOValidateInAppPurchase_DXCGGCQIYEZU = 158; \
+INSOValidateInAppPurchase_QPFBUNREZRLS -= 205; INSOValidateInAppPurchase_QPFBUNREZRLS *= 3;  \
+INSOValidateInAppPurchase_PUTBQYHLKEDP = 434; \
+INSOValidateInAppPurchase_ITQDLQNCBWRR = 477; \
+INSOValidateInAppPurchase_LNARHRVDWKYF = 37; \
+INSOValidateInAppPurchase_CheckReceiptHash092_INSOValidateInAppPurchase_bail: \
+INSOValidateInAppPurchase_CFRelease_009F0193(INSOValidateInAppPurchase_data4); \
 }
 #endif
     
@@ -4995,56 +4982,56 @@ INSOValidateInAppPurchase_CFRelease_01CC0121(INSOValidateInAppPurchase_data4); \
         SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15;
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt expiration date");
         INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeExpirationDate;
-        CFDateRef INSOValidateInAppPurchase_date1 = INSOValidateInAppPurchase_DZOPJLLHYYIN_01470166(NULL, INSOValidateInAppPurchase_RXISIKIUYOPA_01CC0151());
-        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-        CFDateRef INSOValidateInAppPurchase_date2 = (CFDateRef) INSOValidateInAppPurchase_BQNXWSRNWARL_00880047((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
-        INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_key);
-        if (INSOValidateInAppPurchase_date2 && INSOValidateInAppPurchase_VJKSSDZGUTFD_01CC0015(INSOValidateInAppPurchase_date1, INSOValidateInAppPurchase_date2, 0) == kCFCompareGreaterThan) {
+        CFDateRef INSOValidateInAppPurchase_date1 = INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD01DD(NULL, INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD01B2());
+        CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_0165009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        CFDateRef INSOValidateInAppPurchase_date2 = (CFDateRef) INSOValidateInAppPurchase_LNARHRVDWKYF_01650025((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key);
+        INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_key);
+        if (INSOValidateInAppPurchase_date2 && INSOValidateInAppPurchase_QPFBUNREZRLS_00FD01BF(INSOValidateInAppPurchase_date1, INSOValidateInAppPurchase_date2, 0) == kCFCompareGreaterThan) {
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt has expired");
             __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request...");
             char INSOValidateInAppPurchase_str11_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[306]), INSOValidateInAppPurchase_str11_, 85, 32);
+            INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[278]), INSOValidateInAppPurchase_str11_, 131, 32);
             INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_;
-            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_017F0153(INSOValidateInAppPurchase_str11);
+            INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F701A9(INSOValidateInAppPurchase_str11);
             char INSOValidateInAppPurchase_str12_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[129]), INSOValidateInAppPurchase_str12_, 81, 16);
             INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_;
-            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_017F011E(INSOValidateInAppPurchase_str12);
+            INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F70164(INSOValidateInAppPurchase_str12);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12);
             char INSOValidateInAppPurchase_str13_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16);
             INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_;
-            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_017F011E(INSOValidateInAppPurchase_str13);
+            INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F70164(INSOValidateInAppPurchase_str13);
             INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13);
             char INSOValidateInAppPurchase_str14_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[280]), INSOValidateInAppPurchase_str14_, 38, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[105]), INSOValidateInAppPurchase_str14_, 69, 16);
             INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_;
-            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_017F011E(INSOValidateInAppPurchase_str14);
+            INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F70164(INSOValidateInAppPurchase_str14);
             ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate));
             char INSOValidateInAppPurchase_str15_[483];
-            INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16);
+            INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[169]), INSOValidateInAppPurchase_str15_, 200, 16);
             INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_;
-            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_017F011E(INSOValidateInAppPurchase_str15);
+            INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F70164(INSOValidateInAppPurchase_str15);
             ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15);
-            INSOValidateInAppPurchase_longjmp_00FF00B1(INSOValidateInAppPurchase_JumpBuf, 1);
+            INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1);
             // Dead code
-            INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_key);
-            INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_date1);
-            INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_key);
-            INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_date1);
+            INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_key);
+            INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_date1);
+            INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_key);
+            INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_date1);
         }
         // Global variables computation
-        // From 428 to 388
-        INSOValidateInAppPurchase_MTVDUBNWFFXW += 348; INSOValidateInAppPurchase_MTVDUBNWFFXW /= 2;
-        // From 71 to 63
-        INSOValidateInAppPurchase_BQNXWSRNWARL += 55; INSOValidateInAppPurchase_BQNXWSRNWARL /= 2;
-        // From 388 to 428
-        INSOValidateInAppPurchase_MXGLFWLSHKLP -= 246; INSOValidateInAppPurchase_MXGLFWLSHKLP *= 3; INSOValidateInAppPurchase_MXGLFWLSHKLP += 2;
-        // From 149 to 272
-        INSOValidateInAppPurchase_PUYHTFMFXYPZ -= 59; INSOValidateInAppPurchase_PUYHTFMFXYPZ *= 3; INSOValidateInAppPurchase_PUYHTFMFXYPZ += 2;
-        // From 21 to 293
-        INSOValidateInAppPurchase_VJKSSDZGUTFD -= 2; INSOValidateInAppPurchase_VJKSSDZGUTFD *= 15; INSOValidateInAppPurchase_VJKSSDZGUTFD += 8;
-        INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_date1);
+        // From 447 to 421
+        INSOValidateInAppPurchase_QPFBUNREZRLS += 395; INSOValidateInAppPurchase_QPFBUNREZRLS /= 2;
+        // From 434 to 461
+        INSOValidateInAppPurchase_PUTBQYHLKEDP -= 281; INSOValidateInAppPurchase_PUTBQYHLKEDP *= 3; INSOValidateInAppPurchase_PUTBQYHLKEDP += 2;
+        // From 477 to 401
+        INSOValidateInAppPurchase_ITQDLQNCBWRR += 325; INSOValidateInAppPurchase_ITQDLQNCBWRR /= 2;
+        // From 39 to 68
+        INSOValidateInAppPurchase_RKKPBDIXHOLX -= 17; INSOValidateInAppPurchase_RKKPBDIXHOLX *= 3; INSOValidateInAppPurchase_RKKPBDIXHOLX += 2;
+        // From 318 to 353
+        INSOValidateInAppPurchase_MSGECJXGGOPY -= 201; INSOValidateInAppPurchase_MSGECJXGGOPY *= 3; INSOValidateInAppPurchase_MSGECJXGGOPY += 2;
+        INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_date1);
     }
 #else
 #define INSOValidateInAppPurchase_CheckReceiptExpirationDate0A7(INSOValidateInAppPurchase_ctx) { \
@@ -5053,49 +5040,49 @@ char *INSOValidateInAppPurchase_str11, *INSOValidateInAppPurchase_str12, *INSOVa
 SEL INSOValidateInAppPurchase_sel12, INSOValidateInAppPurchase_sel13, INSOValidateInAppPurchase_sel14, INSOValidateInAppPurchase_sel15; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking receipt expiration date"); \
 INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeExpirationDate; \
-CFDateRef INSOValidateInAppPurchase_date1 = INSOValidateInAppPurchase_DZOPJLLHYYIN_01470166(NULL, INSOValidateInAppPurchase_RXISIKIUYOPA_01CC0151()); \
-CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC0184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-CFDateRef INSOValidateInAppPurchase_date2 = (CFDateRef) INSOValidateInAppPurchase_BQNXWSRNWARL_00880047((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_key); \
-if (INSOValidateInAppPurchase_date2 && INSOValidateInAppPurchase_VJKSSDZGUTFD_01CC0015(INSOValidateInAppPurchase_date1, INSOValidateInAppPurchase_date2, 0) == kCFCompareGreaterThan) { \
+CFDateRef INSOValidateInAppPurchase_date1 = INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD01DD(NULL, INSOValidateInAppPurchase_PUTBQYHLKEDP_00FD01B2()); \
+CFNumberRef INSOValidateInAppPurchase_key = INSOValidateInAppPurchase_DXCGGCQIYEZU_0165009E(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+CFDateRef INSOValidateInAppPurchase_date2 = (CFDateRef) INSOValidateInAppPurchase_LNARHRVDWKYF_01650025((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_key); \
+if (INSOValidateInAppPurchase_date2 && INSOValidateInAppPurchase_QPFBUNREZRLS_00FD01BF(INSOValidateInAppPurchase_date1, INSOValidateInAppPurchase_date2, 0) == kCFCompareGreaterThan) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Receipt has expired"); \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Starting a receipt refresh request..."); \
 char INSOValidateInAppPurchase_str11_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction008((INSOValidateInAppPurchase_Strings[306]), INSOValidateInAppPurchase_str11_, 85, 32); \
+INSOValidateInAppPurchase_ObfuscationFunction009((INSOValidateInAppPurchase_Strings[278]), INSOValidateInAppPurchase_str11_, 131, 32); \
 INSOValidateInAppPurchase_str11 = INSOValidateInAppPurchase_str11_; \
-INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_017F0153(INSOValidateInAppPurchase_str11); \
+INSOValidateInAppPurchase_requestClass = INSOValidateInAppPurchase_objc_getClass_00F701A9(INSOValidateInAppPurchase_str11); \
 char INSOValidateInAppPurchase_str12_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[321]), INSOValidateInAppPurchase_str12_, 121, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction00A((INSOValidateInAppPurchase_Strings[129]), INSOValidateInAppPurchase_str12_, 81, 16); \
 INSOValidateInAppPurchase_str12 = INSOValidateInAppPurchase_str12_; \
-INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_017F011E(INSOValidateInAppPurchase_str12); \
+INSOValidateInAppPurchase_sel12 = INSOValidateInAppPurchase_sel_registerName_00F70164(INSOValidateInAppPurchase_str12); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_requestClass, INSOValidateInAppPurchase_sel12); \
 char INSOValidateInAppPurchase_str13_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[180]), INSOValidateInAppPurchase_str13_, 245, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[299]), INSOValidateInAppPurchase_str13_, 204, 16); \
 INSOValidateInAppPurchase_str13 = INSOValidateInAppPurchase_str13_; \
-INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_017F011E(INSOValidateInAppPurchase_str13); \
+INSOValidateInAppPurchase_sel13 = INSOValidateInAppPurchase_sel_registerName_00F70164(INSOValidateInAppPurchase_str13); \
 INSOValidateInAppPurchase_request = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel13); \
 char INSOValidateInAppPurchase_str14_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction007((INSOValidateInAppPurchase_Strings[280]), INSOValidateInAppPurchase_str14_, 38, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction003((INSOValidateInAppPurchase_Strings[105]), INSOValidateInAppPurchase_str14_, 69, 16); \
 INSOValidateInAppPurchase_str14 = INSOValidateInAppPurchase_str14_; \
-INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_017F011E(INSOValidateInAppPurchase_str14); \
+INSOValidateInAppPurchase_sel14 = INSOValidateInAppPurchase_sel_registerName_00F70164(INSOValidateInAppPurchase_str14); \
 ((void (*)(id, SEL, id)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel14, __SAFE_CAST(id, INSOValidateInAppPurchase_ctx->request_delegate)); \
 char INSOValidateInAppPurchase_str15_[483]; \
-INSOValidateInAppPurchase_ObfuscationFunction00C((INSOValidateInAppPurchase_Strings[207]), INSOValidateInAppPurchase_str15_, 39, 16); \
+INSOValidateInAppPurchase_ObfuscationFunction005((INSOValidateInAppPurchase_Strings[169]), INSOValidateInAppPurchase_str15_, 200, 16); \
 INSOValidateInAppPurchase_str15 = INSOValidateInAppPurchase_str15_; \
-INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_017F011E(INSOValidateInAppPurchase_str15); \
+INSOValidateInAppPurchase_sel15 = INSOValidateInAppPurchase_sel_registerName_00F70164(INSOValidateInAppPurchase_str15); \
 ((void (*)(id, SEL)) objc_msgSend)(INSOValidateInAppPurchase_request, INSOValidateInAppPurchase_sel15); \
-INSOValidateInAppPurchase_longjmp_00FF00B1(INSOValidateInAppPurchase_JumpBuf, 1); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_date1); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_key); \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_date1); \
+INSOValidateInAppPurchase_longjmp_0005009A(INSOValidateInAppPurchase_JumpBuf, 1); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_date1); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_key); \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_date1); \
 } \
-INSOValidateInAppPurchase_MTVDUBNWFFXW += 348; INSOValidateInAppPurchase_MTVDUBNWFFXW /= 2;  \
-INSOValidateInAppPurchase_BQNXWSRNWARL += 55; INSOValidateInAppPurchase_BQNXWSRNWARL /= 2;  \
-INSOValidateInAppPurchase_MXGLFWLSHKLP -= 246; INSOValidateInAppPurchase_MXGLFWLSHKLP *= 3; INSOValidateInAppPurchase_MXGLFWLSHKLP += 2;  \
-INSOValidateInAppPurchase_PUYHTFMFXYPZ -= 59; INSOValidateInAppPurchase_PUYHTFMFXYPZ *= 3; INSOValidateInAppPurchase_PUYHTFMFXYPZ += 2;  \
-INSOValidateInAppPurchase_VJKSSDZGUTFD -= 2; INSOValidateInAppPurchase_VJKSSDZGUTFD *= 15; INSOValidateInAppPurchase_VJKSSDZGUTFD += 8;  \
-INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_date1); \
+INSOValidateInAppPurchase_QPFBUNREZRLS += 395; INSOValidateInAppPurchase_QPFBUNREZRLS /= 2;  \
+INSOValidateInAppPurchase_PUTBQYHLKEDP -= 281; INSOValidateInAppPurchase_PUTBQYHLKEDP *= 3; INSOValidateInAppPurchase_PUTBQYHLKEDP += 2;  \
+INSOValidateInAppPurchase_ITQDLQNCBWRR += 325; INSOValidateInAppPurchase_ITQDLQNCBWRR /= 2;  \
+INSOValidateInAppPurchase_RKKPBDIXHOLX -= 17; INSOValidateInAppPurchase_RKKPBDIXHOLX *= 3; INSOValidateInAppPurchase_RKKPBDIXHOLX += 2;  \
+INSOValidateInAppPurchase_MSGECJXGGOPY -= 201; INSOValidateInAppPurchase_MSGECJXGGOPY *= 3; INSOValidateInAppPurchase_MSGECJXGGOPY += 2;  \
+INSOValidateInAppPurchase_CFRelease_009F0002(INSOValidateInAppPurchase_date1); \
 }
 #endif
     
@@ -5107,24 +5094,24 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_date1); \
         CFNumberRef INSOValidateInAppPurchase_key1, INSOValidateInAppPurchase_key2;
         INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeInAppPurchase;
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking InApp purchases");
-        INSOValidateInAppPurchase_key1 = INSOValidateInAppPurchase_MTVDUBNWFFXW_00880184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+        INSOValidateInAppPurchase_key1 = INSOValidateInAppPurchase_QPFBUNREZRLS_016501A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
         // Extract InApp Purchase
         CFArrayRef INSOValidateInAppPurchase_idents = (CFArrayRef) INSOValidateInAppPurchase_ctx->inapp_identifiers;
-        CFArrayRef INSOValidateInAppPurchase_purchases = (CFArrayRef) INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01AC((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key1);
+        CFArrayRef INSOValidateInAppPurchase_purchases = (CFArrayRef) INSOValidateInAppPurchase_PUTBQYHLKEDP_016501CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key1);
         if (INSOValidateInAppPurchase_purchases) {
             // If purchases were found, iterate over the identifiers to test them
-            for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_BQNXWSRNWARL_0088003F(INSOValidateInAppPurchase_idents); INSOValidateInAppPurchase_index1++) {
-                CFStringRef INSOValidateInAppPurchase_ident = (CFStringRef) INSOValidateInAppPurchase_VJKSSDZGUTFD_01470125(INSOValidateInAppPurchase_idents, INSOValidateInAppPurchase_index1);
+            for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD0191(INSOValidateInAppPurchase_idents); INSOValidateInAppPurchase_index1++) {
+                CFStringRef INSOValidateInAppPurchase_ident = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_00FD0161(INSOValidateInAppPurchase_idents, INSOValidateInAppPurchase_index1);
                 Boolean INSOValidateInAppPurchase_found = false;
                 // Iterate over the purchases
-                for(INSOValidateInAppPurchase_index2 = 0; INSOValidateInAppPurchase_index2 < INSOValidateInAppPurchase_BQNXWSRNWARL_0088003F(INSOValidateInAppPurchase_purchases); INSOValidateInAppPurchase_index2++) {
-                    CFDictionaryRef INSOValidateInAppPurchase_purchase = (CFDictionaryRef) INSOValidateInAppPurchase_VJKSSDZGUTFD_01470125(INSOValidateInAppPurchase_purchases, INSOValidateInAppPurchase_index2);
+                for(INSOValidateInAppPurchase_index2 = 0; INSOValidateInAppPurchase_index2 < INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD0191(INSOValidateInAppPurchase_purchases); INSOValidateInAppPurchase_index2++) {
+                    CFDictionaryRef INSOValidateInAppPurchase_purchase = (CFDictionaryRef) INSOValidateInAppPurchase_MSGECJXGGOPY_00FD0161(INSOValidateInAppPurchase_purchases, INSOValidateInAppPurchase_index2);
                     INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreInAppAttributeTypeProductIdentifer;
-                    INSOValidateInAppPurchase_key2 = INSOValidateInAppPurchase_MTVDUBNWFFXW_00880184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
-                    CFStringRef INSOValidateInAppPurchase_product_identifier = (CFStringRef) INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01AC(INSOValidateInAppPurchase_purchase, INSOValidateInAppPurchase_key2);
-                    INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_key2);
+                    INSOValidateInAppPurchase_key2 = INSOValidateInAppPurchase_QPFBUNREZRLS_016501A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value);
+                    CFStringRef INSOValidateInAppPurchase_product_identifier = (CFStringRef) INSOValidateInAppPurchase_PUTBQYHLKEDP_016501CD(INSOValidateInAppPurchase_purchase, INSOValidateInAppPurchase_key2);
+                    INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key2);
                     // If a purchase match the identifier, invoke the callback with the purchase info
-                    if (INSOValidateInAppPurchase_PUYHTFMFXYPZ_00880110(INSOValidateInAppPurchase_ident, INSOValidateInAppPurchase_product_identifier, 0) == kCFCompareEqualTo) {
+                    if (INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0044(INSOValidateInAppPurchase_ident, INSOValidateInAppPurchase_product_identifier, 0) == kCFCompareEqualTo) {
                         INSOValidateInAppPurchase_found |= true;
                         (__SAFE_CAST(INSOValidateInAppPurchase_InAppValidateBlock, INSOValidateInAppPurchase_ctx->inapp_block))(__SAFE_CAST(NSString *, INSOValidateInAppPurchase_ident), true, __SAFE_CAST(NSDictionary *, INSOValidateInAppPurchase_purchase));
                     }
@@ -5136,12 +5123,12 @@ INSOValidateInAppPurchase_CFRelease_0147010B(INSOValidateInAppPurchase_date1); \
             }
         } else {
             // If no purchases were found, iterate over the INSOValidateInAppPurchase_idents and call the block back
-            for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_BQNXWSRNWARL_0088003F(INSOValidateInAppPurchase_idents); INSOValidateInAppPurchase_index1++) {
-                CFStringRef INSOValidateInAppPurchase_ident = (CFStringRef) INSOValidateInAppPurchase_VJKSSDZGUTFD_01470125(INSOValidateInAppPurchase_idents, INSOValidateInAppPurchase_index1);
+            for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD0191(INSOValidateInAppPurchase_idents); INSOValidateInAppPurchase_index1++) {
+                CFStringRef INSOValidateInAppPurchase_ident = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_00FD0161(INSOValidateInAppPurchase_idents, INSOValidateInAppPurchase_index1);
                 (__SAFE_CAST(INSOValidateInAppPurchase_InAppValidateBlock, INSOValidateInAppPurchase_ctx->inapp_block))(__SAFE_CAST(NSString *, INSOValidateInAppPurchase_ident), false, NULL);
             }
         }
-        INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_key1);
+        INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key1);
     }
 #else
 #define INSOValidateInAppPurchase_InAppChecker0A9(INSOValidateInAppPurchase_ctx) { \
@@ -5149,20 +5136,20 @@ CFIndex INSOValidateInAppPurchase_index1, INSOValidateInAppPurchase_index2; \
 CFNumberRef INSOValidateInAppPurchase_key1, INSOValidateInAppPurchase_key2; \
 INSOValidateInAppPurchase_ReceiptAttributeType INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreReceiptAttributeTypeInAppPurchase; \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Checking InApp purchases"); \
-INSOValidateInAppPurchase_key1 = INSOValidateInAppPurchase_MTVDUBNWFFXW_00880184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+INSOValidateInAppPurchase_key1 = INSOValidateInAppPurchase_QPFBUNREZRLS_016501A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
 CFArrayRef INSOValidateInAppPurchase_idents = (CFArrayRef) INSOValidateInAppPurchase_ctx->inapp_identifiers; \
-CFArrayRef INSOValidateInAppPurchase_purchases = (CFArrayRef) INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01AC((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key1); \
+CFArrayRef INSOValidateInAppPurchase_purchases = (CFArrayRef) INSOValidateInAppPurchase_PUTBQYHLKEDP_016501CD((CFDictionaryRef) INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_key1); \
 if (INSOValidateInAppPurchase_purchases) { \
-for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_BQNXWSRNWARL_0088003F(INSOValidateInAppPurchase_idents); INSOValidateInAppPurchase_index1++) { \
-CFStringRef INSOValidateInAppPurchase_ident = (CFStringRef) INSOValidateInAppPurchase_VJKSSDZGUTFD_01470125(INSOValidateInAppPurchase_idents, INSOValidateInAppPurchase_index1); \
+for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD0191(INSOValidateInAppPurchase_idents); INSOValidateInAppPurchase_index1++) { \
+CFStringRef INSOValidateInAppPurchase_ident = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_00FD0161(INSOValidateInAppPurchase_idents, INSOValidateInAppPurchase_index1); \
 Boolean INSOValidateInAppPurchase_found = false; \
-for(INSOValidateInAppPurchase_index2 = 0; INSOValidateInAppPurchase_index2 < INSOValidateInAppPurchase_BQNXWSRNWARL_0088003F(INSOValidateInAppPurchase_purchases); INSOValidateInAppPurchase_index2++) { \
-CFDictionaryRef INSOValidateInAppPurchase_purchase = (CFDictionaryRef) INSOValidateInAppPurchase_VJKSSDZGUTFD_01470125(INSOValidateInAppPurchase_purchases, INSOValidateInAppPurchase_index2); \
+for(INSOValidateInAppPurchase_index2 = 0; INSOValidateInAppPurchase_index2 < INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD0191(INSOValidateInAppPurchase_purchases); INSOValidateInAppPurchase_index2++) { \
+CFDictionaryRef INSOValidateInAppPurchase_purchase = (CFDictionaryRef) INSOValidateInAppPurchase_MSGECJXGGOPY_00FD0161(INSOValidateInAppPurchase_purchases, INSOValidateInAppPurchase_index2); \
 INSOValidateInAppPurchase_value = INSOValidateInAppPurchase_StoreInAppAttributeTypeProductIdentifer; \
-INSOValidateInAppPurchase_key2 = INSOValidateInAppPurchase_MTVDUBNWFFXW_00880184(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
-CFStringRef INSOValidateInAppPurchase_product_identifier = (CFStringRef) INSOValidateInAppPurchase_MXGLFWLSHKLP_01CC01AC(INSOValidateInAppPurchase_purchase, INSOValidateInAppPurchase_key2); \
-INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_key2); \
-if (INSOValidateInAppPurchase_PUYHTFMFXYPZ_00880110(INSOValidateInAppPurchase_ident, INSOValidateInAppPurchase_product_identifier, 0) == kCFCompareEqualTo) { \
+INSOValidateInAppPurchase_key2 = INSOValidateInAppPurchase_QPFBUNREZRLS_016501A5(NULL, kCFNumberIntType, &INSOValidateInAppPurchase_value); \
+CFStringRef INSOValidateInAppPurchase_product_identifier = (CFStringRef) INSOValidateInAppPurchase_PUTBQYHLKEDP_016501CD(INSOValidateInAppPurchase_purchase, INSOValidateInAppPurchase_key2); \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key2); \
+if (INSOValidateInAppPurchase_RKKPBDIXHOLX_00FD0044(INSOValidateInAppPurchase_ident, INSOValidateInAppPurchase_product_identifier, 0) == kCFCompareEqualTo) { \
 INSOValidateInAppPurchase_found |= true; \
 (__SAFE_CAST(INSOValidateInAppPurchase_InAppValidateBlock, INSOValidateInAppPurchase_ctx->inapp_block))(__SAFE_CAST(NSString *, INSOValidateInAppPurchase_ident), true, __SAFE_CAST(NSDictionary *, INSOValidateInAppPurchase_purchase)); \
 } \
@@ -5172,57 +5159,55 @@ if (!INSOValidateInAppPurchase_found) { \
 } \
 } \
 } else { \
-for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_BQNXWSRNWARL_0088003F(INSOValidateInAppPurchase_idents); INSOValidateInAppPurchase_index1++) { \
-CFStringRef INSOValidateInAppPurchase_ident = (CFStringRef) INSOValidateInAppPurchase_VJKSSDZGUTFD_01470125(INSOValidateInAppPurchase_idents, INSOValidateInAppPurchase_index1); \
+for(INSOValidateInAppPurchase_index1 = 0; INSOValidateInAppPurchase_index1 < INSOValidateInAppPurchase_ITQDLQNCBWRR_00FD0191(INSOValidateInAppPurchase_idents); INSOValidateInAppPurchase_index1++) { \
+CFStringRef INSOValidateInAppPurchase_ident = (CFStringRef) INSOValidateInAppPurchase_MSGECJXGGOPY_00FD0161(INSOValidateInAppPurchase_idents, INSOValidateInAppPurchase_index1); \
 (__SAFE_CAST(INSOValidateInAppPurchase_InAppValidateBlock, INSOValidateInAppPurchase_ctx->inapp_block))(__SAFE_CAST(NSString *, INSOValidateInAppPurchase_ident), false, NULL); \
 } \
 } \
-INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_key1);                     \
+INSOValidateInAppPurchase_CFRelease_00FD0193(INSOValidateInAppPurchase_key1);                     \
 }
 #endif
     
     
     // CodeBlock CleanUp
 #ifdef DEBUG
-    inline static void INSOValidateInAppPurchase_CleanUp0AC(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
+    inline static void INSOValidateInAppPurchase_CleanUp0AB(INSOValidateInAppPurchase_CheckingContext *INSOValidateInAppPurchase_ctx) {
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Cleaning up");
-        CFTypeRef INSOValidateInAppPurchase_references[4] = { INSOValidateInAppPurchase_ctx->receipt_data, INSOValidateInAppPurchase_ctx->guid_data, INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_ctx->ca_data };
-        if (INSOValidateInAppPurchase_references[0]) {
-            INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_references[0]);
-            INSOValidateInAppPurchase_references[0] = NULL;
+        if (INSOValidateInAppPurchase_ctx->receipt_data) {
+            INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->receipt_data);
+            INSOValidateInAppPurchase_ctx->receipt_data = NULL;
         }
-        if (INSOValidateInAppPurchase_references[1]) {
-            INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_references[1]);
-            INSOValidateInAppPurchase_references[1] = NULL;
+        if (INSOValidateInAppPurchase_ctx->guid_data) {
+            INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->guid_data);
+            INSOValidateInAppPurchase_ctx->guid_data = NULL;
         }
-        if (INSOValidateInAppPurchase_references[2]) {
-            INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_references[2]);
-            INSOValidateInAppPurchase_references[2] = NULL;
+        if (INSOValidateInAppPurchase_ctx->receipt_dict) {
+            INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->receipt_dict);
+            INSOValidateInAppPurchase_ctx->receipt_dict = NULL;
         }
-        if (INSOValidateInAppPurchase_references[3]) {
-            INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_references[3]);
-            INSOValidateInAppPurchase_references[3] = NULL;
+        if (INSOValidateInAppPurchase_ctx->ca_data) {
+            INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->ca_data);
+            INSOValidateInAppPurchase_ctx->ca_data = NULL;
         }
     }
 #else
-#define INSOValidateInAppPurchase_CleanUp0AC(INSOValidateInAppPurchase_ctx) { \
+#define INSOValidateInAppPurchase_CleanUp0AB(INSOValidateInAppPurchase_ctx) { \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Cleaning up"); \
-CFTypeRef INSOValidateInAppPurchase_references[4] = { INSOValidateInAppPurchase_ctx->receipt_data, INSOValidateInAppPurchase_ctx->guid_data, INSOValidateInAppPurchase_ctx->receipt_dict, INSOValidateInAppPurchase_ctx->ca_data }; \
-if (INSOValidateInAppPurchase_references[0]) { \
-INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_references[0]); \
-INSOValidateInAppPurchase_references[0] = NULL; \
+if (INSOValidateInAppPurchase_ctx->receipt_data) { \
+INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->receipt_data); \
+INSOValidateInAppPurchase_ctx->receipt_data = NULL; \
 } \
-if (INSOValidateInAppPurchase_references[1]) { \
-INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_references[1]); \
-INSOValidateInAppPurchase_references[1] = NULL; \
+if (INSOValidateInAppPurchase_ctx->guid_data) { \
+INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->guid_data); \
+INSOValidateInAppPurchase_ctx->guid_data = NULL; \
 } \
-if (INSOValidateInAppPurchase_references[2]) { \
-INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_references[2]); \
-INSOValidateInAppPurchase_references[2] = NULL; \
+if (INSOValidateInAppPurchase_ctx->receipt_dict) { \
+INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->receipt_dict); \
+INSOValidateInAppPurchase_ctx->receipt_dict = NULL; \
 } \
-if (INSOValidateInAppPurchase_references[3]) { \
-INSOValidateInAppPurchase_CFRelease_0088010B(INSOValidateInAppPurchase_references[3]); \
-INSOValidateInAppPurchase_references[3] = NULL; \
+if (INSOValidateInAppPurchase_ctx->ca_data) { \
+INSOValidateInAppPurchase_CFRelease_00FD0002(INSOValidateInAppPurchase_ctx->ca_data); \
+INSOValidateInAppPurchase_ctx->ca_data = NULL; \
 } \
 }
 #endif
@@ -5237,27 +5222,56 @@ INSOValidateInAppPurchase_references[3] = NULL; \
         _Pragma("clang diagnostic ignored \"-Wused-but-marked-unused\"")
         __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Entry point");
         // Create contexts
-        INSOValidateInAppPurchase_CheckingContext INSOValidateInAppPurchase_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+        INSOValidateInAppPurchase_CheckingContext INSOValidateInAppPurchase_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
         // The InApp purchase identifiers and the callback block
         INSOValidateInAppPurchase_ctx1.inapp_identifiers = __SAFE_CAST(CFTypeRef, _inapp_identifiers);
         INSOValidateInAppPurchase_ctx1.inapp_block = __SAFE_CAST(CFTypeRef, (INSOValidateInAppPurchase_InAppValidateBlock) _inapp_block);
         // The delegate to use when sending the refresh request
         INSOValidateInAppPurchase_ctx1.request_delegate = __SAFE_CAST(CFTypeRef, _request_delegate);
-        if (!INSOValidateInAppPurchase_setjmp_00FF009B(INSOValidateInAppPurchase_JumpBuf)) {
-            // Call each step
-            INSOValidateInAppPurchase_GetMainBundle016((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_LoadReceipt043((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_GetGUID04E((&INSOValidateInAppPurchase_ctx1));
+        if (!INSOValidateInAppPurchase_setjmp_00D400D3(INSOValidateInAppPurchase_JumpBuf)) {
+            // Jump to first step
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label00;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label05:
+            INSOValidateInAppPurchase_GetReceiptInformation063((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label06;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label01:
+            INSOValidateInAppPurchase_LoadReceipt040((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label02;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label03:
             INSOValidateInAppPurchase_CheckBundleIdentifier05C((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_CheckBundleVersion061((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_GetReceiptInformation064((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_CheckReceiptSignature07D((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_CheckReceiptIdentifier07E((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_CheckReceiptVersion081((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_CheckReceiptHash08D((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label04;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label00:
+            INSOValidateInAppPurchase_GetMainBundle016((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label01;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0C:
+            INSOValidateInAppPurchase_CleanUp0AB((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0D;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0A:
             INSOValidateInAppPurchase_CheckReceiptExpirationDate0A7((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0B;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0B:
             INSOValidateInAppPurchase_InAppChecker0A9((&INSOValidateInAppPurchase_ctx1));
-            INSOValidateInAppPurchase_CleanUp0AC((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0C;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label04:
+            INSOValidateInAppPurchase_CheckBundleVersion060((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label05;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label02:
+            INSOValidateInAppPurchase_GetGUID04E((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label03;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label06:
+            INSOValidateInAppPurchase_CheckReceiptSignature074((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label07;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label07:
+            INSOValidateInAppPurchase_CheckReceiptIdentifier07F((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label08;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label09:
+            INSOValidateInAppPurchase_CheckReceiptHash092((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0A;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label08:
+            INSOValidateInAppPurchase_CheckReceiptVersion081((&INSOValidateInAppPurchase_ctx1));
+            goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label09;
+        INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0D:
+            while(false);
         }
         _Pragma("clang diagnostic pop")
     }
@@ -5266,24 +5280,53 @@ INSOValidateInAppPurchase_references[3] = NULL; \
 _Pragma("clang diagnostic push") \
 _Pragma("clang diagnostic ignored \"-Wused-but-marked-unused\"") \
 __INSOValidateInAppPurchase_RECEIPT_LOG("INSOValidateInAppPurchase - Entry point"); \
-INSOValidateInAppPurchase_CheckingContext INSOValidateInAppPurchase_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }; \
+INSOValidateInAppPurchase_CheckingContext INSOValidateInAppPurchase_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }; \
 INSOValidateInAppPurchase_ctx1.inapp_identifiers = __SAFE_CAST(CFTypeRef, _inapp_identifiers); \
 INSOValidateInAppPurchase_ctx1.inapp_block = __SAFE_CAST(CFTypeRef, (INSOValidateInAppPurchase_InAppValidateBlock) _inapp_block); \
 INSOValidateInAppPurchase_ctx1.request_delegate = __SAFE_CAST(CFTypeRef, _request_delegate); \
-if (!INSOValidateInAppPurchase_setjmp_00FF009B(INSOValidateInAppPurchase_JumpBuf)) { \
-INSOValidateInAppPurchase_GetMainBundle016((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_LoadReceipt043((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_GetGUID04E((&INSOValidateInAppPurchase_ctx1)); \
+if (!INSOValidateInAppPurchase_setjmp_00D400D3(INSOValidateInAppPurchase_JumpBuf)) { \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label00; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label05: \
+INSOValidateInAppPurchase_GetReceiptInformation063((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label06; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label01: \
+INSOValidateInAppPurchase_LoadReceipt040((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label02; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label03: \
 INSOValidateInAppPurchase_CheckBundleIdentifier05C((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_CheckBundleVersion061((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_GetReceiptInformation064((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_CheckReceiptSignature07D((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_CheckReceiptIdentifier07E((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_CheckReceiptVersion081((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_CheckReceiptHash08D((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label04; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label00: \
+INSOValidateInAppPurchase_GetMainBundle016((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label01; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0C: \
+INSOValidateInAppPurchase_CleanUp0AB((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0D; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0A: \
 INSOValidateInAppPurchase_CheckReceiptExpirationDate0A7((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0B; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0B: \
 INSOValidateInAppPurchase_InAppChecker0A9((&INSOValidateInAppPurchase_ctx1)); \
-INSOValidateInAppPurchase_CleanUp0AC((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0C; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label04: \
+INSOValidateInAppPurchase_CheckBundleVersion060((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label05; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label02: \
+INSOValidateInAppPurchase_GetGUID04E((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label03; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label06: \
+INSOValidateInAppPurchase_CheckReceiptSignature074((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label07; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label07: \
+INSOValidateInAppPurchase_CheckReceiptIdentifier07F((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label08; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label09: \
+INSOValidateInAppPurchase_CheckReceiptHash092((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0A; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label08: \
+INSOValidateInAppPurchase_CheckReceiptVersion081((&INSOValidateInAppPurchase_ctx1)); \
+goto INSOValidateInAppPurchase_INSOValidateInAppPurchase_label09; \
+INSOValidateInAppPurchase_INSOValidateInAppPurchase_label0D: \
+while(false); \
 } \
 _Pragma("clang diagnostic pop") \
 }

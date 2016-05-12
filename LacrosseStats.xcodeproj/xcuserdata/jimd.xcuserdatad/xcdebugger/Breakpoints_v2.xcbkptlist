@@ -51,22 +51,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MensLacrosseStats/View Controllers/Game/INSOGameTableViewController.m"
-            timestampString = "474516934.016391"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-addGame:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MensLacrosseStats/View Controllers/Record Stats/INSOGameEventSelectorTableViewController.m"
             timestampString = "476487702.509101"
             startingColumnNumber = "9223372036854775807"
@@ -131,29 +115,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MensLacrosseStats/View Controllers/Record Stats/INSOShotResultViewController.m"
-            timestampString = "479488575.025339"
+            filePath = "MensLacrosseStats/View Controllers/Game/INSOGameTableViewController.m"
+            timestampString = "484708335.428845"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
-            landmarkName = "-gameEventsContainsEvent:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MensLacrosseStats/View Controllers/Record Stats/INSOShotResultViewController.m"
-            timestampString = "479488515.896612"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-done:"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "-configureGameCell:atIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

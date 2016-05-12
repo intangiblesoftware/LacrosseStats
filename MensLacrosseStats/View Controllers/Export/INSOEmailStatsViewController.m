@@ -78,15 +78,19 @@
     INSOEmailStatsFileGenerator* fileGenerator = [[INSOEmailStatsFileGenerator alloc] initWithGame:self.game];
     if (self.isExportingForMaxPreps) {
         // Boys or girls?
-        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensLacrosseStatsOneYearProductIdentifier]) {
-            <#statements#>
+        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
+            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
+            }];
+        } else {
+            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+            }];
         }
-        [fileGenerator createMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
-            self.prepareStatsButton.enabled = YES;
-            [self.activityIndicator stopAnimating];
-            
-            [self prepareEmailMessageForMaxPrepsData:gameStatsData];
-        }];
     } else {
         // Not exporting for max preps so configure differently
         if (self.exportToggleSwitch.isOn) {
