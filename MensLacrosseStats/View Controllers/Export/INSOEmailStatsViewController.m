@@ -12,6 +12,8 @@
 
 #import "INSOEmailStatsViewController.h"
 #import "INSOEmailStatsFileGenerator.h"
+#import "INSOProductManager.h"
+#import "INSOMensLacrosseStatsConstants.h"
 
 #import "Game.h"
 
@@ -75,6 +77,10 @@
     // Now actually prepare the stats file
     INSOEmailStatsFileGenerator* fileGenerator = [[INSOEmailStatsFileGenerator alloc] initWithGame:self.game];
     if (self.isExportingForMaxPreps) {
+        // Boys or girls?
+        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensLacrosseStatsOneYearProductIdentifier]) {
+            <#statements#>
+        }
         [fileGenerator createMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
             self.prepareStatsButton.enabled = YES;
             [self.activityIndicator stopAnimating];

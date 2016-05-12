@@ -26,6 +26,7 @@
 
 @property (nonatomic, readonly) NSDecimalNumber *productPrice;
 @property (nonatomic, readonly) NSString        *productTitle;
+@property (nonatomic, readonly) NSString        *appProductName; 
 
 // Public Methods
 - (void)refreshProduct;

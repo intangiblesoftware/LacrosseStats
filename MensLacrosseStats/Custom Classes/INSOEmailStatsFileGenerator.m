@@ -20,13 +20,15 @@
 
 @property (nonatomic) BOOL shouldExportPenalties;
 
-@property (nonatomic) NSArray* headerArray;
-@property (nonatomic) NSArray* statsArray;
+@property (nonatomic) NSArray *boysHeaderArray;
+@property (nonatomic) NSArray *girlsHeaderArray;
+@property (nonatomic) NSArray *statsArray;
 
-@property (nonatomic) NSArray* allEvents;
-@property (nonatomic) NSArray* recordedEvents;
-@property (nonatomic) NSArray* maxPrepsEvents;
-@property (nonatomic) NSArray* playersArray;
+@property (nonatomic) NSArray *allEvents;
+@property (nonatomic) NSArray *recordedEvents;
+@property (nonatomic) NSArray *maxPrepsBoysEvents;
+@property (nonatomic) NSArray *maxPrepsGirlsEvents;
+@property (nonatomic) NSArray *playersArray;
 
 @end
 
@@ -121,7 +123,7 @@
     completion(statData);
 }
 
-- (void)createMaxPrepsGameStatsFile:(completion)completion
+- (void)createBoysMaxPrepsGameStatsFile:(completion)completion
 {
     NSMutableArray* gameStatsArray = [NSMutableArray new];
     
@@ -129,13 +131,13 @@
     [gameStatsArray addObject:INSOMaxPrepsMensLacrosseCompanyID];
     
     // Then comes the header (maxPreps style!)
-    NSArray* headerRow = [self maxPrepsHeaderRow];
+    NSArray* headerRow = [self boysHeaderArray];
     [gameStatsArray addObject:[headerRow componentsJoinedByString:@"|"]];
     
     // Now data rows for each person in the game (but not the team player!)
     for (RosterPlayer* rosterPlayer in self.playersArray) {
         if (!rosterPlayer.isTeamValue) {
-            NSArray* dataRow = [self maxPrepsDataRowForPlayer:rosterPlayer];
+            NSArray* dataRow = [self maxPrepsBoysDataRowForPlayer:rosterPlayer];
             [gameStatsArray addObject:[dataRow componentsJoinedByString:@"|"]];
         }
     }
@@ -148,53 +150,124 @@
     completion(maxPrepsData);
 }
 
-#pragma mark - Private Properties
-- (NSArray*)maxPrepsEvents
+- (void)createGirlsMaxPrepsGameStatsFile:(completion)completion
 {
-    if (!_maxPrepsEvents) {
-        NSMutableSet* maxPrepsEventSet = [NSMutableSet new];
+    NSMutableArray* gameStatsArray = [NSMutableArray new];
+    
+    // First line is company ID
+    [gameStatsArray addObject:INSOMaxPrepsWomensLacrosseCompanyID];
+    
+    // Then comes the header (maxPreps style!)
+    NSArray* headerRow = [self girlsHeaderArray];
+    [gameStatsArray addObject:[headerRow componentsJoinedByString:@"|"]];
+    
+    // Now data rows for each person in the game (but not the team player!)
+    for (RosterPlayer* rosterPlayer in self.playersArray) {
+        if (!rosterPlayer.isTeamValue) {
+            NSArray* dataRow = [self maxPrepsGirlsDataRowForPlayer:rosterPlayer];
+            [gameStatsArray addObject:[dataRow componentsJoinedByString:@"|"]];
+        }
+    }
+    
+    // Now convert entire array to string
+    NSString* maxPrepsStatsString = [gameStatsArray componentsJoinedByString:@"\n"];
+    
+    // Now call the completion block
+    NSData* maxPrepsData = [maxPrepsStatsString dataUsingEncoding:NSUTF8StringEncoding];
+    completion(maxPrepsData);
+}
+
+#pragma mark - Private Properties
+- (NSArray *)maxPrepsBoysEvents
+{
+    if (!_maxPrepsBoysEvents) {
+        NSMutableSet* maxPrepsBoysEventSet = [NSMutableSet new];
         
         Event* event;
         
         // goals
         event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.game.managedObjectContext];
-        [maxPrepsEventSet addObject:event];
+        [maxPrepsBoysEventSet addObject:event];
         
         // assists
         event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.game.managedObjectContext];
-        [maxPrepsEventSet addObject:event];
+        [maxPrepsBoysEventSet addObject:event];
         
         // shots on goal
         event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
-        [maxPrepsEventSet addObject:event];
+        [maxPrepsBoysEventSet addObject:event];
         
         // groundballs
         event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.game.managedObjectContext];
-        [maxPrepsEventSet addObject:event];
+        [maxPrepsBoysEventSet addObject:event];
 
         // interceptions
         event = [Event eventForCode:INSOEventCodeInterception inManagedObjectContext:self.game.managedObjectContext];
-        [maxPrepsEventSet addObject:event];
+        [maxPrepsBoysEventSet addObject:event];
         
         // faceoffs won
         event = [Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext];
-        [maxPrepsEventSet addObject:event];
+        [maxPrepsBoysEventSet addObject:event];
         
         // goals against
         event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.game.managedObjectContext];
-        [maxPrepsEventSet addObject:event];
+        [maxPrepsBoysEventSet addObject:event];
         
         // saves
         event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.game.managedObjectContext];
-        [maxPrepsEventSet addObject:event];
+        [maxPrepsBoysEventSet addObject:event];
         
         // Now get the intersection
-        [maxPrepsEventSet intersectSet:self.game.eventsToRecord];
+        [maxPrepsBoysEventSet intersectSet:self.game.eventsToRecord];
         
-        _maxPrepsEvents = [maxPrepsEventSet allObjects];
+        _maxPrepsBoysEvents = [maxPrepsBoysEventSet allObjects];
     }
     
-    return _maxPrepsEvents;
+    return _maxPrepsBoysEvents;
+}
+
+- (NSArray *)maxPrepsGirlsEvents
+{
+    if (!_maxPrepsGirlsEvents) {
+        NSMutableSet* maxPrepsGirlsEventSet = [NSMutableSet new];
+        
+        Event* event;
+        
+        // goals
+        event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
+        // assists
+        event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
+        // shots on goal
+        event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
+        // groundballs
+        event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
+        // faceoffs won
+        event = [Event eventForCode:INSOEventCodeDrawPossession inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
+        // goals against
+        event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
+        // saves
+        event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
+        // Now get the intersection
+        [maxPrepsGirlsEventSet intersectSet:self.game.eventsToRecord];
+        
+        _maxPrepsGirlsEvents = [maxPrepsGirlsEventSet allObjects];
+    }
+    
+    return _maxPrepsGirlsEvents;
 }
 
 #pragma mark - Private methods
@@ -312,7 +385,7 @@
     return dataRow;
 }
 
-- (NSArray*)maxPrepsHeaderRow
+- (NSArray* )maxPrepsBoysHeaderRow
 {
     NSMutableArray* header = [NSMutableArray new];
     
@@ -320,12 +393,12 @@
     [header addObject:@"Jersey"];
     
     // Now the event titles for the events we've collected
-    for (Event* event in self.maxPrepsEvents) {
+    for (Event* event in self.maxPrepsBoysEvents) {
         [header addObject:event.maxPrepsTitle];
     }
     
     // Now faceoffs.
-    if ([self.maxPrepsEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
+    if ([self.maxPrepsBoysEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
         // Only report faceoff attempts if we've actually collected faceoffs.
         [header addObject:@"FaceoffAttempts"];
     }
@@ -340,7 +413,33 @@
     return header;
 }
 
-- (NSArray*)maxPrepsDataRowForPlayer:(RosterPlayer*)rosterPlayer
+- (NSArray* )maxPrepsGirlsHeaderRow
+{
+    NSMutableArray* header = [NSMutableArray new];
+    
+    // First the player number
+    [header addObject:@"Jersey"];
+    
+    // Now the event titles for the events we've collected
+    for (Event* event in self.maxPrepsGirlsEvents) {
+        [header addObject:event.maxPrepsTitle];
+    }
+    
+    // Now faceoffs.
+    if ([self.maxPrepsGirlsEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
+        // Only report faceoff attempts if we've actually collected faceoffs.
+        [header addObject:@"FaceoffAttempts"];
+    }
+    
+    // Now the penalty titles
+    if (self.shouldExportPenalties) {
+        [header addObject:@"Penalties"];
+    }
+    
+    return header;
+}
+
+- (NSArray*)maxPrepsBoysDataRowForPlayer:(RosterPlayer*)rosterPlayer
 {
     NSMutableArray* dataRow = [NSMutableArray new];
     
@@ -351,13 +450,13 @@
     INSOGameEventCounter* eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
     
     // Now a count of every event for that number
-    for (Event* event in self.maxPrepsEvents) {
+    for (Event* event in self.maxPrepsBoysEvents) {
         NSNumber* eventCount = [eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         [dataRow addObject:eventCount];
     }
     
     // now add faceoff attempts if we recorded faceoffs won.
-    if ([self.maxPrepsEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
+    if ([self.maxPrepsBoysEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
         // Only report faceoff attempts if we've actually collected faceoffs.
         NSInteger faceoffsWon = [[eventCounter eventCount:INSOEventCodeFaceoffWon forRosterPlayer:rosterPlayer] integerValue];
         NSInteger faceoffsLost = [[eventCounter eventCount:INSOEventCodeFaceoffLost forRosterPlayer:rosterPlayer] integerValue];
@@ -375,6 +474,39 @@
         
         [dataRow addObject:[NSNumber numberWithInteger:penaltyMinutes]];
         [dataRow addObject:[NSNumber numberWithInteger:penaltySeconds]];
+    }
+    
+    return dataRow;
+}
+
+- (NSArray*)maxPrepsGirlsDataRowForPlayer:(RosterPlayer*)rosterPlayer
+{
+    NSMutableArray* dataRow = [NSMutableArray new];
+    
+    // First goes the player
+    [dataRow addObject:rosterPlayer.number];
+    
+    // Now we need an event counter
+    INSOGameEventCounter* eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
+    
+    // Now a count of every event for that number
+    for (Event* event in self.maxPrepsGirlsEvents) {
+        NSNumber* eventCount = [eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        [dataRow addObject:eventCount];
+    }
+    
+    // now add faceoff attempts if we recorded faceoffs won.
+    if ([self.maxPrepsGirlsEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
+        // Only report faceoff attempts if we've actually collected faceoffs.
+        NSInteger faceoffsWon = [[eventCounter eventCount:INSOEventCodeFaceoffWon forRosterPlayer:rosterPlayer] integerValue];
+        NSInteger faceoffsLost = [[eventCounter eventCount:INSOEventCodeFaceoffLost forRosterPlayer:rosterPlayer] integerValue];
+        NSNumber* faceoffAttempts = [NSNumber numberWithInteger:(faceoffsWon + faceoffsLost)];
+        [dataRow addObject:faceoffAttempts];
+    }
+    
+    // And now the penalties
+    if (self.shouldExportPenalties) {
+        [dataRow addObject:[eventCounter totalPenaltiesForRosterPlayer:rosterPlayer]];
     }
     
     return dataRow;

@@ -22,6 +22,7 @@ typedef void(^completion)(NSData* gameStatsData);
 - (void)createGameStatsDataFileForAllStats:(completion)completion;
 - (void)createGameStatsDataFileForRecordedStats:(completion)completion;
 
-- (void)createMaxPrepsGameStatsFile:(completion)completion;
+- (void)createBoysMaxPrepsGameStatsFile:(completion)completion;
+- (void)createGirlsMaxPrepsGameStatsFile:(completion)completion; 
 
 @end

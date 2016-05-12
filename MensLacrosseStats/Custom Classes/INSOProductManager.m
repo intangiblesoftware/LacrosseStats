@@ -87,6 +87,15 @@
     }
 }
 
+- (NSString *)appProductName
+{
+    if ([self.oneYearProduct.productIdentifier isEqualToString:INSOMensLacrosseStatsOneYearProductIdentifier]) {
+        return @"Men’s Lacrosse Stats";
+    } else {
+        return @"Women’s Lacrosse Stats";
+    }
+}
+
 #pragma mark - Public Methods
 - (void)purchaseProduct
 {

@@ -357,6 +357,14 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
     }
 
     // Fouls
+    event = [Event eventForCode:INSOEventCodeMajorFoul inManagedObjectContext:self.managedObjectContext];
+    if ([self.game.eventsToRecord containsObject:event]) {
+        statTitle = event.title;
+        eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        statValueString = [NSString stringWithFormat:@"%@", eventCount];
+        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+    }
+    
     event = [Event eventForCode:INSOEventCodeMinorFoul inManagedObjectContext:self.managedObjectContext];
     if ([self.game.eventsToRecord containsObject:event]) {
         statTitle = event.title;
@@ -392,16 +400,18 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
     }
     
-    // 8m free position
-    event = [Event eventForCode:INSOEventCode8mFreePosition inManagedObjectContext:self.managedObjectContext];
-    if ([self.game.eventsToRecord containsObject:event]) {
-        statTitle = event.title;
-        eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
-        statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+    // 8m free position is a team-only stat
+    if (rosterPlayer.isTeamValue) {
+        event = [Event eventForCode:INSOEventCode8mFreePosition inManagedObjectContext:self.managedObjectContext];
+        if ([self.game.eventsToRecord containsObject:event]) {
+            statTitle = event.title;
+            eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+            statValueString = [NSString stringWithFormat:@"%@", eventCount];
+            [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        }
     }
     
-    // 8m free position shots
+    // 8m free position shots, but only for team player
     event = [Event eventForCode:INSOEventCode8mFreePositionShot inManagedObjectContext:self.managedObjectContext];
     if ([self.game.eventsToRecord containsObject:event]) {
         statTitle = event.title;
@@ -409,11 +419,6 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
         [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
     }
-    
-    // Now sort those stats by title
-//    [statsArray sortUsingComparator:^NSComparisonResult(NSDictionary*  _Nonnull stat1, NSDictionary*  _Nonnull stat2) {
-//        return [stat1[INSOStatTitleKey] compare:stat2[INSOStatTitleKey]];
-//    }];
     
     [statsDictionary setObject:statsArray forKey:INSOStatsKey];
     
