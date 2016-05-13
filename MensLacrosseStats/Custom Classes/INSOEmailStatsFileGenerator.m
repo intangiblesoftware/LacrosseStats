@@ -10,6 +10,7 @@
 #import "INSOGameEventCounter.h"
 #import "INSOMensLacrosseStatsConstants.h"
 #import "INSOMensLacrosseStatsEnum.h"
+#import "INSOProductManager.h"
 
 #import "Game.h"
 #import "Event.h"
@@ -249,8 +250,16 @@
         event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.game.managedObjectContext];
         [maxPrepsGirlsEventSet addObject:event];
         
+        // Interceptions
+        event = [Event eventForCode:INSOEventCodeInterception inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
         // faceoffs won
         event = [Event eventForCode:INSOEventCodeDrawPossession inManagedObjectContext:self.game.managedObjectContext];
+        [maxPrepsGirlsEventSet addObject:event];
+        
+        // Faceoff attempts
+        event = [Event eventForCode:INSOEventCodeDrawTaken inManagedObjectContext:self.game.managedObjectContext];
         [maxPrepsGirlsEventSet addObject:event];
         
         // goals against
@@ -335,15 +344,19 @@
     
     // And now the penalties
     if (self.shouldExportPenalties) {
-        [dataRow addObject:[eventCounter totalPenaltiesForRosterPlayer:rosterPlayer]];
-        
-        double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
-        
-        NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
-        penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
-        penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
-        
-        [dataRow addObject:[penaltyTimeFormatter stringFromTimeInterval:totalPenaltyTime]];
+        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
+            [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
+            
+            double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
+            
+            NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
+            penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
+            penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+            
+            [dataRow addObject:[penaltyTimeFormatter stringFromTimeInterval:totalPenaltyTime]];
+        } else {
+            [dataRow addObject:[eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
+        }
     }
     
     return dataRow;
@@ -371,15 +384,19 @@
     
     // And now the penalties
     if (self.shouldExportPenalties) {
-        [dataRow addObject:[eventCounter totalPenaltiesForRosterPlayer:rosterPlayer]];
-        
-        double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
-        
-        NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
-        penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
-        penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
-        
-        [dataRow addObject:[penaltyTimeFormatter stringFromTimeInterval:totalPenaltyTime]];
+        // Only do penalty time for boys
+        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
+            [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
+            double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
+            
+            NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
+            penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
+            penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+            
+            [dataRow addObject:[penaltyTimeFormatter stringFromTimeInterval:totalPenaltyTime]];
+        } else {
+            [dataRow addObject:[eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
+        }
     }
         
     return dataRow;
@@ -425,12 +442,6 @@
         [header addObject:event.maxPrepsTitle];
     }
     
-    // Now faceoffs.
-    if ([self.maxPrepsGirlsEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
-        // Only report faceoff attempts if we've actually collected faceoffs.
-        [header addObject:@"FaceoffAttempts"];
-    }
-    
     // Now the penalty titles
     if (self.shouldExportPenalties) {
         [header addObject:@"Penalties"];
@@ -466,14 +477,18 @@
     
     // And now the penalties
     if (self.shouldExportPenalties) {
-        [dataRow addObject:[eventCounter totalPenaltiesForRosterPlayer:rosterPlayer]];
-        
-        NSInteger totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] integerValue];
-        NSInteger penaltyMinutes = totalPenaltyTime / 60;
-        NSInteger penaltySeconds = totalPenaltyTime % 60;
-        
-        [dataRow addObject:[NSNumber numberWithInteger:penaltyMinutes]];
-        [dataRow addObject:[NSNumber numberWithInteger:penaltySeconds]];
+        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
+            [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
+            
+            NSInteger totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] integerValue];
+            NSInteger penaltyMinutes = totalPenaltyTime / 60;
+            NSInteger penaltySeconds = totalPenaltyTime % 60;
+            
+            [dataRow addObject:[NSNumber numberWithInteger:penaltyMinutes]];
+            [dataRow addObject:[NSNumber numberWithInteger:penaltySeconds]];
+        } else {
+            [dataRow addObject:[eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
+        }
     }
     
     return dataRow;
@@ -495,18 +510,9 @@
         [dataRow addObject:eventCount];
     }
     
-    // now add faceoff attempts if we recorded faceoffs won.
-    if ([self.maxPrepsGirlsEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
-        // Only report faceoff attempts if we've actually collected faceoffs.
-        NSInteger faceoffsWon = [[eventCounter eventCount:INSOEventCodeFaceoffWon forRosterPlayer:rosterPlayer] integerValue];
-        NSInteger faceoffsLost = [[eventCounter eventCount:INSOEventCodeFaceoffLost forRosterPlayer:rosterPlayer] integerValue];
-        NSNumber* faceoffAttempts = [NSNumber numberWithInteger:(faceoffsWon + faceoffsLost)];
-        [dataRow addObject:faceoffAttempts];
-    }
-    
     // And now the penalties
     if (self.shouldExportPenalties) {
-        [dataRow addObject:[eventCounter totalPenaltiesForRosterPlayer:rosterPlayer]];
+        [dataRow addObject:[eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
     }
     
     return dataRow;
