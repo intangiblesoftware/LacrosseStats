@@ -255,7 +255,7 @@
         [maxPrepsGirlsEventSet addObject:event];
         
         // faceoffs won
-        event = [Event eventForCode:INSOEventCodeDrawControl inManagedObjectContext:self.game.managedObjectContext];
+        event = [Event eventForCode:INSOEventCodeDrawPossession inManagedObjectContext:self.game.managedObjectContext];
         [maxPrepsGirlsEventSet addObject:event];
         
         // Faceoff attempts
