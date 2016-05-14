@@ -107,6 +107,14 @@
 			</dict>
 			<dict>
 				<key>EventCode</key>
+				<integer>118</integer>
+				<key>EventTitle</key>
+				<string>Interception</string>
+				<key>StatCategory</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>EventCode</key>
 				<integer>119</integer>
 				<key>EventTitle</key>
 				<string>Man-down</string>
