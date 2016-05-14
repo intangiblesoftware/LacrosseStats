@@ -130,7 +130,7 @@
     
     // Give the game a team player
     RosterPlayer* teamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
-    teamPlayer.numberValue = INSOTeamPlayerNumber;
+    teamPlayer.numberValue = INSOTeamWatchingPlayerNumber;
     teamPlayer.isTeamValue = YES;
     [newGame addPlayersObject:teamPlayer];
     

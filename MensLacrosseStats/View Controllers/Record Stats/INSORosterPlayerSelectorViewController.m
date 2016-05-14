@@ -140,7 +140,20 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (void)configureRosterPlayerCell:(INSOPlayerCollectionViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     RosterPlayer* rosterPlayer = self.rosterArray[indexPath.row];
-    cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
+    if (rosterPlayer.isTeamValue) {
+        // Which team player?
+        if (rosterPlayer.numberValue == INSOTeamWatchingPlayerNumber) {
+            cell.playerNumberLabel.text = self.game.teamWatching;
+        } else {
+            if ([self.game.teamWatching isEqualToString:self.game.homeTeam]) {
+                cell.playerNumberLabel.text = self.game.visitingTeam;
+            } else {
+                cell.playerNumberLabel.text = self.game.homeTeam; 
+            }
+        }
+    } else {
+        cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
+    }
 }
 
 - (void)layoutPlayerCollection
@@ -226,17 +239,10 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // Configure the cell
-    RosterPlayer* player = self.rosterArray[indexPath.row];
-    if (player.isTeamValue) {
-        UICollectionViewCell* teamPlayerCell = [collectionView dequeueReusableCellWithReuseIdentifier:INSOTeamPlayerCellReuseIdentifier forIndexPath:indexPath];
-        return teamPlayerCell;
-    } else {
-        INSOPlayerCollectionViewCell *cell;
-        cell = (INSOPlayerCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:INSORosterPlayerCellReuseIdentifier forIndexPath:indexPath];
-        [self configureRosterPlayerCell:cell atIndexPath:indexPath];
-        return cell;
-    }
-    
+    INSOPlayerCollectionViewCell *cell = (INSOPlayerCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:INSORosterPlayerCellReuseIdentifier forIndexPath:indexPath];
+
+    [self configureRosterPlayerCell:cell atIndexPath:indexPath];
+    return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

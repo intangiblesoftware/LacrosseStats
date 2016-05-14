@@ -172,11 +172,16 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
     NSSet* eventSet = [NSSet setWithArray:defaultEvents];
     [newGame addEventsToRecord:eventSet];
     
-    // Give the game a team player
+    // Give the game 2 team players
     RosterPlayer* teamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
-    teamPlayer.numberValue = INSOTeamPlayerNumber;
+    teamPlayer.numberValue = INSOTeamWatchingPlayerNumber;
     teamPlayer.isTeamValue = YES;
     [newGame addPlayersObject:teamPlayer];
+    
+    RosterPlayer *otherTeamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+    otherTeamPlayer.numberValue = INSOOtherTeamPlayerNumber;
+    otherTeamPlayer.isTeamValue = YES;
+    [newGame addPlayersObject:otherTeamPlayer];
     
     NSError* error = nil;
     if (![self.managedObjectContext save:&error]) {
