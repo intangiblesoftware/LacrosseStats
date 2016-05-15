@@ -20,6 +20,7 @@
 @interface INSOEmailStatsFileGenerator ()
 
 @property (nonatomic) BOOL shouldExportPenalties;
+@property (nonatomic) BOOL isExportingForBoys;
 
 @property (nonatomic) NSArray *boysHeaderArray;
 @property (nonatomic) NSArray *girlsHeaderArray;
@@ -47,11 +48,25 @@
     
     if (self) {
         _game = game;
+        
+        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
+            _isExportingForBoys = YES;
+        } else {
+            _isExportingForBoys = NO;
+        }
+        
         // Need to be able to sort by eventTitle a couple of times
         NSSortDescriptor* sortByTitle = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
 
         // First create the array of event codes for events recorded in the game
-        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"categoryCode == %@", @(INSOCategoryCodeGameAction)];
+        // This will vary from boys to girls
+        NSPredicate* predicate;
+        if (_isExportingForBoys) {
+            predicate = [NSPredicate predicateWithFormat:@"categoryCode == %@", @(INSOCategoryCodeGameAction)];
+        } else {
+            predicate = [NSPredicate predicateWithFormat:@"categoryCode != %@", @(INSOCategoryCodeTechnicalFouls)];
+        }
+        
         NSSet* recordedStats = [_game.eventsToRecord filteredSetUsingPredicate:predicate];
         _recordedEvents = [recordedStats sortedArrayUsingDescriptors:@[sortByTitle]];
         
@@ -292,10 +307,12 @@
         [header addObject:event.title];
     }
     
-    // Now the penalty titles
-    if (self.shouldExportPenalties) {
-        [header addObject:@"Penalties"];
-        [header addObject:@"Penalty time"];
+    if (self.isExportingForBoys) {
+        // Boys penalties are different
+        if (self.shouldExportPenalties) {
+            [header addObject:@"Penalties"];
+            [header addObject:@"Penalty time"];
+        }
     }
     
     return header;
@@ -313,10 +330,12 @@
         [header addObject:event.title];
     }
     
-    // Now the penalty titles
-    if (self.shouldExportPenalties) {
-        [header addObject:@"Penalties"];
-        [header addObject:@"Penalty time"];
+    if (self.isExportingForBoys) {
+        // Boys penalties are different
+        if (self.shouldExportPenalties) {
+            [header addObject:@"Penalties"];
+            [header addObject:@"Penalty time"];
+        }
     }
     
     return header;
@@ -343,20 +362,16 @@
     }
     
     // And now the penalties
-    if (self.shouldExportPenalties) {
-        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
-            [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
-            
-            double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
-            
-            NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
-            penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
-            penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
-            
-            [dataRow addObject:[penaltyTimeFormatter stringFromTimeInterval:totalPenaltyTime]];
-        } else {
-            [dataRow addObject:[eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
-        }
+    if (self.shouldExportPenalties && self.isExportingForBoys) {
+        [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
+        
+        double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
+        
+        NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
+        penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
+        penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+        
+        [dataRow addObject:[penaltyTimeFormatter stringFromTimeInterval:totalPenaltyTime]];
     }
     
     return dataRow;
@@ -383,20 +398,15 @@
     }
     
     // And now the penalties
-    if (self.shouldExportPenalties) {
-        // Only do penalty time for boys
-        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
-            [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
-            double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
-            
-            NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
-            penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
-            penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
-            
-            [dataRow addObject:[penaltyTimeFormatter stringFromTimeInterval:totalPenaltyTime]];
-        } else {
-            [dataRow addObject:[eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
-        }
+    if (self.shouldExportPenalties && self.isExportingForBoys) {
+        [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
+        double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
+        
+        NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
+        penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
+        penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+        
+        [dataRow addObject:[penaltyTimeFormatter stringFromTimeInterval:totalPenaltyTime]];
     }
         
     return dataRow;
@@ -477,18 +487,14 @@
     
     // And now the penalties
     if (self.shouldExportPenalties) {
-        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
-            [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
-            
-            NSInteger totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] integerValue];
-            NSInteger penaltyMinutes = totalPenaltyTime / 60;
-            NSInteger penaltySeconds = totalPenaltyTime % 60;
-            
-            [dataRow addObject:[NSNumber numberWithInteger:penaltyMinutes]];
-            [dataRow addObject:[NSNumber numberWithInteger:penaltySeconds]];
-        } else {
-            [dataRow addObject:[eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
-        }
+        [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
+        
+        NSInteger totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] integerValue];
+        NSInteger penaltyMinutes = totalPenaltyTime / 60;
+        NSInteger penaltySeconds = totalPenaltyTime % 60;
+        
+        [dataRow addObject:[NSNumber numberWithInteger:penaltyMinutes]];
+        [dataRow addObject:[NSNumber numberWithInteger:penaltySeconds]];
     }
     
     return dataRow;
