@@ -14,6 +14,7 @@
 #import "NSManagedObject+GameEventAggregate.h"
 
 #import "INSOGameEventCounter.h"
+#import "INSOMensLacrosseStatsEnum.h"
 
 @interface INSOGameEventCounter ()
 
@@ -54,9 +55,15 @@
     return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
 }
 
-- (NSNumber*)totalPenaltiesForRosterPlayer:(RosterPlayer*)rosterPlayer
+- (NSNumber*)totalPenaltiesForBoysRosterPlayer:(RosterPlayer*)rosterPlayer
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@) AND player == %@", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls), rosterPlayer];
+    return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSNumber*)totalPenaltiesForGirlsRosterPlayer:(RosterPlayer*)rosterPlayer
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.eventCode == %@ OR event.eventCode == %@) AND player == %@", self.game, @(INSOEventCodeMinorFoul), @(INSOEventCodeMajorFoul), rosterPlayer];
     return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
 }
 

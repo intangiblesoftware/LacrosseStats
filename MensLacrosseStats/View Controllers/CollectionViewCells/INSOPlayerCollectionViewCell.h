@@ -10,6 +10,7 @@
 
 @interface INSOPlayerCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel* playerNumberLabel; 
+@property (nonatomic, weak) IBOutlet UILabel* playerNumberLabel;
+@property (nonatomic) IBInspectable UIColor* highlightColor;
 
 @end

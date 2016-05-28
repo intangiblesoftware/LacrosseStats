@@ -87,6 +87,15 @@
     }
 }
 
+- (NSString *)appProductName
+{
+    if ([self.oneYearProduct.productIdentifier isEqualToString:INSOMensLacrosseStatsOneYearProductIdentifier]) {
+        return @"Men’s Lacrosse Stats";
+    } else {
+        return @"Women’s Lacrosse Stats";
+    }
+}
+
 #pragma mark - Public Methods
 - (void)purchaseProduct
 {
@@ -117,7 +126,8 @@
 - (void)requestProductsFromAppStore
 {
     // Now kick off a request to iTunes for the products.
-    NSSet* productsSet = [NSSet setWithObject:INSOMensLacrosseStatsOneYearProductIdentifier];
+    NSString* productIdentifier = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ProductIdentifier"];
+    NSSet* productsSet = [NSSet setWithObject:productIdentifier];
     SKProductsRequest* productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productsSet];
     productsRequest.delegate = self;
     [productsRequest start];

@@ -11,10 +11,15 @@
 #import "INSOValidateInAppPurchase.h"
 #import "INSOValidateReceipt.h"
 
+#import "INSOWomensInApp.h"
+#import "INSOWomensReceipt.h"
+
 #import "INSOMensLacrosseStatsConstants.h"
 
 #import "INSOReceiptValidator.h"
 
+static NSString * const INSOMensBundleIdentifier = @"com.intangiblesoftware.menslacrossestats";
+static NSString * const INSOWomensBundleIdentifier = @"com.intangiblesoftware.womenslacrossestats";
 
 @interface INSOReceiptValidator () <SKRequestDelegate>
 
@@ -41,15 +46,28 @@
 
 - (void)validateReceipt
 {
-    INSOValidateInAppPurchase_CheckInAppPurchases(@[INSOMensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
-        if (isPresent) {
-            [self processPurchaseInfo:purchaseInfo];
-        } else {
-            _appPurchaseDate = nil;
-            _appIsPurchased = NO;
-            _appExpirationDate = nil;
-        }
-    }, self);
+    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bundleID isEqualToString:INSOMensBundleIdentifier]) {
+        INSOValidateInAppPurchase_CheckInAppPurchases(@[INSOMensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
+            if (isPresent) {
+                [self processPurchaseInfo:purchaseInfo];
+            } else {
+                _appPurchaseDate = nil;
+                _appIsPurchased = NO;
+                _appExpirationDate = nil;
+            }
+        }, self);
+    } else if ([bundleID isEqualToString:INSOWomensBundleIdentifier]) {
+        INSOWomensInApp_CheckInAppPurchases(@[INSOWomensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
+            if (isPresent) {
+                [self processPurchaseInfo:purchaseInfo];
+            } else {
+                _appPurchaseDate = nil;
+                _appIsPurchased = NO;
+                _appExpirationDate = nil;
+            }
+        }, self);
+    }
 }
 
 - (void)processPurchaseInfo:(NSDictionary*) purchaseInfo
@@ -59,7 +77,14 @@
         _appPurchaseDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     }
     
-    NSDate* originalPurchaseDate = purchaseInfo[INSOValidateInAppPurchase_INAPP_ATTRIBUTETYPE_ORIGINALPURCHASEDATE];
+    NSDate* originalPurchaseDate = nil;
+    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bundleID isEqualToString:INSOMensBundleIdentifier]) {
+        originalPurchaseDate = purchaseInfo[INSOValidateInAppPurchase_INAPP_ATTRIBUTETYPE_ORIGINALPURCHASEDATE];
+    } else if ([bundleID isEqualToString:INSOWomensBundleIdentifier]) {
+        originalPurchaseDate = purchaseInfo[INSOWomensInApp_INAPP_ATTRIBUTETYPE_ORIGINALPURCHASEDATE];
+    }
+    
     if ([originalPurchaseDate compare:_appPurchaseDate] == NSOrderedDescending) {
         _appPurchaseDate = originalPurchaseDate;
         _appIsPurchased = YES;
@@ -70,15 +95,28 @@
 #pragma mark - SKProductsRequestDelegate
 - (void)requestDidFinish:(SKRequest *)request
 {
-    INSOValidateReceipt_CheckInAppPurchases(@[INSOMensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
-        if (isPresent) {
-            [self processPurchaseInfo:purchaseInfo];
-        } else {
-            _appPurchaseDate = nil;
-            _appIsPurchased = NO;
-            _appExpirationDate = nil;
-        }
-    });
+    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bundleID isEqualToString:INSOMensBundleIdentifier]) {
+        INSOValidateReceipt_CheckInAppPurchases(@[INSOMensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
+            if (isPresent) {
+                [self processPurchaseInfo:purchaseInfo];
+            } else {
+                _appPurchaseDate = nil;
+                _appIsPurchased = NO;
+                _appExpirationDate = nil;
+            }
+        });
+    } else if ([bundleID isEqualToString:INSOWomensBundleIdentifier]) {
+        INSOWomensReceipt_CheckInAppPurchases(@[INSOWomensLacrosseStatsOneYearProductIdentifier], ^(NSString *identifier, BOOL isPresent, NSDictionary *purchaseInfo) {
+            if (isPresent) {
+                [self processPurchaseInfo:purchaseInfo];
+            } else {
+                _appPurchaseDate = nil;
+                _appIsPurchased = NO;
+                _appExpirationDate = nil; 
+            }
+        });
+    }
 }
 
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error

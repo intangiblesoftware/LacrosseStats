@@ -16,5 +16,7 @@
 + (UIColor *)scorebookGreen;
 + (UIColor *)scorebookYellow;
 + (UIColor *)scorebookRed;
++ (UIColor *)scorebookTeal;
++ (UIColor *)scorebookBackgroundTeal;
 
 @end

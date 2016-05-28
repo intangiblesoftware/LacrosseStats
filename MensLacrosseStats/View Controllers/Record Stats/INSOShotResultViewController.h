@@ -18,5 +18,6 @@
 @property (nonatomic) RosterPlayer* rosterPlayer;
 
 @property (nonatomic, assign) INSOGoalResult initialResultSegment;
+@property (nonatomic) BOOL is8mShot; 
 
 @end

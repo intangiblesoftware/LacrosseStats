@@ -105,12 +105,12 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
 
 - (NSString*)localizedAppPurchaseExpiredMessage
 {
-    return NSLocalizedString(@"Your purchase of Men’s Lacrosse Stats expired on %@. Tap the button below to purchase %@ of access for %@.", nil);
+    return NSLocalizedString(@"Your purchase of %@ expired on %@. Tap the button below to purchase %@ of access for %@.", nil);
 }
 
 - (NSString*)localizedAppPurchasedMessage
 {
-    return NSLocalizedString(@"Thank you for purchasing full access to Men’s Lacrosse Stats. All features of the app are enabled until %@.", nil);
+    return NSLocalizedString(@"Thank you for purchasing full access to %@. All features of the app are enabled until %@.", nil);
 }
 
 - (NSString*)localizedPurchaseButtonTitle
@@ -177,7 +177,7 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     
     // Start with the message
-    NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchaseExpiredMessage], [formatter stringFromDate:appExpirationDate], [[INSOProductManager sharedManager] productTitle], [self localizedProductPriceString]];
+    NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchaseExpiredMessage], [[INSOProductManager sharedManager] appProductName], [formatter stringFromDate:appExpirationDate], [[INSOProductManager sharedManager] productTitle], [self localizedProductPriceString]];
     
     // And the buy now button.
     NSString* purchaseButtonString = [NSString stringWithFormat:[[self localizedPurchaseButtonTitle] capitalizedString], [[[INSOProductManager sharedManager] productTitle] capitalizedString], [self localizedProductPriceString]];
@@ -208,7 +208,7 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     
     // Start with the message
-    NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchasedMessage], [formatter stringFromDate:appExpirationDate]];
+    NSString* messageString = [NSString stringWithFormat:[self localizedAppPurchasedMessage], [[INSOProductManager sharedManager] appProductName], [formatter stringFromDate:appExpirationDate]];
     
     [self.activityIndicator stopAnimating];
 

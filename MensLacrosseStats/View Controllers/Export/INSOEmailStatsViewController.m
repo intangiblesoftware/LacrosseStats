@@ -12,6 +12,8 @@
 
 #import "INSOEmailStatsViewController.h"
 #import "INSOEmailStatsFileGenerator.h"
+#import "INSOProductManager.h"
+#import "INSOMensLacrosseStatsConstants.h"
 
 #import "Game.h"
 
@@ -29,6 +31,8 @@
 - (IBAction)toggleExport:(id)sender;
 - (IBAction)prepareStatsFile:(id)sender;
 
+@property (nonatomic, assign) BOOL isPreparingForBoys;
+
 @end
 
 @implementation INSOEmailStatsViewController
@@ -36,6 +40,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
+        self.isPreparingForBoys = YES;
+    } else {
+        self.isPreparingForBoys = NO;
+    }
     
     if (self.isExportingForMaxPreps) {
         self.title = NSLocalizedString(@"MaxPreps Export", nil) ;
@@ -75,12 +85,22 @@
     // Now actually prepare the stats file
     INSOEmailStatsFileGenerator* fileGenerator = [[INSOEmailStatsFileGenerator alloc] initWithGame:self.game];
     if (self.isExportingForMaxPreps) {
-        [fileGenerator createMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
-            self.prepareStatsButton.enabled = YES;
-            [self.activityIndicator stopAnimating];
-            
-            [self prepareEmailMessageForMaxPrepsData:gameStatsData];
-        }];
+        // Boys or girls?
+        if (self.isPreparingForBoys) {
+            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
+            }];
+        } else {
+            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
+            }];
+        }
     } else {
         // Not exporting for max preps so configure differently
         if (self.exportToggleSwitch.isOn) {
@@ -124,7 +144,11 @@
         NSString* fileName = NSLocalizedString(@"GameStats.csv", nil);
         [mailViewcontroller addAttachmentData:statsData mimeType:@"text/csv" fileName:fileName];
         
-        [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookBlue]];
+        if (self.isPreparingForBoys) {
+            [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookBlue]];
+        } else {
+            [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookTeal]];
+        }
         
         // Display the view to mail the message.
         [self presentViewController:mailViewcontroller animated:YES completion:nil];
@@ -155,7 +179,11 @@
         NSString* fileName = NSLocalizedString(@"MaxPrepsExport.txt", nil);
         [mailViewcontroller addAttachmentData:maxPrepsData mimeType:@"text/plain" fileName:fileName];
         
-        [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookBlue]];
+        if (self.isPreparingForBoys) {
+            [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookBlue]];
+        } else {
+            [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookTeal]];
+        }
         
         // Display the view to mail the message.
         [self presentViewController:mailViewcontroller animated:YES completion:nil];

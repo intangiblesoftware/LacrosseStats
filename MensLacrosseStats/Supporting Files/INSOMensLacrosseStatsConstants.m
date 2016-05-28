@@ -36,9 +36,11 @@ NSString * const INSOStatValueKey = @"statValue";
 
 #pragma mark - Product Identifier
 NSString * const INSOMensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.menslacrossestats.1year";
+NSString * const INSOWomensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.womenslacrossestats.1year";
 
 #pragma mark - Company identifiers
-NSString * const INSOMaxPrepsCompanyID = @"9bfb842d-9e44-45f2-9bf8-203e2847bb66";
+NSString * const INSOMaxPrepsMensLacrosseCompanyID = @"9bfb842d-9e44-45f2-9bf8-203e2847bb66";
+NSString * const INSOMaxPrepsWomensLacrosseCompanyID = @"f6bb6836-2849-4f23-807d-e4e275d0e785"; 
 
 
 @end

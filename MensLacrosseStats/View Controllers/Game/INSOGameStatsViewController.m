@@ -385,7 +385,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
     
     // Just be done
     if ([penaltyEventSet count] > 0) {
-        NSNumber* totalPenalties = [self.eventCounter totalPenaltiesForRosterPlayer:rosterPlayer];
+        NSNumber* totalPenalties = [self.eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer];
         double totalPenaltyTime = [[self.eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
         
         NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
