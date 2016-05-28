@@ -51,8 +51,7 @@
 #pragma mark - Public Properties
 - (BOOL)productIsPurchased
 {
-    //return self.receiptValidator.appIsPurchased;
-    return YES; 
+    return self.receiptValidator.appIsPurchased;
 }
 
 - (BOOL)productPurchaseExpired
