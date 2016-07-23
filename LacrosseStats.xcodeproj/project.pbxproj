@@ -92,6 +92,8 @@
 		B99FDD671BB46957006FB373 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD641BB46957006FB373 /* main.m */; };
 		B9A5DB9F1BE55856004B72A4 /* INSOGameEventCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */; };
 		B9A5DBA21BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */; };
+		B9B53F721D2355C0004DACF3 /* INSOButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B53F711D2355C0004DACF3 /* INSOButton.m */; };
+		B9B53F731D2355C0004DACF3 /* INSOButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B53F711D2355C0004DACF3 /* INSOButton.m */; };
 		B9C4290B1C6C1AEA001C92AB /* INSODrawResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C429061C6C1AEA001C92AB /* INSODrawResultViewController.m */; };
 		B9C4290C1C6C1AEA001C92AB /* INSOWomensGameEventSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C429081C6C1AEA001C92AB /* INSOWomensGameEventSelectorTableViewController.m */; };
 		B9C4290D1C6C1AEA001C92AB /* INSOWomensGameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4290A1C6C1AEA001C92AB /* INSOWomensGameStatsViewController.m */; };
@@ -205,6 +207,8 @@
 		B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameEventCounter.m; sourceTree = "<group>"; };
 		B9A5DBA01BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+GameEventAggregate.h"; sourceTree = "<group>"; };
 		B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+GameEventAggregate.m"; sourceTree = "<group>"; };
+		B9B53F701D2355C0004DACF3 /* INSOButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOButton.h; sourceTree = "<group>"; };
+		B9B53F711D2355C0004DACF3 /* INSOButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOButton.m; sourceTree = "<group>"; };
 		B9C429051C6C1AEA001C92AB /* INSODrawResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSODrawResultViewController.h; sourceTree = "<group>"; };
 		B9C429061C6C1AEA001C92AB /* INSODrawResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSODrawResultViewController.m; sourceTree = "<group>"; };
 		B9C429071C6C1AEA001C92AB /* INSOWomensGameEventSelectorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOWomensGameEventSelectorTableViewController.h; sourceTree = "<group>"; };
@@ -564,6 +568,8 @@
 				B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */,
 				B9A5DBA01BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.h */,
 				B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */,
+				B9B53F701D2355C0004DACF3 /* INSOButton.h */,
+				B9B53F711D2355C0004DACF3 /* INSOButton.m */,
 			);
 			path = "Class Override";
 			sourceTree = "<group>";
@@ -813,6 +819,7 @@
 				B935AB4A1BC9CA6C006AEA3A /* EventCategory.m in Sources */,
 				B916A12B1C1DB38C00E754A3 /* INSOGameEditViewController.m in Sources */,
 				B95D943A1BBCB2F000E56AD9 /* _RosterPlayer.m in Sources */,
+				B9B53F721D2355C0004DACF3 /* INSOButton.m in Sources */,
 				B935AB4D1BC9CA78006AEA3A /* _EventCategory.m in Sources */,
 				B9EF9EF91C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m in Sources */,
 				B9880D2E1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m in Sources */,
@@ -854,6 +861,7 @@
 				B97FD1A81C5B95B2000BC548 /* Game.m in Sources */,
 				B9C4290B1C6C1AEA001C92AB /* INSODrawResultViewController.m in Sources */,
 				B97FD1B01C5B960E000BC548 /* INSOStatCollectionViewCell.m in Sources */,
+				B9B53F731D2355C0004DACF3 /* INSOButton.m in Sources */,
 				B97FD1C01C5B9A96000BC548 /* _Event.m in Sources */,
 				B97FD1A61C5B95AB000BC548 /* Event.m in Sources */,
 				B97FD19F1C5B0E15000BC548 /* NSManagedObject+GameEventAggregate.m in Sources */,

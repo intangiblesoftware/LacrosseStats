@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dH8-O6-okS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -66,14 +67,14 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" misplaced="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJ9-bd-upC">
-                                            <rect key="frame" x="439" y="103" width="24" height="43"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJ9-bd-upC">
+                                            <rect key="frame" x="438" y="103" width="24" height="43"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" misplaced="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYL-gT-wAH">
-                                            <rect key="frame" x="139" y="103" width="24" height="43"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYL-gT-wAH">
+                                            <rect key="frame" x="138" y="103" width="24" height="43"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -156,17 +157,6 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gg-h0-Scp">
-                                <rect key="frame" x="20" y="149" width="560" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Bve-YG-6p0"/>
-                                </constraints>
-                                <state key="normal" title="Puchase 1 year of access for $4.99"/>
-                                <connections>
-                                    <action selector="purchase:" destination="1PR-sH-DmU" eventType="touchUpInside" id="gbs-gh-Es4"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already purchased Men‘s Lacrosse Stats? Tap Restore Purchase below to reactivate your purchase. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qs-zs-KwH">
                                 <rect key="frame" x="20" y="207" width="560" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -206,6 +196,28 @@
                                     <outlet property="delegate" destination="1PR-sH-DmU" id="bbb-DZ-mZ0"/>
                                 </connections>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gg-h0-Scp" customClass="INSOButton">
+                                <rect key="frame" x="20" y="149" width="560" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Bve-YG-6p0"/>
+                                </constraints>
+                                <state key="normal" title="Puchase 1 year of access for $4.99"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="purchase:" destination="1PR-sH-DmU" eventType="touchUpInside" id="gbs-gh-Es4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -259,16 +271,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1o-Rn-gwj">
-                                                    <rect key="frame" x="8" y="12" width="544" height="64"/>
+                                                    <rect key="frame" x="0.0" y="12" width="560" height="64"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxN-vS-lZu">
-                                                            <rect key="frame" x="1" y="1" width="542" height="62"/>
+                                                            <rect key="frame" x="1" y="1" width="558" height="62"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OVH-oG-n6J">
-                                                                    <rect key="frame" x="177" y="0.0" width="187" height="62"/>
+                                                                    <rect key="frame" x="185" y="0.0" width="187" height="62"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="Qkz-6G-xMb">
-                                                                            <rect key="frame" x="0.0" y="7" width="50" height="50"/>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newEmail" translatesAutoresizingMaskIntoConstraints="NO" id="Qkz-6G-xMb">
+                                                                            <rect key="frame" x="0.0" y="6" width="50" height="50"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="Qkz-6G-xMb" secondAttribute="height" multiplier="1:1" id="oAQ-Vs-3fo"/>
+                                                                            </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Stats File" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ooe-U2-VzH">
                                                                             <rect key="frame" x="66" y="20" width="121" height="21"/>
@@ -283,6 +298,8 @@
                                                                         <constraint firstItem="Qkz-6G-xMb" firstAttribute="leading" secondItem="OVH-oG-n6J" secondAttribute="leading" id="3lg-t0-4Of"/>
                                                                         <constraint firstItem="Ooe-U2-VzH" firstAttribute="leading" secondItem="Qkz-6G-xMb" secondAttribute="trailing" constant="16" id="PYQ-Qq-LNH"/>
                                                                         <constraint firstItem="Qkz-6G-xMb" firstAttribute="centerY" secondItem="OVH-oG-n6J" secondAttribute="centerY" id="cmT-5Q-tHP"/>
+                                                                        <constraint firstItem="Qkz-6G-xMb" firstAttribute="top" secondItem="OVH-oG-n6J" secondAttribute="top" constant="6" id="w2W-cT-2fb"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="Qkz-6G-xMb" secondAttribute="bottom" constant="6" id="xEj-OJ-Pnw"/>
                                                                         <constraint firstItem="Ooe-U2-VzH" firstAttribute="centerY" secondItem="OVH-oG-n6J" secondAttribute="centerY" id="xIZ-dC-yjB"/>
                                                                     </constraints>
                                                                 </view>
@@ -308,8 +325,8 @@
                                             <constraints>
                                                 <constraint firstItem="m1o-Rn-gwj" firstAttribute="top" secondItem="Ze1-wE-7Uq" secondAttribute="topMargin" constant="4" id="9lS-UL-Vlr"/>
                                                 <constraint firstItem="m1o-Rn-gwj" firstAttribute="bottom" secondItem="Ze1-wE-7Uq" secondAttribute="bottomMargin" constant="4" id="MXg-Tk-IXN"/>
-                                                <constraint firstItem="m1o-Rn-gwj" firstAttribute="trailing" secondItem="Ze1-wE-7Uq" secondAttribute="trailingMargin" id="Miq-ih-dYL"/>
-                                                <constraint firstItem="m1o-Rn-gwj" firstAttribute="leading" secondItem="Ze1-wE-7Uq" secondAttribute="leadingMargin" id="gje-M4-KLc"/>
+                                                <constraint firstItem="m1o-Rn-gwj" firstAttribute="trailing" secondItem="Ze1-wE-7Uq" secondAttribute="trailing" id="Miq-ih-dYL"/>
+                                                <constraint firstItem="m1o-Rn-gwj" firstAttribute="leading" secondItem="Ze1-wE-7Uq" secondAttribute="leading" id="gje-M4-KLc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -321,19 +338,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6V-ph-UFd">
-                                                    <rect key="frame" x="8" y="12" width="544" height="131"/>
+                                                    <rect key="frame" x="0.0" y="12" width="560" height="131"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZd-2P-c6Z">
-                                                            <rect key="frame" x="1" y="1" width="542" height="129"/>
+                                                            <rect key="frame" x="1" y="1" width="558" height="129"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email MaxPreps File" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iI7-eB-yte">
-                                                                    <rect key="frame" x="191" y="8" width="159" height="21"/>
+                                                                    <rect key="frame" x="199" y="8" width="159" height="21"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                     <color key="textColor" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="MaxPrepsLogo01" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-Dp-By2">
-                                                                    <rect key="frame" x="122" y="29" width="300" height="100"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MaxPrepsLogo01" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-Dp-By2">
+                                                                    <rect key="frame" x="129" y="29" width="300" height="100"/>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -361,9 +378,9 @@
                                             <color key="backgroundColor" red="0.96078437569999997" green="0.97254908080000002" blue="0.98039221759999995" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="u6V-ph-UFd" secondAttribute="bottom" constant="4" id="1bE-Kg-oz8"/>
-                                                <constraint firstItem="u6V-ph-UFd" firstAttribute="leading" secondItem="JDb-cN-OaD" secondAttribute="leadingMargin" id="2O1-D7-q4c"/>
+                                                <constraint firstItem="u6V-ph-UFd" firstAttribute="leading" secondItem="JDb-cN-OaD" secondAttribute="leading" id="2O1-D7-q4c"/>
                                                 <constraint firstItem="u6V-ph-UFd" firstAttribute="top" secondItem="JDb-cN-OaD" secondAttribute="topMargin" constant="4" id="Kp4-UJ-rzH"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="u6V-ph-UFd" secondAttribute="trailing" id="Q6j-q0-TRh"/>
+                                                <constraint firstAttribute="trailing" secondItem="u6V-ph-UFd" secondAttribute="trailing" id="Q6j-q0-TRh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -402,7 +419,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gv-h1-X4I">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gv-h1-X4I" customClass="INSOButton">
                                 <rect key="frame" x="20" y="206" width="560" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -410,6 +427,17 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Prepare Stats File"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="prepareStatsFile:" destination="sHZ-aH-RPG" eventType="touchUpInside" id="N18-zX-YTx"/>
                                 </connections>
@@ -1163,8 +1191,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqv-OA-scd">
-                                <rect key="frame" x="275" y="101" width="52" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqv-OA-scd">
+                                <rect key="frame" x="274" y="101" width="52" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1797,13 +1825,24 @@
                                         <rect key="frame" x="262" y="69" width="37" height="37"/>
                                         <color key="color" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </activityIndicatorView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEI-qB-Isj">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEI-qB-Isj" customClass="INSOButton">
                                         <rect key="frame" x="0.0" y="114" width="560" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="999" constant="50" id="kDy-dC-xVd"/>
                                         </constraints>
                                         <state key="normal" title="Puchase 1 year of access for $4.99"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.0" green="0.23137254900000001" blue="0.43529411759999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="purchase:" destination="MGh-Ma-DBn" eventType="touchUpInside" id="gk5-M4-NTz"/>
                                         </connections>
@@ -1890,7 +1929,7 @@
         <image name="check_off" width="50" height="50"/>
         <image name="check_on" width="50" height="50"/>
         <image name="edit" width="26" height="26"/>
-        <image name="email" width="50" height="50"/>
+        <image name="newEmail" width="60" height="60"/>
         <image name="recordStats" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
