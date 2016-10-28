@@ -51,7 +51,11 @@
 #pragma mark - Public Properties
 - (BOOL)productIsPurchased
 {
+#if DEBUG
+    return YES;
+#elif
     return self.receiptValidator.appIsPurchased;
+#endif
 }
 
 - (BOOL)productPurchaseExpired

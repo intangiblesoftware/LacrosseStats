@@ -1,15 +1,15 @@
 #import "Event.h"
 
-static NSString * const INSOMaxPrepsGoal          = @"Goals";
-static NSString * const INSOMaxPrepsAssists       = @"Assists";
-static NSString * const INSOMaxPrepsShotsOnGoal   = @"ShotsOnGoal";
-static NSString * const INSOMaxPrepsGroundballs   = @"GroundBalls";
-static NSString * const INSOMaxPrepsInterceptions = @"Interceptions";
-static NSString * const INSOMaxPrepsFaceoffWon    = @"FaceoffWon";
-static NSString * const INSOMaxPrepsGoalsAgainst  = @"GoalsAgainst";
-static NSString * const INSOMaxPrepsSaves         = @"Saves";
-static NSString * const INSOMaxPrepsDrawTaken     = @"FaceoffAttempts";
-static NSString * const INSOMaxPrepsDrawControl   = @"FaceoffWon";
+static NSString * const INSOMaxPrepsGoal           = @"Goals";
+static NSString * const INSOMaxPrepsAssists        = @"Assists";
+static NSString * const INSOMaxPrepsShotsOnGoal    = @"ShotsOnGoal";
+static NSString * const INSOMaxPrepsGroundballs    = @"GroundBalls";
+static NSString * const INSOMaxPrepsInterceptions  = @"Interceptions";
+static NSString * const INSOMaxPrepsFaceoffWon     = @"FaceoffWon";
+static NSString * const INSOMaxPrepsGoalsAgainst   = @"GoalsAgainst";
+static NSString * const INSOMaxPrepsSaves          = @"Saves";
+static NSString * const INSOMaxPrepsDrawTaken      = @"FaceoffAttempts";
+static NSString * const INSOMaxPrepsDrawPossession = @"FaceoffWon";
 
 
 @interface Event ()
@@ -68,8 +68,8 @@ static NSString * const INSOMaxPrepsDrawControl   = @"FaceoffWon";
         case INSOEventCodeDrawTaken:
             return INSOMaxPrepsDrawTaken;
             break;
-        case INSOEventCodeDrawControl:
-            return INSOMaxPrepsDrawControl;
+        case INSOEventCodeDrawPossession:
+            return INSOMaxPrepsDrawPossession;
             break;
         default:
             return nil;

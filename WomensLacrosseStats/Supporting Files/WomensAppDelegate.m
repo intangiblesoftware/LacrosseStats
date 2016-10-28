@@ -47,6 +47,10 @@
             [self addGame];
         }
     }
+
+    // Use the following to obtain the path to the simulator's data for this app.
+    // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // NSLog(@"%@", [paths firstObject]);
     
     return YES;
 }
