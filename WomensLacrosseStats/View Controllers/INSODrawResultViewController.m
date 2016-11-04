@@ -109,7 +109,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
-        WomensAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        WomensAppDelegate* appDelegate = (WomensAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     

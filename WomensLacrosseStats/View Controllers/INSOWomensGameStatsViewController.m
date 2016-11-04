@@ -124,7 +124,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
-        WomensAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        WomensAppDelegate* appDelegate = (WomensAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;
