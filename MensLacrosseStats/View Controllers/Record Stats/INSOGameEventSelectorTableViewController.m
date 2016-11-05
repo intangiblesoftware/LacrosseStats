@@ -91,6 +91,11 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
         [self createShotEvent];
     }
     
+    // If it's a lost faceoff, need to give the other guys a win
+    if (event.eventCodeValue == INSOEventCodeFaceoffLost) {
+        [self createFaceoffWonEvent];
+    }
+    
     // Save the MOC
     NSError* error;
     if (![self.managedObjectContext save:&error]) {
@@ -286,6 +291,29 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
     gameEvent.event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
     gameEvent.game = self.rosterPlayer.game;
     gameEvent.player = self.rosterPlayer;
+}
+
+- (void)createFaceoffWonEvent
+{
+    // Called when we need to give the other team a faceoff won event
+    GameEvent* faceoffWonEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    
+    // Set its properties
+    faceoffWonEvent.timestamp = [NSDate date];
+
+    // And its relations
+    faceoffWonEvent.event = [Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.managedObjectContext];
+    faceoffWonEvent.game = self.rosterPlayer.game;
+    
+    RosterPlayer *player;
+    if (self.rosterPlayer.numberValue >= INSOTeamWatchingPlayerNumber) {
+        // Need a faceoff won for the other team
+        player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+    } else {
+        // Need a faceoff won for team watching
+        player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+    }
+    faceoffWonEvent.player = player; 
 }
 
 #pragma mark - Navigation
