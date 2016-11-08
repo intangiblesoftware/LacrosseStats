@@ -89,10 +89,16 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     if (!_rosterArray) {
         // Get all the players from the roster
-        NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
-        NSMutableArray* roster = [[NSMutableArray alloc] initWithArray:[self.faceoffWinner.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
-        
-        _rosterArray = roster;
+        if (self.faceoffWinner.numberValue == INSOOtherTeamPlayerNumber) {
+            // The other team won the face off, so only show the other team player
+            _rosterArray = @[[self.faceoffWinner.game playerWithNumber:@(INSOOtherTeamPlayerNumber)]];
+        } else {
+            NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
+            NSMutableArray* roster = [[NSMutableArray alloc] initWithArray:[self.faceoffWinner.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
+            RosterPlayer *otherTeamPlayer = [self.faceoffWinner.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            [roster removeObject:otherTeamPlayer];
+            _rosterArray = roster;
+        }        
     }
     return _rosterArray;
 }
