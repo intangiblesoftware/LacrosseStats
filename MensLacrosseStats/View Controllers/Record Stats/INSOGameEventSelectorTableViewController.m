@@ -88,12 +88,16 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
     
     // If it's a shot on goal, we also need to create a shot event
     if (event.eventCodeValue == INSOEventCodeShotOnGoal) {
-        [self createShotEvent];
+        if ([self shouldCreateShotEvent]) {
+            [self createShotEvent];
+        }
     }
     
     // If it's a lost faceoff, need to give the other guys a win
     if (event.eventCodeValue == INSOEventCodeFaceoffLost) {
-        [self createFaceoffWonEvent];
+        if ([self shouldCreateFaceoffWonEvent]) {
+            [self createFaceoffWonEvent];
+        }
     }
     
     // Save the MOC
@@ -277,6 +281,18 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
     return ([self.rosterPlayer.game.eventsToRecord containsObject:extraManEvent] ||
             [self.rosterPlayer.game.eventsToRecord containsObject:assistEvent]   ||
             [self.rosterPlayer.game.eventsToRecord containsObject:saveEvent]);
+}
+
+- (BOOL)shouldCreateShotEvent
+{
+    Event *shotEvent = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
+    return [self.rosterPlayer.game.eventsToRecord containsObject:shotEvent];
+}
+
+- (BOOL)shouldCreateFaceoffWonEvent
+{
+    Event *faceoffWonEvent = [Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.managedObjectContext];
+    return [self.rosterPlayer.game.eventsToRecord containsObject:faceoffWonEvent];
 }
 
 - (void)createShotEvent

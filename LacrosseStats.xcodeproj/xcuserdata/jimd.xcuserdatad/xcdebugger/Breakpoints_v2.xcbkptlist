@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MensLacrosseStats/View Controllers/Record Stats/INSOGameEventSelectorTableViewController.m"
-            timestampString = "500053623.930649"
+            timestampString = "500524821.674204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
