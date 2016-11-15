@@ -100,6 +100,19 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
         }
     }
     
+    // If its a goal allowed, score a goal for the other guys as well.
+    if (event.eventCodeValue == INSOEventCodeGoalAllowed) {
+        if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+            // The goal allowed is for the other team,
+            // So give the team watching a goal
+            [self createGoalForTeamWatching];
+        } else {
+            // The goal allowed is for the team watching
+            // So give the other team a goal
+            [self createGoalForOtherTeam];
+        }
+    }
+    
     // Save the MOC
     NSError* error;
     if (![self.managedObjectContext save:&error]) {
@@ -330,6 +343,28 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
         player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
     }
     faceoffWonEvent.player = player; 
+}
+
+- (void)createGoalForOtherTeam
+{
+    RosterPlayer *player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+    
+    GameEvent *goalEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    goalEvent.timestamp = [NSDate date];
+    goalEvent.event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.managedObjectContext];
+    goalEvent.game = self.rosterPlayer.game;
+    goalEvent.player = player;
+}
+
+- (void)createGoalForTeamWatching
+{
+    RosterPlayer *player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+    
+    GameEvent *goalEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    goalEvent.timestamp = [NSDate date];
+    goalEvent.event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.managedObjectContext];
+    goalEvent.game = self.rosterPlayer.game;
+    goalEvent.player = player;
 }
 
 #pragma mark - Navigation

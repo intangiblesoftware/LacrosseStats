@@ -100,6 +100,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
             [self createShotOnGoalEvent];
         }
         [self createGoalEvent];
+        [self createGoalAllowedEvent];
         
         // Now need to see if there is an assist
         if (self.selectedIndexPath) {
@@ -132,13 +133,30 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     if (!_rosterArray) {
         // Get all the players from the roster
-        NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
-        NSMutableArray* roster = [[NSMutableArray alloc] initWithArray:[self.rosterPlayer.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
+        NSMutableArray* roster = [NSMutableArray new]; //[[NSMutableArray alloc] initWithArray:[self.rosterPlayer.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
         
-        // Remove the player who shot, but not if it's the team player
-        if (!self.rosterPlayer.isTeamValue) {
-            [roster removeObjectIdenticalTo:self.rosterPlayer];
+        // Loop through game's players and add on those folks that belong.
+        if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+            // Other team scored, so only add other team player
+            for (RosterPlayer *player in self.rosterPlayer.game.players) {
+                if (player.numberValue == INSOOtherTeamPlayerNumber) {
+                    [roster addObject:player];
+                }
+            }
+        } else {
+            // Team watching scored, so add watching team player and all the other players
+            for (RosterPlayer *player in self.rosterPlayer.game.players) {
+                if (player.numberValue == INSOTeamWatchingPlayerNumber) {
+                    [roster addObject:player];
+                } else if ((player.numberValue > INSOTeamWatchingPlayerNumber) && (player.numberValue != self.rosterPlayer.numberValue)) {
+                    [roster addObject:player];
+                }
+            }
         }
+        
+        // Now sort the roster
+        NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
+        [roster sortUsingDescriptors:@[sortByNumber]];
         
         _rosterArray = roster;
     }
@@ -296,7 +314,16 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     RosterPlayer * rosterPlayer = self.rosterArray[indexPath.row];
     if (rosterPlayer.isTeamValue) {
-        cell.playerNumberLabel.text = NSLocalizedString(@"Team Player", nil);
+        // Which team player?
+        if (rosterPlayer.numberValue == INSOTeamWatchingPlayerNumber) {
+            cell.playerNumberLabel.text = rosterPlayer.game.teamWatching;
+        } else {
+            if ([rosterPlayer.game.teamWatching isEqualToString:rosterPlayer.game.homeTeam]) {
+                cell.playerNumberLabel.text = rosterPlayer.game.visitingTeam;
+            } else {
+                cell.playerNumberLabel.text = rosterPlayer.game.homeTeam;
+            }
+        }
     } else {
         cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
     }
@@ -355,6 +382,39 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     goalEvent.isExtraManGoalValue = self.extraManSwitch.isOn;
     
     return goalEvent;
+}
+
+- (GameEvent *)createGoalAllowedEvent
+{
+    if (![self gameEventsContainsEvent:INSOEventCodeGoalAllowed]) {
+        return nil;
+    }
+    
+    // Create the goal game event
+    GameEvent* goalAllowedEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    
+    // Set its properties
+    goalAllowedEvent.timestamp = [NSDate date];
+    
+    // Set its relations
+    goalAllowedEvent.event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.managedObjectContext];
+    goalAllowedEvent.game = self.rosterPlayer.game;
+    goalAllowedEvent.isExtraManGoalValue = self.extraManSwitch.isOn;
+
+    // Now the tricky part
+    if (self.rosterPlayer.numberValue >= INSOTeamWatchingPlayerNumber) {
+        // Created a goal for the team watching, so goal allowed for other team
+        goalAllowedEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+    } else {
+        // Need to create a goal allowed for team watching.
+        // Ideally we'd create a goal allowed for whoever the goalie was for the team we're watching
+        // but we have no way of knowing that. However, if we're really watching a team, we'd
+        // be recording this as a goal allowed, not a goal for the other team that we aren't
+        // interested in. So I think this is OK.
+        goalAllowedEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+    }
+
+    return goalAllowedEvent;
 }
 
 - (GameEvent*)createShotOnGoalEvent

@@ -19,6 +19,7 @@
 #import "Game.h"
 #import "GameEvent.h"
 #import "Event.h"
+#import "RosterPlayer.h"
 
 static NSString * INSOEditGameSegueIdentifier          = @"EditGameSegue";
 static NSString * INSORecordStatsSegueIdentifier       = @"RecordStatsSegue";
@@ -42,8 +43,8 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 
 // Private Properties
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
-@property (nonatomic) NSInteger countOfGoals;
-@property (nonatomic) NSInteger countOfGoalsAllowed;
+@property (nonatomic) NSInteger teamWatchingGoals;
+@property (nonatomic) NSInteger otherTeamGoals;
 
 // Private Methods
 
@@ -106,19 +107,19 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     return _managedObjectContext;
 }
 
-- (NSInteger)countOfGoals
+- (NSInteger)teamWatchingGoals
 {
     NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
-        return gameEvent.event.eventCodeValue == INSOEventCodeGoal;
+        return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue == INSOTeamWatchingPlayerNumber);
     }];
     
     return [goals count];
 }
 
-- (NSInteger)countOfGoalsAllowed
+- (NSInteger)otherTeamGoals
 {
     NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
-        return gameEvent.event.eventCodeValue == INSOEventCodeGoalAllowed;
+        return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue == INSOOtherTeamPlayerNumber);
     }];
     
     return [goals count];
@@ -137,24 +138,21 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     
     self.homeTeamLabel.text = self.game.homeTeam;
     self.visitingTeamLabel.text = self.game.visitingTeam;
-
-    NSInteger goals = self.countOfGoals;
-    NSInteger goalsAllowed = self.countOfGoalsAllowed;
     
     if ([self.game.homeTeam isEqualToString:self.game.teamWatching]) {
-        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(goals)];
-        self.game.homeScoreValue = goals;
+        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(self.teamWatchingGoals)];
+        self.game.homeScoreValue = self.teamWatchingGoals;
     } else {
-        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(goalsAllowed)];
-        self.game.homeScoreValue = goalsAllowed;
+        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(self.otherTeamGoals)];
+        self.game.homeScoreValue = self.otherTeamGoals;
     }
     
     if ([self.game.visitingTeam isEqualToString:self.game.teamWatching]) {
-        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(goals)];
-        self.game.visitorScoreValue = goals;
+        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(self.teamWatchingGoals)];
+        self.game.visitorScoreValue = self.teamWatchingGoals;
     } else {
-        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(goalsAllowed)];
-        self.game.visitorScoreValue = goalsAllowed;
+        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(self.otherTeamGoals)];
+        self.game.visitorScoreValue = self.otherTeamGoals;
     }
     
     self.locationLabel.text = self.game.location;
