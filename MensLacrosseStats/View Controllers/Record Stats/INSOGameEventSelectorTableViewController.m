@@ -88,28 +88,76 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
     
     // If it's a shot on goal, we also need to create a shot event
     if (event.eventCodeValue == INSOEventCodeShotOnGoal) {
-        if ([self shouldCreateShotEvent]) {
-            [self createShotEvent];
+        if ([self shouldCreateEvent:INSOEventCodeShot]) {
+            [self createEvent:INSOEventCodeShot forPlayer:self.rosterPlayer];
         }
     }
     
     // If it's a lost faceoff, need to give the other guys a win
     if (event.eventCodeValue == INSOEventCodeFaceoffLost) {
-        if ([self shouldCreateFaceoffWonEvent]) {
-            [self createFaceoffWonEvent];
+        if ([self shouldCreateEvent:INSOEventCodeFaceoffWon]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                // Save by other guys. Faceoff won for watching.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                // Save by watching. Faceoff won for other guys.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeFaceoffWon forPlayer:player];
         }
     }
     
     // If its a goal allowed, score a goal for the other guys as well.
     if (event.eventCodeValue == INSOEventCodeGoalAllowed) {
+        RosterPlayer *player;
         if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
-            // The goal allowed is for the other team,
-            // So give the team watching a goal
-            [self createGoalForTeamWatching];
+            // Goal allowed by other guys. Goal for watching.
+            player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
         } else {
-            // The goal allowed is for the team watching
-            // So give the other team a goal
-            [self createGoalForOtherTeam];
+            // Goal allowed by watching. Goal for other guys.
+            player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+        }
+        [self createEvent:INSOEventCodeGoal forPlayer:player];
+    }
+    
+    // If it's a save event, need to create shot and shot on goal for the other guys
+    if (event.eventCodeValue == INSOEventCodeSave) {
+        if ([self shouldCreateEvent:INSOEventCodeShot]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                // Save by other guys. Shot and sog for watching.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                // Save by watching. Shot and SOG for other guys.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeShot forPlayer:player];
+        }
+        
+        if ([self shouldCreateEvent:INSOEventCodeShotOnGoal]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                // Save by other guys. Shot and sog for watching.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                // Save by watching. Shot and SOG for other guys.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeShotOnGoal forPlayer:player];
+        }
+    }
+    
+    // If it's a caused turnover, give the other guys a turnover
+    if (event.eventCodeValue == INSOEventCodeCausedTurnover) {
+        if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeTurnover forPlayer:player];
         }
     }
     
@@ -296,75 +344,19 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
             [self.rosterPlayer.game.eventsToRecord containsObject:saveEvent]);
 }
 
-- (BOOL)shouldCreateShotEvent
+- (BOOL)shouldCreateEvent:(INSOEventCode)eventCode
 {
-    Event *shotEvent = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
-    return [self.rosterPlayer.game.eventsToRecord containsObject:shotEvent];
+    Event *event = [Event eventForCode:eventCode inManagedObjectContext:self.managedObjectContext];
+    return [self.rosterPlayer.game.eventsToRecord containsObject:event];
 }
 
-- (BOOL)shouldCreateFaceoffWonEvent
+- (void)createEvent:(INSOEventCode)eventCode forPlayer:(RosterPlayer *)player
 {
-    Event *faceoffWonEvent = [Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.managedObjectContext];
-    return [self.rosterPlayer.game.eventsToRecord containsObject:faceoffWonEvent];
-}
-
-- (void)createShotEvent
-{
-    // Create the appropriate game event
-    GameEvent* gameEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-    
-    // Set its properties
+    GameEvent *gameEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
     gameEvent.timestamp = [NSDate date];
-    
-    // Set its relations
-    gameEvent.event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
-    gameEvent.game = self.rosterPlayer.game;
-    gameEvent.player = self.rosterPlayer;
-}
-
-- (void)createFaceoffWonEvent
-{
-    // Called when we need to give the other team a faceoff won event
-    GameEvent* faceoffWonEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-    
-    // Set its properties
-    faceoffWonEvent.timestamp = [NSDate date];
-
-    // And its relations
-    faceoffWonEvent.event = [Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.managedObjectContext];
-    faceoffWonEvent.game = self.rosterPlayer.game;
-    
-    RosterPlayer *player;
-    if (self.rosterPlayer.numberValue >= INSOTeamWatchingPlayerNumber) {
-        // Need a faceoff won for the other team
-        player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
-    } else {
-        // Need a faceoff won for team watching
-        player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
-    }
-    faceoffWonEvent.player = player; 
-}
-
-- (void)createGoalForOtherTeam
-{
-    RosterPlayer *player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
-    
-    GameEvent *goalEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-    goalEvent.timestamp = [NSDate date];
-    goalEvent.event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.managedObjectContext];
-    goalEvent.game = self.rosterPlayer.game;
-    goalEvent.player = player;
-}
-
-- (void)createGoalForTeamWatching
-{
-    RosterPlayer *player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
-    
-    GameEvent *goalEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-    goalEvent.timestamp = [NSDate date];
-    goalEvent.event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.managedObjectContext];
-    goalEvent.game = self.rosterPlayer.game;
-    goalEvent.player = player;
+    gameEvent.event = [Event eventForCode:eventCode inManagedObjectContext:self.managedObjectContext];
+    gameEvent.game = player.game;
+    gameEvent.player = player;
 }
 
 #pragma mark - Navigation
