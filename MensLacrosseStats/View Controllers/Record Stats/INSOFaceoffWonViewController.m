@@ -75,6 +75,8 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         [self createGroundballEvent];
     }
     
+    [self createFaceoffLostEvent];
+    
     // Now save all this
     NSError* error;
     if (![self.managedObjectContext save:&error]) {
@@ -119,7 +121,16 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     RosterPlayer * rosterPlayer = self.rosterArray[indexPath.row];
     if (rosterPlayer.isTeamValue) {
-        cell.playerNumberLabel.text = NSLocalizedString(@"Team Player", nil);
+        // Which team player?
+        if (rosterPlayer.numberValue == INSOTeamWatchingPlayerNumber) {
+            cell.playerNumberLabel.text = rosterPlayer.game.teamWatching;
+        } else {
+            if ([rosterPlayer.game.teamWatching isEqualToString:rosterPlayer.game.homeTeam]) {
+                cell.playerNumberLabel.text = rosterPlayer.game.visitingTeam;
+            } else {
+                cell.playerNumberLabel.text = rosterPlayer.game.homeTeam;
+            }
+        }
     } else {
         cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
     }
@@ -169,6 +180,27 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     faceoffWonEvent.player = self.faceoffWinner;
     
     return faceoffWonEvent;
+}
+
+- (GameEvent *)createFaceoffLostEvent
+{
+    GameEvent *faceoffLostEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    
+    faceoffLostEvent.timestamp = [NSDate date];
+    faceoffLostEvent.event = [Event eventForCode:INSOEventCodeFaceoffLost inManagedObjectContext:self.managedObjectContext];
+    faceoffLostEvent.game = self.faceoffWinner.game;
+    
+    RosterPlayer *player;
+    if (self.faceoffWinner.numberValue == INSOOtherTeamPlayerNumber) {
+        // Faceoff loss for team watching
+        player = [self.faceoffWinner.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+    } else {
+        // Faceoff loss for other team
+        player = [self.faceoffWinner.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+    }
+    faceoffLostEvent.player = player;
+    
+    return faceoffLostEvent;
 }
 
 - (GameEvent*)createGroundballEvent

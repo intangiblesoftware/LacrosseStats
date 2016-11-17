@@ -93,7 +93,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         if (!self.is8mShot) {
             [self createShotOnGoalEvent];
         }
-        
+        [self createSaveEvent];
     } else if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultGoal) {
         [self createShotEvent];
         if (!self.is8mShot) {
@@ -432,6 +432,38 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     shotOnGoalEvent.player = self.rosterPlayer;
     
     return shotOnGoalEvent;
+}
+
+- (GameEvent *)createSaveEvent
+{
+    if (![self gameEventsContainsEvent:INSOEventCodeSave]) {
+        return nil;
+    }
+    
+    // Create the goal game event
+    GameEvent* saveEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    
+    // Set its properties
+    saveEvent.timestamp = [NSDate date];
+    
+    // Set its relations
+    saveEvent.event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.managedObjectContext];
+    saveEvent.game = self.rosterPlayer.game;
+    
+    // Now the tricky part
+    if (self.rosterPlayer.numberValue >= INSOTeamWatchingPlayerNumber) {
+        // Created shot on goal for the team watching, so save for other team
+        saveEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+    } else {
+        // Need to create a save for team watching.
+        // Ideally we'd create a save for whoever the goalie was for the team we're watching
+        // but we have no way of knowing that. However, if we're really watching a team, we'd
+        // be recording this as a save, not a goal for the other team that we aren't
+        // interested in. So I think this is OK.
+        saveEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+    }
+    
+    return saveEvent;
 }
 
 - (GameEvent*)createAssistEvent

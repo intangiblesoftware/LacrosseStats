@@ -132,14 +132,28 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
     penaltyGameEvent.game = self.rosterPlayer.game;
     penaltyGameEvent.player = self.rosterPlayer;
     
-    // And now, if this creates an extra-man opportunity, create one of those as well.
+    // And now, if man-down switch is on,
+    // create man down and man up events for the right teams
     if (self.manDownSwitch.isOn) {
-        GameEvent* manDownGameEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+        GameEvent *manDownEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+        GameEvent *emoEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
         
-        manDownGameEvent.player = self.rosterPlayer.game.teamPlayer; 
-        manDownGameEvent.timestamp = [NSDate date];
-        manDownGameEvent.event = [Event eventForCode:INSOEventCodeManDown inManagedObjectContext:self.managedObjectContext];
-        manDownGameEvent.game = self.rosterPlayer.game;
+        manDownEvent.timestamp = [NSDate date];
+        manDownEvent.event = [Event eventForCode:INSOEventCodeManDown inManagedObjectContext:self.managedObjectContext];
+        manDownEvent.game = self.rosterPlayer.game;
+        
+        emoEvent.timestamp = [NSDate date];
+        emoEvent.event = [Event eventForCode:INSOEventCodeEMO inManagedObjectContext:self.managedObjectContext];
+        emoEvent.game = self.rosterPlayer.game;
+        
+        if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+            // The other guys got the penalty
+            manDownEvent.player = self.rosterPlayer;
+            emoEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+        } else {
+            manDownEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            emoEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+        }
     }
     
     // Save the MOC
