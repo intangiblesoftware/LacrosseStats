@@ -161,7 +161,18 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
         }
     }
     
-    // Interception - record turnover for other team. 
+    // Interception - record turnover for other team.
+    if (event.eventCodeValue == INSOEventCodeInterception) {
+        if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeTurnover forPlayer:player];
+        }
+    }
     
     // Save the MOC
     NSError* error;

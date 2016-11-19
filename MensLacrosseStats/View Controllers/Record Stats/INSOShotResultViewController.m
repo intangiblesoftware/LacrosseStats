@@ -133,7 +133,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     if (!_rosterArray) {
         // Get all the players from the roster
-        NSMutableArray* roster = [NSMutableArray new]; //[[NSMutableArray alloc] initWithArray:[self.rosterPlayer.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
+        NSMutableArray* roster = [NSMutableArray new];
         
         // Loop through game's players and add on those folks that belong.
         if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {

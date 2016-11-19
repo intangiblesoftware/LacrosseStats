@@ -136,23 +136,29 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
     // create man down and man up events for the right teams
     if (self.manDownSwitch.isOn) {
         GameEvent *manDownEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-        GameEvent *emoEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+        GameEvent *extraManUpEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
         
         manDownEvent.timestamp = [NSDate date];
         manDownEvent.event = [Event eventForCode:INSOEventCodeManDown inManagedObjectContext:self.managedObjectContext];
         manDownEvent.game = self.rosterPlayer.game;
         
-        emoEvent.timestamp = [NSDate date];
-        emoEvent.event = [Event eventForCode:INSOEventCodeEMO inManagedObjectContext:self.managedObjectContext];
-        emoEvent.game = self.rosterPlayer.game;
+        // Girls man-up, boys go emo. 
+        extraManUpEvent.timestamp = [NSDate date];
+        if (self.event.eventCodeValue == INSOEventCodeYellowCard || self.event.eventCodeValue == INSOEventCodeRedCard) {
+            extraManUpEvent.event = [Event eventForCode:INSOEventCodeManUp inManagedObjectContext:self.managedObjectContext];
+        } else {
+            extraManUpEvent.event = [Event eventForCode:INSOEventCodeEMO inManagedObjectContext:self.managedObjectContext];
+        }
+        extraManUpEvent.game = self.rosterPlayer.game;
+
         
         if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
             // The other guys got the penalty
             manDownEvent.player = self.rosterPlayer;
-            emoEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            extraManUpEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
         } else {
             manDownEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
-            emoEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            extraManUpEvent.player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
         }
     }
     
