@@ -108,7 +108,7 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
         }
     }
     
-    // If its a goal allowed, score a goal for the other guys as well.
+    // Goal allowed - shot, shot on goal and goal for the other team
     if (event.eventCodeValue == INSOEventCodeGoalAllowed) {
         RosterPlayer *player;
         if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
@@ -160,6 +160,8 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
             [self createEvent:INSOEventCodeTurnover forPlayer:player];
         }
     }
+    
+    // Interception - record turnover for other team. 
     
     // Save the MOC
     NSError* error;
