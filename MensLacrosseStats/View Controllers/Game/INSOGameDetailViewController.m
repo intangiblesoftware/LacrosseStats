@@ -40,6 +40,7 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 // IBActions
 - (IBAction)editGame:(id)sender;
 - (IBAction)recordStats:(id)sender;
+- (IBAction)exportStats:(id)sender;
 
 // Private Properties
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
@@ -94,6 +95,15 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
         [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
     } else {
         [self performSegueWithIdentifier:INSOEditGameSegueIdentifier sender:self];
+    }
+}
+
+- (void)exportStats:(id)sender
+{
+    if ([[INSOProductManager sharedManager] productIsPurchased] && [[INSOProductManager sharedManager] productPurchaseExpired]) {
+        [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
+    } else {
+        [self performSegueWithIdentifier:INSOExportStatsSegueIdentifier sender:self];
     }
 }
 
@@ -198,9 +208,9 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 
 - (void)prepareForExportStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    UINavigationController* navigationController = segue.destinationViewController;
-    INSOPurchaseViewController* purchaseViewController = [navigationController.viewControllers firstObject];
-    purchaseViewController.game = self.game;
+//    UINavigationController* navigationController = segue.destinationViewController;
+//    INSOPurchaseViewController* purchaseViewController = [navigationController.viewControllers firstObject];
+//    purchaseViewController.game = self.game;
 }
 
 

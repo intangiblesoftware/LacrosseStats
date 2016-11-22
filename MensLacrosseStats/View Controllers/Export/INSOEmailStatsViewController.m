@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *prepareStatsButton;
 
 // IBActions
+- (IBAction)cancel:(id)sender;
 - (IBAction)toggleExport:(id)sender;
 - (IBAction)prepareStatsFile:(id)sender;
 
@@ -66,6 +67,12 @@
 }
 
 #pragma mark - IBActions
+- (void)cancel:(id)sender
+{
+    // Just dismiss
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)toggleExport:(id)sender
 {
     if (self.exportToggleSwitch.isOn) {
