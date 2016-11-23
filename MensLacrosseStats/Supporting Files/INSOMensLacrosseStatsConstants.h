@@ -12,6 +12,9 @@
 
 // User Defaults
 extern NSString * const INSODefaultShouldImportCategoriesAndEventsKey;
+extern NSString * const INSOExportGameSummaryDefaultKey;
+extern NSString * const INSOExportPlayerStatsDefaultKey;
+extern NSString * const INSOExportMaxPrepsDefaultKey;
 
 // Import Keys
 extern NSString * const INSOEventTitleKey;

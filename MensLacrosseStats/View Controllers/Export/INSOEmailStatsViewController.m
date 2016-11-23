@@ -19,17 +19,18 @@
 
 @interface INSOEmailStatsViewController () <MFMailComposeViewControllerDelegate>
 // IBOutlets
-@property (weak, nonatomic) IBOutlet UILabel *exportToggleLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *exportToggleSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *gameSummarySwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *playerStatsSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *maxPrepsSwitch; 
 
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-@property (weak, nonatomic) IBOutlet UIButton *prepareStatsButton;
+@property (weak, nonatomic) IBOutlet UIButton *exportStatsButton;
 
 // IBActions
 - (IBAction)cancel:(id)sender;
-- (IBAction)toggleExport:(id)sender;
+- (IBAction)toggledSwitch:(id)sender;
 - (IBAction)prepareStatsFile:(id)sender;
 
 @property (nonatomic, assign) BOOL isPreparingForBoys;
@@ -42,23 +43,9 @@
 {
     [super viewDidLoad];
     
-    if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
-        self.isPreparingForBoys = YES;
-    } else {
-        self.isPreparingForBoys = NO;
-    }
-    
-    if (self.isExportingForMaxPreps) {
-        self.title = NSLocalizedString(@"MaxPreps Export", nil) ;
-        [self.exportToggleLabel removeFromSuperview];
-        [self.exportToggleSwitch removeFromSuperview];
-        self.messageLabel.text = NSLocalizedString(@"The app will export all stats collected in a format compatible for sending to MaxPreps.", nil);
-        self.messageLabel.font = [UIFont systemFontOfSize:17.0];
-        [self.prepareStatsButton setTitle:NSLocalizedString(@"Prepare MaxPreps File", nil) forState:UIControlStateNormal]; 
-    } else {
-        self.title = NSLocalizedString(@"Email Export", nil) ;
-        [self.prepareStatsButton setTitle:NSLocalizedString(@"Prepare .CSV File", nil) forState:UIControlStateNormal];
-    }
+    [self.gameSummarySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportGameSummaryDefaultKey]];
+    [self.playerStatsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportPlayerStatsDefaultKey]];
+    [self.maxPrepsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportMaxPrepsDefaultKey]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,64 +60,119 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)toggleExport:(id)sender
+- (void)toggledSwitch:(id)sender
 {
-    if (self.exportToggleSwitch.isOn) {
-        self.messageLabel.text = NSLocalizedString(@"The app will export only those stats collected for this game.", nil);
-    } else {
-        self.messageLabel.text = NSLocalizedString(@"The app will export all available stats whether specifically collected or not.", nil);
-    }
+    self.exportStatsButton.enabled = [self shouldEnableExportStatsButton];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:self.gameSummarySwitch.isOn forKey:INSOExportGameSummaryDefaultKey];
+    [[NSUserDefaults standardUserDefaults] setBool:self.playerStatsSwitch.isOn forKey:INSOExportPlayerStatsDefaultKey];
+    [[NSUserDefaults standardUserDefaults] setBool:self.maxPrepsSwitch.isOn forKey:INSOExportMaxPrepsDefaultKey];
 }
 
 - (void)prepareStatsFile:(id)sender
 {
     // Freeze the UI
-    self.exportToggleSwitch.enabled = NO;
-    self.prepareStatsButton.enabled = NO;
-    [self.activityIndicator startAnimating];
+    [self disableUI];
     
+    [self performSelector:@selector(enableUI) withObject:self afterDelay:3.0]; 
+    
+    
+    /*
     // Now actually prepare the stats file
     INSOEmailStatsFileGenerator* fileGenerator = [[INSOEmailStatsFileGenerator alloc] initWithGame:self.game];
-    if (self.isExportingForMaxPreps) {
+    if (self.maxPrepsSwitch.isOn) {
         // Boys or girls?
         if (self.isPreparingForBoys) {
             [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.gameSummarySwitch.enabled = YES;
+                self.playerStatsSwitch.enabled = YES;
+                self.maxPrepsSwitch.enabled = YES;
                 self.prepareStatsButton.enabled = YES;
                 [self.activityIndicator stopAnimating];
                 
-                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
+//                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
             }];
         } else {
             [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.gameSummarySwitch.enabled = YES;
+                self.playerStatsSwitch.enabled = YES;
+                self.maxPrepsSwitch.enabled = YES;
                 self.prepareStatsButton.enabled = YES;
                 [self.activityIndicator stopAnimating];
                 
-                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
-            }];
-        }
-    } else {
-        // Not exporting for max preps so configure differently
-        if (self.exportToggleSwitch.isOn) {
-            [fileGenerator createGameStatsDataFileForRecordedStats:^(NSData *gameStatsData) {
-                self.exportToggleSwitch.enabled = YES;
-                self.prepareStatsButton.enabled = YES;
-                [self.activityIndicator stopAnimating];
-                
-                [self prepareEmailMessageForStatsData:gameStatsData];
-            }];
-        } else {
-            [fileGenerator createGameStatsDataFileForAllStats:^(NSData *gameStatsData) {
-                self.exportToggleSwitch.enabled = YES;
-                self.prepareStatsButton.enabled = YES;
-                [self.activityIndicator stopAnimating];
-                
-                [self prepareEmailMessageForStatsData:gameStatsData];
+//                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
             }];
         }
     }
+    
+    if (self.gameSummarySwitch.isOn) {
+        if (self.isPreparingForBoys) {
+            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.gameSummarySwitch.enabled = YES;
+                self.playerStatsSwitch.enabled = YES;
+                self.maxPrepsSwitch.enabled = YES;
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+            }];
+        } else {
+            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.gameSummarySwitch.enabled = YES;
+                self.playerStatsSwitch.enabled = YES;
+                self.maxPrepsSwitch.enabled = YES;
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+            }];
+        }
+    }
+    
+    if (self.playerStatsSwitch.isOn) {
+        if (self.isPreparingForBoys) {
+            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.gameSummarySwitch.enabled = YES;
+                self.playerStatsSwitch.enabled = YES;
+                self.maxPrepsSwitch.enabled = YES;
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+            }];
+        } else {
+            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
+                self.gameSummarySwitch.enabled = YES;
+                self.playerStatsSwitch.enabled = YES;
+                self.maxPrepsSwitch.enabled = YES;
+                self.prepareStatsButton.enabled = YES;
+                [self.activityIndicator stopAnimating];
+                
+            }];
+        }
+    }
+     */
 }
 
 #pragma mark - Private Methods
+- (void)disableUI {
+    self.gameSummarySwitch.enabled = NO;
+    self.playerStatsSwitch.enabled = NO;
+    self.maxPrepsSwitch.enabled = NO;
+    self.exportStatsButton.enabled = NO;
+    [self.activityIndicator startAnimating];
+}
+
+- (void)enableUI {
+    self.gameSummarySwitch.enabled = YES;
+    self.playerStatsSwitch.enabled = YES;
+    self.maxPrepsSwitch.enabled = YES;
+    self.exportStatsButton.enabled = YES;
+    [self.activityIndicator stopAnimating];
+}
+
+- (BOOL)shouldEnableExportStatsButton
+{
+    return self.gameSummarySwitch.isOn || self.playerStatsSwitch.isOn || self.maxPrepsSwitch.isOn;
+}
+
 - (void)prepareEmailMessageForStatsData:(NSData*)statsData
 {
     if ([MFMailComposeViewController canSendMail]) {

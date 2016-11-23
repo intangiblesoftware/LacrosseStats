@@ -12,6 +12,9 @@
 
 #pragma mark - User Defaults
 NSString * const INSODefaultShouldImportCategoriesAndEventsKey = @"INSOShouldImportCategoriesKey";
+NSString * const INSOExportGameSummaryDefaultKey               = @"INSOExportGameSummaryDefaultKey";
+NSString * const INSOExportPlayerStatsDefaultKey               = @"INSOExportPlayerStatsDefaultKey";
+NSString * const INSOExportMaxPrepsDefaultKey                  = @"INSOExportMaxPrepsDefaultKey";
 
 #pragma mark - Import keys
 NSString * const INSOEventTitleKey     = @"EventTitle";
