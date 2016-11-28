@@ -256,13 +256,11 @@ static const CGFloat INSODefaultAnimationDuration = 0.25;
     if ([segue.identifier isEqualToString:INSOEmailStatsSegueIdentifier]) {
         INSOEmailStatsViewController* dest = segue.destinationViewController;
         dest.game = self.game;
-        dest.isExportingForMaxPreps = NO;
     }
     
     if ([segue.identifier isEqualToString:INSOMaxPrepsExportSegueIdentifier]) {
         INSOEmailStatsViewController* dest = segue.destinationViewController;
         dest.game = self.game;
-        dest.isExportingForMaxPreps = YES;
     }
 }
 

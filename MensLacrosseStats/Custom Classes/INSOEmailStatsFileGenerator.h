@@ -19,10 +19,11 @@ typedef void(^completion)(NSData* gameStatsData);
 
 @property (nonatomic) Game* game;
 
-- (void)createGameStatsDataFileForAllStats:(completion)completion;
-- (void)createGameStatsDataFileForRecordedStats:(completion)completion;
+- (void)createGameSummaryData:(completion)completion;
+- (void)createPlayerStatsData:(completion)completion;
 
 - (void)createBoysMaxPrepsGameStatsFile:(completion)completion;
-- (void)createGirlsMaxPrepsGameStatsFile:(completion)completion; 
+- (void)createGirlsMaxPrepsGameStatsFile:(completion)completion;
+
 
 @end

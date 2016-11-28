@@ -17,7 +17,7 @@
 
 #import "Game.h"
 
-@interface INSOEmailStatsViewController () <MFMailComposeViewControllerDelegate>
+@interface INSOEmailStatsViewController () <UITableViewDataSource, UITabBarDelegate, MFMailComposeViewControllerDelegate>
 // IBOutlets
 @property (weak, nonatomic) IBOutlet UISwitch *gameSummarySwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *playerStatsSwitch;
@@ -29,11 +29,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *exportStatsButton;
 
 // IBActions
-- (IBAction)cancel:(id)sender;
+- (IBAction)done:(id)sender;
 - (IBAction)toggledSwitch:(id)sender;
-- (IBAction)prepareStatsFile:(id)sender;
+- (IBAction)exportStats:(id)sender;
 
 @property (nonatomic, assign) BOOL isPreparingForBoys;
+
+@property (nonatomic) NSData *maxPrepsAttachmentData;
+@property (nonatomic) NSData *playerStatsAttachmentData;
+@property (nonatomic) NSData *gameSummaryAttachmentData;
 
 @end
 
@@ -43,9 +47,17 @@
 {
     [super viewDidLoad];
     
+    // Are we sending boys or girls stats?
+    
     [self.gameSummarySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportGameSummaryDefaultKey]];
     [self.playerStatsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportPlayerStatsDefaultKey]];
     [self.maxPrepsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportMaxPrepsDefaultKey]];
+
+    if (![MFMailComposeViewController canSendMail]) {
+        // Can't send email so disable UI and put up a message
+        [self disableUI];
+        self.messageLabel.text = @"Unable to export stats via email. Check your mail settings and try again.";
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,7 +66,7 @@
 }
 
 #pragma mark - IBActions
-- (void)cancel:(id)sender
+- (void)done:(id)sender
 {
     // Just dismiss
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -69,86 +81,45 @@
     [[NSUserDefaults standardUserDefaults] setBool:self.maxPrepsSwitch.isOn forKey:INSOExportMaxPrepsDefaultKey];
 }
 
-- (void)prepareStatsFile:(id)sender
+- (void)exportStats:(id)sender
 {
     // Freeze the UI
     [self disableUI];
     
-    [self performSelector:@selector(enableUI) withObject:self afterDelay:3.0]; 
-    
-    
-    /*
-    // Now actually prepare the stats file
+    // Prepare the stats file(s)
     INSOEmailStatsFileGenerator* fileGenerator = [[INSOEmailStatsFileGenerator alloc] initWithGame:self.game];
+    
     if (self.maxPrepsSwitch.isOn) {
         // Boys or girls?
         if (self.isPreparingForBoys) {
-            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
-                self.gameSummarySwitch.enabled = YES;
-                self.playerStatsSwitch.enabled = YES;
-                self.maxPrepsSwitch.enabled = YES;
-                self.prepareStatsButton.enabled = YES;
-                [self.activityIndicator stopAnimating];
-                
-//                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
+            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *maxPrepsData) {
+                self.maxPrepsAttachmentData = maxPrepsData;
             }];
         } else {
-            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
-                self.gameSummarySwitch.enabled = YES;
-                self.playerStatsSwitch.enabled = YES;
-                self.maxPrepsSwitch.enabled = YES;
-                self.prepareStatsButton.enabled = YES;
-                [self.activityIndicator stopAnimating];
-                
-//                [self prepareEmailMessageForMaxPrepsData:gameStatsData];
+            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *maxPrepsData) {
+                self.maxPrepsAttachmentData = maxPrepsData;
             }];
         }
     }
     
     if (self.gameSummarySwitch.isOn) {
         if (self.isPreparingForBoys) {
-            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
-                self.gameSummarySwitch.enabled = YES;
-                self.playerStatsSwitch.enabled = YES;
-                self.maxPrepsSwitch.enabled = YES;
-                self.prepareStatsButton.enabled = YES;
-                [self.activityIndicator stopAnimating];
-                
-            }];
-        } else {
-            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
-                self.gameSummarySwitch.enabled = YES;
-                self.playerStatsSwitch.enabled = YES;
-                self.maxPrepsSwitch.enabled = YES;
-                self.prepareStatsButton.enabled = YES;
-                [self.activityIndicator stopAnimating];
-                
+            [fileGenerator createGameSummaryData:^(NSData *gameSummaryData) {
+                self.gameSummaryAttachmentData = gameSummaryData;
             }];
         }
     }
     
     if (self.playerStatsSwitch.isOn) {
         if (self.isPreparingForBoys) {
-            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
-                self.gameSummarySwitch.enabled = YES;
-                self.playerStatsSwitch.enabled = YES;
-                self.maxPrepsSwitch.enabled = YES;
-                self.prepareStatsButton.enabled = YES;
-                [self.activityIndicator stopAnimating];
-                
-            }];
-        } else {
-            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *gameStatsData) {
-                self.gameSummarySwitch.enabled = YES;
-                self.playerStatsSwitch.enabled = YES;
-                self.maxPrepsSwitch.enabled = YES;
-                self.prepareStatsButton.enabled = YES;
-                [self.activityIndicator stopAnimating];
-                
+            [fileGenerator createPlayerStatsData:^(NSData *playerStatsData) {
+                self.playerStatsAttachmentData = playerStatsData;
             }];
         }
     }
-     */
+    
+    // Send the email
+    [self actuallySendEmail];
 }
 
 #pragma mark - Private Methods
@@ -170,10 +141,10 @@
 
 - (BOOL)shouldEnableExportStatsButton
 {
-    return self.gameSummarySwitch.isOn || self.playerStatsSwitch.isOn || self.maxPrepsSwitch.isOn;
+    return [MFMailComposeViewController canSendMail] && (self.gameSummarySwitch.isOn || self.playerStatsSwitch.isOn || self.maxPrepsSwitch.isOn);
 }
 
-- (void)prepareEmailMessageForStatsData:(NSData*)statsData
+- (void)actuallySendEmail
 {
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController* mailViewcontroller = [[MFMailComposeViewController alloc] init];
@@ -190,44 +161,21 @@
         [mailViewcontroller setMessageBody:body isHTML:NO];
         
         // Add attachment(s)
-        NSString* fileName = NSLocalizedString(@"GameStats.csv", nil);
-        [mailViewcontroller addAttachmentData:statsData mimeType:@"text/csv" fileName:fileName];
-        
-        if (self.isPreparingForBoys) {
-            [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookBlue]];
-        } else {
-            [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookTeal]];
+        if (self.maxPrepsAttachmentData) {
+            NSString* fileName = NSLocalizedString(@"MaxPrepsExport.txt", nil);
+            [mailViewcontroller addAttachmentData:self.maxPrepsAttachmentData mimeType:@"text/txt" fileName:fileName];
         }
         
-        // Display the view to mail the message.
-        [self presentViewController:mailViewcontroller animated:YES completion:nil];
+        if (self.gameSummaryAttachmentData) {
+            NSString* fileName = NSLocalizedString(@"GameSummaryExport.csv", nil);
+            [mailViewcontroller addAttachmentData:self.gameSummaryAttachmentData mimeType:@"text/csv" fileName:fileName];
+        }
         
-    } else {
-        // unable to send mail. Hmmm;
-        NSLog(@"Unable to send email.");
-    }
-}
+        if (self.playerStatsAttachmentData) {
+            NSString* fileName = NSLocalizedString(@"PlayerStatsExport.csv", nil);
+            [mailViewcontroller addAttachmentData:self.playerStatsAttachmentData mimeType:@"text/csv" fileName:fileName];
+        }
 
-- (void)prepareEmailMessageForMaxPrepsData:(NSData*)maxPrepsData
-{
-    if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController* mailViewcontroller = [[MFMailComposeViewController alloc] init];
-        mailViewcontroller.mailComposeDelegate = self;
-        
-        // Get subject
-        NSString* subject = [self maxPrepsMessageSubject];
-        
-        // Get body
-        NSString* body = [self maxPrepsMessageBody];
-        
-        // Now set these things
-        [mailViewcontroller setSubject:subject];
-        [mailViewcontroller setMessageBody:body isHTML:NO];
-        
-        // Add attachment(s)
-        NSString* fileName = NSLocalizedString(@"MaxPrepsExport.txt", nil);
-        [mailViewcontroller addAttachmentData:maxPrepsData mimeType:@"text/plain" fileName:fileName];
-        
         if (self.isPreparingForBoys) {
             [mailViewcontroller.navigationBar setTintColor:[UIColor scorebookBlue]];
         } else {
@@ -236,10 +184,15 @@
         
         // Display the view to mail the message.
         [self presentViewController:mailViewcontroller animated:YES completion:nil];
+        [self presentViewController:mailViewcontroller animated:YES completion:^{
+            // Re-enable the UI so that when the user dismisses the mail view,
+            // the UI is ready to re-use.
+            [self enableUI];
+        }];
         
     } else {
         // unable to send mail. Hmmm;
-        NSLog(@"Unable to send email.");
+        NSLog(@"Error - Unable to send email. Should never have gotten here.");
     }
 }
 
@@ -248,18 +201,7 @@
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     
-    NSString* localizedSubjectString = NSLocalizedString(@"Game stats for %@ vs. %@ on %@", nil);
-    NSString* subject = [NSString stringWithFormat:localizedSubjectString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime]];
-    
-    return subject;
-}
-
-- (NSString*)maxPrepsMessageSubject
-{
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    
-    NSString* localizedSubjectString = NSLocalizedString(@"MaxPreps Export for %@ vs. %@ on %@", nil);
+    NSString* localizedSubjectString = NSLocalizedString(@"Lacrosse Stats export for %@ vs. %@ on %@", nil);
     NSString* subject = [NSString stringWithFormat:localizedSubjectString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime]];
     
     return subject;
@@ -270,21 +212,23 @@
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     
-    NSString* localizedSubjectString = NSLocalizedString(@"Game stats for %@ vs. %@ on %@ at %@.\n", nil);
-    NSString* subject = [NSString stringWithFormat:localizedSubjectString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime], self.game.location];
+    NSMutableArray *exportArray = [NSMutableArray new];
+    if (self.gameSummarySwitch.isOn) {
+        [exportArray addObject:NSLocalizedString(@"Game summary", nil)];
+    }
     
-    return subject;
-}
-
-- (NSString*)maxPrepsMessageBody
-{
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    if (self.playerStatsSwitch.isOn) {
+        [exportArray addObject:NSLocalizedString(@"Individual player stats", nil)];
+    }
     
-    NSString* localizedSubjectString = NSLocalizedString(@"MaxPreps file export for %@ vs. %@ on %@ at %@.\n", nil);
-    NSString* subject = [NSString stringWithFormat:localizedSubjectString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime], self.game.location];
+    if (self.maxPrepsSwitch.isOn) {
+        [exportArray addObject:NSLocalizedString(@"MaxPreps file", nil)];
+    }
     
-    return subject;
+    NSString* localizedMessageString = NSLocalizedString(@"Stats files for %@ vs. %@ on %@ at %@.\n %@ attached.", nil);
+    NSString* messageBody = [NSString stringWithFormat:localizedMessageString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime], self.game.location, [exportArray componentsJoinedByString:@", "]];
+    
+    return messageBody;
 }
 
 #pragma mark - MFMailComposeControllerDelegate

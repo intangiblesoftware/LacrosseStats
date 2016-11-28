@@ -139,8 +139,22 @@
     completion(statData);
 }
 
+- (void)createGameSummaryData:(completion)completion
+{
+    completion(nil);
+}
+
+- (void)createPlayerStatsData:(completion)completion
+{
+    completion(nil);
+}
+
 - (void)createBoysMaxPrepsGameStatsFile:(completion)completion
 {
+    completion(nil);
+    
+    return; 
+    
     NSMutableArray* gameStatsArray = [NSMutableArray new];
     
     // First line is company ID
@@ -168,6 +182,10 @@
 
 - (void)createGirlsMaxPrepsGameStatsFile:(completion)completion
 {
+    completion (nil);
+    
+    return;
+    
     NSMutableArray* gameStatsArray = [NSMutableArray new];
     
     // First line is company ID

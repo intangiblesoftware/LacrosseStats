@@ -10,9 +10,8 @@
 
 @class Game;
 
-@interface INSOEmailStatsViewController : UIViewController
+@interface INSOEmailStatsViewController : UITableViewController
 
 @property (nonatomic) Game* game; 
-@property (nonatomic) BOOL isExportingForMaxPreps;
 
 @end
