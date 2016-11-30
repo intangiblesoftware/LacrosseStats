@@ -49,7 +49,7 @@
     if (self) {
         _game = game;
         
-        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:@"Men’s Lacrosse Stats"]) {
+        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
             _isExportingForBoys = YES;
         } else {
             _isExportingForBoys = NO;

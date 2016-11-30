@@ -110,9 +110,9 @@
 - (NSString *)appProductName
 {
     if ([self.oneYearProduct.productIdentifier isEqualToString:INSOMensLacrosseStatsOneYearProductIdentifier]) {
-        return @"Men’s Lacrosse Stats";
+        return INSOMensProductName;
     } else {
-        return @"Women’s Lacrosse Stats";
+        return INSOWomensProductName;
     }
 }
 

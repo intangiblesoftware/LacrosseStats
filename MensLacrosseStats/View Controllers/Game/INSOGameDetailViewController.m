@@ -14,7 +14,7 @@
 #import "INSORosterPlayerSelectorViewController.h"
 #import "INSOMensLacrosseStatsEnum.h"
 #import "INSOGameStatsViewController.h"
-#import "INSOPurchaseViewController.h"
+#import "INSOEmailStatsViewController.h"
 
 #import "Game.h"
 #import "GameEvent.h"
@@ -208,9 +208,9 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 
 - (void)prepareForExportStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-//    UINavigationController* navigationController = segue.destinationViewController;
-//    INSOPurchaseViewController* purchaseViewController = [navigationController.viewControllers firstObject];
-//    purchaseViewController.game = self.game;
+    UINavigationController* navigationController = segue.destinationViewController;
+    INSOEmailStatsViewController* emailViewController = [navigationController.viewControllers firstObject];
+    emailViewController.game = self.game;
 }
 
 

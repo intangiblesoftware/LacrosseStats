@@ -48,8 +48,11 @@
     [super viewDidLoad];
     
     // Are we sending boys or girls stats?
-    if ([self.oneYearProduct.productIdentifier isEqualToString:INSOMensLacrosseStatsOneYearProductIdentifier]) {
-
+    if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
+        self.isPreparingForBoys = YES;
+    } else {
+        self.isPreparingForBoys = NO;
+    }
     
     [self.gameSummarySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportGameSummaryDefaultKey]];
     [self.playerStatsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportPlayerStatsDefaultKey]];
