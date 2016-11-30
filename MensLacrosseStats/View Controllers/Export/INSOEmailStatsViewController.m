@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *playerStatsSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *maxPrepsSwitch; 
 
+@property (weak, nonatomic) IBOutlet UILabel *instructionLabel; 
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
@@ -47,6 +48,8 @@
 {
     [super viewDidLoad];
     
+    self.tableView.alwaysBounceVertical = NO;
+    
     // Are we sending boys or girls stats?
     if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
         self.isPreparingForBoys = YES;
@@ -57,6 +60,10 @@
     [self.gameSummarySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportGameSummaryDefaultKey]];
     [self.playerStatsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportPlayerStatsDefaultKey]];
     [self.maxPrepsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportMaxPrepsDefaultKey]];
+    
+    self.exportStatsButton.enabled = [self shouldEnableExportStatsButton];
+    
+    self.messageLabel.text = nil;
 
     if (![MFMailComposeViewController canSendMail]) {
         // Can't send email so disable UI and put up a message
@@ -217,23 +224,36 @@
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     
-    NSMutableArray *exportArray = [NSMutableArray new];
+    NSString* localizedMessageString = NSLocalizedString(@"Stats files for %@ vs. %@ on %@ at %@.\n\n", nil);
+    NSString* messageBody = [NSString stringWithFormat:localizedMessageString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime], self.game.location];
+    NSMutableString *mutableMessageBody = [[NSMutableString alloc] initWithString:messageBody];
+    
+    int fileCount = self.gameSummarySwitch.isOn;
+    fileCount += self.playerStatsSwitch.isOn;
+    fileCount += self.maxPrepsSwitch.isOn;
+    
+    if (fileCount == 1) {
+        [mutableMessageBody appendString:NSLocalizedString(@"The following file is attached:\n", nil)];
+    } else {
+        [mutableMessageBody appendString:NSLocalizedString(@"The following files are attached:\n", nil)];
+    }
+    
     if (self.gameSummarySwitch.isOn) {
-        [exportArray addObject:NSLocalizedString(@"Game summary", nil)];
+        [mutableMessageBody appendString:NSLocalizedString(@"Game Summary", nil)];
+        [mutableMessageBody appendString:@"\n"];
     }
     
     if (self.playerStatsSwitch.isOn) {
-        [exportArray addObject:NSLocalizedString(@"Individual player stats", nil)];
+        [mutableMessageBody appendString:NSLocalizedString(@"Individual player stats", nil)];
+        [mutableMessageBody appendString:@"\n"];
     }
     
     if (self.maxPrepsSwitch.isOn) {
-        [exportArray addObject:NSLocalizedString(@"MaxPreps file", nil)];
+        [mutableMessageBody appendString:NSLocalizedString(@"MaxPreps file", nil)];
+        [mutableMessageBody appendString:@"\n"];
     }
     
-    NSString* localizedMessageString = NSLocalizedString(@"Stats files for %@ vs. %@ on %@ at %@.\n %@ attached.", nil);
-    NSString* messageBody = [NSString stringWithFormat:localizedMessageString, self.game.visitingTeam, self.game.homeTeam, [dateFormatter stringFromDate:self.game.gameDateTime], self.game.location, [exportArray componentsJoinedByString:@", "]];
-    
-    return messageBody;
+    return mutableMessageBody;
 }
 
 #pragma mark - MFMailComposeControllerDelegate
@@ -241,19 +261,20 @@
 {
     switch (result) {
         case MFMailComposeResultSent:
-            NSLog(@"You sent the email.");
+            // It would be nice if I could play a sound here.
+            self.messageLabel.text = NSLocalizedString(@"Email sent.", nil);
             break;
         case MFMailComposeResultSaved:
-            NSLog(@"You saved a draft of this email");
+            self.messageLabel.text = NSLocalizedString(@"Draft email saved.", nil);
             break;
         case MFMailComposeResultCancelled:
-            NSLog(@"You cancelled sending this email.");
+            self.messageLabel.text = NSLocalizedString(@"Email cancelled.", nil);
             break;
         case MFMailComposeResultFailed:
-            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+            self.messageLabel.text = NSLocalizedString(@"An error occurred when trying to compose this email.", nil);
             break;
         default:
-            NSLog(@"An error occurred when trying to compose this email");
+            self.messageLabel.text = nil;
             break;
     }
     
