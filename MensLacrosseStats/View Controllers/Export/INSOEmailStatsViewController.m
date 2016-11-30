@@ -48,6 +48,8 @@
     [super viewDidLoad];
     
     // Are we sending boys or girls stats?
+    if ([self.oneYearProduct.productIdentifier isEqualToString:INSOMensLacrosseStatsOneYearProductIdentifier]) {
+
     
     [self.gameSummarySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportGameSummaryDefaultKey]];
     [self.playerStatsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportPlayerStatsDefaultKey]];
@@ -56,6 +58,7 @@
     if (![MFMailComposeViewController canSendMail]) {
         // Can't send email so disable UI and put up a message
         [self disableUI];
+        [self.activityIndicator stopAnimating];
         self.messageLabel.text = @"Unable to export stats via email. Check your mail settings and try again.";
     }
 }
@@ -183,7 +186,6 @@
         }
         
         // Display the view to mail the message.
-        [self presentViewController:mailViewcontroller animated:YES completion:nil];
         [self presentViewController:mailViewcontroller animated:YES completion:^{
             // Re-enable the UI so that when the user dismisses the mail view,
             // the UI is ready to re-use.
