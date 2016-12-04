@@ -105,30 +105,26 @@
     if (self.maxPrepsSwitch.isOn) {
         // Boys or girls?
         if (self.isPreparingForBoys) {
-            [fileGenerator createBoysMaxPrepsGameStatsFile:^(NSData *maxPrepsData) {
+            [fileGenerator createMaxPrepsGameStatsData:^(NSData *maxPrepsData) {
                 self.maxPrepsAttachmentData = maxPrepsData;
             }];
         } else {
-            [fileGenerator createGirlsMaxPrepsGameStatsFile:^(NSData *maxPrepsData) {
+            [fileGenerator createMaxPrepsGameStatsData:^(NSData *maxPrepsData) {
                 self.maxPrepsAttachmentData = maxPrepsData;
             }];
         }
     }
     
     if (self.gameSummarySwitch.isOn) {
-        if (self.isPreparingForBoys) {
-            [fileGenerator createGameSummaryData:^(NSData *gameSummaryData) {
-                self.gameSummaryAttachmentData = gameSummaryData;
-            }];
-        }
+        [fileGenerator createGameSummaryData:^(NSData *gameSummaryData) {
+            self.gameSummaryAttachmentData = gameSummaryData;
+        }];
     }
     
     if (self.playerStatsSwitch.isOn) {
-        if (self.isPreparingForBoys) {
-            [fileGenerator createPlayerStatsData:^(NSData *playerStatsData) {
-                self.playerStatsAttachmentData = playerStatsData;
-            }];
-        }
+        [fileGenerator createPlayerStatsData:^(NSData *playerStatsData) {
+            self.playerStatsAttachmentData = playerStatsData;
+        }];
     }
     
     // Send the email

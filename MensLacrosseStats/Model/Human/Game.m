@@ -1,5 +1,6 @@
 #import "Game.h"
 #import "RosterPlayer.h"
+#import "Event.h"
 
 @interface Game ()
 
@@ -43,6 +44,19 @@
     }];
     
     return [matchingPlayers anyObject];
+}
+
+- (BOOL)didRecordEvent:(INSOEventCode)eventCode
+{
+    BOOL __block recordedEvent = NO;
+    [self.eventsToRecord enumerateObjectsUsingBlock:^(Event*  _Nonnull event, BOOL * _Nonnull stop) {
+        if (event.eventCodeValue == eventCode) {
+            recordedEvent = YES;
+            *stop = YES;
+        }
+    }];
+    
+    return recordedEvent;
 }
 
 @end
