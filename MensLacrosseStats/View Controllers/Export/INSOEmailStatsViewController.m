@@ -176,8 +176,8 @@
         }
         
         if (self.gameSummaryAttachmentData) {
-            NSString* fileName = NSLocalizedString(@"GameSummaryExport.csv", nil);
-            [mailViewcontroller addAttachmentData:self.gameSummaryAttachmentData mimeType:@"text/csv" fileName:fileName];
+            NSString* fileName = NSLocalizedString(@"GameSummaryExport.html", nil);
+            [mailViewcontroller addAttachmentData:self.gameSummaryAttachmentData mimeType:@"text/html" fileName:fileName];
         }
         
         if (self.playerStatsAttachmentData) {

@@ -19,6 +19,10 @@
 		B916A13E1C1DB42800E754A3 /* INSOPenaltyTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1361C1DB42800E754A3 /* INSOPenaltyTimeViewController.m */; };
 		B916A13F1C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1381C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m */; };
 		B916A1401C1DB42800E754A3 /* INSOShotResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A13A1C1DB42800E754A3 /* INSOShotResultViewController.m */; };
+		B917B6B51DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */ = {isa = PBXBuildFile; fileRef = B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */; };
+		B917B6B61DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */ = {isa = PBXBuildFile; fileRef = B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */; };
+		B917B6B81DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */ = {isa = PBXBuildFile; fileRef = B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */; };
+		B917B6B91DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */ = {isa = PBXBuildFile; fileRef = B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */; };
 		B92236DA1C7FEC820018E58D /* INSOMajorFoulResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92236D91C7FEC820018E58D /* INSOMajorFoulResultViewController.m */; };
 		B928F26D1BE2F9000028DD51 /* INSOGameStatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B928F26C1BE2F9000028DD51 /* INSOGameStatTableViewCell.m */; };
 		B92AF5A61C1CA043001043CA /* INSOReceiptValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B92AF5A51C1CA043001043CA /* INSOReceiptValidator.m */; };
@@ -151,6 +155,8 @@
 		B916A1381C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSORosterPlayerSelectorViewController.m; sourceTree = "<group>"; };
 		B916A1391C1DB42800E754A3 /* INSOShotResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOShotResultViewController.h; sourceTree = "<group>"; };
 		B916A13A1C1DB42800E754A3 /* INSOShotResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOShotResultViewController.m; sourceTree = "<group>"; };
+		B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GameSummaryHeaderFile.html; sourceTree = "<group>"; };
+		B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GameSummaryFooterFile.html; sourceTree = "<group>"; };
 		B92236D81C7FEC820018E58D /* INSOMajorFoulResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOMajorFoulResultViewController.h; sourceTree = "<group>"; };
 		B92236D91C7FEC820018E58D /* INSOMajorFoulResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMajorFoulResultViewController.m; sourceTree = "<group>"; };
 		B928F26B1BE2F9000028DD51 /* INSOGameStatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameStatTableViewCell.h; sourceTree = "<group>"; };
@@ -478,6 +484,8 @@
 				B99FDD711BB47A4A006FB373 /* INSOMensLacrosseStatsEnum.h */,
 				B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */,
 				B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */,
+				B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */,
+				B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -737,6 +745,8 @@
 			files = (
 				B97FD1931C5B0B5D000BC548 /* LaunchScreen.storyboard in Resources */,
 				B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */,
+				B917B6B81DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */,
+				B917B6B51DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */,
 				B99FDD5F1BB46907006FB373 /* Mens.xcassets in Resources */,
 				B97FD1941C5B0B5D000BC548 /* Main.storyboard in Resources */,
 			);
@@ -760,6 +770,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B917B6B91DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */,
+				B917B6B61DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */,
 				B9DECBE91C5C45B400481266 /* GameEvents.plist in Resources */,
 				B97FD1C71C5B9B8B000BC548 /* Mens.xcassets in Resources */,
 				B97FD19A1C5B0B8E000BC548 /* WomensMain.storyboard in Resources */,

@@ -120,7 +120,17 @@
 
 - (void)createGameSummaryData:(completion)completion
 {
-    completion(nil);
+    NSMutableString *fileContents = [[NSMutableString alloc] init];
+    
+    [fileContents appendString:[self gameStatsFileHeader]];
+    [fileContents appendString:[self gameStatsFieldingSection]];
+    [fileContents appendString:[self gameStatsScoringSection]];
+    [fileContents appendString:[self gameStatsExtraManSection]];
+    [fileContents appendString:[self gameStatsPenaltySection]];
+    [fileContents appendString:[self gameStatsFileFooter]];
+
+    NSData *gameSummaryData = [fileContents dataUsingEncoding:NSUTF8StringEncoding];
+    completion(gameSummaryData); 
 }
 
 - (void)createPlayerStatsData:(completion)completion
@@ -337,13 +347,55 @@
 }
 
 #pragma mark - Private methods
+- (NSString *)gameStatsFileHeader {
+    NSError *error = nil;
+    NSString *fileHeader = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GameSummaryHeaderFile" ofType:@"html"] encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        NSLog(@"Error reading game stats file header: %@", error.localizedDescription);
+        return nil;
+    }
+    fileHeader = [fileHeader stringByReplacingOccurrencesOfString:@"#HomeTeam#" withString:self.game.homeTeam];
+    fileHeader = [fileHeader stringByReplacingOccurrencesOfString:@"#VisitingTeam#" withString:self.game.visitingTeam];
+    fileHeader = [fileHeader stringByReplacingOccurrencesOfString:@"#HomeScore#" withString:[self.game.homeScore stringValue]];
+    fileHeader = [fileHeader stringByReplacingOccurrencesOfString:@"#VisitingScore#" withString:[self.game.visitorScore stringValue]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    fileHeader = [fileHeader stringByReplacingOccurrencesOfString:@"#GameDate#" withString:[dateFormatter stringFromDate:self.game.gameDateTime]];
+    return fileHeader;
+}
+
+- (NSString *)gameStatsFieldingSection {
+    return @"";
+}
+
+- (NSString *)gameStatsScoringSection {
+    return @"";
+}
+
+- (NSString *)gameStatsExtraManSection {
+    return @"";
+}
+
+- (NSString *)gameStatsPenaltySection {
+    return @"";
+}
+
+- (NSString *)gameStatsFileFooter {
+    NSError *error = nil;
+    NSString *fileFooter = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GameSummaryFooterFile" ofType:@"html"] encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        NSLog(@"Error reading game stats file header: %@", error.localizedDescription);
+        return nil;
+    }
+    return fileFooter;
+}
 
 - (NSArray *)headerRowForPlayerStats
 {
     NSMutableArray* header = [NSMutableArray new];
     
     // First the player number
-    [header addObject:@"Number"];
+    [header addObject:@"Player"];
     
     // Now the event titles
     // Really should localize this...sigh
