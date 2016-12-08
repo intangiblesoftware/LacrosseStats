@@ -365,7 +365,36 @@
 }
 
 - (NSString *)gameStatsFieldingSection {
-    return @"";
+    NSMutableString *fieldingSection = [[NSMutableString alloc] init];
+    
+    // Section header
+    [fieldingSection appendString:@"<tr>\n"];
+    [fieldingSection appendString:@"<th colspan=\"3\">Fielding</th>\n"];
+    [fieldingSection appendString:@"</tr>\n"];
+    
+    // And now the stats
+    INSOGameEventCounter *eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
+    BOOL isWatchingHomeTeam = [self.game.teamWatching isEqualToString:self.game.homeTeam]; 
+    
+    // Groundballs
+    if ([self.game didRecordEvent:INSOEventCodeGroundball]) {
+        NSNumber *homeGroundBalls = [eventCounter eventCountForHomeTeam:INSOEventCodeGroundball];
+        NSNumber *visitorGroundBalls = [eventCounter eventCountForVisitingTeam:INSOEventCodeGroundball];
+        
+        [fieldingSection appendString:@"<tr>\n"];
+        [fieldingSection appendFormat:@"<td>%@</td><td>Groundballs</td><td>%@</td>\n", homeGroundBalls, visitorGroundBalls];
+        [fieldingSection appendString:@"</tr>\n"];
+    }
+    
+    // Faceoffs
+    
+    // Clears
+    
+    // Turnovers
+    
+    // Caused Turnovers
+    
+    return fieldingSection;
 }
 
 - (NSString *)gameStatsScoringSection {

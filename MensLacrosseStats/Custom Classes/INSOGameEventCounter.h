@@ -17,12 +17,14 @@
 
 - (instancetype)initWithGame:(Game*)game;
 
-- (NSNumber*)eventCount:(INSOEventCode)eventCode;
-- (NSNumber*)eventCount:(INSOEventCode)eventCode forRosterPlayer:(RosterPlayer*)rosterPlayer;
-- (NSNumber*)totalPenalties;
-- (NSNumber*)totalPenaltiesForBoysRosterPlayer:(RosterPlayer*)rosterPlayer;
-- (NSNumber*)totalPenaltiesForGirlsRosterPlayer:(RosterPlayer*)rosterPlayer;
-- (NSNumber*)totalPenaltyTime;
-- (NSNumber*)totalPenaltyTimeforRosterPlayer:(RosterPlayer*)rosterPlayer;
+- (NSNumber *)eventCount:(INSOEventCode)eventCode;
+- (NSNumber *)eventCount:(INSOEventCode)eventCode forRosterPlayer:(RosterPlayer*)rosterPlayer;
+- (NSNumber *)eventCountForHomeTeam:(INSOEventCode)eventCode;
+- (NSNumber *)eventCountForVisitingTeam:(INSOEventCode)eventCode;
+- (NSNumber *)totalPenalties;
+- (NSNumber *)totalPenaltiesForBoysRosterPlayer:(RosterPlayer*)rosterPlayer;
+- (NSNumber *)totalPenaltiesForGirlsRosterPlayer:(RosterPlayer*)rosterPlayer;
+- (NSNumber *)totalPenaltyTime;
+- (NSNumber *)totalPenaltyTimeforRosterPlayer:(RosterPlayer*)rosterPlayer;
 
 @end

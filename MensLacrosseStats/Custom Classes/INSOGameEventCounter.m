@@ -21,6 +21,8 @@
 @property (nonatomic) Game* game;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 
+@property (nonatomic, assign) BOOL isWatchingHomeTeam;
+
 @end
 
 @implementation INSOGameEventCounter
@@ -32,6 +34,7 @@
     if (self) {
         _game = game;
         _managedObjectContext = game.managedObjectContext;
+        _isWatchingHomeTeam = [game.homeTeam isEqualToString:game.teamWatching];
     }
     
     return self;
@@ -41,6 +44,42 @@
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@", self.game, @(eventCode)];
     return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSNumber *)eventCountForHomeTeam:(INSOEventCode)eventCode
+{
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@ AND player.number == %@", self.game, @(eventCode), self.isWatchingHomeTeam ? @(INSOTeamWatchingPlayerNumber) : @(INSOOtherTeamPlayerNumber)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        NSInteger playerCount = 0;
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                playerCount += [[self eventCount:eventCode forRosterPlayer:player] integerValue];
+            }
+        }
+        eventCount += playerCount;
+    }
+    return @(eventCount);
+}
+
+- (NSNumber *)eventCountForVisitingTeam:(INSOEventCode)eventCode
+{
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@ AND player.number == %@", self.game, @(eventCode), self.isWatchingHomeTeam ? @(INSOOtherTeamPlayerNumber) : @(INSOTeamWatchingPlayerNumber)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (!self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        NSInteger playerCount = 0;
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                playerCount += [[self eventCount:eventCode forRosterPlayer:player] integerValue];
+            }
+        }
+        eventCount += playerCount;
+    }
+    return @(eventCount);
 }
 
 - (NSNumber*)eventCount:(INSOEventCode)eventCode forRosterPlayer:(RosterPlayer*)rosterPlayer
