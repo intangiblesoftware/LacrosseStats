@@ -21,6 +21,12 @@
 - (NSNumber *)eventCount:(INSOEventCode)eventCode forRosterPlayer:(RosterPlayer*)rosterPlayer;
 - (NSNumber *)eventCountForHomeTeam:(INSOEventCode)eventCode;
 - (NSNumber *)eventCountForVisitingTeam:(INSOEventCode)eventCode;
+
+- (NSNumber *)extraManGoalsForHomeTeam;
+- (NSNumber *)extraManGoalsForVisitingTeam;
+- (NSNumber *)manDownGoalsAllowedForHomeTeam;
+- (NSNumber *)manDownGoalsAllowedForVisitingTeam;
+
 - (NSNumber *)totalPenalties;
 - (NSNumber *)totalPenaltiesForBoysRosterPlayer:(RosterPlayer*)rosterPlayer;
 - (NSNumber *)totalPenaltiesForGirlsRosterPlayer:(RosterPlayer*)rosterPlayer;

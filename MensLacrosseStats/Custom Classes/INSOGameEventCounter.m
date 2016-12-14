@@ -88,6 +88,56 @@
     return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
 }
 
+- (NSNumber *)extraManGoalsForHomeTeam
+{
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@ AND player.number == %@ AND isExtraManGoal == YES", self.game, @(INSOEventCodeGoal), self.isWatchingHomeTeam ? @(INSOTeamWatchingPlayerNumber) : @(INSOOtherTeamPlayerNumber)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                for (GameEvent *gameEvent in player.events) {
+                    if (gameEvent.isExtraManGoalValue) {
+                        eventCount += 1;
+                    }
+                }
+            }
+        }
+    }
+    return @(eventCount);
+}
+
+- (NSNumber *)extraManGoalsForVisitingTeam
+{
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@ AND player.number == %@ AND isExtraManGoal == YES", self.game, @(INSOEventCodeGoal), self.isWatchingHomeTeam ? @(INSOOtherTeamPlayerNumber) : @(INSOTeamWatchingPlayerNumber)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (!self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                for (GameEvent *gameEvent in player.events) {
+                    if (gameEvent.isExtraManGoalValue) {
+                        eventCount += 1;
+                    }
+                }
+            }
+        }
+    }
+    return @(eventCount);
+}
+
+- (NSNumber *)manDownGoalsAllowedForHomeTeam
+{
+    return @(0);
+}
+
+- (NSNumber *)manDownGoalsAllowedForVisitingTeam
+{
+    return @(0);
+}
+
 - (NSNumber*)totalPenalties
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@)", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls)];

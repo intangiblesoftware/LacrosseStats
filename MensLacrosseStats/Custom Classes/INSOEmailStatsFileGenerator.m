@@ -486,7 +486,7 @@
         
         NSInteger visitorShots = [[eventCounter eventCountForVisitingTeam:INSOEventCodeShot] integerValue];
         NSInteger visitorGoals = [[eventCounter eventCountForVisitingTeam:INSOEventCodeGoal] integerValue];
-        CGFloat   visitorShootingPct = (visitorGoals > 0) ? (CGFloat)visitorGoals / visitorShots : 0.0;
+        CGFloat   visitorShootingPct = (visitorShots > 0) ? (CGFloat)visitorGoals / visitorShots : 0.0;
         NSString *visitorShootingPctString = [self.percentFormatter stringFromNumber:@(visitorShootingPct)];
 
         [scoringSection appendString:@"<tr>\n"];
@@ -590,7 +590,89 @@
 }
 
 - (NSString *)gameStatsExtraManSection {
-    return @"";
+    NSMutableString *emoSection = [[NSMutableString alloc] init];
+    
+    // Section header
+    [emoSection appendString:@"<tr>\n"];
+    [emoSection appendString:@"<th colspan=\"3\">Extra-Man</th>\n"];
+    [emoSection appendString:@"</tr>\n"];
+    
+    // And now the stats
+    INSOGameEventCounter *eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
+    
+    // EMO
+    if ([self.game didRecordEvent:INSOEventCodeEMO]) {
+        NSNumber *homeEMO = [eventCounter eventCountForHomeTeam:INSOEventCodeEMO];
+        NSNumber *visitorEMO = [eventCounter eventCountForVisitingTeam:INSOEventCodeEMO];
+        
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>EMO</td><td>%@</td>\n", homeEMO, visitorEMO];
+        [emoSection appendString:@"</tr>\n"];
+    }
+    
+    // EMO goals
+    if ([self.game didRecordEvent:INSOEventCodeEMO] && [self.game didRecordEvent:INSOEventCodeGoal]) {
+        NSInteger homeEMOGoals = [[eventCounter extraManGoalsForHomeTeam] integerValue];
+        NSInteger visitorEMOGoals = [[eventCounter extraManGoalsForVisitingTeam] integerValue];
+        
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>EMO Goals</td><td>%@</td>\n", @(homeEMOGoals), @(visitorEMOGoals)];
+        [emoSection appendString:@"</tr>\n"];
+        
+        // Just do the emo scoring here while we're at it.
+        // EMO scoring = emo goals / emo
+        NSInteger homeEMO = [[eventCounter eventCountForHomeTeam:INSOEventCodeEMO] integerValue];
+        NSInteger visitorEMO = [[eventCounter eventCountForVisitingTeam:INSOEventCodeEMO] integerValue];
+        
+        CGFloat homeEMOScoring = (homeEMO > 0) ? (CGFloat)homeEMOGoals / homeEMO : 0.0;
+        NSString *homeEMOScoringString = [self.percentFormatter stringFromNumber:@(homeEMOScoring)];
+        CGFloat visitorEMOScoring = (visitorEMO > 0) ? (CGFloat)visitorEMOGoals / visitorEMO : 0.0;
+        NSString *visitorEMOScoringString = [self.percentFormatter stringFromNumber:@(visitorEMOScoring)];
+        
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>EMO Scoring</td><td>%@</td>\n", homeEMOScoringString, visitorEMOScoringString];
+        [emoSection appendString:@"</tr>\n"];
+    }
+
+    
+    // Man-down
+    if ([self.game didRecordEvent:INSOEventCodeManDown]) {
+        NSNumber *homeManDown = [eventCounter eventCountForHomeTeam:INSOEventCodeManDown];
+        NSNumber *visitorManDown = [eventCounter eventCountForVisitingTeam:INSOEventCodeManDown];
+        
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>Man-down</td><td>%@</td>\n", homeManDown, visitorManDown];
+        [emoSection appendString:@"</tr>\n"];
+    }
+    
+    // Man-down goals allowed
+    // A man-down goal allowed is an extra-man goal scored by the other team.
+    // Proceed accordingly.
+    if ([self.game didRecordEvent:INSOEventCodeManDown] && [self.game didRecordEvent:INSOEventCodeGoal]) {
+        NSInteger homeManDown = [[eventCounter eventCountForHomeTeam:INSOEventCodeManDown] integerValue];
+        NSInteger visitorManDown = [[eventCounter eventCountForVisitingTeam:INSOEventCodeManDown] integerValue];
+        
+        NSInteger homeMDGoalsAllowed = [[eventCounter extraManGoalsForVisitingTeam] integerValue];
+        NSInteger visitorMDGoalsAllowed = [[eventCounter extraManGoalsForHomeTeam] integerValue];
+        
+        
+        CGFloat homeManDownScoring = (homeManDown > 0) ? (CGFloat)homeMDGoalsAllowed / homeManDown : 0.0;
+        CGFloat visitorManDownScoring = (visitorManDown > 0) ? (CGFloat)visitorMDGoalsAllowed / visitorManDown : 0.0;
+
+        // Man-down scoring = man-down goals allowed / man-down
+        NSString *homeManDownScoringString = [self.percentFormatter stringFromNumber:@(homeManDownScoring)];
+        NSString *visitorManDownScoringString = [self.percentFormatter stringFromNumber:@(visitorManDownScoring)];
+        
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>Man-down Goals Allowed</td><td>%@</td>\n", @(homeMDGoalsAllowed), @(visitorMDGoalsAllowed)];
+        [emoSection appendString:@"</tr>\n"];
+
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>Man-down Scoring<br />(Man-down goals allowed / Man-down)</td><td>%@</td>\n", homeManDownScoringString, visitorManDownScoringString];
+        [emoSection appendString:@"</tr>\n"];
+    }
+    
+    return emoSection;
 }
 
 - (NSString *)gameStatsPenaltySection {
