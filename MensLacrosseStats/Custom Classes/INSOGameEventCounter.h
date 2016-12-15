@@ -27,10 +27,12 @@
 - (NSNumber *)manDownGoalsAllowedForHomeTeam;
 - (NSNumber *)manDownGoalsAllowedForVisitingTeam;
 
-- (NSNumber *)totalPenalties;
+- (NSNumber *)totalPenaltiesForHomeTeam;
+- (NSNumber *)totalPenaltiesForVisitingTeam;
 - (NSNumber *)totalPenaltiesForBoysRosterPlayer:(RosterPlayer*)rosterPlayer;
 - (NSNumber *)totalPenaltiesForGirlsRosterPlayer:(RosterPlayer*)rosterPlayer;
-- (NSNumber *)totalPenaltyTime;
+- (NSNumber *)totalPenaltyTimeForHomeTeam;
+- (NSNumber *)totalPenaltyTimeForVisitingTeam; 
 - (NSNumber *)totalPenaltyTimeforRosterPlayer:(RosterPlayer*)rosterPlayer;
 
 @end

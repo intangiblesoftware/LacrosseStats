@@ -128,20 +128,44 @@
     return @(eventCount);
 }
 
-- (NSNumber *)manDownGoalsAllowedForHomeTeam
+- (NSNumber*)totalPenaltiesForHomeTeam
 {
-    return @(0);
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@) AND player.number == %@", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls), self.isWatchingHomeTeam ? @(INSOTeamWatchingPlayerNumber) : @(INSOOtherTeamPlayerNumber)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                for (GameEvent *gameEvent in player.events) {
+                    if ((gameEvent.event.categoryCodeValue == INSOCategoryCodePersonalFouls) || (gameEvent.event.categoryCodeValue == INSOCategoryCodeTechnicalFouls)) {
+                        eventCount += 1;
+                    }
+                }
+            }
+        }
+    }
+    return @(eventCount);
 }
 
-- (NSNumber *)manDownGoalsAllowedForVisitingTeam
+- (NSNumber *)totalPenaltiesForVisitingTeam
 {
-    return @(0);
-}
-
-- (NSNumber*)totalPenalties
-{
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@)", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls)];
-    return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@) AND player.number == %@", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls), self.isWatchingHomeTeam ? @(INSOOtherTeamPlayerNumber) : @(INSOTeamWatchingPlayerNumber)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (!self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                for (GameEvent *gameEvent in player.events) {
+                    if ((gameEvent.event.categoryCodeValue == INSOCategoryCodePersonalFouls) || (gameEvent.event.categoryCodeValue == INSOCategoryCodeTechnicalFouls)) {
+                        eventCount += 1;
+                    }
+                }
+            }
+        }
+    }
+    return @(eventCount);
 }
 
 - (NSNumber*)totalPenaltiesForBoysRosterPlayer:(RosterPlayer*)rosterPlayer
@@ -156,16 +180,50 @@
     return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
 }
 
-- (NSNumber*)totalPenaltyTime
-{
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@)", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls)];
-    return [GameEvent aggregateOperation:@"sum:" onAttribute:@"penaltyTime" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
-}
-
 - (NSNumber*)totalPenaltyTimeforRosterPlayer:(RosterPlayer*)rosterPlayer
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@) AND player == %@", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls), rosterPlayer];
     return [GameEvent aggregateOperation:@"sum:" onAttribute:@"penaltyTime" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSNumber *)totalPenaltyTimeForHomeTeam
+{
+    NSInteger penaltyTime;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@) AND player.number == %@", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls), self.isWatchingHomeTeam ? @(INSOTeamWatchingPlayerNumber) : @(INSOOtherTeamPlayerNumber)];
+    penaltyTime = [[GameEvent aggregateOperation:@"sum:" onAttribute:@"penaltyTime" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                for (GameEvent *gameEvent in player.events) {
+                    if ((gameEvent.event.categoryCodeValue == INSOCategoryCodePersonalFouls) || (gameEvent.event.categoryCodeValue == INSOCategoryCodeTechnicalFouls)) {
+                        penaltyTime += gameEvent.penaltyTimeValue;
+                    }
+                }
+            }
+        }
+    }
+    return @(penaltyTime);
+}
+
+- (NSNumber *)totalPenaltyTimeForVisitingTeam
+{
+    NSInteger penaltyTime;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@) AND player.number == %@", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls), self.isWatchingHomeTeam ? @(INSOOtherTeamPlayerNumber) : @(INSOTeamWatchingPlayerNumber)];
+    penaltyTime = [[GameEvent aggregateOperation:@"sum:" onAttribute:@"penaltyTime" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (!self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                for (GameEvent *gameEvent in player.events) {
+                    if ((gameEvent.event.categoryCodeValue == INSOCategoryCodePersonalFouls) || (gameEvent.event.categoryCodeValue == INSOCategoryCodeTechnicalFouls)) {
+                        penaltyTime += gameEvent.penaltyTimeValue;
+                    }
+                }
+            }
+        }
+    }
+    return @(penaltyTime);
 }
 
 @end

@@ -128,9 +128,24 @@
     [fileContents appendString:[self gameStatsExtraManSection]];
     [fileContents appendString:[self gameStatsPenaltySection]];
     [fileContents appendString:[self gameStatsFileFooter]];
-
-    NSData *gameSummaryData = [fileContents dataUsingEncoding:NSUTF8StringEncoding];
-    completion(gameSummaryData); 
+    
+    UIPrintPageRenderer *pageRenderer = [[UIPrintPageRenderer alloc] init];
+    CGRect pageFrame = CGRectMake(0.0, 0.0, 612, 792); // 612 x 792 = us letter in pixels
+    [pageRenderer setValue:[NSValue valueWithCGRect:pageFrame] forKey:@"paperRect"];
+    [pageRenderer setValue:[NSValue valueWithCGRect:pageFrame] forKey:@"printableRect"];
+    
+    UIPrintFormatter *printFormatter = [[UIMarkupTextPrintFormatter alloc] initWithMarkupText:fileContents];
+    [UIPrintInteractionController sharedPrintController].printFormatter = printFormatter;
+    
+    [pageRenderer addPrintFormatter:printFormatter startingAtPageAtIndex:0];
+    
+    NSMutableData *gameSummaryData = [NSMutableData new];
+    UIGraphicsBeginPDFContextToData(gameSummaryData, CGRectZero, nil);
+    UIGraphicsBeginPDFPage();
+    [pageRenderer drawPageAtIndex:0 inRect:UIGraphicsGetPDFContextBounds()];
+    UIGraphicsEndPDFContext();
+    
+    completion(gameSummaryData);
 }
 
 - (void)createPlayerStatsData:(completion)completion
@@ -676,7 +691,40 @@
 }
 
 - (NSString *)gameStatsPenaltySection {
-    return @"";
+    NSMutableString *penaltySection = [[NSMutableString alloc] init];
+    
+    // Section header
+    [penaltySection appendString:@"<tr>\n"];
+    [penaltySection appendString:@"<th colspan=\"3\">Penalties</th>\n"];
+    [penaltySection appendString:@"</tr>\n"];
+    
+    // And now the stats
+    INSOGameEventCounter *eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
+    
+    // Penalties
+    NSNumber *homePenalties = [eventCounter totalPenaltiesForHomeTeam];
+    NSNumber *visitorPenalties = [eventCounter totalPenaltiesForVisitingTeam];
+    
+    [penaltySection appendString:@"<tr>\n"];
+    [penaltySection appendFormat:@"<td>%@</td><td>Penalties</td><td>%@</td>\n", homePenalties, visitorPenalties];
+    [penaltySection appendString:@"</tr>\n"];
+    
+    // Penalty Time
+    NSInteger homePenaltySeconds = [[eventCounter totalPenaltyTimeForHomeTeam] integerValue];
+    NSInteger visitorPenaltySeconds = [[eventCounter totalPenaltyTimeForVisitingTeam] integerValue];
+    
+    NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
+    penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
+    penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+    NSString *homePenaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:homePenaltySeconds];
+    NSString *visitorPentaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:visitorPenaltySeconds];
+    
+    [penaltySection appendString:@"<tr>\n"];
+    [penaltySection appendFormat:@"<td>%@</td><td>Penalty Time</td><td>%@</td>\n", homePenaltyTimeString, visitorPentaltyTimeString];
+    [penaltySection appendString:@"</tr>\n"];
+
+
+    return penaltySection;
 }
 
 - (NSString *)gameStatsFileFooter {

@@ -223,8 +223,8 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
     NSString* sectionTitle = NSLocalizedString(@"Penalties", nil);
     
     // And now penalties
-    NSNumber* totalPenalties = [self.eventCounter totalPenalties];
-    double totalPenaltyTime = [[self.eventCounter totalPenaltyTime] doubleValue];
+    NSNumber* totalPenalties = [self.eventCounter totalPenaltiesForHomeTeam];
+    double totalPenaltyTime = [[self.eventCounter totalPenaltyTimeForHomeTeam] doubleValue];
     
     NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
     penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
