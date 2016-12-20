@@ -130,7 +130,7 @@
     [fileContents appendString:[self gameStatsFileFooter]];
     
     UIPrintPageRenderer *pageRenderer = [[UIPrintPageRenderer alloc] init];
-    CGRect pageFrame = CGRectMake(0.0, 0.0, 612, 792); // 612 x 792 = us letter in pixels
+    CGRect pageFrame = CGRectMake(0.0, 36.0, 612, 828); // 612 x 792 = us letter in pixels
     [pageRenderer setValue:[NSValue valueWithCGRect:pageFrame] forKey:@"paperRect"];
     [pageRenderer setValue:[NSValue valueWithCGRect:pageFrame] forKey:@"printableRect"];
     

@@ -171,17 +171,17 @@
         
         // Add attachment(s)
         if (self.maxPrepsAttachmentData) {
-            NSString* fileName = NSLocalizedString(@"MaxPrepsExport.txt", nil);
+            NSString* fileName = NSLocalizedString(@"MaxPreps Export.txt", nil);
             [mailViewcontroller addAttachmentData:self.maxPrepsAttachmentData mimeType:@"text/txt" fileName:fileName];
         }
         
         if (self.gameSummaryAttachmentData) {
-            NSString* fileName = NSLocalizedString(@"GameSummaryExport.pdf", nil);
+            NSString* fileName = NSLocalizedString(@"Game Summary.pdf", nil);
             [mailViewcontroller addAttachmentData:self.gameSummaryAttachmentData mimeType:@"application/pdf" fileName:fileName];
         }
         
         if (self.playerStatsAttachmentData) {
-            NSString* fileName = NSLocalizedString(@"PlayerStatsExport.csv", nil);
+            NSString* fileName = NSLocalizedString(@"Player Stats.csv", nil);
             [mailViewcontroller addAttachmentData:self.playerStatsAttachmentData mimeType:@"text/csv" fileName:fileName];
         }
 
