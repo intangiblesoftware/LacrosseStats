@@ -72,51 +72,6 @@
 }
 
 #pragma mark - Public interface
-/*
-- (void)createGameStatsDataFileForAllStats:(completion)completion
-{
-    NSMutableArray* gameStatsArray = [NSMutableArray new];
-    
-    // Do a header row
-    NSArray* headerRow = [self headerRowForAllStats];
-    [gameStatsArray addObject:[headerRow componentsJoinedByString:@","]];
-    
-    // Now a row for every player
-    for (RosterPlayer* rosterPlayer in self.playersArray) {
-        NSArray* dataRow = [self dataRowForAllStatsForPlayer:rosterPlayer];
-        [gameStatsArray addObject:[dataRow componentsJoinedByString:@","]];
-    }
-    
-    // Now convert entire array to a string
-    NSString* gameStatsString = [gameStatsArray componentsJoinedByString:@"\n"];
-    
-    // Now call the completion block
-    NSData* statData = [gameStatsString dataUsingEncoding:NSUTF8StringEncoding];
-    completion(statData);
-}
-
-- (void)createGameStatsDataFileForRecordedStats:(completion)completion
-{
-    NSMutableArray* gameStatsArray = [NSMutableArray new];
-    
-    // Do a header row
-    NSArray* headerRow = [self headerRowForCollectedStats];
-    [gameStatsArray addObject:[headerRow componentsJoinedByString:@","]];
-    
-    // Now a row for every player
-    for (RosterPlayer* rosterPlayer in self.playersArray) {
-        NSArray* dataRow = [self dataRowForCollectedStatsForPlayer:rosterPlayer];
-        [gameStatsArray addObject:[dataRow componentsJoinedByString:@","]];
-    }
-    
-    // Now convert entire array to a string
-    NSString* gameStatsString = [gameStatsArray componentsJoinedByString:@"\n"];
-    
-    // Now call the completion block
-    NSData* statData = [gameStatsString dataUsingEncoding:NSUTF8StringEncoding];
-    completion(statData);
-}
- */
 
 - (void)createGameSummaryData:(completion)completion
 {
@@ -419,6 +374,23 @@
         [fieldingSection appendString:@"</tr>\n"];
     }
     
+    // Draws (instead of faceoffs)
+    if ([self.game didRecordEvent:INSOEventCodeDrawTaken] && [self.game didRecordEvent:INSOEventCodeDrawControl]) {
+        NSInteger homeDrawsTaken = [[eventCounter eventCountForHomeTeam:INSOEventCodeDrawTaken] integerValue];
+        NSInteger homeDrawControl = [[eventCounter eventCountForHomeTeam:INSOEventCodeDrawControl] integerValue];
+        CGFloat   homeDrawControlPct = (homeDrawsTaken > 0) ? (CGFloat)homeDrawControl / homeDrawsTaken : 0.0;
+        NSString *homeDrawControlPctString = [self.percentFormatter stringFromNumber:@(homeDrawControlPct)];
+        
+        NSInteger visitorDrawsTaken = [[eventCounter eventCountForVisitingTeam:INSOEventCodeDrawTaken] integerValue];
+        NSInteger visitorDrawControl = [[eventCounter eventCountForVisitingTeam:INSOEventCodeDrawControl] integerValue];
+        CGFloat   visitorDrawControlPct = (visitorDrawsTaken > 0) ? (CGFloat)visitorDrawControl / visitorDrawsTaken : 0.0;
+        NSString *visitorDrawControlPctString = [self.percentFormatter stringFromNumber:@(visitorDrawControlPct)];
+        
+        [fieldingSection appendString:@"<tr>\n"];
+        [fieldingSection appendFormat:@"<td>%@/%@ %@</td><td>Draw Control</td><td>%@/%@ %@</td>\n", @(homeDrawControl), @(homeDrawsTaken), homeDrawControlPctString, @(visitorDrawControl), @(visitorDrawsTaken), visitorDrawControlPctString];
+        [fieldingSection appendString:@"</tr>\n"];
+    }
+    
     // Clears
     if ([self.game didRecordEvent:INSOEventCodeClearSuccessful] && [self.game didRecordEvent:INSOEventCodeClearFailed]) {
         NSInteger homeClearSuccessful = [[eventCounter eventCountForHomeTeam:INSOEventCodeClearSuccessful] integerValue];
@@ -438,13 +410,23 @@
         [fieldingSection appendString:@"</tr>\n"];
     }
     
-    // Turnovers
-    if ([self.game didRecordEvent:INSOEventCodeTurnover]) {
-        NSNumber *homeTurnoverss = [eventCounter eventCountForHomeTeam:INSOEventCodeTurnover];
-        NSNumber *visitorTurnoverss = [eventCounter eventCountForVisitingTeam:INSOEventCodeTurnover];
+    // Interceptions
+    if ([self.game didRecordEvent:INSOEventCodeInterception]) {
+        NSNumber *homeInterceptions = [eventCounter eventCountForHomeTeam:INSOEventCodeInterception];
+        NSNumber *visitorInterceptions = [eventCounter eventCountForVisitingTeam:INSOEventCodeTurnover];
         
         [fieldingSection appendString:@"<tr>\n"];
-        [fieldingSection appendFormat:@"<td>%@</td><td>Turnovers</td><td>%@</td>\n", homeTurnoverss, visitorTurnoverss];
+        [fieldingSection appendFormat:@"<td>%@</td><td>Interceptions</td><td>%@</td>\n", homeInterceptions, visitorInterceptions];
+        [fieldingSection appendString:@"</tr>\n"];
+    }
+    
+    // Turnovers
+    if ([self.game didRecordEvent:INSOEventCodeTurnover]) {
+        NSNumber *homeTurnovers = [eventCounter eventCountForHomeTeam:INSOEventCodeTurnover];
+        NSNumber *visitorTurnovers = [eventCounter eventCountForVisitingTeam:INSOEventCodeTurnover];
+        
+        [fieldingSection appendString:@"<tr>\n"];
+        [fieldingSection appendFormat:@"<td>%@</td><td>Turnovers</td><td>%@</td>\n", homeTurnovers, visitorTurnovers];
         [fieldingSection appendString:@"</tr>\n"];
     }
 
@@ -693,35 +675,75 @@
 - (NSString *)gameStatsPenaltySection {
     NSMutableString *penaltySection = [[NSMutableString alloc] init];
     
+    // Section title depends on boys or girls
+    NSString *sectionTitle;
+    self.isExportingForBoys ? (sectionTitle = @"Penalties") : (sectionTitle = @"Fouls");
+    
     // Section header
     [penaltySection appendString:@"<tr>\n"];
-    [penaltySection appendString:@"<th colspan=\"3\">Penalties</th>\n"];
+    [penaltySection appendFormat:@"<th colspan=\"3\">%@</th>\n", sectionTitle];
     [penaltySection appendString:@"</tr>\n"];
     
     // And now the stats
     INSOGameEventCounter *eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
     
-    // Penalties
-    NSNumber *homePenalties = [eventCounter totalPenaltiesForHomeTeam];
-    NSNumber *visitorPenalties = [eventCounter totalPenaltiesForVisitingTeam];
-    
-    [penaltySection appendString:@"<tr>\n"];
-    [penaltySection appendFormat:@"<td>%@</td><td>Penalties</td><td>%@</td>\n", homePenalties, visitorPenalties];
-    [penaltySection appendString:@"</tr>\n"];
-    
-    // Penalty Time
-    NSInteger homePenaltySeconds = [[eventCounter totalPenaltyTimeForHomeTeam] integerValue];
-    NSInteger visitorPenaltySeconds = [[eventCounter totalPenaltyTimeForVisitingTeam] integerValue];
-    
-    NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
-    penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
-    penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
-    NSString *homePenaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:homePenaltySeconds];
-    NSString *visitorPentaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:visitorPenaltySeconds];
-    
-    [penaltySection appendString:@"<tr>\n"];
-    [penaltySection appendFormat:@"<td>%@</td><td>Penalty Time</td><td>%@</td>\n", homePenaltyTimeString, visitorPentaltyTimeString];
-    [penaltySection appendString:@"</tr>\n"];
+    if (self.isExportingForBoys) {
+        // Penalties
+        NSNumber *homePenalties = [eventCounter totalPenaltiesForHomeTeam];
+        NSNumber *visitorPenalties = [eventCounter totalPenaltiesForVisitingTeam];
+        
+        [penaltySection appendString:@"<tr>\n"];
+        [penaltySection appendFormat:@"<td>%@</td><td>Penalties</td><td>%@</td>\n", homePenalties, visitorPenalties];
+        [penaltySection appendString:@"</tr>\n"];
+        
+        // Penalty Time
+        NSInteger homePenaltySeconds = [[eventCounter totalPenaltyTimeForHomeTeam] integerValue];
+        NSInteger visitorPenaltySeconds = [[eventCounter totalPenaltyTimeForVisitingTeam] integerValue];
+        
+        NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
+        penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
+        penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+        NSString *homePenaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:homePenaltySeconds];
+        NSString *visitorPentaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:visitorPenaltySeconds];
+        
+        // Penalty Section
+        [penaltySection appendString:@"<tr>\n"];
+        [penaltySection appendFormat:@"<td>%@</td><td>Penalty Time</td><td>%@</td>\n", homePenaltyTimeString, visitorPentaltyTimeString];
+        [penaltySection appendString:@"</tr>\n"];
+    } else {
+        // Fouls
+        NSInteger homeFouls = 0;
+        NSInteger visitorFouls = 0;
+        
+        [penaltySection appendString:@"<tr>\n"];
+        [penaltySection appendFormat:@"<td>%@</td><td>Fouls</td><td>%@</td>\n", @(homeFouls), @(visitorFouls)];
+        [penaltySection appendString:@"</tr>\n"];
+
+        // Green cards
+        NSInteger homeGreenCards = 0;
+        NSInteger visitorGreenCards = 0;
+
+        [penaltySection appendString:@"<tr>\n"];
+        [penaltySection appendFormat:@"<td>%@</td><td>Green Cards</td><td>%@</td>\n", @(homeGreenCards), @(visitorGreenCards)];
+        [penaltySection appendString:@"</tr>\n"];
+
+        // Yellow cards
+        NSInteger homeYellowCards = 0;
+        NSInteger visitorYellowCards = 0;
+
+        [penaltySection appendString:@"<tr>\n"];
+        [penaltySection appendFormat:@"<td>%@</td><td>Yellow Cards</td><td>%@</td>\n", @(homeYellowCards), @(visitorYellowCards)];
+        [penaltySection appendString:@"</tr>\n"];
+
+        // Red cards
+        NSInteger homeRedCards = 0;
+        NSInteger visitorRedCards = 0;
+
+        [penaltySection appendString:@"<tr>\n"];
+        [penaltySection appendFormat:@"<td>%@</td><td>Red Cards</td><td>%@</td>\n", @(homeRedCards), @(visitorRedCards)];
+        [penaltySection appendString:@"</tr>\n"];
+
+    }
 
 
     return penaltySection;

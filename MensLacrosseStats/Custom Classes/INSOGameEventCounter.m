@@ -168,6 +168,16 @@
     return @(eventCount);
 }
 
+- (NSNumber *)totalFoulsForHomeTeam
+{
+    return nil;
+}
+
+- (NSNumber *)totalFoulsForVisitingTeam
+{
+    return nil; 
+}
+
 - (NSNumber*)totalPenaltiesForBoysRosterPlayer:(RosterPlayer*)rosterPlayer
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.categoryCode == %@ OR event.categoryCode == %@) AND player == %@", self.game, @(INSOCategoryCodePersonalFouls), @(INSOCategoryCodeTechnicalFouls), rosterPlayer];

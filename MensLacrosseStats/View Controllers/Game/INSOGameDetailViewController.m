@@ -120,9 +120,9 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 - (NSInteger)teamWatchingGoals
 {
     NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
-        return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue == INSOTeamWatchingPlayerNumber);
+        return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue >= INSOTeamWatchingPlayerNumber);
     }];
-    
+    self.game.homeScoreValue = [goals count];
     return [goals count];
 }
 
@@ -131,7 +131,7 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
         return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue == INSOOtherTeamPlayerNumber);
     }];
-    
+    self.game.visitorScoreValue = [goals count];
     return [goals count];
 }
 
