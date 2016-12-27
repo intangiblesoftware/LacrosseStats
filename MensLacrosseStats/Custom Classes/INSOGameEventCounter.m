@@ -170,12 +170,42 @@
 
 - (NSNumber *)totalFoulsForHomeTeam
 {
-    return nil;
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.eventCode == %@ OR event.eventCode == %@) AND player.number == %@", self.game, @(INSOEventCodeMinorFoul), @(INSOEventCodeMajorFoul), self.isWatchingHomeTeam ? @(INSOTeamWatchingPlayerNumber) : @(INSOOtherTeamPlayerNumber)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                for (GameEvent *gameEvent in player.events) {
+                    if ((gameEvent.event.eventCodeValue == INSOEventCodeMinorFoul) || (gameEvent.event.eventCodeValue == INSOEventCodeMajorFoul)) {
+                        eventCount += 1;
+                    }
+                }
+            }
+        }
+    }
+    return @(eventCount);
 }
 
 - (NSNumber *)totalFoulsForVisitingTeam
 {
-    return nil; 
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND (event.eventCode == %@ OR event.eventCode == %@) AND player.number == %@", self.game, @(INSOEventCodeMinorFoul), @(INSOEventCodeMajorFoul), self.isWatchingHomeTeam ? @(INSOOtherTeamPlayerNumber) : @(INSOTeamWatchingPlayerNumber)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (!self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                for (GameEvent *gameEvent in player.events) {
+                    if ((gameEvent.event.eventCodeValue == INSOEventCodeMinorFoul) || (gameEvent.event.eventCodeValue == INSOEventCodeMajorFoul)) {
+                        eventCount += 1;
+                    }
+                }
+            }
+        }
+    }
+    return @(eventCount);
 }
 
 - (NSNumber*)totalPenaltiesForBoysRosterPlayer:(RosterPlayer*)rosterPlayer

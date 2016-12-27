@@ -24,8 +24,6 @@
 
 - (NSNumber *)extraManGoalsForHomeTeam;
 - (NSNumber *)extraManGoalsForVisitingTeam;
-- (NSNumber *)manDownGoalsAllowedForHomeTeam;
-- (NSNumber *)manDownGoalsAllowedForVisitingTeam;
 
 - (NSNumber *)totalPenaltiesForHomeTeam;
 - (NSNumber *)totalPenaltiesForVisitingTeam;
@@ -34,5 +32,8 @@
 - (NSNumber *)totalPenaltyTimeForHomeTeam;
 - (NSNumber *)totalPenaltyTimeForVisitingTeam; 
 - (NSNumber *)totalPenaltyTimeforRosterPlayer:(RosterPlayer*)rosterPlayer;
+
+- (NSNumber *)totalFoulsForHomeTeam;
+- (NSNumber *)totalFoulsForVisitingTeam;
 
 @end

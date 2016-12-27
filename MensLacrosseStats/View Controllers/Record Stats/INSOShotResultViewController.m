@@ -90,15 +90,11 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         [self createShotEvent];
     } else if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultSave) {
         [self createShotEvent];
-        if (!self.is8mShot) {
-            [self createShotOnGoalEvent];
-        }
+        [self createShotOnGoalEvent];
         [self createSaveEvent];
     } else if (self.shotResultSegment.selectedSegmentIndex == INSOGoalResultGoal) {
         [self createShotEvent];
-        if (!self.is8mShot) {
-            [self createShotOnGoalEvent];
-        }
+        [self createShotOnGoalEvent];
         [self createGoalEvent];
         [self createGoalAllowedEvent];
         

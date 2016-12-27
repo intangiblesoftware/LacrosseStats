@@ -30,6 +30,8 @@
 
 @property (nonatomic) NSNumberFormatter *percentFormatter;
 
+@property (nonatomic) INSOGameEventCounter *eventCounter;
+
 @end
 
 @implementation INSOEmailStatsFileGenerator
@@ -66,6 +68,9 @@
         NSPredicate* penaltyPredicate = [NSPredicate predicateWithFormat:@"categoryCode != %@", @(INSOCategoryCodeGameAction)];
         NSSet* penaltyEvents = [_game.eventsToRecord filteredSetUsingPredicate:penaltyPredicate];
         _shouldExportPenalties = [penaltyEvents count] > 0;
+        
+        // We need an event counter
+        _eventCounter = [[INSOGameEventCounter alloc] initWithGame:_game];
     }
     
     return self;
@@ -342,13 +347,10 @@
     [fieldingSection appendString:@"<th colspan=\"3\">Fielding</th>\n"];
     [fieldingSection appendString:@"</tr>\n"];
     
-    // And now the stats
-    INSOGameEventCounter *eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
-    
     // Groundballs
     if ([self.game didRecordEvent:INSOEventCodeGroundball]) {
-        NSNumber *homeGroundBalls = [eventCounter eventCountForHomeTeam:INSOEventCodeGroundball];
-        NSNumber *visitorGroundBalls = [eventCounter eventCountForVisitingTeam:INSOEventCodeGroundball];
+        NSNumber *homeGroundBalls = [self.eventCounter eventCountForHomeTeam:INSOEventCodeGroundball];
+        NSNumber *visitorGroundBalls = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeGroundball];
         
         [fieldingSection appendString:@"<tr>\n"];
         [fieldingSection appendFormat:@"<td>%@</td><td>Groundballs</td><td>%@</td>\n", homeGroundBalls, visitorGroundBalls];
@@ -357,14 +359,14 @@
     
     // Faceoffs
     if ([self.game didRecordEvent:INSOEventCodeFaceoffWon] && [self.game didRecordEvent:INSOEventCodeFaceoffLost]) {
-        NSInteger homeFaceoffsWon = [[eventCounter eventCountForHomeTeam:INSOEventCodeFaceoffWon] integerValue];
-        NSInteger homeFaceoffsLost = [[eventCounter eventCountForHomeTeam:INSOEventCodeFaceoffLost] integerValue];
+        NSInteger homeFaceoffsWon = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeFaceoffWon] integerValue];
+        NSInteger homeFaceoffsLost = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeFaceoffLost] integerValue];
         NSInteger homeFaceoffs = homeFaceoffsWon + homeFaceoffsLost;
         CGFloat   homeFaceoffPct = (homeFaceoffs > 0) ? (CGFloat)homeFaceoffsWon / homeFaceoffs : 0.0;
         NSString *homeFaceoffPctString = [self.percentFormatter stringFromNumber:@(homeFaceoffPct)];
         
-        NSInteger visitorFaceoffsWon = [[eventCounter eventCountForVisitingTeam:INSOEventCodeFaceoffWon] integerValue];
-        NSInteger visitorFaceoffsLost = [[eventCounter eventCountForVisitingTeam:INSOEventCodeFaceoffLost] integerValue];
+        NSInteger visitorFaceoffsWon = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeFaceoffWon] integerValue];
+        NSInteger visitorFaceoffsLost = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeFaceoffLost] integerValue];
         NSInteger visitorFaceoffs = visitorFaceoffsWon + visitorFaceoffsLost;
         CGFloat   visitorFaceoffPct = (visitorFaceoffs > 0) ? (CGFloat)visitorFaceoffsWon / visitorFaceoffs : 0.0;
         NSString *visitorFaceoffPctString = [self.percentFormatter stringFromNumber:@(visitorFaceoffPct)];
@@ -376,13 +378,13 @@
     
     // Draws (instead of faceoffs)
     if ([self.game didRecordEvent:INSOEventCodeDrawTaken] && [self.game didRecordEvent:INSOEventCodeDrawControl]) {
-        NSInteger homeDrawsTaken = [[eventCounter eventCountForHomeTeam:INSOEventCodeDrawTaken] integerValue];
-        NSInteger homeDrawControl = [[eventCounter eventCountForHomeTeam:INSOEventCodeDrawControl] integerValue];
+        NSInteger homeDrawsTaken = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeDrawTaken] integerValue];
+        NSInteger homeDrawControl = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeDrawControl] integerValue];
         CGFloat   homeDrawControlPct = (homeDrawsTaken > 0) ? (CGFloat)homeDrawControl / homeDrawsTaken : 0.0;
         NSString *homeDrawControlPctString = [self.percentFormatter stringFromNumber:@(homeDrawControlPct)];
         
-        NSInteger visitorDrawsTaken = [[eventCounter eventCountForVisitingTeam:INSOEventCodeDrawTaken] integerValue];
-        NSInteger visitorDrawControl = [[eventCounter eventCountForVisitingTeam:INSOEventCodeDrawControl] integerValue];
+        NSInteger visitorDrawsTaken = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeDrawTaken] integerValue];
+        NSInteger visitorDrawControl = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeDrawControl] integerValue];
         CGFloat   visitorDrawControlPct = (visitorDrawsTaken > 0) ? (CGFloat)visitorDrawControl / visitorDrawsTaken : 0.0;
         NSString *visitorDrawControlPctString = [self.percentFormatter stringFromNumber:@(visitorDrawControlPct)];
         
@@ -393,14 +395,14 @@
     
     // Clears
     if ([self.game didRecordEvent:INSOEventCodeClearSuccessful] && [self.game didRecordEvent:INSOEventCodeClearFailed]) {
-        NSInteger homeClearSuccessful = [[eventCounter eventCountForHomeTeam:INSOEventCodeClearSuccessful] integerValue];
-        NSInteger homeClearFailed = [[eventCounter eventCountForHomeTeam:INSOEventCodeClearFailed] integerValue];
+        NSInteger homeClearSuccessful = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeClearSuccessful] integerValue];
+        NSInteger homeClearFailed = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeClearFailed] integerValue];
         NSInteger homeClears = homeClearSuccessful + homeClearFailed;
         CGFloat   homeClearPct = (homeClears > 0) ? (CGFloat)homeClearSuccessful / homeClears : 0.0;
         NSString *homeClearPctString = [self.percentFormatter stringFromNumber:@(homeClearPct)];
         
-        NSInteger visitorClearSuccessful = [[eventCounter eventCountForVisitingTeam:INSOEventCodeClearSuccessful] integerValue];
-        NSInteger visitorClearFailed = [[eventCounter eventCountForVisitingTeam:INSOEventCodeClearFailed] integerValue];
+        NSInteger visitorClearSuccessful = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeClearSuccessful] integerValue];
+        NSInteger visitorClearFailed = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeClearFailed] integerValue];
         NSInteger visitorClears = visitorClearSuccessful + visitorClearFailed;
         CGFloat   visitorClearPct = (visitorClears > 0) ? (CGFloat)visitorClearSuccessful / visitorClears : 0.0;
         NSString *visitorClearPctString = [self.percentFormatter stringFromNumber:@(visitorClearPct)];
@@ -412,8 +414,8 @@
     
     // Interceptions
     if ([self.game didRecordEvent:INSOEventCodeInterception]) {
-        NSNumber *homeInterceptions = [eventCounter eventCountForHomeTeam:INSOEventCodeInterception];
-        NSNumber *visitorInterceptions = [eventCounter eventCountForVisitingTeam:INSOEventCodeTurnover];
+        NSNumber *homeInterceptions = [self.eventCounter eventCountForHomeTeam:INSOEventCodeInterception];
+        NSNumber *visitorInterceptions = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeTurnover];
         
         [fieldingSection appendString:@"<tr>\n"];
         [fieldingSection appendFormat:@"<td>%@</td><td>Interceptions</td><td>%@</td>\n", homeInterceptions, visitorInterceptions];
@@ -422,8 +424,8 @@
     
     // Turnovers
     if ([self.game didRecordEvent:INSOEventCodeTurnover]) {
-        NSNumber *homeTurnovers = [eventCounter eventCountForHomeTeam:INSOEventCodeTurnover];
-        NSNumber *visitorTurnovers = [eventCounter eventCountForVisitingTeam:INSOEventCodeTurnover];
+        NSNumber *homeTurnovers = [self.eventCounter eventCountForHomeTeam:INSOEventCodeTurnover];
+        NSNumber *visitorTurnovers = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeTurnover];
         
         [fieldingSection appendString:@"<tr>\n"];
         [fieldingSection appendFormat:@"<td>%@</td><td>Turnovers</td><td>%@</td>\n", homeTurnovers, visitorTurnovers];
@@ -432,8 +434,8 @@
 
     // Caused Turnovers
     if ([self.game didRecordEvent:INSOEventCodeCausedTurnover]) {
-        NSNumber *homeCausedTurnovers = [eventCounter eventCountForHomeTeam:INSOEventCodeCausedTurnover];
-        NSNumber *visitorCausedTurnovers = [eventCounter eventCountForVisitingTeam:INSOEventCodeCausedTurnover];
+        NSNumber *homeCausedTurnovers = [self.eventCounter eventCountForHomeTeam:INSOEventCodeCausedTurnover];
+        NSNumber *visitorCausedTurnovers = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeCausedTurnover];
         
         [fieldingSection appendString:@"<tr>\n"];
         [fieldingSection appendFormat:@"<td>%@</td><td>Caused Turnovers</td><td>%@</td>\n", homeCausedTurnovers, visitorCausedTurnovers];
@@ -451,13 +453,10 @@
     [scoringSection appendString:@"<th colspan=\"3\">Scoring</th>\n"];
     [scoringSection appendString:@"</tr>\n"];
     
-    // And now the stats
-    INSOGameEventCounter *eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
-    
     // Shots
     if ([self.game didRecordEvent:INSOEventCodeShot]) {
-        NSNumber *homeShots = [eventCounter eventCountForHomeTeam:INSOEventCodeShot];
-        NSNumber *visitorShots = [eventCounter eventCountForVisitingTeam:INSOEventCodeShot];
+        NSNumber *homeShots = [self.eventCounter eventCountForHomeTeam:INSOEventCodeShot];
+        NSNumber *visitorShots = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeShot];
         
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Shots</td><td>%@</td>\n", homeShots, visitorShots];
@@ -466,8 +465,8 @@
     
     // Goals
     if ([self.game didRecordEvent:INSOEventCodeGoal]) {
-        NSNumber *homeGoals = [eventCounter eventCountForHomeTeam:INSOEventCodeGoal];
-        NSNumber *visitorGoals = [eventCounter eventCountForVisitingTeam:INSOEventCodeGoal];
+        NSNumber *homeGoals = [self.eventCounter eventCountForHomeTeam:INSOEventCodeGoal];
+        NSNumber *visitorGoals = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeGoal];
         
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Goals</td><td>%@</td>\n", homeGoals, visitorGoals];
@@ -476,13 +475,13 @@
     
     // Shooting pct. (Percent of shots that result in a goal)
     if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeGoal]) {
-        NSInteger homeShots = [[eventCounter eventCountForHomeTeam:INSOEventCodeShot] integerValue];
-        NSInteger homeGoals = [[eventCounter eventCountForHomeTeam:INSOEventCodeGoal] integerValue];
+        NSInteger homeShots = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeShot] integerValue];
+        NSInteger homeGoals = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeGoal] integerValue];
         CGFloat   homeShootingPct = (homeShots > 0) ? (CGFloat)homeGoals / homeShots : 0.0;
         NSString *homeShootingPctString = [self.percentFormatter stringFromNumber:@(homeShootingPct)];
         
-        NSInteger visitorShots = [[eventCounter eventCountForVisitingTeam:INSOEventCodeShot] integerValue];
-        NSInteger visitorGoals = [[eventCounter eventCountForVisitingTeam:INSOEventCodeGoal] integerValue];
+        NSInteger visitorShots = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeShot] integerValue];
+        NSInteger visitorGoals = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeGoal] integerValue];
         CGFloat   visitorShootingPct = (visitorShots > 0) ? (CGFloat)visitorGoals / visitorShots : 0.0;
         NSString *visitorShootingPctString = [self.percentFormatter stringFromNumber:@(visitorShootingPct)];
 
@@ -494,8 +493,8 @@
     
     // Shots on goal
     if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
-        NSNumber *homeSOG = [eventCounter eventCountForHomeTeam:INSOEventCodeShotOnGoal];
-        NSNumber *visitorSOG = [eventCounter eventCountForVisitingTeam:INSOEventCodeShotOnGoal];
+        NSNumber *homeSOG = [self.eventCounter eventCountForHomeTeam:INSOEventCodeShotOnGoal];
+        NSNumber *visitorSOG = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeShotOnGoal];
         
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Shots on Goal</td><td>%@</td>\n", homeSOG, visitorSOG];
@@ -504,13 +503,13 @@
     
     // Misses = shots - shots on goal;
     if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
-        NSInteger homeShots = [[eventCounter eventCountForHomeTeam:INSOEventCodeShot] integerValue];
-        NSInteger homeSOG = [[eventCounter eventCountForHomeTeam:INSOEventCodeShotOnGoal] integerValue];
+        NSInteger homeShots = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeShot] integerValue];
+        NSInteger homeSOG = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeShotOnGoal] integerValue];
         NSInteger homeMisses = homeShots - homeSOG;
         homeMisses = homeMisses < 0 ? 0 : homeMisses;
         
-        NSInteger visitorShots = [[eventCounter eventCountForVisitingTeam:INSOEventCodeShot] integerValue];
-        NSInteger visitorSOG = [[eventCounter eventCountForVisitingTeam:INSOEventCodeShotOnGoal] integerValue];
+        NSInteger visitorShots = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeShot] integerValue];
+        NSInteger visitorSOG = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeShotOnGoal] integerValue];
         NSInteger visitorMisses = visitorShots - visitorSOG;
         visitorMisses = visitorMisses < 0 ? 0 : visitorMisses;
 
@@ -521,13 +520,13 @@
     
     // Shooting accuracy = shots on goal / shots (what percent of your shots were on goal)
     if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
-        NSInteger homeShots = [[eventCounter eventCountForHomeTeam:INSOEventCodeShot] integerValue];
-        NSInteger homeSOG = [[eventCounter eventCountForHomeTeam:INSOEventCodeShotOnGoal] integerValue];
+        NSInteger homeShots = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeShot] integerValue];
+        NSInteger homeSOG = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeShotOnGoal] integerValue];
         CGFloat   homeAccuracy = (homeShots > 0) ? (CGFloat)homeSOG / homeShots : 0.0;
         NSString *homeAccuracyString = [self.percentFormatter stringFromNumber:@(homeAccuracy)];
         
-        NSInteger visitorShots = [[eventCounter eventCountForVisitingTeam:INSOEventCodeShot] integerValue];
-        NSInteger visitorSOG = [[eventCounter eventCountForVisitingTeam:INSOEventCodeShotOnGoal] integerValue];
+        NSInteger visitorShots = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeShot] integerValue];
+        NSInteger visitorSOG = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeShotOnGoal] integerValue];
         CGFloat   visitorAccuracy = (visitorShots > 0) ? (CGFloat)visitorSOG / visitorShots : 0.0;
         NSString *visitorAccuracyString = [self.percentFormatter stringFromNumber:@(visitorAccuracy)];
         
@@ -538,8 +537,8 @@
 
     // Assists
     if ([self.game didRecordEvent:INSOEventCodeAssist]) {
-        NSNumber *homeAssists = [eventCounter eventCountForHomeTeam:INSOEventCodeAssist];
-        NSNumber *visitorAssists = [eventCounter eventCountForVisitingTeam:INSOEventCodeAssist];
+        NSNumber *homeAssists = [self.eventCounter eventCountForHomeTeam:INSOEventCodeAssist];
+        NSNumber *visitorAssists = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeAssist];
         
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Assists</td><td>%@</td>\n", homeAssists, visitorAssists];
@@ -548,8 +547,8 @@
     
     // Saves
     if ([self.game didRecordEvent:INSOEventCodeSave]) {
-        NSNumber *homeSaves = [eventCounter eventCountForHomeTeam:INSOEventCodeSave];
-        NSNumber *visitorSaves = [eventCounter eventCountForVisitingTeam:INSOEventCodeSave];
+        NSNumber *homeSaves = [self.eventCounter eventCountForHomeTeam:INSOEventCodeSave];
+        NSNumber *visitorSaves = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeSave];
         
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Saves</td><td>%@</td>\n", homeSaves, visitorSaves];
@@ -558,8 +557,8 @@
     
     // Goals allowed
     if ([self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
-        NSNumber *homeGoalsAllowed = [eventCounter eventCountForHomeTeam:INSOEventCodeGoalAllowed];
-        NSNumber *visitorGoalsAllowed = [eventCounter eventCountForVisitingTeam:INSOEventCodeGoalAllowed];
+        NSNumber *homeGoalsAllowed = [self.eventCounter eventCountForHomeTeam:INSOEventCodeGoalAllowed];
+        NSNumber *visitorGoalsAllowed = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeGoalAllowed];
         
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Goals Allowed</td><td>%@</td>\n", homeGoalsAllowed, visitorGoalsAllowed];
@@ -568,13 +567,13 @@
     
     // Save pct. = saves / (saves + goals allowed)
     if ([self.game didRecordEvent:INSOEventCodeSave] && [self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
-        NSInteger homeSaves = [[eventCounter eventCountForHomeTeam:INSOEventCodeSave] integerValue];
-        NSInteger homeGoalsAllowed = [[eventCounter eventCountForHomeTeam:INSOEventCodeGoalAllowed] integerValue];
+        NSInteger homeSaves = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeSave] integerValue];
+        NSInteger homeGoalsAllowed = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeGoalAllowed] integerValue];
         CGFloat   homeSavePct = (homeSaves + homeGoalsAllowed) > 0 ? (CGFloat)homeSaves / (homeSaves + homeGoalsAllowed) : 0.0;
         NSString *homeSavePctString = [self.percentFormatter stringFromNumber:@(homeSavePct)];
         
-        NSInteger visitorSaves = [[eventCounter eventCountForVisitingTeam:INSOEventCodeSave] integerValue];
-        NSInteger visitorGoalsAllowed = [[eventCounter eventCountForVisitingTeam:INSOEventCodeGoalAllowed] integerValue];
+        NSInteger visitorSaves = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeSave] integerValue];
+        NSInteger visitorGoalsAllowed = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeGoalAllowed] integerValue];
         CGFloat   visitorSavePct = (visitorSaves + visitorGoalsAllowed) > 0 ? (CGFloat)visitorSaves / (visitorSaves + visitorGoalsAllowed) : 0.0;
         NSString *visitorSavePctString = [self.percentFormatter stringFromNumber:@(visitorSavePct)];
 
@@ -594,13 +593,10 @@
     [emoSection appendString:@"<th colspan=\"3\">Extra-Man</th>\n"];
     [emoSection appendString:@"</tr>\n"];
     
-    // And now the stats
-    INSOGameEventCounter *eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
-    
     // EMO
     if ([self.game didRecordEvent:INSOEventCodeEMO]) {
-        NSNumber *homeEMO = [eventCounter eventCountForHomeTeam:INSOEventCodeEMO];
-        NSNumber *visitorEMO = [eventCounter eventCountForVisitingTeam:INSOEventCodeEMO];
+        NSNumber *homeEMO = [self.eventCounter eventCountForHomeTeam:INSOEventCodeEMO];
+        NSNumber *visitorEMO = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeEMO];
         
         [emoSection appendString:@"<tr>\n"];
         [emoSection appendFormat:@"<td>%@</td><td>EMO</td><td>%@</td>\n", homeEMO, visitorEMO];
@@ -609,8 +605,8 @@
     
     // EMO goals
     if ([self.game didRecordEvent:INSOEventCodeEMO] && [self.game didRecordEvent:INSOEventCodeGoal]) {
-        NSInteger homeEMOGoals = [[eventCounter extraManGoalsForHomeTeam] integerValue];
-        NSInteger visitorEMOGoals = [[eventCounter extraManGoalsForVisitingTeam] integerValue];
+        NSInteger homeEMOGoals = [[self.eventCounter extraManGoalsForHomeTeam] integerValue];
+        NSInteger visitorEMOGoals = [[self.eventCounter extraManGoalsForVisitingTeam] integerValue];
         
         [emoSection appendString:@"<tr>\n"];
         [emoSection appendFormat:@"<td>%@</td><td>EMO Goals</td><td>%@</td>\n", @(homeEMOGoals), @(visitorEMOGoals)];
@@ -618,8 +614,8 @@
         
         // Just do the emo scoring here while we're at it.
         // EMO scoring = emo goals / emo
-        NSInteger homeEMO = [[eventCounter eventCountForHomeTeam:INSOEventCodeEMO] integerValue];
-        NSInteger visitorEMO = [[eventCounter eventCountForVisitingTeam:INSOEventCodeEMO] integerValue];
+        NSInteger homeEMO = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeEMO] integerValue];
+        NSInteger visitorEMO = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeEMO] integerValue];
         
         CGFloat homeEMOScoring = (homeEMO > 0) ? (CGFloat)homeEMOGoals / homeEMO : 0.0;
         NSString *homeEMOScoringString = [self.percentFormatter stringFromNumber:@(homeEMOScoring)];
@@ -630,12 +626,46 @@
         [emoSection appendFormat:@"<td>%@</td><td>EMO Scoring</td><td>%@</td>\n", homeEMOScoringString, visitorEMOScoringString];
         [emoSection appendString:@"</tr>\n"];
     }
+    
+    // Man-up (girls call it man-up, boys call it emo. Go figure.)
+    if ([self.game didRecordEvent:INSOEventCodeManUp]) {
+        NSNumber *homeManUp = [self.eventCounter eventCountForHomeTeam:INSOEventCodeManUp];
+        NSNumber *visitorManUp = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeManUp];
+        
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>Man-up</td><td>%@</td>\n", homeManUp, visitorManUp];
+        [emoSection appendString:@"</tr>\n"];
+    }
+
+    // Man-up scoring
+    if ([self.game didRecordEvent:INSOEventCodeManUp] && [self.game didRecordEvent:INSOEventCodeGoal]) {
+        NSInteger homeManUpGoals = [[self.eventCounter extraManGoalsForHomeTeam] integerValue];
+        NSInteger visitorManUpGoals = [[self.eventCounter extraManGoalsForVisitingTeam] integerValue];
+        
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>Man-up Goals</td><td>%@</td>\n", @(homeManUpGoals), @(visitorManUpGoals)];
+        [emoSection appendString:@"</tr>\n"];
+        
+        // Just do the emo scoring here while we're at it.
+        // EMO scoring = emo goals / emo
+        NSInteger homeManUp = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeManUp] integerValue];
+        NSInteger visitorManUp = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeManUp] integerValue];
+        
+        CGFloat homeManUpScoring = (homeManUp > 0) ? (CGFloat)homeManUpGoals / homeManUp : 0.0;
+        NSString *homeManUpScoringString = [self.percentFormatter stringFromNumber:@(homeManUpScoring)];
+        CGFloat visitorManUpScoring = (visitorManUp > 0) ? (CGFloat)visitorManUpGoals / visitorManUp : 0.0;
+        NSString *visitorManUpScoringString = [self.percentFormatter stringFromNumber:@(visitorManUpScoring)];
+        
+        [emoSection appendString:@"<tr>\n"];
+        [emoSection appendFormat:@"<td>%@</td><td>Man-up Scoring</td><td>%@</td>\n", homeManUpScoringString, visitorManUpScoringString];
+        [emoSection appendString:@"</tr>\n"];
+    }
 
     
     // Man-down
     if ([self.game didRecordEvent:INSOEventCodeManDown]) {
-        NSNumber *homeManDown = [eventCounter eventCountForHomeTeam:INSOEventCodeManDown];
-        NSNumber *visitorManDown = [eventCounter eventCountForVisitingTeam:INSOEventCodeManDown];
+        NSNumber *homeManDown = [self.eventCounter eventCountForHomeTeam:INSOEventCodeManDown];
+        NSNumber *visitorManDown = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeManDown];
         
         [emoSection appendString:@"<tr>\n"];
         [emoSection appendFormat:@"<td>%@</td><td>Man-down</td><td>%@</td>\n", homeManDown, visitorManDown];
@@ -646,11 +676,11 @@
     // A man-down goal allowed is an extra-man goal scored by the other team.
     // Proceed accordingly.
     if ([self.game didRecordEvent:INSOEventCodeManDown] && [self.game didRecordEvent:INSOEventCodeGoal]) {
-        NSInteger homeManDown = [[eventCounter eventCountForHomeTeam:INSOEventCodeManDown] integerValue];
-        NSInteger visitorManDown = [[eventCounter eventCountForVisitingTeam:INSOEventCodeManDown] integerValue];
+        NSInteger homeManDown = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeManDown] integerValue];
+        NSInteger visitorManDown = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeManDown] integerValue];
         
-        NSInteger homeMDGoalsAllowed = [[eventCounter extraManGoalsForVisitingTeam] integerValue];
-        NSInteger visitorMDGoalsAllowed = [[eventCounter extraManGoalsForHomeTeam] integerValue];
+        NSInteger homeMDGoalsAllowed = [[self.eventCounter extraManGoalsForVisitingTeam] integerValue];
+        NSInteger visitorMDGoalsAllowed = [[self.eventCounter extraManGoalsForHomeTeam] integerValue];
         
         
         CGFloat homeManDownScoring = (homeManDown > 0) ? (CGFloat)homeMDGoalsAllowed / homeManDown : 0.0;
@@ -665,7 +695,7 @@
         [emoSection appendString:@"</tr>\n"];
 
         [emoSection appendString:@"<tr>\n"];
-        [emoSection appendFormat:@"<td>%@</td><td>Man-down Scoring<br />(Man-down goals allowed / Man-down)</td><td>%@</td>\n", homeManDownScoringString, visitorManDownScoringString];
+        [emoSection appendFormat:@"<td>%@</td><td>Man-down Scoring</td><td>%@</td>\n", homeManDownScoringString, visitorManDownScoringString];
         [emoSection appendString:@"</tr>\n"];
     }
     
@@ -684,21 +714,18 @@
     [penaltySection appendFormat:@"<th colspan=\"3\">%@</th>\n", sectionTitle];
     [penaltySection appendString:@"</tr>\n"];
     
-    // And now the stats
-    INSOGameEventCounter *eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
-    
     if (self.isExportingForBoys) {
         // Penalties
-        NSNumber *homePenalties = [eventCounter totalPenaltiesForHomeTeam];
-        NSNumber *visitorPenalties = [eventCounter totalPenaltiesForVisitingTeam];
+        NSNumber *homePenalties = [self.eventCounter totalPenaltiesForHomeTeam];
+        NSNumber *visitorPenalties = [self.eventCounter totalPenaltiesForVisitingTeam];
         
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Penalties</td><td>%@</td>\n", homePenalties, visitorPenalties];
         [penaltySection appendString:@"</tr>\n"];
         
         // Penalty Time
-        NSInteger homePenaltySeconds = [[eventCounter totalPenaltyTimeForHomeTeam] integerValue];
-        NSInteger visitorPenaltySeconds = [[eventCounter totalPenaltyTimeForVisitingTeam] integerValue];
+        NSInteger homePenaltySeconds = [[self.eventCounter totalPenaltyTimeForHomeTeam] integerValue];
+        NSInteger visitorPenaltySeconds = [[self.eventCounter totalPenaltyTimeForVisitingTeam] integerValue];
         
         NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
         penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
@@ -712,40 +739,38 @@
         [penaltySection appendString:@"</tr>\n"];
     } else {
         // Fouls
-        NSInteger homeFouls = 0;
-        NSInteger visitorFouls = 0;
+        NSInteger homeFouls = [[self.eventCounter totalFoulsForHomeTeam] integerValue];
+        NSInteger visitorFouls = [[self.eventCounter totalFoulsForVisitingTeam] integerValue];
         
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Fouls</td><td>%@</td>\n", @(homeFouls), @(visitorFouls)];
         [penaltySection appendString:@"</tr>\n"];
 
         // Green cards
-        NSInteger homeGreenCards = 0;
-        NSInteger visitorGreenCards = 0;
+        NSInteger homeGreenCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeGreenCard] integerValue];
+        NSInteger visitorGreenCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeGreenCard] integerValue];
 
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Green Cards</td><td>%@</td>\n", @(homeGreenCards), @(visitorGreenCards)];
         [penaltySection appendString:@"</tr>\n"];
 
         // Yellow cards
-        NSInteger homeYellowCards = 0;
-        NSInteger visitorYellowCards = 0;
+        NSInteger homeYellowCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeYellowCard] integerValue];
+        NSInteger visitorYellowCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeYellowCard] integerValue];
 
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Yellow Cards</td><td>%@</td>\n", @(homeYellowCards), @(visitorYellowCards)];
         [penaltySection appendString:@"</tr>\n"];
 
         // Red cards
-        NSInteger homeRedCards = 0;
-        NSInteger visitorRedCards = 0;
+        NSInteger homeRedCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeRedCard] integerValue];
+        NSInteger visitorRedCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeRedCard] integerValue];
 
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Red Cards</td><td>%@</td>\n", @(homeRedCards), @(visitorRedCards)];
         [penaltySection appendString:@"</tr>\n"];
 
     }
-
-
     return penaltySection;
 }
 
@@ -886,12 +911,9 @@
     // First goes the player
     [dataRow addObject:rosterPlayer.number];
     
-    // Now we need an event counter
-    INSOGameEventCounter* eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
-    
     // Groundballs
     if ([self.game didRecordEvent:INSOEventCodeGroundball]) {
-        [dataRow addObject:[eventCounter eventCount:INSOEventCodeGroundball forRosterPlayer:rosterPlayer]];
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeGroundball forRosterPlayer:rosterPlayer]];
     }
     
     // Faceoff attempts
@@ -900,8 +922,8 @@
     NSNumber *faceoffAttempts;
     
     if ([self.game didRecordEvent:INSOEventCodeFaceoffWon] && [self.game didRecordEvent:INSOEventCodeFaceoffLost]) {
-        faceoffsWon = [eventCounter eventCount:INSOEventCodeFaceoffWon forRosterPlayer:rosterPlayer];
-        faceoffsLost = [eventCounter eventCount:INSOEventCodeFaceoffLost forRosterPlayer:rosterPlayer];
+        faceoffsWon = [self.eventCounter eventCount:INSOEventCodeFaceoffWon forRosterPlayer:rosterPlayer];
+        faceoffsLost = [self.eventCounter eventCount:INSOEventCodeFaceoffLost forRosterPlayer:rosterPlayer];
         NSInteger attempts = [faceoffsWon integerValue] + [faceoffsLost integerValue];
         faceoffAttempts = [NSNumber numberWithInteger:attempts];
         [dataRow addObject:faceoffAttempts];
@@ -925,37 +947,37 @@
     
     // Turnovers
     if ([self.game didRecordEvent:INSOEventCodeTurnover]) {
-        [dataRow addObject:[eventCounter eventCount:INSOEventCodeTurnover forRosterPlayer:rosterPlayer]];
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeTurnover forRosterPlayer:rosterPlayer]];
     }
     
     // Caused turnover
     if ([self.game didRecordEvent:INSOEventCodeCausedTurnover]) {
-        [dataRow addObject:[eventCounter eventCount:INSOEventCodeCausedTurnover forRosterPlayer:rosterPlayer]];
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeCausedTurnover forRosterPlayer:rosterPlayer]];
     }
     
     // Interceptions
     if ([self.game didRecordEvent:INSOEventCodeInterception]) {
-        [dataRow addObject:[eventCounter eventCount:INSOEventCodeInterception forRosterPlayer:rosterPlayer]];
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeInterception forRosterPlayer:rosterPlayer]];
     }
     
     // Shots
     NSNumber *shots;
     if ([self.game didRecordEvent:INSOEventCodeShot]) {
-        shots = [eventCounter eventCount:INSOEventCodeShot forRosterPlayer:rosterPlayer];
+        shots = [self.eventCounter eventCount:INSOEventCodeShot forRosterPlayer:rosterPlayer];
         [dataRow addObject:shots];
     }
     
     // Goals
     NSNumber *goals;
     if ([self.game didRecordEvent:INSOEventCodeGoal]) {
-        goals = [eventCounter eventCount:INSOEventCodeGoal forRosterPlayer:rosterPlayer];
+        goals = [self.eventCounter eventCount:INSOEventCodeGoal forRosterPlayer:rosterPlayer];
         [dataRow addObject:goals];
     }
     
     // Assists
     NSNumber *assists;
     if ([self.game didRecordEvent:INSOEventCodeAssist]) {
-        assists = [eventCounter eventCount:INSOEventCodeAssist forRosterPlayer:rosterPlayer];
+        assists = [self.eventCounter eventCount:INSOEventCodeAssist forRosterPlayer:rosterPlayer];
         [dataRow addObject:assists];
     }
     
@@ -979,7 +1001,7 @@
     // SOG
     NSNumber *sog;
     if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
-        sog = [eventCounter eventCount:INSOEventCodeShotOnGoal forRosterPlayer:rosterPlayer];
+        sog = [self.eventCounter eventCount:INSOEventCodeShotOnGoal forRosterPlayer:rosterPlayer];
         [dataRow addObject:sog];
     }
     
@@ -1006,14 +1028,14 @@
     // Saves
     NSNumber *saves;
     if ([self.game didRecordEvent:INSOEventCodeSave]) {
-        saves = [eventCounter eventCount:INSOEventCodeSave forRosterPlayer:rosterPlayer];
+        saves = [self.eventCounter eventCount:INSOEventCodeSave forRosterPlayer:rosterPlayer];
         [dataRow addObject:saves];
     }
     
     // Goals allowed
     NSNumber *goalsAllowed;
     if ([self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
-        goalsAllowed = [eventCounter eventCount:INSOEventCodeGoalAllowed forRosterPlayer:rosterPlayer];
+        goalsAllowed = [self.eventCounter eventCount:INSOEventCodeGoalAllowed forRosterPlayer:rosterPlayer];
         [dataRow addObject:goalsAllowed];
     }
     
@@ -1030,9 +1052,9 @@
     
     // And now the penalties
     if (self.shouldExportPenalties && self.isExportingForBoys) {
-        [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
+        [dataRow addObject:[self.eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
         
-        double totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
+        double totalPenaltyTime = [[self.eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] doubleValue];
         
         NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
         penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
@@ -1099,29 +1121,26 @@
     // First goes the player
     [dataRow addObject:rosterPlayer.number];
     
-    // Now we need an event counter
-    INSOGameEventCounter* eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
-    
     // Now a count of every event for that number
     for (Event* event in self.maxPrepsBoysEvents) {
-        NSNumber* eventCount = [eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        NSNumber* eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         [dataRow addObject:eventCount];
     }
     
     // now add faceoff attempts if we recorded faceoffs won.
     if ([self.maxPrepsBoysEvents containsObject:[Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext]]) {
         // Only report faceoff attempts if we've actually collected faceoffs.
-        NSInteger faceoffsWon = [[eventCounter eventCount:INSOEventCodeFaceoffWon forRosterPlayer:rosterPlayer] integerValue];
-        NSInteger faceoffsLost = [[eventCounter eventCount:INSOEventCodeFaceoffLost forRosterPlayer:rosterPlayer] integerValue];
+        NSInteger faceoffsWon = [[self.eventCounter eventCount:INSOEventCodeFaceoffWon forRosterPlayer:rosterPlayer] integerValue];
+        NSInteger faceoffsLost = [[self.eventCounter eventCount:INSOEventCodeFaceoffLost forRosterPlayer:rosterPlayer] integerValue];
         NSNumber* faceoffAttempts = [NSNumber numberWithInteger:(faceoffsWon + faceoffsLost)];
         [dataRow addObject:faceoffAttempts];
     }
     
     // And now the penalties
     if (self.shouldExportPenalties) {
-        [dataRow addObject:[eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
+        [dataRow addObject:[self.eventCounter totalPenaltiesForBoysRosterPlayer:rosterPlayer]];
         
-        NSInteger totalPenaltyTime = [[eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] integerValue];
+        NSInteger totalPenaltyTime = [[self.eventCounter totalPenaltyTimeforRosterPlayer:rosterPlayer] integerValue];
         NSInteger penaltyMinutes = totalPenaltyTime / 60;
         NSInteger penaltySeconds = totalPenaltyTime % 60;
         
@@ -1139,18 +1158,15 @@
     // First goes the player
     [dataRow addObject:rosterPlayer.number];
     
-    // Now we need an event counter
-    INSOGameEventCounter* eventCounter = [[INSOGameEventCounter alloc] initWithGame:self.game];
-    
     // Now a count of every event for that number
     for (Event* event in self.maxPrepsGirlsEvents) {
-        NSNumber* eventCount = [eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        NSNumber* eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         [dataRow addObject:eventCount];
     }
     
     // And now the penalties
     if (self.shouldExportPenalties) {
-        [dataRow addObject:[eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
+        [dataRow addObject:[self.eventCounter totalPenaltiesForGirlsRosterPlayer:rosterPlayer]];
     }
     
     return dataRow;
