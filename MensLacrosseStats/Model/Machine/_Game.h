@@ -1,7 +1,7 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to Game.h instead.
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 extern const struct GameAttributes {
 	__unsafe_unretained NSString *gameDateTime;

@@ -30,6 +30,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 // IBOutlets
 @property (nonatomic, weak) IBOutlet UIBarButtonItem    * doneButton;
 @property (nonatomic, weak) IBOutlet UISegmentedControl * shotResultSegment;
+@property (nonatomic, weak) IBOutlet UISwitch           * freePositionSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch           * extraManSwitch;
 @property (nonatomic, weak) IBOutlet UICollectionView   * assistCollection;
 @property (nonatomic, weak) IBOutlet UILabel            * assistTitleLabel;
@@ -354,6 +355,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     }
     shotEvent.game = self.rosterPlayer.game;
     shotEvent.player = self.rosterPlayer;
+    shotEvent.is8mValue = self.freePositionSwitch.isOn;
     
     return shotEvent;
 }
@@ -396,6 +398,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     goalAllowedEvent.event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.managedObjectContext];
     goalAllowedEvent.game = self.rosterPlayer.game;
     goalAllowedEvent.isExtraManGoalValue = self.extraManSwitch.isOn;
+    goalAllowedEvent.is8mValue = self.freePositionSwitch.isOn;
 
     // Now the tricky part
     if (self.rosterPlayer.numberValue >= INSOTeamWatchingPlayerNumber) {
@@ -426,6 +429,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     shotOnGoalEvent.event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.managedObjectContext];
     shotOnGoalEvent.game = self.rosterPlayer.game;
     shotOnGoalEvent.player = self.rosterPlayer;
+    shotOnGoalEvent.is8mValue = self.freePositionSwitch.isOn;
     
     return shotOnGoalEvent;
 }
@@ -445,7 +449,8 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     // Set its relations
     saveEvent.event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.managedObjectContext];
     saveEvent.game = self.rosterPlayer.game;
-    
+    saveEvent.is8mValue = self.freePositionSwitch.isOn;
+
     // Now the tricky part
     if (self.rosterPlayer.numberValue >= INSOTeamWatchingPlayerNumber) {
         // Created shot on goal for the team watching, so save for other team
@@ -474,7 +479,8 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     assistEvent.timestamp = [NSDate date];
     assistEvent.event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.managedObjectContext];
     assistEvent.game = self.rosterPlayer.game;
-    
+    assistEvent.is8mValue = self.freePositionSwitch.isOn;
+
     if (self.selectedIndexPath) {
         RosterPlayer* assistingPlayer = self.rosterArray[self.selectedIndexPath.row];
         assistEvent.player = assistingPlayer;

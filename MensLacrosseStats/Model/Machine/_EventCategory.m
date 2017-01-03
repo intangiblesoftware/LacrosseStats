@@ -55,7 +55,7 @@ const struct EventCategoryRelationships EventCategoryRelationships = {
 }
 
 - (void)setCategoryCodeValue:(int16_t)value_ {
-	[self setCategoryCode:@(value_)];
+	[self setCategoryCode:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitiveCategoryCodeValue {
@@ -64,7 +64,7 @@ const struct EventCategoryRelationships EventCategoryRelationships = {
 }
 
 - (void)setPrimitiveCategoryCodeValue:(int16_t)value_ {
-	[self setPrimitiveCategoryCode:@(value_)];
+	[self setPrimitiveCategoryCode:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic title;

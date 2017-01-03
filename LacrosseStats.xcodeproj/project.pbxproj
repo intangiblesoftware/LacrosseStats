@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B98BEA521E16B7A90076BB68 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B98BEA551E16B7A90076BB68 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				B98BEA561E16B7DA0076BB68 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B9108A911BC07FE9000450F8 /* MensLacrosseStatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9108A901BC07FE9000450F8 /* MensLacrosseStatsTests.m */; };
 		B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */; };
@@ -193,6 +207,7 @@
 		B97FD19B1C5B0B8E000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WomensMain.storyboard; sourceTree = "<group>"; };
 		B9880D2C1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOPlayerCollectionViewCell.h; sourceTree = "<group>"; };
 		B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPlayerCollectionViewCell.m; sourceTree = "<group>"; };
+		B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MensLacrosseStats 2.xcdatamodel"; sourceTree = "<group>"; };
 		B98D03491C28C86400C4D998 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B991A65A1BB75FA5004FD794 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		B991A65B1BB75FA5004FD794 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
@@ -689,6 +704,11 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Intangible Software";
 				TargetAttributes = {
+					B98BEA521E16B7A90076BB68 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = CRBB3K29X3;
+						ProvisioningStyle = Automatic;
+					};
 					B9C7A72F1BADA3B30082DA8B = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = CRBB3K29X3;
@@ -734,6 +754,7 @@
 				B9C7A74B1BADA3B30082DA8B /* MensLacrosseStatsTests */,
 				B9C7A7561BADA3B30082DA8B /* MensLacrosseStatsUITests */,
 				B9D732441C5B082300FEADFF /* WomensLacrosseStats */,
+				B98BEA521E16B7A90076BB68 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -795,6 +816,19 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+		};
+		B98BEA561E16B7DA0076BB68 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd MensLacrosseStats/Model\nmogenerator --template-var arc=true --human-dir \"Human\" --machine-dir \"Machine\" -model \"MensLacrosseStats.xcdatamodeld/MensLacrosseStats 2.xcdatamodel\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -963,6 +997,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B98BEA531E16B7A90076BB68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = CRBB3K29X3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B98BEA541E16B7A90076BB68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = CRBB3K29X3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B9C7A75E1BADA3B30082DA8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1172,6 +1222,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B98BEA551E16B7A90076BB68 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B98BEA531E16B7A90076BB68 /* Debug */,
+				B98BEA541E16B7A90076BB68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B9C7A72B1BADA3B30082DA8B /* Build configuration list for PBXProject "LacrosseStats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1223,9 +1282,10 @@
 		B99FDD501BB46865006FB373 /* MensLacrosseStats.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */,
 				B99FDD511BB46865006FB373 /* MensLacrosseStats.xcdatamodel */,
 			);
-			currentVersion = B99FDD511BB46865006FB373 /* MensLacrosseStats.xcdatamodel */;
+			currentVersion = B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */;
 			path = MensLacrosseStats.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
