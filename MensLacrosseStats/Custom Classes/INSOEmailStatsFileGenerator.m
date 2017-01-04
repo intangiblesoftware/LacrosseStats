@@ -746,7 +746,15 @@
         [penaltySection appendFormat:@"<td>%@</td><td>Fouls</td><td>%@</td>\n", @(homeFouls), @(visitorFouls)];
         [penaltySection appendString:@"</tr>\n"];
         
-        // 8-meter
+        // 8-meter awarded
+        NSInteger home8m = [[self.eventCounter eventCountForHomeTeam:INSOEventCode8mFreePosition] integerValue];
+        NSInteger visitor8m = [[self.eventCounter eventCountForVisitingTeam:INSOEventCode8mFreePosition] integerValue];
+        
+        [penaltySection appendString:@"<tr>\n"];
+        [penaltySection appendFormat:@"<td>%@</td><td>8m (Free Position)</td><td>%@</td>\n", @(home8m), @(visitor8m)];
+        [penaltySection appendString:@"</tr>\n"];
+
+        // 8-meter shots and goals
         NSNumber *homeFPS = [self.eventCounter freePositionEventCountForHomeTeam:INSOEventCodeShot];
         NSNumber *visitorFPS = [self.eventCounter freePositionEventCountForVisitingTeam:INSOEventCodeShot];
         

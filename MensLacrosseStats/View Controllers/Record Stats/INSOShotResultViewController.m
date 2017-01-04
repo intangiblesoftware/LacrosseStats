@@ -378,6 +378,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     goalEvent.game = self.rosterPlayer.game;
     goalEvent.player = self.rosterPlayer;
     goalEvent.isExtraManGoalValue = self.extraManSwitch.isOn;
+    goalEvent.is8mValue = self.freePositionSwitch.isOn;
     
     return goalEvent;
 }
