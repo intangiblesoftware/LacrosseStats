@@ -64,6 +64,24 @@
     return @(eventCount);
 }
 
+- (NSNumber *)freePositionEventCountForHomeTeam:(INSOEventCode)eventCode
+{
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@ AND player.number == %@ AND is8m == %@", self.game, @(eventCode), self.isWatchingHomeTeam ? @(INSOTeamWatchingPlayerNumber) : @(INSOOtherTeamPlayerNumber), @(YES)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        NSInteger playerCount = 0;
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                playerCount += [[self freePositionEventCount:eventCode forRosterPlayer:player] integerValue];
+            }
+        }
+        eventCount += playerCount;
+    }
+    return @(eventCount);
+}
+
 - (NSNumber *)eventCountForVisitingTeam:(INSOEventCode)eventCode
 {
     NSInteger eventCount;
@@ -82,9 +100,33 @@
     return @(eventCount);
 }
 
+- (NSNumber *)freePositionEventCountForVisitingTeam:(INSOEventCode)eventCode
+{
+    NSInteger eventCount;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@ AND player.number == %@ AND is8m == %@", self.game, @(eventCode), self.isWatchingHomeTeam ? @(INSOOtherTeamPlayerNumber) : @(INSOTeamWatchingPlayerNumber), @(YES)];
+    eventCount = [[GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext] integerValue];
+    if (!self.isWatchingHomeTeam) {
+        // Now cycle through all the players as well.
+        NSInteger playerCount = 0;
+        for (RosterPlayer *player in self.game.players) {
+            if (player.numberValue >= 0) {
+                playerCount += [[self freePositionEventCount:eventCode forRosterPlayer:player] integerValue];
+            }
+        }
+        eventCount += playerCount;
+    }
+    return @(eventCount);
+}
+
 - (NSNumber*)eventCount:(INSOEventCode)eventCode forRosterPlayer:(RosterPlayer*)rosterPlayer
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@ AND player == %@", self.game, @(eventCode), rosterPlayer];
+    return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSNumber*)freePositionEventCount:(INSOEventCode)eventCode forRosterPlayer:(RosterPlayer*)rosterPlayer
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"game == %@ AND event.eventCode == %@ AND player == %@ AND is8m == %@", self.game, @(eventCode), rosterPlayer, @(YES)];
     return [GameEvent aggregateOperation:@"count:" onAttribute:@"timestamp" withPredicate:predicate inManagedObjectContext:self.managedObjectContext];
 }
 

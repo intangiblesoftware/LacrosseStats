@@ -20,7 +20,9 @@
 - (NSNumber *)eventCount:(INSOEventCode)eventCode;
 - (NSNumber *)eventCount:(INSOEventCode)eventCode forRosterPlayer:(RosterPlayer*)rosterPlayer;
 - (NSNumber *)eventCountForHomeTeam:(INSOEventCode)eventCode;
+- (NSNumber *)freePositionEventCountForHomeTeam:(INSOEventCode)eventCode;
 - (NSNumber *)eventCountForVisitingTeam:(INSOEventCode)eventCode;
+- (NSNumber *)freePositionEventCountForVisitingTeam:(INSOEventCode)eventCode;
 
 - (NSNumber *)extraManGoalsForHomeTeam;
 - (NSNumber *)extraManGoalsForVisitingTeam;

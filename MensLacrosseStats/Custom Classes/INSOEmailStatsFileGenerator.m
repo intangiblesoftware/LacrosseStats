@@ -745,6 +745,20 @@
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Fouls</td><td>%@</td>\n", @(homeFouls), @(visitorFouls)];
         [penaltySection appendString:@"</tr>\n"];
+        
+        // 8-meter
+        NSNumber *homeFPS = [self.eventCounter freePositionEventCountForHomeTeam:INSOEventCodeShot];
+        NSNumber *visitorFPS = [self.eventCounter freePositionEventCountForVisitingTeam:INSOEventCodeShot];
+        
+        NSNumber *homeFPSOG = [self.eventCounter freePositionEventCountForHomeTeam:INSOEventCodeShotOnGoal];
+        NSNumber *visitorFPSOG = [self.eventCounter freePositionEventCountForVisitingTeam:INSOEventCodeShotOnGoal];
+        
+        NSNumber *homeFPGoal = [self.eventCounter freePositionEventCountForHomeTeam:INSOEventCodeGoal];
+        NSNumber *visitorFPGoal = [self.eventCounter freePositionEventCountForVisitingTeam:INSOEventCodeGoal];
+        
+        [penaltySection appendString:@"<tr>\n"];
+        [penaltySection appendFormat:@"<td>%@/%@/%@</td><td>8m (Free Position)<br />Shots/SOG/Goals</td><td>%@/%@/%@</td>\n", homeFPS, homeFPSOG, homeFPGoal, visitorFPS, visitorFPSOG,visitorFPGoal];
+        [penaltySection appendString:@"</tr>\n"];
 
         // Green cards
         NSInteger homeGreenCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeGreenCard] integerValue];
