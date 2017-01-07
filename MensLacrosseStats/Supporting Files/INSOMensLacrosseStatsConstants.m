@@ -33,9 +33,11 @@ NSString * const INSOPenaltyTimeKey = @"penaltyTime";
 NSString * const INSOPenaltyCountKey = @"penaltyCount";
 NSString * const INSOPlayerKey = @"player";
 NSString * const INSOStatsKey = @"stats";
-NSString * const INSOSectionTitleKey = @"sectionTitle"; 
-NSString * const INSOStatTitleKey = @"statTitle";
-NSString * const INSOStatValueKey = @"statValue";
+NSString * const INSOSectionTitleKey = @"sectionTitle";
+NSString * const INSOSectionDataKey = @"sectionData";
+NSString * const INSOHomeStatKey = @"homeStat";
+NSString * const INSOVisitorStatKey = @"visitorStat";
+NSString * const INSOStatNameKey = @"statName";
 
 #pragma mark - Product Identifier
 NSString * const INSOMensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.menslacrossestats.1year";

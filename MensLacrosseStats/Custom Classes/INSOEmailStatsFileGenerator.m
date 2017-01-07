@@ -415,7 +415,7 @@
     // Interceptions
     if ([self.game didRecordEvent:INSOEventCodeInterception]) {
         NSNumber *homeInterceptions = [self.eventCounter eventCountForHomeTeam:INSOEventCodeInterception];
-        NSNumber *visitorInterceptions = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeTurnover];
+        NSNumber *visitorInterceptions = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeInterception];
         
         [fieldingSection appendString:@"<tr>\n"];
         [fieldingSection appendFormat:@"<td>%@</td><td>Interceptions</td><td>%@</td>\n", homeInterceptions, visitorInterceptions];

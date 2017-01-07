@@ -34,8 +34,10 @@ extern NSString * const INSOPenaltyCountKey;
 extern NSString * const INSOPlayerKey;
 extern NSString * const INSOStatsKey;
 extern NSString * const INSOSectionTitleKey; 
-extern NSString * const INSOStatTitleKey; 
-extern NSString * const INSOStatValueKey;
+extern NSString * const INSOSectionDataKey;
+extern NSString * const INSOHomeStatKey;
+extern NSString * const INSOVisitorStatKey;
+extern NSString * const INSOStatNameKey;
 
 // Product identifier
 extern NSString * const INSOMensLacrosseStatsOneYearProductIdentifier;
