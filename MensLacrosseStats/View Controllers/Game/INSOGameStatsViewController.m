@@ -154,7 +154,6 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
     return _percentFormatter;
 }
 
-
 #pragma mark - IBActions
 - (void)changeStats:(id)sender
 {
