@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, INSOStatSourceIndex) {
 };
 
 static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
+static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
 
 @interface INSOGameStatsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -44,23 +45,10 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
 @property (nonatomic) NSArray* playerStatsArray;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic) NSNumberFormatter *percentFormatter;
-@property (nonatomic, assign) BOOL isExportingForBoys;
 
 @end
 
 @implementation INSOGameStatsViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
-        self.isExportingForBoys = YES;
-    } else {
-        self.isExportingForBoys = NO;
-    }
-
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -116,8 +104,9 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         NSMutableArray* temp = [NSMutableArray new];
         
         NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
-        NSArray* sortedPlayers = [self.game.players sortedArrayUsingDescriptors:@[sortByNumber]];
-
+        NSMutableArray* sortedPlayers = [[self.game.players sortedArrayUsingDescriptors:@[sortByNumber]] mutableCopy];
+        [sortedPlayers filterUsingPredicate:[NSPredicate predicateWithFormat:@"number >= 0"]];
+        
         for (RosterPlayer* rosterPlayer in sortedPlayers) {
             NSDictionary* playerStatsDictionary = [self statsDictionaryForPlayer:rosterPlayer];
             [temp addObject:playerStatsDictionary];
@@ -157,7 +146,8 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
 #pragma mark - IBActions
 - (void)changeStats:(id)sender
 {
-    [self.statsTable reloadData]; 
+    [self.statsTable reloadData];
+    [self.statsTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO]; 
 }
 
 #pragma mark - Private Methods
@@ -211,24 +201,6 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         NSString *visitorStatString = [NSString stringWithFormat:@"%@/%@ %@", @(visitorFaceoffsWon), @(visitorFaceoffs), visitorFaceoffPctString];
         
         [sectionData addObject:@{INSOHomeStatKey:homeStatString, INSOStatNameKey:@"Faceoffs", INSOVisitorStatKey:visitorStatString}];
-    }
-    
-    // Draws (instead of faceoffs)
-    if ([self.game didRecordEvent:INSOEventCodeDrawTaken] && [self.game didRecordEvent:INSOEventCodeDrawControl]) {
-        NSInteger homeDrawsTaken = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeDrawTaken] integerValue];
-        NSInteger homeDrawControl = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeDrawControl] integerValue];
-        CGFloat   homeDrawControlPct = (homeDrawsTaken > 0) ? (CGFloat)homeDrawControl / homeDrawsTaken : 0.0;
-        NSString *homeDrawControlPctString = [self.percentFormatter stringFromNumber:@(homeDrawControlPct)];
-        
-        NSInteger visitorDrawsTaken = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeDrawTaken] integerValue];
-        NSInteger visitorDrawControl = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeDrawControl] integerValue];
-        CGFloat   visitorDrawControlPct = (visitorDrawsTaken > 0) ? (CGFloat)visitorDrawControl / visitorDrawsTaken : 0.0;
-        NSString *visitorDrawControlPctString = [self.percentFormatter stringFromNumber:@(visitorDrawControlPct)];
-        
-        NSString *homeStatString = [NSString stringWithFormat:@"%@/%@ %@", @(homeDrawControl), @(homeDrawsTaken), homeDrawControlPctString];
-        NSString *visitorStatString = [NSString stringWithFormat:@"%@/%@ %@", @(visitorDrawControl), @(visitorDrawsTaken), visitorDrawControlPctString];
-        
-        [sectionData addObject:@{INSOHomeStatKey:homeStatString, INSOStatNameKey:@"Draws", INSOVisitorStatKey:visitorStatString}];
     }
     
     // Clears
@@ -435,35 +407,6 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         [sectionData addObject:@{INSOHomeStatKey:homeEMOScoringString, INSOStatNameKey:@"Extra-man Scoring", INSOVisitorStatKey:visitorEMOScoringString}];
     }
     
-    // Man-up (girls call it man-up, boys call it emo. Go figure.)
-    if ([self.game didRecordEvent:INSOEventCodeManUp]) {
-        NSNumber *homeManUp = [self.eventCounter eventCountForHomeTeam:INSOEventCodeManUp];
-        NSNumber *visitorManUp = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeManUp];
-        
-        [sectionData addObject:@{INSOHomeStatKey:homeManUp, INSOStatNameKey:@"Man-up", INSOVisitorStatKey:visitorManUp}];
-    }
-    
-    // Man-up scoring
-    if ([self.game didRecordEvent:INSOEventCodeManUp] && [self.game didRecordEvent:INSOEventCodeGoal]) {
-        NSInteger homeManUpGoals = [[self.eventCounter extraManGoalsForHomeTeam] integerValue];
-        NSInteger visitorManUpGoals = [[self.eventCounter extraManGoalsForVisitingTeam] integerValue];
-        
-        [sectionData addObject:@{INSOHomeStatKey:@(homeManUpGoals), INSOStatNameKey:@"Man-up Scoring", INSOVisitorStatKey:@(visitorManUpGoals)}];
-        
-        // Just do the emo scoring here while we're at it.
-        // EMO scoring = emo goals / emo
-        NSInteger homeManUp = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeManUp] integerValue];
-        NSInteger visitorManUp = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeManUp] integerValue];
-        
-        CGFloat homeManUpScoring = (homeManUp > 0) ? (CGFloat)homeManUpGoals / homeManUp : 0.0;
-        NSString *homeManUpScoringString = [self.percentFormatter stringFromNumber:@(homeManUpScoring)];
-        CGFloat visitorManUpScoring = (visitorManUp > 0) ? (CGFloat)visitorManUpGoals / visitorManUp : 0.0;
-        NSString *visitorManUpScoringString = [self.percentFormatter stringFromNumber:@(visitorManUpScoring)];
-        
-        [sectionData addObject:@{INSOHomeStatKey:homeManUpScoringString, INSOStatNameKey:@"Man-up Scoring", INSOVisitorStatKey:visitorManUpScoringString}];
-    }
-    
-    
     // Man-down
     if ([self.game didRecordEvent:INSOEventCodeManDown]) {
         NSNumber *homeManDown = [self.eventCounter eventCountForHomeTeam:INSOEventCodeManDown];
@@ -503,92 +446,43 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
     NSMutableDictionary *penaltySection = [NSMutableDictionary new];
     
     // Section title depends on boys or girls
-    NSString *sectionTitle;
-    self.isExportingForBoys ? (sectionTitle = @"Penalties") : (sectionTitle = @"Fouls");
+    NSString *sectionTitle = NSLocalizedString(@"Penalties", nil);
     penaltySection[INSOSectionTitleKey] = NSLocalizedString(sectionTitle, nil);
     NSMutableArray *sectionData = [NSMutableArray new];
     penaltySection[INSOSectionDataKey] = sectionData;
     
-    if (self.isExportingForBoys) {
-        // Penalties
-        NSNumber *homePenalties = [self.eventCounter totalPenaltiesForHomeTeam];
-        NSNumber *visitorPenalties = [self.eventCounter totalPenaltiesForVisitingTeam];
-        
-        [sectionData addObject:@{INSOHomeStatKey:homePenalties, INSOStatNameKey:@"Penalties", INSOVisitorStatKey:visitorPenalties}];
-        
-        // Penalty Time
-        NSInteger homePenaltySeconds = [[self.eventCounter totalPenaltyTimeForHomeTeam] integerValue];
-        NSInteger visitorPenaltySeconds = [[self.eventCounter totalPenaltyTimeForVisitingTeam] integerValue];
-        
-        NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
-        penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
-        penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
-        NSString *homePenaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:homePenaltySeconds];
-        NSString *visitorPentaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:visitorPenaltySeconds];
-        
-        [sectionData addObject:@{INSOHomeStatKey:homePenaltyTimeString, INSOStatNameKey:@"Penalty Time", INSOVisitorStatKey:visitorPentaltyTimeString}];
-    } else {
-        // Fouls
-        NSInteger homeFouls = [[self.eventCounter totalFoulsForHomeTeam] integerValue];
-        NSInteger visitorFouls = [[self.eventCounter totalFoulsForVisitingTeam] integerValue];
-        
-        [sectionData addObject:@{INSOHomeStatKey:@(homeFouls), INSOStatNameKey:@"Fouls", INSOVisitorStatKey:@(visitorFouls)}];
-        
-        // 8-meter awarded
-        NSInteger home8m = [[self.eventCounter eventCountForHomeTeam:INSOEventCode8mFreePosition] integerValue];
-        NSInteger visitor8m = [[self.eventCounter eventCountForVisitingTeam:INSOEventCode8mFreePosition] integerValue];
-        
-        [sectionData addObject:@{INSOHomeStatKey:@(home8m), INSOStatNameKey:@"8m (Free Position)", INSOVisitorStatKey:@(visitor8m)}];
-        
-        // 8-meter shots and goals
-        NSNumber *homeFPS = [self.eventCounter freePositionEventCountForHomeTeam:INSOEventCodeShot];
-        NSNumber *visitorFPS = [self.eventCounter freePositionEventCountForVisitingTeam:INSOEventCodeShot];
-        
-        NSNumber *homeFPSOG = [self.eventCounter freePositionEventCountForHomeTeam:INSOEventCodeShotOnGoal];
-        NSNumber *visitorFPSOG = [self.eventCounter freePositionEventCountForVisitingTeam:INSOEventCodeShotOnGoal];
-        
-        NSNumber *homeFPGoal = [self.eventCounter freePositionEventCountForHomeTeam:INSOEventCodeGoal];
-        NSNumber *visitorFPGoal = [self.eventCounter freePositionEventCountForVisitingTeam:INSOEventCodeGoal];
-        
-        NSString *homeStatString = [NSString stringWithFormat:@"%@/%@/%@", homeFPS, homeFPSOG, homeFPGoal];
-        NSString *visitorStatString = [NSString stringWithFormat:@"%@/%@/%@", visitorFPS, visitorFPSOG,visitorFPGoal];
-        [sectionData addObject:@{INSOHomeStatKey:homeStatString, INSOStatNameKey:@"8m (Free Position)\nShots/SOG/Goals", INSOVisitorStatKey:visitorStatString}];
+    // Penalties
+    NSNumber *homePenalties = [self.eventCounter totalPenaltiesForHomeTeam];
+    NSNumber *visitorPenalties = [self.eventCounter totalPenaltiesForVisitingTeam];
+    
+    [sectionData addObject:@{INSOHomeStatKey:homePenalties, INSOStatNameKey:@"Penalties", INSOVisitorStatKey:visitorPenalties}];
+    
+    // Penalty Time
+    NSInteger homePenaltySeconds = [[self.eventCounter totalPenaltyTimeForHomeTeam] integerValue];
+    NSInteger visitorPenaltySeconds = [[self.eventCounter totalPenaltyTimeForVisitingTeam] integerValue];
+    
+    NSDateComponentsFormatter* penaltyTimeFormatter = [[NSDateComponentsFormatter alloc] init];
+    penaltyTimeFormatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehaviorDropLeading;
+    penaltyTimeFormatter.allowedUnits = (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond);
+    NSString *homePenaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:homePenaltySeconds];
+    NSString *visitorPentaltyTimeString = [penaltyTimeFormatter stringFromTimeInterval:visitorPenaltySeconds];
+    
+    [sectionData addObject:@{INSOHomeStatKey:homePenaltyTimeString, INSOStatNameKey:@"Penalty Time", INSOVisitorStatKey:visitorPentaltyTimeString}];
 
-        // Green cards
-        NSInteger homeGreenCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeGreenCard] integerValue];
-        NSInteger visitorGreenCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeGreenCard] integerValue];
-        
-        [sectionData addObject:@{INSOHomeStatKey:@(homeGreenCards), INSOStatNameKey:@"Green Cards", INSOVisitorStatKey:@(visitorGreenCards)}];
-        
-        // Yellow cards
-        NSInteger homeYellowCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeYellowCard] integerValue];
-        NSInteger visitorYellowCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeYellowCard] integerValue];
-        
-        [sectionData addObject:@{INSOHomeStatKey:@(homeYellowCards), INSOStatNameKey:@"Yellow Cards", INSOVisitorStatKey:@(visitorYellowCards)}];
-        
-        // Red cards
-        NSInteger homeRedCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeRedCard] integerValue];
-        NSInteger visitorRedCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeRedCard] integerValue];
-        
-        [sectionData addObject:@{INSOHomeStatKey:@(homeRedCards), INSOStatNameKey:@"Red Cards", INSOVisitorStatKey:@(visitorRedCards)}];
-    }
     return penaltySection;
 }
 
 - (NSDictionary*)statsDictionaryForPlayer:(RosterPlayer*)rosterPlayer
 {
     NSMutableDictionary* statsDictionary = [NSMutableDictionary new];
- /*
-    NSString* sectionTitle;
-    if (rosterPlayer.isTeamValue) {
-        sectionTitle = NSLocalizedString(@"Team", nil);
-    } else {
-        sectionTitle = [NSString stringWithFormat:@"#%@", rosterPlayer.number];
-    }
+    
+    NSString* sectionTitle = [NSString stringWithFormat:@"#%@", rosterPlayer.number];
     [statsDictionary setObject:sectionTitle forKey:INSOSectionTitleKey];
     
     // Now build the  stats array
     NSMutableArray* statsArray = [NSMutableArray new];
+    [statsDictionary setObject:statsArray forKey:INSOSectionDataKey];
+    
     Event* event;
     NSNumber* eventCount;
     NSString* statTitle;
@@ -600,7 +494,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
     // Shots
@@ -609,7 +503,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
 
     // Goals
@@ -618,7 +512,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
 
     // Assists
@@ -627,7 +521,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
 
     // Shots on goal
@@ -636,7 +530,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
 
     // Saves
@@ -645,7 +539,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
 
     // Caused turnover
@@ -654,7 +548,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
     // Won faceoff
@@ -663,7 +557,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
     // Lost faceoff
@@ -672,7 +566,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
     // Goals allowed
@@ -681,7 +575,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
     // Interceptions
@@ -690,7 +584,7 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
     // Turnover
@@ -699,13 +593,8 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
         statValueString = [NSString stringWithFormat:@"%@", eventCount];
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:statValueString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
-    
-    // Now sort those stats by title
-    [statsArray sortUsingComparator:^NSComparisonResult(NSDictionary*  _Nonnull stat1, NSDictionary*  _Nonnull stat2) {
-        return [stat1[INSOStatTitleKey] compare:stat2[INSOStatTitleKey]];
-    }];
     
     // And now penalties
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"statCategory == %@ OR statCategory == %@", @(INSOStatCategoryPenalty), @(INSOStatCategoryExpulsion)];
@@ -731,11 +620,9 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
             NSString* localizedTitle = NSLocalizedString(@"%@ penalties", nil);
             statTitle = [NSString stringWithFormat:localizedTitle, totalPenalties];
         }
-        [statsArray addObject:@{INSOStatTitleKey:statTitle, INSOStatValueKey:penaltyTimeString}];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:penaltyTimeString}];
     }
-    */
-    [statsDictionary setObject:[NSArray new] forKey:INSOStatsKey];
-    
+
     return statsDictionary;
 }
 
@@ -793,9 +680,14 @@ static NSString * const INSOGameStatsCellIdentifier = @"GameStatsCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    INSOGameStatTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:INSOGameStatsCellIdentifier forIndexPath:indexPath];
+    INSOGameStatTableViewCell *cell;
+    if (self.statSourceSegmentedControl.selectedSegmentIndex == INSOStatSourceIndexGame) {
+        cell = [tableView dequeueReusableCellWithIdentifier:INSOGameStatsCellIdentifier forIndexPath:indexPath];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:INSOPlayerStatsCellIdentifier forIndexPath:indexPath];
+    }
     
-    [self configureGameStatCell:cell atIndexPath:indexPath]; 
+    [self configureGameStatCell:cell atIndexPath:indexPath];
     
     return cell;
 }

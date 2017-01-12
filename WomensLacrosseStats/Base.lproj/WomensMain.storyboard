@@ -879,27 +879,52 @@
                                 <color key="backgroundColor" red="0.95137584209442139" green="0.97575753927230835" blue="0.9752468466758728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionHeaderCell" rowHeight="40" id="bgw-F6-V8p" customClass="INSOGameStatTableViewCell">
+                                        <rect key="frame" x="0.0" y="56" width="311" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bgw-F6-V8p" id="Gjl-LK-iYR">
+                                            <rect key="frame" x="0.0" y="0.0" width="311" height="39"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uW-Us-y4X">
+                                                    <rect key="frame" x="140" y="9.5" width="32.5" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.90588235289999997" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="9uW-Us-y4X" firstAttribute="centerX" secondItem="Gjl-LK-iYR" secondAttribute="centerX" id="Wel-qv-VDk"/>
+                                                <constraint firstItem="9uW-Us-y4X" firstAttribute="centerY" secondItem="Gjl-LK-iYR" secondAttribute="centerY" id="fa0-kJ-k0A"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.90588235294117647" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="statNameLabel" destination="9uW-Us-y4X" id="6VH-R0-Ixi"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GameStatsCell" id="tjm-5e-RLc" customClass="INSOGameStatTableViewCell">
-                                        <rect key="frame" x="0.0" y="56" width="311" height="48"/>
+                                        <rect key="frame" x="0.0" y="96" width="311" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tjm-5e-RLc" id="gHa-fJ-YZZ">
                                             <rect key="frame" x="0.0" y="0.0" width="311" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMD-Ij-XWA">
-                                                    <rect key="frame" x="8" y="11" width="13" height="21"/>
+                                                    <rect key="frame" x="8" y="13" width="13" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="V" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ4-cF-tJW">
-                                                    <rect key="frame" x="283" y="11" width="12" height="21"/>
+                                                    <rect key="frame" x="283" y="13" width="12" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Pz-gv-Hi6">
-                                                    <rect key="frame" x="140.5" y="13" width="30" height="18"/>
+                                                    <rect key="frame" x="140.5" y="15" width="30" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -923,28 +948,39 @@
                                             <outlet property="visitorStatLabel" destination="CQ4-cF-tJW" id="4Rw-U1-uEn"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionHeaderCell" rowHeight="40" id="bgw-F6-V8p" customClass="INSOGameStatTableViewCell">
-                                        <rect key="frame" x="0.0" y="104" width="311" height="40"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerStatCell" rowHeight="40" id="kfX-f1-Cce" customClass="INSOGameStatTableViewCell">
+                                        <rect key="frame" x="0.0" y="144" width="311" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bgw-F6-V8p" id="Gjl-LK-iYR">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfX-f1-Cce" id="jZp-bb-vvB">
                                             <rect key="frame" x="0.0" y="0.0" width="311" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uW-Us-y4X">
-                                                    <rect key="frame" x="140" y="9.5" width="32.5" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="toc-Rk-a4e">
+                                                    <rect key="frame" x="8" y="9" width="31.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNt-Ui-v4i">
+                                                    <rect key="frame" x="262" y="9" width="41" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.95137584210000004" green="0.97575753929999998" blue="0.97524684669999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="9uW-Us-y4X" firstAttribute="centerX" secondItem="Gjl-LK-iYR" secondAttribute="centerX" id="Wel-qv-VDk"/>
-                                                <constraint firstItem="9uW-Us-y4X" firstAttribute="centerY" secondItem="Gjl-LK-iYR" secondAttribute="centerY" id="fa0-kJ-k0A"/>
+                                                <constraint firstItem="mNt-Ui-v4i" firstAttribute="centerY" secondItem="jZp-bb-vvB" secondAttribute="centerY" id="7OR-rJ-UmH"/>
+                                                <constraint firstItem="mNt-Ui-v4i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="toc-Rk-a4e" secondAttribute="trailing" constant="8" id="QRK-Zk-M8B"/>
+                                                <constraint firstItem="toc-Rk-a4e" firstAttribute="leading" secondItem="jZp-bb-vvB" secondAttribute="leadingMargin" id="Zlk-xE-OYX"/>
+                                                <constraint firstItem="mNt-Ui-v4i" firstAttribute="trailing" secondItem="jZp-bb-vvB" secondAttribute="trailingMargin" id="lyf-Xa-cm1"/>
+                                                <constraint firstItem="toc-Rk-a4e" firstAttribute="centerY" secondItem="jZp-bb-vvB" secondAttribute="centerY" id="uC6-YJ-MnI"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.90588235294117647" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.95137584210000004" green="0.97575753929999998" blue="0.97524684669999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="statNameLabel" destination="9uW-Us-y4X" id="6VH-R0-Ixi"/>
+                                            <outlet property="homeStatLabel" destination="mNt-Ui-v4i" id="EZb-dk-VHu"/>
+                                            <outlet property="statNameLabel" destination="toc-Rk-a4e" id="g04-d9-OzA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
