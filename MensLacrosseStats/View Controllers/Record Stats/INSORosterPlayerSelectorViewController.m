@@ -66,8 +66,6 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     // We no longer transition to orientation, we transition to size. So use this instead.
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     
-    //[self resizePlayerCollection];
-    
     // Once we transition to size,
     // invalidate the content size and invalidate the layout.
     // This will redraw the cells of the proper size.
@@ -185,10 +183,19 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (void)resizePlayerCollection
 {
     UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.playersCollectionView.collectionViewLayout;
+    
+    // Minimum number of rows is 2 for the two team players
+    NSInteger rows = 2;
+
+    // Now figure out how many additional rows we may be showing.
     CGFloat collectionViewWidth = self.playersCollectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - 1;
     NSInteger cellsPerRow = (int)collectionViewWidth / (int)self.cellWidth;
-    NSInteger rows = ceil([self.rosterArray count] / (float)cellsPerRow);
-    rows += 1;
+    NSInteger playerCount = [self.rosterArray count];
+    if ([self.rosterArray count] >= 2) {
+        playerCount -= 2;
+    }
+    rows += ceil(playerCount / (float)cellsPerRow);
+    
     CGFloat collectionViewHeight = (rows * self.cellWidth) + (layout.minimumLineSpacing * (rows - 1)) + layout.sectionInset.top + layout.sectionInset.bottom;
     
     CGFloat viewHeight = self.view.frame.size.height;
