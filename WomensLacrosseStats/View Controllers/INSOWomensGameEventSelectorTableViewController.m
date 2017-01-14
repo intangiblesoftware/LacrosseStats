@@ -91,6 +91,20 @@ static NSString * const INSOMajorFoulResultSegueIdentifier = @"MajorFoulResultSe
             [self createEvent:INSOEventCodeTurnover forPlayer:player];
         }
     }
+    
+    // If it's a failed clear, also record a turnover
+    if (event.eventCodeValue == INSOEventCodeClearFailed) {
+        if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            } else {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeTurnover forPlayer:player];
+        }
+    }
+    
 
     // Draw possession - other team gets draw taken
     if (event.eventCodeValue == INSOEventCodeDrawPossession) {

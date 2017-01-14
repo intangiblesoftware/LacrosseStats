@@ -147,7 +147,11 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
 - (void)changeStats:(id)sender
 {
     [self.statsTable reloadData];
-    [self.statsTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO]; 
+
+    // Scroll to top of player stats array (if we have somewhere to scroll to)
+    if ([self.playerStatsArray count] > 0) {
+        [self.statsTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 }
 
 #pragma mark - Private Methods

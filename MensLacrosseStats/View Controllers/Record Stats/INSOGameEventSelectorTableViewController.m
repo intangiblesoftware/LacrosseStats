@@ -148,6 +148,19 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
         }
     }
     
+    // If it's a failed clear, also record a turnover
+    if (event.eventCodeValue == INSOEventCodeClearFailed) {
+        if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            } else {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeTurnover forPlayer:player];
+        }
+    }
+    
     // If it's a caused turnover, give the other guys a turnover
     if (event.eventCodeValue == INSOEventCodeCausedTurnover) {
         if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
