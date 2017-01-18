@@ -113,13 +113,14 @@
     NSMutableArray *gameStatsArray = [NSMutableArray new];
     
     // Create header row
-    NSArray *header = [self headerRowForPlayerStats];
+    NSArray *header = (self.isExportingForBoys ? [self boysHeaderRowForPlayerStats] : [self girlsHeaderRowForPlayerStats]);
+    
     [gameStatsArray addObject:[header componentsJoinedByString:@","]];
     
     // Create player stats rows
     for (RosterPlayer* rosterPlayer in self.playersArray) {
         if (!rosterPlayer.isTeamValue) {
-            NSArray* dataRow = [self dataRowForPlayer:rosterPlayer];
+            NSArray* dataRow = (self.isExportingForBoys ? [self boysDataRowForPlayer:rosterPlayer] : [self girlsDataRowForPlayer:rosterPlayer]);
             [gameStatsArray addObject:[dataRow componentsJoinedByString:@","]];
         }
     }
@@ -165,60 +166,6 @@
         _percentFormatter.numberStyle = NSNumberFormatterPercentStyle;
     }
     return _percentFormatter;
-}
-
-- (void)createBoysMaxPrepsGameStatsFile:(completion)completion
-{
-    NSMutableArray* gameStatsArray = [NSMutableArray new];
-    
-    // First line is company ID
-    [gameStatsArray addObject:INSOMaxPrepsMensLacrosseCompanyID];
-    
-    // Then comes the header (maxPreps style!)
-    NSArray* headerRow = [self maxPrepsBoysHeaderRow];
-    [gameStatsArray addObject:[headerRow componentsJoinedByString:@"|"]];
-    
-    // Now data rows for each person in the game (but not the team player!)
-    for (RosterPlayer* rosterPlayer in self.playersArray) {
-        if (!rosterPlayer.isTeamValue) {
-            NSArray* dataRow = [self maxPrepsBoysDataRowForPlayer:rosterPlayer];
-            [gameStatsArray addObject:[dataRow componentsJoinedByString:@"|"]];
-        }
-    }
-    
-    // Now convert entire array to string
-    NSString* maxPrepsStatsString = [gameStatsArray componentsJoinedByString:@"\n"];
-    
-    // Now call the completion block
-    NSData* maxPrepsData = [maxPrepsStatsString dataUsingEncoding:NSUTF8StringEncoding];
-    completion(maxPrepsData);
-}
-
-- (void)createGirlsMaxPrepsGameStatsFile:(completion)completion
-{
-    NSMutableArray* gameStatsArray = [NSMutableArray new];
-    
-    // First line is company ID
-    [gameStatsArray addObject:INSOMaxPrepsWomensLacrosseCompanyID];
-    
-    // Then comes the header (maxPreps style!)
-    NSArray* headerRow = [self maxPrepsGirlsHeaderRow];
-    [gameStatsArray addObject:[headerRow componentsJoinedByString:@"|"]];
-    
-    // Now data rows for each person in the game (but not the team player!)
-    for (RosterPlayer* rosterPlayer in self.playersArray) {
-        if (!rosterPlayer.isTeamValue) {
-            NSArray* dataRow = [self maxPrepsGirlsDataRowForPlayer:rosterPlayer];
-            [gameStatsArray addObject:[dataRow componentsJoinedByString:@"|"]];
-        }
-    }
-    
-    // Now convert entire array to string
-    NSString* maxPrepsStatsString = [gameStatsArray componentsJoinedByString:@"\n"];
-    
-    // Now call the completion block
-    NSData* maxPrepsData = [maxPrepsStatsString dataUsingEncoding:NSUTF8StringEncoding];
-    completion(maxPrepsData);
 }
 
 - (NSArray *)maxPrepsBoysEvents
@@ -322,6 +269,60 @@
 }
 
 #pragma mark - Private methods
+- (void)createBoysMaxPrepsGameStatsFile:(completion)completion
+{
+    NSMutableArray* gameStatsArray = [NSMutableArray new];
+    
+    // First line is company ID
+    [gameStatsArray addObject:INSOMaxPrepsMensLacrosseCompanyID];
+    
+    // Then comes the header (maxPreps style!)
+    NSArray* headerRow = [self maxPrepsBoysHeaderRow];
+    [gameStatsArray addObject:[headerRow componentsJoinedByString:@"|"]];
+    
+    // Now data rows for each person in the game (but not the team player!)
+    for (RosterPlayer* rosterPlayer in self.playersArray) {
+        if (!rosterPlayer.isTeamValue) {
+            NSArray* dataRow = [self maxPrepsBoysDataRowForPlayer:rosterPlayer];
+            [gameStatsArray addObject:[dataRow componentsJoinedByString:@"|"]];
+        }
+    }
+    
+    // Now convert entire array to string
+    NSString* maxPrepsStatsString = [gameStatsArray componentsJoinedByString:@"\n"];
+    
+    // Now call the completion block
+    NSData* maxPrepsData = [maxPrepsStatsString dataUsingEncoding:NSUTF8StringEncoding];
+    completion(maxPrepsData);
+}
+
+- (void)createGirlsMaxPrepsGameStatsFile:(completion)completion
+{
+    NSMutableArray* gameStatsArray = [NSMutableArray new];
+    
+    // First line is company ID
+    [gameStatsArray addObject:INSOMaxPrepsWomensLacrosseCompanyID];
+    
+    // Then comes the header (maxPreps style!)
+    NSArray* headerRow = [self maxPrepsGirlsHeaderRow];
+    [gameStatsArray addObject:[headerRow componentsJoinedByString:@"|"]];
+    
+    // Now data rows for each person in the game (but not the team player!)
+    for (RosterPlayer* rosterPlayer in self.playersArray) {
+        if (!rosterPlayer.isTeamValue) {
+            NSArray* dataRow = [self maxPrepsGirlsDataRowForPlayer:rosterPlayer];
+            [gameStatsArray addObject:[dataRow componentsJoinedByString:@"|"]];
+        }
+    }
+    
+    // Now convert entire array to string
+    NSString* maxPrepsStatsString = [gameStatsArray componentsJoinedByString:@"\n"];
+    
+    // Now call the completion block
+    NSData* maxPrepsData = [maxPrepsStatsString dataUsingEncoding:NSUTF8StringEncoding];
+    completion(maxPrepsData);
+}
+
 - (NSString *)gameStatsFileHeader {
     NSError *error = nil;
     NSString *fileHeader = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"GameSummaryHeaderFile" ofType:@"html"] encoding:NSUTF8StringEncoding error:&error];
@@ -806,7 +807,7 @@
     return fileFooter;
 }
 
-- (NSArray *)headerRowForPlayerStats
+- (NSArray *)boysHeaderRowForPlayerStats
 {
     NSMutableArray* header = [NSMutableArray new];
     
@@ -915,18 +916,158 @@
     // Save %
     [header addObject:@"Save Pct."];
     
-    if (self.isExportingForBoys) {
-        // Boys penalties are different
-            [header addObject:@"Penalties"];
-            [header addObject:@"Penalty time"];
-    } else {
-        [header addObject:@"Penalties"]; 
-    }
+    // Penalties
+    [header addObject:@"Penalties"];
+    [header addObject:@"Penalty time"];
     
     return header;
 }
 
-- (NSArray*)dataRowForPlayer:(RosterPlayer*)rosterPlayer
+- (NSArray *)girlsHeaderRowForPlayerStats
+{
+    NSMutableArray* header = [NSMutableArray new];
+    
+    // First the player number
+    [header addObject:@"Player"];
+    
+    // Now the event titles
+    // Really should localize this...sigh
+    Event *event;
+    
+    // Groundballs
+    event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Draws taken
+    event = [Event eventForCode:INSOEventCodeDrawTaken inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Draw possession
+    event = [Event eventForCode:INSOEventCodeDrawPossession inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Draw control
+    event = [Event eventForCode:INSOEventCodeDrawControl inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Draw control percent
+    [header addObject:@"Draw Control Pct."];
+
+    // Caused turnover
+    event = [Event eventForCode:INSOEventCodeCausedTurnover inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Interceptions
+    event = [Event eventForCode:INSOEventCodeInterception inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Shots
+    event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Goals
+    event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Assists
+    event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Shooting %
+    [header addObject:@"Shooting Pct."];
+    
+    // SOG
+    event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Misses
+    [header addObject:@"Misses"];
+    
+    // Shooting accuracy
+    [header addObject:@"Shooting Accuracy"];
+    
+    // Free postion awarded
+    event = [Event eventForCode:INSOEventCode8mFreePosition inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Free position shot
+    [header addObject:@"Free Position Shots"];
+    
+    // Free position goal
+    [header addObject:@"Free Position Goals"];
+    
+    // Saves
+    event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Goals allowed
+    event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Save %
+    [header addObject:@"Save Pct."];
+
+    // Fouls (major and minor)
+    [header addObject:@"Fouls"];
+    
+    // Yellow cards
+    event = [Event eventForCode:INSOEventCodeYellowCard inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    // Red cards
+    event = [Event eventForCode:INSOEventCodeRedCard inManagedObjectContext:self.game.managedObjectContext];
+    if (event) {
+        [header addObject:event.title];
+    }
+    event = nil;
+    
+    return header;
+}
+
+
+- (NSArray*)boysDataRowForPlayer:(RosterPlayer*)rosterPlayer
 {
     NSMutableArray* dataRow = [NSMutableArray new];
     
@@ -1087,6 +1228,182 @@
     
     return dataRow;
 }
+
+- (NSArray*)girlsDataRowForPlayer:(RosterPlayer*)rosterPlayer
+{
+    NSMutableArray* dataRow = [NSMutableArray new];
+
+    // First the player number
+    [dataRow addObject:rosterPlayer.number];
+    
+    // Groundballs
+    if ([self.game didRecordEvent:INSOEventCodeGroundball]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeGroundball forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Draw stuff
+    NSNumber *drawsTaken;
+    NSNumber *drawPossession;
+    
+    // Draw taken
+    if ([self.game didRecordEvent:INSOEventCodeDrawTaken]) {
+        drawsTaken = [self.eventCounter eventCount:INSOEventCodeDrawTaken forRosterPlayer:rosterPlayer];
+        [dataRow addObject:drawsTaken];
+    }
+    
+    // Draw possession
+    if ([self.game didRecordEvent:INSOEventCodeDrawPossession]) {
+        drawPossession = [self.eventCounter eventCount:INSOEventCodeDrawPossession forRosterPlayer:rosterPlayer];
+        [dataRow addObject:drawPossession];
+    }
+    
+    // Draw control
+    if ([self.game didRecordEvent:INSOEventCodeDrawControl]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeDrawControl forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Draw control percent (actually report draw possession / draws taken)
+    NSInteger drawsTakenInt = [drawsTaken integerValue];
+    NSInteger drawPossessionInt = [drawPossession integerValue];
+    CGFloat drawControlPercent = 0.0;
+    if (drawsTakenInt > 0) {
+        drawControlPercent = (CGFloat)drawPossessionInt / drawsTakenInt;
+        [dataRow addObject:[self.percentFormatter stringFromNumber:@(drawControlPercent)]];
+    } else {
+        [dataRow addObject:@""];
+    }
+
+    // Caused turnover
+    if ([self.game didRecordEvent:INSOEventCodeCausedTurnover]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeCausedTurnover forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Interceptions
+    if ([self.game didRecordEvent:INSOEventCodeInterception]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeInterception forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Shots
+    NSNumber *shots;
+    if ([self.game didRecordEvent:INSOEventCodeShot]) {
+        shots = [self.eventCounter eventCount:INSOEventCodeShot forRosterPlayer:rosterPlayer];
+        [dataRow addObject:shots];
+    }
+    
+    // Goals
+    NSNumber *goals;
+    if ([self.game didRecordEvent:INSOEventCodeGoal]) {
+        goals = [self.eventCounter eventCount:INSOEventCodeGoal forRosterPlayer:rosterPlayer];
+        [dataRow addObject:goals];
+    }
+    
+    // Assists
+    if ([self.game didRecordEvent:INSOEventCodeAssist]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeAssist forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Shooting %
+    if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeGoal]) {
+        CGFloat shootingPercent = 0.0;
+        if ([shots integerValue] > 0) {
+            shootingPercent = [goals floatValue] / [shots floatValue];
+            [dataRow addObject:[self.percentFormatter stringFromNumber:@(shootingPercent)]];
+        } else {
+            [dataRow addObject:@""];
+        }
+    }
+
+    // SOG
+    NSNumber *sog;
+    if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
+        sog = [self.eventCounter eventCount:INSOEventCodeShotOnGoal forRosterPlayer:rosterPlayer];
+        [dataRow addObject:sog];
+    }
+    
+    // Misses (shots - shots on goal);
+    if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
+        NSInteger misses = [shots integerValue] - [sog integerValue];
+        if (misses < 0) {
+            misses = 0;
+        }
+        [dataRow addObject:@(misses)];
+    }
+    
+    // Shooting accuracy (SOG / Shots)
+    if ([self.game didRecordEvent:INSOEventCodeShotOnGoal] && [self.game didRecordEvent:INSOEventCodeShot]) {
+        CGFloat shootingAccuracy = 0.0;
+        if ([shots integerValue] > 0) {
+            shootingAccuracy = [sog floatValue] / [shots floatValue];
+            [dataRow addObject:[self.percentFormatter stringFromNumber:@(shootingAccuracy)]];
+        } else {
+            [dataRow addObject:@""];
+        }
+    }
+    
+    // Free postion awarded
+    if ([self.game didRecordEvent:INSOEventCode8mFreePosition]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCode8mFreePosition forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Free position shot
+    if ([self.game didRecordEvent:INSOEventCodeShot]) {
+        NSNumber *freePositionShot = [self.eventCounter freePositionEventCount:INSOEventCodeShot forRosterPlayer:rosterPlayer];
+        [dataRow addObject:freePositionShot];
+    }
+    
+    // Free position goal
+    if ([self.game didRecordEvent:INSOEventCodeGoal]) {
+        NSNumber *freePositionGoal = [self.eventCounter freePositionEventCount:INSOEventCodeGoal forRosterPlayer:rosterPlayer];
+        [dataRow addObject:freePositionGoal];
+    }
+    
+    // Saves
+    NSNumber *saves;
+    if ([self.game didRecordEvent:INSOEventCodeSave]) {
+        saves = [self.eventCounter eventCount:INSOEventCodeSave forRosterPlayer:rosterPlayer];
+        [dataRow addObject:saves];
+    }
+    
+    // Goals allowed
+    NSNumber *goalsAllowed;
+    if ([self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
+        goalsAllowed = [self.eventCounter eventCount:INSOEventCodeGoalAllowed forRosterPlayer:rosterPlayer];
+        [dataRow addObject:goalsAllowed];
+    }
+    
+    // Save %
+    if ([self.game didRecordEvent:INSOEventCodeSave] && [self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
+        CGFloat savePercent = 0.0;
+        if (([goalsAllowed integerValue] + [saves integerValue]) > 0) {
+            savePercent = [saves floatValue] / ([saves floatValue] + [goalsAllowed floatValue]);
+            [dataRow addObject:[self.percentFormatter stringFromNumber:@(savePercent)]];
+        } else {
+            [dataRow addObject:@""];
+        }
+    }
+
+    // Fouls (major and minor)
+    if ([self.game didRecordEvent:INSOEventCodeMajorFoul] || [self.game didRecordEvent:INSOEventCodeMinorFoul]) {
+        NSInteger totalFouls = 0;
+        NSNumber *majorFouls = [self.eventCounter eventCount:INSOEventCodeMajorFoul forRosterPlayer:rosterPlayer];
+        NSNumber *minorFouls = [self.eventCounter eventCount:INSOEventCodeMinorFoul forRosterPlayer:rosterPlayer];
+        totalFouls = [majorFouls integerValue] + [minorFouls integerValue];
+        [dataRow addObject:@(totalFouls)];
+    }
+    
+    // Yellow cards
+    if ([self.game didRecordEvent:INSOEventCodeYellowCard]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeYellowCard forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Red cards
+    if ([self.game didRecordEvent:INSOEventCodeRedCard]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeRedCard forRosterPlayer:rosterPlayer]];
+    }
+    
+    return dataRow;
+}
+
 
 - (NSArray* )maxPrepsBoysHeaderRow
 {

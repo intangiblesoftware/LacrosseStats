@@ -570,8 +570,8 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
         [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
-    // Turnover
-    event = [Event eventForCode:INSOEventCodeTurnover inManagedObjectContext:self.managedObjectContext];
+    // Interception
+    event = [Event eventForCode:INSOEventCodeInterception inManagedObjectContext:self.managedObjectContext];
     if ([self.game.eventsToRecord containsObject:event]) {
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
@@ -626,6 +626,24 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
 
     // Saves
     event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.managedObjectContext];
+    if ([self.game.eventsToRecord containsObject:event]) {
+        statTitle = event.title;
+        eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        statValueString = [NSString stringWithFormat:@"%@", eventCount];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
+    }
+    
+    // Goals Allowed
+    event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.managedObjectContext];
+    if ([self.game.eventsToRecord containsObject:event]) {
+        statTitle = event.title;
+        eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        statValueString = [NSString stringWithFormat:@"%@", eventCount];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
+    }
+    
+    // 8M fp
+    event = [Event eventForCode:INSOEventCode8mFreePosition inManagedObjectContext:self.managedObjectContext];
     if ([self.game.eventsToRecord containsObject:event]) {
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];

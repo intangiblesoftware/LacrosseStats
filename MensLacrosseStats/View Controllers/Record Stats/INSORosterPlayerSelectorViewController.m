@@ -190,10 +190,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     // Now figure out how many additional rows we may be showing.
     CGFloat collectionViewWidth = self.playersCollectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - 1;
     NSInteger cellsPerRow = (int)collectionViewWidth / (int)self.cellWidth;
-    NSInteger playerCount = [self.rosterArray count];
-    if ([self.rosterArray count] >= 2) {
-        playerCount -= 2;
-    }
+    NSInteger playerCount = ([self.rosterArray count] >= 2 ? [self.rosterArray count] - 2 : [self.rosterArray count]);
     rows += ceil(playerCount / (float)cellsPerRow);
     
     CGFloat collectionViewHeight = (rows * self.cellWidth) + (layout.minimumLineSpacing * (rows - 1)) + layout.sectionInset.top + layout.sectionInset.bottom;
