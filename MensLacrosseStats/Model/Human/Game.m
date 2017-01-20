@@ -10,6 +10,25 @@
 
 @implementation Game
 
+- (void)awakeFromFetch
+{
+    [super awakeFromFetch];
+
+    // Make sure this doesn't happen when we create a game.
+    
+    // If we're missing the Other Team, gotta update this object
+    if (![self rosterContainsPlayerWithNumber:@(INSOOtherTeamPlayerNumber)]) {
+        // Create other team player.
+        NSLog(@"Create other team player.");
+        
+        // Update goals for other team.
+        NSLog(@"Update goals for other team.");
+        
+        // Update score for game
+        NSLog(@"Update score for game.");
+    }
+}
+
 - (RosterPlayer*)teamPlayer
 {
     NSNumber* teamPlayerNumber = [NSNumber numberWithInteger:-1];
