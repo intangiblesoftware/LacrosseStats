@@ -1,6 +1,7 @@
 #import "Game.h"
 #import "RosterPlayer.h"
 #import "Event.h"
+#import "GameEvent.h"
 
 @interface Game ()
 
@@ -19,13 +20,34 @@
     // If we're missing the Other Team, gotta update this object
     if (![self rosterContainsPlayerWithNumber:@(INSOOtherTeamPlayerNumber)]) {
         // Create other team player.
-        NSLog(@"Create other team player.");
+        RosterPlayer *otherTeamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+        otherTeamPlayer.numberValue = INSOOtherTeamPlayerNumber;
+        otherTeamPlayer.isTeamValue = YES;
+        [self addPlayersObject:otherTeamPlayer];
         
         // Update goals for other team.
-        NSLog(@"Update goals for other team.");
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event.eventCodeValue = %@", @(INSOEventCodeGoalAllowed)];
+        NSSet *goalsAllowedSet = [self.events filteredSetUsingPredicate:predicate];
+        for (GameEvent *event in goalsAllowedSet) {
+            GameEvent* goalEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+            
+            // Set its properties
+            goalEvent.timestamp = event.timestamp;
+            
+            // Set its relations
+            goalEvent.event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.managedObjectContext];
+            goalEvent.game = self;
+            goalEvent.player = otherTeamPlayer;
+            goalEvent.isExtraManGoalValue = NO;
+            goalEvent.is8mValue = NO;
+        }
         
         // Update score for game
-        NSLog(@"Update score for game.");
+        if ([self.teamWatching isEqualToString:self.homeTeam]) {
+            self.visitorScoreValue = [goalsAllowedSet count];
+        } else {
+            self.homeScoreValue = [goalsAllowedSet count];
+        }
     }
 }
 
