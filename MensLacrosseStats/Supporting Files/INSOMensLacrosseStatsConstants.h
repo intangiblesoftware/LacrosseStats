@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface INSOMensLacrosseStatsConstant : NSObject
+@interface INSOMensLacrosseStatsConstants : NSObject
 
 // User Defaults
 extern NSString * const INSODefaultShouldImportCategoriesAndEventsKey;

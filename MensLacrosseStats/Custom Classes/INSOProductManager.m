@@ -53,7 +53,7 @@
 {
 #if DEBUG
     return YES;
-#elif
+#else
     return self.receiptValidator.appIsPurchased;
 #endif
 }
@@ -62,7 +62,7 @@
 {
 #if DEBUG
     return NO;
-#elif
+#else
     return self.receiptValidator.appPurchaseExpired;
 #endif
 }
@@ -71,7 +71,7 @@
 {
 #if DEBUG
     return [NSDate date];
-#elif
+#else
     return self.receiptValidator.appPurchaseDate;
 #endif
 }
@@ -80,7 +80,7 @@
 {
 #if DEBUG
     return [NSDate date];
-#elif
+#else
     return self.receiptValidator.appExpirationDate;
 #endif
 }
@@ -89,7 +89,7 @@
 {
 #if DEBUG
     return [NSDecimalNumber decimalNumberWithString:@"99.95"];
-#elif
+#else
     if (self.oneYearProduct) {
         return self.oneYearProduct.price;
     } else {

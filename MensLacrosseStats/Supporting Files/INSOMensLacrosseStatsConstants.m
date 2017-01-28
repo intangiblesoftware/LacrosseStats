@@ -8,7 +8,7 @@
 
 #import "INSOMensLacrosseStatsConstants.h"
 
-@implementation INSOMensLacrosseStatsConstant
+@implementation INSOMensLacrosseStatsConstants
 
 #pragma mark - User Defaults
 NSString * const INSODefaultShouldImportCategoriesAndEventsKey = @"INSOShouldImportCategoriesKey";
