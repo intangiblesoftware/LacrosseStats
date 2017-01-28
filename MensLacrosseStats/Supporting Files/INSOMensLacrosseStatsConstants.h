@@ -12,6 +12,9 @@
 
 // User Defaults
 extern NSString * const INSODefaultShouldImportCategoriesAndEventsKey;
+extern NSString * const INSOExportGameSummaryDefaultKey;
+extern NSString * const INSOExportPlayerStatsDefaultKey;
+extern NSString * const INSOExportMaxPrepsDefaultKey;
 
 // Import Keys
 extern NSString * const INSOEventTitleKey;
@@ -31,12 +34,16 @@ extern NSString * const INSOPenaltyCountKey;
 extern NSString * const INSOPlayerKey;
 extern NSString * const INSOStatsKey;
 extern NSString * const INSOSectionTitleKey; 
-extern NSString * const INSOStatTitleKey; 
-extern NSString * const INSOStatValueKey;
+extern NSString * const INSOSectionDataKey;
+extern NSString * const INSOHomeStatKey;
+extern NSString * const INSOVisitorStatKey;
+extern NSString * const INSOStatNameKey;
 
 // Product identifier
 extern NSString * const INSOMensLacrosseStatsOneYearProductIdentifier;
 extern NSString * const INSOWomensLacrosseStatsOneYearProductIdentifier;
+extern NSString * const INSOMensProductName;
+extern NSString * const INSOWomensProductName;
 
 // MaxPreps Company ID
 extern NSString * const INSOMaxPrepsMensLacrosseCompanyID;

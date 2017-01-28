@@ -12,6 +12,9 @@
 
 #pragma mark - User Defaults
 NSString * const INSODefaultShouldImportCategoriesAndEventsKey = @"INSOShouldImportCategoriesKey";
+NSString * const INSOExportGameSummaryDefaultKey               = @"INSOExportGameSummaryDefaultKey";
+NSString * const INSOExportPlayerStatsDefaultKey               = @"INSOExportPlayerStatsDefaultKey";
+NSString * const INSOExportMaxPrepsDefaultKey                  = @"INSOExportMaxPrepsDefaultKey";
 
 #pragma mark - Import keys
 NSString * const INSOEventTitleKey     = @"EventTitle";
@@ -30,13 +33,17 @@ NSString * const INSOPenaltyTimeKey = @"penaltyTime";
 NSString * const INSOPenaltyCountKey = @"penaltyCount";
 NSString * const INSOPlayerKey = @"player";
 NSString * const INSOStatsKey = @"stats";
-NSString * const INSOSectionTitleKey = @"sectionTitle"; 
-NSString * const INSOStatTitleKey = @"statTitle";
-NSString * const INSOStatValueKey = @"statValue";
+NSString * const INSOSectionTitleKey = @"sectionTitle";
+NSString * const INSOSectionDataKey = @"sectionData";
+NSString * const INSOHomeStatKey = @"homeStat";
+NSString * const INSOVisitorStatKey = @"visitorStat";
+NSString * const INSOStatNameKey = @"statName";
 
 #pragma mark - Product Identifier
 NSString * const INSOMensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.menslacrossestats.1year";
 NSString * const INSOWomensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.womenslacrossestats.1year";
+NSString * const INSOMensProductName = @"Men’s Lacrosse Stats";
+NSString * const INSOWomensProductName = @"Women’s Lacrosse Stats";
 
 #pragma mark - Company identifiers
 NSString * const INSOMaxPrepsMensLacrosseCompanyID = @"9bfb842d-9e44-45f2-9bf8-203e2847bb66";

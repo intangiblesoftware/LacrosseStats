@@ -10,8 +10,8 @@
 
 @interface INSOGameStatTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UILabel* statNameLabel;
-@property (nonatomic, weak) IBOutlet UILabel* statCountLabel;
-@property (nonatomic, weak) IBOutlet UILabel* statPercentLabel;
+@property (nonatomic, weak) IBOutlet UILabel *statNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *homeStatLabel;
+@property (nonatomic, weak) IBOutlet UILabel *visitorStatLabel;
 
 @end

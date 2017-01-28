@@ -88,7 +88,103 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
     
     // If it's a shot on goal, we also need to create a shot event
     if (event.eventCodeValue == INSOEventCodeShotOnGoal) {
-        [self createShotEvent];
+        if ([self shouldCreateEvent:INSOEventCodeShot]) {
+            [self createEvent:INSOEventCodeShot forPlayer:self.rosterPlayer];
+        }
+    }
+    
+    // If it's a lost faceoff, need to give the other guys a win
+    if (event.eventCodeValue == INSOEventCodeFaceoffLost) {
+        if ([self shouldCreateEvent:INSOEventCodeFaceoffWon]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                // Save by other guys. Faceoff won for watching.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                // Save by watching. Faceoff won for other guys.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeFaceoffWon forPlayer:player];
+        }
+    }
+    
+    // Goal allowed - shot, shot on goal and goal for the other team
+    if (event.eventCodeValue == INSOEventCodeGoalAllowed) {
+        RosterPlayer *player;
+        if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+            // Goal allowed by other guys. Goal for watching.
+            player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+        } else {
+            // Goal allowed by watching. Goal for other guys.
+            player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+        }
+        [self createEvent:INSOEventCodeGoal forPlayer:player];
+    }
+    
+    // If it's a save event, need to create shot and shot on goal for the other guys
+    if (event.eventCodeValue == INSOEventCodeSave) {
+        if ([self shouldCreateEvent:INSOEventCodeShot]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                // Save by other guys. Shot and sog for watching.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                // Save by watching. Shot and SOG for other guys.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeShot forPlayer:player];
+        }
+        
+        if ([self shouldCreateEvent:INSOEventCodeShotOnGoal]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                // Save by other guys. Shot and sog for watching.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                // Save by watching. Shot and SOG for other guys.
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeShotOnGoal forPlayer:player];
+        }
+    }
+    
+    // If it's a failed clear, also record a turnover
+    if (event.eventCodeValue == INSOEventCodeClearFailed) {
+        if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            } else {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeTurnover forPlayer:player];
+        }
+    }
+    
+    // If it's a caused turnover, give the other guys a turnover
+    if (event.eventCodeValue == INSOEventCodeCausedTurnover) {
+        if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeTurnover forPlayer:player];
+        }
+    }
+    
+    // Interception - record turnover for other team.
+    if (event.eventCodeValue == INSOEventCodeInterception) {
+        if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeTurnover forPlayer:player];
+        }
     }
     
     // Save the MOC
@@ -107,7 +203,7 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
 {
     // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     
@@ -274,18 +370,19 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
             [self.rosterPlayer.game.eventsToRecord containsObject:saveEvent]);
 }
 
-- (void)createShotEvent
+- (BOOL)shouldCreateEvent:(INSOEventCode)eventCode
 {
-    // Create the appropriate game event
-    GameEvent* gameEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
-    
-    // Set its properties
+    Event *event = [Event eventForCode:eventCode inManagedObjectContext:self.managedObjectContext];
+    return [self.rosterPlayer.game.eventsToRecord containsObject:event];
+}
+
+- (void)createEvent:(INSOEventCode)eventCode forPlayer:(RosterPlayer *)player
+{
+    GameEvent *gameEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
     gameEvent.timestamp = [NSDate date];
-    
-    // Set its relations
-    gameEvent.event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.managedObjectContext];
-    gameEvent.game = self.rosterPlayer.game;
-    gameEvent.player = self.rosterPlayer;
+    gameEvent.event = [Event eventForCode:eventCode inManagedObjectContext:self.managedObjectContext];
+    gameEvent.game = player.game;
+    gameEvent.player = player;
 }
 
 #pragma mark - Navigation

@@ -4,6 +4,7 @@
 #import "_GameEvent.h"
 
 const struct GameEventAttributes GameEventAttributes = {
+	.is8m = @"is8m",
 	.isExtraManGoal = @"isExtraManGoal",
 	.penaltyTime = @"penaltyTime",
 	.timestamp = @"timestamp",
@@ -41,6 +42,11 @@ const struct GameEventRelationships GameEventRelationships = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"is8mValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"is8m"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"isExtraManGoalValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"isExtraManGoal"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -55,6 +61,26 @@ const struct GameEventRelationships GameEventRelationships = {
 	return keyPaths;
 }
 
+@dynamic is8m;
+
+- (BOOL)is8mValue {
+	NSNumber *result = [self is8m];
+	return [result boolValue];
+}
+
+- (void)setIs8mValue:(BOOL)value_ {
+	[self setIs8m:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveIs8mValue {
+	NSNumber *result = [self primitiveIs8m];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveIs8mValue:(BOOL)value_ {
+	[self setPrimitiveIs8m:[NSNumber numberWithBool:value_]];
+}
+
 @dynamic isExtraManGoal;
 
 - (BOOL)isExtraManGoalValue {
@@ -63,7 +89,7 @@ const struct GameEventRelationships GameEventRelationships = {
 }
 
 - (void)setIsExtraManGoalValue:(BOOL)value_ {
-	[self setIsExtraManGoal:@(value_)];
+	[self setIsExtraManGoal:[NSNumber numberWithBool:value_]];
 }
 
 - (BOOL)primitiveIsExtraManGoalValue {
@@ -72,7 +98,7 @@ const struct GameEventRelationships GameEventRelationships = {
 }
 
 - (void)setPrimitiveIsExtraManGoalValue:(BOOL)value_ {
-	[self setPrimitiveIsExtraManGoal:@(value_)];
+	[self setPrimitiveIsExtraManGoal:[NSNumber numberWithBool:value_]];
 }
 
 @dynamic penaltyTime;
@@ -83,7 +109,7 @@ const struct GameEventRelationships GameEventRelationships = {
 }
 
 - (void)setPenaltyTimeValue:(int16_t)value_ {
-	[self setPenaltyTime:@(value_)];
+	[self setPenaltyTime:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitivePenaltyTimeValue {
@@ -92,7 +118,7 @@ const struct GameEventRelationships GameEventRelationships = {
 }
 
 - (void)setPrimitivePenaltyTimeValue:(int16_t)value_ {
-	[self setPrimitivePenaltyTime:@(value_)];
+	[self setPrimitivePenaltyTime:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic timestamp;

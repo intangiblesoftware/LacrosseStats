@@ -60,26 +60,42 @@
 
 - (BOOL)productPurchaseExpired
 {
-    return self.receiptValidator.appPurchaseExpired; 
+#if DEBUG
+    return NO;
+#elif
+    return self.receiptValidator.appPurchaseExpired;
+#endif
 }
 
 - (NSDate*)productPurchaseDate
 {
+#if DEBUG
+    return [NSDate date];
+#elif
     return self.receiptValidator.appPurchaseDate;
+#endif
 }
 
 - (NSDate*)productExpirationDate
 {
-    return self.receiptValidator.appExpirationDate; 
+#if DEBUG
+    return [NSDate date];
+#elif
+    return self.receiptValidator.appExpirationDate;
+#endif
 }
 
 - (NSDecimalNumber*)productPrice
 {
+#if DEBUG
+    return [NSDecimalNumber decimalNumberWithString:@"99.95"];
+#elif
     if (self.oneYearProduct) {
         return self.oneYearProduct.price;
     } else {
         return [NSDecimalNumber zero];
     }
+#endif
 }
 
 - (NSString*)productTitle
@@ -94,9 +110,9 @@
 - (NSString *)appProductName
 {
     if ([self.oneYearProduct.productIdentifier isEqualToString:INSOMensLacrosseStatsOneYearProductIdentifier]) {
-        return @"Men’s Lacrosse Stats";
+        return INSOMensProductName;
     } else {
-        return @"Women’s Lacrosse Stats";
+        return INSOWomensProductName;
     }
 }
 

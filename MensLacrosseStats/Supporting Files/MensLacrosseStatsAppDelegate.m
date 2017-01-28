@@ -27,7 +27,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{INSODefaultShouldImportCategoriesAndEventsKey:@(YES)}];
+    NSDictionary *defaultDefaults = @{INSODefaultShouldImportCategoriesAndEventsKey:@(YES), INSOExportGameSummaryDefaultKey:@(YES), INSOExportPlayerStatsDefaultKey:@(YES), INSOExportMaxPrepsDefaultKey:@(YES)};
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultDefaults];
         
     // Now, load up database if necessary
     if ([[NSUserDefaults standardUserDefaults] boolForKey:INSODefaultShouldImportCategoriesAndEventsKey]) {
@@ -129,11 +130,16 @@
     NSSet* eventSet = [NSSet setWithArray:defaultEvents];
     [newGame addEventsToRecord:eventSet];
     
-    // Give the game a team player
-    RosterPlayer* teamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
-    teamPlayer.numberValue = INSOTeamPlayerNumber;
-    teamPlayer.isTeamValue = YES;
-    [newGame addPlayersObject:teamPlayer];
+    // Give the game two team players
+    RosterPlayer* teamWatchingPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+    teamWatchingPlayer.numberValue = INSOTeamWatchingPlayerNumber;
+    teamWatchingPlayer.isTeamValue = YES;
+    [newGame addPlayersObject:teamWatchingPlayer];
+    
+    RosterPlayer *otherTeamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+    otherTeamPlayer.numberValue = INSOOtherTeamPlayerNumber;
+    otherTeamPlayer.isTeamValue = YES;
+    [newGame addPlayersObject:otherTeamPlayer];
     
     NSError* error = nil;
     if (![self.managedObjectContext save:&error]) {

@@ -66,8 +66,6 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     // We no longer transition to orientation, we transition to size. So use this instead.
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     
-    //[self resizePlayerCollection];
-    
     // Once we transition to size,
     // invalidate the content size and invalidate the layout.
     // This will redraw the cells of the proper size.
@@ -105,7 +103,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     
@@ -140,7 +138,20 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (void)configureRosterPlayerCell:(INSOPlayerCollectionViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     RosterPlayer* rosterPlayer = self.rosterArray[indexPath.row];
-    cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
+    if (rosterPlayer.isTeamValue) {
+        // Which team player?
+        if (rosterPlayer.numberValue == INSOTeamWatchingPlayerNumber) {
+            cell.playerNumberLabel.text = self.game.teamWatching;
+        } else {
+            if ([self.game.teamWatching isEqualToString:self.game.homeTeam]) {
+                cell.playerNumberLabel.text = self.game.visitingTeam;
+            } else {
+                cell.playerNumberLabel.text = self.game.homeTeam; 
+            }
+        }
+    } else {
+        cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
+    }
 }
 
 - (void)layoutPlayerCollection
@@ -172,10 +183,16 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (void)resizePlayerCollection
 {
     UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.playersCollectionView.collectionViewLayout;
+    
+    // Minimum number of rows is 2 for the two team players
+    NSInteger rows = 2;
+
+    // Now figure out how many additional rows we may be showing.
     CGFloat collectionViewWidth = self.playersCollectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - 1;
     NSInteger cellsPerRow = (int)collectionViewWidth / (int)self.cellWidth;
-    NSInteger rows = ceil([self.rosterArray count] / (float)cellsPerRow);
-    rows += 1;
+    NSInteger playerCount = ([self.rosterArray count] >= 2 ? [self.rosterArray count] - 2 : [self.rosterArray count]);
+    rows += ceil(playerCount / (float)cellsPerRow);
+    
     CGFloat collectionViewHeight = (rows * self.cellWidth) + (layout.minimumLineSpacing * (rows - 1)) + layout.sectionInset.top + layout.sectionInset.bottom;
     
     CGFloat viewHeight = self.view.frame.size.height;
@@ -226,17 +243,10 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     // Configure the cell
-    RosterPlayer* player = self.rosterArray[indexPath.row];
-    if (player.isTeamValue) {
-        UICollectionViewCell* teamPlayerCell = [collectionView dequeueReusableCellWithReuseIdentifier:INSOTeamPlayerCellReuseIdentifier forIndexPath:indexPath];
-        return teamPlayerCell;
-    } else {
-        INSOPlayerCollectionViewCell *cell;
-        cell = (INSOPlayerCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:INSORosterPlayerCellReuseIdentifier forIndexPath:indexPath];
-        [self configureRosterPlayerCell:cell atIndexPath:indexPath];
-        return cell;
-    }
-    
+    INSOPlayerCollectionViewCell *cell = (INSOPlayerCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:INSORosterPlayerCellReuseIdentifier forIndexPath:indexPath];
+
+    [self configureRosterPlayerCell:cell atIndexPath:indexPath];
+    return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

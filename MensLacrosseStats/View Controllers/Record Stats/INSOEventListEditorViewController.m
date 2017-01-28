@@ -79,7 +79,7 @@
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;
@@ -103,7 +103,17 @@
     // Configure the cell...
     GameEvent* gameEvent = [self.gameEventsFRC objectAtIndexPath:indexPath];
     if (gameEvent.player.isTeamValue) {
-        cell.textLabel.text = gameEvent.event.title;
+        NSString *teamName;
+        if (gameEvent.player.numberValue == INSOTeamWatchingPlayerNumber) {
+            teamName = gameEvent.game.teamWatching;
+        } else {
+            if ([gameEvent.game.homeTeam isEqualToString:gameEvent.game.teamWatching]) {
+                teamName = gameEvent.game.visitingTeam;
+            } else {
+                teamName = gameEvent.game.homeTeam;
+            }
+        }
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", teamName, [gameEvent.event.title lowercaseString]];
     } else {
         cell.textLabel.text = [NSString stringWithFormat:@"#%@ %@", gameEvent.player.number, gameEvent.event.title];
     }

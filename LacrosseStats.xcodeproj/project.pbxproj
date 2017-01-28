@@ -6,7 +6,31 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B98BEA521E16B7A90076BB68 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B98BEA551E16B7A90076BB68 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				B98BEA561E16B7DA0076BB68 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		71D969DE36DFEC8DEF27438A /* libPods-MensLacrosseStatsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19405FABB59F4BD85861C322 /* libPods-MensLacrosseStatsTests.a */; };
+		9AA0C9FFF8D3614E0175E426 /* libPods-WomensLacrosseStats.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5A933ECDD59FC591C6969E2 /* libPods-WomensLacrosseStats.a */; };
+		9CB2B4E27E3C48C6BB55B176 /* libPods-MensLacrosseStats.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 315B98F607A63B46F7239FC6 /* libPods-MensLacrosseStats.a */; };
+		9F9DA4FA1E1C8130008B8AC0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F9DA4F91E1C8130008B8AC0 /* libcrypto.a */; };
+		9F9DA4FC1E1C814A008B8AC0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F9DA4FB1E1C814A008B8AC0 /* libssl.a */; };
+		9F9DA4FD1E1C8160008B8AC0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F9DA4F91E1C8130008B8AC0 /* libcrypto.a */; };
+		9F9DA4FE1E1C8160008B8AC0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F9DA4FB1E1C814A008B8AC0 /* libssl.a */; };
+		9FCB08591E1C7BB000BD7850 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 9FCB08581E1C7BB000BD7850 /* Podfile */; };
+		9FCB085A1E1C7BB000BD7850 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 9FCB08581E1C7BB000BD7850 /* Podfile */; };
+		AD0E2D6600AA845A74C4BCB4 /* libPods-MensLacrosseStatsUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BCBD258DF542B485441FC8 /* libPods-MensLacrosseStatsUITests.a */; };
 		B9108A911BC07FE9000450F8 /* MensLacrosseStatsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9108A901BC07FE9000450F8 /* MensLacrosseStatsTests.m */; };
 		B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */; };
 		B916A12A1C1DB38C00E754A3 /* INSOGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1231C1DB38C00E754A3 /* INSOGameDetailViewController.m */; };
@@ -19,6 +43,10 @@
 		B916A13E1C1DB42800E754A3 /* INSOPenaltyTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1361C1DB42800E754A3 /* INSOPenaltyTimeViewController.m */; };
 		B916A13F1C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1381C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m */; };
 		B916A1401C1DB42800E754A3 /* INSOShotResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A13A1C1DB42800E754A3 /* INSOShotResultViewController.m */; };
+		B917B6B51DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */ = {isa = PBXBuildFile; fileRef = B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */; };
+		B917B6B61DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */ = {isa = PBXBuildFile; fileRef = B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */; };
+		B917B6B81DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */ = {isa = PBXBuildFile; fileRef = B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */; };
+		B917B6B91DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */ = {isa = PBXBuildFile; fileRef = B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */; };
 		B92236DA1C7FEC820018E58D /* INSOMajorFoulResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92236D91C7FEC820018E58D /* INSOMajorFoulResultViewController.m */; };
 		B928F26D1BE2F9000028DD51 /* INSOGameStatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B928F26C1BE2F9000028DD51 /* INSOGameStatTableViewCell.m */; };
 		B92AF5A61C1CA043001043CA /* INSOReceiptValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B92AF5A51C1CA043001043CA /* INSOReceiptValidator.m */; };
@@ -70,8 +98,6 @@
 		B97FD1BB1C5B9643000BC548 /* INSORosterPlayerSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1381C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m */; };
 		B97FD1BC1C5B9647000BC548 /* INSOShotResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A13A1C1DB42800E754A3 /* INSOShotResultViewController.m */; };
 		B97FD1BD1C5B964C000BC548 /* INSOPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */; };
-		B97FD1BE1C5B994D000BC548 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7193E1C2F01B800EDD670 /* libcrypto.a */; };
-		B97FD1BF1C5B994D000BC548 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E719421C2F189600EDD670 /* libssl.a */; };
 		B97FD1C01C5B9A96000BC548 /* _Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB451BC9C9F2006AEA3A /* _Event.m */; };
 		B97FD1C11C5B9A9A000BC548 /* _EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB4C1BC9CA78006AEA3A /* _EventCategory.m */; };
 		B97FD1C21C5B9A9E000BC548 /* _Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A6621BB75FAF004FD794 /* _Game.m */; };
@@ -104,7 +130,6 @@
 		B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */; };
 		B9DCC3F51C1E5AA900382BD8 /* INSOPurchaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */; };
 		B9DECBE91C5C45B400481266 /* GameEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9DECBE81C5C45B400481266 /* GameEvents.plist */; };
-		B9E719411C2F145E00EDD670 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E7193E1C2F01B800EDD670 /* libcrypto.a */; };
 		B9E719481C2F282000EDD670 /* INSOProductManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9E719471C2F282000EDD670 /* INSOProductManager.m */; };
 		B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */; };
 		B9EF9EF91C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EF9EF81C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m */; };
@@ -128,6 +153,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03BADF5133748978715C06FC /* Pods-MensLacrosseStats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MensLacrosseStats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MensLacrosseStats/Pods-MensLacrosseStats.debug.xcconfig"; sourceTree = "<group>"; };
+		19405FABB59F4BD85861C322 /* libPods-MensLacrosseStatsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MensLacrosseStatsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		315B98F607A63B46F7239FC6 /* libPods-MensLacrosseStats.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MensLacrosseStats.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41D005109509C332E4CA499A /* Pods-WomensLacrosseStats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WomensLacrosseStats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WomensLacrosseStats/Pods-WomensLacrosseStats.debug.xcconfig"; sourceTree = "<group>"; };
+		47BCBD258DF542B485441FC8 /* libPods-MensLacrosseStatsUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MensLacrosseStatsUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6144B6526FABA7F243173C7B /* Pods-MensLacrosseStatsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MensLacrosseStatsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MensLacrosseStatsTests/Pods-MensLacrosseStatsTests.release.xcconfig"; sourceTree = "<group>"; };
+		7BF6EC88B848E45929A1B8A7 /* Pods-MensLacrosseStatsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MensLacrosseStatsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MensLacrosseStatsTests/Pods-MensLacrosseStatsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9789A77BE2C21B9E6A22FE8A /* Pods-WomensLacrosseStats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WomensLacrosseStats.release.xcconfig"; path = "Pods/Target Support Files/Pods-WomensLacrosseStats/Pods-WomensLacrosseStats.release.xcconfig"; sourceTree = "<group>"; };
+		9F9DA4F91E1C8130008B8AC0 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/OpenSSL/lib/libcrypto.a; sourceTree = "<group>"; };
+		9F9DA4FB1E1C814A008B8AC0 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Pods/OpenSSL/lib/libssl.a; sourceTree = "<group>"; };
+		9FCB08581E1C7BB000BD7850 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		B9108A901BC07FE9000450F8 /* MensLacrosseStatsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MensLacrosseStatsTests.m; sourceTree = "<group>"; };
 		B916A11B1C1DB32100E754A3 /* INSOEmailStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOEmailStatsViewController.h; sourceTree = "<group>"; };
 		B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOEmailStatsViewController.m; sourceTree = "<group>"; };
@@ -151,6 +187,8 @@
 		B916A1381C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSORosterPlayerSelectorViewController.m; sourceTree = "<group>"; };
 		B916A1391C1DB42800E754A3 /* INSOShotResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOShotResultViewController.h; sourceTree = "<group>"; };
 		B916A13A1C1DB42800E754A3 /* INSOShotResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOShotResultViewController.m; sourceTree = "<group>"; };
+		B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GameSummaryHeaderFile.html; sourceTree = "<group>"; };
+		B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GameSummaryFooterFile.html; sourceTree = "<group>"; };
 		B92236D81C7FEC820018E58D /* INSOMajorFoulResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOMajorFoulResultViewController.h; sourceTree = "<group>"; };
 		B92236D91C7FEC820018E58D /* INSOMajorFoulResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMajorFoulResultViewController.m; sourceTree = "<group>"; };
 		B928F26B1BE2F9000028DD51 /* INSOGameStatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameStatTableViewCell.h; sourceTree = "<group>"; };
@@ -187,6 +225,7 @@
 		B97FD19B1C5B0B8E000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WomensMain.storyboard; sourceTree = "<group>"; };
 		B9880D2C1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOPlayerCollectionViewCell.h; sourceTree = "<group>"; };
 		B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPlayerCollectionViewCell.m; sourceTree = "<group>"; };
+		B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MensLacrosseStats 2.xcdatamodel"; sourceTree = "<group>"; };
 		B98D03491C28C86400C4D998 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B991A65A1BB75FA5004FD794 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		B991A65B1BB75FA5004FD794 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
@@ -242,6 +281,10 @@
 		B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMensLacrosseStatsConstants.m; sourceTree = "<group>"; };
 		B9EF9EF71C24E9FA00A8E91F /* INSOExportOptionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOExportOptionsTableViewController.h; sourceTree = "<group>"; };
 		B9EF9EF81C24E9FA00A8E91F /* INSOExportOptionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOExportOptionsTableViewController.m; sourceTree = "<group>"; };
+		BAFE8450CEFF11A816D96756 /* Pods-MensLacrosseStatsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MensLacrosseStatsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MensLacrosseStatsUITests/Pods-MensLacrosseStatsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D3696B6B888E79C2C97BB9FA /* Pods-MensLacrosseStats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MensLacrosseStats.release.xcconfig"; path = "Pods/Target Support Files/Pods-MensLacrosseStats/Pods-MensLacrosseStats.release.xcconfig"; sourceTree = "<group>"; };
+		D5A933ECDD59FC591C6969E2 /* libPods-WomensLacrosseStats.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WomensLacrosseStats.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D610746AF1C44F889F8862A2 /* Pods-MensLacrosseStatsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MensLacrosseStatsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MensLacrosseStatsUITests/Pods-MensLacrosseStatsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,9 +292,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9E719411C2F145E00EDD670 /* libcrypto.a in Frameworks */,
+				9F9DA4FC1E1C814A008B8AC0 /* libssl.a in Frameworks */,
+				9F9DA4FA1E1C8130008B8AC0 /* libcrypto.a in Frameworks */,
 				B9471E631BD872CA00379D96 /* CoreData.framework in Frameworks */,
 				B98D034A1C28C86500C4D998 /* StoreKit.framework in Frameworks */,
+				9CB2B4E27E3C48C6BB55B176 /* libPods-MensLacrosseStats.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +304,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71D969DE36DFEC8DEF27438A /* libPods-MensLacrosseStatsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD0E2D6600AA845A74C4BCB4 /* libPods-MensLacrosseStatsUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,16 +320,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B97FD1BE1C5B994D000BC548 /* libcrypto.a in Frameworks */,
-				B97FD1BF1C5B994D000BC548 /* libssl.a in Frameworks */,
+				9F9DA4FD1E1C8160008B8AC0 /* libcrypto.a in Frameworks */,
+				9F9DA4FE1E1C8160008B8AC0 /* libssl.a in Frameworks */,
 				B97FD1A41C5B0E67000BC548 /* CoreData.framework in Frameworks */,
 				B97FD1A51C5B0E89000BC548 /* StoreKit.framework in Frameworks */,
+				9AA0C9FFF8D3614E0175E426 /* libPods-WomensLacrosseStats.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2338C93E119E380492E13735 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F9DA4FB1E1C814A008B8AC0 /* libssl.a */,
+				9F9DA4F91E1C8130008B8AC0 /* libcrypto.a */,
+				315B98F607A63B46F7239FC6 /* libPods-MensLacrosseStats.a */,
+				19405FABB59F4BD85861C322 /* libPods-MensLacrosseStatsTests.a */,
+				47BCBD258DF542B485441FC8 /* libPods-MensLacrosseStatsUITests.a */,
+				D5A933ECDD59FC591C6969E2 /* libPods-WomensLacrosseStats.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B9108A991BC0898A000450F8 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,6 +539,8 @@
 				B99FDD711BB47A4A006FB373 /* INSOMensLacrosseStatsEnum.h */,
 				B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */,
 				B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */,
+				B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */,
+				B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -509,10 +572,13 @@
 		B9C7A7271BADA3B30082DA8B = {
 			isa = PBXGroup;
 			children = (
+				9FCB08581E1C7BB000BD7850 /* Podfile */,
 				B9C7A7321BADA3B30082DA8B /* MensLacrosseStats */,
 				B9D732461C5B082300FEADFF /* WomensLacrosseStats */,
 				B9C7A74F1BADA3B30082DA8B /* MensLacrosseStatsTests */,
 				B9C7A7311BADA3B30082DA8B /* Products */,
+				DF1559E69EC1238B371E1A77 /* Pods */,
+				2338C93E119E380492E13735 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -597,6 +663,21 @@
 			path = WomensLacrosseStats;
 			sourceTree = "<group>";
 		};
+		DF1559E69EC1238B371E1A77 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03BADF5133748978715C06FC /* Pods-MensLacrosseStats.debug.xcconfig */,
+				D3696B6B888E79C2C97BB9FA /* Pods-MensLacrosseStats.release.xcconfig */,
+				7BF6EC88B848E45929A1B8A7 /* Pods-MensLacrosseStatsTests.debug.xcconfig */,
+				6144B6526FABA7F243173C7B /* Pods-MensLacrosseStatsTests.release.xcconfig */,
+				D610746AF1C44F889F8862A2 /* Pods-MensLacrosseStatsUITests.debug.xcconfig */,
+				BAFE8450CEFF11A816D96756 /* Pods-MensLacrosseStatsUITests.release.xcconfig */,
+				41D005109509C332E4CA499A /* Pods-WomensLacrosseStats.debug.xcconfig */,
+				9789A77BE2C21B9E6A22FE8A /* Pods-WomensLacrosseStats.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -604,10 +685,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9C7A7601BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "MensLacrosseStats" */;
 			buildPhases = (
+				38C93567A8F3C30D7754B5EA /* [CP] Check Pods Manifest.lock */,
 				B9C7A72C1BADA3B30082DA8B /* Sources */,
 				B9C7A72D1BADA3B30082DA8B /* Frameworks */,
 				B9C7A72E1BADA3B30082DA8B /* Resources */,
 				B95391051BF5817900C5B6D0 /* ShellScript */,
+				F9E06B59CC302163B8C5956D /* [CP] Embed Pods Frameworks */,
+				F570056672F9547C0B52DF21 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -622,9 +706,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9C7A7631BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "MensLacrosseStatsTests" */;
 			buildPhases = (
+				06EF176373375668017D4724 /* [CP] Check Pods Manifest.lock */,
 				B9C7A7481BADA3B30082DA8B /* Sources */,
 				B9C7A7491BADA3B30082DA8B /* Frameworks */,
 				B9C7A74A1BADA3B30082DA8B /* Resources */,
+				26B6557E9FE2C3773B99F9B4 /* [CP] Embed Pods Frameworks */,
+				16967A55EE08FF8591382F7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -640,9 +727,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9C7A7661BADA3B30082DA8B /* Build configuration list for PBXNativeTarget "MensLacrosseStatsUITests" */;
 			buildPhases = (
+				77811B49369AF0245FC31171 /* [CP] Check Pods Manifest.lock */,
 				B9C7A7531BADA3B30082DA8B /* Sources */,
 				B9C7A7541BADA3B30082DA8B /* Frameworks */,
 				B9C7A7551BADA3B30082DA8B /* Resources */,
+				77C1FFFDAE7D9A5CB4890E7A /* [CP] Embed Pods Frameworks */,
+				6E77F807EAD4EC3DB267D9D7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -658,9 +748,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9D7325E1C5B082300FEADFF /* Build configuration list for PBXNativeTarget "WomensLacrosseStats" */;
 			buildPhases = (
+				C3EC3A04E9C2D8527554B816 /* [CP] Check Pods Manifest.lock */,
 				B9D732411C5B082300FEADFF /* Sources */,
 				B9D732421C5B082300FEADFF /* Frameworks */,
 				B9D732431C5B082300FEADFF /* Resources */,
+				4CC6BE35104E03136A11B51D /* [CP] Embed Pods Frameworks */,
+				1E7EAFD2D07099ADFB0344A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -681,6 +774,11 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Intangible Software";
 				TargetAttributes = {
+					B98BEA521E16B7A90076BB68 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = CRBB3K29X3;
+						ProvisioningStyle = Automatic;
+					};
 					B9C7A72F1BADA3B30082DA8B = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = CRBB3K29X3;
@@ -726,6 +824,7 @@
 				B9C7A74B1BADA3B30082DA8B /* MensLacrosseStatsTests */,
 				B9C7A7561BADA3B30082DA8B /* MensLacrosseStatsUITests */,
 				B9D732441C5B082300FEADFF /* WomensLacrosseStats */,
+				B98BEA521E16B7A90076BB68 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -737,7 +836,10 @@
 			files = (
 				B97FD1931C5B0B5D000BC548 /* LaunchScreen.storyboard in Resources */,
 				B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */,
+				B917B6B81DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */,
+				B917B6B51DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */,
 				B99FDD5F1BB46907006FB373 /* Mens.xcassets in Resources */,
+				9FCB08591E1C7BB000BD7850 /* Podfile in Resources */,
 				B97FD1941C5B0B5D000BC548 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -760,6 +862,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B917B6B91DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */,
+				B917B6B61DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */,
+				9FCB085A1E1C7BB000BD7850 /* Podfile in Resources */,
 				B9DECBE91C5C45B400481266 /* GameEvents.plist in Resources */,
 				B97FD1C71C5B9B8B000BC548 /* Mens.xcassets in Resources */,
 				B97FD19A1C5B0B8E000BC548 /* WomensMain.storyboard in Resources */,
@@ -771,6 +876,141 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		06EF176373375668017D4724 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		16967A55EE08FF8591382F7D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MensLacrosseStatsTests/Pods-MensLacrosseStatsTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E7EAFD2D07099ADFB0344A9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WomensLacrosseStats/Pods-WomensLacrosseStats-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		26B6557E9FE2C3773B99F9B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MensLacrosseStatsTests/Pods-MensLacrosseStatsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		38C93567A8F3C30D7754B5EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4CC6BE35104E03136A11B51D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WomensLacrosseStats/Pods-WomensLacrosseStats-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E77F807EAD4EC3DB267D9D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MensLacrosseStatsUITests/Pods-MensLacrosseStatsUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77811B49369AF0245FC31171 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		77C1FFFDAE7D9A5CB4890E7A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MensLacrosseStatsUITests/Pods-MensLacrosseStatsUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B95391051BF5817900C5B6D0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -783,6 +1023,64 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+		};
+		B98BEA561E16B7DA0076BB68 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd MensLacrosseStats/Model\nmogenerator --template-var arc=true --human-dir \"Human\" --machine-dir \"Machine\" -model \"MensLacrosseStats.xcdatamodeld/MensLacrosseStats 2.xcdatamodel\"";
+		};
+		C3EC3A04E9C2D8527554B816 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F570056672F9547C0B52DF21 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MensLacrosseStats/Pods-MensLacrosseStats-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9E06B59CC302163B8C5956D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MensLacrosseStats/Pods-MensLacrosseStats-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -951,6 +1249,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B98BEA531E16B7A90076BB68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = CRBB3K29X3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B98BEA541E16B7A90076BB68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = CRBB3K29X3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B9C7A75E1BADA3B30082DA8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1039,44 +1353,53 @@
 		};
 		B9C7A7611BADA3B30082DA8B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03BADF5133748978715C06FC /* Pods-MensLacrosseStats.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CRBB3K29X3;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/MensLacrosseStats/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "/Users/jimd/Developer/openssl-1.0.2e-iOS/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/OpenSSL/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.menslacrossestats;
 				PRODUCT_NAME = MensLacrosseStats;
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "/Users/jimd/Developer/openssl-1.0.2e-iOS/include";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		B9C7A7621BADA3B30082DA8B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3696B6B888E79C2C97BB9FA /* Pods-MensLacrosseStats.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CRBB3K29X3;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/MensLacrosseStats/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "/Users/jimd/Developer/openssl-1.0.2e-iOS/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/OpenSSL/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.menslacrossestats;
 				PRODUCT_NAME = MensLacrosseStats;
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "/Users/jimd/Developer/openssl-1.0.2e-iOS/include";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
 		B9C7A7641BADA3B30082DA8B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BF6EC88B848E45929A1B8A7 /* Pods-MensLacrosseStatsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ScorebookLiteTests/Info.plist;
@@ -1089,6 +1412,7 @@
 		};
 		B9C7A7651BADA3B30082DA8B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6144B6526FABA7F243173C7B /* Pods-MensLacrosseStatsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ScorebookLiteTests/Info.plist;
@@ -1101,6 +1425,7 @@
 		};
 		B9C7A7671BADA3B30082DA8B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D610746AF1C44F889F8862A2 /* Pods-MensLacrosseStatsUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ScorebookLiteUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1113,6 +1438,7 @@
 		};
 		B9C7A7681BADA3B30082DA8B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAFE8450CEFF11A816D96756 /* Pods-MensLacrosseStatsUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ScorebookLiteUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1125,45 +1451,64 @@
 		};
 		B9D7325C1C5B082300FEADFF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41D005109509C332E4CA499A /* Pods-WomensLacrosseStats.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = WomensAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CRBB3K29X3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WomensLacrosseStats/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "/Users/jimd/Developer/openssl-1.0.2e-iOS/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/OpenSSL/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.womenslacrossestats;
 				PRODUCT_NAME = WomensLacrosseStats;
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "/Users/jimd/Developer/openssl-1.0.2e-iOS/include";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		B9D7325D1C5B082300FEADFF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9789A77BE2C21B9E6A22FE8A /* Pods-WomensLacrosseStats.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = WomensAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = CRBB3K29X3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WomensLacrosseStats/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "/Users/jimd/Developer/openssl-1.0.2e-iOS/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/OpenSSL/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.womenslacrossestats;
 				PRODUCT_NAME = WomensLacrosseStats;
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "/Users/jimd/Developer/openssl-1.0.2e-iOS/include";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B98BEA551E16B7A90076BB68 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B98BEA531E16B7A90076BB68 /* Debug */,
+				B98BEA541E16B7A90076BB68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B9C7A72B1BADA3B30082DA8B /* Build configuration list for PBXProject "LacrosseStats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1215,9 +1560,10 @@
 		B99FDD501BB46865006FB373 /* MensLacrosseStats.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */,
 				B99FDD511BB46865006FB373 /* MensLacrosseStats.xcdatamodel */,
 			);
-			currentVersion = B99FDD511BB46865006FB373 /* MensLacrosseStats.xcdatamodel */;
+			currentVersion = B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */;
 			path = MensLacrosseStats.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

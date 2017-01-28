@@ -69,7 +69,7 @@ const struct GameRelationships GameRelationships = {
 }
 
 - (void)setHomeScoreValue:(int16_t)value_ {
-	[self setHomeScore:@(value_)];
+	[self setHomeScore:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitiveHomeScoreValue {
@@ -78,7 +78,7 @@ const struct GameRelationships GameRelationships = {
 }
 
 - (void)setPrimitiveHomeScoreValue:(int16_t)value_ {
-	[self setPrimitiveHomeScore:@(value_)];
+	[self setPrimitiveHomeScore:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic homeTeam;
@@ -97,7 +97,7 @@ const struct GameRelationships GameRelationships = {
 }
 
 - (void)setVisitorScoreValue:(int16_t)value_ {
-	[self setVisitorScore:@(value_)];
+	[self setVisitorScore:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitiveVisitorScoreValue {
@@ -106,7 +106,7 @@ const struct GameRelationships GameRelationships = {
 }
 
 - (void)setPrimitiveVisitorScoreValue:(int16_t)value_ {
-	[self setPrimitiveVisitorScore:@(value_)];
+	[self setPrimitiveVisitorScore:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic events;
