@@ -117,24 +117,6 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     return _managedObjectContext;
 }
 
-- (NSInteger)teamWatchingGoals
-{
-    NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
-        return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue >= INSOTeamWatchingPlayerNumber);
-    }];
-    self.game.homeScoreValue = [goals count];
-    return [goals count];
-}
-
-- (NSInteger)otherTeamGoals
-{
-    NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
-        return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue == INSOOtherTeamPlayerNumber);
-    }];
-    self.game.visitorScoreValue = [goals count];
-    return [goals count];
-}
-
 #pragma mark - Private Methods
 - (void)configureView
 {
@@ -148,22 +130,9 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     
     self.homeTeamLabel.text = self.game.homeTeam;
     self.visitingTeamLabel.text = self.game.visitingTeam;
-    
-    if ([self.game.homeTeam isEqualToString:self.game.teamWatching]) {
-        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(self.teamWatchingGoals)];
-        self.game.homeScoreValue = self.teamWatchingGoals;
-    } else {
-        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(self.otherTeamGoals)];
-        self.game.homeScoreValue = self.otherTeamGoals;
-    }
-    
-    if ([self.game.visitingTeam isEqualToString:self.game.teamWatching]) {
-        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(self.teamWatchingGoals)];
-        self.game.visitorScoreValue = self.teamWatchingGoals;
-    } else {
-        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(self.otherTeamGoals)];
-        self.game.visitorScoreValue = self.otherTeamGoals;
-    }
+
+    self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", self.game.homeScore];
+    self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", self.game.visitorScore];
     
     self.locationLabel.text = self.game.location;
 }

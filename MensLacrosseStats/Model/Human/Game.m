@@ -48,8 +48,38 @@
         } else {
             self.homeScoreValue = [goalsAllowedSet count];
         }
+    } else {
+        // Just update game score.
+        if ([self.homeTeam isEqualToString:self.teamWatching]) {
+            self.homeScoreValue = [self teamWatchingGoals]; 
+        } else {
+            self.homeScoreValue = [self otherTeamGoals];
+        }
+
+        if ([self.visitingTeam isEqualToString:self.teamWatching]) {
+            self.visitorScoreValue = [self teamWatchingGoals];
+        } else {
+            self.visitorScoreValue = [self otherTeamGoals];
+        }
     }
 }
+
+- (NSInteger)teamWatchingGoals
+{
+    NSSet* goals = [self.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
+        return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue >= INSOTeamWatchingPlayerNumber);
+    }];
+    return [goals count];
+}
+
+- (NSInteger)otherTeamGoals
+{
+    NSSet* goals = [self.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
+        return (gameEvent.event.eventCodeValue == INSOEventCodeGoal && gameEvent.player.numberValue == INSOOtherTeamPlayerNumber);
+    }];
+    return [goals count];
+}
+
 
 - (RosterPlayer*)teamPlayer
 {
