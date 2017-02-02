@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="categoryCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="eventCode" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="isDefalut" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="statCategory" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="categoryCode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="eventCode" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isDefalut" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="statCategory" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EventCategory" inverseName="events" inverseEntity="EventCategory" syncable="YES"/>
         <relationship name="gameEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GameEvent" inverseName="event" inverseEntity="GameEvent" syncable="YES"/>
         <relationship name="games" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Game" inverseName="eventsToRecord" inverseEntity="Game" syncable="YES"/>
     </entity>
     <entity name="EventCategory" representedClassName="EventCategory" syncable="YES">
-        <attribute name="categoryCode" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="categoryCode" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="category" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="Game" representedClassName="Game" syncable="YES">
-        <attribute name="gameDateTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="homeScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="gameDateTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="homeScore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="homeTeam" optional="YES" attributeType="String" defaultValueString="Home Team" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" defaultValueString="Home Field" syncable="YES"/>
         <attribute name="teamWatching" optional="YES" attributeType="String" defaultValueString="Home Team" syncable="YES"/>
         <attribute name="visitingTeam" optional="YES" attributeType="String" defaultValueString="Visiting Team" syncable="YES"/>
-        <attribute name="visitorScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="visitorScore" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GameEvent" inverseName="game" inverseEntity="GameEvent" syncable="YES"/>
         <relationship name="eventsToRecord" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="games" inverseEntity="Event" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RosterPlayer" inverseName="game" inverseEntity="RosterPlayer" syncable="YES"/>
     </entity>
     <entity name="GameEvent" representedClassName="GameEvent" syncable="YES">
-        <attribute name="isExtraManGoal" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="penaltyTime" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isExtraManGoal" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="penaltyTime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="gameEvents" inverseEntity="Event" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="events" inverseEntity="Game" syncable="YES"/>
         <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RosterPlayer" inverseName="events" inverseEntity="RosterPlayer" syncable="YES"/>
     </entity>
     <entity name="RosterPlayer" representedClassName="RosterPlayer" syncable="YES">
-        <attribute name="isTeam" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isTeam" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GameEvent" inverseName="player" inverseEntity="GameEvent" syncable="YES"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="players" inverseEntity="Game" syncable="YES"/>
     </entity>

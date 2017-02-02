@@ -75,6 +75,8 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         [self createGroundballEvent];
     }
     
+    [self createFaceoffLostEvent];
+    
     // Now save all this
     NSError* error;
     if (![self.managedObjectContext save:&error]) {
@@ -89,10 +91,16 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     if (!_rosterArray) {
         // Get all the players from the roster
-        NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
-        NSMutableArray* roster = [[NSMutableArray alloc] initWithArray:[self.faceoffWinner.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
-        
-        _rosterArray = roster;
+        if (self.faceoffWinner.numberValue == INSOOtherTeamPlayerNumber) {
+            // The other team won the face off, so only show the other team player
+            _rosterArray = @[[self.faceoffWinner.game playerWithNumber:@(INSOOtherTeamPlayerNumber)]];
+        } else {
+            NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
+            NSMutableArray* roster = [[NSMutableArray alloc] initWithArray:[self.faceoffWinner.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
+            RosterPlayer *otherTeamPlayer = [self.faceoffWinner.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            [roster removeObject:otherTeamPlayer];
+            _rosterArray = roster;
+        }        
     }
     return _rosterArray;
 }
@@ -101,7 +109,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     
@@ -113,7 +121,16 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     RosterPlayer * rosterPlayer = self.rosterArray[indexPath.row];
     if (rosterPlayer.isTeamValue) {
-        cell.playerNumberLabel.text = NSLocalizedString(@"Team Player", nil);
+        // Which team player?
+        if (rosterPlayer.numberValue == INSOTeamWatchingPlayerNumber) {
+            cell.playerNumberLabel.text = rosterPlayer.game.teamWatching;
+        } else {
+            if ([rosterPlayer.game.teamWatching isEqualToString:rosterPlayer.game.homeTeam]) {
+                cell.playerNumberLabel.text = rosterPlayer.game.visitingTeam;
+            } else {
+                cell.playerNumberLabel.text = rosterPlayer.game.homeTeam;
+            }
+        }
     } else {
         cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
     }
@@ -163,6 +180,27 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     faceoffWonEvent.player = self.faceoffWinner;
     
     return faceoffWonEvent;
+}
+
+- (GameEvent *)createFaceoffLostEvent
+{
+    GameEvent *faceoffLostEvent = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    
+    faceoffLostEvent.timestamp = [NSDate date];
+    faceoffLostEvent.event = [Event eventForCode:INSOEventCodeFaceoffLost inManagedObjectContext:self.managedObjectContext];
+    faceoffLostEvent.game = self.faceoffWinner.game;
+    
+    RosterPlayer *player;
+    if (self.faceoffWinner.numberValue == INSOOtherTeamPlayerNumber) {
+        // Faceoff loss for team watching
+        player = [self.faceoffWinner.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+    } else {
+        // Faceoff loss for other team
+        player = [self.faceoffWinner.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+    }
+    faceoffLostEvent.player = player;
+    
+    return faceoffLostEvent;
 }
 
 - (GameEvent*)createGroundballEvent

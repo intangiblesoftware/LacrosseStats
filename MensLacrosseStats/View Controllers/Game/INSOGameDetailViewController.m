@@ -14,11 +14,12 @@
 #import "INSORosterPlayerSelectorViewController.h"
 #import "INSOMensLacrosseStatsEnum.h"
 #import "INSOGameStatsViewController.h"
-#import "INSOPurchaseViewController.h"
+#import "INSOEmailStatsViewController.h"
 
 #import "Game.h"
 #import "GameEvent.h"
 #import "Event.h"
+#import "RosterPlayer.h"
 
 static NSString * INSOEditGameSegueIdentifier          = @"EditGameSegue";
 static NSString * INSORecordStatsSegueIdentifier       = @"RecordStatsSegue";
@@ -39,11 +40,12 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 // IBActions
 - (IBAction)editGame:(id)sender;
 - (IBAction)recordStats:(id)sender;
+- (IBAction)exportStats:(id)sender;
 
 // Private Properties
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
-@property (nonatomic) NSInteger countOfGoals;
-@property (nonatomic) NSInteger countOfGoalsAllowed;
+@property (nonatomic) NSInteger teamWatchingGoals;
+@property (nonatomic) NSInteger otherTeamGoals;
 
 // Private Methods
 
@@ -96,32 +98,23 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     }
 }
 
+- (void)exportStats:(id)sender
+{
+    if ([[INSOProductManager sharedManager] productIsPurchased] && [[INSOProductManager sharedManager] productPurchaseExpired]) {
+        [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
+    } else {
+        [self performSegueWithIdentifier:INSOExportStatsSegueIdentifier sender:self];
+    }
+}
+
 #pragma mark - Private Properties
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;
-}
-
-- (NSInteger)countOfGoals
-{
-    NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
-        return gameEvent.event.eventCodeValue == INSOEventCodeGoal;
-    }];
-    
-    return [goals count];
-}
-
-- (NSInteger)countOfGoalsAllowed
-{
-    NSSet* goals = [self.game.events objectsPassingTest:^BOOL(GameEvent*  _Nonnull gameEvent, BOOL * _Nonnull stop) {
-        return gameEvent.event.eventCodeValue == INSOEventCodeGoalAllowed;
-    }];
-    
-    return [goals count];
 }
 
 #pragma mark - Private Methods
@@ -138,24 +131,8 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     self.homeTeamLabel.text = self.game.homeTeam;
     self.visitingTeamLabel.text = self.game.visitingTeam;
 
-    NSInteger goals = self.countOfGoals;
-    NSInteger goalsAllowed = self.countOfGoalsAllowed;
-    
-    if ([self.game.homeTeam isEqualToString:self.game.teamWatching]) {
-        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(goals)];
-        self.game.homeScoreValue = goals;
-    } else {
-        self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", @(goalsAllowed)];
-        self.game.homeScoreValue = goalsAllowed;
-    }
-    
-    if ([self.game.visitingTeam isEqualToString:self.game.teamWatching]) {
-        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(goals)];
-        self.game.visitorScoreValue = goals;
-    } else {
-        self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", @(goalsAllowed)];
-        self.game.visitorScoreValue = goalsAllowed;
-    }
+    self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", self.game.homeScore];
+    self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", self.game.visitorScore];
     
     self.locationLabel.text = self.game.location;
 }
@@ -201,8 +178,8 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 - (void)prepareForExportStatsSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
     UINavigationController* navigationController = segue.destinationViewController;
-    INSOPurchaseViewController* purchaseViewController = [navigationController.viewControllers firstObject];
-    purchaseViewController.game = self.game;
+    INSOEmailStatsViewController* emailViewController = [navigationController.viewControllers firstObject];
+    emailViewController.game = self.game;
 }
 
 

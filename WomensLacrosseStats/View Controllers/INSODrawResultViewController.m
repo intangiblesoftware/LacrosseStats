@@ -71,10 +71,17 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     // Create the necessary events
     [self createDrawTakenEvent];
+    [self createEventForOtherTeam:INSOEventCodeDrawTaken];
     
     if (self.wonDrawControlSwitch.isOn) {
         [self createDrawControlEvent];
         [self createDrawPossessionEvent];
+    } else {
+        // Need to create draw control for other team
+        [self createEventForOtherTeam:INSOEventCodeDrawControl];
+        
+        // Need to create draw possession for other team
+        [self createEventForOtherTeam:INSOEventCodeDrawPossession];
     }
     
     
@@ -97,8 +104,30 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     if (!_rosterArray) {
         // Get all the players from the roster
+        NSMutableArray* roster = [NSMutableArray new];
+        
+        // Loop through game's players and add on those folks that belong.
+        if (self.center.numberValue == INSOOtherTeamPlayerNumber) {
+            // Other team scored, so only add other team player
+            for (RosterPlayer *player in self.center.game.players) {
+                if (player.numberValue == INSOOtherTeamPlayerNumber) {
+                    [roster addObject:player];
+                }
+            }
+        } else {
+            // Team watching scored, so add watching team player and all the other players
+            for (RosterPlayer *player in self.center.game.players) {
+                if (player.numberValue == INSOTeamWatchingPlayerNumber) {
+                    [roster addObject:player];
+                } else if ((player.numberValue > INSOTeamWatchingPlayerNumber) && (player.numberValue != self.center.numberValue)) {
+                    [roster addObject:player];
+                }
+            }
+        }
+        
+        // Now sort the roster
         NSSortDescriptor* sortByNumber = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
-        NSMutableArray* roster = [[NSMutableArray alloc] initWithArray:[self.center.game.players sortedArrayUsingDescriptors:@[sortByNumber]]];
+        [roster sortUsingDescriptors:@[sortByNumber]];
         
         _rosterArray = roster;
     }
@@ -109,7 +138,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
-        WomensAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        WomensAppDelegate* appDelegate = (WomensAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     
@@ -142,9 +171,18 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (void)configureRosterPlayerCell:(INSOPlayerCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    RosterPlayer * rosterPlayer = self.rosterArray[indexPath.row];
+    RosterPlayer* rosterPlayer = self.rosterArray[indexPath.row];
     if (rosterPlayer.isTeamValue) {
-        cell.playerNumberLabel.text = NSLocalizedString(@"Team Player", nil);
+        // Which team player?
+        if (rosterPlayer.numberValue == INSOTeamWatchingPlayerNumber) {
+            cell.playerNumberLabel.text = self.center.game.teamWatching;
+        } else {
+            if ([self.center.game.teamWatching isEqualToString:self.center.game.homeTeam]) {
+                cell.playerNumberLabel.text = self.center.game.visitingTeam;
+            } else {
+                cell.playerNumberLabel.text = self.center.game.homeTeam;
+            }
+        }
     } else {
         cell.playerNumberLabel.text = [NSString stringWithFormat:@"%@", rosterPlayer.number];
     }
@@ -223,6 +261,25 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     drawPossessionEvent.player = self.center;
     
     return drawPossessionEvent;
+}
+
+- (GameEvent *)createEventForOtherTeam:(INSOEventCode)eventCode
+{
+    GameEvent *event = [GameEvent insertInManagedObjectContext:self.managedObjectContext];
+    
+    event.timestamp = [NSDate date];
+    event.event = [Event eventForCode:eventCode inManagedObjectContext:self.managedObjectContext];
+    event.game = self.center.game;
+    
+    RosterPlayer *player;
+    if (self.center.numberValue == INSOOtherTeamPlayerNumber) {
+        player = [self.center.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+    } else {
+        player = [self.center.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+    }
+    event.player = player;
+    
+    return event;
 }
 
 - (BOOL)shouldEnableDoneButton

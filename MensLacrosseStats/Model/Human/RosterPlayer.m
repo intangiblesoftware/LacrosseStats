@@ -1,6 +1,7 @@
 #import "RosterPlayer.h"
 
-const NSInteger INSOTeamPlayerNumber = -1;
+const NSInteger INSOTeamWatchingPlayerNumber = -1;
+const NSInteger INSOOtherTeamPlayerNumber = -2; 
 
 @interface RosterPlayer ()
 

@@ -1,4 +1,5 @@
 #import "_Game.h"
+#import "INSOMensLacrosseStatsEnum.h"
 
 @interface Game : _Game {}
 // Class Methods
@@ -9,5 +10,6 @@
 // Public Methods
 - (BOOL)rosterContainsPlayerWithNumber:(NSNumber*)number;
 - (RosterPlayer*)playerWithNumber:(NSNumber*)number;
+- (BOOL)didRecordEvent:(INSOEventCode)eventCode; 
 
 @end

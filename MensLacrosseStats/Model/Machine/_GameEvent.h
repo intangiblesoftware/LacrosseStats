@@ -1,9 +1,10 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to GameEvent.h instead.
 
-@import CoreData;
+#import <CoreData/CoreData.h>
 
 extern const struct GameEventAttributes {
+	__unsafe_unretained NSString *is8m;
 	__unsafe_unretained NSString *isExtraManGoal;
 	__unsafe_unretained NSString *penaltyTime;
 	__unsafe_unretained NSString *timestamp;
@@ -27,6 +28,14 @@ extern const struct GameEventRelationships {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) GameEventID* objectID;
+
+@property (nonatomic, strong) NSNumber* is8m;
+
+@property (atomic) BOOL is8mValue;
+- (BOOL)is8mValue;
+- (void)setIs8mValue:(BOOL)value_;
+
+//- (BOOL)validateIs8m:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* isExtraManGoal;
 
@@ -63,6 +72,12 @@ extern const struct GameEventRelationships {
 @end
 
 @interface _GameEvent (CoreDataGeneratedPrimitiveAccessors)
+
+- (NSNumber*)primitiveIs8m;
+- (void)setPrimitiveIs8m:(NSNumber*)value;
+
+- (BOOL)primitiveIs8mValue;
+- (void)setPrimitiveIs8mValue:(BOOL)value_;
 
 - (NSNumber*)primitiveIsExtraManGoal;
 - (void)setPrimitiveIsExtraManGoal:(NSNumber*)value;

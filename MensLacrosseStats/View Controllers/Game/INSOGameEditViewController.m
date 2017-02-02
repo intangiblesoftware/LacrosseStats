@@ -96,7 +96,6 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     self.playerStatCollectionView.allowsMultipleSelection = YES;
     
     [self configureView];
-    
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -185,7 +184,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;
@@ -214,6 +213,9 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         NSSortDescriptor* sortByCategory = [NSSortDescriptor sortDescriptorWithKey:@"categoryCode" ascending:YES];
         NSSortDescriptor* sortByTitle = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
         [fetchRequest setSortDescriptors:@[sortByCategory, sortByTitle]];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventCode != %@", @(INSOEventCode8mFreePositionShot)];
+        fetchRequest.predicate = predicate;
         
         _eventsFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.Title" cacheName:nil];
         

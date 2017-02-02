@@ -75,7 +75,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setCategoryCodeValue:(int16_t)value_ {
-	[self setCategoryCode:@(value_)];
+	[self setCategoryCode:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitiveCategoryCodeValue {
@@ -84,7 +84,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setPrimitiveCategoryCodeValue:(int16_t)value_ {
-	[self setPrimitiveCategoryCode:@(value_)];
+	[self setPrimitiveCategoryCode:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic eventCode;
@@ -95,7 +95,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setEventCodeValue:(int16_t)value_ {
-	[self setEventCode:@(value_)];
+	[self setEventCode:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitiveEventCodeValue {
@@ -104,7 +104,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setPrimitiveEventCodeValue:(int16_t)value_ {
-	[self setPrimitiveEventCode:@(value_)];
+	[self setPrimitiveEventCode:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic isDefalut;
@@ -115,7 +115,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setIsDefalutValue:(BOOL)value_ {
-	[self setIsDefalut:@(value_)];
+	[self setIsDefalut:[NSNumber numberWithBool:value_]];
 }
 
 - (BOOL)primitiveIsDefalutValue {
@@ -124,7 +124,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setPrimitiveIsDefalutValue:(BOOL)value_ {
-	[self setPrimitiveIsDefalut:@(value_)];
+	[self setPrimitiveIsDefalut:[NSNumber numberWithBool:value_]];
 }
 
 @dynamic statCategory;
@@ -135,7 +135,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setStatCategoryValue:(int16_t)value_ {
-	[self setStatCategory:@(value_)];
+	[self setStatCategory:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitiveStatCategoryValue {
@@ -144,7 +144,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setPrimitiveStatCategoryValue:(int16_t)value_ {
-	[self setPrimitiveStatCategory:@(value_)];
+	[self setPrimitiveStatCategory:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic title;

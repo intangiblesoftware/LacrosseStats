@@ -34,6 +34,10 @@
         [self importCategoriesAndEvents];
     }
     
+    // December 2016. Need to stop adding FPSOG as a default event.
+    // So, if it's there, set default to false.
+    [self remove8MFPSOG];
+    
     // Refresh our product
     [[INSOProductManager sharedManager] refreshProduct];
     
@@ -48,10 +52,6 @@
         }
     }
 
-    // Use the following to obtain the path to the simulator's data for this app.
-    // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    // NSLog(@"%@", [paths firstObject]);
-    
     return YES;
 }
 
@@ -132,11 +132,16 @@
     NSSet* eventSet = [NSSet setWithArray:defaultEvents];
     [newGame addEventsToRecord:eventSet];
     
-    // Give the game a team player
-    RosterPlayer* teamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
-    teamPlayer.numberValue = INSOTeamPlayerNumber;
-    teamPlayer.isTeamValue = YES;
-    [newGame addPlayersObject:teamPlayer];
+    // Give the game two team players
+    RosterPlayer* teamWatchingPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+    teamWatchingPlayer.numberValue = INSOTeamWatchingPlayerNumber;
+    teamWatchingPlayer.isTeamValue = YES;
+    [newGame addPlayersObject:teamWatchingPlayer];
+    
+    RosterPlayer *otherTeamPlayer = [RosterPlayer insertInManagedObjectContext:self.managedObjectContext];
+    otherTeamPlayer.numberValue = INSOOtherTeamPlayerNumber;
+    otherTeamPlayer.isTeamValue = YES;
+    [newGame addPlayersObject:otherTeamPlayer];
     
     NSError* error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -153,6 +158,24 @@
     minutes = minuteUnit * 30;
     [components setMinute:minutes];
     return [[NSCalendar currentCalendar] dateFromComponents:components];
+}
+
+- (void)remove8MFPSOG
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Event entityName]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventCode == %@", @(INSOEventCode8mFreePositionShot)];
+    fetchRequest.predicate = predicate;
+    NSError *error = nil;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if (fetchedObjects == nil) {
+        NSLog(@"Error fetching up FPSOG: %@", error.localizedDescription);
+        return;
+    }
+    
+    for (Event *fpsog in fetchedObjects) {
+        fpsog.isDefalutValue = NO;
+    }
 }
 
 #pragma mark - Core Data stack

@@ -172,14 +172,6 @@
 			</dict>
 			<dict>
 				<key>EventCode</key>
-				<integer>252</integer>
-				<key>EventTitle</key>
-				<string>8m FPSOG</string>
-				<key>StatCategory</key>
-				<integer>3</integer>
-			</dict>
-			<dict>
-				<key>EventCode</key>
 				<integer>253</integer>
 				<key>EventTitle</key>
 				<string>Minor Foul</string>

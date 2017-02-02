@@ -61,7 +61,7 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 }
 
 - (void)setIsTeamValue:(BOOL)value_ {
-	[self setIsTeam:@(value_)];
+	[self setIsTeam:[NSNumber numberWithBool:value_]];
 }
 
 - (BOOL)primitiveIsTeamValue {
@@ -70,7 +70,7 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 }
 
 - (void)setPrimitiveIsTeamValue:(BOOL)value_ {
-	[self setPrimitiveIsTeam:@(value_)];
+	[self setPrimitiveIsTeam:[NSNumber numberWithBool:value_]];
 }
 
 @dynamic number;
@@ -81,7 +81,7 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 }
 
 - (void)setNumberValue:(int16_t)value_ {
-	[self setNumber:@(value_)];
+	[self setNumber:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitiveNumberValue {
@@ -90,7 +90,7 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 }
 
 - (void)setPrimitiveNumberValue:(int16_t)value_ {
-	[self setPrimitiveNumber:@(value_)];
+	[self setPrimitiveNumber:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic events;

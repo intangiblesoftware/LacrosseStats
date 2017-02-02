@@ -14,6 +14,8 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+    
     // Taken from: http://pinkstone.co.uk/how-to-build-a-uicollectionview-in-ios-8/
     // standard background (deselected)
     UIView *bgView = [[UIView alloc]initWithFrame:self.bounds];
