@@ -3,7 +3,7 @@
 //
 // Platform                   : iOS
 // CFBundleIdentifier         : com.intangiblesoftware.menslacrossestats
-// CFBundleVersion            : 1
+// CFBundleVersion            : 2
 // Prefix                     : INSOValidateReceipt
 // Success Behavior           : CheckInApp
 // Failure Behavior           : DoNothing
@@ -126,7 +126,7 @@ extern "C" {
         INSOValidateReceipt_InAppAttributeTypeCancellationDate = 1712,
         
         // Storage key base value
-        INSOValidateReceipt_StoreNone = 2984,
+        INSOValidateReceipt_StoreNone = 2645,
         // Bundle identifier
         INSOValidateReceipt_StoreReceiptAttributeTypeBundleId = INSOValidateReceipt_StoreNone + (INSOValidateReceipt_ReceiptAttributeTypeBundleId << 3),
         INSOValidateReceipt_StoreReceiptAttributeTypeBundleIdData = INSOValidateReceipt_StoreNone + (INSOValidateReceipt_ReceiptAttributeTypeBundleId << 3) + 1,
@@ -183,51 +183,35 @@ extern "C" {
     
     // Shared context for receipt validation
     typedef struct _INSOValidateReceipt_CheckingContext {
-        CFTypeRef dummy0006;
-        CFTypeRef dummy0008;
-        CFTypeRef dummy0005;
-        CFTypeRef dummy0002;
-        CFTypeRef guid_data;
-        CFTypeRef inapp_identifiers;
-        CFTypeRef dummy0000;
-        CFTypeRef dummy000D;
-        CFTypeRef dummy0001;
-        CFTypeRef dummy000C;
-        CFTypeRef receipt_dict;
-        CFTypeRef dummy000E;
-        CFTypeRef dummy0003;
-        CFTypeRef dummy0004;
-        CFTypeRef inapp_block;
-        CFTypeRef receipt_data;
-        CFTypeRef dummy000B;
-        CFTypeRef dummy0009;
-        CFTypeRef ca_data;
         CFTypeRef main_bundle;
-        CFTypeRef dummy0007;
-        CFTypeRef dummy000A;
+        CFTypeRef inapp_identifiers;
+        CFTypeRef dummy0006;
+        CFTypeRef ca_data;
+        CFTypeRef inapp_block;
+        CFTypeRef guid_data;
+        CFTypeRef dummy0005;
+        CFTypeRef dummy0003;
+        CFTypeRef dummy0000;
+        CFTypeRef dummy0001;
+        CFTypeRef receipt_dict;
+        CFTypeRef receipt_data;
+        CFTypeRef dummy0004;
+        CFTypeRef dummy0002;
     } INSOValidateReceipt_CheckingContext;
     
     // Shared context for receipt parsing
     typedef struct _INSOValidateReceipt_ParsingContext {
+        struct _INSOValidateReceipt_ParsingContext * parent;
         CFTypeRef dummy0003;
-        CFTypeRef dummy0008;
-        CFTypeRef dummy000A;
+        CFTypeRef dictionary;
         const unsigned char * ptr;
-        CFTypeRef dummy0002;
+        CFTypeRef dummy0000;
         const unsigned char * end;
         CFTypeRef dummy0001;
-        CFTypeRef dummy000C;
-        CFTypeRef dummy0004;
-        struct _INSOValidateReceipt_ParsingContext * parent;
-        CFTypeRef dummy000D;
-        CFTypeRef dummy0005;
-        CFTypeRef dictionary;
-        CFTypeRef dummy000E;
         CFTypeRef dummy0006;
-        CFTypeRef dummy000B;
-        CFTypeRef dummy0009;
-        CFTypeRef dummy0000;
-        CFTypeRef dummy0007;
+        CFTypeRef dummy0005;
+        CFTypeRef dummy0002;
+        CFTypeRef dummy0004;
     } INSOValidateReceipt_ParsingContext;
     
     // Symbol ASN1_get_object
@@ -414,1039 +398,985 @@ extern "C" {
     
     // Table for storing strings
     static const char *INSOValidateReceipt_Strings[483] = {
-        // "" / M(None) / S(0) / L(0)
-        "\x51\xbc\x07\x46\xfc\xa2\x42\x41\xee\x55\x11\xd5\x01\xd4\x4f\xdc\x48\x7f\xac\x2c\x09\xfa\xf6\x78\xfd\xfd\x51\xad\xfd\xf1\xb0\xdf",
-        // "%02X" / M(Rot) / S(131) / L(4)
-        "\xa8\xb3\xb5\xdb\x83\xea\x85\x00\xfb\x4b\x2a\xdc\x1b\xb1\x47\x7a",
-        // "" / M(None) / S(0) / L(0)
-        "\x6c\xf0\xdf\xdc\xb3\x02\xc5\x5d\xf5\x3b\x83\x00\x27\xb9\x5e\xca\x93\xa3\xb5\x6d\x53\x2d\x76\x31\x30\x69\xc2\x63\x5f\xbb\x41\x3d",
-        // "" / M(None) / S(0) / L(0)
-        "\xb4\x58\xbe\x46\x21\xd0\xe3\x7b\x09\x34\x29\xaa\x80\x3b\xd6\xe6\x14\x72\xc5\xef\xad\x12\x00\xaa\x40\xbe\x50\xc9\xd4\x66\xbe\xf7",
-        // "strlen" / M(Rot) / S(245) / L(6)
-        "\x68\x69\x67\x61\x5a\x63\xf5\xf1\xe3\x28\x9b\x62\x1a\xcc\x24\x63",
-        // "" / M(None) / S(0) / L(0)
-        "\xec\x6d\x3a\xc5\x56\x50\x09\x52\xe4\x61\x13\x16\x2c\x51\xf2\x42\xaf\x6f\x89\x03\x1e\xec\xce\x38\x58\x62\x91\x03\x3f\x4e\xd5\x5d",
-        // "" / M(None) / S(0) / L(0)
-        "\xae\xda\xa3\x68\xf2\xa0\xd3\x00\x2e\xd4\xfc\xc9\xa8\xed\x6b\x20\x3c\x23\xcc\xf4\xb3\x93\xce\xfd\xc1\x27\x11\x0d\xeb\x0a\x53\x73",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Xor3) / S(83) / L(29)
-        "\x12\x3a\x3f\x2d\x00\x09\x1c\x3d\x10\x1a\x0d\x10\x16\x17\x18\x0b\x00\x32\x1c\x00\x3a\x18\x15\x15\x3b\x18\x1a\x12\x0a\x79\x32\x4c\x0c\x47\x4a\x4a\x4c\xc1",
-        // "" / M(None) / S(0) / L(0)
-        "\x6d\x91\x5e\x53\xda\x65\xbe\xbb\x58\x7a\x86\x26\xfa\xc2\xd6\x80\xda\xab\xee\x1d\x60\x67\xdf\x64\x8c\x23\x82\xb5\xf7\xfc\x7e\x7c",
-        // "sha1" / M(Xor1) / S(165) / L(4)
-        "\xd6\xcd\xc4\x94\xa5\x9c\x4b\x5e\x3d\xc6\x8a\x4a\xea\x09\xe3\xff",
-        // "" / M(None) / S(0) / L(0)
-        "\x87\x89\xa7\x2d\x02\x20\x6f\x91\xfa\x15\x32\x79\x56\x08\xa3\x67\x6c\xb9\x89\x0a\x10\xa1\xf1\x39\x94\x30\x78\x63\xdc\xf7\x55\xc9",
-        // "" / M(None) / S(0) / L(0)
-        "\x5e\x9c\xcf\x4b\x92\x47\x47\x1c\x9c\xe1\x6c\xd0\x4d\x1e\xd9\x5c\xe5\x0d\xc5\x2f\x20\xf3\x79\x22\xc4\x04\xc2\x0d\x12\x9a\xaf\x8e",
-        // "" / M(None) / S(0) / L(0)
-        "\x89\x3f\xd1\xa6\x78\x7f\x23\x95\x32\x0f\x69\x97\x4c\x8e\x5f\xf0\xe8\xd7\x02\xca\xb8\x2a\xf8\xeb\x58\xab\xb8\x3e\xb1\x0a\x3f\xe5",
-        // "BIO_free" / M(Xor3) / S(201) / L(8)
-        "\x9b\x90\x96\x86\xbf\xab\xbc\xbc\xd9\x2d\x48\x68\x7b\x21\xe5\xa3",
-        // "start" / M(Xor2) / S(217) / L(5)
-        "\xba\xbd\xa8\xbb\xbd\xc9\xd7\x06\x57\x5e\x2b\x88\xa9\xe7\xd5\x2b",
-        // "objc_lookUpClass" / M(Xor3) / S(145) / L(16)
-        "\xcd\xc0\xc8\xc1\xfd\xce\xcd\xcd\xc9\xf7\xd2\xe1\xce\xc3\xd1\xd1\xa2",
-        // "" / M(None) / S(0) / L(0)
-        "\xbc\xd4\xd2\xfc\x34\x6f\xb6\x00\x7c\xd0\xa6\x4e\x4d\xd1\x4a\x11\xd4\x88\xca\x86\x3a\x26\x99\xa1\xa0\xd9\x85\xd1\xc8\xd6\x52\x78",
-        // "dlsym" / M(Xor1) / S(160) / L(5)
-        "\xc4\xcc\xd3\xd9\xcd\xa0\xd1\xb9\x1a\x8f\x96\xc9\x1c\x93\x56\xc8",
-        // "c2i_ASN1_INTEGER" / M(Xor1) / S(89) / L(16)
-        "\x3a\x6b\x30\x06\x18\x0a\x17\x68\x06\x10\x17\x0d\x1c\x1e\x1c\x0b\x59",
-        // "1" / M(Rot) / S(220) / L(1)
-        "\x0d\xdc\x91\x6b\x44\xe5\xaa\xb7\xf7\xe8\x5a\x19\x3d\x66\xed\x20",
-        // "EVP_DigestFinal" / M(Xor2) / S(197) / L(15)
-        "\x90\x83\x85\x8a\x91\xbc\xb2\xb0\xa6\xa1\x93\xbc\xbb\xb4\xb9\xd5",
-        // "PKCS7_free" / M(Xor2) / S(253) / L(10)
-        "\xbd\xa6\xae\xbe\xda\xb2\x8b\x9f\x88\x88\xed\x53\x99\xb8\x87\xfb",
-        // "CC_SHA1_Final" / M(Xor3) / S(197) / L(13)
-        "\x96\x96\x8a\x86\x9d\x94\xe4\x8a\x93\xbc\xbb\xb4\xb9\xd5\xab\xd2",
-        // "OpenSSL_add_all_digests" / M(Rot) / S(107) / L(23)
-        "\xba\xdb\xd0\xd9\xbe\xbe\xb7\xca\xcc\xcf\xcf\xca\xcc\xd7\xd7\xca\xcf\xd4\xd2\xd0\xde\xdf\xde\x6b\xec\x80\x6c\x63\x0c\xee\xfb\x16",
-        // "kCFTypeArrayCallBacks" / M(Xor1) / S(74) / L(21)
-        "\x21\x09\x0c\x1e\x33\x3a\x2f\x0b\x38\x38\x2b\x33\x09\x2b\x26\x26\x08\x2b\x29\x21\x39\x4a",
-        // "" / M(None) / S(0) / L(0)
-        "\xd0\xb7\xd5\x43\x26\x2e\x17\x47\xd1\x88\xdc\xa5\xe8\x5f\xb7\x28\xaf\x92\x67\x88\xbf\x4b\x63\x94\x7c\x86\xd5\xbe\xdf\x53\x94\xb3",
-        // "" / M(None) / S(0) / L(0)
-        "\xa7\x4c\x02\x7e\xec\x88\xb0\xf4\x2d\xb8\x64\xa3\x72\x8b\xcf\xc0\x28\x2b\x6d\xc6\x13\xaf\xdd\xdc\xac\x34\x4e\x29\x67\xb0\xe9\x30",
-        // "CFReadStreamOpen" / M(Xor2) / S(212) / L(16)
-        "\x86\x83\x97\xa0\xa4\xa1\x96\xb1\xb7\xa0\xa4\xa8\x8a\xb5\xa0\xab\xc5",
-        // "d2i_X509_bio" / M(Xor3) / S(26) / L(12)
-        "\x4e\x18\x43\x75\x72\x1f\x1a\x13\x75\x48\x43\x45\x2a\x8c\x35\xf1",
-        // "appStoreReceiptURL" / M(Xor2) / S(224) / L(18)
-        "\x92\x83\x83\xa0\x87\x9c\x81\x96\xa1\x96\x90\x96\x9a\x83\x87\xa6\xa1\xbf\xf3",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor2) / S(107) / L(40)
-        "\x6c\x6b\x6b\x3f\x6f\x38\x6c\x6c\x68\x39\x6f\x63\x69\x3b\x6a\x62\x3c\x3c\x6f\x62\x3e\x6b\x6e\x3b\x3f\x68\x68\x6e\x6f\x68\x3e\x6b\x63\x62\x3e\x3c\x6c\x39\x6c\x6a\x5a\x6f\x6e\xed\x4c\x74\xbb\xf5\x98",
-        // "" / M(None) / S(0) / L(0)
-        "\x5d\x5c\x87\xa7\x40\x1e\xc4\xa6\xa1\x92\x12\xc7\x50\xca\x32\x38\xd5\x98\x42\x05\xe4\x0d\x65\x65\x3a\xdf\x0c\x13\x8e\x29\x3b\x44",
-        // "" / M(None) / S(0) / L(0)
-        "\x4c\x82\x63\xb3\xec\xdd\xfc\x38\xdf\xbe\xee\x6b\x03\xb3\x3f\xd8\x06\x0a\xae\x3a\x87\x03\x1b\xe8\x01\x3d\xaa\x60\x0e\x01\x88\x7c",
-        // "%02x" / M(Xor4) / S(232) / L(4)
-        "\xa5\xb0\xb2\xf8\x80\xce\x14\x68\x02\x77\x1f\x40\xa2\xfa\x3b\xce",
-        // "CFDateCompare" / M(Rot) / S(140) / L(13)
-        "\xcf\xd2\xd0\xed\x00\xf1\xcf\xfb\xf9\xfc\xed\xfe\xf1\x8c\xe0\x9b",
-        // "" / M(None) / S(0) / L(0)
-        "\xfe\x0b\x6b\x38\x78\x01\x41\x4b\xb2\xe5\x23\x50\x11\xff\xec\x17\xb6\x4e\xbe\x64\x14\x60\xc6\xed\x60\x05\x3e\xe4\x59\x6b\x65\x16",
-        // "CFReadStreamClose" / M(Rot) / S(174) / L(17)
-        "\xf1\xf4\x00\x13\x0f\x12\x01\x22\x20\x13\x0f\x1b\xf1\x1a\x1d\x21\x13\xae",
-        // "sha1" / M(Xor1) / S(111) / L(4)
-        "\x1c\x07\x0e\x5e\x6f\x84\xd4\xed\x5e\xb5\x01\x22\x20\x52\x41\x63",
-        // "CFDateCompare" / M(Xor4) / S(35) / L(13)
-        "\x73\x76\x74\x51\x44\x55\x73\x5f\x5d\x40\x51\x42\x55\x30\xcd\x52",
-        // "BIO_new" / M(Rot) / S(240) / L(7)
-        "\x32\x39\x3f\x4f\x5e\x55\x67\xf0\x6a\xe6\xcd\xa7\x00\x45\xfa\xd0",
-        // "kCFBundleIdentifierKey" / M(Xor4) / S(126) / L(22)
-        "\x39\x11\x14\x10\x27\x3c\x36\x3e\x37\x1b\x36\x37\x3c\x26\x3b\x34\x3b\x37\x20\x19\x37\x2b\x52",
-        // "X509_get_ext_by_OBJ" / M(Xor1) / S(157) / L(19)
-        "\xc5\xa8\xad\xa4\xc2\xfa\xf8\xe9\xc2\xf8\xe5\xe9\xc2\xff\xe4\xc2\xd2\xdf\xd7\x9d",
-        // "setjmp" / M(Rot) / S(68) / L(6)
-        "\xb7\xa9\xb8\xae\xb1\xb4\x44\xb7\x0c\xfb\x93\x34\xf4\x11\xe6\xf1",
-        // "CFDictionaryGetValue" / M(Rot) / S(126) / L(20)
-        "\xc1\xc4\xc2\xe7\xe1\xf2\xe7\xed\xec\xdf\xf0\xf7\xc5\xe3\xf2\xd4\xdf\xea\xf3\xe3\x7e",
-        // "%02X:" / M(Rot) / S(69) / L(5)
-        "\x6a\x75\x77\x9d\x7f\x45\x27\x46\x56\x98\x5f\xf0\x91\xbe\xa6\x3e",
-        // "CC_SHA1_Final" / M(Xor3) / S(69) / L(13)
-        "\x16\x16\x0a\x06\x1d\x14\x64\x0a\x13\x3c\x3b\x34\x39\x55\xcb\xa2",
-        // "" / M(None) / S(0) / L(0)
-        "\x12\x37\x78\x6d\x20\xdd\x79\xd3\xbd\xb3\xbe\x73\xc0\x54\x80\x71\x63\x68\x4d\xbf\x82\x51\x58\xe9\xc1\x3f\x81\x87\x5d\x88\x7b\x63",
-        // "setDelegate:" / M(Xor2) / S(192) / L(12)
-        "\xa3\xb5\xa4\x94\xb5\xbc\xb5\xb7\xb1\xa4\xb5\xea\xd0\x53\xc9\xcb",
-        // "" / M(None) / S(0) / L(0)
-        "\xd8\x85\xa1\x13\x10\x3f\x51\xb7\x48\x12\xf1\x37\xea\xd7\x31\xe2\x0a\x33\xbc\x82\xa3\xf7\x02\x59\x28\x5d\xd4\x06\x31\x19\x06\x58",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor2) / S(127) / L(59)
-        "\x0d\x0a\x01\x0a\x5e\x01\x0e\x59\x01\x0d\x0d\x01\x09\x58\x01\x0e\x02\x01\x08\x5a\x01\x0b\x03\x01\x5d\x5d\x01\x0e\x03\x01\x5f\x0a\x01\x0f\x5a\x01\x5e\x09\x01\x09\x0f\x01\x0e\x09\x01\x5f\x0a\x01\x02\x03\x01\x5f\x5d\x01\x0d\x58\x01\x0d\x0b\x3b\xc7\x0b\x3f\xa1\x66\xd0\xdb\xbf",
-        // "SHA1" / M(Rot) / S(33) / L(4)
-        "\x74\x69\x62\x52\x21\xaf\x4e\x7e\xb0\x04\x5a\xd6\x3e\xe5\xa1\x7f",
-        // "" / M(None) / S(0) / L(0)
-        "\x0d\xfa\x6f\x3c\xe7\xf5\xe6\x76\x23\xb1\xbb\x79\xe1\x7a\x8a\x50\xfb\x8f\xa2\xbb\x6d\xf3\xad\x02\x03\xfe\x2a\xe6\x76\x78\xef\xf9",
-        // "CFStringCompare" / M(Xor1) / S(127) / L(15)
-        "\x3c\x39\x2c\x0b\x0d\x16\x11\x18\x3c\x10\x12\x0f\x1e\x0d\x1a\x7f",
-        // "CFBundleGetMainBundle" / M(Xor2) / S(31) / L(21)
-        "\x4a\x4f\x4b\x7c\x67\x6d\x65\x6c\x4e\x6c\x7d\x44\x68\x60\x67\x4b\x7c\x67\x6d\x65\x6c\x09",
-        // "%02x:" / M(Xor3) / S(141) / L(5)
-        "\xb8\xad\xaf\xe5\xa7\x9d\x8d\xf6\x6a\x75\x26\xfb\x06\x01\xab\x43",
-        // "" / M(None) / S(0) / L(0)
-        "\x6e\x93\x6f\xba\xfa\x46\x8b\x83\x4d\xbe\x92\xf8\x85\xc7\xee\x8a\x5f\x62\xea\x05\x46\x2f\xe4\xb1\x3f\x67\x5e\x07\x25\x1f\x09\x37",
-        // "objc_msgSend" / M(Xor2) / S(173) / L(12)
-        "\xd2\xdf\xd7\xde\xe2\xd0\xce\xda\xee\xd8\xd3\xd9\xbd\x9a\x1e\x77",
-        // "CFDictionaryCreateMutable" / M(Rot) / S(223) / L(25)
-        "\x22\x25\x23\x48\x42\x53\x48\x4e\x4d\x40\x51\x58\x22\x51\x44\x40\x53\x44\x2c\x54\x53\x40\x41\x4b\x44\xdf\x26\x1d\xa0\x04\x38\x03\xe7\x9e",
-        // "CFDateFormatterCreate" / M(Xor3) / S(148) / L(21)
-        "\xe9\xec\xee\xcb\xde\xcf\xec\xc5\xd8\xc7\xcb\xde\xde\xcf\xd8\xe9\xd8\xcf\xcb\xde\xcf\xaa",
-        // "" / M(None) / S(0) / L(0)
-        "\xab\x32\x1e\x46\x38\xa8\xf9\xb3\x54\x79\xac\x79\x43\xa2\x49\x50\x3e\xe0\x8a\x0c\xf2\xfb\xc5\x93\x0c\x61\x16\x79\x36\x0b\x67\x48",
-        // "CFDataCreateMutable" / M(Rot) / S(217) / L(19)
-        "\x1c\x1f\x1d\x3a\x4d\x3a\x1c\x4b\x3e\x3a\x4d\x3e\x26\x4e\x4d\x3a\x3b\x45\x3e\xd9",
-        // "ASN1_get_object" / M(Rot) / S(37) / L(15)
-        "\x66\x78\x73\x56\x84\x8c\x8a\x99\x84\x94\x87\x8f\x8a\x88\x99\x25",
-        // "dlopen" / M(Xor3) / S(221) / L(6)
-        "\x89\x81\x82\x9d\x88\x83\xed\x14\x84\x29\x0e\x77\xdb\xd6\x4f\xcd",
-        // "" / M(None) / S(0) / L(0)
-        "\xec\x1a\x21\x3a\x75\x71\x64\xb5\x90\xf4\x2e\xdc\x67\xf0\x5a\xd4\xb3\xa3\xb3\x61\x74\x1f\x8e\xbe\x9b\x50\xf0\x8a\x45\xd2\xf4\x54",
-        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Rot) / S(110) / L(39)
-        "\xb1\xb4\xc2\xd7\xdb\xd3\xc8\xdd\xdc\xd3\xb1\xe0\xd3\xcf\xe2\xd3\xc5\xd7\xe2\xd6\xc2\xd7\xdb\xd3\xb7\xdc\xe2\xd3\xe0\xe4\xcf\xda\xb4\xe0\xdd\xdb\xb5\xbb\xc2\x6e\x58\xc1\x3b\x5b\x01\x09\x53\x7a",
-        // "CC_SHA1" / M(Xor4) / S(73) / L(7)
-        "\xd3\xd3\xcf\xc3\xd8\xd1\xa1\x90\xb6\xbc\x5a\xd0\x0d\x7c\xe6\x42",
-        // "strncmp" / M(Rot) / S(70) / L(7)
-        "\xb9\xba\xb8\xb4\xa9\xb3\xb6\x46\x56\x5e\x80\xa6\x85\xf7\x40\x0e",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor2) / S(2) / L(36)
-        "\x64\x61\x65\x52\x49\x43\x4b\x42\x60\x42\x53\x71\x46\x4b\x52\x42\x61\x48\x55\x6e\x49\x41\x48\x63\x4e\x44\x53\x4e\x48\x49\x46\x55\x5e\x6c\x42\x5e\x27",
-        // "" / M(None) / S(0) / L(0)
-        "\x1a\xc3\xaa\xf2\xc0\x92\x0c\xff\x4e\x57\x13\x21\xf3\xfb\x01\x20\xf7\x37\x3f\x77\x5c\xb1\xda\x2e\xdd\x17\xfc\xcf\x62\xbb\xd6\xe4",
-        // "CFArrayGetValueAtIndex" / M(Xor1) / S(164) / L(22)
-        "\xe7\xe2\xe5\xd6\xd6\xc5\xdd\xe3\xc1\xd0\xf2\xc5\xc8\xd1\xc1\xe5\xd0\xed\xca\xc0\xc1\xdc\xa4",
-        // "identifierForVendor" / M(Xor1) / S(203) / L(19)
-        "\xa2\xaf\xae\xa5\xbf\xa2\xad\xa2\xae\xb9\x8d\xa4\xb9\x9d\xae\xa5\xaf\xa4\xb9\xcb",
-        // "" / M(None) / S(0) / L(0)
-        "\xbb\x17\x3e\xe2\xa3\x59\x13\xe8\xa4\x65\x89\x96\x0d\x37\xf5\x05\xa5\x8a\xcc\xf1\x6e\xcc\x46\xf0\x32\xf7\xbb\x62\x26\x9e\x54\x47",
-        // "CFBundleGetIdentifier" / M(Xor1) / S(66) / L(21)
-        "\x01\x04\x00\x37\x2c\x26\x2e\x27\x05\x27\x36\x0b\x26\x27\x2c\x36\x2b\x24\x2b\x27\x30\x42",
-        // "" / M(None) / S(0) / L(0)
-        "\xb8\x5d\xc4\x3c\xf6\x99\x62\x32\x37\xa2\x1a\x96\x95\x8b\x44\x2b\x79\x74\xf3\xd1\xea\xea\xfe\xb5\xae\x16\xb7\xab\xe3\xc2\xb7\x82",
-        // "kCFTypeArrayCallBacks" / M(Rot) / S(110) / L(21)
-        "\xd9\xb1\xb4\xc2\xe7\xde\xd3\xaf\xe0\xe0\xcf\xe7\xb1\xcf\xda\xda\xb0\xcf\xd1\xd9\xe1\x6e",
-        // "ASN1_get_object" / M(Xor2) / S(111) / L(15)
-        "\x3e\x2c\x31\x4e\x20\x18\x1a\x0b\x20\x10\x1d\x15\x1a\x1c\x0b\x7f",
-        // "SHA1_Final" / M(Xor4) / S(2) / L(10)
-        "\x73\x68\x61\x11\x7f\x66\x49\x4e\x41\x4c\x20\x11\x72\xae\x3a\x93",
-        // "" / M(None) / S(0) / L(0)
-        "\x8a\xf4\xe1\x77\x9c\x96\x79\x52\x11\x3d\x4b\x5b\x44\xbb\x37\xbf\xf6\xb4\x98\xa1\x7e\xb1\x79\x4a\x11\xa6\x9f\x76\x80\x5b\xb2\xcb",
-        // "" / M(None) / S(0) / L(0)
-        "\x7d\x85\xcd\x00\xe8\xb5\xb2\xa2\x73\xa8\x4e\xcf\x70\x22\x07\xd0\x3f\x0e\x4e\x21\xb8\x86\xff\xd5\x19\xba\x0d\x94\xdd\x7d\x36\x5c",
-        // "ASN1_INTEGER_free" / M(Xor3) / S(187) / L(17)
-        "\x8c\x9e\x83\xfc\x92\x84\x83\x99\x88\x8a\x88\x9f\x92\xab\xbf\xa8\xa8\xcd",
-        // "" / M(None) / S(0) / L(0)
-        "\xe1\x6a\x17\x74\xf9\xc9\xa7\x62\x81\x0f\x83\x4f\xbe\x7c\xf9\xee\xb0\x92\xc4\x52\xc3\xa2\x6f\xf0\x27\x94\x96\x7c\x6e\x17\x3e\xab",
-        // "CFArrayGetValueAtIndex" / M(Xor2) / S(249) / L(22)
-        "\xad\xa8\xaf\x9c\x9c\x8f\x97\xa9\x8b\x9a\xb8\x8f\x82\x9b\x8b\xaf\x9a\xa7\x80\x8a\x8b\x96\xee",
-        // "" / M(None) / S(0) / L(0)
-        "\x65\x8c\x27\x67\x0c\x13\x42\x84\x3a\xc5\x8d\x89\x44\x1b\x67\xd2\x37\xff\xef\x47\x6e\xf7\x10\x64\x0a\x23\x8e\x9f\xf2\xaf\xc0\x82",
-        // "CFRelease" / M(Xor1) / S(15) / L(9)
-        "\x4c\x49\x5d\x6a\x63\x6a\x6e\x7c\x6a\x0f\x02\xac\xa1\x90\xe8\x62",
-        // "strncmp" / M(Xor4) / S(15) / L(7)
-        "\x83\x84\x82\x9e\x93\x9d\x80\xf0\x37\x00\x7c\x51\x86\xfb\x3d\x38",
-        // "" / M(None) / S(0) / L(0)
-        "\x2e\x49\x97\x52\xe9\x3f\x13\xb3\x8f\xef\xc5\x4a\xe6\x83\x9f\x05\xb0\x91\x05\xdf\xcb\x6f\xbb\xdc\xf7\x1e\xf0\x95\x0c\xdc\x7d\xf8",
-        // "" / M(None) / S(0) / L(0)
-        "\x49\x3e\x86\xe5\x49\x21\x97\xf7\xba\xf0\x0d\xdb\x18\x04\x28\x10\x07\xc4\xec\x47\xe0\x39\x62\x77\xa0\xd9\x00\x04\x73\x3f\x07\x40",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor4) / S(176) / L(36)
-        "\x33\x36\x32\x05\x1e\x14\x1c\x15\x37\x15\x04\x26\x11\x1c\x05\x15\x36\x1f\x02\x39\x1e\x16\x1f\x34\x19\x13\x04\x19\x1f\x1e\x11\x02\x09\x3b\x15\x09\x70",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Rot) / S(242) / L(40)
-        "\x28\x23\x23\x57\x27\x54\x28\x28\x24\x55\x27\x2b\x25\x53\x22\x2a\x58\x58\x27\x2a\x56\x23\x26\x53\x57\x24\x24\x26\x27\x24\x56\x23\x2b\x2a\x56\x58\x28\x55\x28\x22\xf2\x83\x50\xf6\x32\x00\x32\x6b\xf3",
-        // "CFArrayGetCount" / M(Rot) / S(203) / L(15)
-        "\x0e\x11\x0c\x3d\x3d\x2c\x44\x12\x30\x3f\x0e\x3a\x40\x39\x3f\xcb",
-        // "objc_msgSend" / M(Xor4) / S(150) / L(12)
-        "\x0f\x02\x0a\x03\x3f\x0d\x13\x07\x33\x05\x0e\x04\x60\x17\x69\xeb",
-        // "CFEqual" / M(Xor3) / S(107) / L(7)
-        "\x38\x3d\x3e\x0a\x0e\x1a\x17\x7b\x07\xf0\xf9\x07\xd3\x0d\x09\x88",
-        // "CFBundleGetMainBundle" / M(Xor1) / S(115) / L(21)
-        "\x30\x35\x31\x06\x1d\x17\x1f\x16\x34\x16\x07\x3e\x12\x1a\x1d\x31\x06\x1d\x17\x1f\x16\x73",
-        // "CFBundleIdentifier" / M(Xor4) / S(118) / L(18)
-        "\x81\x84\x80\xb7\xac\xa6\xae\xa7\x8b\xa6\xa7\xac\xb6\xab\xa4\xab\xa7\xb0\xc2",
-        // "CFBundleVersion" / M(Rot) / S(242) / L(15)
-        "\x35\x38\x34\x67\x60\x56\x5e\x57\x48\x57\x64\x65\x5b\x61\x60\xf2",
-        // "%02x:" / M(Xor1) / S(209) / L(5)
-        "\xf4\xe1\xe3\xa9\xeb\xd1\xab\xdd\xf1\x9f\x56\xab\x7c\x19\x2d\x24",
-        // "PKCS7_get0_signers" / M(Xor2) / S(44) / L(18)
-        "\x6f\x74\x7c\x6c\x08\x60\x58\x5a\x4b\x0f\x60\x4c\x56\x58\x51\x5a\x4d\x4c\x3f",
-        // "CFDateCreate" / M(Xor4) / S(213) / L(12)
-        "\x13\x16\x14\x31\x24\x35\x13\x22\x35\x31\x24\x35\x50\x38\xcd\xf7",
-        // "" / M(None) / S(0) / L(0)
-        "\x0e\xa4\x56\xbf\x92\x6d\x20\x72\xfc\x71\x6b\xa3\x1c\xc9\xc4\x82\x5c\x2f\x55\xfe\xff\xc4\xb8\x96\x59\xf2\x66\x38\xc4\x71\x3d\x7e",
-        // "CC_SHA1" / M(Rot) / S(214) / L(7)
-        "\x19\x19\x35\x29\x1e\x17\x07\xd6\x02\xd0\x2e\x13\x35\xef\xc6\x58",
-        // "RTLD_MAIN_ONLY" / M(Rot) / S(51) / L(14)
-        "\x85\x87\x7f\x77\x92\x80\x74\x7c\x81\x92\x82\x81\x7f\x8c\x33\xa3",
-        // "alloc" / M(Xor3) / S(43) / L(5)
-        "\x5a\x57\x57\x54\x58\x3b\x98\x7f\x41\xed\x59\x50\x14\x83\x36\x5d",
-        // "SKReceiptRefreshRequest" / M(Xor2) / S(137) / L(23)
-        "\xfa\xe2\xfb\xcc\xca\xcc\xc0\xd9\xdd\xfb\xcc\xcf\xdb\xcc\xda\xc1\xfb\xcc\xd8\xdc\xcc\xda\xdd\xa9\xc1\xa4\x31\x97\x77\x06\x68\x2a",
-        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor1) / S(50) / L(40)
-        "\x04\x03\x03\x57\x07\x50\x04\x04\x00\x51\x07\x0b\x01\x53\x02\x0a\x54\x54\x07\x0a\x56\x03\x06\x53\x57\x00\x00\x06\x07\x00\x56\x03\x0b\x0a\x56\x54\x04\x51\x04\x02\x32\xc0\xb9\x9b\x55\x1d\xe6\x97\xe8",
-        // "CFStringCompare" / M(Xor3) / S(217) / L(15)
-        "\xaa\xaf\xba\x9d\x9b\x80\x87\x8e\xaa\x86\x84\x99\x88\x9b\x8c\xe9",
-        // "/usr/lib/libobjc.dylib" / M(Xor2) / S(173) / L(22)
-        "\x95\xcf\xc9\xc8\x95\xd6\xd3\xd8\x95\xd6\xd3\xd8\xd5\xd8\xd0\xd9\x94\xde\xc3\xd6\xd3\xd8\xba",
-        // "sk_value" / M(Xor1) / S(134) / L(8)
-        "\xf5\xed\xd9\xf0\xe7\xea\xf3\xe3\x86\x19\xdb\xf0\xc5\x9c\xb9\xcd",
-        // "getUUIDBytes:" / M(Xor4) / S(215) / L(13)
-        "\x17\x15\x04\x25\x25\x39\x34\x32\x09\x04\x15\x03\x4a\x70\x38\x1b",
-        // "" / M(None) / S(0) / L(0)
-        "\xf7\xcc\x61\x01\x7b\xd1\xe8\x30\xe8\xfd\x27\x3a\x9d\x52\x39\x56\x9f\x4b\x92\xb3\x59\x7e\x97\xe1\xbc\xf8\xed\xed\x9f\xa3\x8d\xcd",
-        // "identifierForVendor" / M(Xor1) / S(255) / L(19)
-        "\x96\x9b\x9a\x91\x8b\x96\x99\x96\x9a\x8d\xb9\x90\x8d\xa9\x9a\x91\x9b\x90\x8d\xff",
-        // "" / M(None) / S(0) / L(0)
-        "\xc4\x82\x85\x9f\xac\x93\x2b\x31\x69\x77\x7e\xc8\x10\x75\x5f\x22\x0b\xb4\x51\x0a\x12\x0f\xe9\x98\xfa\xe0\xb6\x18\x83\x43\x9f\xdb",
-        // "" / M(None) / S(0) / L(0)
-        "\xa8\xcd\x71\x32\xd8\xcf\x58\x81\x55\xa7\x23\xbe\x24\x05\x2b\x09\xdd\x26\x5f\xdc\x05\x7a\x6b\xa8\x6b\x1b\x52\x25\xba\xae\xe4\xba",
-        // "mainBundle" / M(Xor1) / S(193) / L(10)
-        "\xac\xa0\xa8\xaf\x83\xb4\xaf\xa5\xad\xa4\xc1\xb8\x0e\xc1\xa5\x90",
-        // "CFReadStreamCreateWithFile" / M(Xor2) / S(108) / L(26)
-        "\x0c\x09\x1d\x2a\x2e\x2b\x1c\x3b\x3d\x2a\x2e\x22\x0c\x3d\x2a\x2e\x3b\x2a\x18\x26\x3b\x27\x09\x26\x23\x2a\x4f\x73\x83\x54\x2e\x8f\xe8\x3b\x61",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor2) / S(242) / L(59)
-        "\x80\x87\x8c\x87\xf3\x8c\x83\xf4\x8c\x80\x80\x8c\x84\xf5\x8c\x83\x8f\x8c\x85\xf7\x8c\x86\x8e\x8c\xf0\xf0\x8c\x83\x8e\x8c\xf2\x87\x8c\x82\xf7\x8c\xf3\x84\x8c\x84\x82\x8c\x83\x84\x8c\xf2\x87\x8c\x8f\x8e\x8c\xf2\xf0\x8c\x80\xf5\x8c\x80\x86\xb6\x88\x51\xa8\xe0\x11\xa1\xb8\x78",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor2) / S(218) / L(32)
-        "\x82\x82\x82\x82\xdc\xd6\xdc\xb6\xb6\xdc\xd6\xdc\x9f\x9f\xdc\xaf\xdc\xb3\xb3\xdc\xc1\xdc\x96\x96\xdc\xc1\xdc\x88\x88\xdc\xa1\xdc\xfb",
-        // "" / M(None) / S(0) / L(0)
-        "\x77\xd4\xd3\xec\xf1\x72\x63\xbf\x06\x3a\xf8\xda\x0e\xe6\x82\x6a\x1b\xa9\x39\x8d\x40\xc1\x1e\x0a\xb7\xae\x9c\x9e\x87\xf6\x40\x68",
-        // "strlen" / M(Xor3) / S(109) / L(6)
-        "\x0e\x09\x0f\x11\x18\x13\x7d\xef\x2f\x70\xd9\x2b\x0f\x59\xbb\xc5",
-        // "CFDictionaryCreateMutable" / M(Xor1) / S(25) / L(25)
-        "\x5a\x5f\x5d\x70\x7a\x6d\x70\x76\x77\x78\x6b\x60\x5a\x6b\x7c\x78\x6d\x7c\x54\x6c\x6d\x78\x7b\x75\x7c\x19\xd0\x26\x1a\x90\x9d\x6b\x5f\x6e",
-        // "setDelegate:" / M(Xor2) / S(38) / L(12)
-        "\x45\x53\x42\x72\x53\x5a\x53\x51\x57\x42\x53\x0c\x36\xbf\xd8\xad",
-        // "ASN1_get_object" / M(Xor2) / S(167) / L(15)
-        "\xf6\xe4\xf9\x86\xe8\xd0\xd2\xc3\xe8\xd8\xd5\xdd\xd2\xd4\xc3\xb7",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor3) / S(42) / L(66)
-        "\x42\x3e\x14\x1e\x19\x08\x00\x42\x21\x04\x0f\x1f\x0c\x1f\x14\x42\x2b\x1f\x0c\x00\x08\x1a\x02\x1f\x06\x1e\x42\x2e\x02\x1f\x08\x2b\x02\x18\x03\x09\x0c\x19\x04\x02\x03\x43\x0b\x1f\x0c\x00\x08\x1a\x02\x1f\x06\x42\x2e\x02\x1f\x08\x2b\x02\x18\x03\x09\x0c\x19\x04\x02\x03\x6d",
-        // "objc_msgSend" / M(Rot) / S(87) / L(12)
-        "\xc6\xb9\xc1\xba\xb6\xc4\xca\xbe\xaa\xbc\xc5\xbb\x57\xba\x22\x12",
-        // "com.intangiblesoftware.menslacrossestats" / M(Rot) / S(126) / L(40)
-        "\xe1\xed\xeb\xac\xe7\xec\xf2\xdf\xec\xe5\xe7\xe0\xea\xe3\xf1\xed\xe4\xf2\xf5\xdf\xf0\xe3\xac\xeb\xe3\xec\xf1\xea\xdf\xe1\xf0\xed\xf1\xf1\xe3\xf1\xf2\xdf\xf2\xf1\x7e\x16\xb8\x66\xc5\x43\x5f\x2c\x1b",
-        // "" / M(None) / S(0) / L(0)
-        "\xd2\x29\xc1\xf3\xe1\xea\x17\x3e\x5c\x6e\x9d\x4a\x45\x86\x01\xcc\xe4\x51\xc2\xf2\xd0\x52\x0c\x66\xee\x5f\x0b\xed\x41\xbb\xdc\xbb",
-        // "kCFDateFormatterTimeZone" / M(Rot) / S(240) / L(24)
-        "\x5b\x33\x36\x34\x51\x64\x55\x36\x5f\x62\x5d\x51\x64\x64\x55\x62\x44\x59\x5d\x55\x4a\x5f\x5e\x55\xf0\x78\xe9\x86\x85\x80\x4f\x00\x43",
-        // "BIO_write" / M(Xor2) / S(90) / L(9)
-        "\x08\x03\x05\x15\x3d\x38\x23\x3e\x2f\x4a\x5c\x0d\x46\xfa\x47\x35",
-        // "objc_getClass" / M(Rot) / S(141) / L(13)
-        "\xfc\xef\xf7\xf0\xec\xf4\xf2\x01\xd0\xf9\xee\x00\x00\x8d\x6e\xa1",
-        // "CFDictionaryAddValue" / M(Xor3) / S(16) / L(20)
-        "\x66\x63\x61\x4c\x46\x51\x4c\x4a\x4b\x44\x57\x5c\x64\x41\x41\x73\x44\x49\x50\x40\x25",
-        // "CFDataGetBytePtr" / M(Rot) / S(161) / L(16)
-        "\xe4\xe7\xe5\x02\x15\x02\xe8\x06\x15\xe3\x1a\x15\x06\xf1\x15\x13\xa1",
-        // "sel_registerName" / M(Xor2) / S(207) / L(16)
-        "\xad\xbb\xb2\x81\xac\xbb\xb9\xb7\xad\xaa\xbb\xac\x90\xbf\xb3\xbb\xde",
-        // "SHA1_Init" / M(Xor4) / S(95) / L(9)
-        "\xa3\xb8\xb1\xc1\xaf\xb9\x9e\x99\x84\xf0\x44\x95\xe5\x6c\x80\xf2",
-        // "CFDictionaryGetValue" / M(Xor2) / S(49) / L(20)
-        "\x67\x62\x60\x4d\x47\x50\x4d\x4b\x4a\x45\x56\x5d\x63\x41\x50\x72\x45\x48\x51\x41\x24",
-        // "kCFDateFormatterTimeZone" / M(Xor3) / S(249) / L(24)
-        "\x71\x59\x5c\x5e\x7b\x6e\x7f\x5c\x75\x68\x77\x7b\x6e\x6e\x7f\x68\x4e\x73\x77\x7f\x40\x75\x74\x7f\x1a\x67\x0a\xa2\xb6\x94\xb1\x91\x29",
-        // "" / M(None) / S(0) / L(0)
-        "\x7e\xe9\x9b\x99\x9b\xaa\xfc\x0d\x62\xe2\x22\xe7\x4e\xdd\x42\x67\x51\xca\x3a\xb8\xcf\x12\x88\x58\x2b\xac\xdd\xcc\x13\xc9\xdd\xfb",
-        // "CC_SHA1_Update" / M(Xor1) / S(119) / L(14)
-        "\x34\x34\x28\x24\x3f\x36\x46\x28\x22\x07\x13\x16\x03\x12\x77\x25",
-        // "X509_NAME_get_text_by_NID" / M(Xor2) / S(151) / L(25)
-        "\xed\x80\x85\x8c\xea\xfb\xf4\xf8\xf0\xea\xd2\xd0\xc1\xea\xc1\xd0\xcd\xc1\xea\xd7\xcc\xea\xfb\xfc\xf1\xb5\xdc\x7d\x25\x1f\x62\x11\xf1\x1e",
-        // "CFDataGetLength" / M(Rot) / S(37) / L(15)
-        "\x68\x6b\x69\x86\x99\x86\x6c\x8a\x99\x71\x8a\x93\x8c\x99\x8d\x25",
-        // "" / M(None) / S(0) / L(0)
-        "\xeb\x3e\xe7\x78\x9f\x82\xb2\x2b\x47\x30\x8f\xa3\x42\xc2\x09\xfc\xfd\x42\xdf\xe0\x72\x92\x13\xcd\x5f\x4f\x95\x7f\x1b\x36\x63\xc6",
-        // "" / M(None) / S(0) / L(0)
-        "\x5b\x3f\xeb\x4f\x7b\x4e\x3f\x96\x50\x8c\xf1\x21\x13\xd7\xba\x99\xfe\x24\xc0\x0b\x39\x23\x28\x47\x7a\xcb\x20\xb5\xf7\xee\x18\x8b",
-        // "SKReceiptRefreshRequest" / M(Xor1) / S(187) / L(23)
-        "\xe8\xf0\xe9\xde\xd8\xde\xd2\xcb\xcf\xe9\xde\xdd\xc9\xde\xc8\xd3\xe9\xde\xca\xce\xde\xc8\xcf\xbb\x6f\x48\x3e\xc6\xcc\x4d\xac\x6d",
-        // "SHA1" / M(Xor3) / S(92) / L(4)
-        "\x3f\x24\x2d\x5d\x6c\x17\x61\x2d\x76\xc3\x6c\x40\x8e\xf3\x0d\xde",
-        // "CFNumberCreate" / M(Xor2) / S(29) / L(14)
-        "\x4e\x4b\x43\x78\x60\x6f\x68\x7f\x4e\x7f\x68\x6c\x79\x68\x0d\x11",
-        // "" / M(None) / S(0) / L(0)
-        "\x39\x8b\x80\x74\xa8\xff\x40\x7f\x23\x72\x64\x5a\x78\x2b\xf2\xbd\xff\xa8\x1c\xba\x62\x66\xe7\x3f\x1a\x11\x9f\x3a\x48\xf4\xbb\x26",
-        // "BIO_write" / M(Rot) / S(126) / L(9)
-        "\xc0\xc7\xcd\xdd\xf5\xf0\xe7\xf2\xe3\x7e\xb6\x74\xcd\xf2\xc9\xa8",
-        // "" / M(None) / S(0) / L(0)
-        "\x53\x41\x62\xa5\x15\x19\x56\x0e\x62\x11\x90\x90\xae\x24\xcf\xaf\x87\x30\xff\xa8\x74\xeb\x0a\xeb\x66\x34\x3d\xca\x7d\x5b\x08\x00",
-        // "CFDateFormatterCreateDateFromString" / M(Xor1) / S(68) / L(35)
-        "\x07\x02\x00\x25\x30\x21\x02\x2b\x36\x29\x25\x30\x30\x21\x36\x07\x36\x21\x25\x30\x21\x00\x25\x30\x21\x02\x36\x2b\x29\x17\x30\x36\x2d\x2a\x23\x44",
-        // "BIO_s_mem" / M(Xor2) / S(5) / L(9)
-        "\x57\x5c\x5a\x4a\x66\x4a\x78\x70\x78\x15\x6c\x73\x9b\xc9\x4b\xf1",
-        // "X509_get_ext_by_OBJ" / M(Xor4) / S(29) / L(19)
-        "\x1c\x71\x74\x7d\x1b\x23\x21\x30\x1b\x21\x3c\x30\x1b\x26\x3d\x1b\x0b\x06\x0e\x44",
-        // "" / M(None) / S(0) / L(0)
-        "\x8a\xaa\xfc\x0c\xd5\x92\xc0\x92\xed\xfc\xa5\x42\x7f\x8b\x40\x1e\x69\xc4\x33\xa7\xd1\xf4\x80\x61\x4e\x57\x8c\x45\xb8\x25\xbb\xbf",
-        // "kCFBundleIdentifierKey" / M(Xor2) / S(35) / L(22)
-        "\x5f\x77\x72\x76\x41\x5a\x50\x58\x51\x7d\x50\x51\x5a\x40\x5d\x52\x5d\x51\x46\x7f\x51\x4d\x34",
-        // "CFDataCreate" / M(Xor3) / S(95) / L(12)
-        "\x2c\x29\x2b\x0e\x1b\x0e\x2c\x1d\x0a\x0e\x1b\x0a\x6f\x2c\x94\x3d",
-        // "X509_STORE_free" / M(Xor3) / S(92) / L(15)
-        "\x34\x59\x5c\x55\x33\x3f\x38\x23\x3e\x29\x33\x0a\x1e\x09\x09\x6c",
-        // "start" / M(Xor1) / S(206) / L(5)
-        "\xbd\xba\xaf\xbc\xba\xce\x87\x7f\x79\x66\x3b\x08\x6d\x73\xaf\x20",
-        // "EVP_MD_CTX_init" / M(Xor2) / S(16) / L(15)
-        "\x45\x56\x50\x5f\x4d\x44\x5f\x43\x54\x58\x5f\x69\x6e\x69\x74\x00",
-        // "" / M(None) / S(0) / L(0)
-        "\x61\xb3\xec\x34\xc4\x01\x9d\xe7\xd4\x85\xae\xac\xf1\xbc\xf3\x70\x69\xb2\x38\xa5\x0e\xba\x7b\x0e\x40\xf5\xd2\x86\x1b\x7a\x3a\xba",
-        // "%02X:" / M(Rot) / S(151) / L(5)
-        "\xbc\xc7\xc9\xef\xd1\x97\x07\xc8\x8a\x6d\x2a\xd0\x64\xaf\x04\x13",
-        // "CFStringCompare" / M(Rot) / S(103) / L(15)
-        "\xaa\xad\xba\xdb\xd9\xd0\xd5\xce\xaa\xd6\xd4\xd7\xc8\xd9\xcc\x67",
-        // "d2i_PKCS7_bio" / M(Xor3) / S(17) / L(13)
-        "\x45\x13\x48\x7e\x71\x6a\x62\x72\x16\x7e\x43\x48\x4e\x21\xc5\x8e",
-        // "" / M(None) / S(0) / L(0)
-        "\x46\x1b\x81\xe1\xfa\x48\xee\x9b\x8e\xb1\xa0\xc4\xcd\x15\x25\xb1\x22\xaf\xf6\x8c\xf7\x48\x88\x9a\x51\xb5\x32\xa6\x9e\x88\x81\xb1",
-        // "longjmp" / M(Xor4) / S(252) / L(7)
-        "\xac\xaf\xae\xa7\xaa\xad\xb0\xc0\x3c\x03\x58\xe3\xed\x46\x2a\xec",
-        // "." / M(Rot) / S(246) / L(1)
-        "\x24\xf6\x25\x9b\x40\x46\xc6\x63\x7d\x05\xbc\xad\xa5\xb9\x85\xb3",
-        // "d2i_X509_bio" / M(Xor4) / S(213) / L(12)
-        "\x34\x62\x39\x0f\x08\x65\x60\x69\x0f\x32\x39\x3f\x50\x76\x46\x8e",
-        // "" / M(None) / S(0) / L(0)
-        "\x75\xba\x4d\xac\x05\x63\xd9\x45\xf5\xa0\x90\xde\x99\x4e\xc6\x07\xc7\xb2\xf3\x24\x60\xe5\xa0\xd3\x29\x30\xbd\x5a\xc7\x18\xd8\x80",
-        // "" / M(None) / S(0) / L(0)
-        "\x8c\x3a\xd6\xe6\x85\xbe\x53\xb2\xa1\x59\xe5\x40\x08\x62\x98\x40\x6b\xb9\x2e\xf4\xbd\x3b\xd8\xe9\x6a\x31\x42\x28\x3c\xfb\x48\xc0",
-        // "CFArrayCreateMutable" / M(Rot) / S(15) / L(20)
-        "\x52\x55\x50\x81\x81\x70\x88\x52\x81\x74\x70\x83\x74\x5c\x84\x83\x70\x71\x7b\x74\x0f",
-        // "PKCS7_verify" / M(Xor1) / S(35) / L(12)
-        "\x73\x68\x60\x70\x14\x7c\x55\x46\x51\x4a\x45\x5a\x23\x05\xae\x19",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor1) / S(237) / L(59)
-        "\xdb\xdc\xd7\xdc\x88\xd7\xd8\x8f\xd7\xdb\xdb\xd7\xdf\x8e\xd7\xd8\xd4\xd7\xde\x8c\xd7\xdd\xd5\xd7\x8b\x8b\xd7\xd8\xd5\xd7\x89\xdc\xd7\xd9\x8c\xd7\x88\xdf\xd7\xdf\xd9\xd7\xd8\xdf\xd7\x89\xdc\xd7\xd4\xd5\xd7\x89\x8b\xd7\xdb\x8e\xd7\xdb\xdd\xed\x47\x27\x71\x38\x79\xe3\x2e\x56",
-        // "CFDataGetBytePtr" / M(Rot) / S(68) / L(16)
-        "\x87\x8a\x88\xa5\xb8\xa5\x8b\xa9\xb8\x86\xbd\xb8\xa9\x94\xb8\xb6\x44",
-        // "CFNumberCreate" / M(Xor2) / S(114) / L(14)
-        "\x21\x24\x2c\x17\x0f\x00\x07\x10\x21\x10\x07\x03\x16\x07\x62\x2d",
-        // "" / M(None) / S(0) / L(0)
-        "\xda\x96\x29\x5e\xf2\x00\xf9\x78\x03\xe1\x55\x2b\xfa\xe1\x3e\xa4\xfe\x35\x48\x85\x52\xba\xa7\xa3\x33\x10\xf3\x20\x5e\xf2\x50\x4e",
-        // "OpenSSL_add_all_digests" / M(Xor1) / S(231) / L(23)
-        "\xa8\x97\x82\x89\xb4\xb4\xab\xb8\x86\x83\x83\xb8\x86\x8b\x8b\xb8\x83\x8e\x80\x82\x94\x93\x94\xe7\x8d\xdc\x96\x34\x41\x6b\x6a\x90",
-        // "SHA1_Final" / M(Xor3) / S(4) / L(10)
-        "\x47\x5c\x55\x25\x4b\x52\x7d\x7a\x75\x78\x14\x7f\xf0\x7a\x0a\x3a",
-        // "CFDateFormatterSetFormat" / M(Xor1) / S(69) / L(24)
-        "\x06\x03\x01\x24\x31\x20\x03\x2a\x37\x28\x24\x31\x31\x20\x37\x16\x20\x31\x03\x2a\x37\x28\x24\x31\x45\xf9\xa4\x8a\x62\xaf\xa5\x5b\x98",
-        // "" / M(None) / S(0) / L(0)
-        "\xc2\x6c\x81\xea\x07\x45\x70\xbe\x2c\xe6\xba\x4d\x7a\x4d\x54\x5e\x9a\x27\xb3\x52\xd2\x54\xd5\x60\x69\x83\x97\x76\x80\x49\x6e\x93",
-        // "" / M(None) / S(0) / L(0)
-        "\x2a\xd2\xba\x79\x8a\x67\x94\x41\x85\xee\xe9\xaa\xcf\xc9\x38\x46\x9f\x00\x11\x1e\x3e\xeb\x71\xd9\x46\xfe\xa4\x67\xfa\xb0\xfe\xab",
-        // "CFDateFormatterCreate" / M(Xor4) / S(169) / L(21)
-        "\xc5\xc0\xc2\xe7\xf2\xe3\xc0\xe9\xf4\xeb\xe7\xf2\xf2\xe3\xf4\xc5\xf4\xe3\xe7\xf2\xe3\x86",
-        // "Apple Root CA" / M(Xor1) / S(73) / L(13)
-        "\x08\x39\x39\x25\x2c\x69\x1b\x26\x26\x3d\x69\x0a\x08\x49\xe1\xfe",
-        // "" / M(None) / S(0) / L(0)
-        "\xcc\xaa\xa9\xf6\xc9\x7e\x94\x7a\x58\x89\xaf\xbe\x54\x8a\x80\xef\x14\x3a\x71\x4d\x40\x00\x2d\x9a\x9b\x21\x85\x63\xe7\x40\x62\x2d",
-        // "" / M(None) / S(0) / L(0)
-        "\x36\x7a\xda\x75\x51\x42\xd9\x94\xfc\x9f\x03\x03\x5a\x23\x99\xf6\x8c\xb8\x08\xcd\x6b\x09\x4b\x8b\x35\xa3\x71\x02\xe1\xf1\x9f\x95",
-        // "init" / M(Xor1) / S(246) / L(4)
-        "\x9f\x98\x9f\x82\xf6\xbf\x5b\xb7\x57\x40\x2e\x61\x11\x71\x3a\xc6",
-        // "EVP_MD_CTX_init" / M(Xor2) / S(65) / L(15)
-        "\x14\x07\x01\x0e\x1c\x15\x0e\x12\x05\x09\x0e\x38\x3f\x38\x25\x51",
-        // "" / M(None) / S(0) / L(0)
-        "\x1d\xe9\x76\xef\x26\xfd\x1d\xdd\x33\x4e\x20\x94\x0f\x05\x1b\xa1\x21\x89\x18\x61\x0a\x98\x7a\x37\xe1\x29\x86\x4d\x2f\x1b\x92\xc8",
-        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Xor4) / S(166) / L(39)
-        "\x63\x66\x74\x49\x4d\x45\x7a\x4f\x4e\x45\x63\x52\x45\x41\x54\x45\x77\x49\x54\x48\x74\x49\x4d\x45\x69\x4e\x54\x45\x52\x56\x41\x4c\x66\x52\x4f\x4d\x67\x6d\x74\x20\x52\x77\x3a\xa8\xb3\xf9\xd2\x16",
-        // "CFDataAppendBytes" / M(Rot) / S(8) / L(17)
-        "\x4b\x4e\x4c\x69\x7c\x69\x49\x78\x78\x6d\x76\x6c\x4a\x81\x7c\x6d\x7b\x08",
-        // "" / M(None) / S(0) / L(0)
-        "\x7c\x82\x89\x54\x8b\x66\x39\xa4\x7e\x39\x3f\xe2\xb1\x99\x5e\x06\x9f\xaa\xea\xf1\xed\xf1\x36\xff\x27\x61\x68\x51\xae\x18\x18\x7c",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor3) / S(34) / L(40)
-        "\x65\x62\x62\x16\x66\x11\x65\x65\x61\x10\x66\x6a\x60\x12\x63\x6b\x15\x15\x66\x6b\x17\x62\x67\x12\x16\x61\x61\x67\x66\x61\x17\x62\x6a\x6b\x17\x15\x65\x10\x65\x63\x53\xab\x99\x23\x7d\xe2\x73\xba\x0b",
-        // "X509_STORE_new" / M(Xor1) / S(13) / L(14)
-        "\x55\x38\x3d\x34\x52\x5e\x59\x42\x5f\x48\x52\x63\x68\x7a\x0d\xcf",
-        // "RTLD_MAIN_ONLY" / M(Rot) / S(241) / L(14)
-        "\x43\x45\x3d\x35\x50\x3e\x32\x3a\x3f\x50\x40\x3f\x3d\x4a\xf1\xab",
-        // "" / M(None) / S(0) / L(0)
-        "\xc2\xa6\x19\xbe\x92\xe4\xeb\xda\x44\x4e\xef\x6d\x58\xa9\x92\x5c\x0f\x3a\x78\x32\xd7\xd0\x34\x0f\x27\x42\x8a\xaf\x31\x2b\x49\x4e",
-        // "CFDataCreate" / M(Rot) / S(160) / L(12)
-        "\xe3\xe6\xe4\x01\x14\x01\xe3\x12\x05\x01\x14\x05\xa0\xd4\x5a\x2e",
-        // "1.2.840.113635.100.6.11.1" / M(Xor4) / S(152) / L(25)
-        "\x01\x1e\x02\x1e\x08\x04\x00\x1e\x01\x01\x03\x06\x03\x05\x1e\x01\x00\x00\x1e\x06\x1e\x01\x01\x1e\x01\x30\xb1\x0d\xd0\xe8\x1b\xeb\x88\x5a",
-        // "setjmp" / M(Xor2) / S(70) / L(6)
-        "\x25\x33\x22\x3c\x3b\x26\x56\x0e\xcb\xb7\xc4\xa5\xce\xed\x98\x32",
-        // "NSBundle" / M(Xor3) / S(53) / L(8)
-        "\x0b\x16\x07\x30\x2b\x21\x29\x20\x45\x22\xd8\x64\x50\x3f\x83\x1e",
-        // "CFDateCompare" / M(Xor3) / S(247) / L(13)
-        "\x44\x41\x43\x66\x73\x62\x44\x68\x6a\x77\x66\x75\x62\x07\x8d\x42",
-        // "CFAbsoluteTimeGetCurrent" / M(Xor1) / S(132) / L(24)
-        "\xc7\xc2\xc5\xe6\xf7\xeb\xe8\xf1\xf0\xe1\xd0\xed\xe9\xe1\xc3\xe1\xf0\xc7\xf1\xf6\xf6\xe1\xea\xf0\x84\x01\x82\x8c\x08\x80\x76\x84\xc4",
-        // "SHA1_Update" / M(Xor2) / S(207) / L(11)
-        "\x8c\x97\x9e\xee\x80\x8a\xaf\xbb\xbe\xab\xba\xdf\xf6\x85\xf8\x76",
-        // "currentDevice" / M(Xor2) / S(139) / L(13)
-        "\xf8\xee\xe9\xe9\xfe\xf5\xef\xdf\xfe\xed\xf2\xf8\xfe\x9b\x84\xb6",
-        // "PKCS7_free" / M(Xor4) / S(171) / L(10)
-        "\xe0\xfb\xf3\xe3\x87\xef\xd6\xc2\xd5\xd5\xb0\x60\x84\x11\x70\x1d",
-        // "EVP_get_digestbyname" / M(Xor4) / S(170) / L(20)
-        "\xb7\xa4\xa2\xad\x95\x97\x86\xad\x96\x9b\x95\x97\x81\x86\x90\x8b\x9c\x93\x9f\x97\xf2",
-        // "CFBundleIdentifier" / M(Rot) / S(8) / L(18)
-        "\x4b\x4e\x4a\x7d\x76\x6c\x74\x6d\x51\x6c\x6d\x76\x7c\x71\x6e\x71\x6d\x7a\x08",
-        // "CC_SHA1_Init" / M(Xor3) / S(2) / L(12)
-        "\x51\x51\x4d\x41\x5a\x53\x23\x4d\x5b\x7c\x7b\x66\x12\x25\x7e\xc3",
-        // "" / M(None) / S(0) / L(0)
-        "\xe6\xed\xb3\x8d\x8d\xe2\x04\x54\xb0\x5b\x1f\xf8\x77\xb8\x9d\xbf\xe9\x49\x03\xb4\x14\xfd\x01\xa1\x15\x59\x45\x97\xf8\x52\x0f\x7a",
-        // "CFDictionarySetValue" / M(Xor2) / S(184) / L(20)
-        "\xee\xeb\xe9\xc4\xce\xd9\xc4\xc2\xc3\xcc\xdf\xd4\xfe\xc8\xd9\xfb\xcc\xc1\xd8\xc8\xad",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor2) / S(203) / L(32)
-        "\x93\x93\x93\x93\xcd\xc7\xcd\xa7\xa7\xcd\xc7\xcd\x8e\x8e\xcd\xbe\xcd\xa2\xa2\xcd\xd0\xcd\x87\x87\xcd\xd0\xcd\x99\x99\xcd\xb0\xcd\xea",
-        // "CFDateFormatterCreateDateFromString" / M(Xor3) / S(27) / L(35)
-        "\x7c\x79\x7b\x5e\x4b\x5a\x79\x50\x4d\x52\x5e\x4b\x4b\x5a\x4d\x7c\x4d\x5a\x5e\x4b\x5a\x7b\x5e\x4b\x5a\x79\x4d\x50\x52\x6c\x4b\x4d\x56\x51\x58\x3f",
-        // "currentDevice" / M(Xor1) / S(0) / L(13)
-        "\x63\x75\x72\x72\x65\x6e\x74\x44\x65\x76\x69\x63\x65\x00\x4f\x07",
-        // "" / M(None) / S(0) / L(0)
-        "\xff\x33\x71\xdf\xba\xae\x28\x59\xc3\x8f\x7a\xa2\x94\x91\x70\xd6\x5f\x17\x3e\x1d\x07\x2a\x1e\xd7\x8e\xde\x63\x38\x6d\x70\xfa\xeb",
-        // "CFStringCreateWithBytes" / M(Xor3) / S(225) / L(23)
-        "\x42\x47\x52\x75\x73\x68\x6f\x66\x42\x73\x64\x60\x75\x64\x56\x68\x75\x69\x43\x78\x75\x64\x72\x01\xe4\x9a\x87\x6e\x7e\xbf\xb7\x0d",
-        // "CFReadStreamCreateWithFile" / M(Xor4) / S(13) / L(26)
-        "\x84\x81\x95\xa2\xa6\xa3\x94\xb3\xb5\xa2\xa6\xaa\x84\xb5\xa2\xa6\xb3\xa2\x90\xae\xb3\xaf\x81\xae\xab\xa2\xc7\xf9\x0b\x3c\x98\x2a\x80\xc6\x88",
-        // "EVP_DigestUpdate" / M(Xor2) / S(31) / L(16)
-        "\x4b\x58\x5e\x51\x4a\x67\x69\x6b\x7d\x7a\x5b\x7e\x6a\x6f\x7a\x6b\x0e",
-        // "CFReadStreamRead" / M(Xor2) / S(171) / L(16)
-        "\xf9\xfc\xe8\xdf\xdb\xde\xe9\xce\xc8\xdf\xdb\xd7\xe8\xdf\xdb\xde\xba",
-        // "%02X" / M(Xor4) / S(112) / L(4)
-        "\x25\x30\x32\x58\x00\xef\x09\x78\x1d\x30\xd1\xa5\x83\x19\xd9\xb6",
-        // "PKCS7_get0_signers" / M(Rot) / S(207) / L(18)
-        "\x1f\x1a\x12\x22\x06\x2e\x36\x34\x43\xff\x2e\x42\x38\x36\x3d\x34\x41\x42\xcf",
-        // "1" / M(Xor1) / S(102) / L(1)
-        "\x57\x66\x5a\x4b\x3b\xf7\x65\x83\xb6\xff\x2f\x98\xfd\xd3\x98\x06",
-        // "%02X" / M(Xor3) / S(186) / L(4)
-        "\xef\xfa\xf8\x92\xca\x05\x5f\xb6\x5b\xd9\x45\xb5\xbb\x38\x0c\xf0",
-        // "" / M(None) / S(0) / L(0)
-        "\x9d\xdd\x43\x97\x2f\xe0\x41\xae\x5a\xec\xc0\xf3\x73\xf7\x85\xbe\x13\xd4\x63\x70\xea\x30\x00\xd8\x8d\x77\x6d\xce\xd4\x9e\x9d\x4b",
-        // "CFBundleVersion" / M(Xor2) / S(17) / L(15)
-        "\x42\x47\x43\x74\x6f\x65\x6d\x64\x57\x64\x73\x72\x68\x6e\x6f\x01",
-        // "1.2.840.113635.100.6.11.1" / M(Xor4) / S(39) / L(25)
-        "\x1f\x00\x1c\x00\x16\x1a\x1e\x00\x1f\x1f\x1d\x18\x1d\x1b\x00\x1f\x1e\x1e\x00\x18\x00\x1f\x1f\x00\x1f\x2e\xc5\x51\x4b\x4e\x50\xa7\x57\xbb",
-        // "CFDictionaryAddValue" / M(Xor4) / S(79) / L(20)
-        "\x38\x3d\x3f\x12\x18\x0f\x12\x14\x15\x1a\x09\x02\x3a\x1f\x1f\x2d\x1a\x17\x0e\x1e\x7b",
-        // "CC_SHA1_Init" / M(Xor2) / S(135) / L(12)
-        "\xd4\xd4\xc8\xc4\xdf\xd6\xa6\xc8\xde\xf9\xfe\xe3\x97\x79\x87\x34",
-        // "/usr/lib/libobjc.dylib" / M(Xor3) / S(102) / L(22)
-        "\x52\x08\x0e\x0f\x52\x11\x14\x1f\x52\x11\x14\x1f\x12\x1f\x17\x1e\x53\x19\x04\x11\x14\x1f\x7d",
-        // "" / M(None) / S(0) / L(0)
-        "\xe6\xc3\x13\x50\xff\x87\xf8\x73\xb7\x37\x0a\xbd\x72\x41\xe2\x8c\x46\x3e\x97\x46\xc1\x22\xe9\xef\xff\xa1\xc6\x25\xf7\x06\x50\x3d",
-        // "ASN1_INTEGER_get" / M(Xor4) / S(205) / L(16)
-        "\xdc\xce\xd3\xac\xc2\xd4\xd3\xc9\xd8\xda\xd8\xcf\xc2\xfa\xf8\xe9\x9d",
-        // "ASN1_OBJECT_free" / M(Xor2) / S(120) / L(16)
-        "\x28\x3a\x27\x58\x36\x26\x2b\x23\x2c\x2a\x3d\x36\x0f\x1b\x0c\x0c\x69",
-        // "com.intangiblesoftware.menslacrossestats" / M(Xor2) / S(162) / L(40)
-        "\xf0\xfc\xfe\xbd\xfa\xfd\xe7\xf2\xfd\xf4\xfa\xf1\xff\xf6\xe0\xfc\xf5\xe7\xe4\xf2\xe1\xf6\xbd\xfe\xf6\xfd\xe0\xff\xf2\xf0\xe1\xfc\xe0\xe0\xf6\xe0\xe7\xf2\xe7\xe0\x93\x53\x43\x81\x17\x73\x8b\x29\x71",
-        // "UIDevice" / M(Rot) / S(198) / L(8)
-        "\x1b\x0f\x0a\x2b\x3c\x2f\x29\x2b\xc6\x29\x45\x40\x4b\xc7\x34\x16",
-        // "CFNumberCreate" / M(Xor3) / S(39) / L(14)
-        "\x74\x71\x79\x42\x5a\x55\x52\x45\x74\x45\x52\x56\x43\x52\x37\xbe",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor4) / S(103) / L(31)
-        "\x8b\xa3\xa6\xb4\x99\x90\x85\xa4\x89\x83\x94\x89\x8f\x8e\x81\x92\x99\xb6\x81\x8c\x95\x85\xa3\x81\x8c\x8c\xa2\x81\x83\x8b\x93\xe0",
-        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Xor4) / S(149) / L(39)
-        "\xb3\xb6\xa4\x99\x9d\x95\xaa\x9f\x9e\x95\xb3\x82\x95\x91\x84\x95\xa7\x99\x84\x98\xa4\x99\x9d\x95\xb9\x9e\x84\x95\x82\x86\x91\x9c\xb6\x82\x9f\x9d\xb7\xbd\xa4\xf0\x04\x8d\x44\x5f\xbd\xae\x16\x40",
-        // "CFAbsoluteTimeGetCurrent" / M(Xor3) / S(50) / L(24)
-        "\x10\x15\x12\x31\x20\x3c\x3f\x26\x27\x36\x07\x3a\x3e\x36\x14\x36\x27\x10\x26\x21\x21\x36\x3d\x27\x53\x5b\xc0\x6a\x48\x7b\x8a\xd9\x63",
-        // "CFDataGetBytePtr" / M(Xor4) / S(141) / L(16)
-        "\x1e\x1b\x19\x3c\x29\x3c\x1a\x38\x29\x1f\x24\x29\x38\x0d\x29\x2f\x5d",
-        // "X509_free" / M(Xor2) / S(19) / L(9)
-        "\x5b\x36\x33\x3a\x5c\x65\x71\x66\x66\x03\xa7\x91\x5e\x30\xba\x18",
-        // "" / M(None) / S(0) / L(0)
-        "\xf6\x3e\x1d\x2d\x2d\x41\x64\x34\xaa\x40\x87\x7b\xda\x05\x6e\xd9\xfb\x33\xa5\x32\x79\xd0\x6e\xdf\x90\x40\x5b\x19\x7d\xdc\x76\xad",
-        // "ASN1_OBJECT_free" / M(Rot) / S(141) / L(16)
-        "\xce\xe0\xdb\xbe\xec\xdc\xcf\xd7\xd2\xd0\xe1\xec\xf3\xff\xf2\xf2\x8d",
-        // "init" / M(Rot) / S(229) / L(4)
-        "\x4e\x53\x4e\x59\xe5\xce\xbe\x70\x26\x78\x5d\x22\x24\xaa\x11\xb9",
-        // "CFStringCreateWithBytes" / M(Xor3) / S(76) / L(23)
-        "\x2f\x2a\x3f\x18\x1e\x05\x02\x0b\x2f\x1e\x09\x0d\x18\x09\x3b\x05\x18\x04\x2e\x15\x18\x09\x1f\x6c\x4f\xd3\xea\x7e\x8c\x0e\x60\xe0",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Rot) / S(16) / L(29)
-        "\x7b\x53\x56\x64\x89\x80\x75\x54\x79\x73\x84\x79\x7f\x7e\x71\x82\x89\x5b\x75\x89\x53\x71\x7c\x7c\x52\x71\x73\x7b\x83\x10\x22\x21\xd4\x77\x41\x95\x28\x2f",
-        // "setDelegate:" / M(Xor3) / S(80) / L(12)
-        "\x13\x05\x14\x24\x05\x0c\x05\x07\x01\x14\x05\x5a\x60\x5e\x5f\x53",
-        // "EVP_MD_CTX_init" / M(Xor4) / S(197) / L(15)
-        "\x15\x06\x00\x0f\x1d\x14\x0f\x13\x04\x08\x0f\x39\x3e\x39\x24\x50",
-        // "Apple Root CA" / M(Xor1) / S(166) / L(13)
-        "\xe7\xd6\xd6\xca\xc3\x86\xf4\xc9\xc9\xd2\x86\xe5\xe7\xa6\x6d\x5b",
-        // "X509_free" / M(Xor1) / S(184) / L(9)
-        "\xe0\x8d\x88\x81\xe7\xde\xca\xdd\xdd\xb8\xab\xbd\x56\x14\x60\x8c",
-        // "CFArrayCreateMutable" / M(Xor2) / S(203) / L(20)
-        "\x9d\x98\x9f\xac\xac\xbf\xa7\x9d\xac\xbb\xbf\xaa\xbb\x93\xab\xaa\xbf\xbc\xb2\xbb\xde",
-        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor1) / S(179) / L(36)
-        "\xf0\xf5\xf1\xc6\xdd\xd7\xdf\xd6\xf4\xd6\xc7\xe5\xd2\xdf\xc6\xd6\xf5\xdc\xc1\xfa\xdd\xd5\xdc\xf7\xda\xd0\xc7\xda\xdc\xdd\xd2\xc1\xca\xf8\xd6\xca\xb3",
-        // "OBJ_txt2obj" / M(Xor3) / S(17) / L(11)
-        "\x6e\x63\x6b\x7e\x55\x59\x55\x13\x4e\x43\x4b\x21\x57\xca\xe7\xab",
-        // "objc_lookUpClass" / M(Xor3) / S(27) / L(16)
-        "\x43\x4e\x46\x4f\x73\x40\x43\x43\x47\x79\x5c\x6f\x40\x4d\x5f\x5f\x2c",
-        // "OBJ_txt2obj" / M(Xor1) / S(49) / L(11)
-        "\x7e\x73\x7b\x6e\x45\x49\x45\x03\x5e\x53\x5b\x31\x93\xc3\x5e\x38",
-        // "" / M(None) / S(0) / L(0)
-        "\xa8\x8f\xb2\xdc\x42\x42\xa9\x9b\x1a\x62\x62\xb6\xd2\xa9\x81\x53\x93\xfe\x4e\x18\xde\xab\xde\xfa\xe7\x0f\xf4\x98\xe6\x8b\xf0\xac",
-        // "%02x" / M(Xor1) / S(255) / L(4)
-        "\xda\xcf\xcd\x87\xff\x29\xbe\xf8\x4d\x03\x91\x64\x42\xb9\x0f\x8a",
-        // "NSBundle" / M(Xor1) / S(123) / L(8)
-        "\x35\x28\x39\x0e\x15\x1f\x17\x1e\x7b\xc1\x14\xd0\x63\x5a\x96\x3f",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor4) / S(93) / L(31)
-        "\xcb\xe3\xe6\xf4\xd9\xd0\xc5\xe4\xc9\xc3\xd4\xc9\xcf\xce\xc1\xd2\xd9\xf6\xc1\xcc\xd5\xc5\xe3\xc1\xcc\xcc\xe2\xc1\xc3\xcb\xd3\xa0",
-        // "RTLD_MAIN_ONLY" / M(Xor3) / S(154) / L(14)
-        "\xf8\xfe\xe6\xee\xf5\xe7\xeb\xe3\xe4\xf5\xe5\xe4\xe6\xf3\xaa\xd7",
-        // "" / M(None) / S(0) / L(0)
-        "\x22\xa8\x31\xcc\x6f\xe7\xba\xbe\x21\x3b\x58\x53\x18\x53\xe6\x87\x2e\xdb\xfb\x0c\x71\xb9\x1d\xb5\xc8\x25\xd7\xee\x5b\x77\x66\x21",
-        // "X509_STORE_add_cert" / M(Xor1) / S(98) / L(19)
-        "\x3a\x57\x52\x5b\x3d\x31\x36\x2d\x30\x27\x3d\x03\x06\x06\x3d\x01\x07\x10\x16\x62",
-        // "CFStringCreateWithCString" / M(Xor4) / S(3) / L(25)
-        "\x25\x20\x35\x12\x14\x0f\x08\x01\x25\x14\x03\x07\x12\x03\x31\x0f\x12\x0e\x25\x35\x12\x14\x0f\x08\x01\x66\x61\x66\x36\x8c\x07\x89\x68\xf7",
-        // "" / M(None) / S(0) / L(0)
-        "\x04\xda\xc3\x12\xbb\x9c\xc9\x11\x0c\x05\xaf\xeb\xd9\x08\xd8\xe6\xb0\x30\xdb\xcf\x7b\xec\x75\xa0\x24\x05\x52\x57\x14\xcc\xe6\x7e",
-        // "BIO_s_mem" / M(Xor3) / S(71) / L(9)
-        "\x15\x1e\x18\x08\x24\x08\x3a\x32\x3a\x57\x76\x93\x9c\x47\x31\x45",
-        // "BIO_write" / M(Xor3) / S(73) / L(9)
-        "\x1b\x10\x16\x06\x2e\x2b\x30\x2d\x3c\x59\x9d\xc6\x6f\x7d\x50\x94",
-        // "CFBundleVersion" / M(Xor1) / S(164) / L(15)
-        "\xe7\xe2\xe6\xd1\xca\xc0\xc8\xc1\xf2\xc1\xd6\xd7\xcd\xcb\xca\xa4",
-        // "PKCS7_verify" / M(Xor3) / S(52) / L(12)
-        "\x14\x0f\x07\x17\x73\x1b\x32\x21\x36\x2d\x22\x3d\x44\xc6\xa2\x0c",
-        // "." / M(Xor4) / S(41) / L(1)
-        "\xbe\x90\xce\xb2\xd6\x77\x76\xde\x87\x4a\x0c\xfe\xb7\x7f\x1a\x31",
-        // "CFDataAppendBytes" / M(Xor3) / S(231) / L(17)
-        "\xba\xbf\xbd\x98\x8d\x98\xb8\x89\x89\x9c\x97\x9d\xbb\x80\x8d\x9c\x8a\xf9",
-        // "CFDictionarySetValue" / M(Xor3) / S(236) / L(20)
-        "\x42\x47\x45\x68\x62\x75\x68\x6e\x6f\x60\x73\x78\x52\x64\x75\x57\x60\x6d\x74\x64\x01",
-        // "CFArrayCreateMutable" / M(Rot) / S(177) / L(20)
-        "\xf4\xf7\xf2\x23\x23\x12\x2a\xf4\x23\x16\x12\x25\x16\xfe\x26\x25\x12\x13\x1d\x16\xb1",
-        // "X509_digest" / M(Rot) / S(67) / L(11)
-        "\x9b\x78\x73\x7c\xa2\xa7\xac\xaa\xa8\xb6\xb7\x43\xdf\x05\xb4\xb2",
-        // "CFDictionaryGetValue" / M(Xor2) / S(47) / L(20)
-        "\x79\x7c\x7e\x53\x59\x4e\x53\x55\x54\x5b\x48\x43\x7d\x5f\x4e\x6c\x5b\x56\x4f\x5f\x3a",
-        // "BIO_free" / M(Xor4) / S(151) / L(8)
-        "\x32\x39\x3f\x2f\x16\x02\x15\x15\x70\xe7\xd0\xf6\x43\x1e\x1c\x6f",
-        // "kCFTypeArrayCallBacks" / M(Xor1) / S(4) / L(21)
-        "\x6f\x47\x42\x50\x7d\x74\x61\x45\x76\x76\x65\x7d\x47\x65\x68\x68\x46\x65\x67\x6f\x77\x04",
-        // "X509_get_ext_by_OBJ" / M(Xor4) / S(28) / L(19)
-        "\x68\x05\x00\x09\x6f\x57\x55\x44\x6f\x55\x48\x44\x6f\x52\x49\x6f\x7f\x72\x7a\x30",
-        // "BIO_free" / M(Xor3) / S(48) / L(8)
-        "\x02\x09\x0f\x1f\x26\x32\x25\x25\x40\xdb\x7d\x3f\x21\xb0\xd3\xd0",
-        // "CFDateFormatterSetProperty" / M(Xor2) / S(125) / L(26)
-        "\x1d\x18\x1a\x3f\x2a\x3b\x18\x31\x2c\x33\x3f\x2a\x2a\x3b\x2c\x0d\x3b\x2a\x0e\x2c\x31\x2e\x3b\x2c\x2a\x27\x5e\x0b\xb8\xed\xeb\xca\x0e\xcd\x33",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Rot) / S(138) / L(66)
-        "\xb9\xdd\x03\xfd\xfe\xef\xf7\xb9\xd6\xf3\xec\xfc\xeb\xfc\x03\xb9\xd0\xfc\xeb\xf7\xef\x01\xf9\xfc\xf5\xfd\xb9\xcd\xf9\xfc\xef\xd0\xf9\xff\xf8\xee\xeb\xfe\xf3\xf9\xf8\xb8\xf0\xfc\xeb\xf7\xef\x01\xf9\xfc\xf5\xb9\xcd\xf9\xfc\xef\xd0\xf9\xff\xf8\xee\xeb\xfe\xf3\xf9\xf8\x8a",
-        // "sha1" / M(Xor4) / S(214) / L(4)
-        "\x13\x08\x01\x51\x60\x63\xe6\x4e\x0a\x68\xdb\x3c\xac\x6c\x9c\x4f",
-        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor4) / S(140) / L(32)
-        "\x75\x75\x75\x75\x2b\x21\x2b\x41\x41\x2b\x21\x2b\x68\x68\x2b\x58\x2b\x44\x44\x2b\x36\x2b\x61\x61\x2b\x36\x2b\x7f\x7f\x2b\x56\x2b\x0c",
-        // "getUUIDBytes:" / M(Rot) / S(15) / L(13)
-        "\x76\x74\x83\x64\x64\x58\x53\x51\x88\x83\x74\x82\x49\x0f\x9f\x92",
-        // "" / M(None) / S(0) / L(0)
-        "\xb5\xe1\x8f\x4c\x13\x46\x1c\xcd\x46\x2c\x73\xad\x1e\x29\xf4\xdc\x03\xa1\xb6\xd8\x7c\xff\x93\x93\xf8\x46\x06\x45\xb2\xfd\xb6\xf6",
-        // "PKCS7_get0_signers" / M(Xor3) / S(77) / L(18)
-        "\x30\x2b\x23\x33\x57\x3f\x07\x05\x14\x50\x3f\x13\x09\x07\x0e\x05\x12\x13\x60",
-        // "" / M(None) / S(0) / L(0)
-        "\xcb\xd4\xca\xf9\x79\xc9\x4c\xd0\x7f\x70\x0a\xcd\xc9\x11\xb9\x16\xc1\x3c\xa8\x1f\x37\x45\x22\xa0\xd2\x30\x7b\xe6\x0a\x66\xfd\xfc",
-        // "" / M(None) / S(0) / L(0)
-        "\xa5\x7b\x09\x71\x65\x4f\xb7\xc6\x9f\x0b\xde\x0d\x30\xd9\x0d\x3c\xb3\x83\x8a\xb5\x6e\x62\xfe\x29\xb5\x97\xb4\xe5\xbd\x2f\x74\x72",
-        // "setjmp" / M(Rot) / S(131) / L(6)
-        "\xf6\xe8\xf7\xed\xf0\xf3\x83\xab\xe2\x04\xe3\x3e\x47\x9a\xf9\xd8",
-        // "dlsym" / M(Rot) / S(167) / L(5)
-        "\x0b\x13\x1a\x20\x14\xa7\x34\x52\x8b\xc0\x56\x62\x1d\x0b\xab\x78",
-        // "CFDateFormatterCreateDateFromString" / M(Xor1) / S(215) / L(35)
-        "\x94\x91\x93\xb6\xa3\xb2\x91\xb8\xa5\xba\xb6\xa3\xa3\xb2\xa5\x94\xa5\xb2\xb6\xa3\xb2\x93\xb6\xa3\xb2\x91\xa5\xb8\xba\x84\xa3\xa5\xbe\xb9\xb0\xd7",
-        // "CFBundleIdentifier" / M(Rot) / S(209) / L(18)
-        "\x14\x17\x13\x46\x3f\x35\x3d\x36\x1a\x35\x36\x3f\x45\x3a\x37\x3a\x36\x43\xd1",
-        // "" / M(None) / S(0) / L(0)
-        "\x9c\xeb\xea\x3b\x6d\x3f\xbf\x82\xff\x92\x22\x05\x47\xd2\x90\x66\x55\xa5\x55\x84\x37\xf3\xcb\xed\x68\x08\x6c\x6e\x77\x34\x82\xca",
-        // "strncmp" / M(Rot) / S(202) / L(7)
-        "\x3d\x3e\x3c\x38\x2d\x37\x3a\xca\x1f\x23\x0c\x31\x68\x16\x43\x78",
-        // "CFDataGetLength" / M(Rot) / S(191) / L(15)
-        "\x02\x05\x03\x20\x33\x20\x06\x24\x33\x0b\x24\x2d\x26\x33\x27\xbf",
-        // "X509_digest" / M(Rot) / S(195) / L(11)
-        "\x1b\xf8\xf3\xfc\x22\x27\x2c\x2a\x28\x36\x37\xc3\xe4\x9d\x93\x34",
-        // "X509_STORE_free" / M(Xor1) / S(177) / L(15)
-        "\xe9\x84\x81\x88\xee\xe2\xe5\xfe\xe3\xf4\xee\xd7\xc3\xd4\xd4\xb1",
-        // "CFReadStreamOpen" / M(Rot) / S(147) / L(16)
-        "\xd6\xd9\xe5\xf8\xf4\xf7\xe6\x07\x05\xf8\xf4\x00\xe2\x03\xf8\x01\x93",
-        // "EVP_DigestUpdate" / M(Xor2) / S(96) / L(16)
-        "\x34\x27\x21\x2e\x35\x18\x16\x14\x02\x05\x24\x01\x15\x10\x05\x14\x71",
-        // "X509_STORE_new" / M(Xor1) / S(175) / L(14)
-        "\xf7\x9a\x9f\x96\xf0\xfc\xfb\xe0\xfd\xea\xf0\xc1\xca\xd8\xaf\xa4",
-        // "CFDictionaryAddValue" / M(Xor2) / S(112) / L(20)
-        "\x26\x23\x21\x0c\x06\x11\x0c\x0a\x0b\x04\x17\x1c\x24\x01\x01\x33\x04\x09\x10\x00\x65",
-        // "currentDevice" / M(Xor4) / S(49) / L(13)
-        "\x73\x65\x62\x62\x75\x7e\x64\x54\x75\x66\x79\x73\x75\x10\x33\xfa",
-        // "CFArrayGetValueAtIndex" / M(Xor3) / S(62) / L(22)
-        "\x16\x13\x14\x27\x27\x34\x2c\x12\x30\x21\x03\x34\x39\x20\x30\x14\x21\x1c\x3b\x31\x30\x2d\x55",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor4) / S(208) / L(40)
-        "\xe6\xe1\xe1\x95\xe5\x92\xe6\xe6\xe2\x93\xe5\xe9\xe3\x91\xe0\xe8\x96\x96\xe5\xe8\x94\xe1\xe4\x91\x95\xe2\xe2\xe4\xe5\xe2\x94\xe1\xe9\xe8\x94\x96\xe6\x93\xe6\xe0\xd0\x9a\x1a\x73\x63\xbe\x29\x63\x50",
-        // "" / M(None) / S(0) / L(0)
-        "\xa6\x42\x85\x20\xb8\x7f\xe8\x63\xed\x02\x1b\x03\xeb\xb1\x07\x7d\x63\x8d\x2b\x4d\x0f\x90\x98\x8d\xdd\xc0\x27\x0b\x96\x3e\x88\xd1",
-        // "exit" / M(Xor1) / S(55) / L(4)
-        "\x52\x4f\x5e\x43\x37\x7f\x4b\x7d\x40\x77\x09\x67\x9f\x4e\xbf\xeb",
-        // "Apple Root CA" / M(Xor1) / S(146) / L(13)
-        "\xd3\xe2\xe2\xfe\xf7\xb2\xc0\xfd\xfd\xe6\xb2\xd1\xd3\x92\x3c\x38",
-        // "CFEqual" / M(Xor3) / S(123) / L(7)
-        "\xc8\xcd\xce\xfa\xfe\xea\xe7\x8b\xc9\x6d\xe6\x72\x9b\x41\x7a\x0a",
-        // "sel_registerName" / M(Xor1) / S(144) / L(16)
-        "\xe3\xf5\xfc\xcf\xe2\xf5\xf7\xf9\xe3\xe4\xf5\xe2\xde\xf1\xfd\xf5\x90",
-        // "CFRelease" / M(Xor2) / S(113) / L(9)
-        "\x22\x27\x33\x04\x0d\x04\x00\x12\x04\x61\xfa\xc9\x26\x74\xa8\x61",
-        // "" / M(None) / S(0) / L(0)
-        "\xf2\xb3\x33\xcc\xd2\x39\x58\x3b\x5c\xb6\xca\x00\xdf\x32\x6d\x60\xb4\x3a\xba\xa3\x8a\xc0\xbc\x23\xdf\xc6\x53\x5a\xd9\xf2\x7b\xfa",
-        // "d2i_X509_bio" / M(Rot) / S(108) / L(12)
-        "\xd0\x9e\xd5\xcb\xc4\xa1\x9c\xa5\xcb\xce\xd5\xdb\x6c\xee\x52\x71",
-        // "" / M(None) / S(0) / L(0)
-        "\x7e\xc5\x95\xb6\xe1\x37\x60\x22\x36\x96\xf2\x88\x21\xb1\xe2\xf8\xae\x71\x0a\x60\x94\xde\xc2\x7e\xe1\x24\x74\x3c\x94\x4d\x43\xcd",
-        // "" / M(None) / S(0) / L(0)
-        "\xf3\xb3\xe7\x8a\x20\xc6\x37\xdd\x4e\xd6\x63\x0a\x94\x09\x0a\x25\xfd\xed\xaa\x1a\x0b\xb1\xec\xc5\x81\x19\x9f\xc4\xd3\xb2\x48\xcb",
-        // "mainBundle" / M(Rot) / S(22) / L(10)
-        "\x83\x77\x7f\x84\x58\x8b\x84\x7a\x82\x7b\x16\x23\x70\x22\xd9\xd7",
-        // "" / M(None) / S(0) / L(0)
-        "\x70\x6c\x1a\xfc\xb5\x06\x28\x29\xdd\x98\x5f\x9e\xb7\x9c\x00\x45\xd0\xd9\x65\x85\x7a\x31\xea\xbd\x1a\x71\x55\x99\xf8\xf1\xdf\x1d",
-        // "CFDateCreate" / M(Rot) / S(206) / L(12)
-        "\x11\x14\x12\x2f\x42\x33\x11\x40\x33\x2f\x42\x33\xce\x23\x58\xa3",
-        // "CFReadStreamClose" / M(Xor3) / S(178) / L(17)
-        "\x87\x82\x96\xa1\xa5\xa0\x97\xb0\xb6\xa1\xa5\xa9\x87\xa8\xab\xb7\xa1\xc4",
-        // "kCFBundleIdentifierKey" / M(Xor2) / S(87) / L(22)
-        "\x2b\x03\x06\x02\x35\x2e\x24\x2c\x25\x09\x24\x25\x2e\x34\x29\x26\x29\x25\x32\x0b\x25\x39\x40",
-        // "CFDataGetLength" / M(Xor3) / S(175) / L(15)
-        "\xfc\xf9\xfb\xde\xcb\xde\xf8\xda\xcb\xf3\xda\xd1\xd8\xcb\xd7\xbf",
-        // "appStoreReceiptURL" / M(Rot) / S(6) / L(18)
-        "\x67\x76\x76\x59\x7a\x75\x78\x6b\x58\x6b\x69\x6b\x6f\x76\x7a\x5b\x58\x52\x06",
-        // "sk_free" / M(Rot) / S(43) / L(7)
-        "\x9e\x96\x8a\x91\x9d\x90\x90\x2b\xc0\xed\x55\xc3\x6c\xb7\xc5\x1e",
-        // "BIO_s_mem" / M(Xor1) / S(88) / L(9)
-        "\x1a\x11\x17\x07\x2b\x07\x35\x3d\x35\x58\x7b\x03\xaa\xb9\x90\x46",
-        // "X509_digest" / M(Xor3) / S(54) / L(11)
-        "\x1e\x73\x76\x7f\x19\x22\x2f\x21\x23\x35\x32\x46\xdf\x13\xff\xd1",
-        // "" / M(None) / S(0) / L(0)
-        "\xf6\x1b\x9f\x8b\x5f\x7e\xcc\x3d\xed\xa2\xd2\x68\x8c\x0a\xf2\x98\xda\xe0\x8f\x93\x33\x51\x78\x01\x74\x88\x24\xac\x9a\x04\x1b\x1b",
-        // "CFAbsoluteTimeGetCurrent" / M(Xor2) / S(3) / L(24)
-        "\x61\x64\x63\x40\x51\x4d\x4e\x57\x56\x47\x76\x4b\x4f\x47\x65\x47\x56\x61\x57\x50\x50\x47\x4c\x56\x22\x29\x4c\xac\x80\xf1\xf9\x59\x49",
-        // "" / M(None) / S(0) / L(0)
-        "\x65\xc4\x96\x23\xc8\x32\xe1\xaf\x4d\xb5\x44\x9e\xf2\x66\xb4\x49\x0a\xbe\xd5\xcd\xb9\xdd\x47\x65\x4e\xa6\x3e\x07\x13\x9a\xeb\x09",
-        // "" / M(None) / S(0) / L(0)
-        "\xea\xad\x14\xdd\x3a\xe6\xf1\xf6\xbd\x8f\xf1\x43\x29\x31\xf0\x5f\x33\x78\x9a\xeb\x2e\x68\x0a\x9c\xc1\xdc\x20\xe0\xb3\xc9\x28\x2e",
-        // "BIO_new" / M(Xor4) / S(196) / L(7)
-        "\x02\x09\x0f\x1f\x2e\x25\x37\x40\xfb\x40\xae\xd6\xe9\xbd\xb4\x5e",
-        // "CFDateCreate" / M(Xor2) / S(77) / L(12)
-        "\x1e\x1b\x19\x3c\x29\x38\x1e\x2f\x38\x3c\x29\x38\x5d\xd2\x8a\x75",
-        // "strlen" / M(Rot) / S(117) / L(6)
-        "\xe8\xe9\xe7\xe1\xda\xe3\x75\xe0\x0d\xc3\xa5\x28\x42\x39\xef\x68",
-        // "" / M(None) / S(0) / L(0)
-        "\x23\xab\x33\x4d\x27\x12\xfa\xc1\xc9\x6f\xdc\xc0\xf8\xc6\xa7\xdb\xea\x26\x82\x5d\x24\x83\xee\x0f\xd0\x00\xa1\x57\x6a\x21\xf4\x04",
-        // "getUUIDBytes:" / M(Xor4) / S(150) / L(13)
-        "\x07\x05\x14\x35\x35\x29\x24\x22\x19\x14\x05\x13\x5a\x60\x2f\x4a",
-        // "ASN1_INTEGER_get" / M(Xor1) / S(153) / L(16)
-        "\xd8\xca\xd7\xa8\xc6\xd0\xd7\xcd\xdc\xde\xdc\xcb\xc6\xfe\xfc\xed\x99",
-        // "CFBundleUnloadExecutable" / M(Rot) / S(66) / L(24)
-        "\x85\x88\x84\xb7\xb0\xa6\xae\xa7\x97\xb0\xae\xb1\xa3\xa6\x87\xba\xa7\xa5\xb7\xb6\xa3\xa4\xae\xa7\x42\x31\xc3\x0d\xd8\xb3\x61\xb2\xbb",
-        // "identifierForVendor" / M(Xor1) / S(160) / L(19)
-        "\xc9\xc4\xc5\xce\xd4\xc9\xc6\xc9\xc5\xd2\xe6\xcf\xd2\xf6\xc5\xce\xc4\xcf\xd2\xa0",
-        // "CFReadStreamClose" / M(Xor1) / S(119) / L(17)
-        "\x34\x31\x25\x12\x16\x13\x24\x03\x05\x12\x16\x1a\x34\x1b\x18\x04\x12\x77",
-        // "init" / M(Xor1) / S(140) / L(4)
-        "\xe5\xe2\xe5\xf8\x8c\x69\x5a\xe2\x93\xff\x3a\xb4\x37\x83\xea\x18",
-        // "" / M(None) / S(0) / L(0)
-        "\x05\x3e\x11\x62\xb2\xa2\x14\x9e\xbd\x07\x09\xb8\x20\xc7\x87\xa1\xfb\x61\x1e\xa1\xaf\x24\xa7\x27\x30\xac\x40\xd3\x8b\x37\x9a\xb1",
-        // "sk_num" / M(Xor1) / S(118) / L(6)
-        "\x05\x1d\x29\x18\x03\x1b\x76\x6a\x3d\xc0\xb3\x3f\xae\x58\xc9\x89",
-        // "X509_free" / M(Xor3) / S(206) / L(9)
-        "\x86\xeb\xee\xe7\x81\xb8\xac\xbb\xbb\xde\xa5\x72\x12\xe4\x1b\x56",
-        // "X509_STORE_add_cert" / M(Rot) / S(111) / L(19)
-        "\xc7\xa4\x9f\xa8\xce\xc2\xc3\xbe\xc1\xb4\xce\xd0\xd3\xd3\xce\xd2\xd4\xe1\xe3\x6f",
-        // "" / M(None) / S(0) / L(0)
-        "\x0a\x52\x94\x96\xcd\x47\x9a\xfb\x78\x1a\x7f\x63\xa2\x22\xe4\x1f\x77\xff\x65\x3b\x01\xe8\xbf\x3b\xa2\x48\xcc\x14\x92\xcc\x00\x0f",
-        // "sel_registerName" / M(Xor2) / S(2) / L(16)
-        "\x60\x76\x7f\x4c\x61\x76\x74\x7a\x60\x67\x76\x61\x5d\x72\x7e\x76\x13",
-        // "CFArrayAppendValue" / M(Xor3) / S(96) / L(18)
-        "\x30\x35\x32\x01\x01\x12\x0a\x32\x03\x03\x16\x1d\x17\x25\x12\x1f\x06\x16\x73",
-        // "CFReadStreamRead" / M(Xor4) / S(201) / L(16)
-        "\x1a\x1f\x0b\x3c\x38\x3d\x0a\x2d\x2b\x3c\x38\x34\x0b\x3c\x38\x3d\x59",
-        // "." / M(Rot) / S(192) / L(1)
-        "\xee\xc0\x48\x4c\xfd\x04\x33\xe9\xcb\xc9\xab\xa2\x75\xc3\x06\xce",
-        // "X509_STORE_add_cert" / M(Xor3) / S(165) / L(19)
-        "\xe1\x8c\x89\x80\xe6\xea\xed\xf6\xeb\xfc\xe6\xd8\xdd\xdd\xe6\xda\xdc\xcb\xcd\xb9",
-        // "sk_num" / M(Xor1) / S(151) / L(6)
-        "\xe4\xfc\xc8\xf9\xe2\xfa\x97\x8c\x7d\xb4\xaa\xca\x62\xf5\x75\x25",
-        // "appStoreReceiptURL" / M(Xor4) / S(250) / L(18)
-        "\xef\xfe\xfe\xdd\xfa\xe1\xfc\xeb\xdc\xeb\xed\xeb\xe7\xfe\xfa\xdb\xdc\xc2\x8e",
-        // "%02x" / M(Xor3) / S(149) / L(4)
-        "\x80\x95\x97\xdd\xa5\xa1\xf7\xb3\xcb\x4b\xff\x96\xed\xcd\x9b\x71",
-        // "CFDataCreate" / M(Xor3) / S(87) / L(12)
-        "\x24\x21\x23\x06\x13\x06\x24\x15\x02\x06\x13\x02\x67\xb0\x83\x17",
-        // "SHA1_Update" / M(Xor3) / S(210) / L(11)
-        "\xb1\xaa\xa3\xd3\xbd\xb7\x92\x86\x83\x96\x87\xe2\x8a\x74\x53\x08",
-        // "CFArrayGetCount" / M(Xor2) / S(39) / L(15)
-        "\x74\x71\x76\x45\x45\x56\x4e\x70\x52\x43\x74\x58\x42\x59\x43\x37",
-        // "PKCS7_free" / M(Xor4) / S(98) / L(10)
-        "\x70\x6b\x63\x73\x17\x7f\x46\x52\x45\x45\x20\x15\x77\x0c\x8b\x5a",
-        // "CFBundleShortVersionString" / M(Xor3) / S(239) / L(26)
-        "\x51\x54\x50\x67\x7c\x76\x7e\x77\x41\x7a\x7d\x60\x66\x44\x77\x60\x61\x7b\x7d\x7c\x41\x66\x60\x7b\x7c\x75\x12\xdb\x9a\x8a\xe7\xb8\xb4\x1a\x18",
-        // "objc_lookUpClass" / M(Xor3) / S(151) / L(16)
-        "\xc7\xca\xc2\xcb\xf7\xc4\xc7\xc7\xc3\xfd\xd8\xeb\xc4\xc9\xdb\xdb\xa8",
-        // "SKReceiptRefreshRequest" / M(Xor4) / S(192) / L(23)
-        "\x53\x4b\x52\x65\x63\x65\x69\x70\x74\x52\x65\x66\x72\x65\x73\x68\x52\x65\x71\x75\x65\x73\x74\x00\x36\xf0\xee\x76\x1c\x9b\xc1\x8d",
-        // "CFDateFormatterSetProperty" / M(Xor3) / S(92) / L(26)
-        "\x3c\x39\x3b\x1e\x0b\x1a\x39\x10\x0d\x12\x1e\x0b\x0b\x1a\x0d\x2c\x1a\x0b\x2f\x0d\x10\x0f\x1a\x0d\x0b\x06\x7f\xc7\x37\xd8\x57\x19\x6e\x38\x19",
-        // "CFDataCreateMutable" / M(Xor1) / S(1) / L(19)
-        "\x42\x47\x45\x60\x75\x60\x42\x73\x64\x60\x75\x64\x4c\x74\x75\x60\x63\x6d\x64\x01",
-        // "SHA1_Final" / M(Xor1) / S(82) / L(10)
-        "\x01\x1a\x13\x63\x0d\x14\x3b\x3c\x33\x3e\x52\x50\x1a\xb1\x0c\x2e",
-        // "" / M(None) / S(0) / L(0)
-        "\x17\xff\x40\x76\x7d\x95\x07\xf2\xe8\xbc\xe6\xe9\xf7\x83\x58\x45\x80\xcf\x76\x8e\x71\x7a\x98\x30\xe7\x2c\xf8\x83\x46\xd3\x59\xa3",
-        // "" / M(None) / S(0) / L(0)
-        "\x5c\x9e\xe2\xa8\x67\xd0\x18\x81\xa9\xe8\xc6\x18\x5f\x86\xd5\xd0\xa5\xce\xae\x29\x7e\x7e\x78\x08\xdc\x4a\xae\x3c\x0c\x6d\x4a\x22",
-        // "SHA1_Init" / M(Xor3) / S(82) / L(9)
-        "\x31\x2a\x23\x53\x3d\x2b\x0c\x0b\x16\x62\xc0\x5c\x37\x80\x00\x80",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor3) / S(136) / L(59)
-        "\xfa\xfd\xf6\xfd\x89\xf6\xf9\x8e\xf6\xfa\xfa\xf6\xfe\x8f\xf6\xf9\xf5\xf6\xff\x8d\xf6\xfc\xf4\xf6\x8a\x8a\xf6\xf9\xf4\xf6\x88\xfd\xf6\xf8\x8d\xf6\x89\xfe\xf6\xfe\xf8\xf6\xf9\xfe\xf6\x88\xfd\xf6\xf5\xf4\xf6\x88\x8a\xf6\xfa\x8f\xf6\xfa\xfc\xcc\xdd\xf5\x15\x67\x6d\x29\xa2\x0d",
-        // "CC_SHA1" / M(Xor4) / S(189) / L(7)
-        "\x93\x93\x8f\x83\x98\x91\xe1\xd0\xf3\x77\xb4\xa3\x89\xb9\xac\xcf",
-        // "X509_NAME_get_text_by_NID" / M(Xor2) / S(161) / L(25)
-        "\xdb\xb6\xb3\xba\xdc\xcd\xc2\xce\xc6\xdc\xe4\xe6\xf7\xdc\xf7\xe6\xfb\xf7\xdc\xe1\xfa\xdc\xcd\xca\xc7\x83\x00\xf5\xc4\x54\xf3\xf7\x54\x36",
-        // "kCFTypeDictionaryValueCallBacks" / M(Xor1) / S(180) / L(31)
-        "\xdf\xf7\xf2\xe0\xcd\xc4\xd1\xf0\xdd\xd7\xc0\xdd\xdb\xda\xd5\xc6\xcd\xe2\xd5\xd8\xc1\xd1\xf7\xd5\xd8\xd8\xf6\xd5\xd7\xdf\xc7\xb4",
-        // "UIDevice" / M(Rot) / S(165) / L(8)
-        "\xfa\xee\xe9\x0a\x1b\x0e\x08\x0a\xa5\xca\x47\x93\xa9\x26\x79\xb7",
-        // "UIDevice" / M(Xor1) / S(228) / L(8)
-        "\xb1\xad\xa0\x81\x92\x8d\x87\x81\xe4\xa9\x55\xb6\xb4\x0b\x58\xe5",
-        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor4) / S(226) / L(66)
-        "\x09\x75\x5f\x55\x52\x43\x4b\x09\x6a\x4f\x44\x54\x47\x54\x5f\x09\x60\x54\x47\x4b\x43\x51\x49\x54\x4d\x55\x09\x65\x49\x54\x43\x60\x49\x53\x48\x42\x47\x52\x4f\x49\x48\x08\x40\x54\x47\x4b\x43\x51\x49\x54\x4d\x09\x65\x49\x54\x43\x60\x49\x53\x48\x42\x47\x52\x4f\x49\x48\x26",
-        // "CC_SHA1_Update" / M(Xor4) / S(143) / L(14)
-        "\xb3\xb3\xaf\xa3\xb8\xb1\xc1\xaf\xa5\x80\x94\x91\x84\x95\xf0\x23",
-        // "" / M(None) / S(0) / L(0)
-        "\xb5\xcb\x62\x8f\x59\xb4\xd9\x16\xd3\x7b\xf8\xf0\xbb\x3b\x75\xef\x63\x5a\x7e\x95\xf3\xc5\xa1\xd9\xa2\xd7\x56\x96\xea\x35\x55\x6a",
-        // "CFDictionaryCreateMutable" / M(Rot) / S(57) / L(25)
-        "\x7c\x7f\x7d\xa2\x9c\xad\xa2\xa8\xa7\x9a\xab\xb2\x7c\xab\x9e\x9a\xad\x9e\x86\xae\xad\x9a\x9b\xa5\x9e\x39\x42\xfe\x0b\x4d\x1c\x80\x90\x5f",
-        // "exit" / M(Xor2) / S(180) / L(4)
-        "\xc1\xdc\xcd\xd0\xa4\x6a\x9b\x02\x96\x7a\x50\xd4\x6e\xbc\xfd\xcd",
-        // "longjmp" / M(Rot) / S(245) / L(7)
-        "\x61\x64\x63\x5c\x5f\x62\x65\xf5\xfa\xad\xe6\x9c\x17\xa0\x89\x7e",
-        // "sk_free" / M(Rot) / S(110) / L(7)
-        "\xe1\xd9\xcd\xd4\xe0\xd3\xd3\x6e\x41\x09\x0c\xbf\xb6\xdc\x72\x80",
-        // "/usr/lib/libobjc.dylib" / M(Xor3) / S(201) / L(22)
-        "\xcf\x95\x93\x92\xcf\x8c\x89\x82\xcf\x8c\x89\x82\x8f\x82\x8a\x83\xce\x84\x99\x8c\x89\x82\xe0",
-        // "SHA1" / M(Xor4) / S(238) / L(4)
-        "\xb3\xa8\xa1\xd1\xe0\x81\xc2\xf0\xf0\x3d\xc6\x31\xd7\x2f\x08\xf2",
-        // "" / M(None) / S(0) / L(0)
-        "\xd4\x26\xf2\x78\xf8\xd0\xa0\x48\x02\x57\xf2\x1a\xac\x01\x2f\xcc\x12\xef\x88\x2f\x09\xa2\x25\xc3\x19\x54\xae\x63\x3c\xbd\xd5\x1c",
-        // "ASN1_INTEGER_free" / M(Xor2) / S(153) / L(17)
-        "\xca\xd8\xc5\xba\xd4\xc2\xc5\xdf\xce\xcc\xce\xd9\xd4\xed\xf9\xee\xee\x8b",
-        // "" / M(None) / S(0) / L(0)
-        "\xd0\xfb\x76\x00\x80\x06\x73\xe8\x4d\x3b\x7f\x75\x94\xfe\xe6\x27\x4d\x3a\x50\x48\xb1\xd4\x91\x39\x8f\xe1\xa3\xf8\xbf\x66\x38\x42",
-        // "EVP_DigestInit" / M(Xor1) / S(196) / L(14)
-        "\x81\x92\x94\x9b\x80\xad\xa3\xa1\xb7\xb0\x8d\xaa\xad\xb0\xc4\xf7",
-        // "" / M(None) / S(0) / L(0)
-        "\xb5\xa4\x90\xa5\x4c\x32\xa9\x7b\x93\x44\x84\xcb\x28\x90\xb2\x3f\x8d\xca\x2b\xf5\x55\x06\xb6\x58\xfe\xa5\x32\xbc\xe7\xc9\xf5\x66",
-        // "X509_STORE_free" / M(Rot) / S(117) / L(15)
-        "\xcd\xaa\xa5\xae\xd4\xc8\xc9\xc4\xc7\xba\xd4\xdb\xe7\xda\xda\x75",
-        // "CFBundleUnloadExecutable" / M(Xor1) / S(60) / L(24)
-        "\x7f\x7a\x7e\x49\x52\x58\x50\x59\x69\x52\x50\x53\x5d\x58\x79\x44\x59\x5f\x49\x48\x5d\x5e\x50\x59\x3c\xd1\xb8\xdd\x82\x2b\xab\x4b\xa8",
-        // "EVP_DigestUpdate" / M(Rot) / S(241) / L(16)
-        "\x36\x47\x41\x50\x35\x5a\x58\x56\x64\x65\x46\x61\x55\x52\x65\x56\xf1",
-        // "sk_value" / M(Xor2) / S(38) / L(8)
-        "\x45\x5d\x69\x40\x57\x5a\x43\x53\x36\x7f\x25\x1e\x59\x01\xd9\xd7",
-        // "" / M(None) / S(0) / L(0)
-        "\x51\x28\x29\x9f\x15\x85\xb0\x7b\xf1\x26\x7f\x81\x0b\xd5\x01\x7a\x5c\x89\x07\xdc\x15\x27\x29\xa4\xae\x90\x9d\xdd\x71\x02\xd1\x44",
-        // "" / M(None) / S(0) / L(0)
-        "\xc8\xdf\x61\x40\xc3\x11\x35\xdf\xaa\xbb\xbd\xfe\xf6\x8c\xeb\xa1\xc0\x60\x0f\x21\x0d\x5f\x5c\xd6\x2a\xd0\x5a\xd9\xe0\x67\x02\x63",
-        // "" / M(None) / S(0) / L(0)
-        "\x3c\x0d\x6c\xa7\x92\xd9\xc4\x2a\xf5\x15\xc7\x04\xcf\x00\x57\xb3\x5a\x2a\xe8\xca\x3a\xcd\x9a\x86\x12\x6a\x05\x77\xff\xd1\x39\xe4",
-        // "1" / M(Xor4) / S(198) / L(1)
-        "\x51\x60\xef\xff\xc6\x46\x7a\xde\xd0\x91\xcb\xa0\xe8\xb3\xa9\x4f",
-        // "CFStringCreateWithCString" / M(Xor3) / S(33) / L(25)
-        "\x00\x05\x10\x37\x31\x2a\x2d\x24\x00\x31\x26\x22\x37\x26\x14\x2a\x37\x2b\x00\x10\x37\x31\x2a\x2d\x24\x43\xfc\x16\xee\x37\x97\x25\x6f\x75",
-        // "CC_SHA1_Init" / M(Xor2) / S(219) / L(12)
-        "\x88\x88\x94\x98\x83\x8a\xfa\x94\x82\xa5\xa2\xbf\xcb\xb4\xdb\x4d",
-        // "" / M(None) / S(0) / L(0)
-        "\x9a\xb0\xf6\xa0\x5d\x41\x2c\x85\x21\x9b\x09\xeb\x04\x31\x9f\x38\x22\xab\xd6\x9c\xd7\x78\xf7\xef\xaf\x24\xf4\x82\xe5\x96\xe3\xe4",
-        // "/usr/lib/libSystem.dylib" / M(Xor3) / S(184) / L(24)
-        "\xf6\xac\xaa\xab\xf6\xb5\xb0\xbb\xf6\xb5\xb0\xbb\x8a\xa0\xaa\xad\xbc\xb4\xf7\xbd\xa0\xb5\xb0\xbb\xd9\x3c\x92\x78\x38\x15\xe4\x26\x00",
-        // "kCFTypeDictionaryKeyCallBacks" / M(Xor1) / S(132) / L(29)
-        "\xef\xc7\xc2\xd0\xfd\xf4\xe1\xc0\xed\xe7\xf0\xed\xeb\xea\xe5\xf6\xfd\xcf\xe1\xfd\xc7\xe5\xe8\xe8\xc6\xe5\xe7\xef\xf7\x84\x8f\x6e\xa4\x86\x9d\xe6\xb3\x45",
-        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Rot) / S(57) / L(40)
-        "\x6f\x6a\x6a\x7e\x6e\x7b\x6f\x6f\x6b\x7c\x6e\x72\x6c\x7a\x69\x71\x7f\x7f\x6e\x71\x7d\x6a\x6d\x7a\x7e\x6b\x6b\x6d\x6e\x6b\x7d\x6a\x72\x71\x7d\x7f\x6f\x7c\x6f\x69\x39\x33\x64\x17\x17\x42\xb8\xff\x1d",
-        // "alloc" / M(Xor2) / S(190) / L(5)
-        "\xcf\xc2\xc2\xc1\xcd\xae\x04\xe3\xae\x29\xb1\x59\xe3\x97\x57\x74",
-        // "ASN1_INTEGER_free" / M(Xor4) / S(22) / L(17)
-        "\xcd\xdf\xc2\xbd\xd3\xc5\xc2\xd8\xc9\xcb\xc9\xde\xd3\xea\xfe\xe9\xe9\x8c",
-        // "exit" / M(Rot) / S(101) / L(4)
-        "\xca\xdd\xce\xd9\x65\x4d\xed\xc5\xe4\x70\x8a\xad\xca\x5e\x14\x00",
-        // "SHA1_Init" / M(Xor4) / S(46) / L(9)
-        "\xb3\xa8\xa1\xd1\xbf\xa9\x8e\x89\x94\xe0\xa8\x36\x22\xa2\xa2\xd5",
-        // "" / M(None) / S(0) / L(0)
-        "\xcf\x52\x14\x7e\x21\x7c\xc9\x8f\x15\x7e\x08\x03\xb5\xcc\x6f\x54\x8e\x41\x1e\x08\xbf\xfb\xd8\x7c\x11\xe4\xac\xef\xa6\x3a\xfa\x9d",
-        // "dlopen" / M(Xor4) / S(222) / L(6)
-        "\x84\x8c\x8f\x90\x85\x8e\xe0\x0a\xa4\x12\x96\xf7\xd0\x6a\x4c\x98",
-        // "BIO_new" / M(Rot) / S(1) / L(7)
-        "\x43\x4a\x50\x60\x6f\x66\x78\x01\x69\xe6\xd4\x30\x3d\x7c\x5a\xd6",
-        // "CFDateFormatterCreate" / M(Xor1) / S(129) / L(21)
-        "\xc2\xc7\xc5\xe0\xf5\xe4\xc7\xee\xf3\xec\xe0\xf5\xf5\xe4\xf3\xc2\xf3\xe4\xe0\xf5\xe4\x81",
-        // "CFDataCreateMutable" / M(Xor1) / S(41) / L(19)
-        "\x6a\x6f\x6d\x48\x5d\x48\x6a\x5b\x4c\x48\x5d\x4c\x64\x5c\x5d\x48\x4b\x45\x4c\x29",
-        // "PKCS7_verify" / M(Xor4) / S(37) / L(12)
-        "\x00\x1b\x13\x03\x67\x0f\x26\x35\x22\x39\x36\x29\x50\xd7\x24\x01",
-        // "" / M(None) / S(0) / L(0)
-        "\x9b\xf0\x0b\xdb\x4b\xdc\x85\xa9\x63\xc2\xb1\xa7\xd8\x65\x8e\xaa\x98\x93\x4f\x55\x1b\x78\x2e\x71\xe6\xf3\x5d\x9f\xb8\x23\x5e\xc2",
-        // "" / M(None) / S(0) / L(0)
-        "\x6a\x43\xa2\x43\xc5\x36\x3e\xb6\x7c\xe1\x3a\x4b\xaa\x82\x67\xf6\x45\x74\x5f\xf5\x76\x6b\x66\xcc\x85\x0a\x87\x7b\xc6\x14\x5e\x49",
-        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor2) / S(254) / L(59)
-        "\x8c\x8b\x80\x8b\xdf\x80\x8f\xd8\x80\x8c\x8c\x80\x88\xd9\x80\x8f\x83\x80\x89\xdb\x80\x8a\x82\x80\xdc\xdc\x80\x8f\x82\x80\xde\x8b\x80\x8e\xdb\x80\xdf\x88\x80\x88\x8e\x80\x8f\x88\x80\xde\x8b\x80\x83\x82\x80\xde\xdc\x80\x8c\xd9\x80\x8c\x8a\xba\x17\xd7\x7d\xec\x6b\x43\x09\x19",
-        // "" / M(None) / S(0) / L(0)
-        "\x07\x20\x46\xc0\xbb\x80\xd6\x69\x8c\xd2\x7b\xd1\x02\x5d\x9f\x26\xaf\xa7\x0e\x84\x61\x3d\xd5\x8f\x3d\x15\xfd\xf9\xba\xd4\xa2\x98",
-        // "CC_SHA1_Update" / M(Xor1) / S(1) / L(14)
-        "\x42\x42\x5e\x52\x49\x40\x30\x5e\x54\x71\x65\x60\x75\x64\x01\x6a",
-        // "sk_value" / M(Xor3) / S(157) / L(8)
-        "\xde\xc6\xf2\xdb\xcc\xc1\xd8\xc8\xad\x07\x30\x15\xe3\x2b\x4c\xa0",
-        // "sk_free" / M(Xor4) / S(101) / L(7)
-        "\x23\x3b\x0f\x36\x22\x35\x35\x50\xd6\x8d\x7a\xd6\x1e\x24\xc5\xf7",
-        // "" / M(None) / S(0) / L(0)
-        "\xb0\x28\xcf\x40\xf4\x57\x3e\x32\x9c\xe6\x68\x1c\x4a\x13\x80\x8a\x42\xa1\x13\xbc\x83\x0c\x9c\xf6\x7b\x1a\x90\xa3\xe9\x77\xb5\x56",
-        // "CFBundleGetIdentifier" / M(Rot) / S(86) / L(21)
-        "\x99\x9c\x98\xcb\xc4\xba\xc2\xbb\x9d\xbb\xca\x9f\xba\xbb\xc4\xca\xbf\xbc\xbf\xbb\xc8\x56",
-        // "CFStringCreateWithBytes" / M(Xor1) / S(249) / L(23)
-        "\xba\xbf\xaa\x8d\x8b\x90\x97\x9e\xba\x8b\x9c\x98\x8d\x9c\xae\x90\x8d\x91\xbb\x80\x8d\x9c\x8a\xf9\x64\xb4\x22\x3f\x8f\x61\x19\x3a",
-        // "OBJ_txt2obj" / M(Xor4) / S(35) / L(11)
-        "\x7f\x72\x7a\x6f\x44\x48\x44\x02\x5f\x52\x5a\x30\x08\x9f\x7c\x09",
-        // "" / M(None) / S(0) / L(0)
-        "\x34\x7b\x24\xad\xf5\xe5\xcc\x37\x98\x06\x34\x75\x11\x91\x40\xe4\xd3\xf7\x6d\x5f\x37\x6c\xfe\xe0\xb4\x2f\xdc\x90\xd1\x12\x49\x40",
-        // "dlsym" / M(Xor2) / S(21) / L(5)
-        "\x61\x69\x76\x7c\x68\x05\x30\x1f\xa0\x37\x26\xb0\x2c\x98\x61\x64",
-        // "" / M(None) / S(0) / L(0)
-        "\xa0\xf8\x36\x93\x43\xa5\xb5\xf8\xb2\x5e\x2a\xf2\xf3\x11\xd7\xa5\x88\xf1\xce\xec\x66\x94\xe5\x4a\x26\xce\xb2\x2a\xf6\x8e\x79\xae",
-        // "" / M(None) / S(0) / L(0)
-        "\xbf\x86\x55\x0b\x59\x99\xb7\x8e\x98\xa9\x3e\xba\x0f\xf2\xa8\xb9\x9e\x85\xa6\xca\xe3\x3d\x06\x41\x79\xaa\xbe\xe0\x84\x8a\x05\x57",
-        // "" / M(None) / S(0) / L(0)
-        "\x1d\x99\x22\x5f\xd8\x37\x2a\x03\xd5\x2d\x3c\x01\xd0\x81\x69\x73\x78\xc6\xc8\x40\xd4\x68\xed\x63\xa4\x09\xca\x6e\x0b\x4b\xb3\xe3",
-        // "" / M(None) / S(0) / L(0)
-        "\x2b\x64\x69\x2b\x29\xa0\x93\x67\x3b\xe6\xae\xee\x54\xb4\x5d\x72\xb4\x83\xa7\x1a\x1b\xae\x32\x61\xc6\x61\x3a\x73\xb3\xa0\xae\x78",
-        // "CFDateFormatterSetProperty" / M(Rot) / S(131) / L(26)
-        "\xc6\xc9\xc7\xe4\xf7\xe8\xc9\xf2\xf5\xf0\xe4\xf7\xf7\xe8\xf5\xd6\xe8\xf7\xd3\xf5\xf2\xf3\xe8\xf5\xf7\xfc\x83\x56\x90\x29\xdb\xe7\x17\x55\xce",
-        // "CC_SHA1_Final" / M(Rot) / S(66) / L(13)
-        "\x85\x85\xa1\x95\x8a\x83\x73\xa1\x88\xab\xb0\xa3\xae\x42\xf9\x98",
-        // "CFBundleShortVersionString" / M(Xor1) / S(74) / L(26)
-        "\x09\x0c\x08\x3f\x24\x2e\x26\x2f\x19\x22\x25\x38\x3e\x1c\x2f\x38\x39\x23\x25\x24\x19\x3e\x38\x23\x24\x2d\x4a\x9b\x46\x06\xa9\x14\xbe\x8b\xa6",
-        // "" / M(None) / S(0) / L(0)
-        "\x74\x06\xd8\x6a\x7c\x94\xeb\xb5\xe8\x89\x90\x34\x46\xbe\x09\xa9\x4c\x94\x72\xcc\x8a\xaf\x2b\x2d\xef\x9d\x07\x30\x03\x63\xdd\xee",
-        // "CFBundleGetMainBundle" / M(Rot) / S(192) / L(21)
-        "\x03\x06\x02\x35\x2e\x24\x2c\x25\x07\x25\x34\x0d\x21\x29\x2e\x02\x35\x2e\x24\x2c\x25\xc0",
-        // "" / M(None) / S(0) / L(0)
-        "\x29\xc0\x51\x5b\x36\x51\xb6\x69\x1c\x81\x1a\x21\xf5\xe7\x85\x21\x8b\xb5\xe9\xc6\xe3\xa3\x50\x99\x3e\x57\x19\x1b\x86\x37\xd7\xdf",
-        // "CFRelease" / M(Rot) / S(19) / L(9)
-        "\x56\x59\x65\x78\x7f\x78\x74\x86\x78\x13\xee\x53\x21\x1b\x48\xa2",
-        // "sk_num" / M(Xor4) / S(253) / L(6)
-        "\xa3\xbb\x8f\xbe\xa5\xbd\xd0\xf9\x25\x3d\xdb\x98\x7c\xf4\x32\x97",
-        // "1.2.840.113635.100.6.11.1" / M(Rot) / S(188) / L(25)
-        "\xed\xea\xee\xea\xf4\xf0\xec\xea\xed\xed\xef\xf2\xef\xf1\xea\xed\xec\xec\xea\xf2\xea\xed\xed\xea\xed\xbc\xbb\x65\xaf\xb6\x23\xf3\x2d\xf3",
-        // "EVP_DigestInit" / M(Xor2) / S(240) / L(14)
-        "\xa5\xb6\xb0\xbf\xa4\x89\x87\x85\x93\x94\xa9\x8e\x89\x94\xe0\x0e",
-        // "objc_getClass" / M(Xor1) / S(248) / L(13)
-        "\x97\x9a\x92\x9b\xa7\x9f\x9d\x8c\xbb\x94\x99\x8b\x8b\xf8\x55\x37",
-        // "CFBundleGetIdentifier" / M(Xor4) / S(234) / L(21)
-        "\x5f\x5a\x5e\x69\x72\x78\x70\x79\x5b\x79\x68\x55\x78\x79\x72\x68\x75\x7a\x75\x79\x6e\x1c",
-        // "" / M(None) / S(0) / L(0)
-        "\x77\x65\x36\xa7\xba\x6d\x84\xeb\x42\x71\x5b\x54\x31\x4d\x9a\x2c\x83\x9c\x5e\x8d\x4e\x65\xfe\x43\x13\xee\xdb\xd6\x4d\xdb\x30\x14",
-        // "CFDictionarySetValue" / M(Xor1) / S(97) / L(20)
-        "\x22\x27\x25\x08\x02\x15\x08\x0e\x0f\x00\x13\x18\x32\x04\x15\x37\x00\x0d\x14\x04\x61",
-        // "" / M(None) / S(0) / L(0)
-        "\x30\x34\x86\x67\xc9\x31\x86\x11\xda\x86\x87\x6b\xa0\x9a\xca\xd2\xbe\x30\xd1\x89\x82\xb0\x28\x17\xfd\xab\xd1\xbe\x86\xf2\x9c\x30",
-        // "" / M(None) / S(0) / L(0)
-        "\x7a\xc6\xa1\x4f\x31\x92\x56\x65\x4e\x99\xa5\x6c\x48\x27\xb6\x20\xf7\xe1\x42\x40\x02\xb7\x60\x66\x28\xd6\x6b\x4d\xa2\xeb\x41\xb5",
-        // "EVP_get_digestbyname" / M(Rot) / S(96) / L(20)
-        "\xa5\xb6\xb0\xbf\xc7\xc5\xd4\xbf\xc4\xc9\xc7\xc5\xd3\xd4\xc2\xd9\xce\xc1\xcd\xc5\x60",
-        // "NSBundle" / M(Xor2) / S(107) / L(8)
-        "\x35\x28\x39\x0e\x15\x1f\x17\x1e\x7b\x94\xff\xde\x41\x2d\x16\xa0",
-        // "/usr/lib/libSystem.dylib" / M(Xor1) / S(218) / L(24)
-        "\xf5\xaf\xa9\xa8\xf5\xb6\xb3\xb8\xf5\xb6\xb3\xb8\x89\xa3\xa9\xae\xbf\xb7\xf4\xbe\xa3\xb6\xb3\xb8\xda\x42\x53\x6e\xaf\x8a\xdc\xea\x19",
-        // "EVP_DigestInit" / M(Xor3) / S(89) / L(14)
-        "\x2c\x3f\x39\x36\x2d\x00\x0e\x0c\x1a\x1d\x20\x07\x00\x1d\x69\x47",
-        // "" / M(None) / S(0) / L(0)
-        "\xe7\xf6\x9d\x89\x7e\x74\x71\x35\xd8\x2f\x03\x61\xc5\xbb\x1c\xcf\x25\x81\x75\x42\xaf\x00\x53\xcd\x91\xec\x8f\xdf\x0c\x0a\x9c\xc0",
-        // "OpenSSL_add_all_digests" / M(Xor1) / S(215) / L(23)
-        "\x98\xa7\xb2\xb9\x84\x84\x9b\x88\xb6\xb3\xb3\x88\xb6\xbb\xbb\x88\xb3\xbe\xb0\xb2\xa4\xa3\xa4\xd7\x8c\x0a\x9c\x94\x24\x1b\x93\xa8",
-        // "CFReadStreamCreateWithFile" / M(Xor2) / S(103) / L(26)
-        "\x07\x02\x16\x21\x25\x20\x17\x30\x36\x21\x25\x29\x07\x36\x21\x25\x30\x21\x13\x2d\x30\x2c\x02\x2d\x28\x21\x44\x10\x56\xd9\x56\xd2\xd4\x68\x9e",
-        // "EVP_DigestFinal" / M(Xor3) / S(211) / L(15)
-        "\xa6\xb5\xb3\xbc\xa7\x8a\x84\x86\x90\x97\xa5\x8a\x8d\x82\x8f\xe3",
-        // "c2i_ASN1_INTEGER" / M(Xor1) / S(31) / L(16)
-        "\x7c\x2d\x76\x40\x5e\x4c\x51\x2e\x40\x56\x51\x4b\x5a\x58\x5a\x4d\x1f",
-        // "com.intangiblesoftware.menslacrossestats" / M(Rot) / S(21) / L(40)
-        "\x78\x84\x82\x43\x7e\x83\x89\x76\x83\x7c\x7e\x77\x81\x7a\x88\x84\x7b\x89\x8c\x76\x87\x7a\x43\x82\x7a\x83\x88\x81\x76\x78\x87\x84\x88\x88\x7a\x88\x89\x76\x89\x88\x15\xc9\xa3\x12\xab\xae\x92\xc5\xbd",
-        // "ASN1_OBJECT_free" / M(Xor2) / S(77) / L(16)
-        "\x1d\x0f\x12\x6d\x03\x13\x1e\x16\x19\x1f\x08\x03\x3a\x2e\x39\x39\x5c",
-        // "alloc" / M(Xor3) / S(206) / L(5)
-        "\xbf\xb2\xb2\xb1\xbd\xde\x9f\xea\xc1\x43\x18\xb4\x7c\xb8\xbf\x61",
-        // "CFDateFormatterSetFormat" / M(Xor1) / S(215) / L(24)
-        "\x94\x91\x93\xb6\xa3\xb2\x91\xb8\xa5\xba\xb6\xa3\xa3\xb2\xa5\x84\xb2\xa3\x91\xb8\xa5\xba\xb6\xa3\xd7\x8b\xcf\xa8\x6d\x45\xb0\xfb\xf7",
-        // "CFDateFormatterSetFormat" / M(Xor4) / S(112) / L(24)
-        "\x33\x36\x34\x11\x04\x15\x36\x1f\x02\x1d\x11\x04\x04\x15\x02\x23\x15\x04\x36\x1f\x02\x1d\x11\x04\x70\x10\xa3\xa1\x0d\xf7\xf8\xd8\x36",
-        // "%02X:" / M(Xor3) / S(123) / L(5)
-        "\xae\xbb\xb9\xd3\xb1\x8b\xc2\x80\x29\xd8\x31\x0c\xf1\xde\x70\xb0",
-        // "EVP_DigestFinal" / M(Rot) / S(70) / L(15)
-        "\x8b\x9c\x96\xa5\x8a\xaf\xad\xab\xb9\xba\x8c\xaf\xb4\xa7\xb2\x46",
-        // "CFEqual" / M(Xor4) / S(143) / L(7)
-        "\xb3\xb6\xb5\x81\x85\x91\x9c\xf0\x22\x1c\x1b\x15\xe9\x87\x22\x35",
-        // "" / M(None) / S(0) / L(0)
-        "\xcf\xc9\x15\x34\x9a\xc8\x67\x8e\x5b\xe4\x8a\xb5\x1b\xb6\xf2\xad\x8b\xb0\x0f\xde\x48\xcf\xdd\x55\x90\xb4\x1a\x09\x68\x88\x21\x7f",
-        // "" / M(None) / S(0) / L(0)
-        "\x46\x06\x9f\x70\x0b\xdb\x51\x28\x3e\xb3\x65\x8a\x9c\xbb\x3d\x2a\xe3\x9b\x29\x61\x2a\x61\x4c\x6c\xb3\xde\xba\x6b\xb2\x83\x6a\x1b",
-        // "CFReadStreamOpen" / M(Xor2) / S(211) / L(16)
-        "\x81\x84\x90\xa7\xa3\xa6\x91\xb6\xb0\xa7\xa3\xaf\x8d\xb2\xa7\xac\xc2",
-        // "" / M(None) / S(0) / L(0)
-        "\x57\x20\xcf\x69\x83\xcf\x2d\xa0\x64\x09\x60\xc3\xf6\x0b\x21\xc7\x25\xa9\x8e\x14\xe6\x56\x1e\x5b\xb5\x98\x8d\xb0\x17\xe0\x1a\xa9",
-        // "" / M(None) / S(0) / L(0)
-        "\x87\x7e\x36\x93\x55\xc9\xf9\x56\x78\xe3\xc0\x35\xad\xd1\x05\xe0\xcc\x67\x77\x8c\x50\xe0\xc4\x87\xaa\xb5\x56\xc7\x37\x86\x54\xff",
-        // "" / M(None) / S(0) / L(0)
-        "\x3a\xf8\x68\x52\xf4\x05\x17\xd0\xe3\x74\xfe\xe4\x69\x4b\x64\x61\x52\x42\x16\xbf\x8a\x62\xe1\xf3\x14\x7a\xef\x72\x83\xa1\xfd\x86",
-        // "ASN1_INTEGER_get" / M(Xor4) / S(152) / L(16)
-        "\x59\x4b\x56\x29\x47\x51\x56\x4c\x5d\x5f\x5d\x4a\x47\x7f\x7d\x6c\x18",
-        // "SHA1_Update" / M(Xor2) / S(215) / L(11)
-        "\x94\x8f\x86\xf6\x98\x92\xb7\xa3\xa6\xb3\xa2\xc7\x59\x9d\x87\xa8",
-        // "" / M(None) / S(0) / L(0)
-        "\xda\xfc\x7f\xac\xb5\xd6\x08\x22\x48\x3f\x15\xfb\x1a\xfa\x8e\x96\xb5\xec\xd6\xa0\x72\x90\x56\x29\x40\x10\x82\x93\xde\x0c\xdd\xd2",
-        // "CFArrayAppendValue" / M(Xor2) / S(233) / L(18)
-        "\xb9\xbc\xbb\x88\x88\x9b\x83\xbb\x8a\x8a\x9f\x94\x9e\xac\x9b\x96\x8f\x9f\xfa",
-        // "CFBundleShortVersionString" / M(Xor3) / S(138) / L(26)
-        "\xee\xeb\xef\xd8\xc3\xc9\xc1\xc8\xfe\xc5\xc2\xdf\xd9\xfb\xc8\xdf\xde\xc4\xc2\xc3\xfe\xd9\xdf\xc4\xc3\xca\xad\x93\x31\x2b\x05\x67\x54\xf2\x71",
-        // "kCFDateFormatterTimeZone" / M(Xor3) / S(238) / L(24)
-        "\x64\x4c\x49\x4b\x6e\x7b\x6a\x49\x60\x7d\x62\x6e\x7b\x7b\x6a\x7d\x5b\x66\x62\x6a\x55\x60\x61\x6a\x0f\x8b\xc8\xf0\x72\xfb\x0d\xee\xd1",
-        // "c2i_ASN1_INTEGER" / M(Xor2) / S(23) / L(16)
-        "\x65\x34\x6f\x59\x47\x55\x48\x37\x59\x4f\x48\x52\x43\x41\x43\x54\x06",
-        // "CFDataAppendBytes" / M(Xor3) / S(123) / L(17)
-        "\xce\xcb\xc9\xec\xf9\xec\xcc\xfd\xfd\xe8\xe3\xe9\xcf\xf4\xf9\xe8\xfe\x8d",
-        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor4) / S(245) / L(59)
-        "\x22\x25\x2e\x25\x51\x2e\x21\x56\x2e\x22\x22\x2e\x26\x57\x2e\x21\x2d\x2e\x27\x55\x2e\x24\x2c\x2e\x52\x52\x2e\x21\x2c\x2e\x50\x25\x2e\x20\x55\x2e\x51\x26\x2e\x26\x20\x2e\x21\x26\x2e\x50\x25\x2e\x2d\x2c\x2e\x50\x52\x2e\x22\x57\x2e\x22\x24\x14\x27\x57\x20\xc2\x17\xd0\x5d\xa5",
-        // "d2i_PKCS7_bio" / M(Xor3) / S(197) / L(13)
-        "\xb1\xe7\xbc\x8a\x85\x9e\x96\x86\xe2\x8a\xb7\xbc\xba\xd5\x9e\xb3",
-        // "d2i_PKCS7_bio" / M(Xor2) / S(160) / L(13)
-        "\xd4\x82\xd9\xef\xe0\xfb\xf3\xe3\x87\xef\xd2\xd9\xdf\xb0\xea\xf7",
-        // "CFStringCreateWithCString" / M(Rot) / S(76) / L(25)
-        "\x8f\x92\x9f\xc0\xbe\xb5\xba\xb3\x8f\xbe\xb1\xad\xc0\xb1\xa3\xb5\xc0\xb4\x8f\x9f\xc0\xbe\xb5\xba\xb3\x4c\xb5\x5d\xbd\xb3\xca\x23\x76\xdc",
-        // "EVP_get_digestbyname" / M(Rot) / S(26) / L(20)
-        "\x5f\x70\x6a\x79\x81\x7f\x8e\x79\x7e\x83\x81\x7f\x8d\x8e\x7c\x93\x88\x7b\x87\x7f\x1a",
-        // "CFBundleUnloadExecutable" / M(Xor2) / S(85) / L(24)
-        "\x37\x32\x36\x01\x1a\x10\x18\x11\x21\x1a\x18\x1b\x15\x10\x31\x0c\x11\x17\x01\x00\x15\x16\x18\x11\x74\xe1\xad\xfa\x50\x8b\x66\x74\xb7",
-        // "X509_NAME_get_text_by_NID" / M(Xor2) / S(109) / L(25)
-        "\x17\x7a\x7f\x76\x10\x01\x0e\x02\x0a\x10\x28\x2a\x3b\x10\x3b\x2a\x37\x3b\x10\x2d\x36\x10\x01\x06\x0b\x4f\x27\xb6\xa0\xf4\x62\x71\x5e\x12",
-        // "X509_STORE_new" / M(Xor2) / S(236) / L(14)
-        "\xa4\xc9\xcc\xc5\xa3\xaf\xa8\xb3\xae\xb9\xa3\x92\x99\x8b\xfc\xf8",
-        // "CFArrayAppendValue" / M(Xor2) / S(0) / L(18)
-        "\x50\x55\x52\x61\x61\x72\x6a\x52\x63\x63\x76\x7d\x77\x45\x72\x7f\x66\x76\x13",
-        // "start" / M(Xor1) / S(1) / L(5)
-        "\x72\x75\x60\x73\x75\x01\x4f\x04\x9f\x08\xed\x87\x92\xb4\x65\xe1",
-        // "longjmp" / M(Xor3) / S(74) / L(7)
-        "\x36\x35\x34\x3d\x30\x37\x2a\x5a\xdf\x8b\x0a\xc0\x0f\xa7\x36\x00",
-        // "CFReadStreamRead" / M(Xor3) / S(163) / L(16)
-        "\xf7\xf2\xe6\xd1\xd5\xd0\xe7\xc0\xc6\xd1\xd5\xd9\xe6\xd1\xd5\xd0\xb4",
-        // "objc_getClass" / M(Xor2) / S(14) / L(13)
-        "\x71\x7c\x74\x7d\x41\x79\x7b\x6a\x5d\x72\x7f\x6d\x6d\x1e\xc5\xc6",
-        // "" / M(None) / S(0) / L(0)
-        "\x7f\x4c\x33\x8d\xff\x11\x62\xda\x4c\xea\xcb\xe0\x06\x7f\xd6\xa0\x40\x96\xea\x69\x1a\x96\x52\x96\xa1\x18\x12\x5a\x14\xb9\x48\xc3",
-        // "mainBundle" / M(Xor1) / S(108) / L(10)
-        "\x01\x0d\x05\x02\x2e\x19\x02\x08\x00\x09\x6c\xbe\xa6\x2b\x2e\x1d",
-        // "%02x:" / M(Xor2) / S(131) / L(5)
-        "\xb6\xa3\xa1\xeb\xa9\x93\x31\xfe\xe5\xbb\x05\xf0\x46\x1b\x05\x41",
-        // "dlopen" / M(Xor3) / S(57) / L(6)
-        "\x2d\x25\x26\x39\x2c\x27\x49\x0f\x09\x71\xe5\x2c\x55\xad\xd3\xcc",
-        // "CFArrayGetCount" / M(Xor2) / S(244) / L(15)
-        "\xa7\xa2\xa5\x96\x96\x85\x9d\xa3\x81\x90\xa7\x8b\x91\x8a\x90\xe4",
-        // "" / M(None) / S(0) / L(0)
-        "\xbc\xe7\x81\x02\x91\xc1\x6a\x49\x53\x96\x71\x69\x85\x48\x72\x11\xfa\x0f\xa3\x97\xb5\x90\xcc\xc7\x20\x35\xeb\x23\xec\xaf\x1e\x16",
-        // "/usr/lib/libSystem.dylib" / M(Xor1) / S(78) / L(24)
-        "\x61\x3b\x3d\x3c\x61\x22\x27\x2c\x61\x22\x27\x2c\x1d\x37\x3d\x3a\x2b\x23\x60\x2a\x37\x22\x27\x2c\x4e\x5f\x82\x29\xd2\x5f\xfc\xce\x57",
+        // "X509_get_ext_by_OBJ" / M(Xor4) / S(35) / L(19)
+        "\xe4\x89\x8c\x85\xe3\xdb\xd9\xc8\xe3\xd9\xc4\xc8\xe3\xde\xc5\xe3\xf3\xfe\xf6\xbc",
+        // "sk_num" / M(Xor1) / S(60) / L(6)
+        "\x4f\x57\x63\x52\x49\x51\x3c\x26\xba\xfa\x7f\x91\x66\x15\x13\x2c",
+        // "CFBundleVersion" / M(Xor2) / S(1) / L(15)
+        "\x52\x57\x53\x64\x7f\x75\x7d\x74\x47\x74\x63\x62\x78\x7e\x7f\x11",
+        // "CFDictionaryAddValue" / M(Rot) / S(230) / L(20)
+        "\x29\x2c\x2a\x4f\x49\x5a\x4f\x55\x54\x47\x58\x5f\x27\x4a\x4a\x3c\x47\x52\x5b\x4b\xe6",
+        // "" / M(None) / S(0) / L(0)
+        "\x94\xb3\x55\x03\x68\xcf\xa9\x36\x09\xd4\xef\xbc\x1b\x22\xb7\xba\x05\x6f\x39\x9e\x1c\xae\x2e\x92\x36\x5a\x34\x7d\x46\x94\xac\xd4",
+        // "SHA1_Update" / M(Rot) / S(222) / L(11)
+        "\x31\x26\x1f\x0f\x3d\x33\x4e\x42\x3f\x52\x43\xde\x05\x5d\x8e\x1d",
+        // "SHA1" / M(Xor4) / S(28) / L(4)
+        "\x93\x88\x81\xf1\xc0\xb2\x2f\x5b\x40\x94\x36\xbf\x3e\xb3\xd2\x44",
+        // "Apple Root CA" / M(Xor4) / S(161) / L(13)
+        "\x51\x60\x60\x7c\x75\x30\x42\x7f\x7f\x64\x30\x53\x51\x10\x98\x69",
+        // "CFDataGetLength" / M(Xor3) / S(138) / L(15)
+        "\xd9\xdc\xde\xfb\xee\xfb\xdd\xff\xee\xd6\xff\xf4\xfd\xee\xf2\x9a",
+        // "" / M(None) / S(0) / L(0)
+        "\x17\x5f\x94\x51\x66\x27\x03\x2e\x1d\x3a\xf1\x8e\xb7\x39\xeb\xe4\xc8\xf2\xf5\xa6\xd0\xa6\xe0\xac\x91\x8e\xae\x56\x84\x90\x00\x32",
+        // "appStoreReceiptURL" / M(Rot) / S(51) / L(18)
+        "\x94\xa3\xa3\x86\xa7\xa2\xa5\x98\x85\x98\x96\x98\x9c\xa3\xa7\x88\x85\x7f\x33",
+        // "" / M(None) / S(0) / L(0)
+        "\xe6\x83\x37\x2e\x04\x75\x91\xf3\x35\x31\xba\x65\x9d\x75\xdc\x11\xda\x40\x40\x77\x73\x4b\x16\x8e\x24\x48\x8b\x46\x3a\x2c\x7b\x78",
+        // "strncmp" / M(Xor3) / S(234) / L(7)
+        "\x89\x8e\x88\x94\x99\x97\x8a\xfa\x38\x6a\x8a\xba\x7e\x9c\x16\x7d",
+        // "CFDateCompare" / M(Xor4) / S(18) / L(13)
+        "\x63\x66\x64\x41\x54\x45\x63\x4f\x4d\x50\x41\x52\x45\x20\xc9\x8f",
+        // "setjmp" / M(Xor2) / S(123) / L(6)
+        "\x18\x0e\x1f\x01\x06\x1b\x6b\xf4\x1d\x19\x77\xfd\xfe\x20\x6d\x16",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor3) / S(134) / L(36)
+        "\xe8\xed\xe9\xde\xc5\xcf\xc7\xce\xec\xce\xdf\xfd\xca\xc7\xde\xce\xed\xc4\xd9\xe2\xc5\xcd\xc4\xef\xc2\xc8\xdf\xc2\xc4\xc5\xca\xd9\xd2\xe0\xce\xd2\xab",
+        // "CFDateCreate" / M(Xor1) / S(224) / L(12)
+        "\xa3\xa6\xa4\x81\x94\x85\xa3\x92\x85\x81\x94\x85\xe0\x77\x38\x32",
+        // "" / M(None) / S(0) / L(0)
+        "\x8c\xf1\x23\x49\xc9\x26\x30\xe4\x47\x05\x7a\x8d\x06\x84\xe2\x45\xc2\xd1\xdf\x11\xb7\x42\x79\xa8\x02\x98\x44\x6c\xd1\xfa\x66\x99",
+        // "OBJ_txt2obj" / M(Rot) / S(202) / L(11)
+        "\x19\x0c\x14\x29\x3e\x42\x3e\xfc\x39\x2c\x34\xca\xd2\x7b\xa4\xa2",
+        // "CFReadStreamClose" / M(Xor1) / S(118) / L(17)
+        "\x35\x30\x24\x13\x17\x12\x25\x02\x04\x13\x17\x1b\x35\x1a\x19\x05\x13\x76",
+        // "" / M(None) / S(0) / L(0)
+        "\x25\x7f\x9c\xd7\xd0\x80\x09\xa8\x69\xb6\x6c\x54\xb2\x62\x0e\x70\xa4\x83\x21\x60\xce\x4b\x36\xa0\x9d\xfc\xba\xf9\x1d\x4e\x1d\x04",
+        // "" / M(None) / S(0) / L(0)
+        "\x7d\xf7\x95\x28\x26\x08\xdc\xae\xf2\x29\x39\x89\x1a\xb8\x22\xdb\x10\x1f\x8e\x58\x8d\x92\x22\xb3\x79\xc8\x65\xe2\x2b\x8a\xc3\x30",
+        // "EVP_MD_CTX_init" / M(Xor4) / S(12) / L(15)
+        "\x85\x96\x90\x9f\x8d\x84\x9f\x83\x94\x98\x9f\xa9\xae\xa9\xb4\xc0",
+        // "" / M(None) / S(0) / L(0)
+        "\x5c\xa8\x65\xf3\x2f\x0c\xc9\xaf\x52\x84\xb5\x4b\x25\x23\xe1\x8f\x98\xe0\xb5\xbd\x49\x34\xad\x72\x58\x04\x9d\xfd\xf6\x0e\xbf\x1a",
+        // "d2i_PKCS7_bio" / M(Rot) / S(135) / L(13)
+        "\xeb\xb9\xf0\xe6\xd7\xd2\xca\xda\xbe\xe6\xe9\xf0\xf6\x87\x8b\x78",
+        // "currentDevice" / M(Xor2) / S(83) / L(13)
+        "\x20\x36\x31\x31\x26\x2d\x37\x07\x26\x35\x2a\x20\x26\x43\xdf\x0c",
+        // "CC_SHA1_Init" / M(Xor3) / S(22) / L(12)
+        "\x65\x65\x79\x75\x6e\x67\x17\x79\x6f\x48\x4f\x52\x26\x65\x97\x71",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor4) / S(164) / L(59)
+        "\xa6\xa1\xaa\xa1\xd5\xaa\xa5\xd2\xaa\xa6\xa6\xaa\xa2\xd3\xaa\xa5\xa9\xaa\xa3\xd1\xaa\xa0\xa8\xaa\xd6\xd6\xaa\xa5\xa8\xaa\xd4\xa1\xaa\xa4\xd1\xaa\xd5\xa2\xaa\xa2\xa4\xaa\xa5\xa2\xaa\xd4\xa1\xaa\xa9\xa8\xaa\xd4\xd6\xaa\xa6\xd3\xaa\xa6\xa0\x90\x97\x5a\xa8\xef\xa7\xaa\xeb\x9e",
+        // "sk_num" / M(Xor1) / S(21) / L(6)
+        "\x66\x7e\x4a\x7b\x60\x78\x15\x07\xa7\x87\x1b\xe8\x4d\x05\xb4\x0e",
+        // "CFDataAppendBytes" / M(Xor4) / S(202) / L(17)
+        "\x77\x72\x70\x55\x40\x55\x75\x44\x44\x51\x5a\x50\x76\x4d\x40\x51\x47\x34",
+        // "SHA1" / M(Xor1) / S(9) / L(4)
+        "\x5a\x41\x48\x38\x09\xea\x71\x5d\x7b\x30\x01\x6a\x93\x7e\xc3\xc7",
+        // "RTLD_MAIN_ONLY" / M(Xor3) / S(70) / L(14)
+        "\x04\x02\x1a\x12\x09\x1b\x17\x1f\x18\x09\x19\x18\x1a\x0f\x56\xe0",
+        // "CFArrayGetCount" / M(Xor4) / S(234) / L(15)
+        "\xe3\xe6\xe1\xd2\xd2\xc1\xd9\xe7\xc5\xd4\xe3\xcf\xd5\xce\xd4\xa0",
+        // "CFReadStreamOpen" / M(Xor2) / S(202) / L(16)
+        "\x98\x9d\x89\xbe\xba\xbf\x88\xaf\xa9\xbe\xba\xb6\x94\xab\xbe\xb5\xdb",
+        // "kCFTypeArrayCallBacks" / M(Xor4) / S(161) / L(21)
+        "\xbd\x95\x90\x82\xaf\xa6\xb3\x97\xa4\xa4\xb7\xaf\x95\xb7\xba\xba\x94\xb7\xb5\xbd\xa5\xd6",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Rot) / S(89) / L(32)
+        "\xd2\xd2\xd2\xd2\x80\x86\x80\xa6\xa6\x80\x86\x80\xbd\xbd\x80\xad\x80\xa1\xa1\x80\x93\x80\xc6\xc6\x80\x93\x80\xcc\xcc\x80\xb3\x80\x59",
+        // "" / M(None) / S(0) / L(0)
+        "\xb4\x5c\x23\x80\x02\xc1\x48\x3f\x06\xd6\x5e\x14\xe8\x9d\xc1\xa4\x4e\xe4\x25\x35\x78\x87\x25\xa9\x32\xdd\x18\x62\xac\x6b\x3d\xf3",
+        // "ASN1_INTEGER_free" / M(Xor2) / S(149) / L(17)
+        "\xc6\xd4\xc9\xb6\xd8\xce\xc9\xd3\xc2\xc0\xc2\xd5\xd8\xe1\xf5\xe2\xe2\x87",
+        // "" / M(None) / S(0) / L(0)
+        "\xfd\x25\x89\x02\x2e\xc5\x9c\xfa\x10\x52\x0a\x82\x3f\x75\x0c\x23\xa2\xce\xd1\xa9\x3d\xae\x05\x97\x64\x3a\xd3\x54\x95\x50\xc0\x21",
+        // "sha1" / M(Xor3) / S(222) / L(4)
+        "\x9d\x86\x8f\xdf\xee\x1c\x85\xc6\xad\xf1\x2b\x17\x25\x9a\x4e\x04",
+        // "" / M(None) / S(0) / L(0)
+        "\xbf\x5e\x3d\x00\x42\x8f\xac\xdf\x20\xff\x31\xef\xed\xcd\x71\xb6\xbd\x29\x18\x2c\x9d\x5f\xc0\x75\x17\x97\x94\x60\x41\x9d\xf4\x47",
+        // "" / M(None) / S(0) / L(0)
+        "\x6d\x3d\x2b\x0b\xab\xf4\x78\x62\x2e\xa1\x43\xc5\xd4\x80\x90\xde\xc0\x17\x8e\x32\xa5\xbf\x06\xa8\x16\xa1\x16\xb0\x57\x94\xb7\x4b",
+        // "ASN1_OBJECT_free" / M(Rot) / S(168) / L(16)
+        "\xe9\xfb\xf6\xd9\x07\xf7\xea\xf2\xed\xeb\xfc\x07\x0e\x1a\x0d\x0d\xa8",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor3) / S(121) / L(40)
+        "\x9c\x9b\x9b\xef\x9f\xe8\x9c\x9c\x98\xe9\x9f\x93\x99\xeb\x9a\x92\xec\xec\x9f\x92\xee\x9b\x9e\xeb\xef\x98\x98\x9e\x9f\x98\xee\x9b\x93\x92\xee\xec\x9c\xe9\x9c\x9a\xaa\xe2\x2e\x6c\x48\xa7\x28\x5f\x9c",
+        // "sk_free" / M(Xor1) / S(182) / L(7)
+        "\xc5\xdd\xe9\xd0\xc4\xd3\xd3\xb6\x17\xf3\xa6\x3c\x70\x39\xe0\x33",
+        // "ASN1_INTEGER_get" / M(Rot) / S(180) / L(16)
+        "\xf5\x07\x02\xe5\x13\xfd\x02\x08\xf9\xfb\xf9\x06\x13\x1b\x19\x28\xb4",
+        // "CC_SHA1_Init" / M(Rot) / S(10) / L(12)
+        "\x4d\x4d\x69\x5d\x52\x4b\x3b\x69\x53\x78\x73\x7e\x0a\xcf\xf7\x1a",
+        // "EVP_DigestFinal" / M(Xor2) / S(93) / L(15)
+        "\x08\x1b\x1d\x12\x09\x24\x2a\x28\x3e\x39\x0b\x24\x23\x2c\x21\x4d",
+        // "" / M(None) / S(0) / L(0)
+        "\x92\x83\xce\xf3\x30\xa7\xd1\xba\x9f\x28\xef\xea\xba\x59\x50\x1d\xb4\x04\x1b\xe9\x94\x93\x95\xc1\x55\xc0\xe8\x52\xf6\xa0\xcf\x70",
+        // "com.intangiblesoftware.menslacrossestats" / M(Xor1) / S(64) / L(40)
+        "\x23\x2f\x2d\x6e\x29\x2e\x34\x21\x2e\x27\x29\x22\x2c\x25\x33\x2f\x26\x34\x37\x21\x32\x25\x6e\x2d\x25\x2e\x33\x2c\x21\x23\x32\x2f\x33\x33\x25\x33\x34\x21\x34\x33\x40\x1f\x18\x5f\x9b\x83\xe9\x5e\x72",
+        // "setjmp" / M(Xor2) / S(29) / L(6)
+        "\x7e\x68\x79\x67\x60\x7d\x0d\xdb\x19\xf4\xfe\xbe\x3f\xa1\xc6\x67",
+        // "BIO_free" / M(Rot) / S(67) / L(8)
+        "\x85\x8c\x92\xa2\xa9\xb5\xa8\xa8\x43\x16\x2f\xf4\xd8\x3d\xa6\x31",
+        // "mainBundle" / M(Xor2) / S(143) / L(10)
+        "\xf2\xfe\xf6\xf1\xdd\xea\xf1\xfb\xf3\xfa\x9f\xf3\x08\xa9\x22\xfe",
+        // "CFDateFormatterCreateDateFromString" / M(Xor1) / S(143) / L(35)
+        "\xcc\xc9\xcb\xee\xfb\xea\xc9\xe0\xfd\xe2\xee\xfb\xfb\xea\xfd\xcc\xfd\xea\xee\xfb\xea\xcb\xee\xfb\xea\xc9\xfd\xe0\xe2\xdc\xfb\xfd\xe6\xe1\xe8\x8f",
+        // "UIDevice" / M(Xor4) / S(80) / L(8)
+        "\x55\x49\x44\x65\x76\x69\x63\x65\x00\x78\x91\xb8\x1a\x07\x3d\xc8",
+        // "/usr/lib/libobjc.dylib" / M(Xor2) / S(172) / L(22)
+        "\x94\xce\xc8\xc9\x94\xd7\xd2\xd9\x94\xd7\xd2\xd9\xd4\xd9\xd1\xd8\x95\xdf\xc2\xd7\xd2\xd9\xbb",
+        // "NSBundle" / M(Xor1) / S(50) / L(8)
+        "\x7c\x61\x70\x47\x5c\x56\x5e\x57\x32\xe2\x28\xa5\x81\x9e\xd5\x40",
+        // "CFBundleUnloadExecutable" / M(Xor2) / S(253) / L(24)
+        "\x9f\x9a\x9e\xa9\xb2\xb8\xb0\xb9\x89\xb2\xb0\xb3\xbd\xb8\x99\xa4\xb9\xbf\xa9\xa8\xbd\xbe\xb0\xb9\xdc\x11\x81\x76\x5d\xcb\x2a\xf7\x6c",
+        // "sha1" / M(Xor3) / S(196) / L(4)
+        "\xa7\xbc\xb5\xe5\xd4\x5b\x65\xa7\xac\xc4\x2f\xef\x8f\xc2\x55\x90",
+        // "%02X" / M(Xor1) / S(123) / L(4)
+        "\x5e\x4b\x49\x23\x7b\xd4\x87\x45\x29\x82\x4e\xbe\x15\xa2\xbe\xeb",
+        // "" / M(None) / S(0) / L(0)
+        "\x94\x2f\x1c\xa9\x16\x59\x85\x76\xa7\x46\x1f\x35\xad\x43\x34\xab\x3f\xa6\x74\x4a\x1d\x0c\xb8\x1a\x15\xdc\xc1\x28\x47\x7a\x37\x6e",
+        // "X509_get_ext_by_OBJ" / M(Xor4) / S(4) / L(19)
+        "\x08\x65\x60\x69\x0f\x37\x35\x24\x0f\x35\x28\x24\x0f\x32\x29\x0f\x1f\x12\x1a\x50",
+        // "exit" / M(Xor2) / S(78) / L(4)
+        "\x3b\x26\x37\x2a\x5e\x59\x02\xc2\xfe\x86\x16\x18\x0a\xae\x42\x58",
+        // "" / M(None) / S(0) / L(0)
+        "\xaa\x15\x44\x33\x9e\x8b\x58\x34\x4c\xbf\xf7\xff\x17\x65\x26\x67\x2f\xb5\xe7\xec\x1d\x3b\xa9\x33\x69\xf7\x6b\xae\xf8\x8b\x70\xc8",
+        // "start" / M(Xor3) / S(181) / L(5)
+        "\xb6\xb1\xa4\xb7\xb1\xc5\x94\xc8\x39\x85\x87\xad\xcd\xca\xab\xb1",
+        // "ASN1_INTEGER_free" / M(Rot) / S(176) / L(17)
+        "\xf1\x03\xfe\xe1\x0f\xf9\xfe\x04\xf5\xf7\xf5\x02\x0f\x16\x22\x15\x15\xb0",
+        // "CFBundleUnloadExecutable" / M(Xor1) / S(163) / L(24)
+        "\xe0\xe5\xe1\xd6\xcd\xc7\xcf\xc6\xf6\xcd\xcf\xcc\xc2\xc7\xe6\xdb\xc6\xc0\xd6\xd7\xc2\xc1\xcf\xc6\xa3\xf0\x60\x9e\x23\x8e\xe4\x88\x71",
+        // "d2i_X509_bio" / M(Xor2) / S(44) / L(12)
+        "\x58\x0e\x55\x63\x64\x09\x0c\x05\x63\x5e\x55\x53\x3c\xaa\x17\xc7",
+        // "SKReceiptRefreshRequest" / M(Xor2) / S(243) / L(23)
+        "\x80\x98\x81\xb6\xb0\xb6\xba\xa3\xa7\x81\xb6\xb5\xa1\xb6\xa0\xbb\x81\xb6\xa2\xa6\xb6\xa0\xa7\xd3\xcb\xc1\xa2\x8b\xd4\x75\x3f\xce",
+        // "init" / M(Rot) / S(251) / L(4)
+        "\x64\x69\x64\x6f\xfb\xc8\xbb\xeb\xeb\x9b\x6c\x19\xc2\x92\x98\x69",
+        // "" / M(None) / S(0) / L(0)
+        "\x66\xd8\x5d\xd2\xa8\x47\x36\xab\x3f\xa5\x07\x8b\x96\x2f\xdf\x63\xf8\x85\xa2\x20\x7d\x33\x21\x61\x48\x4c\xfc\x08\xd8\xf1\xa6\xce",
+        // "strncmp" / M(Xor3) / S(133) / L(7)
+        "\xe6\xe1\xe7\xfb\xf6\xf8\xe5\x95\x9d\x46\x74\x4a\x7c\x8e\xe7\xad",
+        // "kCFBundleIdentifierKey" / M(Xor4) / S(185) / L(22)
+        "\xf4\xdc\xd9\xdd\xea\xf1\xfb\xf3\xfa\xd6\xfb\xfa\xf1\xeb\xf6\xf9\xf6\xfa\xed\xd4\xfa\xe6\x9f",
+        // "EVP_DigestUpdate" / M(Xor4) / S(188) / L(16)
+        "\x39\x2a\x2c\x23\x38\x15\x1b\x19\x0f\x08\x29\x0c\x18\x1d\x08\x19\x7c",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor1) / S(105) / L(66)
+        "\x46\x3a\x10\x1a\x1d\x0c\x04\x46\x25\x00\x0b\x1b\x08\x1b\x10\x46\x2f\x1b\x08\x04\x0c\x1e\x06\x1b\x02\x1a\x46\x2a\x06\x1b\x0c\x2f\x06\x1c\x07\x0d\x08\x1d\x00\x06\x07\x47\x0f\x1b\x08\x04\x0c\x1e\x06\x1b\x02\x46\x2a\x06\x1b\x0c\x2f\x06\x1c\x07\x0d\x08\x1d\x00\x06\x07\x69",
+        // "CFBundleGetIdentifier" / M(Xor3) / S(137) / L(21)
+        "\xdc\xd9\xdd\xea\xf1\xfb\xf3\xfa\xd8\xfa\xeb\xd6\xfb\xfa\xf1\xeb\xf6\xf9\xf6\xfa\xed\x9f",
+        // "CFDateCompare" / M(Rot) / S(122) / L(13)
+        "\xbd\xc0\xbe\xdb\xee\xdf\xbd\xe9\xe7\xea\xdb\xec\xdf\x7a\xec\x77",
+        // "kCFTypeDictionaryValueCallBacks" / M(Rot) / S(18) / L(31)
+        "\x7d\x55\x58\x66\x8b\x82\x77\x56\x7b\x75\x86\x7b\x81\x80\x73\x84\x8b\x68\x73\x7e\x87\x77\x55\x73\x7e\x7e\x54\x73\x75\x7d\x85\x12",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor2) / S(133) / L(40)
+        "\x82\x85\x85\xd1\x81\xd6\x82\x82\x86\xd7\x81\x8d\x87\xd5\x84\x8c\xd2\xd2\x81\x8c\xd0\x85\x80\xd5\xd1\x86\x86\x80\x81\x86\xd0\x85\x8d\x8c\xd0\xd2\x82\xd7\x82\x84\xb4\xba\xb0\x68\x76\x3e\x78\xb0\x1d",
+        // "X509_STORE_new" / M(Xor1) / S(164) / L(14)
+        "\xfc\x91\x94\x9d\xfb\xf7\xf0\xeb\xf6\xe1\xfb\xca\xc1\xd3\xa4\x88",
+        // "sk_value" / M(Rot) / S(64) / L(8)
+        "\xb3\xab\x9f\xb6\xa1\xac\xb5\xa5\x40\x08\x67\x8e\x01\x60\x32\xb5",
+        // "objc_getClass" / M(Xor2) / S(111) / L(13)
+        "\x10\x1d\x15\x1c\x20\x18\x1a\x0b\x3c\x13\x1e\x0c\x0c\x7f\x70\xf8",
+        // "CFDateFormatterSetProperty" / M(Rot) / S(170) / L(26)
+        "\xed\xf0\xee\x0b\x1e\x0f\xf0\x19\x1c\x17\x0b\x1e\x1e\x0f\x1c\xfd\x0f\x1e\xfa\x1c\x19\x1a\x0f\x1c\x1e\x23\xaa\xbf\x3b\x18\xb6\x2c\xc8\x78\x1f",
+        // "" / M(None) / S(0) / L(0)
+        "\xca\x1d\x37\x95\xc8\x04\x3c\xf9\x04\x44\x8b\x5e\x98\x1f\x99\xe1\x2a\x3f\xf1\x31\x16\x27\x90\xc6\xc6\xd2\x80\x32\xc9\x16\x28\x84",
+        // "" / M(None) / S(0) / L(0)
+        "\xb5\x9c\xb7\xa0\x9e\x4b\x69\x54\xcf\x15\xa2\xdb\x82\x83\x6a\xe1\xd8\x71\xb1\x7a\x63\x68\x53\xcd\x64\x14\x29\xfa\x43\x3e\xbb\x2d",
+        // "PKCS7_verify" / M(Rot) / S(98) / L(12)
+        "\xb2\xad\xa5\xb5\x99\xc1\xd8\xc7\xd4\xcb\xc8\xdb\x62\x85\x44\x42",
+        // "1.2.840.113635.100.6.11.1" / M(Xor2) / S(227) / L(25)
+        "\xf0\xef\xf3\xef\xf9\xf5\xf1\xef\xf0\xf0\xf2\xf7\xf2\xf4\xef\xf0\xf1\xf1\xef\xf7\xef\xf0\xf0\xef\xf0\xc1\x3c\x7e\x8b\xf5\xfd\x28\x0e\x92",
+        // "" / M(None) / S(0) / L(0)
+        "\xb3\xe7\x99\x9a\x91\x14\xde\xca\x27\xb8\x51\x4e\x93\x3c\x41\x68\x65\x0c\xff\x87\x97\xac\xdc\x42\xeb\xaf\x0b\xc8\x36\x2f\xde\x1a",
+        // "start" / M(Xor2) / S(24) / L(5)
+        "\x7b\x7c\x69\x7a\x7c\x08\x8e\xbd\x36\x53\xda\xdc\xe8\xdf\xd8\x62",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Xor1) / S(71) / L(36)
+        "\x04\x01\x05\x32\x29\x23\x2b\x22\x00\x22\x33\x11\x26\x2b\x32\x22\x01\x28\x35\x0e\x29\x21\x28\x03\x2e\x24\x33\x2e\x28\x29\x26\x35\x3e\x0c\x22\x3e\x47",
+        // "PKCS7_get0_signers" / M(Xor2) / S(216) / L(18)
+        "\x9b\x80\x88\x98\xfc\x94\xac\xae\xbf\xfb\x94\xb8\xa2\xac\xa5\xae\xb9\xb8\xcb",
+        // "CFDataCreate" / M(Xor3) / S(234) / L(12)
+        "\xb9\xbc\xbe\x9b\x8e\x9b\xb9\x88\x9f\x9b\x8e\x9f\xfa\xb6\xd4\xa4",
+        // "EVP_get_digestbyname" / M(Xor3) / S(217) / L(20)
+        "\xab\xb8\xbe\xb1\x89\x8b\x9a\xb1\x8a\x87\x89\x8b\x9d\x9a\x8c\x97\x80\x8f\x83\x8b\xee",
+        // "CFDictionarySetValue" / M(Xor4) / S(75) / L(20)
+        "\x64\x61\x63\x4e\x44\x53\x4e\x48\x49\x46\x55\x5e\x74\x42\x53\x71\x46\x4b\x52\x42\x27",
+        // "OpenSSL_add_all_digests" / M(Xor2) / S(218) / L(23)
+        "\xb5\x8a\x9f\x94\xa9\xa9\xb6\xa5\x9b\x9e\x9e\xa5\x9b\x96\x96\xa5\x9e\x93\x9d\x9f\x89\x8e\x89\xfa\x4c\xd9\x61\x35\x0a\x09\xda\x0d",
+        // "/usr/lib/libSystem.dylib" / M(Xor1) / S(139) / L(24)
+        "\xa4\xfe\xf8\xf9\xa4\xe7\xe2\xe9\xa4\xe7\xe2\xe9\xd8\xf2\xf8\xff\xee\xe6\xa5\xef\xf2\xe7\xe2\xe9\x8b\x47\x7d\x81\x8f\x94\x77\x8b\x51",
+        // "kCFDateFormatterTimeZone" / M(Xor3) / S(191) / L(24)
+        "\x8b\xa3\xa6\xa4\x81\x94\x85\xa6\x8f\x92\x8d\x81\x94\x94\x85\x92\xb4\x89\x8d\x85\xba\x8f\x8e\x85\xe0\xe8\xdf\x2f\xa6\x07\x12\x85\x34",
+        // "sk_value" / M(Xor3) / S(9) / L(8)
+        "\x6a\x72\x46\x6f\x78\x75\x6c\x7c\x19\x7c\x46\x37\xdf\x99\xd3\x0c",
+        // "objc_msgSend" / M(Xor4) / S(37) / L(12)
+        "\x3f\x32\x3a\x33\x0f\x3d\x23\x37\x03\x35\x3e\x34\x50\xb2\xf5\xb8",
+        // "X509_STORE_add_cert" / M(Xor1) / S(1) / L(19)
+        "\x59\x34\x31\x38\x5e\x52\x55\x4e\x53\x44\x5e\x60\x65\x65\x5e\x62\x64\x73\x75\x01",
+        // "com.intangiblesoftware.menslacrossestats" / M(Xor3) / S(25) / L(40)
+        "\x29\x25\x27\x64\x23\x24\x3e\x2b\x24\x2d\x23\x28\x26\x2f\x39\x25\x2c\x3e\x3d\x2b\x38\x2f\x64\x27\x2f\x24\x39\x26\x2b\x29\x38\x25\x39\x39\x2f\x39\x3e\x2b\x3e\x39\x4a\x3f\x5f\xf3\x71\xac\x3f\x05\x10",
+        // "identifierForVendor" / M(Xor2) / S(251) / L(19)
+        "\x86\x8b\x8a\x81\x9b\x86\x89\x86\x8a\x9d\xa9\x80\x9d\xb9\x8a\x81\x8b\x80\x9d\xef",
+        // "sel_registerName" / M(Xor1) / S(229) / L(16)
+        "\x96\x80\x89\xba\x97\x80\x82\x8c\x96\x91\x80\x97\xab\x84\x88\x80\xe5",
+        // "CC_SHA1_Update" / M(Xor3) / S(226) / L(14)
+        "\xb1\xb1\xad\xa1\xba\xb3\xc3\xad\xa7\x82\x96\x93\x86\x97\xf2\x16",
+        // "" / M(None) / S(0) / L(0)
+        "\x00\x3f\xae\xd8\x18\xdd\x7e\xf5\x32\x95\x81\xc5\x89\x64\xa4\xfd\x61\xe3\x82\xcc\x62\xb5\x1e\xcb\xde\x6e\x75\x92\x4a\x8b\xe7\x7f",
+        // "dlopen" / M(Rot) / S(180) / L(6)
+        "\x18\x20\x23\x24\x19\x22\xb4\x10\x56\x21\x05\xa9\x88\x9a\xc0\xd5",
+        // "dlopen" / M(Rot) / S(253) / L(6)
+        "\x61\x69\x6c\x6d\x62\x6b\xfd\x63\x5f\x4e\x10\x6c\xaa\xb4\x2a\xb9",
+        // "CFDateFormatterSetFormat" / M(Xor2) / S(214) / L(24)
+        "\xb4\xb1\xb3\x96\x83\x92\xb1\x98\x85\x9a\x96\x83\x83\x92\x85\xa4\x92\x83\xb1\x98\x85\x9a\x96\x83\xf7\xe7\xd2\x1d\x0a\x42\x74\x1c\x14",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Rot) / S(110) / L(29)
+        "\xd9\xb1\xb4\xc2\xe7\xde\xd3\xb2\xd7\xd1\xe2\xd7\xdd\xdc\xcf\xe0\xe7\xb9\xd3\xe7\xb1\xcf\xda\xda\xb0\xcf\xd1\xd9\xe1\x6e\x72\x1d\x31\xf9\xc3\x57\xa5\xec",
+        // "" / M(None) / S(0) / L(0)
+        "\xea\x52\x72\x53\xbb\xe0\xa8\x0e\xea\x59\xe8\xac\xdb\x4f\xfd\x31\x04\x04\x1b\x87\xd3\xee\x1d\x34\x16\xc2\x3f\xe3\x5a\x89\x0b\x76",
+        // "X509_STORE_free" / M(Xor4) / S(52) / L(15)
+        "\x18\x75\x70\x79\x1f\x13\x14\x0f\x12\x05\x1f\x26\x32\x25\x25\x40",
+        // "kCFTypeArrayCallBacks" / M(Xor1) / S(123) / L(21)
+        "\x10\x38\x3d\x2f\x02\x0b\x1e\x3a\x09\x09\x1a\x02\x38\x1a\x17\x17\x39\x1a\x18\x10\x08\x7b",
+        // "CFReadStreamCreateWithFile" / M(Rot) / S(144) / L(26)
+        "\xd3\xd6\xe2\xf5\xf1\xf4\xe3\x04\x02\xf5\xf1\xfd\xd3\x02\xf5\xf1\x04\xf5\xe7\xf9\x04\xf8\xd6\xf9\xfc\xf5\x90\x86\x13\x89\x9d\x03\x75\xf4\x8e",
+        // "" / M(None) / S(0) / L(0)
+        "\x32\x8a\x88\xc9\x84\xec\x8b\x19\x8c\x03\x83\x83\x63\x52\xdc\xf2\x3a\x92\xd2\x63\x97\x64\x80\x8a\x2a\x13\x15\x96\xe4\xda\x15\xa9",
+        // "PKCS7_free" / M(Xor1) / S(68) / L(10)
+        "\x14\x0f\x07\x17\x73\x1b\x22\x36\x21\x21\x44\x74\xeb\x7f\x9d\x18",
+        // "" / M(None) / S(0) / L(0)
+        "\xbf\x1c\x74\x30\x3b\xcc\xc1\x00\x98\x12\x8b\xfa\xaa\xcf\xe3\xa9\xf4\x7f\x72\x85\x77\x3b\xd1\x1d\xca\x5e\x21\xa3\xe3\x06\x33\x84",
+        // "EVP_get_digestbyname" / M(Rot) / S(189) / L(20)
+        "\x02\x13\x0d\x1c\x24\x22\x31\x1c\x21\x26\x24\x22\x30\x31\x1f\x36\x2b\x1e\x2a\x22\xbd",
+        // "" / M(None) / S(0) / L(0)
+        "\x77\x13\xde\x8b\xed\x96\x33\x4d\x6c\x73\xda\x18\x85\x13\xb9\xe1\xae\x52\x0f\xe3\xa4\xd9\x16\x05\x37\x78\x8a\x2e\xdc\x7e\xc7\xa1",
+        // "" / M(None) / S(0) / L(0)
+        "\xa3\xb4\x74\xd4\x31\xbe\xa3\x9f\x70\x16\xc2\x5c\x18\x9d\x7d\xf9\x86\x6f\x8f\x42\x6f\xd4\x2c\x2e\x0b\x03\xec\x38\x8b\xd1\x3d\x55",
+        // "X509_STORE_new" / M(Xor1) / S(166) / L(14)
+        "\xfe\x93\x96\x9f\xf9\xf5\xf2\xe9\xf4\xe3\xf9\xc8\xc3\xd1\xa6\x0d",
+        // "ASN1_OBJECT_free" / M(Rot) / S(124) / L(16)
+        "\xbd\xcf\xca\xad\xdb\xcb\xbe\xc6\xc1\xbf\xd0\xdb\xe2\xee\xe1\xe1\x7c",
+        // "" / M(None) / S(0) / L(0)
+        "\x64\xdf\xb6\x00\xcd\x9a\x3b\xd1\xa4\xb0\xcc\x20\xe7\x20\x11\x39\x1c\xfa\x3a\x97\xd9\x3a\xb5\x51\x5d\xab\x62\xa5\xce\xa5\x12\x2d",
+        // "strlen" / M(Xor4) / S(44) / L(6)
+        "\xb3\xb4\xb2\xac\xa5\xae\xc0\x3e\xa6\xdd\xbf\xfb\x55\xd5\xd3\x18",
+        // "" / M(None) / S(0) / L(0)
+        "\x55\xfb\xf6\xa5\x44\x5a\x65\x84\x5e\x44\xa3\x25\xf1\x7e\xe7\x18\xdd\x7e\x9d\xe1\xb4\xda\xf6\xf6\x63\x68\x83\x49\x27\x9e\x5a\x67",
+        // "CFReadStreamRead" / M(Xor1) / S(70) / L(16)
+        "\x05\x00\x14\x23\x27\x22\x15\x32\x34\x23\x27\x2b\x14\x23\x27\x22\x46",
+        // "SHA1_Update" / M(Xor1) / S(57) / L(11)
+        "\x6a\x71\x78\x08\x66\x6c\x49\x5d\x58\x4d\x5c\x39\x43\x84\xbd\x6d",
+        // "" / M(None) / S(0) / L(0)
+        "\x67\x31\x90\xfa\x01\xda\x86\xac\x85\x2d\xd4\x68\xe9\x98\xc9\x12\x62\x91\x14\x5c\x10\x6e\x63\x92\x0e\xd9\x86\x0c\x1c\x61\x40\x54",
+        // "SKReceiptRefreshRequest" / M(Xor3) / S(172) / L(23)
+        "\x9f\x87\x9e\xa9\xaf\xa9\xa5\xbc\xb8\x9e\xa9\xaa\xbe\xa9\xbf\xa4\x9e\xa9\xbd\xb9\xa9\xbf\xb8\xcc\x01\xfd\x9f\x5c\x94\xf9\x91\x5b",
+        // "" / M(None) / S(0) / L(0)
+        "\xa7\xb8\x1a\xc0\xf3\xfd\xcb\x30\x25\x51\x11\x4c\xc5\xde\x6c\x23\x47\x6e\x7e\x3f\xbc\x35\xab\xa2\x03\x54\x4c\xab\xbe\x40\x7e\xe9",
+        // "X509_NAME_get_text_by_NID" / M(Xor2) / S(194) / L(25)
+        "\xb8\xd5\xd0\xd9\xbf\xae\xa1\xad\xa5\xbf\x87\x85\x94\xbf\x94\x85\x98\x94\xbf\x82\x99\xbf\xae\xa9\xa4\xe0\xcf\x82\xb4\x56\x9b\x82\x1e\x7b",
+        // "PKCS7_free" / M(Rot) / S(9) / L(10)
+        "\x59\x54\x4c\x5c\x40\x68\x6f\x7b\x6e\x6e\x09\x66\x69\xa2\x33\xe7",
+        // "CFDataCreateMutable" / M(Xor1) / S(160) / L(19)
+        "\xe3\xe6\xe4\xc1\xd4\xc1\xe3\xd2\xc5\xc1\xd4\xc5\xed\xd5\xd4\xc1\xc2\xcc\xc5\xa0",
+        // "" / M(None) / S(0) / L(0)
+        "\x76\x1c\x9e\x09\xc4\x39\xd0\x8f\x54\xa9\xd9\xae\x97\x9c\xda\x31\x0e\x25\xf3\x98\x59\x81\x38\xeb\x08\xab\x4b\xab\x26\x3a\x80\x2a",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Rot) / S(231) / L(59)
+        "\x1d\x18\x21\x18\x2c\x21\x1c\x29\x21\x1d\x1d\x21\x19\x2a\x21\x1c\x20\x21\x1a\x28\x21\x17\x1f\x21\x2d\x2d\x21\x1c\x1f\x21\x2b\x18\x21\x1b\x28\x21\x2c\x19\x21\x19\x1b\x21\x1c\x19\x21\x2b\x18\x21\x20\x1f\x21\x2b\x2d\x21\x1d\x2a\x21\x1d\x17\xe7\x48\x5b\x7d\xc4\xc9\x2a\xa7\x76",
+        // "BIO_free" / M(Xor4) / S(138) / L(8)
+        "\xe2\xe9\xef\xff\xc6\xd2\xc5\xc5\xa0\xe8\xb3\x9b\xad\x7b\x57\x00",
+        // "CFArrayCreateMutable" / M(Xor3) / S(194) / L(20)
+        "\x94\x91\x96\xa5\xa5\xb6\xae\x94\xa5\xb2\xb6\xa3\xb2\x9a\xa2\xa3\xb6\xb5\xbb\xb2\xd7",
+        // "" / M(None) / S(0) / L(0)
+        "\xc3\xb5\x27\xa7\xf9\x0a\x6a\x3c\x17\x03\x23\x4d\xe2\xc7\xf8\x0b\xf4\x9e\xde\x02\xb4\x78\x17\x3a\xfe\xa9\xda\xec\x98\x78\x95\x08",
+        // "CFDataCreateMutable" / M(Xor1) / S(236) / L(19)
+        "\xaf\xaa\xa8\x8d\x98\x8d\xaf\x9e\x89\x8d\x98\x89\xa1\x99\x98\x8d\x8e\x80\x89\xec",
+        // "" / M(None) / S(0) / L(0)
+        "\xfc\x8b\xb3\x53\x0e\xad\xd1\x0c\x45\x89\xa2\xee\x10\xbd\x30\x71\x90\xdc\xb5\x29\xfd\x38\xe2\xbc\xc8\xec\x23\x7e\xca\xbd\x52\xb9",
+        // "X509_NAME_get_text_by_NID" / M(Rot) / S(184) / L(25)
+        "\x10\xed\xe8\xf1\x17\x06\xf9\x05\xfd\x17\x1f\x1d\x2c\x17\x2c\x1d\x30\x2c\x17\x1a\x31\x17\x06\x01\xfc\xb8\xf8\xcb\x44\xfc\x09\xb2\x1b\x0d",
+        // "c2i_ASN1_INTEGER" / M(Xor1) / S(2) / L(16)
+        "\x61\x30\x6b\x5d\x43\x51\x4c\x33\x5d\x4b\x4c\x56\x47\x45\x47\x50\x02",
+        // "dlsym" / M(Rot) / S(22) / L(5)
+        "\x7a\x82\x89\x8f\x83\x16\x53\xd3\x8e\xfa\x08\x5f\x4d\x99\xa4\x01",
+        // "." / M(Rot) / S(67) / L(1)
+        "\x71\x43\x50\xfd\x18\xe9\xc2\x56\x14\xb5\x46\xdb\x82\xd6\xa1\xa3",
+        // "/usr/lib/libSystem.dylib" / M(Xor4) / S(49) / L(24)
+        "\x7e\x24\x22\x23\x7e\x3d\x38\x33\x7e\x3d\x38\x33\x02\x28\x22\x25\x34\x3c\x7f\x35\x28\x3d\x38\x33\x51\x3d\x6f\x4a\x1b\x76\x15\xeb\x80",
+        // "BIO_free" / M(Xor2) / S(248) / L(8)
+        "\xaa\xa1\xa7\xb7\x8e\x9a\x8d\x8d\xe8\x01\x26\x7d\x33\xa6\xe5\xe4",
+        // "" / M(None) / S(0) / L(0)
+        "\xbb\xdc\x67\x67\x22\xce\xb8\xae\x8a\x8a\xff\x71\x80\xed\xc3\x95\xd2\x1b\x29\x9e\x2a\xea\x5a\x87\x68\xfc\x41\xaf\x60\x70\x23\x65",
+        // "CFDictionaryGetValue" / M(Xor4) / S(146) / L(20)
+        "\xb9\xbc\xbe\x93\x99\x8e\x93\x95\x94\x9b\x88\x83\xbd\x9f\x8e\xac\x9b\x96\x8f\x9f\xfa",
+        // "CFStringCompare" / M(Rot) / S(210) / L(15)
+        "\x15\x18\x25\x46\x44\x3b\x40\x39\x15\x41\x3f\x42\x33\x44\x37\xd2",
+        // "CFDictionarySetValue" / M(Xor1) / S(95) / L(20)
+        "\x1c\x19\x1b\x36\x3c\x2b\x36\x30\x31\x3e\x2d\x26\x0c\x3a\x2b\x09\x3e\x33\x2a\x3a\x5f",
+        // "%02X" / M(Xor2) / S(174) / L(4)
+        "\x9b\x8e\x8c\xe6\xbe\x21\x33\x5d\x6a\xde\x5e\x45\x53\xf9\x31\xbf",
+        // "setDelegate:" / M(Xor1) / S(139) / L(12)
+        "\xf8\xee\xff\xcf\xee\xe7\xee\xec\xea\xff\xee\xb1\x8b\xa5\x2d\x0c",
+        // "" / M(None) / S(0) / L(0)
+        "\x87\xe7\xf6\x3f\xfb\x45\xe1\x98\x8a\xbc\xb1\xd6\x56\x3d\x0f\x81\x22\x55\x94\xd4\x1f\x91\x98\x97\x62\x2f\xc6\x14\xd2\xb9\xad\x95",
+        // "CFArrayGetCount" / M(Xor4) / S(50) / L(15)
+        "\x63\x66\x61\x52\x52\x41\x59\x67\x45\x54\x63\x4f\x55\x4e\x54\x20",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Xor3) / S(234) / L(32)
+        "\x72\x72\x72\x72\x2c\x26\x2c\x46\x46\x2c\x26\x2c\x6f\x6f\x2c\x5f\x2c\x43\x43\x2c\x31\x2c\x66\x66\x2c\x31\x2c\x78\x78\x2c\x51\x2c\x0b",
+        // "CFArrayCreateMutable" / M(Xor1) / S(170) / L(20)
+        "\xe9\xec\xeb\xd8\xd8\xcb\xd3\xe9\xd8\xcf\xcb\xde\xcf\xe7\xdf\xde\xcb\xc8\xc6\xcf\xaa",
+        // "" / M(None) / S(0) / L(0)
+        "\x5d\x2f\x63\x4f\x2b\xd7\xed\x21\x01\xbe\x6a\x6b\x20\xcb\x4d\x06\xfa\xbc\x15\x6e\x4d\xc6\xbb\xf9\x4b\x8c\xb0\xc7\xe4\x64\xb6\x98",
+        // "" / M(None) / S(0) / L(0)
+        "\x6d\x64\x15\xc9\x16\x5e\x44\x0b\x04\x3f\x31\x8b\xf0\x37\x09\xcc\x32\x35\xc3\x6e\x52\x14\x6e\x5e\x31\x4e\x0d\x30\x68\xbc\x09\x73",
+        // "" / M(None) / S(0) / L(0)
+        "\x77\x1c\x34\x24\x0e\xb2\xe7\xcb\x99\xec\x0c\x70\x27\x11\x0f\x00\x79\x62\x03\x5e\x6b\xbc\xa7\x93\xf9\x0a\x09\x1b\xf9\x04\xd8\x5c",
+        // "" / M(None) / S(0) / L(0)
+        "\x7d\x09\x74\xcd\x6c\x61\xb1\xbb\x94\x02\xae\x04\x3c\x8e\x14\xb1\x41\xb5\xe7\xfe\xba\x55\x30\xbe\x4a\x87\xbf\x59\x75\x75\x93\x8d",
+        // "CFStringCompare" / M(Rot) / S(76) / L(15)
+        "\x8f\x92\x9f\xc0\xbe\xb5\xba\xb3\x8f\xbb\xb9\xbc\xad\xbe\xb1\x4c",
+        // "mainBundle" / M(Xor4) / S(73) / L(10)
+        "\xfd\xf1\xf9\xfe\xd2\xe5\xfe\xf4\xfc\xf5\x90\x18\x0b\xa6\xab\x78",
+        // "%02x:" / M(Rot) / S(208) / L(5)
+        "\xf5\x00\x02\x48\x0a\xd0\xf9\x4a\x7e\xf8\x34\xe4\x14\x76\x7e\xf9",
+        // "BIO_s_mem" / M(Xor4) / S(172) / L(9)
+        "\x82\x89\x8f\x9f\xb3\x9f\xad\xa5\xad\xc0\x08\xa8\x21\x53\x21\xd2",
+        // "2" / M(Xor1) / S(117) / L(1)
+        "\x47\x75\xa3\xa0\x19\x40\x80\x7b\xb0\x8a\x99\x49\x58\x8b\xe4\xd4",
+        // "" / M(None) / S(0) / L(0)
+        "\xac\x5d\xe8\x61\xce\xf3\xbb\x1b\x75\xcb\xf4\xa4\xaa\x55\xe0\x6f\xad\xc2\xa1\x4f\x03\xd3\x67\x79\x1e\x0f\x44\x61\xf6\x30\xb7\x7c",
+        // "/usr/lib/libSystem.dylib" / M(Xor3) / S(213) / L(24)
+        "\xd9\x83\x85\x84\xd9\x9a\x9f\x94\xd9\x9a\x9f\x94\xa5\x8f\x85\x82\x93\x9b\xd8\x92\x8f\x9a\x9f\x94\xf6\x4d\xac\xbb\x73\x70\x87\x83\xce",
+        // "" / M(None) / S(0) / L(0)
+        "\xa5\xac\x75\x74\x99\xf0\x6e\xdd\xf6\x07\x04\xfe\x82\xb2\x4b\xf3\x75\x96\xa3\x64\x05\x79\x12\x8d\xa6\xe2\x6c\xa4\x20\xfe\xb8\xf3",
+        // "exit" / M(Xor1) / S(16) / L(4)
+        "\x75\x68\x79\x64\x10\xb6\xea\x52\x7c\xd2\xeb\x86\x74\x92\x2d\xf5",
+        // "" / M(None) / S(0) / L(0)
+        "\xc6\xcb\x36\x7f\xce\xda\xdc\xac\xcf\x95\xb6\xdf\x8e\x34\x24\xc6\x18\x8d\xa5\x1c\x9c\x0f\x8c\xa5\xae\x5d\xb2\xba\x96\xc7\xda\x09",
+        // "CFNumberCreate" / M(Xor3) / S(40) / L(14)
+        "\x7b\x7e\x76\x4d\x55\x5a\x5d\x4a\x7b\x4a\x5d\x59\x4c\x5d\x38\xde",
+        // "UIDevice" / M(Xor2) / S(175) / L(8)
+        "\xea\xf6\xfb\xda\xc9\xd6\xdc\xda\xbf\xd4\x87\xeb\x35\x5e\x6c\xc6",
+        // "objc_lookUpClass" / M(Xor3) / S(54) / L(16)
+        "\x28\x25\x2d\x24\x18\x2b\x28\x28\x2c\x12\x37\x04\x2b\x26\x34\x34\x47",
+        // "" / M(None) / S(0) / L(0)
+        "\x10\x9e\xcb\x32\x17\xee\x01\x90\x20\xe6\x6d\x90\x01\x44\x73\x71\x13\x17\x0a\xa4\x42\x32\x45\xe0\x4b\xc7\xda\x49\x41\x90\x2a\xf1",
+        // "UIDevice" / M(Xor1) / S(1) / L(8)
+        "\x54\x48\x45\x64\x77\x68\x62\x64\x01\x91\x2f\x25\x0b\x76\xf8\xe7",
+        // "" / M(None) / S(0) / L(0)
+        "\x3a\x79\x14\x2c\x72\xd2\xae\xab\x69\x00\xad\x78\xfb\x3a\x79\x83\x4f\x87\x07\x7b\x6f\x50\x72\x9f\xea\x06\x0c\x9d\x81\x64\x0c\xcf",
+        // "dlsym" / M(Xor4) / S(36) / L(5)
+        "\x24\x2c\x33\x39\x2d\x40\xca\x70\xe2\x7e\xd0\x3d\x58\xc5\x3b\x3d",
+        // "" / M(None) / S(0) / L(0)
+        "\x7a\x93\xeb\x8e\xfb\xbf\x9f\x09\x57\x1a\x3f\x2f\x92\xce\x7b\xf7\x59\xe9\x6b\x50\x73\x65\x6c\x8a\x11\x3a\x94\x72\xde\xf6\x6c\xbe",
+        // "CFBundleShortVersionString" / M(Rot) / S(117) / L(26)
+        "\xb8\xbb\xb7\xea\xe3\xd9\xe1\xda\xc8\xdd\xe4\xe7\xe9\xcb\xda\xe7\xe8\xde\xe4\xe3\xc8\xe9\xe7\xde\xe3\xdc\x75\xc0\x38\x98\x85\x60\xe9\x3e\xae",
+        // "sk_free" / M(Xor4) / S(208) / L(7)
+        "\x73\x6b\x5f\x66\x72\x65\x65\x00\x2c\x10\xe7\xff\x45\x04\xe2\xfc",
+        // "X509_digest" / M(Xor3) / S(133) / L(11)
+        "\xcd\xa0\xa5\xac\xca\xf1\xfc\xf2\xf0\xe6\xe1\x95\xf1\xa7\x86\x96",
+        // "alloc" / M(Xor2) / S(57) / L(5)
+        "\x48\x45\x45\x46\x4a\x29\x9a\xfc\xcf\xba\xcb\x8e\xe7\x2c\xb3\x55",
+        // "CC_SHA1_Init" / M(Xor2) / S(9) / L(12)
+        "\x5a\x5a\x46\x4a\x51\x58\x28\x46\x50\x77\x70\x6d\x19\x6b\x4a\x64",
+        // "CFBundleUnloadExecutable" / M(Xor2) / S(92) / L(24)
+        "\x3e\x3b\x3f\x08\x13\x19\x11\x18\x28\x13\x11\x12\x1c\x19\x38\x05\x18\x1e\x08\x09\x1c\x1f\x11\x18\x7d\xfd\x04\x8b\x7f\x20\xfb\x41\xd0",
+        // "CFStringCreateWithBytes" / M(Xor4) / S(60) / L(23)
+        "\xc3\xc6\xd3\xf4\xf2\xe9\xee\xe7\xc3\xf2\xe5\xe1\xf4\xe5\xd7\xe9\xf4\xe8\xc2\xf9\xf4\xe5\xf3\x80\x23\x12\x13\x47\xf3\xb9\xd0\x02",
+        // "" / M(None) / S(0) / L(0)
+        "\xdd\x73\xb1\x4c\xf8\x0e\x8e\xaa\x8d\x13\xe0\xdd\xfa\x22\xd3\x63\xa8\x39\x64\xc7\x19\x38\x9c\xe1\x17\x3e\x10\xbd\xc4\x47\x72\x6c",
+        // "CFReadStreamOpen" / M(Xor2) / S(234) / L(16)
+        "\xb8\xbd\xa9\x9e\x9a\x9f\xa8\x8f\x89\x9e\x9a\x96\xb4\x8b\x9e\x95\xfb",
+        // "1.2.840.113635.100.6.11.1" / M(Rot) / S(30) / L(25)
+        "\x4f\x4c\x50\x4c\x56\x52\x4e\x4c\x4f\x4f\x51\x54\x51\x53\x4c\x4f\x4e\x4e\x4c\x54\x4c\x4f\x4f\x4c\x4f\x1e\xe9\xfa\xf2\x1d\x07\x2c\x48\x6a",
+        // "CFDictionaryCreateMutable" / M(Xor1) / S(152) / L(25)
+        "\xdb\xde\xdc\xf1\xfb\xec\xf1\xf7\xf6\xf9\xea\xe1\xdb\xea\xfd\xf9\xec\xfd\xd5\xed\xec\xf9\xfa\xf4\xfd\x98\x1b\x9b\x25\x33\xf1\x29\x15\x06",
+        // "" / M(None) / S(0) / L(0)
+        "\xe5\xa7\x91\xff\x9c\x84\x6c\x9a\x3c\x00\xc3\xf3\xe1\x63\xf4\xea\x64\x64\x42\xb9\x32\x7a\x41\x91\x51\xb6\x94\xea\x84\x57\x0e\xeb",
+        // "longjmp" / M(Xor2) / S(232) / L(7)
+        "\x94\x97\x96\x9f\x92\x95\x88\xf8\x50\x98\x00\xd9\x10\xa5\x69\x47",
+        // "" / M(None) / S(0) / L(0)
+        "\x68\xaf\xbd\xd9\x27\x43\xac\x78\xf8\x2c\x4b\x2f\x02\xe1\x45\xeb\x89\x71\xff\x8a\x1b\x6b\xda\x93\x24\x2e\x7b\x83\xde\xe8\xa6\x39",
+        // "%02x" / M(Xor3) / S(140) / L(4)
+        "\xb9\xac\xae\xe4\x9c\xf5\xca\x30\xdb\x43\xd6\x9f\x3e\xbb\x6a\xd6",
+        // "" / M(None) / S(0) / L(0)
+        "\xaf\x45\xc9\x00\xc7\x80\x98\x97\x42\xbe\x95\xbf\x51\x81\xe2\xed\xbe\x48\x00\x0f\xd3\x49\xf3\x8f\x33\x3e\xba\xf2\xb8\x60\xe2\x2c",
+        // "CFBundleIdentifier" / M(Xor1) / S(136) / L(18)
+        "\xcb\xce\xca\xfd\xe6\xec\xe4\xed\xc1\xec\xed\xe6\xfc\xe1\xee\xe1\xed\xfa\x88",
+        // "X509_free" / M(Xor1) / S(230) / L(9)
+        "\xbe\xd3\xd6\xdf\xb9\x80\x94\x83\x83\xe6\x75\xea\x86\x7c\x4b\x8d",
+        // "" / M(None) / S(0) / L(0)
+        "\x00\x7f\x93\xc6\x13\x06\x3a\x06\xec\x94\x35\x7c\x87\xc9\xe5\x28\x10\x31\x02\xf5\x95\x58\x5e\x21\x71\x8c\x10\xf1\xb4\x5c\x67\x0c",
+        // "c2i_ASN1_INTEGER" / M(Xor2) / S(56) / L(16)
+        "\x4a\x1b\x40\x76\x68\x7a\x67\x18\x76\x60\x67\x7d\x6c\x6e\x6c\x7b\x29",
+        // "BIO_s_mem" / M(Xor3) / S(210) / L(9)
+        "\xa0\xab\xad\xbd\x91\xbd\x8f\x87\x8f\xe2\x41\x58\x20\x71\xc3\x76",
+        // "EVP_DigestUpdate" / M(Xor4) / S(238) / L(16)
+        "\x8b\x98\x9e\x91\x8a\xa7\xa9\xab\xbd\xba\x9b\xbe\xaa\xaf\xba\xab\xce",
+        // "X509_free" / M(Xor2) / S(97) / L(9)
+        "\x29\x44\x41\x48\x2e\x17\x03\x14\x14\x71\xc2\x2b\x5f\x0a\xf1\xab",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Rot) / S(136) / L(59)
+        "\xbe\xb9\xc2\xb9\xed\xc2\xbd\xea\xc2\xbe\xbe\xc2\xba\xeb\xc2\xbd\xc1\xc2\xbb\xe9\xc2\xb8\xc0\xc2\xee\xee\xc2\xbd\xc0\xc2\xec\xb9\xc2\xbc\xe9\xc2\xed\xba\xc2\xba\xbc\xc2\xbd\xba\xc2\xec\xb9\xc2\xc1\xc0\xc2\xec\xee\xc2\xbe\xeb\xc2\xbe\xb8\x88\x24\x14\x6b\x69\x84\x57\xa8\x43",
+        // "" / M(None) / S(0) / L(0)
+        "\x93\x50\x24\xc5\x39\x88\xb0\xc4\x11\xd4\xb0\x58\xa0\x29\x92\x5d\x85\xcd\xc7\x3d\xaf\x15\x1c\x36\x86\x42\x80\xc4\x6b\xd3\xd4\x77",
+        // "X509_STORE_free" / M(Xor4) / S(31) / L(15)
+        "\xa8\xc5\xc0\xc9\xaf\xa3\xa4\xbf\xa2\xb5\xaf\x96\x82\x95\x95\xf0",
+        // "" / M(None) / S(0) / L(0)
+        "\x71\x66\x41\xbc\x6c\x5b\x82\xcf\x52\x8f\x93\xf6\x58\xee\xcc\x9a\x70\xc7\xda\x88\xb8\x51\x27\x50\xdd\xaa\x78\x1a\x58\xa6\x54\xdc",
+        // "" / M(None) / S(0) / L(0)
+        "\xb8\xc9\x44\x01\xe7\x76\xcc\x58\x98\x6c\x7d\x4f\x96\xe1\xb2\x5e\x15\x67\xfe\x57\x55\xbc\x20\xe8\x73\xca\x96\xbf\xeb\xda\x27\x17",
+        // "" / M(None) / S(0) / L(0)
+        "\x09\xd1\x67\x52\xe1\xf4\xae\x87\x79\x18\x93\xa5\xe4\x32\xe0\xf0\xc2\xf2\xbc\x65\x48\x82\x43\x34\x19\x18\x89\x6f\x38\x92\x87\x91",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor2) / S(206) / L(40)
+        "\xc9\xce\xce\x9a\xca\x9d\xc9\xc9\xcd\x9c\xca\xc6\xcc\x9e\xcf\xc7\x99\x99\xca\xc7\x9b\xce\xcb\x9e\x9a\xcd\xcd\xcb\xca\xcd\x9b\xce\xc6\xc7\x9b\x99\xc9\x9c\xc9\xcf\xff\x4a\xa3\x7a\xbc\x1c\x74\xce\x8d",
+        // "CFDictionarySetValue" / M(Xor3) / S(184) / L(20)
+        "\x8e\x8b\x89\xa4\xae\xb9\xa4\xa2\xa3\xac\xbf\xb4\x9e\xa8\xb9\x9b\xac\xa1\xb8\xa8\xcd",
+        // "CFDataCreate" / M(Xor3) / S(223) / L(12)
+        "\xac\xa9\xab\x8e\x9b\x8e\xac\x9d\x8a\x8e\x9b\x8a\xef\xf1\x40\x83",
+        // "" / M(None) / S(0) / L(0)
+        "\xab\xd0\x95\xd9\xee\xf1\xe9\xab\x79\xf2\x86\x77\x6d\x85\xc6\xff\x5b\x1d\x5f\x84\xcc\x16\xfb\x4a\x4d\x6d\x60\x0a\xf1\xf6\xb2\xf0",
+        // "" / M(None) / S(0) / L(0)
+        "\xc9\x8a\xef\x21\x81\xbb\x1b\xa0\x3e\x68\xe2\x01\xec\x22\x93\xf1\x41\xb8\xe7\xa2\xf9\x6f\xfc\x97\xdb\x47\xe2\x6b\x10\x5e\x8d\x8b",
+        // "sha1" / M(Xor3) / S(165) / L(4)
+        "\xc6\xdd\xd4\x84\xb5\x3f\x05\xd7\x43\x79\x11\x21\xea\x09\x7d\x20",
+        // "" / M(None) / S(0) / L(0)
+        "\xaf\x68\x41\xee\x94\x79\xc4\xf4\x49\xed\x1a\x39\xa7\x5f\x03\xd2\xda\xca\xbc\xa9\x13\xe7\x54\xc3\x1f\xa2\xb2\xab\x41\x3c\x94\x22",
+        // "EVP_DigestFinal" / M(Rot) / S(38) / L(15)
+        "\x6b\x7c\x76\x85\x6a\x8f\x8d\x8b\x99\x9a\x6c\x8f\x94\x87\x92\x26",
+        // "CFEqual" / M(Xor2) / S(86) / L(7)
+        "\x05\x00\x03\x37\x33\x27\x2a\x46\xa6\xb4\x55\x26\xbe\xaf\xcc\x82",
+        // "2" / M(Rot) / S(43) / L(1)
+        "\x5d\x2b\x59\xdc\x3e\x84\xd9\xe4\xf5\xf3\x73\x12\xe4\x66\xee\xb5",
+        // "EVP_DigestInit" / M(Xor3) / S(255) / L(14)
+        "\x4a\x59\x5f\x50\x4b\x66\x68\x6a\x7c\x7b\x46\x61\x66\x7b\x0f\x08",
+        // "setDelegate:" / M(Xor2) / S(97) / L(12)
+        "\x02\x14\x05\x35\x14\x1d\x14\x16\x10\x05\x14\x4b\x71\xa3\xa7\x2e",
+        // "ASN1_INTEGER_free" / M(Rot) / S(50) / L(17)
+        "\x73\x85\x80\x63\x91\x7b\x80\x86\x77\x79\x77\x84\x91\x98\xa4\x97\x97\x32",
+        // "kCFBundleIdentifierKey" / M(Xor4) / S(178) / L(22)
+        "\x95\xbd\xb8\xbc\x8b\x90\x9a\x92\x9b\xb7\x9a\x9b\x90\x8a\x97\x98\x97\x9b\x8c\xb5\x9b\x87\xfe",
+        // "PKCS7_verify" / M(Xor3) / S(4) / L(12)
+        "\x44\x5f\x57\x47\x23\x4b\x62\x71\x66\x7d\x72\x6d\x14\xec\xed\x7a",
+        // "CFEqual" / M(Rot) / S(230) / L(7)
+        "\x29\x2c\x2b\x57\x5b\x47\x52\xe6\x34\xf0\xce\xf0\xb9\xa8\x4c\x4d",
+        // "d2i_X509_bio" / M(Xor4) / S(209) / L(12)
+        "\x74\x22\x79\x4f\x48\x25\x20\x29\x4f\x72\x79\x7f\x10\x4d\xc7\xda",
+        // "" / M(None) / S(0) / L(0)
+        "\xe1\xb9\x9e\xd9\x44\xff\x8c\x3e\xb6\x5b\xc4\x73\x2b\x00\x85\xc8\x1a\x68\xe4\x61\xe5\xa2\x7b\x9c\x5b\xbd\x61\x7f\x7a\xab\x8e\x91",
+        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Rot) / S(217) / L(39)
+        "\x1c\x1f\x2d\x42\x46\x3e\x33\x48\x47\x3e\x1c\x4b\x3e\x3a\x4d\x3e\x30\x42\x4d\x41\x2d\x42\x46\x3e\x22\x47\x4d\x3e\x4b\x4f\x3a\x45\x1f\x4b\x48\x46\x20\x26\x2d\xd9\x51\x8d\x0e\x6d\xed\xca\xc9\x47",
+        // "" / M(None) / S(0) / L(0)
+        "\x1c\x72\x0d\x33\x1f\x1e\xe7\x4b\x94\xc8\xc6\xf5\xac\x1a\x5d\xa1\xdf\x81\xdf\x51\x1c\xba\x06\x52\xbc\x55\x3e\x6d\xa8\xde\x06\x71",
+        // "CC_SHA1" / M(Xor3) / S(148) / L(7)
+        "\xe7\xe7\xfb\xf7\xec\xe5\x95\xa4\x0e\xba\x48\xd0\x5f\x1d\x16\xc8",
+        // "" / M(None) / S(0) / L(0)
+        "\x5c\xa3\x18\xcb\xc9\x76\xf1\xb1\x4a\x94\x59\x00\x47\x67\xad\xa5\x42\x48\xcc\x02\x8d\x9b\xeb\xac\xbd\x08\xfb\x85\x9d\x08\xf9\x9f",
+        // "BIO_write" / M(Rot) / S(217) / L(9)
+        "\x1b\x22\x28\x38\x50\x4b\x42\x4d\x3e\xd9\x25\x72\xa1\xc7\x2d\x86",
+        // "" / M(None) / S(0) / L(0)
+        "\x2d\xd5\x7e\x77\x9f\xa7\xd1\x97\xd7\x1a\xd4\x42\x75\xa5\x90\xff\x75\x4e\x9d\xef\x12\xc9\x74\x09\x96\x20\xdf\xfb\xe4\xfa\x67\x84",
+        // "X509_NAME_get_text_by_NID" / M(Xor2) / S(12) / L(25)
+        "\x76\x1b\x1e\x17\x71\x60\x6f\x63\x6b\x71\x49\x4b\x5a\x71\x5a\x4b\x56\x5a\x71\x4c\x57\x71\x60\x67\x6a\x2e\x3d\x1a\x40\x37\xe2\x08\xa1\xc4",
+        // "" / M(None) / S(0) / L(0)
+        "\x50\xd6\x98\x26\xdd\xa3\xe1\xba\x51\xdd\x8d\xbf\xdc\x40\xe6\x87\xb0\x63\x76\xdb\xfe\x42\x2f\x22\x2a\xf6\xe1\x0c\xb6\xf5\x2b\x3c",
+        // "" / M(None) / S(0) / L(0)
+        "\x7a\x10\xbc\xc3\xcb\x28\xd2\x93\x72\xb8\xd1\xf3\x17\xc9\xc4\xd0\xa6\x33\xe6\x2a\x36\x36\x4d\x83\xee\x5e\xea\x28\xc4\xb3\x26\x5e",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor1) / S(209) / L(66)
+        "\xfe\x82\xa8\xa2\xa5\xb4\xbc\xfe\x9d\xb8\xb3\xa3\xb0\xa3\xa8\xfe\x97\xa3\xb0\xbc\xb4\xa6\xbe\xa3\xba\xa2\xfe\x92\xbe\xa3\xb4\x97\xbe\xa4\xbf\xb5\xb0\xa5\xb8\xbe\xbf\xff\xb7\xa3\xb0\xbc\xb4\xa6\xbe\xa3\xba\xfe\x92\xbe\xa3\xb4\x97\xbe\xa4\xbf\xb5\xb0\xa5\xb8\xbe\xbf\xd1",
+        // "%02x:" / M(Xor1) / S(236) / L(5)
+        "\xc9\xdc\xde\x94\xd6\xec\xdd\xd3\xf0\x8c\x35\xe4\x35\xc3\xc3\x08",
+        // "objc_lookUpClass" / M(Xor2) / S(104) / L(16)
+        "\x16\x1b\x13\x1a\x26\x15\x16\x16\x12\x2c\x09\x3a\x15\x18\x0a\x0a\x79",
+        // "CFBundleGetValueForInfoDictionaryKey" / M(Rot) / S(181) / L(36)
+        "\xf8\xfb\xf7\x2a\x23\x19\x21\x1a\xfc\x1a\x29\x0b\x16\x21\x2a\x1a\xfb\x24\x27\xfe\x23\x1b\x24\xf9\x1e\x18\x29\x1e\x24\x23\x16\x27\x2e\x00\x1a\x2e\xb5",
+        // "" / M(None) / S(0) / L(0)
+        "\x07\x62\xf6\x62\x5b\x25\x8c\x4d\x02\x31\x17\x58\xde\x3d\x17\x77\xb9\xa1\xa0\xca\x88\x5a\x92\x14\x2e\x94\xb1\xe7\x58\xe0\xdf\x66",
+        // "CC_SHA1_Final" / M(Xor2) / S(224) / L(13)
+        "\xb3\xb3\xaf\xa3\xb8\xb1\xc1\xaf\xb6\x99\x9e\x91\x9c\xf0\x4a\x8f",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor2) / S(121) / L(59)
+        "\x0b\x0c\x07\x0c\x58\x07\x08\x5f\x07\x0b\x0b\x07\x0f\x5e\x07\x08\x04\x07\x0e\x5c\x07\x0d\x05\x07\x5b\x5b\x07\x08\x05\x07\x59\x0c\x07\x09\x5c\x07\x58\x0f\x07\x0f\x09\x07\x08\x0f\x07\x59\x0c\x07\x04\x05\x07\x59\x5b\x07\x0b\x5e\x07\x0b\x0d\x3d\xee\x6a\x37\x4d\x2c\x34\xdd\x76",
+        // "SKReceiptRefreshRequest" / M(Rot) / S(206) / L(23)
+        "\x21\x19\x20\x33\x31\x33\x37\x3e\x42\x20\x33\x34\x40\x33\x41\x36\x20\x33\x3f\x43\x33\x41\x42\xce\x5e\xf9\xa4\xcb\xbd\x89\x0c\xde",
+        // "CFDictionaryGetValue" / M(Xor3) / S(45) / L(20)
+        "\x01\x04\x06\x2b\x21\x36\x2b\x2d\x2c\x23\x30\x3b\x05\x27\x36\x14\x23\x2e\x37\x27\x42",
+        // "" / M(None) / S(0) / L(0)
+        "\x43\x9b\xef\xfc\x8f\xa9\x49\x36\xb6\x52\x1b\x09\x5d\x85\xf6\xc2\x8a\x8d\x67\x7e\xbb\x0f\x2b\x60\x32\x11\xd7\x52\x16\x97\xb2\x39",
+        // "CFDateFormatterSetProperty" / M(Xor4) / S(255) / L(26)
+        "\x9e\x9b\x99\xbc\xa9\xb8\x9b\xb2\xaf\xb0\xbc\xa9\xa9\xb8\xaf\x8e\xb8\xa9\x8d\xaf\xb2\xad\xb8\xaf\xa9\xa4\xdd\x58\x27\xdd\x64\xe6\x87\x05\xd4",
+        // "EVP_MD_CTX_init" / M(Xor3) / S(100) / L(15)
+        "\x31\x22\x24\x2b\x39\x30\x2b\x37\x20\x2c\x2b\x1d\x1a\x1d\x00\x74",
+        // "CFBundleShortVersionString" / M(Rot) / S(106) / L(26)
+        "\xad\xb0\xac\xdf\xd8\xce\xd6\xcf\xbd\xd2\xd9\xdc\xde\xc0\xcf\xdc\xdd\xd3\xd9\xd8\xbd\xde\xdc\xd3\xd8\xd1\x6a\xd8\x6a\xf4\xb9\x41\x99\x3a\x75",
+        // "" / M(None) / S(0) / L(0)
+        "\xb5\x40\x33\x81\xa6\xc3\x61\x9d\x4b\xfa\x94\x77\x28\x99\x3a\xc7\xf5\x95\x05\x2e\xe6\xf6\x16\xc8\x5d\xa8\x7d\x76\xc6\x03\xfb\x8d",
+        // "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" / M(Xor3) / S(193) / L(66)
+        "\x2b\x57\x7d\x77\x70\x61\x69\x2b\x48\x6d\x66\x76\x65\x76\x7d\x2b\x42\x76\x65\x69\x61\x73\x6b\x76\x6f\x77\x2b\x47\x6b\x76\x61\x42\x6b\x71\x6a\x60\x65\x70\x6d\x6b\x6a\x2a\x62\x76\x65\x69\x61\x73\x6b\x76\x6f\x2b\x47\x6b\x76\x61\x42\x6b\x71\x6a\x60\x65\x70\x6d\x6b\x6a\x04",
+        // "CFDateCreate" / M(Xor2) / S(204) / L(12)
+        "\x9f\x9a\x98\xbd\xa8\xb9\x9f\xae\xb9\xbd\xa8\xb9\xdc\x06\x7f\xbc",
+        // "ASN1_get_object" / M(Xor3) / S(72) / L(15)
+        "\x19\x0b\x16\x69\x07\x3f\x3d\x2c\x07\x37\x3a\x32\x3d\x3b\x2c\x58",
+        // "d2i_PKCS7_bio" / M(Xor1) / S(40) / L(13)
+        "\x4c\x1a\x41\x77\x78\x63\x6b\x7b\x1f\x77\x4a\x41\x47\x28\xd5\x1c",
+        // "OpenSSL_add_all_digests" / M(Xor3) / S(126) / L(23)
+        "\xd1\xee\xfb\xf0\xcd\xcd\xd2\xc1\xff\xfa\xfa\xc1\xff\xf2\xf2\xc1\xfa\xf7\xf9\xfb\xed\xea\xed\x9e\x05\x15\x0a\x34\xef\xc0\x5a\x23",
+        // "CFReadStreamOpen" / M(Xor1) / S(191) / L(16)
+        "\xfc\xf9\xed\xda\xde\xdb\xec\xcb\xcd\xda\xde\xd2\xf0\xcf\xda\xd1\xbf",
+        // "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'" / M(Rot) / S(91) / L(32)
+        "\xd4\xd4\xd4\xd4\x82\x88\x82\xa8\xa8\x82\x88\x82\xbf\xbf\x82\xaf\x82\xa3\xa3\x82\x95\x82\xc8\xc8\x82\x95\x82\xce\xce\x82\xb5\x82\x5b",
+        // "sk_num" / M(Xor2) / S(118) / L(6)
+        "\x15\x0d\x39\x08\x13\x0b\x66\x49\x7a\x94\x5b\x13\x6b\xbc\x58\xca",
+        // "CC_SHA1_Update" / M(Xor1) / S(212) / L(14)
+        "\x97\x97\x8b\x87\x9c\x95\xe5\x8b\x81\xa4\xb0\xb5\xa0\xb1\xd4\xb7",
+        // "longjmp" / M(Xor1) / S(201) / L(7)
+        "\xa5\xa6\xa7\xae\xa3\xa4\xb9\xc9\x23\x26\x90\x35\x78\x96\xf0\x21",
+        // "kCFTypeArrayCallBacks" / M(Rot) / S(93) / L(21)
+        "\xc8\xa0\xa3\xb1\xd6\xcd\xc2\x9e\xcf\xcf\xbe\xd6\xa0\xbe\xc9\xc9\x9f\xbe\xc0\xc8\xd0\x5d",
+        // "" / M(None) / S(0) / L(0)
+        "\xc3\x78\x49\x0b\x5c\xc1\x14\x73\xad\xa5\x92\x22\xf9\xda\x94\xbd\xad\x45\xf1\x8f\xaf\xba\x86\x78\xac\xc4\x97\xf4\xc6\x4c\x53\xff",
+        // "CFDataGetBytePtr" / M(Xor4) / S(111) / L(16)
+        "\x1c\x19\x1b\x3e\x2b\x3e\x18\x3a\x2b\x1d\x26\x2b\x3a\x0f\x2b\x2d\x5f",
+        // "" / M(None) / S(0) / L(0)
+        "\x77\x76\x3b\xfa\x3e\x81\xb1\x8d\x13\xfb\x84\xcd\x71\x77\x69\xc0\xc1\xf1\xf0\x31\xe4\xa2\x8a\xaa\x13\xb6\xfe\xfc\xe2\x60\x25\xcb",
+        // "EVP_DigestFinal" / M(Xor4) / S(248) / L(15)
+        "\xc5\xd6\xd0\xdf\xc4\xe9\xe7\xe5\xf3\xf4\xc6\xe9\xee\xe1\xec\x80",
+        // "X509_STORE_new" / M(Xor3) / S(35) / L(14)
+        "\x6b\x06\x03\x0a\x6c\x60\x67\x7c\x61\x76\x6c\x5d\x56\x44\x33\x01",
+        // "CFDataGetBytePtr" / M(Xor2) / S(56) / L(16)
+        "\x6a\x6f\x6d\x48\x5d\x48\x6e\x4c\x5d\x6b\x50\x5d\x4c\x79\x5d\x5b\x29",
+        // "/usr/lib/libobjc.dylib" / M(Xor3) / S(241) / L(22)
+        "\x27\x7d\x7b\x7a\x27\x64\x61\x6a\x27\x64\x61\x6a\x67\x6a\x62\x6b\x26\x6c\x71\x64\x61\x6a\x08",
+        // "BIO_write" / M(Rot) / S(93) / L(9)
+        "\x9f\xa6\xac\xbc\xd4\xcf\xc6\xd1\xc2\x5d\x10\xc9\x69\x40\x75\x29",
+        // "CFReadStreamRead" / M(Rot) / S(30) / L(16)
+        "\x61\x64\x70\x83\x7f\x82\x71\x92\x90\x83\x7f\x8b\x70\x83\x7f\x82\x1e",
+        // "d2i_PKCS7_bio" / M(Xor3) / S(84) / L(13)
+        "\x00\x56\x0d\x3b\x34\x2f\x27\x37\x53\x3b\x06\x0d\x0b\x64\xd5\xa7",
+        // "X509_STORE_add_cert" / M(Xor3) / S(228) / L(19)
+        "\xa0\xcd\xc8\xc1\xa7\xab\xac\xb7\xaa\xbd\xa7\x99\x9c\x9c\xa7\x9b\x9d\x8a\x8c\xf8",
+        // "CFBundleShortVersionString" / M(Xor2) / S(165) / L(26)
+        "\xc5\xc0\xc4\xf3\xe8\xe2\xea\xe3\xd5\xee\xe9\xf4\xf2\xd0\xe3\xf4\xf5\xef\xe9\xe8\xd5\xf2\xf4\xef\xe8\xe1\x86\x08\x1a\xd7\x2a\x4d\x93\x74\x5e",
+        // "" / M(None) / S(0) / L(0)
+        "\x07\x7c\xa7\x6c\x85\x5c\x5e\x32\x9a\x5a\x95\x97\x44\xf5\x2a\x77\x7a\xea\x31\xba\x55\x6f\x22\x80\xf4\xcc\xfc\xbd\xa7\x26\x80\xdc",
+        // "%02X:" / M(Xor2) / S(184) / L(5)
+        "\x8d\x98\x9a\xf0\x92\xa8\x63\xf3\x20\x90\x10\x69\xc3\x1c\xa1\x53",
+        // "CFReadStreamCreateWithFile" / M(Xor1) / S(238) / L(26)
+        "\xad\xa8\xbc\x8b\x8f\x8a\xbd\x9a\x9c\x8b\x8f\x83\xad\x9c\x8b\x8f\x9a\x8b\xb9\x87\x9a\x86\xa8\x87\x82\x8b\xee\x15\xcd\x7e\x5c\x43\x01\x61\x34",
+        // "61:1e:5b:66:2c:59:3a:08:ff:58:d1:4a:e2:24:52:d1:98:df:6c:60" / M(Xor1) / S(138) / L(59)
+        "\xbc\xbb\xb0\xbb\xef\xb0\xbf\xe8\xb0\xbc\xbc\xb0\xb8\xe9\xb0\xbf\xb3\xb0\xb9\xeb\xb0\xba\xb2\xb0\xec\xec\xb0\xbf\xb2\xb0\xee\xbb\xb0\xbe\xeb\xb0\xef\xb8\xb0\xb8\xbe\xb0\xbf\xb8\xb0\xee\xbb\xb0\xb3\xb2\xb0\xee\xec\xb0\xbc\xe9\xb0\xbc\xba\x8a\x30\x61\x35\xc2\xa7\x53\x59\xdc",
+        // "objc_msgSend" / M(Xor2) / S(220) / L(12)
+        "\xa3\xae\xa6\xaf\x93\xa1\xbf\xab\x9f\xa9\xa2\xa8\xcc\xce\x3a\xd4",
+        // "" / M(None) / S(0) / L(0)
+        "\x66\x29\xfa\x44\x6b\x7e\x84\x27\x06\x40\x06\x08\x25\xe1\xd0\xff\xe2\x3e\x72\x2d\x21\x97\x43\x21\x76\x10\x9b\x73\xed\xc8\x76\xdc",
+        // "CFStringCreateWithCString" / M(Rot) / S(187) / L(25)
+        "\xfe\x01\x0e\x2f\x2d\x24\x29\x22\xfe\x2d\x20\x1c\x2f\x20\x12\x24\x2f\x23\xfe\x0e\x2f\x2d\x24\x29\x22\xbb\x0d\xd6\xd4\xba\xcd\x38\xb7\xed",
+        // "setjmp" / M(Xor1) / S(250) / L(6)
+        "\x89\x9f\x8e\x90\x97\x8a\xfa\x08\x4b\xe7\x63\xa7\xf3\xab\x7d\x1d",
+        // "" / M(None) / S(0) / L(0)
+        "\xc9\x5e\x9f\x1d\xf9\x1e\x4b\x8c\x51\x3c\x6d\xf2\x14\x6e\xe3\x6d\x00\x5d\x55\x23\x6f\x5d\xae\xd8\xbb\xb3\xbb\xea\xa0\x93\xe1\x6e",
+        // "CFDateCreate" / M(Xor1) / S(129) / L(12)
+        "\xc2\xc7\xc5\xe0\xf5\xe4\xc2\xf3\xe4\xe0\xf5\xe4\x81\x02\x09\xf0",
+        // "ASN1_INTEGER_get" / M(Xor3) / S(68) / L(16)
+        "\x14\x06\x1b\x64\x0a\x1c\x1b\x01\x10\x12\x10\x07\x0a\x32\x30\x21\x55",
+        // "currentDevice" / M(Xor2) / S(116) / L(13)
+        "\x07\x11\x16\x16\x01\x0a\x10\x20\x01\x12\x0d\x07\x01\x64\xce\xaf",
+        // "." / M(Xor1) / S(137) / L(1)
+        "\xa7\x89\x7b\x5c\x42\x3d\xf5\xa0\x39\xfd\xdd\x76\x0d\x17\x57\xd8",
+        // "CC_SHA1_Final" / M(Xor2) / S(64) / L(13)
+        "\x13\x13\x0f\x03\x18\x11\x61\x0f\x16\x39\x3e\x31\x3c\x50\x8b\xcf",
+        // "" / M(None) / S(0) / L(0)
+        "\xc3\x4c\x52\x1a\xe4\x8e\x4b\xed\x18\x3e\x7c\xd0\xf0\x1b\xc9\x5a\x58\xa5\x26\x2f\x99\x4e\x7a\x68\x91\x9d\xcc\xfe\x6f\xef\xa3\x7e",
+        // "" / M(None) / S(0) / L(0)
+        "\xfb\xdc\xe4\xe9\x50\x4b\x29\xf4\xa1\x0b\xde\x2b\xe0\x4a\x59\x74\x11\xb1\x26\x35\x6a\x2b\x75\x23\xcd\xe0\x16\x9d\x60\x89\x1d\x1d",
+        // "" / M(None) / S(0) / L(0)
+        "\xeb\x79\x34\xf9\x57\x87\x57\xb7\xba\xff\xcd\xe8\xc6\x2a\xe0\x48\x27\xdf\x3e\x49\x81\xd7\x02\x7e\xd2\x34\x5e\x13\x7e\x15\x76\x32",
+        // "" / M(None) / S(0) / L(0)
+        "\x7f\xbc\xeb\x5f\xe4\x15\x86\xaa\xc1\x61\x13\xa0\x13\xdc\x18\x47\x88\x84\x1e\x2c\x2e\xb3\xed\x09\x3e\x12\x70\x9c\x56\x25\x3e\x2f",
+        // "EVP_get_digestbyname" / M(Xor3) / S(127) / L(20)
+        "\xd1\xc2\xc4\xcb\xf3\xf1\xe0\xcb\xf0\xfd\xf3\xf1\xe7\xe0\xf6\xed\xfa\xf5\xf9\xf1\x94",
+        // "" / M(None) / S(0) / L(0)
+        "\x18\x7a\xb0\xb9\xac\xd0\x7f\x06\xc7\xf7\x39\x82\x6f\xea\x1d\xdd\xa5\x05\x0c\x55\xe7\x7a\x61\x9c\xb1\x56\x70\xaa\xac\x9c\x3a\x47",
+        // "X509_digest" / M(Xor3) / S(178) / L(11)
+        "\x9a\xf7\xf2\xfb\x9d\xa6\xab\xa5\xa7\xb1\xb6\xc2\xd1\xf4\x84\x09",
+        // "" / M(None) / S(0) / L(0)
+        "\xe2\xb3\x39\x86\x8c\x24\x57\xa9\x43\x2f\x26\xc2\x2b\xe9\xef\xb7\xaa\x00\xa4\xbc\xa1\x0b\x8b\x49\x70\xdd\x66\x6b\xe1\x5a\x10\xed",
+        // "" / M(None) / S(0) / L(0)
+        "\xa3\xe5\x99\x1e\x48\x50\xef\x3f\xbd\x40\xc4\x22\x9c\x3e\xf5\x7d\xd7\x59\x42\x72\x17\x2b\xc5\x72\xaf\x5e\xd3\x8a\x64\x17\xfb\x03",
+        // "" / M(None) / S(0) / L(0)
+        "\x5e\xb1\xef\x08\xeb\x63\x27\x9b\x14\x0a\xc6\x3a\x37\x96\x4e\x47\x10\x6e\x5c\x61\xe7\x24\x35\xd6\x7a\x9b\xf3\x33\x0a\x55\xe0\xfb",
+        // "setDelegate:" / M(Xor1) / S(171) / L(12)
+        "\xd8\xce\xdf\xef\xce\xc7\xce\xcc\xca\xdf\xce\x91\xab\xa3\xd8\xa4",
+        // "" / M(None) / S(0) / L(0)
+        "\xa3\x8b\xd3\x0d\x1b\x78\x05\x1c\x39\x28\xf1\x58\x21\x0d\x3e\xfe\xbe\x2b\x95\x4a\xad\xcc\x69\x16\x0a\x56\xc9\xf0\x11\x8e\xa2\xa2",
+        // "appStoreReceiptURL" / M(Xor1) / S(73) / L(18)
+        "\x28\x39\x39\x1a\x3d\x26\x3b\x2c\x1b\x2c\x2a\x2c\x20\x39\x3d\x1c\x1b\x05\x49",
+        // "CFRelease" / M(Xor1) / S(82) / L(9)
+        "\x11\x14\x00\x37\x3e\x37\x33\x21\x37\x52\x0b\x15\xc8\x83\xd3\xa7",
+        // "dlopen" / M(Xor3) / S(56) / L(6)
+        "\x2c\x24\x27\x38\x2d\x26\x48\x45\xce\x3f\x24\x64\xf5\x4c\x14\x86",
+        // "" / M(None) / S(0) / L(0)
+        "\x25\xd0\x1e\xd9\x19\x7f\x2d\x94\x6b\xe2\xc6\x75\x9b\xdc\x42\x81\x3b\x61\x1b\xc0\x05\x7a\x37\x4c\x88\x6b\x46\x5f\x69\x29\xb5\x6b",
+        // "CFStringCreateWithBytes" / M(Xor1) / S(211) / L(23)
+        "\x90\x95\x80\xa7\xa1\xba\xbd\xb4\x90\xa1\xb6\xb2\xa7\xb6\x84\xba\xa7\xbb\x91\xaa\xa7\xb6\xa0\xd3\x35\xea\xaa\x2f\x78\x20\x4a\x4d",
+        // "%02x" / M(Xor2) / S(38) / L(4)
+        "\x13\x06\x04\x4e\x36\xd0\x1f\xb5\xcd\x7e\xdd\xad\x93\x3b\x1f\x2f",
+        // "mainBundle" / M(Xor3) / S(4) / L(10)
+        "\x79\x75\x7d\x7a\x56\x61\x7a\x70\x78\x71\x14\xfd\x63\x41\x33\x41",
+        // "611e5b662c593a08ff58d14ae22452d198df6c60" / M(Xor3) / S(101) / L(40)
+        "\xa0\xa7\xa7\xf3\xa3\xf4\xa0\xa0\xa4\xf5\xa3\xaf\xa5\xf7\xa6\xae\xf0\xf0\xa3\xae\xf2\xa7\xa2\xf7\xf3\xa4\xa4\xa2\xa3\xa4\xf2\xa7\xaf\xae\xf2\xf0\xa0\xf5\xa0\xa6\x96\x42\xc8\x53\x1b\x2d\x8a\xd4\x38",
+        // "CFArrayGetValueAtIndex" / M(Xor2) / S(68) / L(22)
+        "\x10\x15\x12\x21\x21\x32\x2a\x14\x36\x27\x05\x32\x3f\x26\x36\x12\x27\x1a\x3d\x37\x36\x2b\x53",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor3) / S(192) / L(40)
+        "\xc7\xc0\xc0\xb4\xc4\xb3\xc7\xc7\xc3\xb2\xc4\xc8\xc2\xb0\xc1\xc9\xb7\xb7\xc4\xc9\xb5\xc0\xc5\xb0\xb4\xc3\xc3\xc5\xc4\xc3\xb5\xc0\xc8\xc9\xb5\xb7\xc7\xb2\xc7\xc1\xf1\x9d\xbe\xa0\xe6\xb2\xbd\xe4\xee",
+        // "CFBundleGetMainBundle" / M(Xor3) / S(175) / L(21)
+        "\x86\x83\x87\xb0\xab\xa1\xa9\xa0\x82\xa0\xb1\x88\xa4\xac\xab\x87\xb0\xab\xa1\xa9\xa0\xc5",
+        // "NSBundle" / M(Rot) / S(28) / L(8)
+        "\x6a\x6f\x5e\x91\x8a\x80\x88\x81\x1c\x72\xe9\xe9\x64\x0c\xa1\x0f",
+        // "CFEqual" / M(Xor3) / S(162) / L(7)
+        "\xf1\xf4\xf7\xc3\xc7\xd3\xde\xb2\x1c\x31\x19\xb3\xd4\x14\xd0\xc7",
+        // "ASN1_get_object" / M(Xor4) / S(114) / L(15)
+        "\x61\x73\x6e\x11\x7f\x47\x45\x54\x7f\x4f\x42\x4a\x45\x43\x54\x20",
+        // "" / M(None) / S(0) / L(0)
+        "\x7b\xfe\xf1\xe3\x62\x9a\x72\x1b\x44\x5b\x89\x1d\x1c\xe8\xf9\xb9\x1b\x72\x76\x9d\x4b\xe6\xac\x47\x48\x07\x6b\x61\xbc\xf6\x80\xde",
+        // "CFDataGetLength" / M(Rot) / S(190) / L(15)
+        "\x01\x04\x02\x1f\x32\x1f\x05\x23\x32\x0a\x23\x2c\x25\x32\x26\xbe",
+        // "" / M(None) / S(0) / L(0)
+        "\x73\x1b\x08\xd7\xd2\xfc\x8a\x76\xaf\x53\x87\xbf\xe9\xa7\x86\x86\xf1\x8d\xb5\x77\x08\xc7\x89\x2e\xe9\xde\xcf\x09\xb9\x3a\xed\x7c",
+        // "kCFTypeDictionaryValueCallBacks" / M(Xor3) / S(127) / L(31)
+        "\xf4\xdc\xd9\xcb\xe6\xef\xfa\xdb\xf6\xfc\xeb\xf6\xf0\xf1\xfe\xed\xe6\xc9\xfe\xf3\xea\xfa\xdc\xfe\xf3\xf3\xdd\xfe\xfc\xf4\xec\x9f",
+        // "" / M(None) / S(0) / L(0)
+        "\x89\xaa\xd5\x69\x64\x3c\x3f\x62\xa7\xca\x86\x73\x11\x26\x86\x46\xe0\x1c\x24\x02\xb2\x92\xfd\xc6\xcd\x81\x70\xfe\xfa\xb9\xcf\x6e",
+        // "" / M(None) / S(0) / L(0)
+        "\x4e\x44\x47\x18\x0b\xe7\xac\x16\x27\xb2\xef\x5d\xc3\xc0\xa6\x39\x2d\xda\x95\x30\x13\x4a\x45\xaa\xe4\x60\x60\x31\x8b\x6d\xbb\x0c",
+        // "objc_getClass" / M(Xor2) / S(237) / L(13)
+        "\x92\x9f\x97\x9e\xa2\x9a\x98\x89\xbe\x91\x9c\x8e\x8e\xfd\x91\xc7",
+        // "" / M(None) / S(0) / L(0)
+        "\x8f\x21\xfe\xd0\x6e\x98\x0e\x28\xdb\x48\xcb\xb3\x70\x51\x39\x8a\xcd\x65\x36\x8a\x3a\x58\x93\xae\x9f\x28\x4d\xac\x4e\x1b\x1e\x9a",
+        // "CFReadStreamClose" / M(Xor3) / S(5) / L(17)
+        "\x54\x51\x45\x72\x76\x73\x44\x63\x65\x72\x76\x7a\x54\x7b\x78\x64\x72\x17",
+        // "CFArrayGetValueAtIndex" / M(Xor4) / S(123) / L(22)
+        "\x4e\x4b\x4c\x7f\x7f\x6c\x74\x4a\x68\x79\x5b\x6c\x61\x78\x68\x4c\x79\x44\x63\x69\x68\x75\x0d",
+        // "EVP_MD_CTX_init" / M(Xor1) / S(83) / L(15)
+        "\x16\x05\x03\x0c\x1e\x17\x0c\x10\x07\x0b\x0c\x3a\x3d\x3a\x27\x53",
+        // "dlsym" / M(Xor3) / S(195) / L(5)
+        "\xb7\xbf\xa0\xaa\xbe\xd3\x9d\xe2\xe8\x7d\x16\xce\xbf\x47\x69\x39",
+        // "sk_free" / M(Xor3) / S(185) / L(7)
+        "\xba\xa2\x96\xaf\xbb\xac\xac\xc9\x53\x64\x17\x98\x7a\x9b\x8e\x75",
+        // "CFDateFormatterCreate" / M(Rot) / S(251) / L(21)
+        "\x3e\x41\x3f\x5c\x6f\x60\x41\x6a\x6d\x68\x5c\x6f\x6f\x60\x6d\x3e\x6d\x60\x5c\x6f\x60\xfb",
+        // "CFBundleGetIdentifier" / M(Xor1) / S(81) / L(21)
+        "\x12\x17\x13\x24\x3f\x35\x3d\x34\x16\x34\x25\x18\x35\x34\x3f\x25\x38\x37\x38\x34\x23\x51",
+        // "CFArrayAppendValue" / M(Xor4) / S(196) / L(18)
+        "\xcf\xca\xcd\xfe\xfe\xed\xf5\xcd\xfc\xfc\xe9\xe2\xe8\xda\xed\xe0\xf9\xe9\x8c",
+        // "" / M(None) / S(0) / L(0)
+        "\x36\x92\x92\xaa\x47\x38\x6f\x0f\x50\x18\xd6\x78\x3a\x35\x6b\x40\x18\x70\xea\xc8\xb4\x7f\x19\x85\xf1\x9e\x38\xa5\x42\xf7\x53\x5f",
+        // "CFDictionaryAddValue" / M(Xor4) / S(123) / L(20)
+        "\x54\x51\x53\x7e\x74\x63\x7e\x78\x79\x76\x65\x6e\x56\x73\x73\x41\x76\x7b\x62\x72\x17",
+        // "Apple Root CA" / M(Xor4) / S(101) / L(13)
+        "\x11\x20\x20\x3c\x35\x70\x02\x3f\x3f\x24\x70\x13\x11\x50\xc0\xcc",
+        // "" / M(None) / S(0) / L(0)
+        "\x26\x44\x9a\x3a\xd0\xf7\x4c\x7a\x12\x7c\x94\x15\x5f\xb1\xbc\x5c\xff\x96\xd5\x5a\x6b\x0e\x83\x98\xc3\x9d\x75\x3c\x91\xc7\xfa\xd5",
+        // "CFDateFormatterSetFormat" / M(Xor3) / S(15) / L(24)
+        "\x73\x76\x74\x51\x44\x55\x76\x5f\x42\x5d\x51\x44\x44\x55\x42\x63\x55\x44\x76\x5f\x42\x5d\x51\x44\x30\x85\xef\x26\x1d\x12\x68\xc9\xe3",
+        // "strncmp" / M(Xor1) / S(65) / L(7)
+        "\x32\x35\x33\x2f\x22\x2c\x31\x41\x5a\x08\xf6\x5f\x6c\x03\x8b\x63",
+        // "appStoreReceiptURL" / M(Xor2) / S(93) / L(18)
+        "\x2f\x3e\x3e\x1d\x3a\x21\x3c\x2b\x1c\x2b\x2d\x2b\x27\x3e\x3a\x1b\x1c\x02\x4e",
+        // "CFBundleVersion" / M(Xor3) / S(208) / L(15)
+        "\xa3\xa6\xa2\x95\x8e\x84\x8c\x85\xb6\x85\x92\x93\x89\x8f\x8e\xe0",
+        // "kCFBundleIdentifierKey" / M(Xor2) / S(162) / L(22)
+        "\xde\xf6\xf3\xf7\xc0\xdb\xd1\xd9\xd0\xfc\xd1\xd0\xdb\xc1\xdc\xd3\xdc\xd0\xc7\xfe\xd0\xcc\xb5",
+        // "BIO_write" / M(Rot) / S(212) / L(9)
+        "\x16\x1d\x23\x33\x4b\x46\x3d\x48\x39\xd4\x9c\x8b\x57\x3c\x46\xc5",
+        // "CC_SHA1" / M(Xor1) / S(192) / L(7)
+        "\x83\x83\x9f\x93\x88\x81\xf1\xc0\x67\x02\xb0\xc1\x2b\x7f\x2c\xef",
+        // "" / M(None) / S(0) / L(0)
+        "\x0b\x5f\xb5\x6f\x84\x06\x3e\xf7\x22\x92\x87\x2d\x21\x63\x59\xc2\x11\xc0\x08\xbe\xfa\x49\x07\x50\xe0\x13\x04\xd8\xe7\x61\xe1\x22",
+        // "getUUIDBytes:" / M(Rot) / S(29) / L(13)
+        "\x84\x82\x91\x72\x72\x66\x61\x5f\x96\x91\x82\x90\x57\x1d\x72\xdf",
+        // "CFDateCompare" / M(Xor1) / S(219) / L(13)
+        "\x98\x9d\x9f\xba\xaf\xbe\x98\xb4\xb6\xab\xba\xa9\xbe\xdb\x86\x48",
+        // "OBJ_txt2obj" / M(Xor3) / S(52) / L(11)
+        "\x0b\x06\x0e\x1b\x30\x3c\x30\x76\x2b\x26\x2e\x44\x05\x8a\x0c\xa9",
+        // "BIO_new" / M(Xor1) / S(11) / L(7)
+        "\x49\x42\x44\x54\x65\x6e\x7c\x0b\xbe\x8b\xcc\x1b\x6f\x0b\x8f\x0f",
+        // "CFArrayGetValueAtIndex" / M(Xor1) / S(117) / L(22)
+        "\x36\x33\x34\x07\x07\x14\x0c\x32\x10\x01\x23\x14\x19\x00\x10\x34\x01\x3c\x1b\x11\x10\x0d\x75",
+        // "SHA1_Init" / M(Xor4) / S(5) / L(9)
+        "\x03\x18\x11\x61\x0f\x19\x3e\x39\x24\x50\x22\x95\xb9\x4a\xc6\x55",
+        // "CFReadStreamClose" / M(Xor4) / S(13) / L(17)
+        "\xa9\xac\xb8\x8f\x8b\x8e\xb9\x9e\x98\x8f\x8b\x87\xa9\x86\x85\x99\x8f\xea",
+        // "CFDataCreate" / M(Rot) / S(254) / L(12)
+        "\x41\x44\x42\x5f\x72\x5f\x41\x70\x63\x5f\x72\x63\xfe\x2d\x18\x82",
+        // "Apple Root CA" / M(Rot) / S(168) / L(13)
+        "\xe9\x18\x18\x14\x0d\xc8\xfa\x17\x17\x1c\xc8\xeb\xe9\xa8\xc3\x3f",
+        // "c2i_ASN1_INTEGER" / M(Xor1) / S(26) / L(16)
+        "\x79\x28\x73\x45\x5b\x49\x54\x2b\x45\x53\x54\x4e\x5f\x5d\x5f\x48\x1a",
+        // "CFDateFormatterSetProperty" / M(Xor4) / S(0) / L(26)
+        "\x43\x46\x44\x61\x74\x65\x46\x6f\x72\x6d\x61\x74\x74\x65\x72\x53\x65\x74\x50\x72\x6f\x70\x65\x72\x74\x79\x00\xcc\xb8\xad\x4e\x07\xd7\xd4\xdc",
+        // "" / M(None) / S(0) / L(0)
+        "\xc1\x49\x49\xc3\x92\xef\x21\xf4\x8a\xdc\x36\xf8\xc6\x43\x17\xe0\x5a\xe3\xfa\x78\xdc\xab\xae\x04\xa8\x0d\x34\x39\x11\xd9\x6a\x20",
+        // "getUUIDBytes:" / M(Xor2) / S(246) / L(13)
+        "\x81\x83\x92\xb3\xb3\xaf\xa2\xa4\x9f\x92\x83\x95\xdc\xe6\x7d\x17",
+        // "" / M(None) / S(0) / L(0)
+        "\xa7\x60\x5a\xc3\xe1\xa9\xef\x8b\xdc\x78\xcc\x9e\xce\x16\x11\xa6\x41\xc1\x4a\xeb\x35\x4f\x59\x99\xb1\xd7\x38\xc8\x3d\x85\x4b\x54",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Xor1) / S(87) / L(29)
+        "\x3c\x14\x11\x03\x2e\x27\x32\x13\x3e\x34\x23\x3e\x38\x39\x36\x25\x2e\x1c\x32\x2e\x14\x36\x3b\x3b\x15\x36\x34\x3c\x24\x57\x59\x0a\x96\x01\xe1\x5a\x59\xc2",
+        // "kCFTypeDictionaryKeyCallBacks" / M(Xor3) / S(107) / L(29)
+        "\xfa\xd2\xd7\xc5\xe8\xe1\xf4\xd5\xf8\xf2\xe5\xf8\xfe\xff\xf0\xe3\xe8\xda\xf4\xe8\xd2\xf0\xfd\xfd\xd3\xf0\xf2\xfa\xe2\x91\x15\xa7\x29\xaa\xf7\xbb\xb4\xb2",
+        // "SHA1_Final" / M(Xor3) / S(129) / L(10)
+        "\xc2\xd9\xd0\xa0\xce\xd7\xf8\xff\xf0\xfd\x91\x59\x26\xe4\xfb\x93",
+        // "" / M(None) / S(0) / L(0)
+        "\x32\x18\x36\x15\x76\x72\xe4\xba\x0f\xbf\x4d\xed\x75\xa4\xb8\xd1\x39\x15\xd5\xa6\xe4\xd6\xd0\x11\xc1\xa7\x7a\xa1\xa3\xf7\xa7\x73",
+        // "SHA1_Final" / M(Rot) / S(243) / L(10)
+        "\x46\x3b\x34\x24\x52\x39\x5c\x61\x54\x5f\xf3\xe8\x0a\x87\x28\x7f",
+        // "%02x:" / M(Xor3) / S(50) / L(5)
+        "\x67\x72\x70\x3a\x78\x42\xcb\x9b\x70\xf9\x17\x99\xb8\x05\x74\xc6",
+        // "CFNumberCreate" / M(Xor2) / S(82) / L(14)
+        "\x01\x04\x0c\x37\x2f\x20\x27\x30\x01\x30\x27\x23\x36\x27\x42\x1b",
+        // "" / M(None) / S(0) / L(0)
+        "\x42\xf3\x43\x1c\x2f\x8c\x8d\xef\xd6\x3a\x16\xe5\x0f\x37\xa6\x90\xce\xcf\x8d\x32\xf1\xa1\xd4\x82\x15\x47\xe3\x1b\x28\x4e\x82\x5b",
+        // "CFDictionaryCreateMutable" / M(Xor1) / S(180) / L(25)
+        "\xf7\xf2\xf0\xdd\xd7\xc0\xdd\xdb\xda\xd5\xc6\xcd\xf7\xc6\xd1\xd5\xc0\xd1\xf9\xc1\xc0\xd5\xd6\xd8\xd1\xb4\x3c\xfb\x26\x56\x51\x6c\xdc\xa2",
+        // "currentDevice" / M(Xor1) / S(190) / L(13)
+        "\xdd\xcb\xcc\xcc\xdb\xd0\xca\xfa\xdb\xc8\xd7\xdd\xdb\xbe\xa3\xab",
+        // "objc_msgSend" / M(Xor2) / S(38) / L(12)
+        "\x59\x54\x5c\x55\x69\x5b\x45\x51\x65\x53\x58\x52\x36\xdb\x63\xff",
+        // "BIO_s_mem" / M(Xor3) / S(3) / L(9)
+        "\x51\x5a\x5c\x4c\x60\x4c\x7e\x76\x7e\x13\xef\xd8\x7a\xc6\x2c\x47",
+        // "" / M(None) / S(0) / L(0)
+        "\x7e\x4c\x34\x25\xdb\x9a\xc1\xc1\x64\xc7\x1a\x2f\xda\x79\x52\x0d\x6e\xcb\x91\xec\x35\x20\xf7\x0c\x3f\x1e\xaf\x08\xe5\xae\xb5\xad",
+        // "CFDataCreateMutable" / M(Xor4) / S(164) / L(19)
+        "\x93\x96\x94\xb1\xa4\xb1\x93\xa2\xb5\xb1\xa4\xb5\x9d\xa5\xa4\xb1\xb2\xbc\xb5\xd0",
+        // "CFDateFormatterCreateDateFromString" / M(Xor2) / S(202) / L(35)
+        "\xad\xa8\xaa\x8f\x9a\x8b\xa8\x81\x9c\x83\x8f\x9a\x9a\x8b\x9c\xad\x9c\x8b\x8f\x9a\x8b\xaa\x8f\x9a\x8b\xa8\x9c\x81\x83\xbd\x9a\x9c\x87\x80\x89\xee",
+        // "OBJ_txt2obj" / M(Xor1) / S(52) / L(11)
+        "\x7b\x76\x7e\x6b\x40\x4c\x40\x06\x5b\x56\x5e\x34\xc4\x3b\x13\xec",
+        // "1.2.840.113635.100.6.11.1" / M(Rot) / S(239) / L(25)
+        "\x20\x1d\x21\x1d\x27\x23\x1f\x1d\x20\x20\x22\x25\x22\x24\x1d\x20\x1f\x1f\x1d\x25\x1d\x20\x20\x1d\x20\xef\xdb\x66\x36\x73\x99\x60\xa9\x2c",
+        // "alloc" / M(Rot) / S(54) / L(5)
+        "\x97\xa2\xa2\xa5\x99\x36\x22\x28\x7d\x03\x60\xd5\xc6\xd9\x72\x4e",
+        // "" / M(None) / S(0) / L(0)
+        "\x52\xf5\x6c\xcd\xa1\x27\x06\x01\x6a\x71\xa5\xaa\xff\xeb\x1e\x08\xd6\xe6\xe9\x25\x71\xc3\x45\x22\x7c\x7f\x4c\xbd\x52\x1a\x30\x73",
+        // "CFBundleGetMainBundle" / M(Xor3) / S(194) / L(21)
+        "\x9b\x9e\x9a\xad\xb6\xbc\xb4\xbd\x9f\xbd\xac\x95\xb9\xb1\xb6\x9a\xad\xb6\xbc\xb4\xbd\xd8",
+        // "." / M(Xor3) / S(156) / L(1)
+        "\x82\xac\x6e\xa3\xff\xd4\xdf\x8b\x2d\xaf\x39\x77\x45\x12\xa1\x46",
+        // "RTLD_MAIN_ONLY" / M(Xor1) / S(244) / L(14)
+        "\xa6\xa0\xb8\xb0\xab\xb9\xb5\xbd\xba\xab\xbb\xba\xb8\xad\xf4\xb4",
+        // "%02X" / M(Rot) / S(85) / L(4)
+        "\x7a\x85\x87\xad\x55\x5d\x5b\x43\xa0\x9e\x29\x8e\x17\x76\x1d\xe5",
+        // "CFNumberCreate" / M(Xor3) / S(129) / L(14)
+        "\xd2\xd7\xdf\xe4\xfc\xf3\xf4\xe3\xd2\xe3\xf4\xf0\xe5\xf4\x91\x82",
+        // "2" / M(Xor2) / S(101) / L(1)
+        "\x47\x75\xfa\xac\x4f\x48\x04\xe0\xc7\x8d\x10\x01\x39\x91\xfb\x4b",
+        // "CFArrayGetCount" / M(Xor2) / S(215) / L(15)
+        "\x84\x81\x86\xb5\xb5\xa6\xbe\x80\xa2\xb3\x84\xa8\xb2\xa9\xb3\xc7",
+        // "CFRelease" / M(Xor3) / S(194) / L(9)
+        "\x91\x94\x80\xb7\xbe\xb7\xb3\xa1\xb7\xd2\x9e\xe4\x8e\x84\xcf\x6f",
+        // "CFArrayAppendValue" / M(Xor4) / S(139) / L(18)
+        "\x12\x17\x10\x23\x23\x30\x28\x10\x21\x21\x34\x3f\x35\x07\x30\x3d\x24\x34\x51",
+        // "exit" / M(Xor3) / S(107) / L(4)
+        "\x1e\x03\x12\x0f\x7b\xe0\x24\x57\xf4\x33\xef\x55\x88\x26\xb2\xca",
+        // "PKCS7_verify" / M(Rot) / S(179) / L(12)
+        "\x03\xfe\xf6\x06\xea\x12\x29\x18\x25\x1c\x19\x2c\xb3\x88\xef\xd5",
+        // "X509_STORE_add_cert" / M(Xor2) / S(110) / L(19)
+        "\x22\x4f\x4a\x43\x25\x29\x2e\x35\x28\x3f\x25\x1b\x1e\x1e\x25\x19\x1f\x08\x0e\x7a",
+        // "CFDataGetLength" / M(Xor4) / S(224) / L(15)
+        "\x43\x46\x44\x61\x74\x61\x47\x65\x74\x4c\x65\x6e\x67\x74\x68\x00",
+        // "BIO_new" / M(Xor1) / S(244) / L(7)
+        "\xb6\xbd\xbb\xab\x9a\x91\x83\xf4\xc1\xaa\x6a\xd5\x36\x2b\x79\x67",
+        // "SHA1" / M(Xor1) / S(55) / L(4)
+        "\x64\x7f\x76\x06\x37\xf9\x89\x7a\x9f\x3c\x29\xd9\x44\x4e\x71\x93",
+        // "" / M(None) / S(0) / L(0)
+        "\x33\xa3\x10\x92\x75\x44\x30\x34\xa0\xf4\x1d\x20\x58\x53\xa3\xc0\x0c\xb1\x67\xf2\x1a\x71\x10\xe1\xce\x15\x37\xa1\xf3\xde\xe9\x37",
+        // "SHA1_Update" / M(Xor2) / S(118) / L(11)
+        "\x35\x2e\x27\x57\x39\x33\x16\x02\x07\x12\x03\x66\x2b\x2a\x87\xfb",
+        // "objc_lookUpClass" / M(Rot) / S(210) / L(16)
+        "\x41\x34\x3c\x35\x31\x3e\x41\x41\x3d\x27\x42\x15\x3e\x33\x45\x45\xd2",
+        // "start" / M(Xor2) / S(32) / L(5)
+        "\x43\x44\x51\x42\x44\x30\x47\xff\xcb\x11\x25\x1d\xc6\x75\x42\xec",
+        // "CFAbsoluteTimeGetCurrent" / M(Xor4) / S(139) / L(24)
+        "\xa8\xad\xaa\x89\x98\x84\x87\x9e\x9f\x8e\xbf\x82\x86\x8e\xac\x8e\x9f\xa8\x9e\x99\x99\x8e\x85\x9f\xeb\x05\x5b\x3d\x7e\x27\x94\xf1\xfd",
+        // "com.intangiblesoftware.menslacrossestats" / M(Rot) / S(93) / L(40)
+        "\xc0\xcc\xca\x8b\xc6\xcb\xd1\xbe\xcb\xc4\xc6\xbf\xc9\xc2\xd0\xcc\xc3\xd1\xd4\xbe\xcf\xc2\x8b\xca\xc2\xcb\xd0\xc9\xbe\xc0\xcf\xcc\xd0\xd0\xc2\xd0\xd1\xbe\xd1\xd0\x5d\x3a\x87\x9e\x14\x4b\xdd\x52\x76",
+        // "PKCS7_get0_signers" / M(Xor1) / S(215) / L(18)
+        "\x87\x9c\x94\x84\xe0\x88\xb0\xb2\xa3\xe7\x88\xa4\xbe\xb0\xb9\xb2\xa5\xa4\xd7",
+        // "CFDictionaryGetValue" / M(Xor3) / S(128) / L(20)
+        "\xd6\xd3\xd1\xfc\xf6\xe1\xfc\xfa\xfb\xf4\xe7\xec\xd2\xf0\xe1\xc3\xf4\xf9\xe0\xf0\x95",
+        // "CFBundleGetIdentifier" / M(Xor3) / S(29) / L(21)
+        "\x70\x75\x71\x46\x5d\x57\x5f\x56\x74\x56\x47\x7a\x57\x56\x5d\x47\x5a\x55\x5a\x56\x41\x33",
+        // "BIO_new" / M(Xor1) / S(151) / L(7)
+        "\xd5\xde\xd8\xc8\xf9\xf2\xe0\x97\xe7\x4e\x75\xdc\x5c\xfe\xac\xb1",
+        // "%02X:" / M(Xor3) / S(250) / L(5)
+        "\x2f\x3a\x38\x52\x30\x0a\x6e\xb5\x34\x51\x7c\x89\xad\xbb\xbb\x68",
+        // "CC_SHA1" / M(Xor2) / S(173) / L(7)
+        "\xfe\xfe\xe2\xee\xf5\xfc\x8c\xbd\xbe\xb7\xf7\x34\xc6\x96\x4b\x75",
+        // "CFDataGetBytePtr" / M(Xor1) / S(196) / L(16)
+        "\x87\x82\x80\xa5\xb0\xa5\x83\xa1\xb0\x86\xbd\xb0\xa1\x94\xb0\xb6\xc4",
+        // "" / M(None) / S(0) / L(0)
+        "\x5e\x83\x86\xac\x7e\xe9\x2f\xd4\xc3\xee\x7d\xf6\x8a\x4b\xd0\x9b\x18\xe5\x7a\xf9\xde\xe7\x6e\xcd\xc2\xa6\x32\xe2\x86\xd9\x24\xb5",
+        // "strlen" / M(Xor3) / S(68) / L(6)
+        "\x27\x20\x26\x38\x31\x3a\x54\xcc\x33\x3e\xcc\x14\xe4\xa9\x27\x8a",
+        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Xor2) / S(205) / L(39)
+        "\xbe\xbb\xa9\x94\x90\x98\xa7\x92\x93\x98\xbe\x8f\x98\x9c\x89\x98\xaa\x94\x89\x95\xa9\x94\x90\x98\xb4\x93\x89\x98\x8f\x8b\x9c\x91\xbb\x8f\x92\x90\xba\xb0\xa9\xfd\x19\xa8\xde\xa8\xd5\x9f\x20\x13",
+        // "CFStringCreateWithBytes" / M(Xor1) / S(32) / L(23)
+        "\x63\x66\x73\x54\x52\x49\x4e\x47\x63\x52\x45\x41\x54\x45\x77\x49\x54\x48\x62\x59\x54\x45\x53\x20\x70\xbc\xe3\xc0\x9d\x5e\xe5\x37",
+        // "CFStringCreateWithCString" / M(Xor1) / S(238) / L(25)
+        "\xad\xa8\xbd\x9a\x9c\x87\x80\x89\xad\x9c\x8b\x8f\x9a\x8b\xb9\x87\x9a\x86\xad\xbd\x9a\x9c\x87\x80\x89\xee\x4c\xb7\x37\x88\x3e\x16\x41\xaa",
+        // "" / M(None) / S(0) / L(0)
+        "\x9f\xe8\x6f\x6d\x54\x7e\x31\xd8\x3c\x77\x96\x93\xe4\x1f\x3c\x62\x4c\x0c\xcd\x5e\x75\xae\x50\x9f\xca\x83\x33\xfe\x5b\x31\x99\x74",
+        // "ASN1_get_object" / M(Rot) / S(238) / L(15)
+        "\x2f\x41\x3c\x1f\x4d\x55\x53\x62\x4d\x5d\x50\x58\x53\x51\x62\xee",
+        // "alloc" / M(Rot) / S(185) / L(5)
+        "\x1a\x25\x25\x28\x1c\xb9\x1f\x43\x94\x0b\x17\x29\xfb\x2f\x8e\x82",
+        // "CFAbsoluteTimeGetCurrent" / M(Xor1) / S(245) / L(24)
+        "\xb6\xb3\xb4\x97\x86\x9a\x99\x80\x81\x90\xa1\x9c\x98\x90\xb2\x90\x81\xb6\x80\x87\x87\x90\x9b\x81\xf5\x0e\x5f\x3b\x18\x43\x66\xe6\xbc",
+        // "%02x" / M(Xor3) / S(175) / L(4)
+        "\x9a\x8f\x8d\xc7\xbf\x15\xe8\xb5\x64\x54\xd8\xd9\xf1\x64\xab\x83",
+        // "" / M(None) / S(0) / L(0)
+        "\x67\xdd\x7f\xf4\xcd\xee\x40\xc3\xed\x2d\x6d\xb9\x71\xb0\x4e\x14\x6b\x73\x86\x27\x4e\xd2\x80\xef\xab\x26\x56\xbc\xe9\xa5\x78\x95",
+        // "EVP_DigestUpdate" / M(Xor3) / S(75) / L(16)
+        "\x19\x0a\x0c\x03\x18\x35\x3b\x39\x2f\x28\x09\x2c\x38\x3d\x28\x39\x5c",
+        // "ASN1_INTEGER_get" / M(Xor2) / S(211) / L(16)
+        "\x83\x91\x8c\xf3\x9d\x8b\x8c\x96\x87\x85\x87\x90\x9d\xa5\xa7\xb6\xc2",
+        // "getUUIDBytes:" / M(Rot) / S(142) / L(13)
+        "\xf5\xf3\x02\xe3\xe3\xd7\xd2\xd0\x07\x02\xf3\x01\xc8\x8e\xbd\x60",
+        // "CFAbsoluteTimeGetCurrent" / M(Xor1) / S(170) / L(24)
+        "\xe9\xec\xeb\xc8\xd9\xc5\xc6\xdf\xde\xcf\xfe\xc3\xc7\xcf\xed\xcf\xde\xe9\xdf\xd8\xd8\xcf\xc4\xde\xaa\xd5\x77\x2d\xc6\x8a\x0a\x56\xd2",
+        // "SHA1_Init" / M(Rot) / S(50) / L(9)
+        "\x85\x7a\x73\x63\x91\x7b\xa0\x9b\xa6\x32\xc7\x1e\x38\x4a\x0d\xd7",
+        // "identifierForVendor" / M(Xor3) / S(234) / L(19)
+        "\x97\x9a\x9b\x90\x8a\x97\x98\x97\x9b\x8c\xb8\x91\x8c\xa8\x9b\x90\x9a\x91\x8c\xfe",
+        // "identifierForVendor" / M(Xor1) / S(150) / L(19)
+        "\xff\xf2\xf3\xf8\xe2\xff\xf0\xff\xf3\xe4\xd0\xf9\xe4\xc0\xf3\xf8\xf2\xf9\xe4\x96",
+        // "CFBundleGetMainBundle" / M(Xor2) / S(2) / L(21)
+        "\x57\x52\x56\x61\x7a\x70\x78\x71\x53\x71\x60\x59\x75\x7d\x7a\x56\x61\x7a\x70\x78\x71\x14",
+        // "61:1E:5B:66:2C:59:3A:08:FF:58:D1:4A:E2:24:52:D1:98:DF:6C:60" / M(Xor4) / S(1) / L(59)
+        "\x72\x75\x7e\x75\x01\x7e\x71\x06\x7e\x72\x72\x7e\x76\x07\x7e\x71\x7d\x7e\x77\x05\x7e\x74\x7c\x7e\x02\x02\x7e\x71\x7c\x7e\x00\x75\x7e\x70\x05\x7e\x01\x76\x7e\x76\x70\x7e\x71\x76\x7e\x00\x75\x7e\x7d\x7c\x7e\x00\x02\x7e\x72\x07\x7e\x72\x74\x44\xf3\xc6\xb7\x7d\x0f\x7d\xeb\x21",
+        // "ASN1_OBJECT_free" / M(Xor1) / S(71) / L(16)
+        "\x06\x14\x09\x76\x18\x08\x05\x0d\x02\x04\x13\x18\x21\x35\x22\x22\x47",
+        // "X509_digest" / M(Xor1) / S(210) / L(11)
+        "\x8a\xe7\xe2\xeb\x8d\xb6\xbb\xb5\xb7\xa1\xa6\xd2\x11\x48\x5c\x97",
+        // "X509_free" / M(Rot) / S(107) / L(9)
+        "\xc3\xa0\x9b\xa4\xca\xd1\xdd\xd0\xd0\x6b\x70\xc6\x62\xac\x65\xf1",
+        // "strlen" / M(Xor1) / S(12) / L(6)
+        "\x7f\x78\x7e\x60\x69\x62\x0c\x9d\xb6\x8c\x6c\x71\x3c\x01\x0e\x0d",
+        // "611E5B662C593A08FF58D14AE22452D198DF6C60" / M(Xor4) / S(247) / L(40)
+        "\x71\x76\x76\x02\x72\x05\x71\x71\x75\x04\x72\x7e\x74\x06\x77\x7f\x01\x01\x72\x7f\x03\x76\x73\x06\x02\x75\x75\x73\x72\x75\x03\x76\x7e\x7f\x03\x01\x71\x04\x71\x77\x47\x36\xf6\x4c\xcf\xf0\x52\x58\xf1",
+        // "CFTimeZoneCreateWithTimeIntervalFromGMT" / M(Rot) / S(84) / L(39)
+        "\x97\x9a\xa8\xbd\xc1\xb9\xae\xc3\xc2\xb9\x97\xc6\xb9\xb5\xc8\xb9\xab\xbd\xc8\xbc\xa8\xbd\xc1\xb9\x9d\xc2\xc8\xb9\xc6\xca\xb5\xc0\x9a\xc6\xc3\xc1\x9b\xa1\xa8\x54\x39\xf4\x44\x1c\x18\xe7\x05\x89",
+        // "init" / M(Xor2) / S(181) / L(4)
+        "\xcc\xcb\xcc\xd1\xa5\x51\x3f\x50\xb6\xc3\x20\x16\xaf\xf4\xd0\x27",
+        // "%02X:" / M(Xor4) / S(254) / L(5)
+        "\xc5\xd0\xd2\xb8\xda\xe0\x03\xfd\xab\x80\x3b\x15\xe2\xc5\x27\x15",
+        // "" / M(None) / S(0) / L(0)
+        "\x52\xf9\xe3\x0d\x32\x11\xad\xbe\x9f\x52\xf2\xc0\x90\xab\xdf\x39\xc1\x1c\x67\x19\xf8\xd9\x94\xf8\xf8\x1b\x71\xe7\x35\x7c\xae\x35",
+        // "CFArrayCreateMutable" / M(Rot) / S(240) / L(20)
+        "\x33\x36\x31\x62\x62\x51\x69\x33\x62\x55\x51\x64\x55\x3d\x65\x64\x51\x52\x5c\x55\xf0",
+        // "" / M(None) / S(0) / L(0)
+        "\x46\x2e\x2e\x0b\xed\x24\x53\x68\xfc\x47\x26\xf8\x92\x78\x1c\xf5\xd1\x76\x35\xa5\xd0\x6c\x70\x25\x51\x5a\x8a\x74\x18\x3c\xb4\x8e",
+        // "CFDataAppendBytes" / M(Xor1) / S(83) / L(17)
+        "\x10\x15\x17\x32\x27\x32\x12\x23\x23\x36\x3d\x37\x11\x2a\x27\x36\x20\x53",
+        // "kCFTypeDictionaryValueCallBacks" / M(Xor3) / S(140) / L(31)
+        "\xc7\xef\xea\xf8\xd5\xdc\xc9\xe8\xc5\xcf\xd8\xc5\xc3\xc2\xcd\xde\xd5\xfa\xcd\xc0\xd9\xc9\xef\xcd\xc0\xc0\xee\xcd\xcf\xc7\xdf\xac",
+        // "kCFDateFormatterTimeZone" / M(Xor3) / S(252) / L(24)
+        "\x76\x5e\x5b\x59\x7c\x69\x78\x5b\x72\x6f\x70\x7c\x69\x69\x78\x6f\x49\x74\x70\x78\x47\x72\x73\x78\x1d\xab\x37\x33\x63\xfa\xc4\x5e\x42",
+        // "CFDictionaryCreateMutable" / M(Xor4) / S(154) / L(25)
+        "\x37\x32\x30\x1d\x17\x00\x1d\x1b\x1a\x15\x06\x0d\x37\x06\x11\x15\x00\x11\x39\x01\x00\x15\x16\x18\x11\x74\x0a\x02\x22\x51\x0e\xd4\xf4\xd2",
+        // "PKCS7_free" / M(Xor3) / S(178) / L(10)
+        "\x92\x89\x81\x91\xf5\x9d\xa4\xb0\xa7\xa7\xc2\xe1\xe1\x82\xf1\x1a",
+        // "" / M(None) / S(0) / L(0)
+        "\x7d\xb2\x26\x88\x41\x0c\x9c\x22\x69\x8a\x7a\xbc\x9a\x74\x4d\xeb\x39\x0a\x02\x12\x32\x4b\x84\xba\x99\x92\x4f\x44\x7f\x5d\xec\x53",
+        // "CFDictionaryAddValue" / M(Xor2) / S(7) / L(20)
+        "\x51\x54\x56\x7b\x71\x66\x7b\x7d\x7c\x73\x60\x6b\x53\x76\x76\x44\x73\x7e\x67\x77\x12",
+        // "CFArrayAppendValue" / M(Rot) / S(203) / L(18)
+        "\x0e\x11\x0c\x3d\x3d\x2c\x44\x0c\x3b\x3b\x30\x39\x2f\x21\x2c\x37\x40\x30\xcb",
+        // "" / M(None) / S(0) / L(0)
+        "\xcf\x47\x12\x10\xfe\xc6\xe5\xcf\x3a\x61\xa1\x80\x0d\x00\x5c\xd7\x3f\x5a\x41\xd2\x60\x22\xbf\xb5\xa7\x30\xc1\x40\x58\xc7\x23\x7a",
+        // "" / M(None) / S(0) / L(0)
+        "\x17\x98\xdf\xad\x39\x00\x92\x22\xcf\xe1\xf5\x26\x17\x41\x6d\xa7\x37\xaa\x33\x81\x29\x18\xf5\x18\x76\x26\x33\xde\xf8\x71\x83\x69",
+        // "CFDataAppendBytes" / M(Xor1) / S(82) / L(17)
+        "\x11\x14\x16\x33\x26\x33\x13\x22\x22\x37\x3c\x36\x10\x2b\x26\x37\x21\x52",
+        // "CFDateFormatterCreate" / M(Xor1) / S(112) / L(21)
+        "\x33\x36\x34\x11\x04\x15\x36\x1f\x02\x1d\x11\x04\x04\x15\x02\x33\x02\x15\x11\x04\x15\x70",
+        // "EVP_DigestInit" / M(Xor2) / S(119) / L(14)
+        "\x22\x31\x37\x38\x23\x0e\x00\x02\x14\x13\x2e\x09\x0e\x13\x67\x87",
+        // "CFDateFormatterCreate" / M(Xor3) / S(28) / L(21)
+        "\x71\x74\x76\x53\x46\x57\x74\x5d\x40\x5f\x53\x46\x46\x57\x40\x71\x40\x57\x53\x46\x57\x32",
+        // "" / M(None) / S(0) / L(0)
+        "\x39\xf2\xe5\x4d\xc0\x9b\x12\x8b\x3c\xc7\xe7\x91\x25\x4e\x4c\xab\x4c\xc0\x0f\xd9\x46\x99\xc7\x1f\x6a\xcb\xf6\xa8\xda\xb3\x15\xc7",
+        // "kCFDateFormatterTimeZone" / M(Xor4) / S(93) / L(24)
+        "\x96\xbe\xbb\xb9\x9c\x89\x98\xbb\x92\x8f\x90\x9c\x89\x89\x98\x8f\xa9\x94\x90\x98\xa7\x92\x93\x98\xfd\x2e\x89\xe9\x4c\x88\x17\x83\x92",
+        // "PKCS7_get0_signers" / M(Xor2) / S(58) / L(18)
+        "\x79\x62\x6a\x7a\x1e\x76\x4e\x4c\x5d\x19\x76\x5a\x40\x4e\x47\x4c\x5b\x5a\x29",
+        // "" / M(None) / S(0) / L(0)
+        "\x72\xeb\x8b\xda\xb7\x99\x3d\x30\x0b\xb9\x2e\x0a\x2e\x1e\xae\xa5\x6c\x51\x54\x9c\x84\x18\xf7\xa9\xa1\xde\x26\xb5\x41\xf3\x0d\x51",
+        // "RTLD_MAIN_ONLY" / M(Xor4) / S(69) / L(14)
+        "\x02\x04\x1c\x14\x0f\x1d\x11\x19\x1e\x0f\x1f\x1e\x1c\x09\x50\x34",
+        // "CC_SHA1_Update" / M(Xor1) / S(130) / L(14)
+        "\xc1\xc1\xdd\xd1\xca\xc3\xb3\xdd\xd7\xf2\xe6\xe3\xf6\xe7\x82\x00",
+        // "d2i_X509_bio" / M(Rot) / S(55) / L(12)
+        "\x9b\x69\xa0\x96\x8f\x6c\x67\x70\x96\x99\xa0\xa6\x37\xd2\xa5\x42",
+        // "CFStringCreateWithCString" / M(Rot) / S(44) / L(25)
+        "\x6f\x72\x7f\xa0\x9e\x95\x9a\x93\x6f\x9e\x91\x8d\xa0\x91\x83\x95\xa0\x94\x6f\x7f\xa0\x9e\x95\x9a\x93\x2c\x9b\x37\x53\x14\x9a\x42\x98\x0a",
+        // "CFBundleIdentifier" / M(Xor4) / S(205) / L(18)
+        "\x74\x71\x75\x42\x59\x53\x5b\x52\x7e\x53\x52\x59\x43\x5e\x51\x5e\x52\x45\x37",
+        // "OpenSSL_add_all_digests" / M(Xor3) / S(170) / L(23)
+        "\x85\xba\xaf\xa4\x99\x99\x86\x95\xab\xae\xae\x95\xab\xa6\xa6\x95\xae\xa3\xad\xaf\xb9\xbe\xb9\xca\x35\x98\x2d\xc5\xf1\x29\xc8\x95",
+        // "sk_value" / M(Xor3) / S(73) / L(8)
+        "\x2a\x32\x06\x2f\x38\x35\x2c\x3c\x59\x2c\xf7\xb9\x3a\x97\x1a\xf2",
+        // "CFRelease" / M(Xor4) / S(128) / L(9)
+        "\x43\x46\x52\x65\x6c\x65\x61\x73\x65\x00\xdc\x8a\xac\x75\x33\x9e",
+        // "longjmp" / M(Xor1) / S(27) / L(7)
+        "\x77\x74\x75\x7c\x71\x76\x6b\x1b\x34\xf8\x97\x68\x1f\xca\x41\xdd",
+        // "CFStringCompare" / M(Xor3) / S(30) / L(15)
+        "\x6d\x68\x7d\x5a\x5c\x47\x40\x49\x6d\x41\x43\x5e\x4f\x5c\x4b\x2e",
+        // "CFDateFormatterCreateDateFromString" / M(Xor1) / S(2) / L(35)
+        "\x41\x44\x46\x63\x76\x67\x44\x6d\x70\x6f\x63\x76\x76\x67\x70\x41\x70\x67\x63\x76\x67\x46\x63\x76\x67\x44\x70\x6d\x6f\x51\x76\x70\x6b\x6c\x65\x02",
+        // "/usr/lib/libobjc.dylib" / M(Xor2) / S(168) / L(22)
+        "\x90\xca\xcc\xcd\x90\xd3\xd6\xdd\x90\xd3\xd6\xdd\xd0\xdd\xd5\xdc\x91\xdb\xc6\xd3\xd6\xdd\xbf",
+        // "" / M(None) / S(0) / L(0)
+        "\x76\xac\x42\xe0\x77\xda\xc7\x91\xa8\xee\x92\xa7\x92\x08\x0b\x06\x3e\x96\x35\x49\x61\x3a\xf0\xb3\x52\xca\x14\x6f\x2a\x7e\x05\x5f",
+        // "" / M(None) / S(0) / L(0)
+        "\xa2\x33\xda\x78\x78\x58\xed\xc7\xd3\x7f\x88\x8f\xd1\x92\x45\xba\x40\x44\xa0\x47\x79\xb6\xe8\x4a\x50\x87\xed\x45\x44\x64\x3c\xa8",
+        // "EVP_DigestInit" / M(Xor3) / S(64) / L(14)
+        "\x15\x06\x00\x0f\x14\x39\x37\x35\x23\x24\x19\x3e\x39\x24\x50\x70",
+        // "NSBundle" / M(Xor1) / S(130) / L(8)
+        "\xcc\xd1\xc0\xf7\xec\xe6\xee\xe7\x82\xbb\x39\xa3\xd3\xdf\xdb\xd1",
+        // "sel_registerName" / M(Xor4) / S(147) / L(16)
+        "\xb0\xa6\xaf\x9c\xb1\xa6\xa4\xaa\xb0\xb7\xa6\xb1\x8d\xa2\xae\xa6\xc3",
+        // "" / M(None) / S(0) / L(0)
+        "\xf3\xde\x74\xec\xa3\x0f\x88\xdc\x84\x5e\x5b\xf6\xc7\x45\x94\x14\x64\x00\xe8\xdd\x39\x1e\xea\x0c\x13\xf1\xf8\xf3\x4d\x6e\xfa\xd4",
+        // "SHA1_Init" / M(Xor3) / S(33) / L(9)
+        "\x62\x79\x70\x00\x6e\x78\x5f\x58\x45\x31\x2c\x0f\x6d\x50\xd3\xca",
+        // "init" / M(Xor3) / S(4) / L(4)
+        "\x7d\x7a\x7d\x60\x14\xa2\x14\xb9\xd9\x17\x4e\xc7\xeb\xe4\x9f\x4a",
+        // "X509_STORE_free" / M(Rot) / S(24) / L(15)
+        "\x70\x4d\x48\x51\x77\x6b\x6c\x67\x6a\x5d\x77\x7e\x8a\x7d\x7d\x18",
+        // "sel_registerName" / M(Xor4) / S(146) / L(16)
+        "\xc1\xd7\xde\xed\xc0\xd7\xd5\xdb\xc1\xc6\xd7\xc0\xfc\xd3\xdf\xd7\xb2",
+        // "CFReadStreamCreateWithFile" / M(Xor1) / S(207) / L(26)
+        "\x8c\x89\x9d\xaa\xae\xab\x9c\xbb\xbd\xaa\xae\xa2\x8c\xbd\xaa\xae\xbb\xaa\x98\xa6\xbb\xa7\x89\xa6\xa3\xaa\xcf\x70\xfc\x9c\x62\x18\xcd\x35\xf4",
+        // "SHA1_Final" / M(Xor4) / S(145) / L(10)
+        "\x43\x58\x51\x21\x4f\x56\x79\x7e\x71\x7c\x10\xca\xf4\x08\xda\xe8",
+        // "" / M(None) / S(0) / L(0)
+        "\x5c\x98\x5c\xd8\x64\x37\x9e\xe0\x1c\x84\x19\x03\xd2\x62\xb9\xb3\xf5\xfa\x02\xd7\xcb\x27\x0d\xaa\xf6\x62\x1d\x18\x1d\xfd\xe9\x09",
+        // "" / M(None) / S(0) / L(0)
+        "\x6a\x08\xc1\x37\x4f\x36\xa7\xce\x64\xf1\x38\x69\xa3\x76\xbb\x8a\xd3\x38\x9d\xa9\x1b\x20\x29\x16\x98\xf8\xd1\xf5\x87\x8e\x70\x1f",
+        // "CFBundleIdentifier" / M(Xor4) / S(143) / L(18)
+        "\xde\xdb\xdf\xe8\xf3\xf9\xf1\xf8\xd4\xf9\xf8\xf3\xe9\xf4\xfb\xf4\xf8\xef\x9d",
+        // "CC_SHA1_Final" / M(Rot) / S(209) / L(13)
+        "\x14\x14\x30\x24\x19\x12\x02\x30\x17\x3a\x3f\x32\x3d\xd1\xa0\xdd",
+        // "" / M(None) / S(0) / L(0)
+        "\x84\xc8\x03\x48\x7a\x80\xa7\x22\xae\xad\x74\x76\x91\x35\x30\xa2\xad\x79\xf7\xc3\xde\x80\x35\x22\xe7\xd4\x80\x00\x57\x75\xa5\xb0",
+        // "CFBundleVersion" / M(Xor1) / S(19) / L(15)
+        "\x50\x55\x51\x66\x7d\x77\x7f\x76\x45\x76\x61\x60\x7a\x7c\x7d\x13",
+        // "objc_getClass" / M(Xor2) / S(164) / L(13)
+        "\xdb\xd6\xde\xd7\xeb\xd3\xd1\xc0\xf7\xd8\xd5\xc7\xc7\xb4\x79\x32",
+        // "X509_get_ext_by_OBJ" / M(Xor1) / S(228) / L(19)
+        "\xbc\xd1\xd4\xdd\xbb\x83\x81\x90\xbb\x81\x9c\x90\xbb\x86\x9d\xbb\xab\xa6\xae\xe4",
+        // "CFReadStreamRead" / M(Xor2) / S(136) / L(16)
+        "\xda\xdf\xcb\xfc\xf8\xfd\xca\xed\xeb\xfc\xf8\xf4\xcb\xfc\xf8\xfd\x99",
+        // "CFDateFormatterSetFormat" / M(Rot) / S(184) / L(24)
+        "\xfb\xfe\xfc\x19\x2c\x1d\xfe\x27\x2a\x25\x19\x2c\x2c\x1d\x2a\x0b\x1d\x2c\xfe\x27\x2a\x25\x19\x2c\xb8\xf6\x43\xc7\x33\x4f\x76\x24\xbd",
+        // "" / M(None) / S(0) / L(0)
+        "\x33\xd3\x05\xb4\x71\x72\xae\x44\x58\x49\x5b\xc9\xed\x35\x63\x4d\x14\x42\xe3\xaa\x53\xf1\x0d\x6c\x6f\x29\x12\xdb\x71\x34\x9d\x85",
     };
     
     // Table for storing pointers
     static void *INSOValidateReceipt_Pointers[483] = {
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strlen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) dlsym),
-        ((void *) c2i_ASN1_INTEGER),
-        ((void *) NULL),
-        ((void *) EVP_DigestFinal),
-        ((void *) PKCS7_free),
-        ((void *) NULL),
-        ((void *) OpenSSL_add_all_digests),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) d2i_X509_bio),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_new),
-        ((void *) NULL),
         ((void *) X509_get_ext_by_OBJ),
+        ((void *) sk_num),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
+        ((void *) SHA1_Update),
         ((void *) SHA1),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_get_object),
-        ((void *) dlopen),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1456,11 +1386,23 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) OBJ_txt2obj),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) ASN1_get_object),
-        ((void *) SHA1_Final),
+        ((void *) EVP_MD_CTX_init),
+        ((void *) NULL),
+        ((void *) d2i_PKCS7_bio),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) sk_num),
+        ((void *) NULL),
+        ((void *) SHA1),
+        ((void *) RTLD_MAIN_ONLY),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) ASN1_INTEGER_free),
@@ -1468,7 +1410,16 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) strncmp),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) NULL),
+        ((void *) sk_free),
+        ((void *) ASN1_INTEGER_get),
+        ((void *) NULL),
+        ((void *) EVP_DigestFinal),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_free),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1478,203 +1429,149 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_get0_signers),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) RTLD_MAIN_ONLY),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_value),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strlen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_get_object),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_write),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Init),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_NAME_get_text_by_NID),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_write),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_s_mem),
         ((void *) X509_get_ext_by_OBJ),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) X509_STORE_free),
-        ((void *) NULL),
-        ((void *) EVP_MD_CTX_init),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) d2i_PKCS7_bio),
-        ((void *) NULL),
-        ((void *) NULL),
+        ((void *) ASN1_INTEGER_free),
         ((void *) NULL),
         ((void *) d2i_X509_bio),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) PKCS7_verify),
+        ((void *) strncmp),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) OpenSSL_add_all_digests),
-        ((void *) SHA1_Final),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_MD_CTX_init),
+        ((void *) EVP_DigestUpdate),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) X509_STORE_new),
-        ((void *) RTLD_MAIN_ONLY),
+        ((void *) sk_value),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Update),
-        ((void *) NULL),
-        ((void *) PKCS7_free),
-        ((void *) EVP_get_digestbyname),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithBytes),
-        ((void *) NULL),
-        ((void *) EVP_DigestUpdate),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_get0_signers),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_INTEGER_get),
-        ((void *) ASN1_OBJECT_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_free),
-        ((void *) NULL),
-        ((void *) ASN1_OBJECT_free),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithBytes),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_MD_CTX_init),
-        ((void *) NULL),
-        ((void *) X509_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) OBJ_txt2obj),
-        ((void *) NULL),
-        ((void *) OBJ_txt2obj),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) RTLD_MAIN_ONLY),
-        ((void *) NULL),
-        ((void *) X509_STORE_add_cert),
-        ((void *) CFStringCreateWithCString),
-        ((void *) NULL),
-        ((void *) BIO_s_mem),
-        ((void *) BIO_write),
         ((void *) NULL),
         ((void *) PKCS7_verify),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) X509_digest),
-        ((void *) NULL),
-        ((void *) BIO_free),
-        ((void *) NULL),
-        ((void *) X509_get_ext_by_OBJ),
-        ((void *) BIO_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
         ((void *) PKCS7_get0_signers),
+        ((void *) NULL),
+        ((void *) EVP_get_digestbyname),
+        ((void *) NULL),
+        ((void *) OpenSSL_add_all_digests),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) sk_value),
+        ((void *) NULL),
+        ((void *) X509_STORE_add_cert),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) dlopen),
+        ((void *) dlopen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) PKCS7_free),
+        ((void *) NULL),
+        ((void *) EVP_get_digestbyname),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_STORE_new),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) NULL),
+        ((void *) strlen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Update),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_NAME_get_text_by_NID),
+        ((void *) PKCS7_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_NAME_get_text_by_NID),
+        ((void *) c2i_ASN1_INTEGER),
+        ((void *) dlsym),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_s_mem),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) dlsym),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) strncmp),
-        ((void *) NULL),
+        ((void *) sk_free),
         ((void *) X509_digest),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithBytes),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_free),
+        ((void *) NULL),
+        ((void *) c2i_ASN1_INTEGER),
+        ((void *) BIO_s_mem),
+        ((void *) EVP_DigestUpdate),
+        ((void *) X509_free),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) X509_STORE_free),
         ((void *) NULL),
-        ((void *) EVP_DigestUpdate),
-        ((void *) X509_STORE_new),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1684,7 +1581,14 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) EVP_DigestFinal),
         ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) ASN1_INTEGER_free),
+        ((void *) NULL),
+        ((void *) PKCS7_verify),
         ((void *) NULL),
         ((void *) d2i_X509_bio),
         ((void *) NULL),
@@ -1692,54 +1596,7 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_free),
-        ((void *) BIO_s_mem),
-        ((void *) X509_digest),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) BIO_new),
-        ((void *) NULL),
-        ((void *) strlen),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_INTEGER_get),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_num),
-        ((void *) X509_free),
-        ((void *) X509_STORE_add_cert),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) X509_STORE_add_cert),
-        ((void *) sk_num),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Update),
-        ((void *) NULL),
-        ((void *) PKCS7_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Final),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) SHA1_Init),
-        ((void *) NULL),
+        ((void *) BIO_write),
         ((void *) NULL),
         ((void *) X509_NAME_get_text_by_NID),
         ((void *) NULL),
@@ -1751,18 +1608,38 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) sk_free),
         ((void *) NULL),
-        ((void *) SHA1),
         ((void *) NULL),
-        ((void *) ASN1_INTEGER_free),
         ((void *) NULL),
-        ((void *) EVP_DigestInit),
         ((void *) NULL),
-        ((void *) X509_STORE_free),
+        ((void *) EVP_MD_CTX_init),
         ((void *) NULL),
-        ((void *) EVP_DigestUpdate),
-        ((void *) sk_value),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) ASN1_get_object),
+        ((void *) d2i_PKCS7_bio),
+        ((void *) OpenSSL_add_all_digests),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) sk_num),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestFinal),
+        ((void *) X509_STORE_new),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_write),
+        ((void *) NULL),
+        ((void *) d2i_PKCS7_bio),
+        ((void *) X509_STORE_add_cert),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1771,45 +1648,8 @@ extern "C" {
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) ASN1_INTEGER_get),
         ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) ASN1_INTEGER_free),
-        ((void *) NULL),
-        ((void *) SHA1_Init),
-        ((void *) NULL),
-        ((void *) dlopen),
-        ((void *) BIO_new),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) PKCS7_verify),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_value),
-        ((void *) sk_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) CFStringCreateWithBytes),
-        ((void *) OBJ_txt2obj),
-        ((void *) NULL),
-        ((void *) dlsym),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) sk_num),
-        ((void *) NULL),
-        ((void *) EVP_DigestInit),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1818,52 +1658,196 @@ extern "C" {
         ((void *) NULL),
         ((void *) EVP_get_digestbyname),
         ((void *) NULL),
+        ((void *) X509_digest),
         ((void *) NULL),
-        ((void *) EVP_DigestInit),
         ((void *) NULL),
-        ((void *) OpenSSL_add_all_digests),
         ((void *) NULL),
-        ((void *) EVP_DigestFinal),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) dlopen),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithBytes),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) ASN1_get_object),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_MD_CTX_init),
+        ((void *) dlsym),
+        ((void *) sk_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strncmp),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_write),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) OBJ_txt2obj),
+        ((void *) BIO_new),
+        ((void *) NULL),
+        ((void *) SHA1_Init),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
         ((void *) c2i_ASN1_INTEGER),
         ((void *) NULL),
-        ((void *) ASN1_OBJECT_free),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) NULL),
-        ((void *) EVP_DigestFinal),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) SHA1_Final),
+        ((void *) NULL),
+        ((void *) SHA1_Final),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) ASN1_INTEGER_get),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) BIO_s_mem),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) OBJ_txt2obj),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) RTLD_MAIN_ONLY),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) PKCS7_verify),
+        ((void *) X509_STORE_add_cert),
+        ((void *) NULL),
+        ((void *) BIO_new),
+        ((void *) SHA1),
+        ((void *) NULL),
         ((void *) SHA1_Update),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) c2i_ASN1_INTEGER),
+        ((void *) PKCS7_get0_signers),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) d2i_PKCS7_bio),
-        ((void *) d2i_PKCS7_bio),
+        ((void *) BIO_new),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) strlen),
+        ((void *) NULL),
+        ((void *) CFStringCreateWithBytes),
         ((void *) CFStringCreateWithCString),
-        ((void *) EVP_get_digestbyname),
         ((void *) NULL),
-        ((void *) X509_NAME_get_text_by_NID),
-        ((void *) X509_STORE_new),
+        ((void *) ASN1_get_object),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
+        ((void *) EVP_DigestUpdate),
+        ((void *) ASN1_INTEGER_get),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Init),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
-        ((void *) dlopen),
+        ((void *) ASN1_OBJECT_free),
+        ((void *) X509_digest),
+        ((void *) X509_free),
+        ((void *) strlen),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) PKCS7_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) PKCS7_get0_signers),
+        ((void *) NULL),
+        ((void *) RTLD_MAIN_ONLY),
+        ((void *) NULL),
+        ((void *) d2i_X509_bio),
+        ((void *) CFStringCreateWithCString),
+        ((void *) NULL),
+        ((void *) OpenSSL_add_all_digests),
+        ((void *) sk_value),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) EVP_DigestInit),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Init),
+        ((void *) NULL),
+        ((void *) X509_STORE_free),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) SHA1_Final),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) NULL),
+        ((void *) X509_get_ext_by_OBJ),
         ((void *) NULL),
         ((void *) NULL),
         ((void *) NULL),
@@ -1879,171 +1863,168 @@ extern "C" {
 #pragma clang diagnostic ignored "-Wused-but-marked-unused"
     
     // Global variables
-    static int INSOValidateReceipt_VLGBCRXLZMHT __unused;
-    static int INSOValidateReceipt_YUURUMHMKAJI __unused;
-    static int INSOValidateReceipt_AFVQTANHTLYF __unused;
-    static int INSOValidateReceipt_ACFEVVQVAIKY __unused;
-    static int INSOValidateReceipt_VQTNXJHMSZEL __unused;
-    static int INSOValidateReceipt_HTNSUGXHMGST __unused;
-    static int INSOValidateReceipt_WRMDFVLFQRMA __unused;
-    static int INSOValidateReceipt_UFGPFIPLDFOS __unused;
+    static int INSOValidateReceipt_USZEFQCYIXWA __unused;
+    static int INSOValidateReceipt_HNPSXRYTFLWB __unused;
+    static int INSOValidateReceipt_ZEIRQNSQKKHM __unused;
+    static int INSOValidateReceipt_PRMZWAVYDNDZ __unused;
+    static int INSOValidateReceipt_KDMYCKEZRSDM __unused;
+    static int INSOValidateReceipt_WMYJXBSKXTDM __unused;
+    static int INSOValidateReceipt_JKZOWYSQHSTF __unused;
+    static int INSOValidateReceipt_XUVWOJCGGUZP __unused;
     
     
     // The long jump buffer
     static jmp_buf INSOValidateReceipt_JumpBuf __unused;
     
-#define INSOValidateReceipt_ASN1_get_object_00BC003D ((__INSOValidateReceipt_ASN1_get_object) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction004, 61, 37, 16))
-#define INSOValidateReceipt_ASN1_INTEGER_free_00FB004F ((__INSOValidateReceipt_ASN1_INTEGER_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction009, 79, 187, 18))
-#define INSOValidateReceipt_ASN1_INTEGER_get_00BC00DF ((__INSOValidateReceipt_ASN1_INTEGER_get) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction00B, 223, 205, 17))
-#define INSOValidateReceipt_ASN1_OBJECT_free_00BC00E0 ((__INSOValidateReceipt_ASN1_OBJECT_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction007, 224, 120, 17))
-#define INSOValidateReceipt_BIO_free_00FB000D ((__INSOValidateReceipt_BIO_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction00A, 13, 201, 16))
-#define INSOValidateReceipt_BIO_new_0064013F ((__INSOValidateReceipt_BIO_new) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction00C, 319, 196, 16))
-#define INSOValidateReceipt_BIO_new_0064018B ((__INSOValidateReceipt_BIO_new) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction003, 395, 1, 16))
-#define INSOValidateReceipt_BIO_s_mem_00640139 ((__INSOValidateReceipt_BIO_s_mem) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction005, 313, 88, 16))
-#define INSOValidateReceipt_BIO_s_mem_00BC0100 ((__INSOValidateReceipt_BIO_s_mem) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction009, 256, 71, 16))
-#define INSOValidateReceipt_BIO_write_0064007E ((__INSOValidateReceipt_BIO_write) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction007, 126, 90, 16))
-#define INSOValidateReceipt_BIO_write_00FB0090 ((__INSOValidateReceipt_BIO_write) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction004, 144, 126, 16))
-#define INSOValidateReceipt_c2i_ASN1_INTEGER_00BC01CD ((__INSOValidateReceipt_c2i_ASN1_INTEGER) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction008, 461, 23, 17))
-#define INSOValidateReceipt_CC_SHA1_Update_01B20193 ((__INSOValidateReceipt_CC_SHA1_Update) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 434, 218, 33, INSOValidateReceipt_ObfuscationFunction006, 403, 1, 16))
-#define INSOValidateReceipt_CFArrayCreateMutable_010F00F2 ((__INSOValidateReceipt_CFArrayCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction008, 242, 203, 21))
-#define INSOValidateReceipt_CFBundleGetMainBundle_007901A4 ((__INSOValidateReceipt_CFBundleGetMainBundle) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction004, 420, 192, 22))
-#define INSOValidateReceipt_CFBundleUnloadExecutable_010F0145 ((__INSOValidateReceipt_CFBundleUnloadExecutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction003, 325, 66, 33))
-#define INSOValidateReceipt_CFDataAppendBytes_010F01CE ((__INSOValidateReceipt_CFDataAppendBytes) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction00A, 462, 123, 18))
-#define INSOValidateReceipt_CFDataCreateMutable_010F018D ((__INSOValidateReceipt_CFDataCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction005, 397, 41, 20))
-#define INSOValidateReceipt_CFDataGetLength_00790136 ((__INSOValidateReceipt_CFDataGetLength) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction009, 310, 175, 16))
-#define INSOValidateReceipt_CFDateFormatterCreate_0169018C ((__INSOValidateReceipt_CFDateFormatterCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction006, 396, 129, 22))
-#define INSOValidateReceipt_CFDateFormatterSetProperty_010F010E ((__INSOValidateReceipt_CFDateFormatterSetProperty) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction008, 270, 125, 35))
-#define INSOValidateReceipt_CFDictionaryAddValue_007900DB ((__INSOValidateReceipt_CFDictionaryAddValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction00B, 219, 79, 21))
-#define INSOValidateReceipt_CFDictionaryCreateMutable_010F0076 ((__INSOValidateReceipt_CFDictionaryCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction006, 118, 25, 34))
-#define INSOValidateReceipt_CFDictionaryGetValue_0079002B ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction003, 43, 126, 21))
-#define INSOValidateReceipt_CFDictionaryGetValue_0169002B ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction003, 43, 126, 21))
-#define INSOValidateReceipt_CFDictionarySetValue_010F00CB ((__INSOValidateReceipt_CFDictionarySetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction008, 203, 184, 21))
-#define INSOValidateReceipt_CFNumberCreate_007900A9 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction008, 169, 114, 16))
-#define INSOValidateReceipt_CFRelease_00790053 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction005, 83, 15, 16))
-#define INSOValidateReceipt_CFRelease_0079012C ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction007, 300, 113, 16))
-#define INSOValidateReceipt_CFRelease_007901A6 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction003, 422, 19, 16))
-#define INSOValidateReceipt_CFRelease_010F0053 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction005, 83, 15, 16))
-#define INSOValidateReceipt_CFRelease_010F012C ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction007, 300, 113, 16))
-#define INSOValidateReceipt_CFRelease_01690053 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction005, 83, 15, 16))
-#define INSOValidateReceipt_CFRelease_0169012C ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction007, 300, 113, 16))
-#define INSOValidateReceipt_CFRelease_016901A6 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction003, 422, 19, 16))
-#define INSOValidateReceipt_d2i_PKCS7_bio_006401D1 ((__INSOValidateReceipt_d2i_PKCS7_bio) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction007, 465, 160, 16))
-#define INSOValidateReceipt_d2i_PKCS7_bio_00FB01D0 ((__INSOValidateReceipt_d2i_PKCS7_bio) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction00A, 464, 197, 16))
-#define INSOValidateReceipt_d2i_X509_bio_0064012E ((__INSOValidateReceipt_d2i_X509_bio) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction003, 302, 108, 16))
-#define INSOValidateReceipt_EVP_DigestFinal_00640014 ((__INSOValidateReceipt_EVP_DigestFinal) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction008, 20, 197, 16))
-#define INSOValidateReceipt_EVP_DigestInit_006401A9 ((__INSOValidateReceipt_EVP_DigestInit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction008, 425, 240, 16))
-#define INSOValidateReceipt_EVP_DigestUpdate_00FB00D2 ((__INSOValidateReceipt_EVP_DigestUpdate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction008, 210, 31, 17))
-#define INSOValidateReceipt_EVP_get_digestbyname_00BC01B0 ((__INSOValidateReceipt_EVP_get_digestbyname) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction003, 432, 96, 21))
-#define INSOValidateReceipt_EVP_MD_CTX_init_00FB009A ((__INSOValidateReceipt_EVP_MD_CTX_init) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction008, 154, 16, 16))
-#define INSOValidateReceipt_exit_01820128 ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 386, 184, 33, INSOValidateReceipt_ObfuscationFunction006, 296, 55, 16))
-#define INSOValidateReceipt_exit_0182016D ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 386, 184, 33, INSOValidateReceipt_ObfuscationFunction007, 365, 180, 16))
-#define INSOValidateReceipt_exit_01820187 ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 386, 184, 33, INSOValidateReceipt_ObfuscationFunction004, 391, 101, 16))
-#define INSOValidateReceipt_exit_01B20128 ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 434, 218, 33, INSOValidateReceipt_ObfuscationFunction006, 296, 55, 16))
-#define INSOValidateReceipt_exit_01B20187 ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 434, 218, 33, INSOValidateReceipt_ObfuscationFunction004, 391, 101, 16))
-#define INSOValidateReceipt_exit_01E20128 ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 482, 78, 33, INSOValidateReceipt_ObfuscationFunction006, 296, 55, 16))
-#define INSOValidateReceipt_exit_01E2016D ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 482, 78, 33, INSOValidateReceipt_ObfuscationFunction007, 365, 180, 16))
-#define INSOValidateReceipt_exit_01E20187 ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 482, 78, 33, INSOValidateReceipt_ObfuscationFunction004, 391, 101, 16))
-#define INSOValidateReceipt_VLGBCRXLZMHT_0079009D ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_VLGBCRXLZMHT, 103, 16))
-#define INSOValidateReceipt_VLGBCRXLZMHT_007900E7 ((__INSOValidateReceipt_CFDataGetBytePtr) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction00C, INSOValidateReceipt_VLGBCRXLZMHT, 141, 17))
-#define INSOValidateReceipt_VLGBCRXLZMHT_010F002B ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_VLGBCRXLZMHT, 126, 21))
-#define INSOValidateReceipt_VLGBCRXLZMHT_010F00A9 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction008, INSOValidateReceipt_VLGBCRXLZMHT, 114, 16))
-#define INSOValidateReceipt_VLGBCRXLZMHT_01690147 ((__INSOValidateReceipt_CFReadStreamClose) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction005, INSOValidateReceipt_VLGBCRXLZMHT, 119, 18))
-#define INSOValidateReceipt_VLGBCRXLZMHT_0169018D ((__INSOValidateReceipt_CFDataCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction005, INSOValidateReceipt_VLGBCRXLZMHT, 41, 20))
-#define INSOValidateReceipt_YUURUMHMKAJI_007900A9 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction008, INSOValidateReceipt_YUURUMHMKAJI, 114, 16))
-#define INSOValidateReceipt_YUURUMHMKAJI_007900BE ((__INSOValidateReceipt_CFDataCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_YUURUMHMKAJI, 160, 16))
-#define INSOValidateReceipt_YUURUMHMKAJI_010F01AB ((__INSOValidateReceipt_CFBundleGetIdentifier) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_YUURUMHMKAJI, 234, 22))
-#define INSOValidateReceipt_YUURUMHMKAJI_0169002B ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_YUURUMHMKAJI, 126, 21))
-#define INSOValidateReceipt_YUURUMHMKAJI_01690156 ((__INSOValidateReceipt_CFDataCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_YUURUMHMKAJI, 87, 16))
-#define INSOValidateReceipt_YUURUMHMKAJI_01690158 ((__INSOValidateReceipt_CFArrayGetCount) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction007, INSOValidateReceipt_YUURUMHMKAJI, 39, 16))
-#define INSOValidateReceipt_AFVQTANHTLYF_00790057 ((__INSOValidateReceipt_CFBundleGetValueForInfoDictionaryKey) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_AFVQTANHTLYF, 176, 37))
-#define INSOValidateReceipt_AFVQTANHTLYF_007900E7 ((__INSOValidateReceipt_CFDataGetBytePtr) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction00C, INSOValidateReceipt_AFVQTANHTLYF, 141, 17))
-#define INSOValidateReceipt_AFVQTANHTLYF_0079012A ((__INSOValidateReceipt_CFEqual) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_AFVQTANHTLYF, 123, 16))
-#define INSOValidateReceipt_AFVQTANHTLYF_0079015E ((__INSOValidateReceipt_CFDataCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction005, INSOValidateReceipt_AFVQTANHTLYF, 1, 20))
-#define INSOValidateReceipt_AFVQTANHTLYF_010F0034 ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_AFVQTANHTLYF, 127, 16))
-#define INSOValidateReceipt_AFVQTANHTLYF_010F0084 ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction007, INSOValidateReceipt_AFVQTANHTLYF, 49, 21))
-#define INSOValidateReceipt_AFVQTANHTLYF_010F0089 ((__INSOValidateReceipt_CFDataGetLength) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_AFVQTANHTLYF, 37, 16))
-#define INSOValidateReceipt_ACFEVVQVAIKY_00790071 ((__INSOValidateReceipt_CFReadStreamCreateWithFile) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction008, INSOValidateReceipt_ACFEVVQVAIKY, 108, 35))
-#define INSOValidateReceipt_ACFEVVQVAIKY_010F00F3 ((__INSOValidateReceipt_CFBundleGetValueForInfoDictionaryKey) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_ACFEVVQVAIKY, 179, 37))
-#define INSOValidateReceipt_ACFEVVQVAIKY_016900E3 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_ACFEVVQVAIKY, 39, 16))
-#define INSOValidateReceipt_ACFEVVQVAIKY_0169014F ((__INSOValidateReceipt_CFArrayAppendValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_ACFEVVQVAIKY, 96, 19))
-#define INSOValidateReceipt_ACFEVVQVAIKY_01820180 ((__INSOValidateReceipt_CC_SHA1_Init) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 386, 184, 33, INSOValidateReceipt_ObfuscationFunction007, INSOValidateReceipt_ACFEVVQVAIKY, 219, 16))
-#define INSOValidateReceipt_VQTNXJHMSZEL_00790068 ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_VQTNXJHMSZEL, 217, 16))
-#define INSOValidateReceipt_VQTNXJHMSZEL_00790081 ((__INSOValidateReceipt_CFDataGetBytePtr) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_VQTNXJHMSZEL, 161, 17))
-#define INSOValidateReceipt_VQTNXJHMSZEL_007900A9 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction008, INSOValidateReceipt_VQTNXJHMSZEL, 114, 16))
-#define INSOValidateReceipt_VQTNXJHMSZEL_00790109 ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction008, INSOValidateReceipt_VQTNXJHMSZEL, 47, 21))
-#define INSOValidateReceipt_VQTNXJHMSZEL_010F0045 ((__INSOValidateReceipt_CFArrayGetValueAtIndex) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction005, INSOValidateReceipt_VQTNXJHMSZEL, 164, 23))
-#define INSOValidateReceipt_VQTNXJHMSZEL_010F0105 ((__INSOValidateReceipt_CFDataAppendBytes) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_VQTNXJHMSZEL, 231, 18))
-#define INSOValidateReceipt_HTNSUGXHMGST_00790022 ((__INSOValidateReceipt_CFDateCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_HTNSUGXHMGST, 140, 16))
-#define INSOValidateReceipt_HTNSUGXHMGST_010F0040 ((__INSOValidateReceipt_CFTimeZoneCreateWithTimeIntervalFromGMT) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_HTNSUGXHMGST, 110, 48))
-#define INSOValidateReceipt_HTNSUGXHMGST_0169011D ((__INSOValidateReceipt_CFDataGetLength) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_HTNSUGXHMGST, 191, 16))
-#define INSOValidateReceipt_HTNSUGXHMGST_01B20063 ((__INSOValidateReceipt_CC_SHA1) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 434, 218, 33, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_HTNSUGXHMGST, 214, 16))
-#define INSOValidateReceipt_WRMDFVLFQRMA_010F0092 ((__INSOValidateReceipt_CFDateFormatterCreateDateFromString) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction005, INSOValidateReceipt_WRMDFVLFQRMA, 68, 36))
-#define INSOValidateReceipt_WRMDFVLFQRMA_010F0140 ((__INSOValidateReceipt_CFDateCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction007, INSOValidateReceipt_WRMDFVLFQRMA, 77, 16))
-#define INSOValidateReceipt_WRMDFVLFQRMA_010F0156 ((__INSOValidateReceipt_CFDataCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_WRMDFVLFQRMA, 87, 16))
-#define INSOValidateReceipt_WRMDFVLFQRMA_016900B8 ((__INSOValidateReceipt_CFDataAppendBytes) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_WRMDFVLFQRMA, 8, 18))
-#define INSOValidateReceipt_WRMDFVLFQRMA_016900E3 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_WRMDFVLFQRMA, 39, 16))
-#define INSOValidateReceipt_WRMDFVLFQRMA_01690120 ((__INSOValidateReceipt_CFReadStreamOpen) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_WRMDFVLFQRMA, 147, 17))
-#define INSOValidateReceipt_UFGPFIPLDFOS_00790034 ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_UFGPFIPLDFOS, 127, 16))
-#define INSOValidateReceipt_UFGPFIPLDFOS_00790068 ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_UFGPFIPLDFOS, 217, 16))
-#define INSOValidateReceipt_UFGPFIPLDFOS_010F01BC ((__INSOValidateReceipt_CFDateFormatterSetFormat) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_UFGPFIPLDFOS, 215, 33))
-#define INSOValidateReceipt_UFGPFIPLDFOS_0169013C ((__INSOValidateReceipt_CFAbsoluteTimeGetCurrent) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction007, INSOValidateReceipt_UFGPFIPLDFOS, 3, 33))
-#define INSOValidateReceipt_UFGPFIPLDFOS_01690150 ((__INSOValidateReceipt_CFReadStreamRead) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_UFGPFIPLDFOS, 201, 17))
-#define INSOValidateReceipt_UFGPFIPLDFOS_01E2002D ((__INSOValidateReceipt_CC_SHA1_Final) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 482, 78, 33, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_UFGPFIPLDFOS, 69, 16))
-#define INSOValidateReceipt_kCFBundleIdentifierKey_010F0028 ((__INSOValidateReceipt_kCFBundleIdentifierKey) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction004, 271, 138, 67, INSOValidateReceipt_ObfuscationFunction00B, 40, 126, 23))
-#define INSOValidateReceipt_kCFDateFormatterTimeZone_0169007D ((__INSOValidateReceipt_kCFDateFormatterTimeZone) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction003, 125, 240, 33))
-#define INSOValidateReceipt_kCFTypeArrayCallBacks_0169010B ((__INSOValidateReceipt_kCFTypeArrayCallBacks) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction005, 267, 4, 22))
-#define INSOValidateReceipt_kCFTypeDictionaryKeyCallBacks_00790183 ((__INSOValidateReceipt_kCFTypeDictionaryKeyCallBacks) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 121, 42, 67, INSOValidateReceipt_ObfuscationFunction005, 387, 132, 38))
-#define INSOValidateReceipt_kCFTypeDictionaryValueCallBacks_016900FA ((__INSOValidateReceipt_kCFTypeDictionaryValueCallBacks) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 361, 226, 67, INSOValidateReceipt_ObfuscationFunction00C, 250, 93, 32))
-#define INSOValidateReceipt_longjmp_018200A0 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 386, 184, 33, INSOValidateReceipt_ObfuscationFunction00C, 160, 252, 16))
-#define INSOValidateReceipt_longjmp_0182016E ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 386, 184, 33, INSOValidateReceipt_ObfuscationFunction003, 366, 245, 16))
-#define INSOValidateReceipt_longjmp_018201D9 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 386, 184, 33, INSOValidateReceipt_ObfuscationFunction00A, 473, 74, 16))
-#define INSOValidateReceipt_longjmp_01B2016E ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 434, 218, 33, INSOValidateReceipt_ObfuscationFunction003, 366, 245, 16))
-#define INSOValidateReceipt_longjmp_01B201D9 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 434, 218, 33, INSOValidateReceipt_ObfuscationFunction00A, 473, 74, 16))
-#define INSOValidateReceipt_longjmp_01E200A0 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 482, 78, 33, INSOValidateReceipt_ObfuscationFunction00C, 160, 252, 16))
-#define INSOValidateReceipt_longjmp_01E2016E ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 482, 78, 33, INSOValidateReceipt_ObfuscationFunction003, 366, 245, 16))
-#define INSOValidateReceipt_longjmp_01E201D9 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 482, 78, 33, INSOValidateReceipt_ObfuscationFunction00A, 473, 74, 16))
-#define INSOValidateReceipt_OBJ_txt2obj_00FB00F4 ((__INSOValidateReceipt_OBJ_txt2obj) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction009, 244, 17, 16))
-#define INSOValidateReceipt_objc_getClass_0069007F ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction008, 105, 173, 23, INSOValidateReceipt_ObfuscationFunction003, 127, 141, 16))
-#define INSOValidateReceipt_objc_getClass_006901DB ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction008, 105, 173, 23, INSOValidateReceipt_ObfuscationFunction008, 475, 14, 16))
-#define INSOValidateReceipt_objc_getClass_00DD01AA ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 221, 102, 23, INSOValidateReceipt_ObfuscationFunction006, 426, 248, 16))
-#define INSOValidateReceipt_objc_getClass_00DD01DB ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 221, 102, 23, INSOValidateReceipt_ObfuscationFunction008, 475, 14, 16))
-#define INSOValidateReceipt_objc_getClass_0170007F ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction003, 127, 141, 16))
-#define INSOValidateReceipt_objc_getClass_017001DB ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction008, 475, 14, 16))
-#define INSOValidateReceipt_objc_lookUpClass_0069000F ((__INSOValidateReceipt_objc_lookUpClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction008, 105, 173, 23, INSOValidateReceipt_ObfuscationFunction009, 15, 145, 17))
-#define INSOValidateReceipt_objc_lookUpClass_017000F5 ((__INSOValidateReceipt_objc_lookUpClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction009, 245, 27, 17))
-#define INSOValidateReceipt_objc_msgSend_00690038 ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction008, 105, 173, 23, INSOValidateReceipt_ObfuscationFunction008, 56, 173, 16))
-#define INSOValidateReceipt_objc_msgSend_0069005A ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction008, 105, 173, 23, INSOValidateReceipt_ObfuscationFunction00B, 90, 150, 16))
-#define INSOValidateReceipt_objc_msgSend_00DD0038 ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 221, 102, 23, INSOValidateReceipt_ObfuscationFunction008, 56, 173, 16))
-#define INSOValidateReceipt_objc_msgSend_00DD005A ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 221, 102, 23, INSOValidateReceipt_ObfuscationFunction00B, 90, 150, 16))
-#define INSOValidateReceipt_objc_msgSend_01700038 ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction008, 56, 173, 16))
-#define INSOValidateReceipt_objc_msgSend_0170005A ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction00B, 90, 150, 16))
-#define INSOValidateReceipt_objc_msgSend_0170007A ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction003, 122, 87, 16))
-#define INSOValidateReceipt_OpenSSL_add_all_digests_00FB0017 ((__INSOValidateReceipt_OpenSSL_add_all_digests) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction004, 23, 107, 32))
-#define INSOValidateReceipt_OpenSSL_add_all_digests_00FB01B5 ((__INSOValidateReceipt_OpenSSL_add_all_digests) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction006, 437, 215, 32))
-#define INSOValidateReceipt_PKCS7_free_00640015 ((__INSOValidateReceipt_PKCS7_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction007, 21, 253, 16))
-#define INSOValidateReceipt_PKCS7_get0_signers_00FB0114 ((__INSOValidateReceipt_PKCS7_get0_signers) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction009, 276, 77, 19))
-#define INSOValidateReceipt_PKCS7_verify_006400A6 ((__INSOValidateReceipt_PKCS7_verify) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction006, 166, 35, 16))
-#define INSOValidateReceipt_sel_registerName_00690082 ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction008, 105, 173, 23, INSOValidateReceipt_ObfuscationFunction007, 130, 207, 17))
-#define INSOValidateReceipt_sel_registerName_00DD0082 ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 221, 102, 23, INSOValidateReceipt_ObfuscationFunction007, 130, 207, 17))
-#define INSOValidateReceipt_sel_registerName_00DD014E ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 221, 102, 23, INSOValidateReceipt_ObfuscationFunction008, 334, 2, 17))
-#define INSOValidateReceipt_sel_registerName_01700082 ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction007, 130, 207, 17))
-#define INSOValidateReceipt_sel_registerName_0170012B ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction005, 299, 144, 17))
-#define INSOValidateReceipt_sel_registerName_0170014E ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 368, 201, 23, INSOValidateReceipt_ObfuscationFunction008, 334, 2, 17))
-#define INSOValidateReceipt_setjmp_01B2002A ((__INSOValidateReceipt_setjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 434, 218, 33, INSOValidateReceipt_ObfuscationFunction003, 42, 68, 16))
-#define INSOValidateReceipt_SHA1_00FB0032 ((__INSOValidateReceipt_SHA1) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction004, 50, 33, 16))
-#define INSOValidateReceipt_SHA1_Final_00FB00AC ((__INSOValidateReceipt_SHA1_Final) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction00A, 172, 4, 16))
-#define INSOValidateReceipt_SHA1_Init_00640162 ((__INSOValidateReceipt_SHA1_Init) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction00A, 354, 82, 16))
-#define INSOValidateReceipt_SHA1_Update_00FB0157 ((__INSOValidateReceipt_SHA1_Update) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction009, 343, 210, 16))
-#define INSOValidateReceipt_sk_free_00BC0138 ((__INSOValidateReceipt_sk_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction004, 312, 43, 16))
-#define INSOValidateReceipt_sk_num_00BC0153 ((__INSOValidateReceipt_sk_num) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction005, 339, 151, 16))
-#define INSOValidateReceipt_sk_value_00640194 ((__INSOValidateReceipt_sk_value) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction009, 404, 157, 16))
-#define INSOValidateReceipt_X509_digest_0064013A ((__INSOValidateReceipt_X509_digest) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction009, 314, 54, 16))
-#define INSOValidateReceipt_X509_free_00BC00F1 ((__INSOValidateReceipt_X509_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction005, 241, 184, 16))
-#define INSOValidateReceipt_X509_get_ext_by_OBJ_00FB010C ((__INSOValidateReceipt_X509_get_ext_by_OBJ) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction00C, 268, 28, 20))
-#define INSOValidateReceipt_X509_NAME_get_text_by_NID_00BC01D5 ((__INSOValidateReceipt_X509_NAME_get_text_by_NID) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 188, 241, 16, INSOValidateReceipt_ObfuscationFunction007, 469, 109, 34))
-#define INSOValidateReceipt_X509_STORE_add_cert_006400FD ((__INSOValidateReceipt_X509_STORE_add_cert) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction005, 253, 98, 20))
-#define INSOValidateReceipt_X509_STORE_free_00FB0177 ((__INSOValidateReceipt_X509_STORE_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 251, 154, 16, INSOValidateReceipt_ObfuscationFunction004, 375, 117, 16))
-#define INSOValidateReceipt_X509_STORE_new_006401D6 ((__INSOValidateReceipt_X509_STORE_new) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction003, 100, 51, 16, INSOValidateReceipt_ObfuscationFunction008, 470, 236, 16))
+#define INSOValidateReceipt_ASN1_get_object_01C00195 ((__INSOValidateReceipt_ASN1_get_object) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction003, 405, 238, 16))
+#define INSOValidateReceipt_ASN1_INTEGER_free_01750025 ((__INSOValidateReceipt_ASN1_INTEGER_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction007, 37, 149, 18))
+#define INSOValidateReceipt_ASN1_INTEGER_get_01750118 ((__INSOValidateReceipt_ASN1_INTEGER_get) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction00A, 280, 68, 17))
+#define INSOValidateReceipt_ASN1_OBJECT_free_017501A3 ((__INSOValidateReceipt_ASN1_OBJECT_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction006, 419, 71, 17))
+#define INSOValidateReceipt_BIO_free_001F0033 ((__INSOValidateReceipt_BIO_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction004, 51, 67, 16))
+#define INSOValidateReceipt_BIO_free_001F0086 ((__INSOValidateReceipt_BIO_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction00B, 134, 138, 16))
+#define INSOValidateReceipt_BIO_new_01750155 ((__INSOValidateReceipt_BIO_new) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction006, 341, 11, 16))
+#define INSOValidateReceipt_BIO_new_01C0018B ((__INSOValidateReceipt_BIO_new) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction006, 395, 151, 16))
+#define INSOValidateReceipt_BIO_s_mem_0175016B ((__INSOValidateReceipt_BIO_s_mem) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction00A, 363, 3, 16))
+#define INSOValidateReceipt_BIO_s_mem_01C000C5 ((__INSOValidateReceipt_BIO_s_mem) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction009, 197, 210, 16))
+#define INSOValidateReceipt_BIO_write_001F0109 ((__INSOValidateReceipt_BIO_write) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction003, 265, 93, 16))
+#define INSOValidateReceipt_BIO_write_017500E4 ((__INSOValidateReceipt_BIO_write) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction003, 228, 217, 16))
+#define INSOValidateReceipt_c2i_ASN1_INTEGER_0175015B ((__INSOValidateReceipt_c2i_ASN1_INTEGER) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction006, 347, 26, 17))
+#define INSOValidateReceipt_CC_SHA1_00A500E2 ((__INSOValidateReceipt_CC_SHA1) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 165, 213, 33, INSOValidateReceipt_ObfuscationFunction009, 226, 148, 16))
+#define INSOValidateReceipt_CFArrayAppendValue_004A017B ((__INSOValidateReceipt_CFArrayAppendValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00C, 379, 139, 19))
+#define INSOValidateReceipt_CFBundleGetMainBundle_004A01A1 ((__INSOValidateReceipt_CFBundleGetMainBundle) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction007, 417, 2, 22))
+#define INSOValidateReceipt_CFBundleUnloadExecutable_00F700B6 ((__INSOValidateReceipt_CFBundleUnloadExecutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction007, 182, 92, 33))
+#define INSOValidateReceipt_CFDataAppendBytes_00F701B8 ((__INSOValidateReceipt_CFDataAppendBytes) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction006, 440, 82, 18))
+#define INSOValidateReceipt_CFDataCreate_00F7005B ((__INSOValidateReceipt_CFDataCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction009, 91, 234, 16))
+#define INSOValidateReceipt_CFDataCreate_00F700D0 ((__INSOValidateReceipt_CFDataCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction009, 208, 223, 16))
+#define INSOValidateReceipt_CFDataCreateMutable_004A0089 ((__INSOValidateReceipt_CFDataCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction006, 137, 236, 20))
+#define INSOValidateReceipt_CFDataGetLength_004A017F ((__INSOValidateReceipt_CFDataGetLength) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00C, 383, 224, 16))
+#define INSOValidateReceipt_CFDateFormatterCreateDateFromString_004A016E ((__INSOValidateReceipt_CFDateFormatterCreateDateFromString) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction008, 366, 202, 36))
+#define INSOValidateReceipt_CFDictionaryAddValue_00F70147 ((__INSOValidateReceipt_CFDictionaryAddValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, 327, 123, 21))
+#define INSOValidateReceipt_CFDictionaryGetValue_00F70092 ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, 146, 146, 21))
+#define INSOValidateReceipt_CFDictionarySetValue_00E9005D ((__INSOValidateReceipt_CFDictionarySetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction00C, 93, 75, 21))
+#define INSOValidateReceipt_CFNumberCreate_004A0177 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00A, 375, 129, 16))
+#define INSOValidateReceipt_CFRelease_004A0129 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction006, 297, 82, 16))
+#define INSOValidateReceipt_CFRelease_004A017A ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction009, 378, 194, 16))
+#define INSOValidateReceipt_CFRelease_004A01C7 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00B, 455, 128, 16))
+#define INSOValidateReceipt_CFRelease_00E90129 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction006, 297, 82, 16))
+#define INSOValidateReceipt_CFRelease_00E9017A ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction009, 378, 194, 16))
+#define INSOValidateReceipt_CFRelease_00E901C7 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction00B, 455, 128, 16))
+#define INSOValidateReceipt_CFRelease_00F70129 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction006, 297, 82, 16))
+#define INSOValidateReceipt_CFRelease_00F701C7 ((__INSOValidateReceipt_CFRelease) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, 455, 128, 16))
+#define INSOValidateReceipt_CFTimeZoneCreateWithTimeIntervalFromGMT_004A01A8 ((__INSOValidateReceipt_CFTimeZoneCreateWithTimeIntervalFromGMT) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction004, 424, 84, 48))
+#define INSOValidateReceipt_d2i_PKCS7_bio_01750018 ((__INSOValidateReceipt_d2i_PKCS7_bio) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction003, 24, 135, 16))
+#define INSOValidateReceipt_d2i_PKCS7_bio_017500FA ((__INSOValidateReceipt_d2i_PKCS7_bio) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction006, 250, 40, 16))
+#define INSOValidateReceipt_d2i_X509_bio_01C000DE ((__INSOValidateReceipt_d2i_X509_bio) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction00B, 222, 209, 16))
+#define INSOValidateReceipt_EVP_DigestFinal_01C0002F ((__INSOValidateReceipt_EVP_DigestFinal) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction008, 47, 93, 16))
+#define INSOValidateReceipt_EVP_DigestInit_017501BA ((__INSOValidateReceipt_EVP_DigestInit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction008, 442, 119, 16))
+#define INSOValidateReceipt_EVP_DigestUpdate_01C00049 ((__INSOValidateReceipt_EVP_DigestUpdate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction00B, 73, 188, 17))
+#define INSOValidateReceipt_EVP_get_digestbyname_01C00120 ((__INSOValidateReceipt_EVP_get_digestbyname) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction009, 288, 127, 21))
+#define INSOValidateReceipt_EVP_MD_CTX_init_01C000F4 ((__INSOValidateReceipt_EVP_MD_CTX_init) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction00A, 244, 100, 16))
+#define INSOValidateReceipt_exit_005F003E ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 95, 139, 33, INSOValidateReceipt_ObfuscationFunction008, 62, 78, 16))
+#define INSOValidateReceipt_exit_005F00A7 ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 95, 139, 33, INSOValidateReceipt_ObfuscationFunction005, 167, 16, 16))
+#define INSOValidateReceipt_exit_005F017C ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 95, 139, 33, INSOValidateReceipt_ObfuscationFunction009, 380, 107, 16))
+#define INSOValidateReceipt_exit_008F003E ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 143, 49, 33, INSOValidateReceipt_ObfuscationFunction008, 62, 78, 16))
+#define INSOValidateReceipt_exit_008F00A7 ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 143, 49, 33, INSOValidateReceipt_ObfuscationFunction005, 167, 16, 16))
+#define INSOValidateReceipt_exit_00A5003E ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 165, 213, 33, INSOValidateReceipt_ObfuscationFunction008, 62, 78, 16))
+#define INSOValidateReceipt_exit_00A5017C ((__INSOValidateReceipt_exit) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 165, 213, 33, INSOValidateReceipt_ObfuscationFunction009, 380, 107, 16))
+#define INSOValidateReceipt_USZEFQCYIXWA_00F70092 ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_USZEFQCYIXWA, 146, 21))
+#define INSOValidateReceipt_USZEFQCYIXWA_00F70098 ((__INSOValidateReceipt_CFArrayGetCount) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_USZEFQCYIXWA, 50, 16))
+#define INSOValidateReceipt_USZEFQCYIXWA_00F700F8 ((__INSOValidateReceipt_CFDateCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction007, INSOValidateReceipt_USZEFQCYIXWA, 204, 16))
+#define INSOValidateReceipt_USZEFQCYIXWA_00F7018E ((__INSOValidateReceipt_CFDataGetBytePtr) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_USZEFQCYIXWA, 196, 17))
+#define INSOValidateReceipt_USZEFQCYIXWA_00F701AE ((__INSOValidateReceipt_CFDataAppendBytes) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_USZEFQCYIXWA, 83, 18))
+#define INSOValidateReceipt_HNPSXRYTFLWB_004A00F1 ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_HNPSXRYTFLWB, 45, 21))
+#define INSOValidateReceipt_HNPSXRYTFLWB_00E90137 ((__INSOValidateReceipt_CFDataGetLength) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_HNPSXRYTFLWB, 190, 16))
+#define INSOValidateReceipt_HNPSXRYTFLWB_00F70092 ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_HNPSXRYTFLWB, 146, 21))
+#define INSOValidateReceipt_HNPSXRYTFLWB_00F701B8 ((__INSOValidateReceipt_CFDataAppendBytes) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_HNPSXRYTFLWB, 82, 18))
+#define INSOValidateReceipt_HNPSXRYTFLWB_00F701E1 ((__INSOValidateReceipt_CFDateFormatterSetFormat) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_HNPSXRYTFLWB, 184, 33))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_004A0093 ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_ZEIRQNSQKKHM, 210, 16))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00E90013 ((__INSOValidateReceipt_CFReadStreamClose) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_ZEIRQNSQKKHM, 118, 18))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00E9005B ((__INSOValidateReceipt_CFDataCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_ZEIRQNSQKKHM, 234, 16))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00E90107 ((__INSOValidateReceipt_CFDataGetBytePtr) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction007, INSOValidateReceipt_ZEIRQNSQKKHM, 56, 17))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00E90156 ((__INSOValidateReceipt_CFArrayGetValueAtIndex) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction005, INSOValidateReceipt_ZEIRQNSQKKHM, 117, 23))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00F7009F ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_ZEIRQNSQKKHM, 76, 16))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00F700EC ((__INSOValidateReceipt_CFBundleGetValueForInfoDictionaryKey) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_ZEIRQNSQKKHM, 181, 37))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00F700F3 ((__INSOValidateReceipt_CFDateFormatterSetProperty) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_ZEIRQNSQKKHM, 255, 35))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00F70103 ((__INSOValidateReceipt_CFDataGetBytePtr) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_ZEIRQNSQKKHM, 111, 17))
+#define INSOValidateReceipt_ZEIRQNSQKKHM_00F701C9 ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_ZEIRQNSQKKHM, 30, 16))
+#define INSOValidateReceipt_PRMZWAVYDNDZ_004A0134 ((__INSOValidateReceipt_CFEqual) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_PRMZWAVYDNDZ, 162, 16))
+#define INSOValidateReceipt_PRMZWAVYDNDZ_004A0177 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_PRMZWAVYDNDZ, 129, 16))
+#define INSOValidateReceipt_PRMZWAVYDNDZ_004A01B1 ((__INSOValidateReceipt_CFDictionaryCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00C, INSOValidateReceipt_PRMZWAVYDNDZ, 154, 34))
+#define INSOValidateReceipt_PRMZWAVYDNDZ_00E900A9 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_PRMZWAVYDNDZ, 40, 16))
+#define INSOValidateReceipt_PRMZWAVYDNDZ_00F700A9 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_PRMZWAVYDNDZ, 40, 16))
+#define INSOValidateReceipt_KDMYCKEZRSDM_004A018A ((__INSOValidateReceipt_CFBundleGetIdentifier) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_KDMYCKEZRSDM, 29, 22))
+#define INSOValidateReceipt_KDMYCKEZRSDM_00E90092 ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction00B, INSOValidateReceipt_KDMYCKEZRSDM, 146, 21))
+#define INSOValidateReceipt_KDMYCKEZRSDM_00E900A9 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_KDMYCKEZRSDM, 40, 16))
+#define INSOValidateReceipt_KDMYCKEZRSDM_00F700F1 ((__INSOValidateReceipt_CFDictionaryGetValue) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_KDMYCKEZRSDM, 45, 21))
+#define INSOValidateReceipt_KDMYCKEZRSDM_00F70177 ((__INSOValidateReceipt_CFNumberCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_KDMYCKEZRSDM, 129, 16))
+#define INSOValidateReceipt_KDMYCKEZRSDM_00F701E0 ((__INSOValidateReceipt_CFReadStreamRead) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction008, INSOValidateReceipt_KDMYCKEZRSDM, 136, 17))
+#define INSOValidateReceipt_WMYJXBSKXTDM_004A01C9 ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_WMYJXBSKXTDM, 30, 16))
+#define INSOValidateReceipt_WMYJXBSKXTDM_008F001A ((__INSOValidateReceipt_CC_SHA1_Init) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 143, 49, 33, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_WMYJXBSKXTDM, 22, 16))
+#define INSOValidateReceipt_WMYJXBSKXTDM_00E90087 ((__INSOValidateReceipt_CFArrayCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_WMYJXBSKXTDM, 194, 21))
+#define INSOValidateReceipt_WMYJXBSKXTDM_00E9019D ((__INSOValidateReceipt_CFAbsoluteTimeGetCurrent) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction005, INSOValidateReceipt_WMYJXBSKXTDM, 170, 33))
+#define INSOValidateReceipt_WMYJXBSKXTDM_00F700FC ((__INSOValidateReceipt_CFReadStreamOpen) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction005, INSOValidateReceipt_WMYJXBSKXTDM, 191, 17))
+#define INSOValidateReceipt_JKZOWYSQHSTF_004A000F ((__INSOValidateReceipt_CFBundleGetValueForInfoDictionaryKey) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00A, INSOValidateReceipt_JKZOWYSQHSTF, 134, 37))
+#define INSOValidateReceipt_JKZOWYSQHSTF_004A0093 ((__INSOValidateReceipt_CFStringCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction004, INSOValidateReceipt_JKZOWYSQHSTF, 210, 16))
+#define INSOValidateReceipt_JKZOWYSQHSTF_00A501DB ((__INSOValidateReceipt_CC_SHA1_Final) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 165, 213, 33, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_JKZOWYSQHSTF, 209, 16))
+#define INSOValidateReceipt_JKZOWYSQHSTF_00E9004C ((__INSOValidateReceipt_CFDateCompare) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction003, INSOValidateReceipt_JKZOWYSQHSTF, 122, 16))
+#define INSOValidateReceipt_JKZOWYSQHSTF_00E901B9 ((__INSOValidateReceipt_CFDateFormatterCreate) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_JKZOWYSQHSTF, 112, 22))
+#define INSOValidateReceipt_JKZOWYSQHSTF_00F70008 ((__INSOValidateReceipt_CFDataGetLength) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction009, INSOValidateReceipt_JKZOWYSQHSTF, 138, 16))
+#define INSOValidateReceipt_JKZOWYSQHSTF_00F70110 ((__INSOValidateReceipt_CFReadStreamCreateWithFile) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_JKZOWYSQHSTF, 238, 35))
+#define INSOValidateReceipt_XUVWOJCGGUZP_004A016D ((__INSOValidateReceipt_CFDataCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 74, 105, 67, INSOValidateReceipt_ObfuscationFunction00C, INSOValidateReceipt_XUVWOJCGGUZP, 164, 20))
+#define INSOValidateReceipt_XUVWOJCGGUZP_005F01C1 ((__INSOValidateReceipt_CC_SHA1_Update) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 95, 139, 33, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_XUVWOJCGGUZP, 130, 16))
+#define INSOValidateReceipt_XUVWOJCGGUZP_00E90083 ((__INSOValidateReceipt_CFDataCreateMutable) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction006, INSOValidateReceipt_XUVWOJCGGUZP, 160, 20))
+#define INSOValidateReceipt_kCFBundleIdentifierKey_00F70048 ((__INSOValidateReceipt_kCFBundleIdentifierKey) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction00B, 72, 185, 23))
+#define INSOValidateReceipt_kCFDateFormatterTimeZone_00E901BD ((__INSOValidateReceipt_kCFDateFormatterTimeZone) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction00B, 445, 93, 33))
+#define INSOValidateReceipt_kCFTypeArrayCallBacks_00F70101 ((__INSOValidateReceipt_kCFTypeArrayCallBacks) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction003, 257, 93, 22))
+#define INSOValidateReceipt_kCFTypeDictionaryKeyCallBacks_00F7006C ((__INSOValidateReceipt_kCFTypeDictionaryKeyCallBacks) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 247, 193, 67, INSOValidateReceipt_ObfuscationFunction004, 108, 110, 38))
+#define INSOValidateReceipt_kCFTypeDictionaryValueCallBacks_00E9004D ((__INSOValidateReceipt_kCFTypeDictionaryValueCallBacks) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 233, 209, 67, INSOValidateReceipt_ObfuscationFunction003, 77, 18, 32))
+#define INSOValidateReceipt_longjmp_005F00BD ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 95, 139, 33, INSOValidateReceipt_ObfuscationFunction007, 189, 232, 16))
+#define INSOValidateReceipt_longjmp_005F01C8 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction005, 95, 139, 33, INSOValidateReceipt_ObfuscationFunction005, 456, 27, 16))
+#define INSOValidateReceipt_longjmp_008F00BD ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 143, 49, 33, INSOValidateReceipt_ObfuscationFunction007, 189, 232, 16))
+#define INSOValidateReceipt_longjmp_008F0100 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 143, 49, 33, INSOValidateReceipt_ObfuscationFunction005, 256, 201, 16))
+#define INSOValidateReceipt_longjmp_008F01C8 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 143, 49, 33, INSOValidateReceipt_ObfuscationFunction005, 456, 27, 16))
+#define INSOValidateReceipt_longjmp_00A501C8 ((__INSOValidateReceipt_longjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 165, 213, 33, INSOValidateReceipt_ObfuscationFunction005, 456, 27, 16))
+#define INSOValidateReceipt_OBJ_txt2obj_001F016F ((__INSOValidateReceipt_OBJ_txt2obj) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction005, 367, 52, 16))
+#define INSOValidateReceipt_objc_getClass_00370051 ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 55, 172, 23, INSOValidateReceipt_ObfuscationFunction007, 81, 111, 16))
+#define INSOValidateReceipt_objc_getClass_0037013C ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 55, 172, 23, INSOValidateReceipt_ObfuscationFunction007, 316, 237, 16))
+#define INSOValidateReceipt_objc_getClass_003701DE ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 55, 172, 23, INSOValidateReceipt_ObfuscationFunction008, 478, 164, 16))
+#define INSOValidateReceipt_objc_getClass_01080051 ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 264, 241, 23, INSOValidateReceipt_ObfuscationFunction007, 81, 111, 16))
+#define INSOValidateReceipt_objc_getClass_0108013C ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 264, 241, 23, INSOValidateReceipt_ObfuscationFunction007, 316, 237, 16))
+#define INSOValidateReceipt_objc_getClass_01CB0051 ((__INSOValidateReceipt_objc_getClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 459, 168, 23, INSOValidateReceipt_ObfuscationFunction007, 81, 111, 16))
+#define INSOValidateReceipt_objc_lookUpClass_003700EB ((__INSOValidateReceipt_objc_lookUpClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 55, 172, 23, INSOValidateReceipt_ObfuscationFunction007, 235, 104, 17))
+#define INSOValidateReceipt_objc_lookUpClass_010800EB ((__INSOValidateReceipt_objc_lookUpClass) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 264, 241, 23, INSOValidateReceipt_ObfuscationFunction007, 235, 104, 17))
+#define INSOValidateReceipt_objc_msgSend_00370062 ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 55, 172, 23, INSOValidateReceipt_ObfuscationFunction00C, 98, 37, 16))
+#define INSOValidateReceipt_objc_msgSend_0037016A ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 55, 172, 23, INSOValidateReceipt_ObfuscationFunction007, 362, 38, 16))
+#define INSOValidateReceipt_objc_msgSend_01080062 ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 264, 241, 23, INSOValidateReceipt_ObfuscationFunction00C, 98, 37, 16))
+#define INSOValidateReceipt_objc_msgSend_01080112 ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 264, 241, 23, INSOValidateReceipt_ObfuscationFunction007, 274, 220, 16))
+#define INSOValidateReceipt_objc_msgSend_01CB0062 ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 459, 168, 23, INSOValidateReceipt_ObfuscationFunction00C, 98, 37, 16))
+#define INSOValidateReceipt_objc_msgSend_01CB016A ((__INSOValidateReceipt_objc_msgSend) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 459, 168, 23, INSOValidateReceipt_ObfuscationFunction007, 362, 38, 16))
+#define INSOValidateReceipt_OpenSSL_add_all_digests_0175005E ((__INSOValidateReceipt_OpenSSL_add_all_digests) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction007, 94, 218, 32))
+#define INSOValidateReceipt_OpenSSL_add_all_digests_01C000FB ((__INSOValidateReceipt_OpenSSL_add_all_digests) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction00A, 251, 126, 32))
+#define INSOValidateReceipt_PKCS7_free_01750072 ((__INSOValidateReceipt_PKCS7_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction006, 114, 68, 16))
+#define INSOValidateReceipt_PKCS7_free_01750082 ((__INSOValidateReceipt_PKCS7_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction003, 130, 9, 16))
+#define INSOValidateReceipt_PKCS7_get0_signers_001F0188 ((__INSOValidateReceipt_PKCS7_get0_signers) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction006, 392, 215, 19))
+#define INSOValidateReceipt_PKCS7_verify_001F017D ((__INSOValidateReceipt_PKCS7_verify) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction003, 381, 179, 16))
+#define INSOValidateReceipt_sel_registerName_003701D0 ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 55, 172, 23, INSOValidateReceipt_ObfuscationFunction00C, 464, 147, 17))
+#define INSOValidateReceipt_sel_registerName_010801D0 ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 264, 241, 23, INSOValidateReceipt_ObfuscationFunction00C, 464, 147, 17))
+#define INSOValidateReceipt_sel_registerName_010801D5 ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 264, 241, 23, INSOValidateReceipt_ObfuscationFunction00B, 469, 146, 17))
+#define INSOValidateReceipt_sel_registerName_01CB0066 ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 459, 168, 23, INSOValidateReceipt_ObfuscationFunction006, 102, 229, 17))
+#define INSOValidateReceipt_sel_registerName_01CB01D0 ((__INSOValidateReceipt_sel_registerName) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction007, 459, 168, 23, INSOValidateReceipt_ObfuscationFunction00C, 464, 147, 17))
+#define INSOValidateReceipt_setjmp_00A50115 ((__INSOValidateReceipt_setjmp) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00A, 165, 213, 33, INSOValidateReceipt_ObfuscationFunction006, 277, 250, 16))
+#define INSOValidateReceipt_SHA1_001F0181 ((__INSOValidateReceipt_SHA1) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction006, 385, 55, 16))
+#define INSOValidateReceipt_SHA1_Final_017501D7 ((__INSOValidateReceipt_SHA1_Final) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction00C, 471, 145, 16))
+#define INSOValidateReceipt_SHA1_Init_01C00157 ((__INSOValidateReceipt_SHA1_Init) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction00B, 343, 5, 16))
+#define INSOValidateReceipt_SHA1_Update_01C0007D ((__INSOValidateReceipt_SHA1_Update) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction006, 125, 57, 16))
+#define INSOValidateReceipt_sk_free_017500B2 ((__INSOValidateReceipt_sk_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction00B, 178, 208, 16))
+#define INSOValidateReceipt_sk_num_0175001C ((__INSOValidateReceipt_sk_num) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction006, 28, 21, 16))
+#define INSOValidateReceipt_sk_value_001F01C6 ((__INSOValidateReceipt_sk_value) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction009, 454, 73, 16))
+#define INSOValidateReceipt_X509_digest_01C00122 ((__INSOValidateReceipt_X509_digest) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction00A, 290, 178, 16))
+#define INSOValidateReceipt_X509_free_001F00C7 ((__INSOValidateReceipt_X509_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction007, 199, 97, 16))
+#define INSOValidateReceipt_X509_get_ext_by_OBJ_01750000 ((__INSOValidateReceipt_X509_get_ext_by_OBJ) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction006, 373, 244, 16, INSOValidateReceipt_ObfuscationFunction00C, 0, 35, 20))
+#define INSOValidateReceipt_X509_NAME_get_text_by_NID_01C00081 ((__INSOValidateReceipt_X509_NAME_get_text_by_NID) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction008, 129, 194, 34))
+#define INSOValidateReceipt_X509_STORE_add_cert_01C00063 ((__INSOValidateReceipt_X509_STORE_add_cert) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction005, 99, 1, 20))
+#define INSOValidateReceipt_X509_STORE_free_01C000CA ((__INSOValidateReceipt_X509_STORE_free) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction00B, 448, 69, 16, INSOValidateReceipt_ObfuscationFunction00B, 202, 31, 16))
+#define INSOValidateReceipt_X509_STORE_new_001F0106 ((__INSOValidateReceipt_X509_STORE_new) INSOValidateReceipt_LookupFunction015(INSOValidateReceipt_ObfuscationFunction009, 31, 70, 16, INSOValidateReceipt_ObfuscationFunction00A, 262, 35, 16))
     
     
     // CodeBlock ObfuscationFunction / M(Rot)
@@ -2057,7 +2038,7 @@ extern "C" {
         char *INSOValidateReceipt_tmp2 = INSOValidateReceipt_tmp1;
         INSOValidateReceipt_ObfuscationFunction003(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
         while(*INSOValidateReceipt_tmp2) { INSOValidateReceipt_tmp2++; }
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[236])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[183])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateReceipt_str1;
     }
     
@@ -2071,7 +2052,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateReceipt_ObfuscationFunction004CF(const char *INSOValidateReceipt_p1, int INSOValidateReceipt_p3, int INSOValidateReceipt_p4) {
         char INSOValidateReceipt_tmp1[483];
         INSOValidateReceipt_ObfuscationFunction004(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[466])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[276])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
         return INSOValidateReceipt_str1;
     }
     
@@ -2087,7 +2068,7 @@ extern "C" {
         char *INSOValidateReceipt_tmp2 = INSOValidateReceipt_tmp1;
         INSOValidateReceipt_ObfuscationFunction005(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
         while(*INSOValidateReceipt_tmp2) { INSOValidateReceipt_tmp2++; }
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[408])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[300])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateReceipt_str1;
     }
     
@@ -2101,7 +2082,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateReceipt_ObfuscationFunction006CF(const char *INSOValidateReceipt_p1, int INSOValidateReceipt_p3, int INSOValidateReceipt_p4) {
         char INSOValidateReceipt_tmp1[483];
         INSOValidateReceipt_ObfuscationFunction006(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[254])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[403])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
         return INSOValidateReceipt_str1;
     }
     
@@ -2117,7 +2098,7 @@ extern "C" {
         char *INSOValidateReceipt_tmp2 = INSOValidateReceipt_tmp1;
         INSOValidateReceipt_ObfuscationFunction007(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
         while(*INSOValidateReceipt_tmp2) { INSOValidateReceipt_tmp2++; }
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[208])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[402])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateReceipt_str1;
     }
     
@@ -2131,7 +2112,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateReceipt_ObfuscationFunction008CF(const char *INSOValidateReceipt_p1, int INSOValidateReceipt_p3, int INSOValidateReceipt_p4) {
         char INSOValidateReceipt_tmp1[483];
         INSOValidateReceipt_ObfuscationFunction008(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[254])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[403])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
         return INSOValidateReceipt_str1;
     }
     
@@ -2147,7 +2128,7 @@ extern "C" {
         char *INSOValidateReceipt_tmp2 = INSOValidateReceipt_tmp1;
         INSOValidateReceipt_ObfuscationFunction009(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
         while(*INSOValidateReceipt_tmp2) { INSOValidateReceipt_tmp2++; }
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[208])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[402])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateReceipt_str1;
     }
     
@@ -2161,7 +2142,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateReceipt_ObfuscationFunction00ACF(const char *INSOValidateReceipt_p1, int INSOValidateReceipt_p3, int INSOValidateReceipt_p4) {
         char INSOValidateReceipt_tmp1[483];
         INSOValidateReceipt_ObfuscationFunction00A(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[466])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[276])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
         return INSOValidateReceipt_str1;
     }
     
@@ -2177,7 +2158,7 @@ extern "C" {
         char *INSOValidateReceipt_tmp2 = INSOValidateReceipt_tmp1;
         INSOValidateReceipt_ObfuscationFunction00B(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
         while(*INSOValidateReceipt_tmp2) { INSOValidateReceipt_tmp2++; }
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[408])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[183])(NULL, (const UInt8 *) INSOValidateReceipt_tmp1, (CFIndex) (INSOValidateReceipt_tmp2 - INSOValidateReceipt_tmp1), kCFStringEncodingUTF8, false);
         return INSOValidateReceipt_str1;
     }
     
@@ -2191,7 +2172,7 @@ extern "C" {
     __RETURN_RETAINED inline static CFStringRef INSOValidateReceipt_ObfuscationFunction00CCF(const char *INSOValidateReceipt_p1, int INSOValidateReceipt_p3, int INSOValidateReceipt_p4) {
         char INSOValidateReceipt_tmp1[483];
         INSOValidateReceipt_ObfuscationFunction00C(INSOValidateReceipt_p1, INSOValidateReceipt_tmp1, INSOValidateReceipt_p3, INSOValidateReceipt_p4);
-        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[466])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
+        CFStringRef INSOValidateReceipt_str1 = ((__INSOValidateReceipt_CFStringCreateWithCString) INSOValidateReceipt_Pointers[451])(NULL, INSOValidateReceipt_tmp1, kCFStringEncodingUTF8);
         return INSOValidateReceipt_str1;
     }
     
@@ -2202,12 +2183,12 @@ extern "C" {
         // Load the library if needed
         if (INSOValidateReceipt_Pointers[INSOValidateReceipt_index1] == NULL) {
             INSOValidateReceipt_func1(INSOValidateReceipt_Strings[INSOValidateReceipt_index1], INSOValidateReceipt_tmp1, INSOValidateReceipt_val1, INSOValidateReceipt_len1);
-            INSOValidateReceipt_Pointers[INSOValidateReceipt_index1] = ((__INSOValidateReceipt_dlopen) INSOValidateReceipt_Pointers[479])(INSOValidateReceipt_tmp1, RTLD_NOW | RTLD_FIRST);
+            INSOValidateReceipt_Pointers[INSOValidateReceipt_index1] = ((__INSOValidateReceipt_dlopen) INSOValidateReceipt_Pointers[298])(INSOValidateReceipt_tmp1, RTLD_NOW | RTLD_FIRST);
         }
         // Load the function if needed
         if (INSOValidateReceipt_Pointers[INSOValidateReceipt_index2] == NULL) {
             INSOValidateReceipt_func2(INSOValidateReceipt_Strings[INSOValidateReceipt_index2], INSOValidateReceipt_tmp2, INSOValidateReceipt_val2, INSOValidateReceipt_len2);
-            INSOValidateReceipt_Pointers[INSOValidateReceipt_index2] = ((__INSOValidateReceipt_dlsym) INSOValidateReceipt_Pointers[17])(INSOValidateReceipt_Pointers[INSOValidateReceipt_index1], INSOValidateReceipt_tmp2);
+            INSOValidateReceipt_Pointers[INSOValidateReceipt_index2] = ((__INSOValidateReceipt_dlsym) INSOValidateReceipt_Pointers[141])(INSOValidateReceipt_Pointers[INSOValidateReceipt_index1], INSOValidateReceipt_tmp2);
         }
         return INSOValidateReceipt_Pointers[INSOValidateReceipt_index2];
     }
@@ -2220,47 +2201,47 @@ extern "C" {
     inline static void INSOValidateReceipt_GetMainBundle016(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Retrieving main bundle");
         // Retrieve the main bundle
-        INSOValidateReceipt_ctx->main_bundle = INSOValidateReceipt_CFBundleGetMainBundle_007901A4();
+        INSOValidateReceipt_ctx->main_bundle = INSOValidateReceipt_CFBundleGetMainBundle_004A01A1();
         if (!INSOValidateReceipt_ctx->main_bundle) {
             // Dead code
-            INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_ctx->main_bundle);
-            INSOValidateReceipt_CFBundleUnloadExecutable_010F0145((CFBundleRef) INSOValidateReceipt_ctx->main_bundle);
+            INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_ctx->main_bundle);
+            INSOValidateReceipt_CFBundleUnloadExecutable_00F700B6((CFBundleRef) INSOValidateReceipt_ctx->main_bundle);
         }
         // Global variables computation
-        // Set to 327
-        INSOValidateReceipt_VLGBCRXLZMHT = 327;
-        // Set to 350
-        INSOValidateReceipt_AFVQTANHTLYF = 350;
-        // Set to 113
-        INSOValidateReceipt_ACFEVVQVAIKY = 113;
-        // Set to 261
-        INSOValidateReceipt_VQTNXJHMSZEL = 261;
-        // Set to 288
-        INSOValidateReceipt_WRMDFVLFQRMA = 288;
-        // Set to 336
-        INSOValidateReceipt_UFGPFIPLDFOS = 336;
+        // Set to 440
+        INSOValidateReceipt_HNPSXRYTFLWB = 440;
+        // Set to 19
+        INSOValidateReceipt_ZEIRQNSQKKHM = 19;
+        // Set to 480
+        INSOValidateReceipt_KDMYCKEZRSDM = 480;
+        // Set to 252
+        INSOValidateReceipt_WMYJXBSKXTDM = 252;
+        // Set to 272
+        INSOValidateReceipt_JKZOWYSQHSTF = 272;
+        // Set to 131
+        INSOValidateReceipt_XUVWOJCGGUZP = 131;
     }
 #else
 #define INSOValidateReceipt_GetMainBundle016(INSOValidateReceipt_ctx) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Retrieving main bundle"); \
-INSOValidateReceipt_ctx->main_bundle = INSOValidateReceipt_CFBundleGetMainBundle_007901A4(); \
+INSOValidateReceipt_ctx->main_bundle = INSOValidateReceipt_CFBundleGetMainBundle_004A01A1(); \
 if (!INSOValidateReceipt_ctx->main_bundle) { \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_ctx->main_bundle); \
-INSOValidateReceipt_CFBundleUnloadExecutable_010F0145((CFBundleRef) INSOValidateReceipt_ctx->main_bundle); \
+INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_ctx->main_bundle); \
+INSOValidateReceipt_CFBundleUnloadExecutable_00F700B6((CFBundleRef) INSOValidateReceipt_ctx->main_bundle); \
 } \
-INSOValidateReceipt_VLGBCRXLZMHT = 327; \
-INSOValidateReceipt_AFVQTANHTLYF = 350; \
-INSOValidateReceipt_ACFEVVQVAIKY = 113; \
-INSOValidateReceipt_VQTNXJHMSZEL = 261; \
-INSOValidateReceipt_WRMDFVLFQRMA = 288; \
-INSOValidateReceipt_UFGPFIPLDFOS = 336; \
+INSOValidateReceipt_HNPSXRYTFLWB = 440; \
+INSOValidateReceipt_ZEIRQNSQKKHM = 19; \
+INSOValidateReceipt_KDMYCKEZRSDM = 480; \
+INSOValidateReceipt_WMYJXBSKXTDM = 252; \
+INSOValidateReceipt_JKZOWYSQHSTF = 272; \
+INSOValidateReceipt_XUVWOJCGGUZP = 131; \
 }
 #endif
     
     
     // CodeBlock LoadReceipt
 #ifdef DEBUG
-    inline static void INSOValidateReceipt_LoadReceipt042(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
+    inline static void INSOValidateReceipt_LoadReceipt041(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         id INSOValidateReceipt_bundleClass, INSOValidateReceipt_bundle;
         CFURLRef INSOValidateReceipt_url1;
         CFReadStreamRef INSOValidateReceipt_stream;
@@ -2272,52 +2253,52 @@ INSOValidateReceipt_UFGPFIPLDFOS = 336; \
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Loading receipt");
         // Get NSBundle class
         char INSOValidateReceipt_str1_[483];
-        INSOValidateReceipt_ObfuscationFunction009((INSOValidateReceipt_Strings[193]), INSOValidateReceipt_str1_, 53, 16);
+        INSOValidateReceipt_ObfuscationFunction005((INSOValidateReceipt_Strings[56]), INSOValidateReceipt_str1_, 50, 16);
         INSOValidateReceipt_str1 = INSOValidateReceipt_str1_;
-        INSOValidateReceipt_bundleClass = INSOValidateReceipt_objc_getClass_00DD01DB(INSOValidateReceipt_str1);
+        INSOValidateReceipt_bundleClass = INSOValidateReceipt_objc_lookUpClass_003700EB(INSOValidateReceipt_str1);
         char INSOValidateReceipt_str2_[483];
-        INSOValidateReceipt_ObfuscationFunction006((INSOValidateReceipt_Strings[112]), INSOValidateReceipt_str2_, 193, 16);
+        INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[160]), INSOValidateReceipt_str2_, 73, 16);
         INSOValidateReceipt_str2 = INSOValidateReceipt_str2_;
-        INSOValidateReceipt_sel2 = INSOValidateReceipt_sel_registerName_0170014E(INSOValidateReceipt_str2);
+        INSOValidateReceipt_sel2 = INSOValidateReceipt_sel_registerName_003701D0(INSOValidateReceipt_str2);
         INSOValidateReceipt_bundle = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateReceipt_bundleClass, INSOValidateReceipt_sel2);
         char INSOValidateReceipt_str3_[483];
-        INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[340]), INSOValidateReceipt_str3_, 250, 19);
+        INSOValidateReceipt_ObfuscationFunction007((INSOValidateReceipt_Strings[332]), INSOValidateReceipt_str3_, 93, 19);
         INSOValidateReceipt_str3 = INSOValidateReceipt_str3_;
-        INSOValidateReceipt_sel3 = INSOValidateReceipt_sel_registerName_0170014E(INSOValidateReceipt_str3);
+        INSOValidateReceipt_sel3 = INSOValidateReceipt_sel_registerName_003701D0(INSOValidateReceipt_str3);
         INSOValidateReceipt_url1 = __SAFE_CAST(CFURLRef, ((NSURL *(*)(id, SEL)) objc_msgSend)(INSOValidateReceipt_bundle, INSOValidateReceipt_sel3));
         // Create a stream from the receipt file
-        INSOValidateReceipt_stream = INSOValidateReceipt_ACFEVVQVAIKY_00790071(kCFAllocatorDefault, INSOValidateReceipt_url1);
-        if (INSOValidateReceipt_stream == NULL || !INSOValidateReceipt_WRMDFVLFQRMA_01690120(INSOValidateReceipt_stream)) {
+        INSOValidateReceipt_stream = INSOValidateReceipt_JKZOWYSQHSTF_00F70110(kCFAllocatorDefault, INSOValidateReceipt_url1);
+        if (INSOValidateReceipt_stream == NULL || !INSOValidateReceipt_WMYJXBSKXTDM_00F700FC(INSOValidateReceipt_stream)) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Error while opening receipt");
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_008F0100(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
-            INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_str1);
-            INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_url1);
-            INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_str1);
-            goto INSOValidateReceipt_LoadReceipt042_INSOValidateReceipt_bail;
+            INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_url1);
+            INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_str1);
+            INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_url1);
+            goto INSOValidateReceipt_LoadReceipt041_INSOValidateReceipt_bail;
         }
         // Create the data object that will contains receipt data
-        INSOValidateReceipt_data = INSOValidateReceipt_AFVQTANHTLYF_0079015E(kCFAllocatorDefault, 0);
+        INSOValidateReceipt_data = INSOValidateReceipt_XUVWOJCGGUZP_00E90083(kCFAllocatorDefault, 0);
         // Read the receipt by chunks
         do {
-            INSOValidateReceipt_count = INSOValidateReceipt_UFGPFIPLDFOS_01690150(INSOValidateReceipt_stream, &INSOValidateReceipt_buffer[0], 483);
+            INSOValidateReceipt_count = INSOValidateReceipt_KDMYCKEZRSDM_00F701E0(INSOValidateReceipt_stream, &INSOValidateReceipt_buffer[0], 483);
             if (INSOValidateReceipt_count > 0) {
-                INSOValidateReceipt_VQTNXJHMSZEL_010F0105(INSOValidateReceipt_data, INSOValidateReceipt_buffer, INSOValidateReceipt_count);
+                INSOValidateReceipt_HNPSXRYTFLWB_00F701B8(INSOValidateReceipt_data, INSOValidateReceipt_buffer, INSOValidateReceipt_count);
             }
         } while (INSOValidateReceipt_count > 0);
         // Close the stream
-        INSOValidateReceipt_VLGBCRXLZMHT_01690147(INSOValidateReceipt_stream);
-        if (INSOValidateReceipt_ctx->receipt_data) INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_ctx->receipt_data);
+        INSOValidateReceipt_ZEIRQNSQKKHM_00E90013(INSOValidateReceipt_stream);
+        if (INSOValidateReceipt_ctx->receipt_data) INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_ctx->receipt_data);
         INSOValidateReceipt_ctx->receipt_data = INSOValidateReceipt_data;
         // Global variables computation
-        // From 288 to 342
-        INSOValidateReceipt_WRMDFVLFQRMA -= 174; INSOValidateReceipt_WRMDFVLFQRMA *= 3;
-    INSOValidateReceipt_LoadReceipt042_INSOValidateReceipt_bail:
-        if (INSOValidateReceipt_stream) INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_stream);
+        // From 19 to 91
+        INSOValidateReceipt_ZEIRQNSQKKHM -= 4; INSOValidateReceipt_ZEIRQNSQKKHM *= 6; INSOValidateReceipt_ZEIRQNSQKKHM += 1;
+    INSOValidateReceipt_LoadReceipt041_INSOValidateReceipt_bail:
+        if (INSOValidateReceipt_stream) INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_stream);
     }
 #else
-#define INSOValidateReceipt_LoadReceipt042(INSOValidateReceipt_ctx) { \
+#define INSOValidateReceipt_LoadReceipt041(INSOValidateReceipt_ctx) { \
 id INSOValidateReceipt_bundleClass, INSOValidateReceipt_bundle; \
 CFURLRef INSOValidateReceipt_url1; \
 CFReadStreamRef INSOValidateReceipt_stream; \
@@ -2328,49 +2309,49 @@ SEL INSOValidateReceipt_sel2, INSOValidateReceipt_sel3; \
 uint8_t INSOValidateReceipt_buffer[483]; \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Loading receipt"); \
 char INSOValidateReceipt_str1_[483]; \
-INSOValidateReceipt_ObfuscationFunction009((INSOValidateReceipt_Strings[193]), INSOValidateReceipt_str1_, 53, 16); \
+INSOValidateReceipt_ObfuscationFunction005((INSOValidateReceipt_Strings[56]), INSOValidateReceipt_str1_, 50, 16); \
 INSOValidateReceipt_str1 = INSOValidateReceipt_str1_; \
-INSOValidateReceipt_bundleClass = INSOValidateReceipt_objc_getClass_00DD01DB(INSOValidateReceipt_str1); \
+INSOValidateReceipt_bundleClass = INSOValidateReceipt_objc_lookUpClass_003700EB(INSOValidateReceipt_str1); \
 char INSOValidateReceipt_str2_[483]; \
-INSOValidateReceipt_ObfuscationFunction006((INSOValidateReceipt_Strings[112]), INSOValidateReceipt_str2_, 193, 16); \
+INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[160]), INSOValidateReceipt_str2_, 73, 16); \
 INSOValidateReceipt_str2 = INSOValidateReceipt_str2_; \
-INSOValidateReceipt_sel2 = INSOValidateReceipt_sel_registerName_0170014E(INSOValidateReceipt_str2); \
+INSOValidateReceipt_sel2 = INSOValidateReceipt_sel_registerName_003701D0(INSOValidateReceipt_str2); \
 INSOValidateReceipt_bundle = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateReceipt_bundleClass, INSOValidateReceipt_sel2); \
 char INSOValidateReceipt_str3_[483]; \
-INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[340]), INSOValidateReceipt_str3_, 250, 19); \
+INSOValidateReceipt_ObfuscationFunction007((INSOValidateReceipt_Strings[332]), INSOValidateReceipt_str3_, 93, 19); \
 INSOValidateReceipt_str3 = INSOValidateReceipt_str3_; \
-INSOValidateReceipt_sel3 = INSOValidateReceipt_sel_registerName_0170014E(INSOValidateReceipt_str3); \
+INSOValidateReceipt_sel3 = INSOValidateReceipt_sel_registerName_003701D0(INSOValidateReceipt_str3); \
 INSOValidateReceipt_url1 = __SAFE_CAST(CFURLRef, ((NSURL *(*)(id, SEL)) objc_msgSend)(INSOValidateReceipt_bundle, INSOValidateReceipt_sel3)); \
-INSOValidateReceipt_stream = INSOValidateReceipt_ACFEVVQVAIKY_00790071(kCFAllocatorDefault, INSOValidateReceipt_url1); \
-if (INSOValidateReceipt_stream == NULL || !INSOValidateReceipt_WRMDFVLFQRMA_01690120(INSOValidateReceipt_stream)) { \
+INSOValidateReceipt_stream = INSOValidateReceipt_JKZOWYSQHSTF_00F70110(kCFAllocatorDefault, INSOValidateReceipt_url1); \
+if (INSOValidateReceipt_stream == NULL || !INSOValidateReceipt_WMYJXBSKXTDM_00F700FC(INSOValidateReceipt_stream)) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Error while opening receipt"); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_str1); \
-INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_url1); \
-INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_str1); \
-goto INSOValidateReceipt_LoadReceipt042_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F0100(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_url1); \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_str1); \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_url1); \
+goto INSOValidateReceipt_LoadReceipt041_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_data = INSOValidateReceipt_AFVQTANHTLYF_0079015E(kCFAllocatorDefault, 0); \
+INSOValidateReceipt_data = INSOValidateReceipt_XUVWOJCGGUZP_00E90083(kCFAllocatorDefault, 0); \
 do { \
-INSOValidateReceipt_count = INSOValidateReceipt_UFGPFIPLDFOS_01690150(INSOValidateReceipt_stream, &INSOValidateReceipt_buffer[0], 483); \
+INSOValidateReceipt_count = INSOValidateReceipt_KDMYCKEZRSDM_00F701E0(INSOValidateReceipt_stream, &INSOValidateReceipt_buffer[0], 483); \
 if (INSOValidateReceipt_count > 0) { \
-INSOValidateReceipt_VQTNXJHMSZEL_010F0105(INSOValidateReceipt_data, INSOValidateReceipt_buffer, INSOValidateReceipt_count); \
+INSOValidateReceipt_HNPSXRYTFLWB_00F701B8(INSOValidateReceipt_data, INSOValidateReceipt_buffer, INSOValidateReceipt_count); \
 } \
 } while (INSOValidateReceipt_count > 0); \
-INSOValidateReceipt_VLGBCRXLZMHT_01690147(INSOValidateReceipt_stream); \
-if (INSOValidateReceipt_ctx->receipt_data) INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_ctx->receipt_data); \
+INSOValidateReceipt_ZEIRQNSQKKHM_00E90013(INSOValidateReceipt_stream); \
+if (INSOValidateReceipt_ctx->receipt_data) INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_ctx->receipt_data); \
 INSOValidateReceipt_ctx->receipt_data = INSOValidateReceipt_data; \
-INSOValidateReceipt_WRMDFVLFQRMA -= 174; INSOValidateReceipt_WRMDFVLFQRMA *= 3;  \
-INSOValidateReceipt_LoadReceipt042_INSOValidateReceipt_bail: \
-if (INSOValidateReceipt_stream) INSOValidateReceipt_CFRelease_010F012C(INSOValidateReceipt_stream);     \
+INSOValidateReceipt_ZEIRQNSQKKHM -= 4; INSOValidateReceipt_ZEIRQNSQKKHM *= 6; INSOValidateReceipt_ZEIRQNSQKKHM += 1;  \
+INSOValidateReceipt_LoadReceipt041_INSOValidateReceipt_bail: \
+if (INSOValidateReceipt_stream) INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_stream);     \
 }
 #endif
     
     
     // CodeBlock GetGUID
 #ifdef DEBUG
-    inline static void INSOValidateReceipt_GetGUID04D(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
+    inline static void INSOValidateReceipt_GetGUID04E(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         Class INSOValidateReceipt_deviceClass;
         id INSOValidateReceipt_device, INSOValidateReceipt_identifier;
         char *INSOValidateReceipt_str1, *INSOValidateReceipt_str2, *INSOValidateReceipt_str3, *INSOValidateReceipt_str4;
@@ -2379,40 +2360,40 @@ if (INSOValidateReceipt_stream) INSOValidateReceipt_CFRelease_010F012C(INSOValid
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Getting device identifier");
         // Get the UIDevice class
         char INSOValidateReceipt_str1_[483];
-        INSOValidateReceipt_ObfuscationFunction004((INSOValidateReceipt_Strings[359]), INSOValidateReceipt_str1_, 165, 16);
+        INSOValidateReceipt_ObfuscationFunction008((INSOValidateReceipt_Strings[170]), INSOValidateReceipt_str1_, 175, 16);
         INSOValidateReceipt_str1 = INSOValidateReceipt_str1_;
-        INSOValidateReceipt_deviceClass = INSOValidateReceipt_objc_lookUpClass_0069000F(INSOValidateReceipt_str1);
+        INSOValidateReceipt_deviceClass = INSOValidateReceipt_objc_getClass_01CB0051(INSOValidateReceipt_str1);
         // Call [UIDevice currentDevice]
         char INSOValidateReceipt_str2_[483];
-        INSOValidateReceipt_ObfuscationFunction005((INSOValidateReceipt_Strings[206]), INSOValidateReceipt_str2_, 0, 16);
+        INSOValidateReceipt_ObfuscationFunction008((INSOValidateReceipt_Strings[25]), INSOValidateReceipt_str2_, 83, 16);
         INSOValidateReceipt_str2 = INSOValidateReceipt_str2_;
-        INSOValidateReceipt_sel2 = INSOValidateReceipt_sel_registerName_01700082(INSOValidateReceipt_str2);
+        INSOValidateReceipt_sel2 = INSOValidateReceipt_sel_registerName_010801D0(INSOValidateReceipt_str2);
         INSOValidateReceipt_device =  ((id (*)(id, SEL)) objc_msgSend)(INSOValidateReceipt_deviceClass, INSOValidateReceipt_sel2);
         // Call [device identifierForVendor]
         char INSOValidateReceipt_str3_[483];
-        INSOValidateReceipt_ObfuscationFunction006((INSOValidateReceipt_Strings[326]), INSOValidateReceipt_str3_, 160, 20);
+        INSOValidateReceipt_ObfuscationFunction007((INSOValidateReceipt_Strings[101]), INSOValidateReceipt_str3_, 251, 20);
         INSOValidateReceipt_str3 = INSOValidateReceipt_str3_;
-        INSOValidateReceipt_sel3 = INSOValidateReceipt_sel_registerName_01700082(INSOValidateReceipt_str3);
+        INSOValidateReceipt_sel3 = INSOValidateReceipt_sel_registerName_010801D0(INSOValidateReceipt_str3);
         INSOValidateReceipt_identifier = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateReceipt_device, INSOValidateReceipt_sel3);
         // Call [identifier getUUIDBytes:INSOValidateReceipt_uuid]
         char INSOValidateReceipt_str4_[483];
-        INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[107]), INSOValidateReceipt_str4_, 215, 16);
+        INSOValidateReceipt_ObfuscationFunction004((INSOValidateReceipt_Strings[338]), INSOValidateReceipt_str4_, 29, 16);
         INSOValidateReceipt_str4 = INSOValidateReceipt_str4_;
-        INSOValidateReceipt_sel4 = INSOValidateReceipt_sel_registerName_01700082(INSOValidateReceipt_str4);
+        INSOValidateReceipt_sel4 = INSOValidateReceipt_sel_registerName_010801D0(INSOValidateReceipt_str4);
         ((void (*)(id, SEL, uuid_t)) objc_msgSend)(INSOValidateReceipt_identifier, INSOValidateReceipt_sel4, INSOValidateReceipt_uuid);
-        if (INSOValidateReceipt_ctx->guid_data) INSOValidateReceipt_CFRelease_010F0053(INSOValidateReceipt_ctx->guid_data);
-        volatile int INSOValidateReceipt_size = 14; INSOValidateReceipt_size -= 9; INSOValidateReceipt_size *= 3; INSOValidateReceipt_size += 1;
-        INSOValidateReceipt_ctx->guid_data = INSOValidateReceipt_WRMDFVLFQRMA_010F0156(NULL, (const UInt8 *) INSOValidateReceipt_uuid, (CFIndex) INSOValidateReceipt_size);
+        if (INSOValidateReceipt_ctx->guid_data) INSOValidateReceipt_CFRelease_00F701C7(INSOValidateReceipt_ctx->guid_data);
+        volatile int INSOValidateReceipt_size = 13; INSOValidateReceipt_size -= 8; INSOValidateReceipt_size *= 3; INSOValidateReceipt_size += 1;
+        INSOValidateReceipt_ctx->guid_data = INSOValidateReceipt_ZEIRQNSQKKHM_00E9005B(NULL, (const UInt8 *) INSOValidateReceipt_uuid, (CFIndex) INSOValidateReceipt_size);
         // Global variables computation
-        // Set to 427
-        INSOValidateReceipt_YUURUMHMKAJI = 427;
-        // From 350 to 87
-        INSOValidateReceipt_AFVQTANHTLYF += 172; INSOValidateReceipt_AFVQTANHTLYF /= 6;
-        // Set to 104
-        INSOValidateReceipt_VQTNXJHMSZEL = 104;
+        // From 91 to 236
+        INSOValidateReceipt_ZEIRQNSQKKHM -= 32; INSOValidateReceipt_ZEIRQNSQKKHM *= 4;
+        // From 480 to 394
+        INSOValidateReceipt_KDMYCKEZRSDM += 308; INSOValidateReceipt_KDMYCKEZRSDM /= 2;
+        // Set to 457
+        INSOValidateReceipt_WMYJXBSKXTDM = 457;
     }
 #else
-#define INSOValidateReceipt_GetGUID04D(INSOValidateReceipt_ctx) { \
+#define INSOValidateReceipt_GetGUID04E(INSOValidateReceipt_ctx) { \
 Class INSOValidateReceipt_deviceClass; \
 id INSOValidateReceipt_device, INSOValidateReceipt_identifier; \
 char *INSOValidateReceipt_str1, *INSOValidateReceipt_str2, *INSOValidateReceipt_str3, *INSOValidateReceipt_str4; \
@@ -2420,30 +2401,30 @@ SEL INSOValidateReceipt_sel2, INSOValidateReceipt_sel3, INSOValidateReceipt_sel4
 uuid_t INSOValidateReceipt_uuid; \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Getting device identifier"); \
 char INSOValidateReceipt_str1_[483]; \
-INSOValidateReceipt_ObfuscationFunction004((INSOValidateReceipt_Strings[359]), INSOValidateReceipt_str1_, 165, 16); \
+INSOValidateReceipt_ObfuscationFunction008((INSOValidateReceipt_Strings[170]), INSOValidateReceipt_str1_, 175, 16); \
 INSOValidateReceipt_str1 = INSOValidateReceipt_str1_; \
-INSOValidateReceipt_deviceClass = INSOValidateReceipt_objc_lookUpClass_0069000F(INSOValidateReceipt_str1); \
+INSOValidateReceipt_deviceClass = INSOValidateReceipt_objc_getClass_01CB0051(INSOValidateReceipt_str1); \
 char INSOValidateReceipt_str2_[483]; \
-INSOValidateReceipt_ObfuscationFunction005((INSOValidateReceipt_Strings[206]), INSOValidateReceipt_str2_, 0, 16); \
+INSOValidateReceipt_ObfuscationFunction008((INSOValidateReceipt_Strings[25]), INSOValidateReceipt_str2_, 83, 16); \
 INSOValidateReceipt_str2 = INSOValidateReceipt_str2_; \
-INSOValidateReceipt_sel2 = INSOValidateReceipt_sel_registerName_01700082(INSOValidateReceipt_str2); \
+INSOValidateReceipt_sel2 = INSOValidateReceipt_sel_registerName_010801D0(INSOValidateReceipt_str2); \
 INSOValidateReceipt_device =  ((id (*)(id, SEL)) objc_msgSend)(INSOValidateReceipt_deviceClass, INSOValidateReceipt_sel2); \
 char INSOValidateReceipt_str3_[483]; \
-INSOValidateReceipt_ObfuscationFunction006((INSOValidateReceipt_Strings[326]), INSOValidateReceipt_str3_, 160, 20); \
+INSOValidateReceipt_ObfuscationFunction007((INSOValidateReceipt_Strings[101]), INSOValidateReceipt_str3_, 251, 20); \
 INSOValidateReceipt_str3 = INSOValidateReceipt_str3_; \
-INSOValidateReceipt_sel3 = INSOValidateReceipt_sel_registerName_01700082(INSOValidateReceipt_str3); \
+INSOValidateReceipt_sel3 = INSOValidateReceipt_sel_registerName_010801D0(INSOValidateReceipt_str3); \
 INSOValidateReceipt_identifier = ((id (*)(id, SEL)) objc_msgSend)(INSOValidateReceipt_device, INSOValidateReceipt_sel3); \
 char INSOValidateReceipt_str4_[483]; \
-INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[107]), INSOValidateReceipt_str4_, 215, 16); \
+INSOValidateReceipt_ObfuscationFunction004((INSOValidateReceipt_Strings[338]), INSOValidateReceipt_str4_, 29, 16); \
 INSOValidateReceipt_str4 = INSOValidateReceipt_str4_; \
-INSOValidateReceipt_sel4 = INSOValidateReceipt_sel_registerName_01700082(INSOValidateReceipt_str4); \
+INSOValidateReceipt_sel4 = INSOValidateReceipt_sel_registerName_010801D0(INSOValidateReceipt_str4); \
 ((void (*)(id, SEL, uuid_t)) objc_msgSend)(INSOValidateReceipt_identifier, INSOValidateReceipt_sel4, INSOValidateReceipt_uuid); \
-if (INSOValidateReceipt_ctx->guid_data) INSOValidateReceipt_CFRelease_010F0053(INSOValidateReceipt_ctx->guid_data); \
-volatile int INSOValidateReceipt_size = 14; INSOValidateReceipt_size -= 9; INSOValidateReceipt_size *= 3; INSOValidateReceipt_size += 1;  \
-INSOValidateReceipt_ctx->guid_data = INSOValidateReceipt_WRMDFVLFQRMA_010F0156(NULL, (const UInt8 *) INSOValidateReceipt_uuid, (CFIndex) INSOValidateReceipt_size); \
-INSOValidateReceipt_YUURUMHMKAJI = 427; \
-INSOValidateReceipt_AFVQTANHTLYF += 172; INSOValidateReceipt_AFVQTANHTLYF /= 6;  \
-INSOValidateReceipt_VQTNXJHMSZEL = 104; \
+if (INSOValidateReceipt_ctx->guid_data) INSOValidateReceipt_CFRelease_00F701C7(INSOValidateReceipt_ctx->guid_data); \
+volatile int INSOValidateReceipt_size = 13; INSOValidateReceipt_size -= 8; INSOValidateReceipt_size *= 3; INSOValidateReceipt_size += 1;  \
+INSOValidateReceipt_ctx->guid_data = INSOValidateReceipt_ZEIRQNSQKKHM_00E9005B(NULL, (const UInt8 *) INSOValidateReceipt_uuid, (CFIndex) INSOValidateReceipt_size); \
+INSOValidateReceipt_ZEIRQNSQKKHM -= 32; INSOValidateReceipt_ZEIRQNSQKKHM *= 4;  \
+INSOValidateReceipt_KDMYCKEZRSDM += 308; INSOValidateReceipt_KDMYCKEZRSDM /= 2;  \
+INSOValidateReceipt_WMYJXBSKXTDM = 457; \
 }
 #endif
     
@@ -2451,39 +2432,39 @@ INSOValidateReceipt_VQTNXJHMSZEL = 104; \
     // CodeBlock CheckBundleIdentifier
 #ifdef DEBUG
     inline static void INSOValidateReceipt_CheckBundleIdentifier05B(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
-        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction004CF((INSOValidateReceipt_Strings[123]), 126, 49);
+        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction00ACF((INSOValidateReceipt_Strings[100]), 25, 49);
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking bundle identifier");
-        CFStringRef INSOValidateReceipt_str2 = INSOValidateReceipt_YUURUMHMKAJI_010F01AB((CFBundleRef) INSOValidateReceipt_ctx->main_bundle);
-        if (INSOValidateReceipt_VQTNXJHMSZEL_00790068(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateReceipt_str2 = INSOValidateReceipt_KDMYCKEZRSDM_004A018A((CFBundleRef) INSOValidateReceipt_ctx->main_bundle);
+        if (INSOValidateReceipt_WMYJXBSKXTDM_004A01C9(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Bundle identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding()));
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01E201D9(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_005F01C8(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
-            INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_str2);
-            INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_str2);
+            INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_str2);
+            INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_str2);
         }
         // Global variables computation
-        // From 113 to 243
-        INSOValidateReceipt_ACFEVVQVAIKY -= 53; INSOValidateReceipt_ACFEVVQVAIKY *= 4; INSOValidateReceipt_ACFEVVQVAIKY += 3;
-        // From 336 to 104
-        INSOValidateReceipt_UFGPFIPLDFOS += 184; INSOValidateReceipt_UFGPFIPLDFOS /= 5;
-        INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_str1);
+        // Set to 147
+        INSOValidateReceipt_ZEIRQNSQKKHM = 147;
+        // From 272 to 15
+        INSOValidateReceipt_JKZOWYSQHSTF += 28; INSOValidateReceipt_JKZOWYSQHSTF /= 20;
+        INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_str1);
     }
 #else
 #define INSOValidateReceipt_CheckBundleIdentifier05B(INSOValidateReceipt_ctx) { \
-CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction004CF((INSOValidateReceipt_Strings[123]), 126, 49); \
+CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction00ACF((INSOValidateReceipt_Strings[100]), 25, 49); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking bundle identifier"); \
-CFStringRef INSOValidateReceipt_str2 = INSOValidateReceipt_YUURUMHMKAJI_010F01AB((CFBundleRef) INSOValidateReceipt_ctx->main_bundle); \
-if (INSOValidateReceipt_VQTNXJHMSZEL_00790068(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateReceipt_str2 = INSOValidateReceipt_KDMYCKEZRSDM_004A018A((CFBundleRef) INSOValidateReceipt_ctx->main_bundle); \
+if (INSOValidateReceipt_WMYJXBSKXTDM_004A01C9(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Bundle identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding())); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E201D9(INSOValidateReceipt_JumpBuf, 1); \
-INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_str2); \
-INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_str2); \
+INSOValidateReceipt_longjmp_005F01C8(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_str2); \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_str2); \
 } \
-INSOValidateReceipt_ACFEVVQVAIKY -= 53; INSOValidateReceipt_ACFEVVQVAIKY *= 4; INSOValidateReceipt_ACFEVVQVAIKY += 3;  \
-INSOValidateReceipt_UFGPFIPLDFOS += 184; INSOValidateReceipt_UFGPFIPLDFOS /= 5;  \
-INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_str1); \
+INSOValidateReceipt_ZEIRQNSQKKHM = 147; \
+INSOValidateReceipt_JKZOWYSQHSTF += 28; INSOValidateReceipt_JKZOWYSQHSTF /= 20;  \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_str1); \
 }
 #endif
     
@@ -2492,69 +2473,69 @@ INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_str1); \
 #ifdef DEBUG
     inline static void INSOValidateReceipt_CheckBundleVersion05F(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking bundle version");
-        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[19]), 220, 16);
-        CFStringRef INSOValidateReceipt_str2 = INSOValidateReceipt_ObfuscationFunction004CF((INSOValidateReceipt_Strings[94]), 242, 16);
-        CFStringRef INSOValidateReceipt_str3 = (CFStringRef) INSOValidateReceipt_ACFEVVQVAIKY_010F00F3((CFBundleRef) INSOValidateReceipt_ctx->main_bundle, INSOValidateReceipt_str2);
-        if (INSOValidateReceipt_UFGPFIPLDFOS_00790068(INSOValidateReceipt_str1, INSOValidateReceipt_str3, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction008CF((INSOValidateReceipt_Strings[376]), 101, 16);
+        CFStringRef INSOValidateReceipt_str2 = INSOValidateReceipt_ObfuscationFunction005CF((INSOValidateReceipt_Strings[477]), 19, 16);
+        CFStringRef INSOValidateReceipt_str3 = (CFStringRef) INSOValidateReceipt_JKZOWYSQHSTF_004A000F((CFBundleRef) INSOValidateReceipt_ctx->main_bundle, INSOValidateReceipt_str2);
+        if (INSOValidateReceipt_ZEIRQNSQKKHM_004A0093(INSOValidateReceipt_str1, INSOValidateReceipt_str3, 0) != kCFCompareEqualTo) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Bundle version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str3, CFStringGetSystemEncoding()));
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01B201D9(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
-            INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str2);
-            INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1);
-            INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str2);
+            INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str2);
+            INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str1);
+            INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str2);
         }
         // Global variables computation
-        // From 327 to 397
-        INSOValidateReceipt_VLGBCRXLZMHT -= 195; INSOValidateReceipt_VLGBCRXLZMHT *= 3; INSOValidateReceipt_VLGBCRXLZMHT += 1;
-        // From 427 to 190
-        INSOValidateReceipt_YUURUMHMKAJI += 333; INSOValidateReceipt_YUURUMHMKAJI /= 4;
-        // From 87 to 137
-        INSOValidateReceipt_AFVQTANHTLYF -= 42; INSOValidateReceipt_AFVQTANHTLYF *= 3; INSOValidateReceipt_AFVQTANHTLYF += 2;
-        // From 243 to 335
-        INSOValidateReceipt_ACFEVVQVAIKY -= 132; INSOValidateReceipt_ACFEVVQVAIKY *= 3; INSOValidateReceipt_ACFEVVQVAIKY += 2;
-        // From 104 to 129
-        INSOValidateReceipt_VQTNXJHMSZEL -= 61; INSOValidateReceipt_VQTNXJHMSZEL *= 3;
-        // Set to 64
-        INSOValidateReceipt_HTNSUGXHMGST = 64;
-        // From 342 to 146
-        INSOValidateReceipt_WRMDFVLFQRMA += 242; INSOValidateReceipt_WRMDFVLFQRMA /= 4;
-        // From 104 to 444
-        INSOValidateReceipt_UFGPFIPLDFOS -= 30; INSOValidateReceipt_UFGPFIPLDFOS *= 6;
-        INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str2);
-        INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1);
+        // Set to 398
+        INSOValidateReceipt_USZEFQCYIXWA = 398;
+        // From 440 to 481
+        INSOValidateReceipt_HNPSXRYTFLWB -= 280; INSOValidateReceipt_HNPSXRYTFLWB *= 3; INSOValidateReceipt_HNPSXRYTFLWB += 1;
+        // From 147 to 243
+        INSOValidateReceipt_ZEIRQNSQKKHM -= 66; INSOValidateReceipt_ZEIRQNSQKKHM *= 3;
+        // Set to 433
+        INSOValidateReceipt_PRMZWAVYDNDZ = 433;
+        // From 394 to 241
+        INSOValidateReceipt_KDMYCKEZRSDM += 329; INSOValidateReceipt_KDMYCKEZRSDM /= 3;
+        // From 457 to 135
+        INSOValidateReceipt_WMYJXBSKXTDM += 218; INSOValidateReceipt_WMYJXBSKXTDM /= 5;
+        // From 15 to 441
+        INSOValidateReceipt_JKZOWYSQHSTF -= 1; INSOValidateReceipt_JKZOWYSQHSTF *= 31; INSOValidateReceipt_JKZOWYSQHSTF += 7;
+        // From 131 to 365
+        INSOValidateReceipt_XUVWOJCGGUZP -= 40; INSOValidateReceipt_XUVWOJCGGUZP *= 4; INSOValidateReceipt_XUVWOJCGGUZP += 1;
+        INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str2);
+        INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str1);
     }
 #else
 #define INSOValidateReceipt_CheckBundleVersion05F(INSOValidateReceipt_ctx) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking bundle version"); \
-CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[19]), 220, 16); \
-CFStringRef INSOValidateReceipt_str2 = INSOValidateReceipt_ObfuscationFunction004CF((INSOValidateReceipt_Strings[94]), 242, 16); \
-CFStringRef INSOValidateReceipt_str3 = (CFStringRef) INSOValidateReceipt_ACFEVVQVAIKY_010F00F3((CFBundleRef) INSOValidateReceipt_ctx->main_bundle, INSOValidateReceipt_str2); \
-if (INSOValidateReceipt_UFGPFIPLDFOS_00790068(INSOValidateReceipt_str1, INSOValidateReceipt_str3, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction008CF((INSOValidateReceipt_Strings[376]), 101, 16); \
+CFStringRef INSOValidateReceipt_str2 = INSOValidateReceipt_ObfuscationFunction005CF((INSOValidateReceipt_Strings[477]), 19, 16); \
+CFStringRef INSOValidateReceipt_str3 = (CFStringRef) INSOValidateReceipt_JKZOWYSQHSTF_004A000F((CFBundleRef) INSOValidateReceipt_ctx->main_bundle, INSOValidateReceipt_str2); \
+if (INSOValidateReceipt_ZEIRQNSQKKHM_004A0093(INSOValidateReceipt_str1, INSOValidateReceipt_str3, 0) != kCFCompareEqualTo) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Bundle version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str3, CFStringGetSystemEncoding())); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B201D9(INSOValidateReceipt_JumpBuf, 1); \
-INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str2); \
-INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
-INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str2); \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str2); \
+INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str1); \
+INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str2); \
 } \
-INSOValidateReceipt_VLGBCRXLZMHT -= 195; INSOValidateReceipt_VLGBCRXLZMHT *= 3; INSOValidateReceipt_VLGBCRXLZMHT += 1;  \
-INSOValidateReceipt_YUURUMHMKAJI += 333; INSOValidateReceipt_YUURUMHMKAJI /= 4;  \
-INSOValidateReceipt_AFVQTANHTLYF -= 42; INSOValidateReceipt_AFVQTANHTLYF *= 3; INSOValidateReceipt_AFVQTANHTLYF += 2;  \
-INSOValidateReceipt_ACFEVVQVAIKY -= 132; INSOValidateReceipt_ACFEVVQVAIKY *= 3; INSOValidateReceipt_ACFEVVQVAIKY += 2;  \
-INSOValidateReceipt_VQTNXJHMSZEL -= 61; INSOValidateReceipt_VQTNXJHMSZEL *= 3;  \
-INSOValidateReceipt_HTNSUGXHMGST = 64; \
-INSOValidateReceipt_WRMDFVLFQRMA += 242; INSOValidateReceipt_WRMDFVLFQRMA /= 4;  \
-INSOValidateReceipt_UFGPFIPLDFOS -= 30; INSOValidateReceipt_UFGPFIPLDFOS *= 6;  \
-INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str2); \
-INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
+INSOValidateReceipt_USZEFQCYIXWA = 398; \
+INSOValidateReceipt_HNPSXRYTFLWB -= 280; INSOValidateReceipt_HNPSXRYTFLWB *= 3; INSOValidateReceipt_HNPSXRYTFLWB += 1;  \
+INSOValidateReceipt_ZEIRQNSQKKHM -= 66; INSOValidateReceipt_ZEIRQNSQKKHM *= 3;  \
+INSOValidateReceipt_PRMZWAVYDNDZ = 433; \
+INSOValidateReceipt_KDMYCKEZRSDM += 329; INSOValidateReceipt_KDMYCKEZRSDM /= 3;  \
+INSOValidateReceipt_WMYJXBSKXTDM += 218; INSOValidateReceipt_WMYJXBSKXTDM /= 5;  \
+INSOValidateReceipt_JKZOWYSQHSTF -= 1; INSOValidateReceipt_JKZOWYSQHSTF *= 31; INSOValidateReceipt_JKZOWYSQHSTF += 7;  \
+INSOValidateReceipt_XUVWOJCGGUZP -= 40; INSOValidateReceipt_XUVWOJCGGUZP *= 4; INSOValidateReceipt_XUVWOJCGGUZP += 1;  \
+INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str2); \
+INSOValidateReceipt_CFRelease_004A01C7(INSOValidateReceipt_str1); \
 }
 #endif
     
     
     // CodeBlock GetReceiptInformation
 #ifdef DEBUG
-    inline static void INSOValidateReceipt_GetReceiptInformation063(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
+    inline static void INSOValidateReceipt_GetReceiptInformation062(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         INSOValidateReceipt_ParsingContext INSOValidateReceipt_receipt_context;
         INSOValidateReceipt_ParsingContext *INSOValidateReceipt_current_context;
         CFNumberRef INSOValidateReceipt_key;
@@ -2582,38 +2563,38 @@ INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
         const unsigned char *INSOValidateReceipt_num_ptr;
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt");
         // Put the receipt data into a memory buffer
-        INSOValidateReceipt_bio_p7 = INSOValidateReceipt_BIO_new_0064013F(INSOValidateReceipt_BIO_s_mem_00640139());
-        INSOValidateReceipt_BIO_write_00FB0090(INSOValidateReceipt_bio_p7, (void *) INSOValidateReceipt_VQTNXJHMSZEL_00790081((CFDataRef) INSOValidateReceipt_ctx->receipt_data), (int) INSOValidateReceipt_AFVQTANHTLYF_010F0089((CFDataRef) INSOValidateReceipt_ctx->receipt_data));
-        INSOValidateReceipt_pkcs7 = INSOValidateReceipt_d2i_PKCS7_bio_006401D1(INSOValidateReceipt_bio_p7, NULL);
+        INSOValidateReceipt_bio_p7 = INSOValidateReceipt_BIO_new_01C0018B(INSOValidateReceipt_BIO_s_mem_0175016B());
+        INSOValidateReceipt_BIO_write_017500E4(INSOValidateReceipt_bio_p7, (void *) INSOValidateReceipt_USZEFQCYIXWA_00F7018E((CFDataRef) INSOValidateReceipt_ctx->receipt_data), (int) INSOValidateReceipt_CFDataGetLength_004A017F((CFDataRef) INSOValidateReceipt_ctx->receipt_data));
+        INSOValidateReceipt_pkcs7 = INSOValidateReceipt_d2i_PKCS7_bio_01750018(INSOValidateReceipt_bio_p7, NULL);
         if (!INSOValidateReceipt_pkcs7) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
             INSOValidateReceipt_ctx->receipt_data = NULL;
-            goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+            goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
         }
         if (!PKCS7_type_is_signed(INSOValidateReceipt_pkcs7)) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
             INSOValidateReceipt_ctx->receipt_data = NULL;
-            goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+            goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
         }
         if (!PKCS7_type_is_data(INSOValidateReceipt_pkcs7->d.sign->contents)) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
             INSOValidateReceipt_ctx->receipt_data = NULL;
-            goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+            goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
         }
         // Create a formatter to parse ISO-3339 dates
-        INSOValidateReceipt_formatter = INSOValidateReceipt_CFDateFormatterCreate_0169018C(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle);
-        INSOValidateReceipt_value1 = INSOValidateReceipt_ObfuscationFunction008CF((INSOValidateReceipt_Strings[204]), 203, 33);
-        INSOValidateReceipt_UFGPFIPLDFOS_010F01BC(INSOValidateReceipt_formatter, (CFStringRef) INSOValidateReceipt_value1);
-        INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_value1);
-        INSOValidateReceipt_tz = INSOValidateReceipt_HTNSUGXHMGST_010F0040(NULL, 0.0);
-        INSOValidateReceipt_CFDateFormatterSetProperty_010F010E(INSOValidateReceipt_formatter, *INSOValidateReceipt_kCFDateFormatterTimeZone_0169007D, INSOValidateReceipt_tz);
-        INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_tz);
+        INSOValidateReceipt_formatter = INSOValidateReceipt_JKZOWYSQHSTF_00E901B9(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle);
+        INSOValidateReceipt_value1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[253]), 91, 33);
+        INSOValidateReceipt_HNPSXRYTFLWB_00F701E1(INSOValidateReceipt_formatter, (CFStringRef) INSOValidateReceipt_value1);
+        INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_value1);
+        INSOValidateReceipt_tz = INSOValidateReceipt_CFTimeZoneCreateWithTimeIntervalFromGMT_004A01A8(NULL, 0.0);
+        INSOValidateReceipt_ZEIRQNSQKKHM_00F700F3(INSOValidateReceipt_formatter, *INSOValidateReceipt_kCFDateFormatterTimeZone_00E901BD, INSOValidateReceipt_tz);
+        INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_tz);
         // Initial context
         INSOValidateReceipt_contentINSOValidateReceipt_content = INSOValidateReceipt_pkcs7->d.sign->contents->d.data;
         INSOValidateReceipt_receipt_context.ptr = INSOValidateReceipt_contentINSOValidateReceipt_content->data;
@@ -2624,53 +2605,53 @@ INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
         while(INSOValidateReceipt_current_context->ptr < INSOValidateReceipt_current_context->end) {
             if (!INSOValidateReceipt_current_context->dictionary) {
                 // Create the target dictionary
-                INSOValidateReceipt_current_context->dictionary = INSOValidateReceipt_CFDictionaryCreateMutable_010F0076(kCFAllocatorDefault, (CFIndex) 483, INSOValidateReceipt_kCFTypeDictionaryKeyCallBacks_00790183, INSOValidateReceipt_kCFTypeDictionaryValueCallBacks_016900FA);
+                INSOValidateReceipt_current_context->dictionary = INSOValidateReceipt_PRMZWAVYDNDZ_004A01B1(kCFAllocatorDefault, (CFIndex) 483, INSOValidateReceipt_kCFTypeDictionaryKeyCallBacks_00F7006C, INSOValidateReceipt_kCFTypeDictionaryValueCallBacks_00E9004D);
                 // Decode payload from ASN.1
-                INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
+                INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
                 if (INSOValidateReceipt_type != V_ASN1_SET) {
                     __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                    INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
-                    goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+                    INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
+                    goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
                 }
             }
             // Iterate over attributes
             while(INSOValidateReceipt_current_context->ptr < INSOValidateReceipt_current_context->end) {
                 // Parse attribute sequence
-                INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
+                INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
                 if (INSOValidateReceipt_type != V_ASN1_SEQUENCE) {
                     __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                    INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
-                    goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+                    INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
+                    goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
                 }
                 INSOValidateReceipt_seq_end = INSOValidateReceipt_current_context->ptr + INSOValidateReceipt_length;
                 INSOValidateReceipt_attr_type = 0;
                 INSOValidateReceipt_attr_version = 0;
                 // Parse the attribute type
-                INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
+                INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
                 if (INSOValidateReceipt_type != V_ASN1_INTEGER) {
                     __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                    INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
-                    goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+                    INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
+                    goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
                 }
-                INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_00BC01CD(NULL, &INSOValidateReceipt_current_context->ptr, INSOValidateReceipt_length);
-                INSOValidateReceipt_attr_type = INSOValidateReceipt_ASN1_INTEGER_get_00BC00DF(INSOValidateReceipt_value);
-                INSOValidateReceipt_ASN1_INTEGER_free_00FB004F(INSOValidateReceipt_value);
+                INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_0175015B(NULL, &INSOValidateReceipt_current_context->ptr, INSOValidateReceipt_length);
+                INSOValidateReceipt_attr_type = INSOValidateReceipt_ASN1_INTEGER_get_01750118(INSOValidateReceipt_value);
+                INSOValidateReceipt_ASN1_INTEGER_free_01750025(INSOValidateReceipt_value);
                 // Parse the attribute version
-                INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
+                INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
                 if (INSOValidateReceipt_type != V_ASN1_INTEGER) {
                     __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                    INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
-                    goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+                    INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
+                    goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
                 }
-                INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_00BC01CD(NULL, &INSOValidateReceipt_current_context->ptr, INSOValidateReceipt_length);
-                INSOValidateReceipt_attr_version = INSOValidateReceipt_ASN1_INTEGER_get_00BC00DF(INSOValidateReceipt_value);
-                INSOValidateReceipt_ASN1_INTEGER_free_00FB004F(INSOValidateReceipt_value);
+                INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_0175015B(NULL, &INSOValidateReceipt_current_context->ptr, INSOValidateReceipt_length);
+                INSOValidateReceipt_attr_version = INSOValidateReceipt_ASN1_INTEGER_get_01750118(INSOValidateReceipt_value);
+                INSOValidateReceipt_ASN1_INTEGER_free_01750025(INSOValidateReceipt_value);
                 // Check the attribute value
-                INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
+                INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr);
                 if (INSOValidateReceipt_type != V_ASN1_OCTET_STRING) {
                     __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                    INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
-                    goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+                    INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
+                    goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
                 }
                 INSOValidateReceipt_key1 = (INSOValidateReceipt_ReceiptAttributeType) (INSOValidateReceipt_StoreNone + (INSOValidateReceipt_attr_type << 3));
                 INSOValidateReceipt_key2 = (INSOValidateReceipt_ReceiptAttributeType) (INSOValidateReceipt_StoreNone + (INSOValidateReceipt_attr_type << 3) + 1);
@@ -2689,14 +2670,14 @@ INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
                         INSOValidateReceipt_str_type = 0;
                         INSOValidateReceipt_str_length = 0;
                         INSOValidateReceipt_str_ptr = INSOValidateReceipt_current_context->ptr;
-                        INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_str_ptr, &INSOValidateReceipt_str_length, &INSOValidateReceipt_str_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_str_ptr);
+                        INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_str_ptr, &INSOValidateReceipt_str_length, &INSOValidateReceipt_str_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_str_ptr);
                         if (INSOValidateReceipt_str_type != V_ASN1_UTF8STRING) {
                             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                            INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
-                            goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+                            INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
+                            goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
                         }
-                        INSOValidateReceipt_value1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[208])(NULL, (const UInt8 *) INSOValidateReceipt_str_ptr, (CFIndex) INSOValidateReceipt_str_length, kCFStringEncodingUTF8, false);
-                        INSOValidateReceipt_value2 = INSOValidateReceipt_YUURUMHMKAJI_007900BE(NULL, (const UInt8 *) INSOValidateReceipt_current_context->ptr, (CFIndex) INSOValidateReceipt_length);
+                        INSOValidateReceipt_value1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[300])(NULL, (const UInt8 *) INSOValidateReceipt_str_ptr, (CFIndex) INSOValidateReceipt_str_length, kCFStringEncodingUTF8, false);
+                        INSOValidateReceipt_value2 = INSOValidateReceipt_CFDataCreate_00F7005B(NULL, (const UInt8 *) INSOValidateReceipt_current_context->ptr, (CFIndex) INSOValidateReceipt_length);
                         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => %s", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, CFStringGetCStringPtr((CFStringRef) INSOValidateReceipt_value1, CFStringGetSystemEncoding()));
                         break;
                     }
@@ -2710,14 +2691,14 @@ INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
                         INSOValidateReceipt_str_type = 0;
                         INSOValidateReceipt_str_length = 0;
                         INSOValidateReceipt_str_ptr = INSOValidateReceipt_current_context->ptr;
-                        INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_str_ptr, &INSOValidateReceipt_str_length, &INSOValidateReceipt_str_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_str_ptr);
+                        INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_str_ptr, &INSOValidateReceipt_str_length, &INSOValidateReceipt_str_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_str_ptr);
                         if (INSOValidateReceipt_str_type != V_ASN1_IA5STRING) {
                             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                            INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
-                            goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+                            INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
+                            goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
                         }
-                        INSOValidateReceipt_value2 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[208])(NULL, (const UInt8 *) INSOValidateReceipt_str_ptr, (CFIndex) INSOValidateReceipt_str_length, kCFStringEncodingASCII, false);
-                        INSOValidateReceipt_value1 = INSOValidateReceipt_WRMDFVLFQRMA_010F0092(NULL, INSOValidateReceipt_formatter, (CFStringRef) INSOValidateReceipt_value2, NULL);
+                        INSOValidateReceipt_value2 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[300])(NULL, (const UInt8 *) INSOValidateReceipt_str_ptr, (CFIndex) INSOValidateReceipt_str_length, kCFStringEncodingASCII, false);
+                        INSOValidateReceipt_value1 = INSOValidateReceipt_CFDateFormatterCreateDateFromString_004A016E(NULL, INSOValidateReceipt_formatter, (CFStringRef) INSOValidateReceipt_value2, NULL);
                         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => %s", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, CFStringGetCStringPtr((CFStringRef) INSOValidateReceipt_value2, CFStringGetSystemEncoding()));
                         break;
                     }
@@ -2728,16 +2709,16 @@ INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
                         INSOValidateReceipt_num_type = 0;
                         INSOValidateReceipt_num_length = 0;
                         INSOValidateReceipt_num_ptr = INSOValidateReceipt_current_context->ptr;
-                        INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_num_ptr, &INSOValidateReceipt_num_length, &INSOValidateReceipt_num_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_num_ptr);
+                        INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_num_ptr, &INSOValidateReceipt_num_length, &INSOValidateReceipt_num_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_num_ptr);
                         if (INSOValidateReceipt_num_type != V_ASN1_INTEGER) {
                             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                            INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
-                            goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail;
+                            INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1);
+                            goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail;
                         }
-                        INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_00BC01CD(NULL, &INSOValidateReceipt_num_ptr, INSOValidateReceipt_num_length);
-                        INSOValidateReceipt_number = INSOValidateReceipt_ASN1_INTEGER_get_00BC00DF(INSOValidateReceipt_value);
-                        INSOValidateReceipt_ASN1_INTEGER_free_00FB004F(INSOValidateReceipt_value);
-                        INSOValidateReceipt_value1 = INSOValidateReceipt_CFNumberCreate_007900A9(NULL, kCFNumberLongType, &INSOValidateReceipt_number);
+                        INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_0175015B(NULL, &INSOValidateReceipt_num_ptr, INSOValidateReceipt_num_length);
+                        INSOValidateReceipt_number = INSOValidateReceipt_ASN1_INTEGER_get_01750118(INSOValidateReceipt_value);
+                        INSOValidateReceipt_ASN1_INTEGER_free_01750025(INSOValidateReceipt_value);
+                        INSOValidateReceipt_value1 = INSOValidateReceipt_CFNumberCreate_004A0177(NULL, kCFNumberLongType, &INSOValidateReceipt_number);
                         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => %ld", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, INSOValidateReceipt_number);
                         break;
                     }
@@ -2745,8 +2726,8 @@ INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
                     case INSOValidateReceipt_ReceiptAttributeTypeOpaqueValue:
                     case INSOValidateReceipt_ReceiptAttributeTypeHash:
                     {
-                        INSOValidateReceipt_value1 = INSOValidateReceipt_YUURUMHMKAJI_007900BE(NULL, (const UInt8 *) INSOValidateReceipt_current_context->ptr, (CFIndex) INSOValidateReceipt_length);
-                        __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => [%lu bytes]", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, INSOValidateReceipt_AFVQTANHTLYF_010F0089((CFDataRef) INSOValidateReceipt_value1));
+                        INSOValidateReceipt_value1 = INSOValidateReceipt_CFDataCreate_00F7005B(NULL, (const UInt8 *) INSOValidateReceipt_current_context->ptr, (CFIndex) INSOValidateReceipt_length);
+                        __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => [%lu bytes]", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, INSOValidateReceipt_CFDataGetLength_004A017F((CFDataRef) INSOValidateReceipt_value1));
                         break;
                     }
                         // Attributes encoded as ASN.1 SET
@@ -2758,27 +2739,27 @@ INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
                         INSOValidateReceipt_inapp_context.dictionary = NULL;
                         INSOValidateReceipt_inapp_context.parent = INSOValidateReceipt_current_context;
                         INSOValidateReceipt_current_context = &INSOValidateReceipt_inapp_context;
-                        goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_key;
+                        goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_key;
                     }
                     default:
                         break;
                 }
                 if (INSOValidateReceipt_value1) {
-                    INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_key1);
-                    INSOValidateReceipt_CFDictionaryAddValue_007900DB((CFMutableDictionaryRef) INSOValidateReceipt_current_context->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value1);
-                    INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key);
-                    INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_value1);
+                    INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_key1);
+                    INSOValidateReceipt_CFDictionaryAddValue_00F70147((CFMutableDictionaryRef) INSOValidateReceipt_current_context->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value1);
+                    INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key);
+                    INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_value1);
                 }
                 if (INSOValidateReceipt_value2) {
-                    INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_key2);
-                    INSOValidateReceipt_CFDictionaryAddValue_007900DB((CFMutableDictionaryRef) INSOValidateReceipt_current_context->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value2);
-                    INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key);
-                    INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_value2);
+                    INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_key2);
+                    INSOValidateReceipt_CFDictionaryAddValue_00F70147((CFMutableDictionaryRef) INSOValidateReceipt_current_context->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value2);
+                    INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key);
+                    INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_value2);
                 }
                 // Move past the attribute
                 INSOValidateReceipt_current_context->ptr += INSOValidateReceipt_length;
             }
-        INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_key:
+        INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_key:
             // If the current context is a new one, continue parsing
             if (!INSOValidateReceipt_current_context->dictionary) {
                 continue;
@@ -2787,36 +2768,36 @@ INSOValidateReceipt_CFRelease_00790053(INSOValidateReceipt_str1); \
             if (INSOValidateReceipt_current_context->parent) {
                 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt - Add an InApp purchase");
                 INSOValidateReceipt_key1 = INSOValidateReceipt_StoreReceiptAttributeTypeInAppPurchase;
-                INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_key1);
-                INSOValidateReceipt_value1 = INSOValidateReceipt_CFDictionaryGetValue_0169002B((CFDictionaryRef) INSOValidateReceipt_current_context->parent->dictionary, INSOValidateReceipt_key);
+                INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_key1);
+                INSOValidateReceipt_value1 = INSOValidateReceipt_KDMYCKEZRSDM_00F700F1((CFDictionaryRef) INSOValidateReceipt_current_context->parent->dictionary, INSOValidateReceipt_key);
                 if (!INSOValidateReceipt_value1) {
-                    INSOValidateReceipt_value1 = INSOValidateReceipt_CFArrayCreateMutable_010F00F2(kCFAllocatorDefault, 0, INSOValidateReceipt_kCFTypeArrayCallBacks_0169010B);
-                    INSOValidateReceipt_CFDictionarySetValue_010F00CB((CFMutableDictionaryRef) INSOValidateReceipt_current_context->parent->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value1);
-                    INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_value1);
+                    INSOValidateReceipt_value1 = INSOValidateReceipt_WMYJXBSKXTDM_00E90087(kCFAllocatorDefault, 0, INSOValidateReceipt_kCFTypeArrayCallBacks_00F70101);
+                    INSOValidateReceipt_CFDictionarySetValue_00E9005D((CFMutableDictionaryRef) INSOValidateReceipt_current_context->parent->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value1);
+                    INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_value1);
                 }
-                INSOValidateReceipt_ACFEVVQVAIKY_0169014F((CFMutableArrayRef) INSOValidateReceipt_value1, INSOValidateReceipt_current_context->dictionary);
-                INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_current_context->dictionary);
-                INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key);
+                INSOValidateReceipt_CFArrayAppendValue_004A017B((CFMutableArrayRef) INSOValidateReceipt_value1, INSOValidateReceipt_current_context->dictionary);
+                INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_current_context->dictionary);
+                INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key);
                 // Switch to parent context
                 INSOValidateReceipt_current_context = INSOValidateReceipt_current_context->parent;
                 // Move past the child context
                 INSOValidateReceipt_current_context->ptr = INSOValidateReceipt_inapp_context.end;
             }
         }
-        if (INSOValidateReceipt_ctx->receipt_dict) INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_ctx->receipt_dict);
+        if (INSOValidateReceipt_ctx->receipt_dict) INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_ctx->receipt_dict);
         INSOValidateReceipt_ctx->receipt_dict = INSOValidateReceipt_receipt_context.dictionary;
         // Global variables computation
-        // Set to 231
-        INSOValidateReceipt_AFVQTANHTLYF = 231;
-        // From 64 to 285
-        INSOValidateReceipt_HTNSUGXHMGST -= 17; INSOValidateReceipt_HTNSUGXHMGST *= 6; INSOValidateReceipt_HTNSUGXHMGST += 3;
-    INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail:
-        if (INSOValidateReceipt_pkcs7) INSOValidateReceipt_PKCS7_free_00640015(INSOValidateReceipt_pkcs7);
-        if (INSOValidateReceipt_bio_p7) INSOValidateReceipt_BIO_free_00FB000D(INSOValidateReceipt_bio_p7);
-        if (INSOValidateReceipt_formatter) INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_formatter);
+        // From 243 to 263
+        INSOValidateReceipt_ZEIRQNSQKKHM -= 156; INSOValidateReceipt_ZEIRQNSQKKHM *= 3; INSOValidateReceipt_ZEIRQNSQKKHM += 2;
+        // From 441 to 8
+        INSOValidateReceipt_JKZOWYSQHSTF += 15; INSOValidateReceipt_JKZOWYSQHSTF /= 57;
+    INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail:
+        if (INSOValidateReceipt_pkcs7) INSOValidateReceipt_PKCS7_free_01750072(INSOValidateReceipt_pkcs7);
+        if (INSOValidateReceipt_bio_p7) INSOValidateReceipt_BIO_free_001F0086(INSOValidateReceipt_bio_p7);
+        if (INSOValidateReceipt_formatter) INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_formatter);
     }
 #else
-#define INSOValidateReceipt_GetReceiptInformation063(INSOValidateReceipt_ctx) { \
+#define INSOValidateReceipt_GetReceiptInformation062(INSOValidateReceipt_ctx) { \
 INSOValidateReceipt_ParsingContext INSOValidateReceipt_receipt_context; \
 INSOValidateReceipt_ParsingContext *INSOValidateReceipt_current_context; \
 CFNumberRef INSOValidateReceipt_key; \
@@ -2843,34 +2824,34 @@ int INSOValidateReceipt_num_type; \
 long INSOValidateReceipt_num_length; \
 const unsigned char *INSOValidateReceipt_num_ptr; \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt"); \
-INSOValidateReceipt_bio_p7 = INSOValidateReceipt_BIO_new_0064013F(INSOValidateReceipt_BIO_s_mem_00640139()); \
-INSOValidateReceipt_BIO_write_00FB0090(INSOValidateReceipt_bio_p7, (void *) INSOValidateReceipt_VQTNXJHMSZEL_00790081((CFDataRef) INSOValidateReceipt_ctx->receipt_data), (int) INSOValidateReceipt_AFVQTANHTLYF_010F0089((CFDataRef) INSOValidateReceipt_ctx->receipt_data)); \
-INSOValidateReceipt_pkcs7 = INSOValidateReceipt_d2i_PKCS7_bio_006401D1(INSOValidateReceipt_bio_p7, NULL); \
+INSOValidateReceipt_bio_p7 = INSOValidateReceipt_BIO_new_01C0018B(INSOValidateReceipt_BIO_s_mem_0175016B()); \
+INSOValidateReceipt_BIO_write_017500E4(INSOValidateReceipt_bio_p7, (void *) INSOValidateReceipt_USZEFQCYIXWA_00F7018E((CFDataRef) INSOValidateReceipt_ctx->receipt_data), (int) INSOValidateReceipt_CFDataGetLength_004A017F((CFDataRef) INSOValidateReceipt_ctx->receipt_data)); \
+INSOValidateReceipt_pkcs7 = INSOValidateReceipt_d2i_PKCS7_bio_01750018(INSOValidateReceipt_bio_p7, NULL); \
 if (!INSOValidateReceipt_pkcs7) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
 INSOValidateReceipt_ctx->receipt_data = NULL; \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
 if (!PKCS7_type_is_signed(INSOValidateReceipt_pkcs7)) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
 INSOValidateReceipt_ctx->receipt_data = NULL; \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
 if (!PKCS7_type_is_data(INSOValidateReceipt_pkcs7->d.sign->contents)) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
 INSOValidateReceipt_ctx->receipt_data = NULL; \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_formatter = INSOValidateReceipt_CFDateFormatterCreate_0169018C(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle); \
-INSOValidateReceipt_value1 = INSOValidateReceipt_ObfuscationFunction008CF((INSOValidateReceipt_Strings[204]), 203, 33); \
-INSOValidateReceipt_UFGPFIPLDFOS_010F01BC(INSOValidateReceipt_formatter, (CFStringRef) INSOValidateReceipt_value1); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_value1); \
-INSOValidateReceipt_tz = INSOValidateReceipt_HTNSUGXHMGST_010F0040(NULL, 0.0); \
-INSOValidateReceipt_CFDateFormatterSetProperty_010F010E(INSOValidateReceipt_formatter, *INSOValidateReceipt_kCFDateFormatterTimeZone_0169007D, INSOValidateReceipt_tz); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_tz); \
+INSOValidateReceipt_formatter = INSOValidateReceipt_JKZOWYSQHSTF_00E901B9(NULL, NULL, kCFDateFormatterNoStyle, kCFDateFormatterNoStyle); \
+INSOValidateReceipt_value1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[253]), 91, 33); \
+INSOValidateReceipt_HNPSXRYTFLWB_00F701E1(INSOValidateReceipt_formatter, (CFStringRef) INSOValidateReceipt_value1); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_value1); \
+INSOValidateReceipt_tz = INSOValidateReceipt_CFTimeZoneCreateWithTimeIntervalFromGMT_004A01A8(NULL, 0.0); \
+INSOValidateReceipt_ZEIRQNSQKKHM_00F700F3(INSOValidateReceipt_formatter, *INSOValidateReceipt_kCFDateFormatterTimeZone_00E901BD, INSOValidateReceipt_tz); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_tz); \
 INSOValidateReceipt_contentINSOValidateReceipt_content = INSOValidateReceipt_pkcs7->d.sign->contents->d.data; \
 INSOValidateReceipt_receipt_context.ptr = INSOValidateReceipt_contentINSOValidateReceipt_content->data; \
 INSOValidateReceipt_receipt_context.end = INSOValidateReceipt_receipt_context.ptr + INSOValidateReceipt_contentINSOValidateReceipt_content->length; \
@@ -2879,47 +2860,47 @@ INSOValidateReceipt_receipt_context.dictionary = NULL; \
 INSOValidateReceipt_current_context = &INSOValidateReceipt_receipt_context; \
 while(INSOValidateReceipt_current_context->ptr < INSOValidateReceipt_current_context->end) { \
 if (!INSOValidateReceipt_current_context->dictionary) { \
-INSOValidateReceipt_current_context->dictionary = INSOValidateReceipt_CFDictionaryCreateMutable_010F0076(kCFAllocatorDefault, (CFIndex) 483, INSOValidateReceipt_kCFTypeDictionaryKeyCallBacks_00790183, INSOValidateReceipt_kCFTypeDictionaryValueCallBacks_016900FA); \
-INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
+INSOValidateReceipt_current_context->dictionary = INSOValidateReceipt_PRMZWAVYDNDZ_004A01B1(kCFAllocatorDefault, (CFIndex) 483, INSOValidateReceipt_kCFTypeDictionaryKeyCallBacks_00F7006C, INSOValidateReceipt_kCFTypeDictionaryValueCallBacks_00E9004D); \
+INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
 if (INSOValidateReceipt_type != V_ASN1_SET) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
 } \
 while(INSOValidateReceipt_current_context->ptr < INSOValidateReceipt_current_context->end) { \
-INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
+INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
 if (INSOValidateReceipt_type != V_ASN1_SEQUENCE) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
 INSOValidateReceipt_seq_end = INSOValidateReceipt_current_context->ptr + INSOValidateReceipt_length; \
 INSOValidateReceipt_attr_type = 0; \
 INSOValidateReceipt_attr_version = 0; \
-INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
+INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
 if (INSOValidateReceipt_type != V_ASN1_INTEGER) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_00BC01CD(NULL, &INSOValidateReceipt_current_context->ptr, INSOValidateReceipt_length); \
-INSOValidateReceipt_attr_type = INSOValidateReceipt_ASN1_INTEGER_get_00BC00DF(INSOValidateReceipt_value); \
-INSOValidateReceipt_ASN1_INTEGER_free_00FB004F(INSOValidateReceipt_value); \
-INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
+INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_0175015B(NULL, &INSOValidateReceipt_current_context->ptr, INSOValidateReceipt_length); \
+INSOValidateReceipt_attr_type = INSOValidateReceipt_ASN1_INTEGER_get_01750118(INSOValidateReceipt_value); \
+INSOValidateReceipt_ASN1_INTEGER_free_01750025(INSOValidateReceipt_value); \
+INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
 if (INSOValidateReceipt_type != V_ASN1_INTEGER) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_00BC01CD(NULL, &INSOValidateReceipt_current_context->ptr, INSOValidateReceipt_length); \
-INSOValidateReceipt_attr_version = INSOValidateReceipt_ASN1_INTEGER_get_00BC00DF(INSOValidateReceipt_value); \
-INSOValidateReceipt_ASN1_INTEGER_free_00FB004F(INSOValidateReceipt_value); \
-INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
+INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_0175015B(NULL, &INSOValidateReceipt_current_context->ptr, INSOValidateReceipt_length); \
+INSOValidateReceipt_attr_version = INSOValidateReceipt_ASN1_INTEGER_get_01750118(INSOValidateReceipt_value); \
+INSOValidateReceipt_ASN1_INTEGER_free_01750025(INSOValidateReceipt_value); \
+INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_current_context->ptr, &INSOValidateReceipt_length, &INSOValidateReceipt_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_current_context->end - INSOValidateReceipt_current_context->ptr); \
 if (INSOValidateReceipt_type != V_ASN1_OCTET_STRING) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
 INSOValidateReceipt_key1 = (INSOValidateReceipt_ReceiptAttributeType) (INSOValidateReceipt_StoreNone + (INSOValidateReceipt_attr_type << 3)); \
 INSOValidateReceipt_key2 = (INSOValidateReceipt_ReceiptAttributeType) (INSOValidateReceipt_StoreNone + (INSOValidateReceipt_attr_type << 3) + 1); \
@@ -2937,14 +2918,14 @@ case INSOValidateReceipt_InAppAttributeTypeOriginalTransactionIdentifer: \
 INSOValidateReceipt_str_type = 0; \
 INSOValidateReceipt_str_length = 0; \
 INSOValidateReceipt_str_ptr = INSOValidateReceipt_current_context->ptr; \
-INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_str_ptr, &INSOValidateReceipt_str_length, &INSOValidateReceipt_str_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_str_ptr); \
+INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_str_ptr, &INSOValidateReceipt_str_length, &INSOValidateReceipt_str_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_str_ptr); \
 if (INSOValidateReceipt_str_type != V_ASN1_UTF8STRING) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_value1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[208])(NULL, (const UInt8 *) INSOValidateReceipt_str_ptr, (CFIndex) INSOValidateReceipt_str_length, kCFStringEncodingUTF8, false); \
-INSOValidateReceipt_value2 = INSOValidateReceipt_YUURUMHMKAJI_007900BE(NULL, (const UInt8 *) INSOValidateReceipt_current_context->ptr, (CFIndex) INSOValidateReceipt_length); \
+INSOValidateReceipt_value1 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[300])(NULL, (const UInt8 *) INSOValidateReceipt_str_ptr, (CFIndex) INSOValidateReceipt_str_length, kCFStringEncodingUTF8, false); \
+INSOValidateReceipt_value2 = INSOValidateReceipt_CFDataCreate_00F7005B(NULL, (const UInt8 *) INSOValidateReceipt_current_context->ptr, (CFIndex) INSOValidateReceipt_length); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => %s", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, CFStringGetCStringPtr((CFStringRef) INSOValidateReceipt_value1, CFStringGetSystemEncoding())); \
 break; \
 } \
@@ -2957,14 +2938,14 @@ case INSOValidateReceipt_InAppAttributeTypeSubscriptionExpirationDate: \
 INSOValidateReceipt_str_type = 0; \
 INSOValidateReceipt_str_length = 0; \
 INSOValidateReceipt_str_ptr = INSOValidateReceipt_current_context->ptr; \
-INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_str_ptr, &INSOValidateReceipt_str_length, &INSOValidateReceipt_str_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_str_ptr); \
+INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_str_ptr, &INSOValidateReceipt_str_length, &INSOValidateReceipt_str_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_str_ptr); \
 if (INSOValidateReceipt_str_type != V_ASN1_IA5STRING) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_value2 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[208])(NULL, (const UInt8 *) INSOValidateReceipt_str_ptr, (CFIndex) INSOValidateReceipt_str_length, kCFStringEncodingASCII, false); \
-INSOValidateReceipt_value1 = INSOValidateReceipt_WRMDFVLFQRMA_010F0092(NULL, INSOValidateReceipt_formatter, (CFStringRef) INSOValidateReceipt_value2, NULL); \
+INSOValidateReceipt_value2 = ((__INSOValidateReceipt_CFStringCreateWithBytes) INSOValidateReceipt_Pointers[300])(NULL, (const UInt8 *) INSOValidateReceipt_str_ptr, (CFIndex) INSOValidateReceipt_str_length, kCFStringEncodingASCII, false); \
+INSOValidateReceipt_value1 = INSOValidateReceipt_CFDateFormatterCreateDateFromString_004A016E(NULL, INSOValidateReceipt_formatter, (CFStringRef) INSOValidateReceipt_value2, NULL); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => %s", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, CFStringGetCStringPtr((CFStringRef) INSOValidateReceipt_value2, CFStringGetSystemEncoding())); \
 break; \
 } \
@@ -2974,24 +2955,24 @@ case INSOValidateReceipt_InAppAttributeTypeWebOrderLineItemId: \
 INSOValidateReceipt_num_type = 0; \
 INSOValidateReceipt_num_length = 0; \
 INSOValidateReceipt_num_ptr = INSOValidateReceipt_current_context->ptr; \
-INSOValidateReceipt_ASN1_get_object_00BC003D(&INSOValidateReceipt_num_ptr, &INSOValidateReceipt_num_length, &INSOValidateReceipt_num_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_num_ptr); \
+INSOValidateReceipt_ASN1_get_object_01C00195(&INSOValidateReceipt_num_ptr, &INSOValidateReceipt_num_length, &INSOValidateReceipt_num_type, &INSOValidateReceipt_xclass, INSOValidateReceipt_seq_end - INSOValidateReceipt_num_ptr); \
 if (INSOValidateReceipt_num_type != V_ASN1_INTEGER) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_005F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_00BC01CD(NULL, &INSOValidateReceipt_num_ptr, INSOValidateReceipt_num_length); \
-INSOValidateReceipt_number = INSOValidateReceipt_ASN1_INTEGER_get_00BC00DF(INSOValidateReceipt_value); \
-INSOValidateReceipt_ASN1_INTEGER_free_00FB004F(INSOValidateReceipt_value); \
-INSOValidateReceipt_value1 = INSOValidateReceipt_CFNumberCreate_007900A9(NULL, kCFNumberLongType, &INSOValidateReceipt_number); \
+INSOValidateReceipt_value = INSOValidateReceipt_c2i_ASN1_INTEGER_0175015B(NULL, &INSOValidateReceipt_num_ptr, INSOValidateReceipt_num_length); \
+INSOValidateReceipt_number = INSOValidateReceipt_ASN1_INTEGER_get_01750118(INSOValidateReceipt_value); \
+INSOValidateReceipt_ASN1_INTEGER_free_01750025(INSOValidateReceipt_value); \
+INSOValidateReceipt_value1 = INSOValidateReceipt_CFNumberCreate_004A0177(NULL, kCFNumberLongType, &INSOValidateReceipt_number); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => %ld", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, INSOValidateReceipt_number); \
 break; \
 } \
 case INSOValidateReceipt_ReceiptAttributeTypeOpaqueValue: \
 case INSOValidateReceipt_ReceiptAttributeTypeHash: \
 { \
-INSOValidateReceipt_value1 = INSOValidateReceipt_YUURUMHMKAJI_007900BE(NULL, (const UInt8 *) INSOValidateReceipt_current_context->ptr, (CFIndex) INSOValidateReceipt_length); \
-__INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => [%lu bytes]", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, INSOValidateReceipt_AFVQTANHTLYF_010F0089((CFDataRef) INSOValidateReceipt_value1)); \
+INSOValidateReceipt_value1 = INSOValidateReceipt_CFDataCreate_00F7005B(NULL, (const UInt8 *) INSOValidateReceipt_current_context->ptr, (CFIndex) INSOValidateReceipt_length); \
+__INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt -       attribute %s%ld => [%lu bytes]", INSOValidateReceipt_current_context->parent ? "--- " : "- ", INSOValidateReceipt_attr_type, INSOValidateReceipt_CFDataGetLength_004A017F((CFDataRef) INSOValidateReceipt_value1)); \
 break; \
 } \
 case INSOValidateReceipt_ReceiptAttributeTypeInAppPurchase: \
@@ -3001,61 +2982,61 @@ INSOValidateReceipt_inapp_context.end = INSOValidateReceipt_inapp_context.ptr + 
 INSOValidateReceipt_inapp_context.dictionary = NULL; \
 INSOValidateReceipt_inapp_context.parent = INSOValidateReceipt_current_context; \
 INSOValidateReceipt_current_context = &INSOValidateReceipt_inapp_context; \
-goto INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_key; \
+goto INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_key; \
 } \
 default: \
 break; \
 } \
 if (INSOValidateReceipt_value1) { \
-INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_key1); \
-INSOValidateReceipt_CFDictionaryAddValue_007900DB((CFMutableDictionaryRef) INSOValidateReceipt_current_context->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value1); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_value1); \
+INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_key1); \
+INSOValidateReceipt_CFDictionaryAddValue_00F70147((CFMutableDictionaryRef) INSOValidateReceipt_current_context->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value1); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_value1); \
 } \
 if (INSOValidateReceipt_value2) { \
-INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_key2); \
-INSOValidateReceipt_CFDictionaryAddValue_007900DB((CFMutableDictionaryRef) INSOValidateReceipt_current_context->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value2); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_value2); \
+INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_key2); \
+INSOValidateReceipt_CFDictionaryAddValue_00F70147((CFMutableDictionaryRef) INSOValidateReceipt_current_context->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value2); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_value2); \
 } \
 INSOValidateReceipt_current_context->ptr += INSOValidateReceipt_length; \
 } \
-INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_key: \
+INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_key: \
 if (!INSOValidateReceipt_current_context->dictionary) { \
 continue; \
 } \
 if (INSOValidateReceipt_current_context->parent) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Parsing receipt - Add an InApp purchase"); \
 INSOValidateReceipt_key1 = INSOValidateReceipt_StoreReceiptAttributeTypeInAppPurchase; \
-INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_key1); \
-INSOValidateReceipt_value1 = INSOValidateReceipt_CFDictionaryGetValue_0169002B((CFDictionaryRef) INSOValidateReceipt_current_context->parent->dictionary, INSOValidateReceipt_key); \
+INSOValidateReceipt_key = INSOValidateReceipt_CFNumberCreate_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_key1); \
+INSOValidateReceipt_value1 = INSOValidateReceipt_KDMYCKEZRSDM_00F700F1((CFDictionaryRef) INSOValidateReceipt_current_context->parent->dictionary, INSOValidateReceipt_key); \
 if (!INSOValidateReceipt_value1) { \
-INSOValidateReceipt_value1 = INSOValidateReceipt_CFArrayCreateMutable_010F00F2(kCFAllocatorDefault, 0, INSOValidateReceipt_kCFTypeArrayCallBacks_0169010B); \
-INSOValidateReceipt_CFDictionarySetValue_010F00CB((CFMutableDictionaryRef) INSOValidateReceipt_current_context->parent->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value1); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_value1); \
+INSOValidateReceipt_value1 = INSOValidateReceipt_WMYJXBSKXTDM_00E90087(kCFAllocatorDefault, 0, INSOValidateReceipt_kCFTypeArrayCallBacks_00F70101); \
+INSOValidateReceipt_CFDictionarySetValue_00E9005D((CFMutableDictionaryRef) INSOValidateReceipt_current_context->parent->dictionary, INSOValidateReceipt_key, INSOValidateReceipt_value1); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_value1); \
 } \
-INSOValidateReceipt_ACFEVVQVAIKY_0169014F((CFMutableArrayRef) INSOValidateReceipt_value1, INSOValidateReceipt_current_context->dictionary); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_current_context->dictionary); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFArrayAppendValue_004A017B((CFMutableArrayRef) INSOValidateReceipt_value1, INSOValidateReceipt_current_context->dictionary); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_current_context->dictionary); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key); \
 INSOValidateReceipt_current_context = INSOValidateReceipt_current_context->parent; \
 INSOValidateReceipt_current_context->ptr = INSOValidateReceipt_inapp_context.end; \
 } \
 } \
-if (INSOValidateReceipt_ctx->receipt_dict) INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_ctx->receipt_dict); \
+if (INSOValidateReceipt_ctx->receipt_dict) INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_ctx->receipt_dict); \
 INSOValidateReceipt_ctx->receipt_dict = INSOValidateReceipt_receipt_context.dictionary; \
-INSOValidateReceipt_AFVQTANHTLYF = 231; \
-INSOValidateReceipt_HTNSUGXHMGST -= 17; INSOValidateReceipt_HTNSUGXHMGST *= 6; INSOValidateReceipt_HTNSUGXHMGST += 3;  \
-INSOValidateReceipt_GetReceiptInformation063_INSOValidateReceipt_bail: \
-if (INSOValidateReceipt_pkcs7) INSOValidateReceipt_PKCS7_free_00640015(INSOValidateReceipt_pkcs7); \
-if (INSOValidateReceipt_bio_p7) INSOValidateReceipt_BIO_free_00FB000D(INSOValidateReceipt_bio_p7); \
-if (INSOValidateReceipt_formatter) INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_formatter); \
+INSOValidateReceipt_ZEIRQNSQKKHM -= 156; INSOValidateReceipt_ZEIRQNSQKKHM *= 3; INSOValidateReceipt_ZEIRQNSQKKHM += 2;  \
+INSOValidateReceipt_JKZOWYSQHSTF += 15; INSOValidateReceipt_JKZOWYSQHSTF /= 57;  \
+INSOValidateReceipt_GetReceiptInformation062_INSOValidateReceipt_bail: \
+if (INSOValidateReceipt_pkcs7) INSOValidateReceipt_PKCS7_free_01750072(INSOValidateReceipt_pkcs7); \
+if (INSOValidateReceipt_bio_p7) INSOValidateReceipt_BIO_free_001F0086(INSOValidateReceipt_bio_p7); \
+if (INSOValidateReceipt_formatter) INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_formatter); \
 }
 #endif
     
     
     // CodeBlock CheckReceiptSignature
 #ifdef DEBUG
-    inline static void INSOValidateReceipt_CheckReceiptSignature067(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
+    inline static void INSOValidateReceipt_CheckReceiptSignature066(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         BIO *INSOValidateReceipt_bio_p7 = NULL;
         PKCS7 *INSOValidateReceipt_pkcs7 = NULL;
         STACK_OF(X509) *INSOValidateReceipt_certificates = NULL;
@@ -3071,118 +3052,118 @@ if (INSOValidateReceipt_formatter) INSOValidateReceipt_CFRelease_016901A6(INSOVa
         int INSOValidateReceipt_verify, INSOValidateReceipt_status;
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt signature");
         // Put the receipt data into a memory buffer
-        INSOValidateReceipt_bio_p7 = INSOValidateReceipt_BIO_new_0064018B(INSOValidateReceipt_BIO_s_mem_00BC0100());
-        INSOValidateReceipt_BIO_write_0064007E(INSOValidateReceipt_bio_p7, (void *) INSOValidateReceipt_AFVQTANHTLYF_007900E7((CFDataRef) INSOValidateReceipt_ctx->receipt_data), (int) INSOValidateReceipt_HTNSUGXHMGST_0169011D((CFDataRef) INSOValidateReceipt_ctx->receipt_data));
-        INSOValidateReceipt_pkcs7 = INSOValidateReceipt_d2i_PKCS7_bio_00FB01D0(INSOValidateReceipt_bio_p7, NULL);
+        INSOValidateReceipt_bio_p7 = INSOValidateReceipt_BIO_new_01750155(INSOValidateReceipt_BIO_s_mem_01C000C5());
+        INSOValidateReceipt_BIO_write_001F0109(INSOValidateReceipt_bio_p7, (void *) INSOValidateReceipt_ZEIRQNSQKKHM_00E90107((CFDataRef) INSOValidateReceipt_ctx->receipt_data), (int) INSOValidateReceipt_JKZOWYSQHSTF_00F70008((CFDataRef) INSOValidateReceipt_ctx->receipt_data));
+        INSOValidateReceipt_pkcs7 = INSOValidateReceipt_d2i_PKCS7_bio_017500FA(INSOValidateReceipt_bio_p7, NULL);
         if (!INSOValidateReceipt_pkcs7) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
             INSOValidateReceipt_ctx->receipt_dict = NULL;
-            goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+            goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
         }
         if (!PKCS7_type_is_signed(INSOValidateReceipt_pkcs7)) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
             INSOValidateReceipt_ctx->receipt_dict = NULL;
-            goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+            goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
         }
         if (!PKCS7_type_is_data(INSOValidateReceipt_pkcs7->d.sign->contents)) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
             INSOValidateReceipt_ctx->receipt_dict = NULL;
-            goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+            goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
         }
-        INSOValidateReceipt_OpenSSL_add_all_digests_00FB0017();
+        INSOValidateReceipt_OpenSSL_add_all_digests_0175005E();
         // Extract the certificates from the receipt.
         // One of them must be the Apple Root CA certificate with the correct fingerprint.
         INSOValidateReceipt_verify = 0;
         INSOValidateReceipt_certificates = INSOValidateReceipt_pkcs7->d.sign->cert;
-        INSOValidateReceipt_count = INSOValidateReceipt_sk_num_00BC0153((const _STACK *) INSOValidateReceipt_certificates);
+        INSOValidateReceipt_count = INSOValidateReceipt_sk_num_0175001C((const _STACK *) INSOValidateReceipt_certificates);
         for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_count; INSOValidateReceipt_index1++) {
-            INSOValidateReceipt_certificate = (X509 *) INSOValidateReceipt_sk_value_00640194((const _STACK *) INSOValidateReceipt_certificates, INSOValidateReceipt_index1);
+            INSOValidateReceipt_certificate = (X509 *) INSOValidateReceipt_sk_value_001F01C6((const _STACK *) INSOValidateReceipt_certificates, INSOValidateReceipt_index1);
             char INSOValidateReceipt_common_name[483];
             // Check that the X509_NAME_get_text_by_NID function is not tampered with
-            INSOValidateReceipt_status = INSOValidateReceipt_X509_NAME_get_text_by_NID_00BC01D5(NULL, NID_commonName, NULL, 0);
+            INSOValidateReceipt_status = INSOValidateReceipt_X509_NAME_get_text_by_NID_01C00081(NULL, NID_commonName, INSOValidateReceipt_common_name, 420);
             if (INSOValidateReceipt_status > 0) {
                 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
-                goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+                INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
+                goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
             }
             // Retrieve the common name
-            INSOValidateReceipt_status = INSOValidateReceipt_X509_NAME_get_text_by_NID_00BC01D5(INSOValidateReceipt_certificate->cert_info->subject, NID_commonName, INSOValidateReceipt_common_name, 483);
+            INSOValidateReceipt_status = INSOValidateReceipt_X509_NAME_get_text_by_NID_01C00081(INSOValidateReceipt_certificate->cert_info->subject, NID_commonName, INSOValidateReceipt_common_name, 483);
             if (INSOValidateReceipt_status <= 0) {
                 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
-                goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+                INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
+                goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
             }
-            volatile unsigned int INSOValidateReceipt_digest_length = 8; INSOValidateReceipt_digest_length -= 3; INSOValidateReceipt_digest_length *= 4;
+            volatile unsigned int INSOValidateReceipt_digest_length = 13; INSOValidateReceipt_digest_length -= 7; INSOValidateReceipt_digest_length *= 3; INSOValidateReceipt_digest_length += 2;
             char INSOValidateReceipt_str2_[483];
-            INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[272]), INSOValidateReceipt_str2_, 214, 16);
+            INSOValidateReceipt_ObfuscationFunction009((INSOValidateReceipt_Strings[39]), INSOValidateReceipt_str2_, 222, 16);
             INSOValidateReceipt_str2 = INSOValidateReceipt_str2_;
-            const EVP_MD *INSOValidateReceipt_digester = INSOValidateReceipt_EVP_get_digestbyname_00BC01B0(INSOValidateReceipt_str2);
+            const EVP_MD *INSOValidateReceipt_digester = INSOValidateReceipt_EVP_get_digestbyname_01C00120(INSOValidateReceipt_str2);
             unsigned char INSOValidateReceipt_digest[EVP_MAX_MD_SIZE];
             unsigned int INSOValidateReceipt_len = 0;
             // Check that the X509_digest function is not tampered with
-            INSOValidateReceipt_status = INSOValidateReceipt_X509_digest_0064013A(NULL, INSOValidateReceipt_digester, INSOValidateReceipt_digest, &INSOValidateReceipt_len) * 2984;
-            if (INSOValidateReceipt_status == 2984 || INSOValidateReceipt_len > 0) {
+            INSOValidateReceipt_status = INSOValidateReceipt_X509_digest_01C00122(NULL, INSOValidateReceipt_digester, INSOValidateReceipt_digest, &INSOValidateReceipt_len) * 2645;
+            if (INSOValidateReceipt_status == 2645 || INSOValidateReceipt_len > 0) {
                 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
-                goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+                INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
+                goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
             }
-            INSOValidateReceipt_status = INSOValidateReceipt_X509_digest_0064013A(INSOValidateReceipt_certificate, INSOValidateReceipt_digester, INSOValidateReceipt_digest, &INSOValidateReceipt_len) * 2984;
-            if (INSOValidateReceipt_status != 2984 || INSOValidateReceipt_len != INSOValidateReceipt_digest_length) {
+            INSOValidateReceipt_status = INSOValidateReceipt_X509_digest_01C00122(INSOValidateReceipt_certificate, INSOValidateReceipt_digester, INSOValidateReceipt_digest, &INSOValidateReceipt_len) * 2645;
+            if (INSOValidateReceipt_status != 2645 || INSOValidateReceipt_len != INSOValidateReceipt_digest_length) {
                 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-                INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
-                goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+                INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
+                goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
             }
             char INSOValidateReceipt_fingerprint[483];
             volatile unsigned int INSOValidateReceipt_increment = 1; INSOValidateReceipt_increment -= 1; INSOValidateReceipt_increment *= 5; INSOValidateReceipt_increment += 3;
             for(INSOValidateReceipt_index2 = 0; INSOValidateReceipt_index2 < INSOValidateReceipt_digest_length; INSOValidateReceipt_index2++) {
-                snprintf(&INSOValidateReceipt_fingerprint[INSOValidateReceipt_index2 * INSOValidateReceipt_increment], INSOValidateReceipt_increment + 1, "%02X:", INSOValidateReceipt_digest[INSOValidateReceipt_index2]);
+                snprintf(&INSOValidateReceipt_fingerprint[INSOValidateReceipt_index2 * INSOValidateReceipt_increment], INSOValidateReceipt_increment + 1, "%02x:", INSOValidateReceipt_digest[INSOValidateReceipt_index2]);
             }
             char INSOValidateReceipt_str3_[483];
-            INSOValidateReceipt_ObfuscationFunction007((INSOValidateReceipt_Strings[114]), INSOValidateReceipt_str3_, 242, 68);
+            INSOValidateReceipt_ObfuscationFunction006((INSOValidateReceipt_Strings[273]), INSOValidateReceipt_str3_, 138, 68);
             INSOValidateReceipt_str3 = INSOValidateReceipt_str3_;
             // Check the common name and the fingerprint
             char INSOValidateReceipt_str1_[483];
-            INSOValidateReceipt_ObfuscationFunction005((INSOValidateReceipt_Strings[240]), INSOValidateReceipt_str1_, 166, 16);
+            INSOValidateReceipt_ObfuscationFunction004((INSOValidateReceipt_Strings[346]), INSOValidateReceipt_str1_, 168, 16);
             INSOValidateReceipt_str1 = INSOValidateReceipt_str1_;
-            volatile size_t INSOValidateReceipt_num = 7; INSOValidateReceipt_num -= 3; INSOValidateReceipt_num *= 3; INSOValidateReceipt_num += 1;
-            if (((__INSOValidateReceipt_strncmp) INSOValidateReceipt_Pointers[84])(INSOValidateReceipt_common_name, INSOValidateReceipt_str1, INSOValidateReceipt_num) == 0 && ((__INSOValidateReceipt_strncmp) INSOValidateReceipt_Pointers[84])(INSOValidateReceipt_fingerprint, INSOValidateReceipt_str3, INSOValidateReceipt_digest_length * INSOValidateReceipt_increment - 1) == 0) {
-                INSOValidateReceipt_verify = 2984;
+            volatile size_t INSOValidateReceipt_num = 12; INSOValidateReceipt_num -= 8; INSOValidateReceipt_num *= 3; INSOValidateReceipt_num += 1;
+            if (((__INSOValidateReceipt_strncmp) INSOValidateReceipt_Pointers[12])(INSOValidateReceipt_common_name, INSOValidateReceipt_str1, INSOValidateReceipt_num) == 0 && ((__INSOValidateReceipt_strncmp) INSOValidateReceipt_Pointers[12])(INSOValidateReceipt_fingerprint, INSOValidateReceipt_str3, INSOValidateReceipt_digest_length * INSOValidateReceipt_increment - 1) == 0) {
+                INSOValidateReceipt_verify = 2645;
                 break;
             }
         }
         // Check that the last selected certificate is right one.
-        if (INSOValidateReceipt_certificate == NULL || INSOValidateReceipt_verify != 2984) {
+        if (INSOValidateReceipt_certificate == NULL || INSOValidateReceipt_verify != 2645) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
-            goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+            INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
+            goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
         }
         // Check that the X509_get_ext_by_OBJ function is not tampered with
         char INSOValidateReceipt_str4_[483];
-        INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[218]), INSOValidateReceipt_str4_, 39, 34);
+        INSOValidateReceipt_ObfuscationFunction003((INSOValidateReceipt_Strings[186]), INSOValidateReceipt_str4_, 30, 34);
         INSOValidateReceipt_str4 = INSOValidateReceipt_str4_;
-        INSOValidateReceipt_oid = INSOValidateReceipt_OBJ_txt2obj_00FB00F4(INSOValidateReceipt_str4, 0);
-        INSOValidateReceipt_verify = INSOValidateReceipt_X509_get_ext_by_OBJ_00FB010C(INSOValidateReceipt_certificate, INSOValidateReceipt_oid, 0);
-        INSOValidateReceipt_ASN1_OBJECT_free_00BC00E0(INSOValidateReceipt_oid);
+        INSOValidateReceipt_oid = INSOValidateReceipt_OBJ_txt2obj_001F016F(INSOValidateReceipt_str4, 0);
+        INSOValidateReceipt_verify = INSOValidateReceipt_X509_get_ext_by_OBJ_01750000(INSOValidateReceipt_certificate, INSOValidateReceipt_oid, 0);
+        INSOValidateReceipt_ASN1_OBJECT_free_017501A3(INSOValidateReceipt_oid);
         if (INSOValidateReceipt_verify >= 0) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
-            goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+            INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
+            goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
         }
         // Extract the signer certificate from the receipt
         // The certificate must have the extension OID "1.2.840.113635.100.6.11.1"
         char INSOValidateReceipt_str5_[483];
-        INSOValidateReceipt_ObfuscationFunction003((INSOValidateReceipt_Strings[424]), INSOValidateReceipt_str5_, 188, 34);
+        INSOValidateReceipt_ObfuscationFunction003((INSOValidateReceipt_Strings[368]), INSOValidateReceipt_str5_, 239, 34);
         INSOValidateReceipt_str5 = INSOValidateReceipt_str5_;
-        INSOValidateReceipt_certificates = INSOValidateReceipt_PKCS7_get0_signers_00FB0114(INSOValidateReceipt_pkcs7, NULL, 0);
-        INSOValidateReceipt_count = INSOValidateReceipt_sk_num_00BC0153((const _STACK *) INSOValidateReceipt_certificates);
+        INSOValidateReceipt_certificates = INSOValidateReceipt_PKCS7_get0_signers_001F0188(INSOValidateReceipt_pkcs7, NULL, 0);
+        INSOValidateReceipt_count = INSOValidateReceipt_sk_num_0175001C((const _STACK *) INSOValidateReceipt_certificates);
         for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_count; INSOValidateReceipt_index1++) {
-            INSOValidateReceipt_certificate = (X509 *) INSOValidateReceipt_sk_value_00640194((const _STACK *) INSOValidateReceipt_certificates, INSOValidateReceipt_index1);
-            INSOValidateReceipt_oid = INSOValidateReceipt_OBJ_txt2obj_00FB00F4(INSOValidateReceipt_str5, 0);
-            INSOValidateReceipt_verify = INSOValidateReceipt_X509_get_ext_by_OBJ_00FB010C(INSOValidateReceipt_certificate, INSOValidateReceipt_oid, 0);
-            INSOValidateReceipt_ASN1_OBJECT_free_00BC00E0(INSOValidateReceipt_oid);
+            INSOValidateReceipt_certificate = (X509 *) INSOValidateReceipt_sk_value_001F01C6((const _STACK *) INSOValidateReceipt_certificates, INSOValidateReceipt_index1);
+            INSOValidateReceipt_oid = INSOValidateReceipt_OBJ_txt2obj_001F016F(INSOValidateReceipt_str5, 0);
+            INSOValidateReceipt_verify = INSOValidateReceipt_X509_get_ext_by_OBJ_01750000(INSOValidateReceipt_certificate, INSOValidateReceipt_oid, 0);
+            INSOValidateReceipt_ASN1_OBJECT_free_017501A3(INSOValidateReceipt_oid);
             if (INSOValidateReceipt_verify == -1) {
                 sk_X509_free (INSOValidateReceipt_certificates);
                 INSOValidateReceipt_certificates = NULL;
@@ -3193,23 +3174,23 @@ if (INSOValidateReceipt_formatter) INSOValidateReceipt_CFRelease_016901A6(INSOVa
         }
         if (INSOValidateReceipt_certificate == NULL || INSOValidateReceipt_verify < 0) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1);
-            goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail;
+            INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1);
+            goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail;
         }
         // Global variables computation
-        // From 190 to 169
-        INSOValidateReceipt_YUURUMHMKAJI += 148; INSOValidateReceipt_YUURUMHMKAJI /= 2;
-        // From 231 to 52
-        INSOValidateReceipt_AFVQTANHTLYF += 81; INSOValidateReceipt_AFVQTANHTLYF /= 6;
-        // From 129 to 265
-        INSOValidateReceipt_VQTNXJHMSZEL -= 63; INSOValidateReceipt_VQTNXJHMSZEL *= 4; INSOValidateReceipt_VQTNXJHMSZEL += 1;
-    INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail:
-        if (INSOValidateReceipt_bio_p7) INSOValidateReceipt_BIO_free_00FB000D(INSOValidateReceipt_bio_p7);
-        if (INSOValidateReceipt_pkcs7) INSOValidateReceipt_PKCS7_free_00640015(INSOValidateReceipt_pkcs7);
+        // From 263 to 159
+        INSOValidateReceipt_ZEIRQNSQKKHM += 214; INSOValidateReceipt_ZEIRQNSQKKHM /= 3;
+        // Set to 169
+        INSOValidateReceipt_PRMZWAVYDNDZ = 169;
+        // From 241 to 146
+        INSOValidateReceipt_KDMYCKEZRSDM += 197; INSOValidateReceipt_KDMYCKEZRSDM /= 3;
+    INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail:
+        if (INSOValidateReceipt_bio_p7) INSOValidateReceipt_BIO_free_001F0033(INSOValidateReceipt_bio_p7);
+        if (INSOValidateReceipt_pkcs7) INSOValidateReceipt_PKCS7_free_01750082(INSOValidateReceipt_pkcs7);
         if (INSOValidateReceipt_certificates) sk_X509_free (INSOValidateReceipt_certificates);
     }
 #else
-#define INSOValidateReceipt_CheckReceiptSignature067(INSOValidateReceipt_ctx) { \
+#define INSOValidateReceipt_CheckReceiptSignature066(INSOValidateReceipt_ctx) { \
 BIO *INSOValidateReceipt_bio_p7 = NULL; \
 PKCS7 *INSOValidateReceipt_pkcs7 = NULL; \
 STACK_OF(X509) *INSOValidateReceipt_certificates = NULL; \
@@ -3224,108 +3205,108 @@ char *INSOValidateReceipt_str4; \
 char *INSOValidateReceipt_str5; \
 int INSOValidateReceipt_verify, INSOValidateReceipt_status; \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt signature"); \
-INSOValidateReceipt_bio_p7 = INSOValidateReceipt_BIO_new_0064018B(INSOValidateReceipt_BIO_s_mem_00BC0100()); \
-INSOValidateReceipt_BIO_write_0064007E(INSOValidateReceipt_bio_p7, (void *) INSOValidateReceipt_AFVQTANHTLYF_007900E7((CFDataRef) INSOValidateReceipt_ctx->receipt_data), (int) INSOValidateReceipt_HTNSUGXHMGST_0169011D((CFDataRef) INSOValidateReceipt_ctx->receipt_data)); \
-INSOValidateReceipt_pkcs7 = INSOValidateReceipt_d2i_PKCS7_bio_00FB01D0(INSOValidateReceipt_bio_p7, NULL); \
+INSOValidateReceipt_bio_p7 = INSOValidateReceipt_BIO_new_01750155(INSOValidateReceipt_BIO_s_mem_01C000C5()); \
+INSOValidateReceipt_BIO_write_001F0109(INSOValidateReceipt_bio_p7, (void *) INSOValidateReceipt_ZEIRQNSQKKHM_00E90107((CFDataRef) INSOValidateReceipt_ctx->receipt_data), (int) INSOValidateReceipt_JKZOWYSQHSTF_00F70008((CFDataRef) INSOValidateReceipt_ctx->receipt_data)); \
+INSOValidateReceipt_pkcs7 = INSOValidateReceipt_d2i_PKCS7_bio_017500FA(INSOValidateReceipt_bio_p7, NULL); \
 if (!INSOValidateReceipt_pkcs7) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
 INSOValidateReceipt_ctx->receipt_dict = NULL; \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
 if (!PKCS7_type_is_signed(INSOValidateReceipt_pkcs7)) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
 INSOValidateReceipt_ctx->receipt_dict = NULL; \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
 if (!PKCS7_type_is_data(INSOValidateReceipt_pkcs7->d.sign->contents)) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
 INSOValidateReceipt_ctx->receipt_dict = NULL; \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_OpenSSL_add_all_digests_00FB0017(); \
+INSOValidateReceipt_OpenSSL_add_all_digests_0175005E(); \
 INSOValidateReceipt_verify = 0; \
 INSOValidateReceipt_certificates = INSOValidateReceipt_pkcs7->d.sign->cert; \
-INSOValidateReceipt_count = INSOValidateReceipt_sk_num_00BC0153((const _STACK *) INSOValidateReceipt_certificates); \
+INSOValidateReceipt_count = INSOValidateReceipt_sk_num_0175001C((const _STACK *) INSOValidateReceipt_certificates); \
 for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_count; INSOValidateReceipt_index1++) { \
-INSOValidateReceipt_certificate = (X509 *) INSOValidateReceipt_sk_value_00640194((const _STACK *) INSOValidateReceipt_certificates, INSOValidateReceipt_index1); \
+INSOValidateReceipt_certificate = (X509 *) INSOValidateReceipt_sk_value_001F01C6((const _STACK *) INSOValidateReceipt_certificates, INSOValidateReceipt_index1); \
 char INSOValidateReceipt_common_name[483]; \
-INSOValidateReceipt_status = INSOValidateReceipt_X509_NAME_get_text_by_NID_00BC01D5(NULL, NID_commonName, NULL, 0); \
+INSOValidateReceipt_status = INSOValidateReceipt_X509_NAME_get_text_by_NID_01C00081(NULL, NID_commonName, INSOValidateReceipt_common_name, 420); \
 if (INSOValidateReceipt_status > 0) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_status = INSOValidateReceipt_X509_NAME_get_text_by_NID_00BC01D5(INSOValidateReceipt_certificate->cert_info->subject, NID_commonName, INSOValidateReceipt_common_name, 483); \
+INSOValidateReceipt_status = INSOValidateReceipt_X509_NAME_get_text_by_NID_01C00081(INSOValidateReceipt_certificate->cert_info->subject, NID_commonName, INSOValidateReceipt_common_name, 483); \
 if (INSOValidateReceipt_status <= 0) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
-volatile unsigned int INSOValidateReceipt_digest_length = 8; INSOValidateReceipt_digest_length -= 3; INSOValidateReceipt_digest_length *= 4;  \
+volatile unsigned int INSOValidateReceipt_digest_length = 13; INSOValidateReceipt_digest_length -= 7; INSOValidateReceipt_digest_length *= 3; INSOValidateReceipt_digest_length += 2;  \
 char INSOValidateReceipt_str2_[483]; \
-INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[272]), INSOValidateReceipt_str2_, 214, 16); \
+INSOValidateReceipt_ObfuscationFunction009((INSOValidateReceipt_Strings[39]), INSOValidateReceipt_str2_, 222, 16); \
 INSOValidateReceipt_str2 = INSOValidateReceipt_str2_; \
-const EVP_MD *INSOValidateReceipt_digester = INSOValidateReceipt_EVP_get_digestbyname_00BC01B0(INSOValidateReceipt_str2); \
+const EVP_MD *INSOValidateReceipt_digester = INSOValidateReceipt_EVP_get_digestbyname_01C00120(INSOValidateReceipt_str2); \
 unsigned char INSOValidateReceipt_digest[EVP_MAX_MD_SIZE]; \
 unsigned int INSOValidateReceipt_len = 0; \
-INSOValidateReceipt_status = INSOValidateReceipt_X509_digest_0064013A(NULL, INSOValidateReceipt_digester, INSOValidateReceipt_digest, &INSOValidateReceipt_len) * 2984; \
-if (INSOValidateReceipt_status == 2984 || INSOValidateReceipt_len > 0) { \
+INSOValidateReceipt_status = INSOValidateReceipt_X509_digest_01C00122(NULL, INSOValidateReceipt_digester, INSOValidateReceipt_digest, &INSOValidateReceipt_len) * 2645; \
+if (INSOValidateReceipt_status == 2645 || INSOValidateReceipt_len > 0) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_status = INSOValidateReceipt_X509_digest_0064013A(INSOValidateReceipt_certificate, INSOValidateReceipt_digester, INSOValidateReceipt_digest, &INSOValidateReceipt_len) * 2984; \
-if (INSOValidateReceipt_status != 2984 || INSOValidateReceipt_len != INSOValidateReceipt_digest_length) { \
+INSOValidateReceipt_status = INSOValidateReceipt_X509_digest_01C00122(INSOValidateReceipt_certificate, INSOValidateReceipt_digester, INSOValidateReceipt_digest, &INSOValidateReceipt_len) * 2645; \
+if (INSOValidateReceipt_status != 2645 || INSOValidateReceipt_len != INSOValidateReceipt_digest_length) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
 char INSOValidateReceipt_fingerprint[483]; \
 volatile unsigned int INSOValidateReceipt_increment = 1; INSOValidateReceipt_increment -= 1; INSOValidateReceipt_increment *= 5; INSOValidateReceipt_increment += 3;  \
 for(INSOValidateReceipt_index2 = 0; INSOValidateReceipt_index2 < INSOValidateReceipt_digest_length; INSOValidateReceipt_index2++) { \
-snprintf(&INSOValidateReceipt_fingerprint[INSOValidateReceipt_index2 * INSOValidateReceipt_increment], INSOValidateReceipt_increment + 1, "%02X:", INSOValidateReceipt_digest[INSOValidateReceipt_index2]); \
+snprintf(&INSOValidateReceipt_fingerprint[INSOValidateReceipt_index2 * INSOValidateReceipt_increment], INSOValidateReceipt_increment + 1, "%02x:", INSOValidateReceipt_digest[INSOValidateReceipt_index2]); \
 } \
 char INSOValidateReceipt_str3_[483]; \
-INSOValidateReceipt_ObfuscationFunction007((INSOValidateReceipt_Strings[114]), INSOValidateReceipt_str3_, 242, 68); \
+INSOValidateReceipt_ObfuscationFunction006((INSOValidateReceipt_Strings[273]), INSOValidateReceipt_str3_, 138, 68); \
 INSOValidateReceipt_str3 = INSOValidateReceipt_str3_; \
 char INSOValidateReceipt_str1_[483]; \
-INSOValidateReceipt_ObfuscationFunction005((INSOValidateReceipt_Strings[240]), INSOValidateReceipt_str1_, 166, 16); \
+INSOValidateReceipt_ObfuscationFunction004((INSOValidateReceipt_Strings[346]), INSOValidateReceipt_str1_, 168, 16); \
 INSOValidateReceipt_str1 = INSOValidateReceipt_str1_; \
-volatile size_t INSOValidateReceipt_num = 7; INSOValidateReceipt_num -= 3; INSOValidateReceipt_num *= 3; INSOValidateReceipt_num += 1;  \
-if (((__INSOValidateReceipt_strncmp) INSOValidateReceipt_Pointers[84])(INSOValidateReceipt_common_name, INSOValidateReceipt_str1, INSOValidateReceipt_num) == 0 && ((__INSOValidateReceipt_strncmp) INSOValidateReceipt_Pointers[84])(INSOValidateReceipt_fingerprint, INSOValidateReceipt_str3, INSOValidateReceipt_digest_length * INSOValidateReceipt_increment - 1) == 0) { \
-INSOValidateReceipt_verify = 2984; \
+volatile size_t INSOValidateReceipt_num = 12; INSOValidateReceipt_num -= 8; INSOValidateReceipt_num *= 3; INSOValidateReceipt_num += 1;  \
+if (((__INSOValidateReceipt_strncmp) INSOValidateReceipt_Pointers[12])(INSOValidateReceipt_common_name, INSOValidateReceipt_str1, INSOValidateReceipt_num) == 0 && ((__INSOValidateReceipt_strncmp) INSOValidateReceipt_Pointers[12])(INSOValidateReceipt_fingerprint, INSOValidateReceipt_str3, INSOValidateReceipt_digest_length * INSOValidateReceipt_increment - 1) == 0) { \
+INSOValidateReceipt_verify = 2645; \
 break; \
 } \
 } \
-if (INSOValidateReceipt_certificate == NULL || INSOValidateReceipt_verify != 2984) { \
+if (INSOValidateReceipt_certificate == NULL || INSOValidateReceipt_verify != 2645) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
 char INSOValidateReceipt_str4_[483]; \
-INSOValidateReceipt_ObfuscationFunction00B((INSOValidateReceipt_Strings[218]), INSOValidateReceipt_str4_, 39, 34); \
+INSOValidateReceipt_ObfuscationFunction003((INSOValidateReceipt_Strings[186]), INSOValidateReceipt_str4_, 30, 34); \
 INSOValidateReceipt_str4 = INSOValidateReceipt_str4_; \
-INSOValidateReceipt_oid = INSOValidateReceipt_OBJ_txt2obj_00FB00F4(INSOValidateReceipt_str4, 0); \
-INSOValidateReceipt_verify = INSOValidateReceipt_X509_get_ext_by_OBJ_00FB010C(INSOValidateReceipt_certificate, INSOValidateReceipt_oid, 0); \
-INSOValidateReceipt_ASN1_OBJECT_free_00BC00E0(INSOValidateReceipt_oid); \
+INSOValidateReceipt_oid = INSOValidateReceipt_OBJ_txt2obj_001F016F(INSOValidateReceipt_str4, 0); \
+INSOValidateReceipt_verify = INSOValidateReceipt_X509_get_ext_by_OBJ_01750000(INSOValidateReceipt_certificate, INSOValidateReceipt_oid, 0); \
+INSOValidateReceipt_ASN1_OBJECT_free_017501A3(INSOValidateReceipt_oid); \
 if (INSOValidateReceipt_verify >= 0) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
 char INSOValidateReceipt_str5_[483]; \
-INSOValidateReceipt_ObfuscationFunction003((INSOValidateReceipt_Strings[424]), INSOValidateReceipt_str5_, 188, 34); \
+INSOValidateReceipt_ObfuscationFunction003((INSOValidateReceipt_Strings[368]), INSOValidateReceipt_str5_, 239, 34); \
 INSOValidateReceipt_str5 = INSOValidateReceipt_str5_; \
-INSOValidateReceipt_certificates = INSOValidateReceipt_PKCS7_get0_signers_00FB0114(INSOValidateReceipt_pkcs7, NULL, 0); \
-INSOValidateReceipt_count = INSOValidateReceipt_sk_num_00BC0153((const _STACK *) INSOValidateReceipt_certificates); \
+INSOValidateReceipt_certificates = INSOValidateReceipt_PKCS7_get0_signers_001F0188(INSOValidateReceipt_pkcs7, NULL, 0); \
+INSOValidateReceipt_count = INSOValidateReceipt_sk_num_0175001C((const _STACK *) INSOValidateReceipt_certificates); \
 for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_count; INSOValidateReceipt_index1++) { \
-INSOValidateReceipt_certificate = (X509 *) INSOValidateReceipt_sk_value_00640194((const _STACK *) INSOValidateReceipt_certificates, INSOValidateReceipt_index1); \
-INSOValidateReceipt_oid = INSOValidateReceipt_OBJ_txt2obj_00FB00F4(INSOValidateReceipt_str5, 0); \
-INSOValidateReceipt_verify = INSOValidateReceipt_X509_get_ext_by_OBJ_00FB010C(INSOValidateReceipt_certificate, INSOValidateReceipt_oid, 0); \
-INSOValidateReceipt_ASN1_OBJECT_free_00BC00E0(INSOValidateReceipt_oid); \
+INSOValidateReceipt_certificate = (X509 *) INSOValidateReceipt_sk_value_001F01C6((const _STACK *) INSOValidateReceipt_certificates, INSOValidateReceipt_index1); \
+INSOValidateReceipt_oid = INSOValidateReceipt_OBJ_txt2obj_001F016F(INSOValidateReceipt_str5, 0); \
+INSOValidateReceipt_verify = INSOValidateReceipt_X509_get_ext_by_OBJ_01750000(INSOValidateReceipt_certificate, INSOValidateReceipt_oid, 0); \
+INSOValidateReceipt_ASN1_OBJECT_free_017501A3(INSOValidateReceipt_oid); \
 if (INSOValidateReceipt_verify == -1) { \
 sk_X509_free (INSOValidateReceipt_certificates); \
 INSOValidateReceipt_certificates = NULL; \
@@ -3336,15 +3317,15 @@ break; \
 } \
 if (INSOValidateReceipt_certificate == NULL || INSOValidateReceipt_verify < 0) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E2016E(INSOValidateReceipt_JumpBuf, 1); \
-goto INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F00BD(INSOValidateReceipt_JumpBuf, 1); \
+goto INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_YUURUMHMKAJI += 148; INSOValidateReceipt_YUURUMHMKAJI /= 2;  \
-INSOValidateReceipt_AFVQTANHTLYF += 81; INSOValidateReceipt_AFVQTANHTLYF /= 6;  \
-INSOValidateReceipt_VQTNXJHMSZEL -= 63; INSOValidateReceipt_VQTNXJHMSZEL *= 4; INSOValidateReceipt_VQTNXJHMSZEL += 1;  \
-INSOValidateReceipt_CheckReceiptSignature067_INSOValidateReceipt_bail: \
-if (INSOValidateReceipt_bio_p7) INSOValidateReceipt_BIO_free_00FB000D(INSOValidateReceipt_bio_p7); \
-if (INSOValidateReceipt_pkcs7) INSOValidateReceipt_PKCS7_free_00640015(INSOValidateReceipt_pkcs7); \
+INSOValidateReceipt_ZEIRQNSQKKHM += 214; INSOValidateReceipt_ZEIRQNSQKKHM /= 3;  \
+INSOValidateReceipt_PRMZWAVYDNDZ = 169; \
+INSOValidateReceipt_KDMYCKEZRSDM += 197; INSOValidateReceipt_KDMYCKEZRSDM /= 3;  \
+INSOValidateReceipt_CheckReceiptSignature066_INSOValidateReceipt_bail: \
+if (INSOValidateReceipt_bio_p7) INSOValidateReceipt_BIO_free_001F0033(INSOValidateReceipt_bio_p7); \
+if (INSOValidateReceipt_pkcs7) INSOValidateReceipt_PKCS7_free_01750082(INSOValidateReceipt_pkcs7); \
 if (INSOValidateReceipt_certificates) sk_X509_free (INSOValidateReceipt_certificates); \
 }
 #endif
@@ -3356,50 +3337,50 @@ if (INSOValidateReceipt_certificates) sk_X509_free (INSOValidateReceipt_certific
     inline static void INSOValidateReceipt_CheckReceiptIdentifier07F(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt identifier");
         INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleId;
-        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction004CF((INSOValidateReceipt_Strings[123]), 126, 49);
-        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_YUURUMHMKAJI_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-        CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_VQTNXJHMSZEL_00790109((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
-        INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key);
-        if (INSOValidateReceipt_AFVQTANHTLYF_010F0034(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction005CF((INSOValidateReceipt_Strings[49]), 64, 49);
+        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_KDMYCKEZRSDM_00E90092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
+        INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_key);
+        if (INSOValidateReceipt_ZEIRQNSQKKHM_00F7009F(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding()));
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_0182016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_008F01C8(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
-            INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key);
-            INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1);
-            INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key);
-            INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1);
+            INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_key);
+            INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_str1);
+            INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_key);
+            INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_str1);
         }
         // Global variables computation
-        // From 397 to 169
-        INSOValidateReceipt_VLGBCRXLZMHT += 279; INSOValidateReceipt_VLGBCRXLZMHT /= 4;
-        // Set to 43
-        INSOValidateReceipt_YUURUMHMKAJI = 43;
-        // Set to 52
-        INSOValidateReceipt_UFGPFIPLDFOS = 52;
-        INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1);
+        // From 398 to 146
+        INSOValidateReceipt_USZEFQCYIXWA += 186; INSOValidateReceipt_USZEFQCYIXWA /= 4;
+        // From 159 to 457
+        INSOValidateReceipt_ZEIRQNSQKKHM -= 45; INSOValidateReceipt_ZEIRQNSQKKHM *= 4; INSOValidateReceipt_ZEIRQNSQKKHM += 1;
+        // From 169 to 375
+        INSOValidateReceipt_PRMZWAVYDNDZ -= 76; INSOValidateReceipt_PRMZWAVYDNDZ *= 4; INSOValidateReceipt_PRMZWAVYDNDZ += 3;
+        INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_str1);
     }
 #else
 #define INSOValidateReceipt_CheckReceiptIdentifier07F(INSOValidateReceipt_ctx) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt identifier"); \
 INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleId; \
-CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction004CF((INSOValidateReceipt_Strings[123]), 126, 49); \
-CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_YUURUMHMKAJI_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_VQTNXJHMSZEL_00790109((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key); \
-if (INSOValidateReceipt_AFVQTANHTLYF_010F0034(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction005CF((INSOValidateReceipt_Strings[49]), 64, 49); \
+CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_KDMYCKEZRSDM_00E90092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_key); \
+if (INSOValidateReceipt_ZEIRQNSQKKHM_00F7009F(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding())); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_0182016E(INSOValidateReceipt_JumpBuf, 1); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1); \
+INSOValidateReceipt_longjmp_008F01C8(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_str1); \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_str1); \
 } \
-INSOValidateReceipt_VLGBCRXLZMHT += 279; INSOValidateReceipt_VLGBCRXLZMHT /= 4;  \
-INSOValidateReceipt_YUURUMHMKAJI = 43; \
-INSOValidateReceipt_UFGPFIPLDFOS = 52; \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1); \
+INSOValidateReceipt_USZEFQCYIXWA += 186; INSOValidateReceipt_USZEFQCYIXWA /= 4;  \
+INSOValidateReceipt_ZEIRQNSQKKHM -= 45; INSOValidateReceipt_ZEIRQNSQKKHM *= 4; INSOValidateReceipt_ZEIRQNSQKKHM += 1;  \
+INSOValidateReceipt_PRMZWAVYDNDZ -= 76; INSOValidateReceipt_PRMZWAVYDNDZ *= 4; INSOValidateReceipt_PRMZWAVYDNDZ += 3;  \
+INSOValidateReceipt_CFRelease_00E90129(INSOValidateReceipt_str1); \
 }
 #endif
 #endif
@@ -3409,37 +3390,37 @@ INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1); \
     inline static void INSOValidateReceipt_CheckReceiptIdentifier07F(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt identifier loosely");
         INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleId;
-        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction004CF((INSOValidateReceipt_Strings[123]), 126, 49);
-        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_YUURUMHMKAJI_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-        CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_VQTNXJHMSZEL_00790109((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
-        INSOValidateReceipt_CFRelease_01690053(INSOValidateReceipt_key);
-        if (INSOValidateReceipt_AFVQTANHTLYF_010F0034(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction005CF((INSOValidateReceipt_Strings[49]), 64, 49);
+        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_KDMYCKEZRSDM_00E90092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
+        INSOValidateReceipt_CFRelease_00E901C7(INSOValidateReceipt_key);
+        if (INSOValidateReceipt_ZEIRQNSQKKHM_00F7009F(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding()));
         }
         // Global variables computation
-        // From 397 to 169
-        INSOValidateReceipt_VLGBCRXLZMHT += 279; INSOValidateReceipt_VLGBCRXLZMHT /= 4;
-        // Set to 43
-        INSOValidateReceipt_YUURUMHMKAJI = 43;
-        // Set to 52
-        INSOValidateReceipt_UFGPFIPLDFOS = 52;
-        INSOValidateReceipt_CFRelease_01690053(INSOValidateReceipt_str1);
+        // From 398 to 146
+        INSOValidateReceipt_USZEFQCYIXWA += 186; INSOValidateReceipt_USZEFQCYIXWA /= 4;
+        // From 159 to 457
+        INSOValidateReceipt_ZEIRQNSQKKHM -= 45; INSOValidateReceipt_ZEIRQNSQKKHM *= 4; INSOValidateReceipt_ZEIRQNSQKKHM += 1;
+        // From 169 to 375
+        INSOValidateReceipt_PRMZWAVYDNDZ -= 76; INSOValidateReceipt_PRMZWAVYDNDZ *= 4; INSOValidateReceipt_PRMZWAVYDNDZ += 3;
+        INSOValidateReceipt_CFRelease_00E901C7(INSOValidateReceipt_str1);
     }
 #else
 #define INSOValidateReceipt_CheckReceiptIdentifier07F(INSOValidateReceipt_ctx) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt identifier loosely"); \
 INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleId; \
-CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction004CF((INSOValidateReceipt_Strings[123]), 126, 49); \
-CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_YUURUMHMKAJI_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_VQTNXJHMSZEL_00790109((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_01690053(INSOValidateReceipt_key); \
-if (INSOValidateReceipt_AFVQTANHTLYF_010F0034(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction005CF((INSOValidateReceipt_Strings[49]), 64, 49); \
+CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_KDMYCKEZRSDM_00E90092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_00E901C7(INSOValidateReceipt_key); \
+if (INSOValidateReceipt_ZEIRQNSQKKHM_00F7009F(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt identifier mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding())); \
 } \
-INSOValidateReceipt_VLGBCRXLZMHT += 279; INSOValidateReceipt_VLGBCRXLZMHT /= 4;  \
-INSOValidateReceipt_YUURUMHMKAJI = 43; \
-INSOValidateReceipt_UFGPFIPLDFOS = 52; \
-INSOValidateReceipt_CFRelease_01690053(INSOValidateReceipt_str1); \
+INSOValidateReceipt_USZEFQCYIXWA += 186; INSOValidateReceipt_USZEFQCYIXWA /= 4;  \
+INSOValidateReceipt_ZEIRQNSQKKHM -= 45; INSOValidateReceipt_ZEIRQNSQKKHM *= 4; INSOValidateReceipt_ZEIRQNSQKKHM += 1;  \
+INSOValidateReceipt_PRMZWAVYDNDZ -= 76; INSOValidateReceipt_PRMZWAVYDNDZ *= 4; INSOValidateReceipt_PRMZWAVYDNDZ += 3;  \
+INSOValidateReceipt_CFRelease_00E901C7(INSOValidateReceipt_str1); \
 }
 #endif
 #endif
@@ -3451,65 +3432,65 @@ INSOValidateReceipt_CFRelease_01690053(INSOValidateReceipt_str1); \
     inline static void INSOValidateReceipt_CheckReceiptVersion081(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt version");
         INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleVersion;
-        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[19]), 220, 16);
-        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_VLGBCRXLZMHT_010F00A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-        CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_YUURUMHMKAJI_0169002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
-        INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key);
-        if (INSOValidateReceipt_UFGPFIPLDFOS_00790034(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction005CF((INSOValidateReceipt_Strings[163]), 117, 16);
+        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_USZEFQCYIXWA_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
+        INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key);
+        if (INSOValidateReceipt_ZEIRQNSQKKHM_00F701C9(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding()));
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01E200A0(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_00A501C8(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
-            INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key);
-            INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_str1);
-            INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key);
-            INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_str1);
+            INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key);
+            INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_str1);
+            INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key);
+            INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_str1);
         }
         // Global variables computation
-        // From 169 to 231
-        INSOValidateReceipt_VLGBCRXLZMHT -= 92; INSOValidateReceipt_VLGBCRXLZMHT *= 3;
-        // From 43 to 342
-        INSOValidateReceipt_YUURUMHMKAJI -= 5; INSOValidateReceipt_YUURUMHMKAJI *= 9;
-        // From 52 to 298
-        INSOValidateReceipt_AFVQTANHTLYF -= 10; INSOValidateReceipt_AFVQTANHTLYF *= 7; INSOValidateReceipt_AFVQTANHTLYF += 4;
-        // From 335 to 384
-        INSOValidateReceipt_ACFEVVQVAIKY -= 207; INSOValidateReceipt_ACFEVVQVAIKY *= 3;
-        // From 265 to 169
-        INSOValidateReceipt_VQTNXJHMSZEL += 242; INSOValidateReceipt_VQTNXJHMSZEL /= 3;
-        // From 285 to 99
-        INSOValidateReceipt_HTNSUGXHMGST += 111; INSOValidateReceipt_HTNSUGXHMGST /= 4;
-        // From 146 to 184
-        INSOValidateReceipt_WRMDFVLFQRMA -= 85; INSOValidateReceipt_WRMDFVLFQRMA *= 3; INSOValidateReceipt_WRMDFVLFQRMA += 1;
-        // From 52 to 45
-        INSOValidateReceipt_UFGPFIPLDFOS += 38; INSOValidateReceipt_UFGPFIPLDFOS /= 2;
-        INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_str1);
+        // Set to 430
+        INSOValidateReceipt_USZEFQCYIXWA = 430;
+        // From 481 to 311
+        INSOValidateReceipt_HNPSXRYTFLWB += 452; INSOValidateReceipt_HNPSXRYTFLWB /= 3;
+        // From 457 to 259
+        INSOValidateReceipt_ZEIRQNSQKKHM += 320; INSOValidateReceipt_ZEIRQNSQKKHM /= 3;
+        // From 375 to 308
+        INSOValidateReceipt_PRMZWAVYDNDZ += 241; INSOValidateReceipt_PRMZWAVYDNDZ /= 2;
+        // From 146 to 169
+        INSOValidateReceipt_KDMYCKEZRSDM -= 90; INSOValidateReceipt_KDMYCKEZRSDM *= 3; INSOValidateReceipt_KDMYCKEZRSDM += 1;
+        // From 135 to 26
+        INSOValidateReceipt_WMYJXBSKXTDM += 47; INSOValidateReceipt_WMYJXBSKXTDM /= 7;
+        // From 8 to 475
+        INSOValidateReceipt_JKZOWYSQHSTF -= 1; INSOValidateReceipt_JKZOWYSQHSTF *= 61; INSOValidateReceipt_JKZOWYSQHSTF += 48;
+        // Set to 449
+        INSOValidateReceipt_XUVWOJCGGUZP = 449;
+        INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_str1);
     }
 #else
 #define INSOValidateReceipt_CheckReceiptVersion081(INSOValidateReceipt_ctx) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt version"); \
 INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleVersion; \
-CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[19]), 220, 16); \
-CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_VLGBCRXLZMHT_010F00A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_YUURUMHMKAJI_0169002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key); \
-if (INSOValidateReceipt_UFGPFIPLDFOS_00790034(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction005CF((INSOValidateReceipt_Strings[163]), 117, 16); \
+CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_USZEFQCYIXWA_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key); \
+if (INSOValidateReceipt_ZEIRQNSQKKHM_00F701C9(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding())); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01E200A0(INSOValidateReceipt_JumpBuf, 1); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_str1); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_str1); \
+INSOValidateReceipt_longjmp_00A501C8(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_str1); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_str1); \
 } \
-INSOValidateReceipt_VLGBCRXLZMHT -= 92; INSOValidateReceipt_VLGBCRXLZMHT *= 3;  \
-INSOValidateReceipt_YUURUMHMKAJI -= 5; INSOValidateReceipt_YUURUMHMKAJI *= 9;  \
-INSOValidateReceipt_AFVQTANHTLYF -= 10; INSOValidateReceipt_AFVQTANHTLYF *= 7; INSOValidateReceipt_AFVQTANHTLYF += 4;  \
-INSOValidateReceipt_ACFEVVQVAIKY -= 207; INSOValidateReceipt_ACFEVVQVAIKY *= 3;  \
-INSOValidateReceipt_VQTNXJHMSZEL += 242; INSOValidateReceipt_VQTNXJHMSZEL /= 3;  \
-INSOValidateReceipt_HTNSUGXHMGST += 111; INSOValidateReceipt_HTNSUGXHMGST /= 4;  \
-INSOValidateReceipt_WRMDFVLFQRMA -= 85; INSOValidateReceipt_WRMDFVLFQRMA *= 3; INSOValidateReceipt_WRMDFVLFQRMA += 1;  \
-INSOValidateReceipt_UFGPFIPLDFOS += 38; INSOValidateReceipt_UFGPFIPLDFOS /= 2;  \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_str1); \
+INSOValidateReceipt_USZEFQCYIXWA = 430; \
+INSOValidateReceipt_HNPSXRYTFLWB += 452; INSOValidateReceipt_HNPSXRYTFLWB /= 3;  \
+INSOValidateReceipt_ZEIRQNSQKKHM += 320; INSOValidateReceipt_ZEIRQNSQKKHM /= 3;  \
+INSOValidateReceipt_PRMZWAVYDNDZ += 241; INSOValidateReceipt_PRMZWAVYDNDZ /= 2;  \
+INSOValidateReceipt_KDMYCKEZRSDM -= 90; INSOValidateReceipt_KDMYCKEZRSDM *= 3; INSOValidateReceipt_KDMYCKEZRSDM += 1;  \
+INSOValidateReceipt_WMYJXBSKXTDM += 47; INSOValidateReceipt_WMYJXBSKXTDM /= 7;  \
+INSOValidateReceipt_JKZOWYSQHSTF -= 1; INSOValidateReceipt_JKZOWYSQHSTF *= 61; INSOValidateReceipt_JKZOWYSQHSTF += 48;  \
+INSOValidateReceipt_XUVWOJCGGUZP = 449; \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_str1); \
 }
 #endif
 #endif
@@ -3519,52 +3500,52 @@ INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_str1); \
     inline static void INSOValidateReceipt_CheckReceiptVersion081(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt version loosely");
         INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleVersion;
-        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[19]), 220, 16);
-        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_VLGBCRXLZMHT_010F00A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-        CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_YUURUMHMKAJI_0169002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
-        INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key);
-        if (INSOValidateReceipt_UFGPFIPLDFOS_00790034(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
+        CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[215]), 43, 16);
+        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_USZEFQCYIXWA_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
+        INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_key);
+        if (INSOValidateReceipt_ZEIRQNSQKKHM_00F701C9(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding()));
         }
         // Global variables computation
-        // From 169 to 231
-        INSOValidateReceipt_VLGBCRXLZMHT -= 92; INSOValidateReceipt_VLGBCRXLZMHT *= 3;
-        // From 43 to 342
-        INSOValidateReceipt_YUURUMHMKAJI -= 5; INSOValidateReceipt_YUURUMHMKAJI *= 9;
-        // From 52 to 298
-        INSOValidateReceipt_AFVQTANHTLYF -= 10; INSOValidateReceipt_AFVQTANHTLYF *= 7; INSOValidateReceipt_AFVQTANHTLYF += 4;
-        // From 335 to 384
-        INSOValidateReceipt_ACFEVVQVAIKY -= 207; INSOValidateReceipt_ACFEVVQVAIKY *= 3;
-        // From 265 to 169
-        INSOValidateReceipt_VQTNXJHMSZEL += 242; INSOValidateReceipt_VQTNXJHMSZEL /= 3;
-        // From 285 to 99
-        INSOValidateReceipt_HTNSUGXHMGST += 111; INSOValidateReceipt_HTNSUGXHMGST /= 4;
-        // From 146 to 184
-        INSOValidateReceipt_WRMDFVLFQRMA -= 85; INSOValidateReceipt_WRMDFVLFQRMA *= 3; INSOValidateReceipt_WRMDFVLFQRMA += 1;
-        // From 52 to 45
-        INSOValidateReceipt_UFGPFIPLDFOS += 38; INSOValidateReceipt_UFGPFIPLDFOS /= 2;
-        INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1);
+        // Set to 430
+        INSOValidateReceipt_USZEFQCYIXWA = 430;
+        // From 481 to 311
+        INSOValidateReceipt_HNPSXRYTFLWB += 452; INSOValidateReceipt_HNPSXRYTFLWB /= 3;
+        // From 457 to 259
+        INSOValidateReceipt_ZEIRQNSQKKHM += 320; INSOValidateReceipt_ZEIRQNSQKKHM /= 3;
+        // From 375 to 308
+        INSOValidateReceipt_PRMZWAVYDNDZ += 241; INSOValidateReceipt_PRMZWAVYDNDZ /= 2;
+        // From 146 to 169
+        INSOValidateReceipt_KDMYCKEZRSDM -= 90; INSOValidateReceipt_KDMYCKEZRSDM *= 3; INSOValidateReceipt_KDMYCKEZRSDM += 1;
+        // From 135 to 26
+        INSOValidateReceipt_WMYJXBSKXTDM += 47; INSOValidateReceipt_WMYJXBSKXTDM /= 7;
+        // From 8 to 475
+        INSOValidateReceipt_JKZOWYSQHSTF -= 1; INSOValidateReceipt_JKZOWYSQHSTF *= 61; INSOValidateReceipt_JKZOWYSQHSTF += 48;
+        // Set to 449
+        INSOValidateReceipt_XUVWOJCGGUZP = 449;
+        INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_str1);
     }
 #else
 #define INSOValidateReceipt_CheckReceiptVersion081(INSOValidateReceipt_ctx) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt version loosely"); \
 INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleVersion; \
-CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[19]), 220, 16); \
-CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_VLGBCRXLZMHT_010F00A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_YUURUMHMKAJI_0169002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_key); \
-if (INSOValidateReceipt_UFGPFIPLDFOS_00790034(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
+CFStringRef INSOValidateReceipt_str1 = INSOValidateReceipt_ObfuscationFunction003CF((INSOValidateReceipt_Strings[215]), 43, 16); \
+CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_004A0177(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+CFStringRef INSOValidateReceipt_str2 = (CFStringRef) INSOValidateReceipt_USZEFQCYIXWA_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_key); \
+if (INSOValidateReceipt_ZEIRQNSQKKHM_00F701C9(INSOValidateReceipt_str1, INSOValidateReceipt_str2, 0) != kCFCompareEqualTo) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt version mismatch (expecting '%s' but actual value is '%s')", CFStringGetCStringPtr(INSOValidateReceipt_str1, CFStringGetSystemEncoding()), CFStringGetCStringPtr(INSOValidateReceipt_str2, CFStringGetSystemEncoding())); \
 } \
-INSOValidateReceipt_VLGBCRXLZMHT -= 92; INSOValidateReceipt_VLGBCRXLZMHT *= 3;  \
-INSOValidateReceipt_YUURUMHMKAJI -= 5; INSOValidateReceipt_YUURUMHMKAJI *= 9;  \
-INSOValidateReceipt_AFVQTANHTLYF -= 10; INSOValidateReceipt_AFVQTANHTLYF *= 7; INSOValidateReceipt_AFVQTANHTLYF += 4;  \
-INSOValidateReceipt_ACFEVVQVAIKY -= 207; INSOValidateReceipt_ACFEVVQVAIKY *= 3;  \
-INSOValidateReceipt_VQTNXJHMSZEL += 242; INSOValidateReceipt_VQTNXJHMSZEL /= 3;  \
-INSOValidateReceipt_HTNSUGXHMGST += 111; INSOValidateReceipt_HTNSUGXHMGST /= 4;  \
-INSOValidateReceipt_WRMDFVLFQRMA -= 85; INSOValidateReceipt_WRMDFVLFQRMA *= 3; INSOValidateReceipt_WRMDFVLFQRMA += 1;  \
-INSOValidateReceipt_UFGPFIPLDFOS += 38; INSOValidateReceipt_UFGPFIPLDFOS /= 2;  \
-INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1); \
+INSOValidateReceipt_USZEFQCYIXWA = 430; \
+INSOValidateReceipt_HNPSXRYTFLWB += 452; INSOValidateReceipt_HNPSXRYTFLWB /= 3;  \
+INSOValidateReceipt_ZEIRQNSQKKHM += 320; INSOValidateReceipt_ZEIRQNSQKKHM /= 3;  \
+INSOValidateReceipt_PRMZWAVYDNDZ += 241; INSOValidateReceipt_PRMZWAVYDNDZ /= 2;  \
+INSOValidateReceipt_KDMYCKEZRSDM -= 90; INSOValidateReceipt_KDMYCKEZRSDM *= 3; INSOValidateReceipt_KDMYCKEZRSDM += 1;  \
+INSOValidateReceipt_WMYJXBSKXTDM += 47; INSOValidateReceipt_WMYJXBSKXTDM /= 7;  \
+INSOValidateReceipt_JKZOWYSQHSTF -= 1; INSOValidateReceipt_JKZOWYSQHSTF *= 61; INSOValidateReceipt_JKZOWYSQHSTF += 48;  \
+INSOValidateReceipt_XUVWOJCGGUZP = 449; \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_str1); \
 }
 #endif
 #endif
@@ -3572,186 +3553,190 @@ INSOValidateReceipt_CFRelease_016901A6(INSOValidateReceipt_str1); \
     
     // CodeBlock CheckReceiptHash
 #ifdef DEBUG
-    inline static void INSOValidateReceipt_CheckReceiptHash089(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
+    inline static void INSOValidateReceipt_CheckReceiptHash093(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         CFDataRef INSOValidateReceipt_data1, INSOValidateReceipt_data2, INSOValidateReceipt_data3;
         CFMutableDataRef INSOValidateReceipt_data4;
         unsigned char INSOValidateReceipt_digest[483];
-        volatile int INSOValidateReceipt_counter = 3; INSOValidateReceipt_counter -= 1; INSOValidateReceipt_counter *= 8; INSOValidateReceipt_counter += 4;
+        volatile int INSOValidateReceipt_counter = 15; INSOValidateReceipt_counter -= 9; INSOValidateReceipt_counter *= 3; INSOValidateReceipt_counter += 2;
         INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value;
         CFNumberRef INSOValidateReceipt_key;
+        char *INSOValidateReceipt_str1;
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt hash");
         INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeOpaqueValue;
-        INSOValidateReceipt_key = INSOValidateReceipt_VQTNXJHMSZEL_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-        INSOValidateReceipt_data1 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_0079002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
-        INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_key);
+        INSOValidateReceipt_key = INSOValidateReceipt_KDMYCKEZRSDM_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        INSOValidateReceipt_data1 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
+        INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key);
         INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleIdData;
-        INSOValidateReceipt_key = INSOValidateReceipt_VQTNXJHMSZEL_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-        INSOValidateReceipt_data2 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_0079002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
-        INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_key);
+        INSOValidateReceipt_key = INSOValidateReceipt_KDMYCKEZRSDM_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        INSOValidateReceipt_data2 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
+        INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key);
         INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeHash;
-        INSOValidateReceipt_key = INSOValidateReceipt_VQTNXJHMSZEL_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-        INSOValidateReceipt_data3 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_0079002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
-        INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_key);
-        INSOValidateReceipt_data4 = INSOValidateReceipt_CFDataCreateMutable_010F018D(NULL, 0);
-        INSOValidateReceipt_WRMDFVLFQRMA_016900B8(INSOValidateReceipt_data4, INSOValidateReceipt_VLGBCRXLZMHT_007900E7((CFDataRef) INSOValidateReceipt_ctx->guid_data), INSOValidateReceipt_CFDataGetLength_00790136((CFDataRef) INSOValidateReceipt_ctx->guid_data));
-        INSOValidateReceipt_WRMDFVLFQRMA_016900B8(INSOValidateReceipt_data4, INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data1), INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data1));
-        INSOValidateReceipt_WRMDFVLFQRMA_016900B8(INSOValidateReceipt_data4, INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data2), INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data2));
-        CC_SHA1_CTX INSOValidateReceipt_hashctx1;
-        INSOValidateReceipt_ACFEVVQVAIKY_01820180(&INSOValidateReceipt_hashctx1);
-        INSOValidateReceipt_CC_SHA1_Update_01B20193(&INSOValidateReceipt_hashctx1, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7((CFDataRef) INSOValidateReceipt_ctx->guid_data), (CC_LONG) INSOValidateReceipt_CFDataGetLength_00790136((CFDataRef) INSOValidateReceipt_ctx->guid_data));
-        INSOValidateReceipt_CC_SHA1_Update_01B20193(&INSOValidateReceipt_hashctx1, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data1), (CC_LONG) INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data1));
-        INSOValidateReceipt_CC_SHA1_Update_01B20193(&INSOValidateReceipt_hashctx1, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data2), (CC_LONG) INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data2));
-        INSOValidateReceipt_UFGPFIPLDFOS_01E2002D(INSOValidateReceipt_digest, &INSOValidateReceipt_hashctx1);
-        SHA_CTX INSOValidateReceipt_hashctx2;
-        INSOValidateReceipt_SHA1_Init_00640162(&INSOValidateReceipt_hashctx2);
-        INSOValidateReceipt_SHA1_Update_00FB0157(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7((CFDataRef) INSOValidateReceipt_ctx->guid_data), (size_t) INSOValidateReceipt_CFDataGetLength_00790136((CFDataRef) INSOValidateReceipt_ctx->guid_data));
-        INSOValidateReceipt_SHA1_Update_00FB0157(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data1), (size_t) INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data1));
-        INSOValidateReceipt_SHA1_Update_00FB0157(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data2), (size_t) INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data2));
-        INSOValidateReceipt_SHA1_Final_00FB00AC(INSOValidateReceipt_digest, &INSOValidateReceipt_hashctx2);
-        CFDataRef INSOValidateReceipt_data5 = INSOValidateReceipt_YUURUMHMKAJI_01690156(NULL, (const UInt8 *) INSOValidateReceipt_digest, INSOValidateReceipt_counter);
-        if (!INSOValidateReceipt_AFVQTANHTLYF_0079012A(INSOValidateReceipt_data3, INSOValidateReceipt_data5)) {
+        INSOValidateReceipt_key = INSOValidateReceipt_KDMYCKEZRSDM_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        INSOValidateReceipt_data3 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
+        INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key);
+        INSOValidateReceipt_data4 = INSOValidateReceipt_CFDataCreateMutable_004A0089(NULL, 0);
+        INSOValidateReceipt_USZEFQCYIXWA_00F701AE(INSOValidateReceipt_data4, INSOValidateReceipt_ZEIRQNSQKKHM_00F70103((CFDataRef) INSOValidateReceipt_ctx->guid_data), INSOValidateReceipt_HNPSXRYTFLWB_00E90137((CFDataRef) INSOValidateReceipt_ctx->guid_data));
+        INSOValidateReceipt_USZEFQCYIXWA_00F701AE(INSOValidateReceipt_data4, INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data1), INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data1));
+        INSOValidateReceipt_USZEFQCYIXWA_00F701AE(INSOValidateReceipt_data4, INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data2), INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data2));
+        INSOValidateReceipt_SHA1_001F0181(INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data4), (CC_LONG) INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data4), INSOValidateReceipt_digest);
+        INSOValidateReceipt_OpenSSL_add_all_digests_01C000FB();
+        EVP_MD_CTX INSOValidateReceipt_hashctx2;
+        INSOValidateReceipt_EVP_MD_CTX_init_01C000F4(&INSOValidateReceipt_hashctx2);
+        char INSOValidateReceipt_str1_[483];
+        INSOValidateReceipt_ObfuscationFunction00A((INSOValidateReceipt_Strings[211]), INSOValidateReceipt_str1_, 165, 16);
+        INSOValidateReceipt_str1 = INSOValidateReceipt_str1_;
+        const EVP_MD *INSOValidateReceipt_digester = EVP_get_digestbyname(INSOValidateReceipt_str1);
+        INSOValidateReceipt_EVP_DigestInit_017501BA(&INSOValidateReceipt_hashctx2, INSOValidateReceipt_digester);
+        INSOValidateReceipt_EVP_DigestUpdate_01C00049(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_ZEIRQNSQKKHM_00F70103((CFDataRef) INSOValidateReceipt_ctx->guid_data), (size_t) INSOValidateReceipt_HNPSXRYTFLWB_00E90137((CFDataRef) INSOValidateReceipt_ctx->guid_data));
+        INSOValidateReceipt_EVP_DigestUpdate_01C00049(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data1), (size_t) INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data1));
+        INSOValidateReceipt_EVP_DigestUpdate_01C00049(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data2), (size_t) INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data2));
+        INSOValidateReceipt_EVP_DigestFinal_01C0002F(&INSOValidateReceipt_hashctx2, INSOValidateReceipt_digest, NULL);
+        CFDataRef INSOValidateReceipt_data5 = INSOValidateReceipt_CFDataCreate_00F700D0(NULL, (const UInt8 *) INSOValidateReceipt_digest, INSOValidateReceipt_counter);
+        if (!INSOValidateReceipt_PRMZWAVYDNDZ_004A0134(INSOValidateReceipt_data3, INSOValidateReceipt_data5)) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt hash is invalid");
-            INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data5);
+            INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data5);
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_018200A0(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_008F01C8(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
-            INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data1);
-            INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data2);
-            INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data4);
-            INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data5);
-            goto INSOValidateReceipt_CheckReceiptHash089_INSOValidateReceipt_bail;
+            INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data1);
+            INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data2);
+            INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data4);
+            INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data5);
+            goto INSOValidateReceipt_CheckReceiptHash093_INSOValidateReceipt_bail;
         }
-        INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data5);
+        INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data5);
         // Global variables computation
-        // Set to 43
-        INSOValidateReceipt_VLGBCRXLZMHT = 43;
-        // Set to 227
-        INSOValidateReceipt_ACFEVVQVAIKY = 227;
-        // Set to 34
-        INSOValidateReceipt_HTNSUGXHMGST = 34;
-        // From 184 to 320
-        INSOValidateReceipt_WRMDFVLFQRMA -= 78; INSOValidateReceipt_WRMDFVLFQRMA *= 3; INSOValidateReceipt_WRMDFVLFQRMA += 2;
-        // From 45 to 316
-        INSOValidateReceipt_UFGPFIPLDFOS -= 10; INSOValidateReceipt_UFGPFIPLDFOS *= 9; INSOValidateReceipt_UFGPFIPLDFOS += 1;
-    INSOValidateReceipt_CheckReceiptHash089_INSOValidateReceipt_bail:
-        INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data4);
+        // From 430 to 248
+        INSOValidateReceipt_USZEFQCYIXWA += 314; INSOValidateReceipt_USZEFQCYIXWA /= 3;
+        // From 311 to 146
+        INSOValidateReceipt_HNPSXRYTFLWB += 273; INSOValidateReceipt_HNPSXRYTFLWB /= 4;
+        // From 308 to 169
+        INSOValidateReceipt_PRMZWAVYDNDZ += 199; INSOValidateReceipt_PRMZWAVYDNDZ /= 3;
+        // From 26 to 413
+        INSOValidateReceipt_WMYJXBSKXTDM -= 2; INSOValidateReceipt_WMYJXBSKXTDM *= 17; INSOValidateReceipt_WMYJXBSKXTDM += 5;
+        // From 475 to 76
+        INSOValidateReceipt_JKZOWYSQHSTF += 133; INSOValidateReceipt_JKZOWYSQHSTF /= 8;
+    INSOValidateReceipt_CheckReceiptHash093_INSOValidateReceipt_bail:
+        INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data4);
     }
 #else
-#define INSOValidateReceipt_CheckReceiptHash089(INSOValidateReceipt_ctx) { \
+#define INSOValidateReceipt_CheckReceiptHash093(INSOValidateReceipt_ctx) { \
 CFDataRef INSOValidateReceipt_data1, INSOValidateReceipt_data2, INSOValidateReceipt_data3; \
 CFMutableDataRef INSOValidateReceipt_data4; \
 unsigned char INSOValidateReceipt_digest[483]; \
-volatile int INSOValidateReceipt_counter = 3; INSOValidateReceipt_counter -= 1; INSOValidateReceipt_counter *= 8; INSOValidateReceipt_counter += 4;  \
+volatile int INSOValidateReceipt_counter = 15; INSOValidateReceipt_counter -= 9; INSOValidateReceipt_counter *= 3; INSOValidateReceipt_counter += 2;  \
 INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value; \
 CFNumberRef INSOValidateReceipt_key; \
+char *INSOValidateReceipt_str1; \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt hash"); \
 INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeOpaqueValue; \
-INSOValidateReceipt_key = INSOValidateReceipt_VQTNXJHMSZEL_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-INSOValidateReceipt_data1 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_0079002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_key); \
+INSOValidateReceipt_key = INSOValidateReceipt_KDMYCKEZRSDM_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+INSOValidateReceipt_data1 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key); \
 INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeBundleIdData; \
-INSOValidateReceipt_key = INSOValidateReceipt_VQTNXJHMSZEL_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-INSOValidateReceipt_data2 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_0079002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_key); \
+INSOValidateReceipt_key = INSOValidateReceipt_KDMYCKEZRSDM_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+INSOValidateReceipt_data2 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key); \
 INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeHash; \
-INSOValidateReceipt_key = INSOValidateReceipt_VQTNXJHMSZEL_007900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-INSOValidateReceipt_data3 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_0079002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_key); \
-INSOValidateReceipt_data4 = INSOValidateReceipt_CFDataCreateMutable_010F018D(NULL, 0); \
-INSOValidateReceipt_WRMDFVLFQRMA_016900B8(INSOValidateReceipt_data4, INSOValidateReceipt_VLGBCRXLZMHT_007900E7((CFDataRef) INSOValidateReceipt_ctx->guid_data), INSOValidateReceipt_CFDataGetLength_00790136((CFDataRef) INSOValidateReceipt_ctx->guid_data)); \
-INSOValidateReceipt_WRMDFVLFQRMA_016900B8(INSOValidateReceipt_data4, INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data1), INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data1)); \
-INSOValidateReceipt_WRMDFVLFQRMA_016900B8(INSOValidateReceipt_data4, INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data2), INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data2)); \
-CC_SHA1_CTX INSOValidateReceipt_hashctx1; \
-INSOValidateReceipt_ACFEVVQVAIKY_01820180(&INSOValidateReceipt_hashctx1); \
-INSOValidateReceipt_CC_SHA1_Update_01B20193(&INSOValidateReceipt_hashctx1, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7((CFDataRef) INSOValidateReceipt_ctx->guid_data), (CC_LONG) INSOValidateReceipt_CFDataGetLength_00790136((CFDataRef) INSOValidateReceipt_ctx->guid_data)); \
-INSOValidateReceipt_CC_SHA1_Update_01B20193(&INSOValidateReceipt_hashctx1, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data1), (CC_LONG) INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data1)); \
-INSOValidateReceipt_CC_SHA1_Update_01B20193(&INSOValidateReceipt_hashctx1, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data2), (CC_LONG) INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data2)); \
-INSOValidateReceipt_UFGPFIPLDFOS_01E2002D(INSOValidateReceipt_digest, &INSOValidateReceipt_hashctx1); \
-SHA_CTX INSOValidateReceipt_hashctx2; \
-INSOValidateReceipt_SHA1_Init_00640162(&INSOValidateReceipt_hashctx2); \
-INSOValidateReceipt_SHA1_Update_00FB0157(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7((CFDataRef) INSOValidateReceipt_ctx->guid_data), (size_t) INSOValidateReceipt_CFDataGetLength_00790136((CFDataRef) INSOValidateReceipt_ctx->guid_data)); \
-INSOValidateReceipt_SHA1_Update_00FB0157(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data1), (size_t) INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data1)); \
-INSOValidateReceipt_SHA1_Update_00FB0157(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_VLGBCRXLZMHT_007900E7(INSOValidateReceipt_data2), (size_t) INSOValidateReceipt_CFDataGetLength_00790136(INSOValidateReceipt_data2)); \
-INSOValidateReceipt_SHA1_Final_00FB00AC(INSOValidateReceipt_digest, &INSOValidateReceipt_hashctx2); \
-CFDataRef INSOValidateReceipt_data5 = INSOValidateReceipt_YUURUMHMKAJI_01690156(NULL, (const UInt8 *) INSOValidateReceipt_digest, INSOValidateReceipt_counter); \
-if (!INSOValidateReceipt_AFVQTANHTLYF_0079012A(INSOValidateReceipt_data3, INSOValidateReceipt_data5)) { \
+INSOValidateReceipt_key = INSOValidateReceipt_KDMYCKEZRSDM_00E900A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+INSOValidateReceipt_data3 = (CFDataRef) INSOValidateReceipt_CFDictionaryGetValue_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_key); \
+INSOValidateReceipt_data4 = INSOValidateReceipt_CFDataCreateMutable_004A0089(NULL, 0); \
+INSOValidateReceipt_USZEFQCYIXWA_00F701AE(INSOValidateReceipt_data4, INSOValidateReceipt_ZEIRQNSQKKHM_00F70103((CFDataRef) INSOValidateReceipt_ctx->guid_data), INSOValidateReceipt_HNPSXRYTFLWB_00E90137((CFDataRef) INSOValidateReceipt_ctx->guid_data)); \
+INSOValidateReceipt_USZEFQCYIXWA_00F701AE(INSOValidateReceipt_data4, INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data1), INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data1)); \
+INSOValidateReceipt_USZEFQCYIXWA_00F701AE(INSOValidateReceipt_data4, INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data2), INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data2)); \
+INSOValidateReceipt_SHA1_001F0181(INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data4), (CC_LONG) INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data4), INSOValidateReceipt_digest); \
+INSOValidateReceipt_OpenSSL_add_all_digests_01C000FB(); \
+EVP_MD_CTX INSOValidateReceipt_hashctx2; \
+INSOValidateReceipt_EVP_MD_CTX_init_01C000F4(&INSOValidateReceipt_hashctx2); \
+char INSOValidateReceipt_str1_[483]; \
+INSOValidateReceipt_ObfuscationFunction00A((INSOValidateReceipt_Strings[211]), INSOValidateReceipt_str1_, 165, 16); \
+INSOValidateReceipt_str1 = INSOValidateReceipt_str1_; \
+const EVP_MD *INSOValidateReceipt_digester = EVP_get_digestbyname(INSOValidateReceipt_str1); \
+INSOValidateReceipt_EVP_DigestInit_017501BA(&INSOValidateReceipt_hashctx2, INSOValidateReceipt_digester); \
+INSOValidateReceipt_EVP_DigestUpdate_01C00049(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_ZEIRQNSQKKHM_00F70103((CFDataRef) INSOValidateReceipt_ctx->guid_data), (size_t) INSOValidateReceipt_HNPSXRYTFLWB_00E90137((CFDataRef) INSOValidateReceipt_ctx->guid_data)); \
+INSOValidateReceipt_EVP_DigestUpdate_01C00049(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data1), (size_t) INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data1)); \
+INSOValidateReceipt_EVP_DigestUpdate_01C00049(&INSOValidateReceipt_hashctx2, (const void *) INSOValidateReceipt_ZEIRQNSQKKHM_00F70103(INSOValidateReceipt_data2), (size_t) INSOValidateReceipt_HNPSXRYTFLWB_00E90137(INSOValidateReceipt_data2)); \
+INSOValidateReceipt_EVP_DigestFinal_01C0002F(&INSOValidateReceipt_hashctx2, INSOValidateReceipt_digest, NULL); \
+CFDataRef INSOValidateReceipt_data5 = INSOValidateReceipt_CFDataCreate_00F700D0(NULL, (const UInt8 *) INSOValidateReceipt_digest, INSOValidateReceipt_counter); \
+if (!INSOValidateReceipt_PRMZWAVYDNDZ_004A0134(INSOValidateReceipt_data3, INSOValidateReceipt_data5)) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt hash is invalid"); \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data5); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data5); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_018200A0(INSOValidateReceipt_JumpBuf, 1); \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data1); \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data2); \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data4); \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data5); \
-goto INSOValidateReceipt_CheckReceiptHash089_INSOValidateReceipt_bail; \
+INSOValidateReceipt_longjmp_008F01C8(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data1); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data2); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data4); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data5); \
+goto INSOValidateReceipt_CheckReceiptHash093_INSOValidateReceipt_bail; \
 } \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data5); \
-INSOValidateReceipt_VLGBCRXLZMHT = 43; \
-INSOValidateReceipt_ACFEVVQVAIKY = 227; \
-INSOValidateReceipt_HTNSUGXHMGST = 34; \
-INSOValidateReceipt_WRMDFVLFQRMA -= 78; INSOValidateReceipt_WRMDFVLFQRMA *= 3; INSOValidateReceipt_WRMDFVLFQRMA += 2;  \
-INSOValidateReceipt_UFGPFIPLDFOS -= 10; INSOValidateReceipt_UFGPFIPLDFOS *= 9; INSOValidateReceipt_UFGPFIPLDFOS += 1;  \
-INSOValidateReceipt_CheckReceiptHash089_INSOValidateReceipt_bail: \
-INSOValidateReceipt_CFRelease_0169012C(INSOValidateReceipt_data4); \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data5); \
+INSOValidateReceipt_USZEFQCYIXWA += 314; INSOValidateReceipt_USZEFQCYIXWA /= 3;  \
+INSOValidateReceipt_HNPSXRYTFLWB += 273; INSOValidateReceipt_HNPSXRYTFLWB /= 4;  \
+INSOValidateReceipt_PRMZWAVYDNDZ += 199; INSOValidateReceipt_PRMZWAVYDNDZ /= 3;  \
+INSOValidateReceipt_WMYJXBSKXTDM -= 2; INSOValidateReceipt_WMYJXBSKXTDM *= 17; INSOValidateReceipt_WMYJXBSKXTDM += 5;  \
+INSOValidateReceipt_JKZOWYSQHSTF += 133; INSOValidateReceipt_JKZOWYSQHSTF /= 8;  \
+INSOValidateReceipt_CheckReceiptHash093_INSOValidateReceipt_bail: \
+INSOValidateReceipt_CFRelease_004A017A(INSOValidateReceipt_data4); \
 }
 #endif
     
     
     // CodeBlock CheckReceiptExpirationDate
 #ifdef DEBUG
-    inline static void INSOValidateReceipt_CheckReceiptExpirationDate0A6(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
+    inline static void INSOValidateReceipt_CheckReceiptExpirationDate0A7(INSOValidateReceipt_CheckingContext *INSOValidateReceipt_ctx) {
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt expiration date");
         INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeExpirationDate;
-        CFDateRef INSOValidateReceipt_date1 = INSOValidateReceipt_WRMDFVLFQRMA_010F0140(NULL, INSOValidateReceipt_UFGPFIPLDFOS_0169013C());
-        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_ACFEVVQVAIKY_016900E3(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-        CFDateRef INSOValidateReceipt_date2 = (CFDateRef) INSOValidateReceipt_VLGBCRXLZMHT_010F002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
-        INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key);
-        if (INSOValidateReceipt_date2 && INSOValidateReceipt_HTNSUGXHMGST_00790022(INSOValidateReceipt_date1, INSOValidateReceipt_date2, 0) == kCFCompareGreaterThan) {
+        CFDateRef INSOValidateReceipt_date1 = INSOValidateReceipt_USZEFQCYIXWA_00F700F8(NULL, INSOValidateReceipt_WMYJXBSKXTDM_00E9019D());
+        CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_00F700A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        CFDateRef INSOValidateReceipt_date2 = (CFDateRef) INSOValidateReceipt_HNPSXRYTFLWB_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key);
+        INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key);
+        if (INSOValidateReceipt_date2 && INSOValidateReceipt_JKZOWYSQHSTF_00E9004C(INSOValidateReceipt_date1, INSOValidateReceipt_date2, 0) == kCFCompareGreaterThan) {
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt has expired");
             __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing...");
-            INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1);
+            INSOValidateReceipt_longjmp_008F01C8(INSOValidateReceipt_JumpBuf, 1);
             // Dead code
-            INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key);
-            INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_date1);
-            INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key);
-            INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_date1);
+            INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key);
+            INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_date1);
+            INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key);
+            INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_date1);
         }
         // Global variables computation
-        // From 43 to 157
-        INSOValidateReceipt_VLGBCRXLZMHT -= 12; INSOValidateReceipt_VLGBCRXLZMHT *= 5; INSOValidateReceipt_VLGBCRXLZMHT += 2;
-        // From 342 to 344
-        INSOValidateReceipt_YUURUMHMKAJI -= 228; INSOValidateReceipt_YUURUMHMKAJI *= 3; INSOValidateReceipt_YUURUMHMKAJI += 2;
-        // From 298 to 132
-        INSOValidateReceipt_AFVQTANHTLYF += 230; INSOValidateReceipt_AFVQTANHTLYF /= 4;
-        // From 169 to 69
-        INSOValidateReceipt_VQTNXJHMSZEL += 107; INSOValidateReceipt_VQTNXJHMSZEL /= 4;
-        // From 320 to 227
-        INSOValidateReceipt_WRMDFVLFQRMA += 134; INSOValidateReceipt_WRMDFVLFQRMA /= 2;
-        INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_date1);
+        // Set to 152
+        INSOValidateReceipt_USZEFQCYIXWA = 152;
+        // From 146 to 241
+        INSOValidateReceipt_HNPSXRYTFLWB -= 66; INSOValidateReceipt_HNPSXRYTFLWB *= 3; INSOValidateReceipt_HNPSXRYTFLWB += 1;
+        // From 259 to 342
+        INSOValidateReceipt_ZEIRQNSQKKHM -= 145; INSOValidateReceipt_ZEIRQNSQKKHM *= 3;
+        // From 169 to 375
+        INSOValidateReceipt_KDMYCKEZRSDM -= 76; INSOValidateReceipt_KDMYCKEZRSDM *= 4; INSOValidateReceipt_KDMYCKEZRSDM += 3;
+        // Set to 147
+        INSOValidateReceipt_JKZOWYSQHSTF = 147;
+        INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_date1);
     }
 #else
-#define INSOValidateReceipt_CheckReceiptExpirationDate0A6(INSOValidateReceipt_ctx) { \
+#define INSOValidateReceipt_CheckReceiptExpirationDate0A7(INSOValidateReceipt_ctx) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking receipt expiration date"); \
 INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeExpirationDate; \
-CFDateRef INSOValidateReceipt_date1 = INSOValidateReceipt_WRMDFVLFQRMA_010F0140(NULL, INSOValidateReceipt_UFGPFIPLDFOS_0169013C()); \
-CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_ACFEVVQVAIKY_016900E3(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-CFDateRef INSOValidateReceipt_date2 = (CFDateRef) INSOValidateReceipt_VLGBCRXLZMHT_010F002B((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key); \
-if (INSOValidateReceipt_date2 && INSOValidateReceipt_HTNSUGXHMGST_00790022(INSOValidateReceipt_date1, INSOValidateReceipt_date2, 0) == kCFCompareGreaterThan) { \
+CFDateRef INSOValidateReceipt_date1 = INSOValidateReceipt_USZEFQCYIXWA_00F700F8(NULL, INSOValidateReceipt_WMYJXBSKXTDM_00E9019D()); \
+CFNumberRef INSOValidateReceipt_key = INSOValidateReceipt_PRMZWAVYDNDZ_00F700A9(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+CFDateRef INSOValidateReceipt_date2 = (CFDateRef) INSOValidateReceipt_HNPSXRYTFLWB_00F70092((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key); \
+if (INSOValidateReceipt_date2 && INSOValidateReceipt_JKZOWYSQHSTF_00E9004C(INSOValidateReceipt_date1, INSOValidateReceipt_date2, 0) == kCFCompareGreaterThan) { \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Receipt has expired"); \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Doing nothing..."); \
-INSOValidateReceipt_longjmp_01B2016E(INSOValidateReceipt_JumpBuf, 1); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_date1); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_date1); \
+INSOValidateReceipt_longjmp_008F01C8(INSOValidateReceipt_JumpBuf, 1); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_date1); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_key); \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_date1); \
 } \
-INSOValidateReceipt_VLGBCRXLZMHT -= 12; INSOValidateReceipt_VLGBCRXLZMHT *= 5; INSOValidateReceipt_VLGBCRXLZMHT += 2;  \
-INSOValidateReceipt_YUURUMHMKAJI -= 228; INSOValidateReceipt_YUURUMHMKAJI *= 3; INSOValidateReceipt_YUURUMHMKAJI += 2;  \
-INSOValidateReceipt_AFVQTANHTLYF += 230; INSOValidateReceipt_AFVQTANHTLYF /= 4;  \
-INSOValidateReceipt_VQTNXJHMSZEL += 107; INSOValidateReceipt_VQTNXJHMSZEL /= 4;  \
-INSOValidateReceipt_WRMDFVLFQRMA += 134; INSOValidateReceipt_WRMDFVLFQRMA /= 2;  \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_date1); \
+INSOValidateReceipt_USZEFQCYIXWA = 152; \
+INSOValidateReceipt_HNPSXRYTFLWB -= 66; INSOValidateReceipt_HNPSXRYTFLWB *= 3; INSOValidateReceipt_HNPSXRYTFLWB += 1;  \
+INSOValidateReceipt_ZEIRQNSQKKHM -= 145; INSOValidateReceipt_ZEIRQNSQKKHM *= 3;  \
+INSOValidateReceipt_KDMYCKEZRSDM -= 76; INSOValidateReceipt_KDMYCKEZRSDM *= 4; INSOValidateReceipt_KDMYCKEZRSDM += 3;  \
+INSOValidateReceipt_JKZOWYSQHSTF = 147; \
+INSOValidateReceipt_CFRelease_004A0129(INSOValidateReceipt_date1); \
 }
 #endif
     
@@ -3763,24 +3748,24 @@ INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_date1); \
         CFNumberRef INSOValidateReceipt_key1, INSOValidateReceipt_key2;
         INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeInAppPurchase;
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking InApp purchases");
-        INSOValidateReceipt_key1 = INSOValidateReceipt_WRMDFVLFQRMA_016900E3(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+        INSOValidateReceipt_key1 = INSOValidateReceipt_KDMYCKEZRSDM_00F70177(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
         // Extract InApp Purchase
         CFArrayRef INSOValidateReceipt_idents = (CFArrayRef) INSOValidateReceipt_ctx->inapp_identifiers;
-        CFArrayRef INSOValidateReceipt_purchases = (CFArrayRef) INSOValidateReceipt_AFVQTANHTLYF_010F0084((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key1);
+        CFArrayRef INSOValidateReceipt_purchases = (CFArrayRef) INSOValidateReceipt_HNPSXRYTFLWB_004A00F1((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key1);
         if (INSOValidateReceipt_purchases) {
             // If purchases were found, iterate over the identifiers to test them
-            for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_YUURUMHMKAJI_01690158(INSOValidateReceipt_idents); INSOValidateReceipt_index1++) {
-                CFStringRef INSOValidateReceipt_ident = (CFStringRef) INSOValidateReceipt_VQTNXJHMSZEL_010F0045(INSOValidateReceipt_idents, INSOValidateReceipt_index1);
+            for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_USZEFQCYIXWA_00F70098(INSOValidateReceipt_idents); INSOValidateReceipt_index1++) {
+                CFStringRef INSOValidateReceipt_ident = (CFStringRef) INSOValidateReceipt_ZEIRQNSQKKHM_00E90156(INSOValidateReceipt_idents, INSOValidateReceipt_index1);
                 Boolean INSOValidateReceipt_found = false;
                 // Iterate over the purchases
-                for(INSOValidateReceipt_index2 = 0; INSOValidateReceipt_index2 < INSOValidateReceipt_YUURUMHMKAJI_01690158(INSOValidateReceipt_purchases); INSOValidateReceipt_index2++) {
-                    CFDictionaryRef INSOValidateReceipt_purchase = (CFDictionaryRef) INSOValidateReceipt_VQTNXJHMSZEL_010F0045(INSOValidateReceipt_purchases, INSOValidateReceipt_index2);
+                for(INSOValidateReceipt_index2 = 0; INSOValidateReceipt_index2 < INSOValidateReceipt_USZEFQCYIXWA_00F70098(INSOValidateReceipt_purchases); INSOValidateReceipt_index2++) {
+                    CFDictionaryRef INSOValidateReceipt_purchase = (CFDictionaryRef) INSOValidateReceipt_ZEIRQNSQKKHM_00E90156(INSOValidateReceipt_purchases, INSOValidateReceipt_index2);
                     INSOValidateReceipt_value = INSOValidateReceipt_StoreInAppAttributeTypeProductIdentifer;
-                    INSOValidateReceipt_key2 = INSOValidateReceipt_WRMDFVLFQRMA_016900E3(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
-                    CFStringRef INSOValidateReceipt_product_identifier = (CFStringRef) INSOValidateReceipt_AFVQTANHTLYF_010F0084(INSOValidateReceipt_purchase, INSOValidateReceipt_key2);
-                    INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key2);
+                    INSOValidateReceipt_key2 = INSOValidateReceipt_KDMYCKEZRSDM_00F70177(NULL, kCFNumberIntType, &INSOValidateReceipt_value);
+                    CFStringRef INSOValidateReceipt_product_identifier = (CFStringRef) INSOValidateReceipt_HNPSXRYTFLWB_004A00F1(INSOValidateReceipt_purchase, INSOValidateReceipt_key2);
+                    INSOValidateReceipt_CFRelease_00F70129(INSOValidateReceipt_key2);
                     // If a purchase match the identifier, invoke the callback with the purchase info
-                    if (INSOValidateReceipt_VLGBCRXLZMHT_0079009D(INSOValidateReceipt_ident, INSOValidateReceipt_product_identifier, 0) == kCFCompareEqualTo) {
+                    if (INSOValidateReceipt_JKZOWYSQHSTF_004A0093(INSOValidateReceipt_ident, INSOValidateReceipt_product_identifier, 0) == kCFCompareEqualTo) {
                         INSOValidateReceipt_found |= true;
                         (__SAFE_CAST(INSOValidateReceipt_InAppValidateBlock, INSOValidateReceipt_ctx->inapp_block))(__SAFE_CAST(NSString *, INSOValidateReceipt_ident), true, __SAFE_CAST(NSDictionary *, INSOValidateReceipt_purchase));
                     }
@@ -3792,12 +3777,12 @@ INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_date1); \
             }
         } else {
             // If no purchases were found, iterate over the INSOValidateReceipt_idents and call the block back
-            for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_YUURUMHMKAJI_01690158(INSOValidateReceipt_idents); INSOValidateReceipt_index1++) {
-                CFStringRef INSOValidateReceipt_ident = (CFStringRef) INSOValidateReceipt_VQTNXJHMSZEL_010F0045(INSOValidateReceipt_idents, INSOValidateReceipt_index1);
+            for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_USZEFQCYIXWA_00F70098(INSOValidateReceipt_idents); INSOValidateReceipt_index1++) {
+                CFStringRef INSOValidateReceipt_ident = (CFStringRef) INSOValidateReceipt_ZEIRQNSQKKHM_00E90156(INSOValidateReceipt_idents, INSOValidateReceipt_index1);
                 (__SAFE_CAST(INSOValidateReceipt_InAppValidateBlock, INSOValidateReceipt_ctx->inapp_block))(__SAFE_CAST(NSString *, INSOValidateReceipt_ident), false, NULL);
             }
         }
-        INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key1);
+        INSOValidateReceipt_CFRelease_00F70129(INSOValidateReceipt_key1);
     }
 #else
 #define INSOValidateReceipt_InAppChecker0A9(INSOValidateReceipt_ctx) { \
@@ -3805,20 +3790,20 @@ CFIndex INSOValidateReceipt_index1, INSOValidateReceipt_index2; \
 CFNumberRef INSOValidateReceipt_key1, INSOValidateReceipt_key2; \
 INSOValidateReceipt_ReceiptAttributeType INSOValidateReceipt_value = INSOValidateReceipt_StoreReceiptAttributeTypeInAppPurchase; \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Checking InApp purchases"); \
-INSOValidateReceipt_key1 = INSOValidateReceipt_WRMDFVLFQRMA_016900E3(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+INSOValidateReceipt_key1 = INSOValidateReceipt_KDMYCKEZRSDM_00F70177(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
 CFArrayRef INSOValidateReceipt_idents = (CFArrayRef) INSOValidateReceipt_ctx->inapp_identifiers; \
-CFArrayRef INSOValidateReceipt_purchases = (CFArrayRef) INSOValidateReceipt_AFVQTANHTLYF_010F0084((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key1); \
+CFArrayRef INSOValidateReceipt_purchases = (CFArrayRef) INSOValidateReceipt_HNPSXRYTFLWB_004A00F1((CFDictionaryRef) INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_key1); \
 if (INSOValidateReceipt_purchases) { \
-for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_YUURUMHMKAJI_01690158(INSOValidateReceipt_idents); INSOValidateReceipt_index1++) { \
-CFStringRef INSOValidateReceipt_ident = (CFStringRef) INSOValidateReceipt_VQTNXJHMSZEL_010F0045(INSOValidateReceipt_idents, INSOValidateReceipt_index1); \
+for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_USZEFQCYIXWA_00F70098(INSOValidateReceipt_idents); INSOValidateReceipt_index1++) { \
+CFStringRef INSOValidateReceipt_ident = (CFStringRef) INSOValidateReceipt_ZEIRQNSQKKHM_00E90156(INSOValidateReceipt_idents, INSOValidateReceipt_index1); \
 Boolean INSOValidateReceipt_found = false; \
-for(INSOValidateReceipt_index2 = 0; INSOValidateReceipt_index2 < INSOValidateReceipt_YUURUMHMKAJI_01690158(INSOValidateReceipt_purchases); INSOValidateReceipt_index2++) { \
-CFDictionaryRef INSOValidateReceipt_purchase = (CFDictionaryRef) INSOValidateReceipt_VQTNXJHMSZEL_010F0045(INSOValidateReceipt_purchases, INSOValidateReceipt_index2); \
+for(INSOValidateReceipt_index2 = 0; INSOValidateReceipt_index2 < INSOValidateReceipt_USZEFQCYIXWA_00F70098(INSOValidateReceipt_purchases); INSOValidateReceipt_index2++) { \
+CFDictionaryRef INSOValidateReceipt_purchase = (CFDictionaryRef) INSOValidateReceipt_ZEIRQNSQKKHM_00E90156(INSOValidateReceipt_purchases, INSOValidateReceipt_index2); \
 INSOValidateReceipt_value = INSOValidateReceipt_StoreInAppAttributeTypeProductIdentifer; \
-INSOValidateReceipt_key2 = INSOValidateReceipt_WRMDFVLFQRMA_016900E3(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
-CFStringRef INSOValidateReceipt_product_identifier = (CFStringRef) INSOValidateReceipt_AFVQTANHTLYF_010F0084(INSOValidateReceipt_purchase, INSOValidateReceipt_key2); \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key2); \
-if (INSOValidateReceipt_VLGBCRXLZMHT_0079009D(INSOValidateReceipt_ident, INSOValidateReceipt_product_identifier, 0) == kCFCompareEqualTo) { \
+INSOValidateReceipt_key2 = INSOValidateReceipt_KDMYCKEZRSDM_00F70177(NULL, kCFNumberIntType, &INSOValidateReceipt_value); \
+CFStringRef INSOValidateReceipt_product_identifier = (CFStringRef) INSOValidateReceipt_HNPSXRYTFLWB_004A00F1(INSOValidateReceipt_purchase, INSOValidateReceipt_key2); \
+INSOValidateReceipt_CFRelease_00F70129(INSOValidateReceipt_key2); \
+if (INSOValidateReceipt_JKZOWYSQHSTF_004A0093(INSOValidateReceipt_ident, INSOValidateReceipt_product_identifier, 0) == kCFCompareEqualTo) { \
 INSOValidateReceipt_found |= true; \
 (__SAFE_CAST(INSOValidateReceipt_InAppValidateBlock, INSOValidateReceipt_ctx->inapp_block))(__SAFE_CAST(NSString *, INSOValidateReceipt_ident), true, __SAFE_CAST(NSDictionary *, INSOValidateReceipt_purchase)); \
 } \
@@ -3828,12 +3813,12 @@ if (!INSOValidateReceipt_found) { \
 } \
 } \
 } else { \
-for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_YUURUMHMKAJI_01690158(INSOValidateReceipt_idents); INSOValidateReceipt_index1++) { \
-CFStringRef INSOValidateReceipt_ident = (CFStringRef) INSOValidateReceipt_VQTNXJHMSZEL_010F0045(INSOValidateReceipt_idents, INSOValidateReceipt_index1); \
+for(INSOValidateReceipt_index1 = 0; INSOValidateReceipt_index1 < INSOValidateReceipt_USZEFQCYIXWA_00F70098(INSOValidateReceipt_idents); INSOValidateReceipt_index1++) { \
+CFStringRef INSOValidateReceipt_ident = (CFStringRef) INSOValidateReceipt_ZEIRQNSQKKHM_00E90156(INSOValidateReceipt_idents, INSOValidateReceipt_index1); \
 (__SAFE_CAST(INSOValidateReceipt_InAppValidateBlock, INSOValidateReceipt_ctx->inapp_block))(__SAFE_CAST(NSString *, INSOValidateReceipt_ident), false, NULL); \
 } \
 } \
-INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key1);                     \
+INSOValidateReceipt_CFRelease_00F70129(INSOValidateReceipt_key1);                     \
 }
 #endif
     
@@ -3844,19 +3829,19 @@ INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key1);               
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Cleaning up");
         CFTypeRef INSOValidateReceipt_references[4] = { INSOValidateReceipt_ctx->receipt_data, INSOValidateReceipt_ctx->guid_data, INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_ctx->ca_data };
         if (INSOValidateReceipt_references[0]) {
-            INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_references[0]);
+            INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_references[0]);
             INSOValidateReceipt_references[0] = NULL;
         }
         if (INSOValidateReceipt_references[1]) {
-            INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_references[1]);
+            INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_references[1]);
             INSOValidateReceipt_references[1] = NULL;
         }
         if (INSOValidateReceipt_references[2]) {
-            INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_references[2]);
+            INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_references[2]);
             INSOValidateReceipt_references[2] = NULL;
         }
         if (INSOValidateReceipt_references[3]) {
-            INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_references[3]);
+            INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_references[3]);
             INSOValidateReceipt_references[3] = NULL;
         }
     }
@@ -3865,19 +3850,19 @@ INSOValidateReceipt_CFRelease_0079012C(INSOValidateReceipt_key1);               
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Cleaning up"); \
 CFTypeRef INSOValidateReceipt_references[4] = { INSOValidateReceipt_ctx->receipt_data, INSOValidateReceipt_ctx->guid_data, INSOValidateReceipt_ctx->receipt_dict, INSOValidateReceipt_ctx->ca_data }; \
 if (INSOValidateReceipt_references[0]) { \
-INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_references[0]); \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_references[0]); \
 INSOValidateReceipt_references[0] = NULL; \
 } \
 if (INSOValidateReceipt_references[1]) { \
-INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_references[1]); \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_references[1]); \
 INSOValidateReceipt_references[1] = NULL; \
 } \
 if (INSOValidateReceipt_references[2]) { \
-INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_references[2]); \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_references[2]); \
 INSOValidateReceipt_references[2] = NULL; \
 } \
 if (INSOValidateReceipt_references[3]) { \
-INSOValidateReceipt_CFRelease_007901A6(INSOValidateReceipt_references[3]); \
+INSOValidateReceipt_CFRelease_00E9017A(INSOValidateReceipt_references[3]); \
 INSOValidateReceipt_references[3] = NULL; \
 } \
 }
@@ -3893,72 +3878,25 @@ INSOValidateReceipt_references[3] = NULL; \
         _Pragma("clang diagnostic ignored \"-Wused-but-marked-unused\"")
         __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Entry point");
         // Create contexts
-        INSOValidateReceipt_CheckingContext INSOValidateReceipt_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+        INSOValidateReceipt_CheckingContext INSOValidateReceipt_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
         // The InApp purchase identifiers and the callback block
         INSOValidateReceipt_ctx1.inapp_identifiers = __SAFE_CAST(CFTypeRef, _inapp_identifiers);
         INSOValidateReceipt_ctx1.inapp_block = __SAFE_CAST(CFTypeRef, (INSOValidateReceipt_InAppValidateBlock) _inapp_block);
-        // Initial value
-        int INSOValidateReceipt_index = 3449;
-        // While loop
-        while(INSOValidateReceipt_index != 1860) {
-            if (!INSOValidateReceipt_setjmp_01B2002A(INSOValidateReceipt_JumpBuf)) {
-                switch(INSOValidateReceipt_index) {
-                    case 3335:
-                        INSOValidateReceipt_CheckReceiptSignature067((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index += 1201; INSOValidateReceipt_index /= 2;
-                        break;
-                    case 3449:
-                        INSOValidateReceipt_GetMainBundle016((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index += 1556; INSOValidateReceipt_index /= 5;
-                        break;
-                    case 2268:
-                        INSOValidateReceipt_CheckReceiptIdentifier07F((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index += 597; INSOValidateReceipt_index /= 5;
-                        break;
-                    case 1001:
-                        INSOValidateReceipt_LoadReceipt042((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index -= 358; INSOValidateReceipt_index *= 4; INSOValidateReceipt_index += 3;
-                        break;
-                    case 573:
-                        INSOValidateReceipt_CheckReceiptVersion081((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index -= 154; INSOValidateReceipt_index *= 6; INSOValidateReceipt_index += 5;
-                        break;
-                    case 4049:
-                        INSOValidateReceipt_CheckReceiptExpirationDate0A6((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index += 3823; INSOValidateReceipt_index /= 3; 
-                        break;
-                    case 2624:
-                        INSOValidateReceipt_InAppChecker0A9((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index -= 1660; INSOValidateReceipt_index *= 3; 
-                        break;
-                    case 2103:
-                        INSOValidateReceipt_GetReceiptInformation063((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index -= 992; INSOValidateReceipt_index *= 3; INSOValidateReceipt_index += 2; 
-                        break;
-                    case 2575:
-                        INSOValidateReceipt_GetGUID04D((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index -= 1271; INSOValidateReceipt_index *= 3; 
-                        break;
-                    case 2892:
-                        INSOValidateReceipt_CleanUp0AC((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index += 2688; INSOValidateReceipt_index /= 3; 
-                        break;
-                    case 3912:
-                        INSOValidateReceipt_CheckBundleIdentifier05B((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index += 2000; INSOValidateReceipt_index /= 2; 
-                        break;
-                    case 2956:
-                        INSOValidateReceipt_CheckBundleVersion05F((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index += 1250; INSOValidateReceipt_index /= 2; 
-                        break;
-                    case 2519:
-                        INSOValidateReceipt_CheckReceiptHash089((&INSOValidateReceipt_ctx1));
-                        INSOValidateReceipt_index -= 1170; INSOValidateReceipt_index *= 3; INSOValidateReceipt_index += 2; 
-                        break;
-                }
-            } else {
-                break;
-            }
+        if (!INSOValidateReceipt_setjmp_00A50115(INSOValidateReceipt_JumpBuf)) {
+            // Call each step
+            INSOValidateReceipt_GetMainBundle016((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_LoadReceipt041((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_GetGUID04E((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_CheckBundleIdentifier05B((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_CheckBundleVersion05F((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_GetReceiptInformation062((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_CheckReceiptSignature066((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_CheckReceiptIdentifier07F((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_CheckReceiptVersion081((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_CheckReceiptHash093((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_CheckReceiptExpirationDate0A7((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_InAppChecker0A9((&INSOValidateReceipt_ctx1));
+            INSOValidateReceipt_CleanUp0AC((&INSOValidateReceipt_ctx1));
         }
         _Pragma("clang diagnostic pop")
     }
@@ -3967,69 +3905,23 @@ INSOValidateReceipt_references[3] = NULL; \
 _Pragma("clang diagnostic push") \
 _Pragma("clang diagnostic ignored \"-Wused-but-marked-unused\"") \
 __INSOValidateReceipt_RECEIPT_LOG("INSOValidateReceipt - Entry point"); \
-INSOValidateReceipt_CheckingContext INSOValidateReceipt_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }; \
+INSOValidateReceipt_CheckingContext INSOValidateReceipt_ctx1 = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }; \
 INSOValidateReceipt_ctx1.inapp_identifiers = __SAFE_CAST(CFTypeRef, _inapp_identifiers); \
 INSOValidateReceipt_ctx1.inapp_block = __SAFE_CAST(CFTypeRef, (INSOValidateReceipt_InAppValidateBlock) _inapp_block); \
-int INSOValidateReceipt_index = 3449; \
-while(INSOValidateReceipt_index != 1860) { \
-if (!INSOValidateReceipt_setjmp_01B2002A(INSOValidateReceipt_JumpBuf)) { \
-switch(INSOValidateReceipt_index) { \
-case 3335: \
-INSOValidateReceipt_CheckReceiptSignature067((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index += 1201; INSOValidateReceipt_index /= 2;  \
-break; \
-case 3449: \
+if (!INSOValidateReceipt_setjmp_00A50115(INSOValidateReceipt_JumpBuf)) { \
 INSOValidateReceipt_GetMainBundle016((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index += 1556; INSOValidateReceipt_index /= 5;  \
-break; \
-case 2268: \
-INSOValidateReceipt_CheckReceiptIdentifier07F((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index += 597; INSOValidateReceipt_index /= 5;  \
-break; \
-case 1001: \
-INSOValidateReceipt_LoadReceipt042((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index -= 358; INSOValidateReceipt_index *= 4; INSOValidateReceipt_index += 3;  \
-break; \
-case 573: \
-INSOValidateReceipt_CheckReceiptVersion081((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index -= 154; INSOValidateReceipt_index *= 6; INSOValidateReceipt_index += 5;  \
-break; \
-case 4049: \
-INSOValidateReceipt_CheckReceiptExpirationDate0A6((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index += 3823; INSOValidateReceipt_index /= 3;  \
-break; \
-case 2624: \
-INSOValidateReceipt_InAppChecker0A9((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index -= 1660; INSOValidateReceipt_index *= 3;  \
-break; \
-case 2103: \
-INSOValidateReceipt_GetReceiptInformation063((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index -= 992; INSOValidateReceipt_index *= 3; INSOValidateReceipt_index += 2;  \
-break; \
-case 2575: \
-INSOValidateReceipt_GetGUID04D((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index -= 1271; INSOValidateReceipt_index *= 3;  \
-break; \
-case 2892: \
-INSOValidateReceipt_CleanUp0AC((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index += 2688; INSOValidateReceipt_index /= 3;  \
-break; \
-case 3912: \
+INSOValidateReceipt_LoadReceipt041((&INSOValidateReceipt_ctx1)); \
+INSOValidateReceipt_GetGUID04E((&INSOValidateReceipt_ctx1)); \
 INSOValidateReceipt_CheckBundleIdentifier05B((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index += 2000; INSOValidateReceipt_index /= 2;  \
-break; \
-case 2956: \
 INSOValidateReceipt_CheckBundleVersion05F((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index += 1250; INSOValidateReceipt_index /= 2;  \
-break; \
-case 2519: \
-INSOValidateReceipt_CheckReceiptHash089((&INSOValidateReceipt_ctx1)); \
-INSOValidateReceipt_index -= 1170; INSOValidateReceipt_index *= 3; INSOValidateReceipt_index += 2;  \
-break; \
-} \
-} else { \
-break; \
-} \
+INSOValidateReceipt_GetReceiptInformation062((&INSOValidateReceipt_ctx1)); \
+INSOValidateReceipt_CheckReceiptSignature066((&INSOValidateReceipt_ctx1)); \
+INSOValidateReceipt_CheckReceiptIdentifier07F((&INSOValidateReceipt_ctx1)); \
+INSOValidateReceipt_CheckReceiptVersion081((&INSOValidateReceipt_ctx1)); \
+INSOValidateReceipt_CheckReceiptHash093((&INSOValidateReceipt_ctx1)); \
+INSOValidateReceipt_CheckReceiptExpirationDate0A7((&INSOValidateReceipt_ctx1)); \
+INSOValidateReceipt_InAppChecker0A9((&INSOValidateReceipt_ctx1)); \
+INSOValidateReceipt_CleanUp0AC((&INSOValidateReceipt_ctx1)); \
 } \
 _Pragma("clang diagnostic pop") \
 }
