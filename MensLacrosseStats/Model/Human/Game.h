@@ -10,6 +10,7 @@
 // Public Methods
 - (BOOL)rosterContainsPlayerWithNumber:(NSNumber*)number;
 - (RosterPlayer*)playerWithNumber:(NSNumber*)number;
-- (BOOL)didRecordEvent:(INSOEventCode)eventCode; 
+- (BOOL)didRecordEvent:(INSOEventCode)eventCode;
+- (void)updateScores;
 
 @end

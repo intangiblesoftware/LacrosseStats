@@ -131,6 +131,9 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
     self.homeTeamLabel.text = self.game.homeTeam;
     self.visitingTeamLabel.text = self.game.visitingTeam;
 
+    // Make sure the game object updates its own scores
+    [self.game updateScores];
+    
     self.homeScoreLabel.text = [NSString stringWithFormat:@"%@", self.game.homeScore];
     self.visitingScoreLabel.text = [NSString stringWithFormat:@"%@", self.game.visitorScore];
     
