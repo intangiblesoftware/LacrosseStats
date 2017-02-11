@@ -151,7 +151,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 
 - (void)switchTeamRecordingStatsFor:(id)sender
 {
-    self.game.teamWatching = [self.teamToRecordSegmentedControl titleForSegmentAtIndex:self.teamToRecordSegmentedControl.selectedSegmentIndex]; 
+    self.game.teamWatching = [self.teamToRecordSegmentedControl titleForSegmentAtIndex:self.teamToRecordSegmentedControl.selectedSegmentIndex];
 }
 
 #pragma mark - Private Properties
