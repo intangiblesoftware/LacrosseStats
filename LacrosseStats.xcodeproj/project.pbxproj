@@ -754,6 +754,7 @@
 				B9D732431C5B082300FEADFF /* Resources */,
 				4CC6BE35104E03136A11B51D /* [CP] Embed Pods Frameworks */,
 				1E7EAFD2D07099ADFB0344A9 /* [CP] Copy Pods Resources */,
+				B985F0651E4F72A300C22354 /* Increment build number */,
 			);
 			buildRules = (
 			);
@@ -1018,6 +1019,20 @@
 			);
 			inputPaths = (
 			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+		};
+		B985F0651E4F72A300C22354 /* Increment build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Increment build number";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;

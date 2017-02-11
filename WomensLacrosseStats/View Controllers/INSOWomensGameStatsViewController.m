@@ -58,6 +58,7 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
 {
     [super viewWillAppear:animated];
     
+    self.eventCounter = nil; 
     self.gameStatsArray = nil;
     self.playerStatsArray = nil;
     [self.statsTable reloadData]; 

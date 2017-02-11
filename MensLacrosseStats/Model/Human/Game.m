@@ -50,17 +50,7 @@
         }
     } else {
         // Just update game score.
-        if ([self.homeTeam isEqualToString:self.teamWatching]) {
-            self.homeScoreValue = [self teamWatchingGoals]; 
-        } else {
-            self.homeScoreValue = [self otherTeamGoals];
-        }
-
-        if ([self.visitingTeam isEqualToString:self.teamWatching]) {
-            self.visitorScoreValue = [self teamWatchingGoals];
-        } else {
-            self.visitorScoreValue = [self otherTeamGoals];
-        }
+        [self updateScores]; 
     }
 }
 
@@ -128,6 +118,21 @@
     }];
     
     return recordedEvent;
+}
+
+- (void)updateScores
+{
+    if ([self.homeTeam isEqualToString:self.teamWatching]) {
+        self.homeScoreValue = [self teamWatchingGoals];
+    } else {
+        self.homeScoreValue = [self otherTeamGoals];
+    }
+    
+    if ([self.visitingTeam isEqualToString:self.teamWatching]) {
+        self.visitorScoreValue = [self teamWatchingGoals];
+    } else {
+        self.visitorScoreValue = [self otherTeamGoals];
+    }
 }
 
 @end
