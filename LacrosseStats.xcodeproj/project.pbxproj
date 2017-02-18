@@ -163,7 +163,7 @@
 		9789A77BE2C21B9E6A22FE8A /* Pods-WomensLacrosseStats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WomensLacrosseStats.release.xcconfig"; path = "Pods/Target Support Files/Pods-WomensLacrosseStats/Pods-WomensLacrosseStats.release.xcconfig"; sourceTree = "<group>"; };
 		9F9DA4F91E1C8130008B8AC0 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/OpenSSL/lib/libcrypto.a; sourceTree = "<group>"; };
 		9F9DA4FB1E1C814A008B8AC0 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Pods/OpenSSL/lib/libssl.a; sourceTree = "<group>"; };
-		9FCB08581E1C7BB000BD7850 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		9FCB08581E1C7BB000BD7850 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B9108A901BC07FE9000450F8 /* MensLacrosseStatsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MensLacrosseStatsTests.m; sourceTree = "<group>"; };
 		B916A11B1C1DB32100E754A3 /* INSOEmailStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOEmailStatsViewController.h; sourceTree = "<group>"; };
 		B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOEmailStatsViewController.m; sourceTree = "<group>"; };
