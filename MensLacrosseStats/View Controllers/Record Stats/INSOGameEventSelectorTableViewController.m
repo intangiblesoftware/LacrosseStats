@@ -118,7 +118,15 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
             // Goal allowed by watching. Goal for other guys.
             player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
         }
-        [self createEvent:INSOEventCodeGoal forPlayer:player];
+        if ([self shouldCreateEvent:INSOEventCodeShot]) {
+            [self createEvent:INSOEventCodeShot forPlayer:player];
+        }
+        if ([self shouldCreateEvent:INSOEventCodeShotOnGoal]) {
+            [self createEvent:INSOEventCodeShotOnGoal forPlayer:player];
+        }
+        if ([self shouldCreateEvent:INSOEventCodeGoal]) {
+            [self createEvent:INSOEventCodeGoal forPlayer:player];
+        }
     }
     
     // If it's a save event, need to create shot and shot on goal for the other guys
