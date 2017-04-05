@@ -124,7 +124,7 @@
             [gameStatsArray addObject:[dataRow componentsJoinedByString:@","]];
         }
     }
-
+    
     // Convert to string
     NSString *playerStatsString = [gameStatsArray componentsJoinedByString:@"\n"];
     
@@ -190,7 +190,7 @@
         // groundballs
         event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.game.managedObjectContext];
         [maxPrepsBoysEventSet addObject:event];
-
+        
         // interceptions
         event = [Event eventForCode:INSOEventCodeInterception inManagedObjectContext:self.game.managedObjectContext];
         [maxPrepsBoysEventSet addObject:event];
@@ -432,7 +432,7 @@
         [fieldingSection appendFormat:@"<td>%@</td><td>Turnovers</td><td>%@</td>\n", homeTurnovers, visitorTurnovers];
         [fieldingSection appendString:@"</tr>\n"];
     }
-
+    
     // Caused Turnovers
     if ([self.game didRecordEvent:INSOEventCodeCausedTurnover]) {
         NSNumber *homeCausedTurnovers = [self.eventCounter eventCountForHomeTeam:INSOEventCodeCausedTurnover];
@@ -485,12 +485,12 @@
         NSInteger visitorGoals = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeGoal] integerValue];
         CGFloat   visitorShootingPct = (visitorShots > 0) ? (CGFloat)visitorGoals / visitorShots : 0.0;
         NSString *visitorShootingPctString = [self.percentFormatter stringFromNumber:@(visitorShootingPct)];
-
+        
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Shooting Percent<br/>(Goals / Shots)</td><td>%@</td>\n", homeShootingPctString, visitorShootingPctString];
         [scoringSection appendString:@"</tr>\n"];
     }
-
+    
     
     // Shots on goal
     if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
@@ -513,7 +513,7 @@
         NSInteger visitorSOG = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeShotOnGoal] integerValue];
         NSInteger visitorMisses = visitorShots - visitorSOG;
         visitorMisses = visitorMisses < 0 ? 0 : visitorMisses;
-
+        
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Misses</td><td>%@</td>\n", @(homeMisses), @(visitorMisses)];
         [scoringSection appendString:@"</tr>\n"];
@@ -535,7 +535,7 @@
         [scoringSection appendFormat:@"<td>%@</td><td>Shooting Accuracy<br/>(Shots on Goal / Shots)</td><td>%@</td>\n", homeAccuracyString, visitorAccuracyString];
         [scoringSection appendString:@"</tr>\n"];
     }
-
+    
     // Assists
     if ([self.game didRecordEvent:INSOEventCodeAssist]) {
         NSNumber *homeAssists = [self.eventCounter eventCountForHomeTeam:INSOEventCodeAssist];
@@ -577,7 +577,7 @@
         NSInteger visitorGoalsAllowed = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeGoalAllowed] integerValue];
         CGFloat   visitorSavePct = (visitorSaves + visitorGoalsAllowed) > 0 ? (CGFloat)visitorSaves / (visitorSaves + visitorGoalsAllowed) : 0.0;
         NSString *visitorSavePctString = [self.percentFormatter stringFromNumber:@(visitorSavePct)];
-
+        
         [scoringSection appendString:@"<tr>\n"];
         [scoringSection appendFormat:@"<td>%@</td><td>Save Percent</td><td>%@</td>\n", homeSavePctString, visitorSavePctString];
         [scoringSection appendString:@"</tr>\n"];
@@ -637,7 +637,7 @@
         [emoSection appendFormat:@"<td>%@</td><td>Man-up</td><td>%@</td>\n", homeManUp, visitorManUp];
         [emoSection appendString:@"</tr>\n"];
     }
-
+    
     // Man-up scoring
     if ([self.game didRecordEvent:INSOEventCodeManUp] && [self.game didRecordEvent:INSOEventCodeGoal]) {
         NSInteger homeManUpGoals = [[self.eventCounter extraManGoalsForHomeTeam] integerValue];
@@ -661,7 +661,7 @@
         [emoSection appendFormat:@"<td>%@</td><td>Man-up Scoring</td><td>%@</td>\n", homeManUpScoringString, visitorManUpScoringString];
         [emoSection appendString:@"</tr>\n"];
     }
-
+    
     
     // Man-down
     if ([self.game didRecordEvent:INSOEventCodeManDown]) {
@@ -686,7 +686,7 @@
         
         CGFloat homeManDownScoring = (homeManDown > 0) ? (CGFloat)homeMDGoalsAllowed / homeManDown : 0.0;
         CGFloat visitorManDownScoring = (visitorManDown > 0) ? (CGFloat)visitorMDGoalsAllowed / visitorManDown : 0.0;
-
+        
         // Man-down scoring = man-down goals allowed / man-down
         NSString *homeManDownScoringString = [self.percentFormatter stringFromNumber:@(homeManDownScoring)];
         NSString *visitorManDownScoringString = [self.percentFormatter stringFromNumber:@(visitorManDownScoring)];
@@ -694,7 +694,7 @@
         [emoSection appendString:@"<tr>\n"];
         [emoSection appendFormat:@"<td>%@</td><td>Man-down Goals Allowed</td><td>%@</td>\n", @(homeMDGoalsAllowed), @(visitorMDGoalsAllowed)];
         [emoSection appendString:@"</tr>\n"];
-
+        
         [emoSection appendString:@"<tr>\n"];
         [emoSection appendFormat:@"<td>%@</td><td>Man-down Scoring</td><td>%@</td>\n", homeManDownScoringString, visitorManDownScoringString];
         [emoSection appendString:@"</tr>\n"];
@@ -754,7 +754,7 @@
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>8m (Free Position)</td><td>%@</td>\n", @(home8m), @(visitor8m)];
         [penaltySection appendString:@"</tr>\n"];
-
+        
         // 8-meter shots and goals
         NSNumber *homeFPS = [self.eventCounter freePositionEventCountForHomeTeam:INSOEventCodeShot];
         NSNumber *visitorFPS = [self.eventCounter freePositionEventCountForVisitingTeam:INSOEventCodeShot];
@@ -768,31 +768,31 @@
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@/%@/%@</td><td>8m (Free Position)<br />Shots/SOG/Goals</td><td>%@/%@/%@</td>\n", homeFPS, homeFPSOG, homeFPGoal, visitorFPS, visitorFPSOG,visitorFPGoal];
         [penaltySection appendString:@"</tr>\n"];
-
+        
         // Green cards
         NSInteger homeGreenCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeGreenCard] integerValue];
         NSInteger visitorGreenCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeGreenCard] integerValue];
-
+        
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Green Cards</td><td>%@</td>\n", @(homeGreenCards), @(visitorGreenCards)];
         [penaltySection appendString:@"</tr>\n"];
-
+        
         // Yellow cards
         NSInteger homeYellowCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeYellowCard] integerValue];
         NSInteger visitorYellowCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeYellowCard] integerValue];
-
+        
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Yellow Cards</td><td>%@</td>\n", @(homeYellowCards), @(visitorYellowCards)];
         [penaltySection appendString:@"</tr>\n"];
-
+        
         // Red cards
         NSInteger homeRedCards = [[self.eventCounter eventCountForHomeTeam:INSOEventCodeRedCard] integerValue];
         NSInteger visitorRedCards = [[self.eventCounter eventCountForVisitingTeam:INSOEventCodeRedCard] integerValue];
-
+        
         [penaltySection appendString:@"<tr>\n"];
         [penaltySection appendFormat:@"<td>%@</td><td>Red Cards</td><td>%@</td>\n", @(homeRedCards), @(visitorRedCards)];
         [penaltySection appendString:@"</tr>\n"];
-
+        
     }
     return penaltySection;
 }
@@ -819,106 +819,144 @@
     Event *event;
     
     // Groundballs
+    if ([self.game didRecordEvent:INSOEventCodeGroundball]) {
     event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Faceoff attempts
+    if ([self.game didRecordEvent:INSOEventCodeFaceoffWon] && [self.game didRecordEvent:INSOEventCodeFaceoffLost]) {
     [header addObject:@"Faceoffs"];
+    }
     
     // Faceoffs won
+    if ([self.game didRecordEvent:INSOEventCodeFaceoffWon] && [self.game didRecordEvent:INSOEventCodeFaceoffLost]) {
     event = [Event eventForCode:INSOEventCodeFaceoffWon inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Faceoff %
+    if ([self.game didRecordEvent:INSOEventCodeFaceoffWon] && [self.game didRecordEvent:INSOEventCodeFaceoffLost]) {
     [header addObject:@"Faceoff Pct."];
+    }
     
     // Turnovers
+    if ([self.game didRecordEvent:INSOEventCodeTurnover]) {
     event = [Event eventForCode:INSOEventCodeTurnover inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Caused turnover
+    if ([self.game didRecordEvent:INSOEventCodeCausedTurnover]) {
     event = [Event eventForCode:INSOEventCodeCausedTurnover inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Interceptions
+    if ([self.game didRecordEvent:INSOEventCodeInterception]) {
     event = [Event eventForCode:INSOEventCodeInterception inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Shots
+    if ([self.game didRecordEvent:INSOEventCodeShot]) {
     event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Goals
+    if ([self.game didRecordEvent:INSOEventCodeGoal]) {
     event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Assists
+    if ([self.game didRecordEvent:INSOEventCodeAssist]) {
     event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Points
+    if ([self.game didRecordEvent:INSOEventCodeAssist] && [self.game didRecordEvent:INSOEventCodeGoal]) {
     [header addObject:@"Points"];
+    }
     
     // Shooting %
+    if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeGoal]) {
     [header addObject:@"Shooting Pct."];
+    }
     
     // SOG
+    if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
     event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Misses
+    if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
     [header addObject:@"Misses"];
+    }
     
     // Shooting accuracy
+    if ([self.game didRecordEvent:INSOEventCodeShotOnGoal] && [self.game didRecordEvent:INSOEventCodeShot]) {
     [header addObject:@"Shooting Accuracy"];
+    }
     
     // Saves
+    if ([self.game didRecordEvent:INSOEventCodeSave]) {
     event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Goals allowed
+    if ([self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
     event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.game.managedObjectContext];
     if (event) {
         [header addObject:event.title];
     }
     event = nil;
+    }
     
     // Save %
+    if ([self.game didRecordEvent:INSOEventCodeSave] && [self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
     [header addObject:@"Save Pct."];
+    }
     
     // Penalties
+    if (self.shouldExportPenalties && self.isExportingForBoys) {
     [header addObject:@"Penalties"];
     [header addObject:@"Penalty time"];
+    }
     
     return header;
 }
@@ -935,133 +973,177 @@
     Event *event;
     
     // Groundballs
-    event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeGroundball]) {
+        event = [Event eventForCode:INSOEventCodeGroundball inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Draws taken
-    event = [Event eventForCode:INSOEventCodeDrawTaken inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeDrawTaken]) {
+        event = [Event eventForCode:INSOEventCodeDrawTaken inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Draw possession
-    event = [Event eventForCode:INSOEventCodeDrawPossession inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeDrawPossession]) {
+        event = [Event eventForCode:INSOEventCodeDrawPossession inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Draw control
-    event = [Event eventForCode:INSOEventCodeDrawControl inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeDrawControl]) {
+        event = [Event eventForCode:INSOEventCodeDrawControl inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Draw control percent
     [header addObject:@"Draw Control Pct."];
-
+    
     // Caused turnover
-    event = [Event eventForCode:INSOEventCodeCausedTurnover inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeCausedTurnover]) {
+        event = [Event eventForCode:INSOEventCodeCausedTurnover inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Interceptions
-    event = [Event eventForCode:INSOEventCodeInterception inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeInterception]) {
+        event = [Event eventForCode:INSOEventCodeInterception inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Shots
-    event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeShot]) {
+        event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Goals
-    event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeGoal]) {
+        event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Assists
-    event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeAssist]) {
+        event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Shooting %
-    [header addObject:@"Shooting Pct."];
+    if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeGoal]) {
+        [header addObject:@"Shooting Pct."];
+    }
     
     // SOG
-    event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeAssist]) {
+        event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Misses
-    [header addObject:@"Misses"];
+    if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
+        [header addObject:@"Misses"];
+    }
     
     // Shooting accuracy
-    [header addObject:@"Shooting Accuracy"];
+    if ([self.game didRecordEvent:INSOEventCodeShotOnGoal] && [self.game didRecordEvent:INSOEventCodeShot]) {
+        [header addObject:@"Shooting Accuracy"];
+    }
     
     // Free postion awarded
-    event = [Event eventForCode:INSOEventCode8mFreePosition inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCode8mFreePosition]) {
+        event = [Event eventForCode:INSOEventCode8mFreePosition inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Free position shot
-    [header addObject:@"Free Position Shots"];
+    if ([self.game didRecordEvent:INSOEventCodeShot]) {
+        [header addObject:@"Free Position Shots"];
+    }
     
     // Free position goal
-    [header addObject:@"Free Position Goals"];
+    if ([self.game didRecordEvent:INSOEventCodeGoal]) {
+        [header addObject:@"Free Position Goals"];
+    }
     
     // Saves
-    event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeSave]) {
+        event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Goals allowed
-    event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
+        event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Save %
-    [header addObject:@"Save Pct."];
-
+    if ([self.game didRecordEvent:INSOEventCodeSave] && [self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
+        [header addObject:@"Save Pct."];
+    }
+    
     // Fouls (major and minor)
-    [header addObject:@"Fouls"];
+    if ([self.game didRecordEvent:INSOEventCodeMajorFoul] || [self.game didRecordEvent:INSOEventCodeMinorFoul]) {
+        [header addObject:@"Fouls"];
+    }
     
     // Yellow cards
-    event = [Event eventForCode:INSOEventCodeYellowCard inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeYellowCard]) {
+        event = [Event eventForCode:INSOEventCodeYellowCard inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     // Red cards
-    event = [Event eventForCode:INSOEventCodeRedCard inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
+    if ([self.game didRecordEvent:INSOEventCodeRedCard]) {
+        event = [Event eventForCode:INSOEventCodeRedCard inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
-    event = nil;
     
     return header;
 }
@@ -1232,7 +1314,7 @@
 - (NSArray*)girlsDataRowForPlayer:(RosterPlayer*)rosterPlayer
 {
     NSMutableArray* dataRow = [NSMutableArray new];
-
+    
     // First the player number
     [dataRow addObject:rosterPlayer.number];
     
@@ -1272,7 +1354,7 @@
     } else {
         [dataRow addObject:@""];
     }
-
+    
     // Caused turnover
     if ([self.game didRecordEvent:INSOEventCodeCausedTurnover]) {
         [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeCausedTurnover forRosterPlayer:rosterPlayer]];
@@ -1312,7 +1394,7 @@
             [dataRow addObject:@""];
         }
     }
-
+    
     // SOG
     NSNumber *sog;
     if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
@@ -1381,7 +1463,7 @@
             [dataRow addObject:@""];
         }
     }
-
+    
     // Fouls (major and minor)
     if ([self.game didRecordEvent:INSOEventCodeMajorFoul] || [self.game didRecordEvent:INSOEventCodeMinorFoul]) {
         NSInteger totalFouls = 0;
