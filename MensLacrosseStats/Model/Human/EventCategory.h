@@ -1,5 +1,9 @@
 #import "_EventCategory.h"
 
+#import "INSOMensLacrosseStatsEnum.h"
+
 @interface EventCategory : _EventCategory {}
-// Custom logic goes here.
+
++ (EventCategory*)categoryForCode:(INSOCategoryCode)code inManagedObjectContext:(NSManagedObjectContext *)moc;
+
 @end

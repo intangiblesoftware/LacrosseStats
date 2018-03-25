@@ -1728,7 +1728,6 @@
                         <color key="backgroundColor" red="0.95110291242599487" green="0.96538805961608887" blue="0.97523164749145508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1cL-vm-3VL" secondAttribute="trailing" id="2wZ-s0-mfu"/>
-                            <constraint firstItem="v6R-uS-cGA" firstAttribute="centerX" secondItem="p4r-bL-ZBm" secondAttribute="centerX" id="5i2-b1-khW"/>
                             <constraint firstItem="1cL-vm-3VL" firstAttribute="top" secondItem="p4r-bL-ZBm" secondAttribute="top" id="82b-G1-rp2"/>
                             <constraint firstItem="1cL-vm-3VL" firstAttribute="leading" secondItem="p4r-bL-ZBm" secondAttribute="leading" id="Ala-1J-9lc"/>
                             <constraint firstItem="1cL-vm-3VL" firstAttribute="top" secondItem="SU6-xX-gI7" secondAttribute="bottom" id="GGn-F1-cpR"/>

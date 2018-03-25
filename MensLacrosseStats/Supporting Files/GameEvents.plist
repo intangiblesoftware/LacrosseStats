@@ -145,6 +145,30 @@
 				<key>StatCategory</key>
 				<integer>2</integer>
 			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>120</integer>
+				<key>EventTitle</key>
+				<string>Takeaway</string>
+				<key>StatCategory</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>121</integer>
+				<key>EventTitle</key>
+				<string>Unforced error</string>
+				<key>StatCategory</key>
+				<integer>1</integer>
+			</dict>
+			<dict>
+				<key>EventCode</key>
+				<integer>122</integer>
+				<key>EventTitle</key>
+				<string>End of period</string>
+				<key>StatCategory</key>
+				<integer>0</integer>
+			</dict>
 		</array>
 	</dict>
 	<dict>

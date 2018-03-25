@@ -69,7 +69,7 @@ extern "C" {
     
     // Define to turn-off debug logs
 #ifndef RECEIGEN_QUIET_DEBUG
-#define RECEIGEN_QUIET_DEBUG 0
+#define RECEIGEN_QUIET_DEBUG 1
 #endif
     
     // Log statement for debugging purpose
