@@ -599,8 +599,26 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
         [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
+    // Takeaways
+    event = [Event eventForCode:INSOEventCodeTakeaway inManagedObjectContext:self.managedObjectContext];
+    if ([self.game.eventsToRecord containsObject:event]) {
+        statTitle = event.title;
+        eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        statValueString = [NSString stringWithFormat:@"%@", eventCount];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
+    }
+    
     // Caused turnover
     event = [Event eventForCode:INSOEventCodeCausedTurnover inManagedObjectContext:self.managedObjectContext];
+    if ([self.game.eventsToRecord containsObject:event]) {
+        statTitle = event.title;
+        eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        statValueString = [NSString stringWithFormat:@"%@", eventCount];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
+    }
+    
+    // Unforced errors
+    event = [Event eventForCode:INSOEventCodeUnforcedError inManagedObjectContext:self.managedObjectContext];
     if ([self.game.eventsToRecord containsObject:event]) {
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];

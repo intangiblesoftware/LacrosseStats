@@ -133,7 +133,7 @@
 				<key>EventCode</key>
 				<integer>121</integer>
 				<key>EventTitle</key>
-				<string>Unforced Error</string>
+				<string>Unforced error</string>
 				<key>StatCategory</key>
 				<integer>1</integer>
 			</dict>

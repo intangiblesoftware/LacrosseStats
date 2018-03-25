@@ -1067,6 +1067,24 @@
         event = nil;
     }
     
+    // Takeaways
+    if ([self.game didRecordEvent:INSOEventCodeTakeaway]) {
+        event = [Event eventForCode:INSOEventCodeTakeaway inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
+    }
+    
+    // Unforced Errors
+    if ([self.game didRecordEvent:INSOEventCodeUnforcedError]) {
+        event = [Event eventForCode:INSOEventCodeUnforcedError inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
+    }
+    
     // Shots
     if ([self.game didRecordEvent:INSOEventCodeShot]) {
         event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
@@ -1100,7 +1118,7 @@
     }
     
     // SOG
-    if ([self.game didRecordEvent:INSOEventCodeAssist]) {
+    if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
         event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
         if (event) {
             [header addObject:event.title];
@@ -1411,6 +1429,16 @@
     // Interceptions
     if ([self.game didRecordEvent:INSOEventCodeInterception]) {
         [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeInterception forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Takeaways
+    if ([self.game didRecordEvent:INSOEventCodeTakeaway]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeTakeaway forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Unforced errors
+    if ([self.game didRecordEvent:INSOEventCodeUnforcedError]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeUnforcedError forRosterPlayer:rosterPlayer]];
     }
     
     // Shots
