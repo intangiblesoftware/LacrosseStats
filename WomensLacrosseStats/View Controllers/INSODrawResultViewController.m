@@ -119,7 +119,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
             for (RosterPlayer *player in self.center.game.players) {
                 if (player.numberValue == INSOTeamWatchingPlayerNumber) {
                     [roster addObject:player];
-                } else if ((player.numberValue > INSOTeamWatchingPlayerNumber) && (player.numberValue != self.center.numberValue)) {
+                } else if (player.numberValue > INSOTeamWatchingPlayerNumber) {
                     [roster addObject:player];
                 }
             }

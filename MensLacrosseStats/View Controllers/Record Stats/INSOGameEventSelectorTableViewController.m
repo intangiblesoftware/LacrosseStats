@@ -195,6 +195,19 @@ static NSString * const INSODrawResultSegueIdentifier      = @"DrawResultSegue";
         }
     }
     
+    // Take away - record turnover for other team.
+    if (event.eventCodeValue == INSOEventCodeTakeaway) {
+        if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+            RosterPlayer *player;
+            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+            } else {
+                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            }
+            [self createEvent:INSOEventCodeTurnover forPlayer:player];
+        }
+    }
+    
     // Save the MOC
     NSError* error;
     if (![self.managedObjectContext save:&error]) {

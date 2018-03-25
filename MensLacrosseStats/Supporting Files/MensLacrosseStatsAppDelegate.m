@@ -29,12 +29,9 @@
 {
     NSDictionary *defaultDefaults = @{INSODefaultShouldImportCategoriesAndEventsKey:@(YES), INSOExportGameSummaryDefaultKey:@(YES), INSOExportPlayerStatsDefaultKey:@(YES), INSOExportMaxPrepsDefaultKey:@(YES)};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultDefaults];
-        
-    // Now, load up database if necessary
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:INSODefaultShouldImportCategoriesAndEventsKey]) {
-        // Need to import positions
-        [self importCategoriesAndEvents];
-    }
+    
+    // Import categories and events will only import if necessary (I hope). 
+    [self importCategoriesAndEvents];
     
     // Refresh our product
     [[INSOProductManager sharedManager] refreshProduct]; 
@@ -86,21 +83,32 @@
     
     // Create objects for all of them
     for (NSDictionary* categoryDictionary in categoriesArray) {
-        // Create an event category object for each item at the root.
-        EventCategory* category = [EventCategory insertInManagedObjectContext:self.managedObjectContext];
-        category.title = categoryDictionary[INSOCategoryTitleKey];
-        category.categoryCode = categoryDictionary[INSOCategoryCodeKey];
+        // See if the category already exists.
+        NSInteger categoryCode = [categoryDictionary[INSOEventCodeKey] integerValue];
+        EventCategory* category = [EventCategory categoryForCode:categoryCode inManagedObjectContext:self.managedObjectContext];
+        if (!category) {
+            // It didn't, so create the category;
+            category = [EventCategory insertInManagedObjectContext:self.managedObjectContext];
+            category.title = categoryDictionary[INSOCategoryTitleKey];
+            category.categoryCode = categoryDictionary[INSOCategoryCodeKey];
+        }
         
-        // Now create event objects within each category
+        // Now create event objects within each category if they don't already exist
         NSArray* eventsArray = categoryDictionary[INSOCategoryEventsKey];
         for (NSDictionary* eventDictionary in eventsArray) {
-            Event* event = [Event insertInManagedObjectContext:self.managedObjectContext];
-            event.title = eventDictionary[INSOEventTitleKey];
-            event.eventCode = eventDictionary[INSOEventCodeKey];
-            event.isDefalutValue = YES;
-            event.categoryCode = category.categoryCode;
-            event.category = category;
-            event.statCategory = eventDictionary[INSOStatCategoryKey];
+            NSInteger eventCode = [eventDictionary[INSOEventCodeKey] integerValue];
+            Event* event = [Event eventForCode:eventCode inManagedObjectContext:self.managedObjectContext];
+            
+            if (!event) {
+                // Event didn't exist, so create one
+                event = [Event insertInManagedObjectContext:self.managedObjectContext];
+                event.title = eventDictionary[INSOEventTitleKey];
+                event.eventCode = eventDictionary[INSOEventCodeKey];
+                event.isDefalutValue = YES;
+                event.categoryCode = category.categoryCode;
+                event.category = category;
+                event.statCategory = eventDictionary[INSOStatCategoryKey];
+            }
         }
     }
     

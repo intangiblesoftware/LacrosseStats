@@ -236,6 +236,14 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
         [sectionData addObject:@{INSOHomeStatKey:homeInterceptions, INSOStatNameKey:@"Interceptions", INSOVisitorStatKey:visitorInterceptions}];
     }
     
+    // Takeaways
+    if ([self.game didRecordEvent:INSOEventCodeTakeaway]) {
+        NSNumber *homeTakeaways = [self.eventCounter eventCountForHomeTeam:INSOEventCodeTakeaway];
+        NSNumber *visitorTakeaways = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeTakeaway];
+        
+        [sectionData addObject:@{INSOHomeStatKey:homeTakeaways, INSOStatNameKey:@"Takeaways", INSOVisitorStatKey:visitorTakeaways}];
+    }
+    
     // Turnovers
     if ([self.game didRecordEvent:INSOEventCodeTurnover]) {
         NSNumber *homeTurnovers = [self.eventCounter eventCountForHomeTeam:INSOEventCodeTurnover];
@@ -250,6 +258,14 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
         NSNumber *visitorCausedTurnovers = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeCausedTurnover];
         
         [sectionData addObject:@{INSOHomeStatKey:homeCausedTurnovers, INSOStatNameKey:@"Caused Turnover", INSOVisitorStatKey:visitorCausedTurnovers}];
+    }
+    
+    // Unforced Errors
+    if ([self.game didRecordEvent:INSOEventCodeUnforcedError]) {
+        NSNumber *homeUnforcedError = [self.eventCounter eventCountForHomeTeam:INSOEventCodeUnforcedError];
+        NSNumber *visitorUnforcedError = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeUnforcedError];
+        
+        [sectionData addObject:@{INSOHomeStatKey:homeUnforcedError, INSOStatNameKey:@"Unforced Error", INSOVisitorStatKey:visitorUnforcedError}];
     }
     
     return fieldingSection;
@@ -583,8 +599,26 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
         [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
     }
     
+    // Takeaways
+    event = [Event eventForCode:INSOEventCodeTakeaway inManagedObjectContext:self.managedObjectContext];
+    if ([self.game.eventsToRecord containsObject:event]) {
+        statTitle = event.title;
+        eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        statValueString = [NSString stringWithFormat:@"%@", eventCount];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
+    }
+    
     // Caused turnover
     event = [Event eventForCode:INSOEventCodeCausedTurnover inManagedObjectContext:self.managedObjectContext];
+    if ([self.game.eventsToRecord containsObject:event]) {
+        statTitle = event.title;
+        eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];
+        statValueString = [NSString stringWithFormat:@"%@", eventCount];
+        [statsArray addObject:@{INSOStatNameKey:statTitle, INSOHomeStatKey:statValueString}];
+    }
+    
+    // Unforced errors
+    event = [Event eventForCode:INSOEventCodeUnforcedError inManagedObjectContext:self.managedObjectContext];
     if ([self.game.eventsToRecord containsObject:event]) {
         statTitle = event.title;
         eventCount = [self.eventCounter eventCount:event.eventCodeValue forRosterPlayer:rosterPlayer];

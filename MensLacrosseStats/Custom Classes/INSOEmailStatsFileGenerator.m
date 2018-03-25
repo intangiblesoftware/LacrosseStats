@@ -423,6 +423,16 @@
         [fieldingSection appendString:@"</tr>\n"];
     }
     
+    // Takeaways
+    if ([self.game didRecordEvent:INSOEventCodeTakeaway]) {
+        NSNumber *homeTakeaways = [self.eventCounter eventCountForHomeTeam:INSOEventCodeTakeaway];
+        NSNumber *visitorTakeaways = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeTakeaway];
+        
+        [fieldingSection appendString:@"<tr>\n"];
+        [fieldingSection appendFormat:@"<td>%@</td><td>Takeaways</td><td>%@</td>\n", homeTakeaways, visitorTakeaways];
+        [fieldingSection appendString:@"</tr>\n"];
+    }
+    
     // Turnovers
     if ([self.game didRecordEvent:INSOEventCodeTurnover]) {
         NSNumber *homeTurnovers = [self.eventCounter eventCountForHomeTeam:INSOEventCodeTurnover];
@@ -440,6 +450,16 @@
         
         [fieldingSection appendString:@"<tr>\n"];
         [fieldingSection appendFormat:@"<td>%@</td><td>Caused Turnovers</td><td>%@</td>\n", homeCausedTurnovers, visitorCausedTurnovers];
+        [fieldingSection appendString:@"</tr>\n"];
+    }
+    
+    // Unforced Errors
+    if ([self.game didRecordEvent:INSOEventCodeUnforcedError]) {
+        NSNumber *homeUnforcedErrors = [self.eventCounter eventCountForHomeTeam:INSOEventCodeUnforcedError];
+        NSNumber *visitorUnforcedErrors = [self.eventCounter eventCountForVisitingTeam:INSOEventCodeUnforcedError];
+        
+        [fieldingSection appendString:@"<tr>\n"];
+        [fieldingSection appendFormat:@"<td>%@</td><td>Unforced Errors</td><td>%@</td>\n", homeUnforcedErrors, visitorUnforcedErrors];
         [fieldingSection appendString:@"</tr>\n"];
     }
     
@@ -873,6 +893,24 @@
     event = nil;
     }
     
+    // Takeaways
+    if ([self.game didRecordEvent:INSOEventCodeTakeaway]) {
+        event = [Event eventForCode:INSOEventCodeTakeaway inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
+    }
+    
+    // Unforced Errors
+    if ([self.game didRecordEvent:INSOEventCodeUnforcedError]) {
+        event = [Event eventForCode:INSOEventCodeUnforcedError inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
+    }
+    
     // Shots
     if ([self.game didRecordEvent:INSOEventCodeShot]) {
     event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
@@ -1029,6 +1067,24 @@
         event = nil;
     }
     
+    // Takeaways
+    if ([self.game didRecordEvent:INSOEventCodeTakeaway]) {
+        event = [Event eventForCode:INSOEventCodeTakeaway inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
+    }
+    
+    // Unforced Errors
+    if ([self.game didRecordEvent:INSOEventCodeUnforcedError]) {
+        event = [Event eventForCode:INSOEventCodeUnforcedError inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
+    }
+    
     // Shots
     if ([self.game didRecordEvent:INSOEventCodeShot]) {
         event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
@@ -1062,7 +1118,7 @@
     }
     
     // SOG
-    if ([self.game didRecordEvent:INSOEventCodeAssist]) {
+    if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
         event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
         if (event) {
             [header addObject:event.title];
@@ -1203,6 +1259,16 @@
     // Interceptions
     if ([self.game didRecordEvent:INSOEventCodeInterception]) {
         [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeInterception forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Takeaways
+    if ([self.game didRecordEvent:INSOEventCodeTakeaway]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeTakeaway forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Unforced Errors
+    if ([self.game didRecordEvent:INSOEventCodeUnforcedError]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeUnforcedError forRosterPlayer:rosterPlayer]];
     }
     
     // Shots
@@ -1363,6 +1429,16 @@
     // Interceptions
     if ([self.game didRecordEvent:INSOEventCodeInterception]) {
         [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeInterception forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Takeaways
+    if ([self.game didRecordEvent:INSOEventCodeTakeaway]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeTakeaway forRosterPlayer:rosterPlayer]];
+    }
+    
+    // Unforced errors
+    if ([self.game didRecordEvent:INSOEventCodeUnforcedError]) {
+        [dataRow addObject:[self.eventCounter eventCount:INSOEventCodeUnforcedError forRosterPlayer:rosterPlayer]];
     }
     
     // Shots

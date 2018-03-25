@@ -141,16 +141,33 @@ static NSString * const INSOMajorFoulResultSegueIdentifier = @"MajorFoulResultSe
     // Interception - give the other team a turnover
     if (event.eventCodeValue == INSOEventCodeInterception) {
         if ([self shouldCreateEvent:INSOEventCodeInterception]) {
-            RosterPlayer *player;
-            if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
-                player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
-            } else {
-                player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+            if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+                RosterPlayer *player;
+                if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                    player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+                } else {
+                    player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+                }
+                [self createEvent:INSOEventCodeTurnover forPlayer:player];
             }
-            [self createEvent:INSOEventCodeTurnover forPlayer:player];
         }
     }
 
+    // Takeaway - give the other team a turnover, and yourself a caused-turnover
+    if (event.eventCodeValue == INSOEventCodeTakeaway) {
+        if ([self shouldCreateEvent:INSOEventCodeTakeaway]) {
+            if ([self shouldCreateEvent:INSOEventCodeTurnover]) {
+                RosterPlayer *player;
+                if (self.rosterPlayer.numberValue == INSOOtherTeamPlayerNumber) {
+                    player = [self.rosterPlayer.game playerWithNumber:@(INSOTeamWatchingPlayerNumber)];
+                } else {
+                    player = [self.rosterPlayer.game playerWithNumber:@(INSOOtherTeamPlayerNumber)];
+                }
+                [self createEvent:INSOEventCodeTurnover forPlayer:player];
+            }
+        }
+    }
+    
     // Man-down - give other team man-up.
     if (event.eventCodeValue == INSOEventCodeManDown) {
         if ([self shouldCreateEvent:INSOEventCodeManUp]) {

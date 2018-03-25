@@ -38,6 +38,9 @@ typedef NS_ENUM(NSInteger, INSOEventCode) {
     INSOEventCodeShotOnGoal      = 117,
     INSOEventCodeInterception    = 118,
     INSOEventCodeManDown         = 119,
+    INSOEventCodeTakeaway        = 120,
+    INSOEventCodeUnforcedError   = 121,
+    INSOEventCodeEndOfPeriod     = 122,
     
     INSOEventCodeDrawControl     = 151,
     INSOEventCodeDrawPossession  = 152,
