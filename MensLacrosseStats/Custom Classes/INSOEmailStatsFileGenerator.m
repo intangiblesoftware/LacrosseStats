@@ -48,12 +48,13 @@
     
     if (self) {
         _game = game;
-        
-        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
+  
+// Need to figure out which product we're using
+//        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
             _isExportingForBoys = YES;
-        } else {
-            _isExportingForBoys = NO;
-        }
+//        } else {
+//            _isExportingForBoys = NO;
+//        }
         
         // First create the array of event codes for events recorded in the game
         // This will vary from boys to girls

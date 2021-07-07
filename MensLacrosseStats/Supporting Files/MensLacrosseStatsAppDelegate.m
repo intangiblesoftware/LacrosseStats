@@ -34,7 +34,7 @@
     [self importCategoriesAndEvents];
     
     // Refresh our product
-    [[INSOProductManager sharedManager] refreshProduct];
+    //[[INSOProductManager sharedManager] refreshProduct];
     
     // Count number of games in the app. If 0, then add one automatically.
     NSFetchRequest* fetchGames = [NSFetchRequest fetchRequestWithEntityName:[Game entityName]];

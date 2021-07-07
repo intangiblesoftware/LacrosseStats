@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol INSOProductManagerDelegate;
+//@protocol INSOProductManagerDelegate;
 
 @interface INSOProductManager : NSObject
 
 +(instancetype)sharedManager;
 
-@property (nonatomic, weak) id<INSOProductManagerDelegate> delegate;
+//@property (nonatomic, weak) id<INSOProductManagerDelegate> delegate;
 // Public Properties
 @property (nonatomic, readonly) BOOL canPurchaseProduct;
 
@@ -29,18 +29,18 @@
 @property (nonatomic, readonly) NSString        *appProductName; 
 
 // Public Methods
-- (void)refreshProduct;
-- (void)purchaseProduct;
-- (void)restorePurchase;
+//- (void)refreshProduct;
+//- (void)purchaseProduct;
+//- (void)restorePurchase;
 
 @end
 
-@protocol INSOProductManagerDelegate <NSObject>
-
-@optional
-- (void)didRefreshProduct;
-- (void)didPurchaseProduct;
-- (void)productPurchaseFailed;
-- (void)didRestorePurchase; 
-
-@end
+//@protocol INSOProductManagerDelegate <NSObject>
+//
+//@optional
+////- (void)didRefreshProduct;
+////- (void)didPurchaseProduct;
+////- (void)productPurchaseFailed;
+////- (void)didRestorePurchase;
+//
+//@end

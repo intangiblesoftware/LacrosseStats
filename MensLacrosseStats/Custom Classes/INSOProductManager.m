@@ -9,17 +9,15 @@
 @import StoreKit;
 
 #import "INSOMensLacrosseStatsConstants.h"
-#import "INSOReceiptValidator.h"
 #import "INSOProductManager.h"
 
-@interface INSOProductManager () <SKProductsRequestDelegate, SKPaymentTransactionObserver>
+@interface INSOProductManager ()
 
 // Private Properties
-@property (nonatomic) INSOReceiptValidator* receiptValidator;
 @property (nonatomic) SKProduct* oneYearProduct;
 
 // Private Methods
-- (void)requestProductsFromAppStore;
+//- (void)requestProductsFromAppStore;
 
 @end
 
@@ -37,14 +35,6 @@
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
-        // Custom initialization here.
-        _canPurchaseProduct = NO;
-        
-        _receiptValidator = [[INSOReceiptValidator alloc] init];
-        [_receiptValidator validateReceipt];
-    }
-    
     return self;
 }
 
@@ -54,7 +44,7 @@
 #if DEBUG
     return YES;
 #else
-    return self.receiptValidator.appIsPurchased;
+    return YES;
 #endif
 }
 
@@ -63,7 +53,7 @@
 #if DEBUG
     return NO;
 #else
-    return self.receiptValidator.appPurchaseExpired;
+    return NO;
 #endif
 }
 
@@ -72,7 +62,7 @@
 #if DEBUG
     return [NSDate date];
 #else
-    return self.receiptValidator.appPurchaseDate;
+    return [NSDate date];
 #endif
 }
 
@@ -81,7 +71,7 @@
 #if DEBUG
     return [NSDate date];
 #else
-    return self.receiptValidator.appExpirationDate;
+    return [NSDate date];
 #endif
 }
 
@@ -90,21 +80,14 @@
 #if DEBUG
     return [NSDecimalNumber decimalNumberWithString:@"99.95"];
 #else
-    if (self.oneYearProduct) {
-        return self.oneYearProduct.price;
-    } else {
-        return [NSDecimalNumber zero];
-    }
+    return [NSDecimalNumber zero];
 #endif
 }
 
 - (NSString*)productTitle
 {
-    if (self.oneYearProduct) {
-        return self.oneYearProduct.localizedTitle;
-    } else {
-        return NSLocalizedString(@"Unavailable", nil); 
-    }
+    // FIXME - Do we need a product title?
+    return @"Lacrosse Stats";
 }
 
 - (NSString *)appProductName
@@ -117,74 +100,75 @@
 }
 
 #pragma mark - Public Methods
-- (void)purchaseProduct
-{
-    if (self.oneYearProduct && self.canPurchaseProduct) {
-        SKPayment* payment = [SKPayment paymentWithProduct:self.oneYearProduct];
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-        [[SKPaymentQueue defaultQueue] addPayment:payment];
-    }
-}
+//- (void)purchaseProduct
+//{
+//    if (self.oneYearProduct && self.canPurchaseProduct) {
+//        SKPayment* payment = [SKPayment paymentWithProduct:self.oneYearProduct];
+//        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+//        [[SKPaymentQueue defaultQueue] addPayment:payment];
+//    }
+//}
 
-- (void)restorePurchase
-{
-    // Just tell they payment queue to restore transactions.
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-}
-
-- (void)refreshProduct
-{
-    [self.receiptValidator validateReceipt];
-    
-    [self requestProductsFromAppStore];
-}
+//- (void)restorePurchase
+//{
+//    // Just tell they payment queue to restore transactions.
+//    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+//    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+//}
+//
+//- (void)refreshProduct
+//{
+//    [self.receiptValidator validateReceipt];
+//
+//    [self requestProductsFromAppStore];
+//}
 
 #pragma mark - Private Properties
 
 #pragma mark - Private Methods
-- (void)requestProductsFromAppStore
-{
-    // Now kick off a request to iTunes for the products.
-    NSString* productIdentifier = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ProductIdentifier"];
-    NSSet* productsSet = [NSSet setWithObject:productIdentifier];
-    SKProductsRequest* productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productsSet];
-    productsRequest.delegate = self;
-    [productsRequest start];
-}
+//- (void)requestProductsFromAppStore
+//{
+//    // Now kick off a request to iTunes for the products.
+//    NSString* productIdentifier = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"ProductIdentifier"];
+//    NSSet* productsSet = [NSSet setWithObject:productIdentifier];
+//    SKProductsRequest* productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productsSet];
+//    productsRequest.delegate = self;
+//    [productsRequest start];
+//}
 
 #pragma mark - INSOProductPurchaseDelegate
-- (void)completeTransaction:(SKPaymentTransaction*)transaction
-{
-    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-    
-    [self.receiptValidator validateReceipt];
-    
-    if ([self.delegate respondsToSelector:@selector(didPurchaseProduct)]) {
-        [self.delegate didPurchaseProduct];
-    }
-}
+//- (void)completeTransaction:(SKPaymentTransaction*)transaction
+//{
+//    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//
+//    [self.receiptValidator validateReceipt];
+//
+//    if ([self.delegate respondsToSelector:@selector(didPurchaseProduct)]) {
+//        [self.delegate didPurchaseProduct];
+//    }
+//}
 
-- (void)transactionFailed:(SKPaymentTransaction*)transaction
-{
-    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-    
-    if ([self.delegate respondsToSelector:@selector(productPurchaseFailed)]) {
-        [self.delegate productPurchaseFailed];
-    }
-}
+//- (void)transactionFailed:(SKPaymentTransaction*)transaction
+//{
+//    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//
+//    if ([self.delegate respondsToSelector:@selector(productPurchaseFailed)]) {
+//        [self.delegate productPurchaseFailed];
+//    }
+//}
 
-- (void)transactionRestored:(SKPaymentTransaction*)transaction
-{
-    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-    
-    [self.receiptValidator validateReceipt];
-    
-    if ([self.delegate respondsToSelector:@selector(didRestorePurchase)]) {
-        [self.delegate didRestorePurchase];
-    }
-}
+//- (void)transactionRestored:(SKPaymentTransaction*)transaction
+//{
+//    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//
+//    [self.receiptValidator validateReceipt];
+//
+//    if ([self.delegate respondsToSelector:@selector(didRestorePurchase)]) {
+//        [self.delegate didRestorePurchase];
+//    }
+//}
 
+/*
 #pragma mark - SKProductsRequestDelegate
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
@@ -236,6 +220,6 @@
         [self.delegate didRestorePurchase];
     }
 }
-
+*/
 
 @end

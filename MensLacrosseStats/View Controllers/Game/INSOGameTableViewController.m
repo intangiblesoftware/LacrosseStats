@@ -23,7 +23,7 @@ static NSString * const INSOGameCellIdentifier = @"GameCell";
 static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegue";
 static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegue";
 
-@interface INSOGameTableViewController () <NSFetchedResultsControllerDelegate, INSOProductManagerDelegate>
+@interface INSOGameTableViewController () <NSFetchedResultsControllerDelegate>
 // IBOutlets
 @property (nonatomic, weak) IBOutlet UIBarButtonItem* addButton;
 
@@ -50,8 +50,8 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
     
     self.addButton.enabled = NO; 
     
-    [INSOProductManager sharedManager].delegate = self;
-    [[INSOProductManager sharedManager] refreshProduct];
+//    [INSOProductManager sharedManager].delegate = self;
+//    [[INSOProductManager sharedManager] refreshProduct];
     
     [self configureTableView];
 }
@@ -63,7 +63,7 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 
 - (void)dealloc
 {
-    [INSOProductManager sharedManager].delegate = nil;
+//    [INSOProductManager sharedManager].delegate = nil;
 }
 
 #pragma mark - IBActions
