@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, 9.0
 
 target 'MensLacrosseStats' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -6,16 +6,6 @@ target 'MensLacrosseStats' do
 
   # Pods for MensLacrosseStats
     pod 'OpenSSL', '~> 1.0'
-
-  target 'MensLacrosseStatsTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'MensLacrosseStatsUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
 end
 

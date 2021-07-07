@@ -3,22 +3,12 @@
 
 #import "_RosterPlayer.h"
 
-const struct RosterPlayerAttributes RosterPlayerAttributes = {
-	.isTeam = @"isTeam",
-	.number = @"number",
-};
-
-const struct RosterPlayerRelationships RosterPlayerRelationships = {
-	.events = @"events",
-	.game = @"game",
-};
-
 @implementation RosterPlayerID
 @end
 
 @implementation _RosterPlayer
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"RosterPlayer" inManagedObjectContext:moc_];
 }
@@ -61,7 +51,7 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 }
 
 - (void)setIsTeamValue:(BOOL)value_ {
-	[self setIsTeam:[NSNumber numberWithBool:value_]];
+	[self setIsTeam:@(value_)];
 }
 
 - (BOOL)primitiveIsTeamValue {
@@ -70,7 +60,7 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 }
 
 - (void)setPrimitiveIsTeamValue:(BOOL)value_ {
-	[self setPrimitiveIsTeam:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveIsTeam:@(value_)];
 }
 
 @dynamic number;
@@ -81,7 +71,7 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 }
 
 - (void)setNumberValue:(int16_t)value_ {
-	[self setNumber:[NSNumber numberWithShort:value_]];
+	[self setNumber:@(value_)];
 }
 
 - (int16_t)primitiveNumberValue {
@@ -90,15 +80,15 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 }
 
 - (void)setPrimitiveNumberValue:(int16_t)value_ {
-	[self setPrimitiveNumber:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveNumber:@(value_)];
 }
 
 @dynamic events;
 
-- (NSMutableSet*)eventsSet {
+- (NSMutableSet<GameEvent*>*)eventsSet {
 	[self willAccessValueForKey:@"events"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"events"];
+	NSMutableSet<GameEvent*> *result = (NSMutableSet<GameEvent*>*)[self mutableSetValueForKey:@"events"];
 
 	[self didAccessValueForKey:@"events"];
 	return result;
@@ -106,5 +96,23 @@ const struct RosterPlayerRelationships RosterPlayerRelationships = {
 
 @dynamic game;
 
+@end
+
+@implementation RosterPlayerAttributes 
++ (NSString *)isTeam {
+	return @"isTeam";
+}
++ (NSString *)number {
+	return @"number";
+}
+@end
+
+@implementation RosterPlayerRelationships 
++ (NSString *)events {
+	return @"events";
+}
++ (NSString *)game {
+	return @"game";
+}
 @end
 

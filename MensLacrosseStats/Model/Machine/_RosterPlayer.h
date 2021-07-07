@@ -1,17 +1,15 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to RosterPlayer.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct RosterPlayerAttributes {
-	__unsafe_unretained NSString *isTeam;
-	__unsafe_unretained NSString *number;
-} RosterPlayerAttributes;
-
-extern const struct RosterPlayerRelationships {
-	__unsafe_unretained NSString *events;
-	__unsafe_unretained NSString *game;
-} RosterPlayerRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class GameEvent;
 @class Game;
@@ -19,41 +17,34 @@ extern const struct RosterPlayerRelationships {
 @interface RosterPlayerID : NSManagedObjectID {}
 @end
 
-@interface _RosterPlayer : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _RosterPlayer : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) RosterPlayerID* objectID;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@property (nonatomic, readonly, strong) RosterPlayerID *objectID;
 
-@property (nonatomic, strong) NSNumber* isTeam;
+@property (nonatomic, strong, nullable) NSNumber* isTeam;
 
 @property (atomic) BOOL isTeamValue;
 - (BOOL)isTeamValue;
 - (void)setIsTeamValue:(BOOL)value_;
 
-//- (BOOL)validateIsTeam:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* number;
+@property (nonatomic, strong, nullable) NSNumber* number;
 
 @property (atomic) int16_t numberValue;
 - (int16_t)numberValue;
 - (void)setNumberValue:(int16_t)value_;
 
-//- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSSet<GameEvent*> *events;
+- (nullable NSMutableSet<GameEvent*>*)eventsSet;
 
-@property (nonatomic, strong) NSSet *events;
-
-- (NSMutableSet*)eventsSet;
-
-@property (nonatomic, strong) Game *game;
-
-//- (BOOL)validateGame:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) Game *game;
 
 @end
 
 @interface _RosterPlayer (EventsCoreDataGeneratedAccessors)
-- (void)addEvents:(NSSet*)value_;
-- (void)removeEvents:(NSSet*)value_;
+- (void)addEvents:(NSSet<GameEvent*>*)value_;
+- (void)removeEvents:(NSSet<GameEvent*>*)value_;
 - (void)addEventsObject:(GameEvent*)value_;
 - (void)removeEventsObject:(GameEvent*)value_;
 
@@ -61,22 +52,34 @@ extern const struct RosterPlayerRelationships {
 
 @interface _RosterPlayer (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveIsTeam;
-- (void)setPrimitiveIsTeam:(NSNumber*)value;
+- (nullable NSNumber*)primitiveIsTeam;
+- (void)setPrimitiveIsTeam:(nullable NSNumber*)value;
 
 - (BOOL)primitiveIsTeamValue;
 - (void)setPrimitiveIsTeamValue:(BOOL)value_;
 
-- (NSNumber*)primitiveNumber;
-- (void)setPrimitiveNumber:(NSNumber*)value;
+- (nullable NSNumber*)primitiveNumber;
+- (void)setPrimitiveNumber:(nullable NSNumber*)value;
 
 - (int16_t)primitiveNumberValue;
 - (void)setPrimitiveNumberValue:(int16_t)value_;
 
-- (NSMutableSet*)primitiveEvents;
-- (void)setPrimitiveEvents:(NSMutableSet*)value;
+- (NSMutableSet<GameEvent*>*)primitiveEvents;
+- (void)setPrimitiveEvents:(NSMutableSet<GameEvent*>*)value;
 
-- (Game*)primitiveGame;
-- (void)setPrimitiveGame:(Game*)value;
+- (nullable Game*)primitiveGame;
+- (void)setPrimitiveGame:(nullable Game*)value;
 
 @end
+
+@interface RosterPlayerAttributes: NSObject 
++ (NSString *)isTeam;
++ (NSString *)number;
+@end
+
+@interface RosterPlayerRelationships: NSObject
++ (NSString *)events;
++ (NSString *)game;
+@end
+
+NS_ASSUME_NONNULL_END

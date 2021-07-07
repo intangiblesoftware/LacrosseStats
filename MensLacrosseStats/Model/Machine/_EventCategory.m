@@ -3,21 +3,12 @@
 
 #import "_EventCategory.h"
 
-const struct EventCategoryAttributes EventCategoryAttributes = {
-	.categoryCode = @"categoryCode",
-	.title = @"title",
-};
-
-const struct EventCategoryRelationships EventCategoryRelationships = {
-	.events = @"events",
-};
-
 @implementation EventCategoryID
 @end
 
 @implementation _EventCategory
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"EventCategory" inManagedObjectContext:moc_];
 }
@@ -55,7 +46,7 @@ const struct EventCategoryRelationships EventCategoryRelationships = {
 }
 
 - (void)setCategoryCodeValue:(int16_t)value_ {
-	[self setCategoryCode:[NSNumber numberWithShort:value_]];
+	[self setCategoryCode:@(value_)];
 }
 
 - (int16_t)primitiveCategoryCodeValue {
@@ -64,21 +55,36 @@ const struct EventCategoryRelationships EventCategoryRelationships = {
 }
 
 - (void)setPrimitiveCategoryCodeValue:(int16_t)value_ {
-	[self setPrimitiveCategoryCode:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveCategoryCode:@(value_)];
 }
 
 @dynamic title;
 
 @dynamic events;
 
-- (NSMutableSet*)eventsSet {
+- (NSMutableSet<Event*>*)eventsSet {
 	[self willAccessValueForKey:@"events"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"events"];
+	NSMutableSet<Event*> *result = (NSMutableSet<Event*>*)[self mutableSetValueForKey:@"events"];
 
 	[self didAccessValueForKey:@"events"];
 	return result;
 }
 
+@end
+
+@implementation EventCategoryAttributes 
++ (NSString *)categoryCode {
+	return @"categoryCode";
+}
++ (NSString *)title {
+	return @"title";
+}
+@end
+
+@implementation EventCategoryRelationships 
++ (NSString *)events {
+	return @"events";
+}
 @end
 
