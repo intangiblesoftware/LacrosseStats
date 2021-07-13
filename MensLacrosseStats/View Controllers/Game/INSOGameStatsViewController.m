@@ -14,7 +14,6 @@
 #import "INSOMensLacrosseStatsConstants.h"
 #import "INSOGameStatTableViewCell.h"
 #import "INSOGameEventCounter.h"
-#import "INSOProductManager.h"
 
 #import "Game.h"
 #import "EventCategory.h"

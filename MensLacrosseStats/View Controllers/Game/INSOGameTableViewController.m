@@ -8,7 +8,6 @@
 
 @import CoreData;
 
-#import "INSOProductManager.h"
 #import "MensLacrosseStatsAppDelegate.h"
 
 #import "INSOGameTableViewController.h"
@@ -24,11 +23,6 @@ static NSString * const INSOShowGameDetailSegueIdentifier = @"ShowGameDetailSegu
 static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegue";
 
 @interface INSOGameTableViewController () <NSFetchedResultsControllerDelegate>
-// IBOutlets
-@property (nonatomic, weak) IBOutlet UIBarButtonItem* addButton;
-
-// IBActions
-- (IBAction)addGame:(id)sender;
 
 // Private Properties
 @property (nonatomic) NSFetchedResultsController* gamesFRC;
@@ -47,42 +41,13 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.addButton.enabled = NO; 
-    
-//    [INSOProductManager sharedManager].delegate = self;
-//    [[INSOProductManager sharedManager] refreshProduct];
-    
+        
     [self configureTableView];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (void)dealloc
-{
-//    [INSOProductManager sharedManager].delegate = nil;
-}
-
-#pragma mark - IBActions
-- (void)addGame:(id)sender
-{
-    if ([[INSOProductManager sharedManager] productIsPurchased] && ![[INSOProductManager sharedManager] productPurchaseExpired]) {
-        // If the app is purchased, just create a new game. No hoo-hoo.
-        [self createNewGame];
-    } else {
-        // Now we gotta see how many games there are.
-        // If there is one already, don't let 'em create a new one.
-        // Instead, show the buy me! modal.
-        NSInteger numberOfGames = [[[self.gamesFRC sections] objectAtIndex:0] numberOfObjects];
-        if (numberOfGames >= 1) {
-            [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
-        } else {
-            [self createNewGame]; 
-        }
-    }
 }
 
 #pragma mark - Private Properties
@@ -195,10 +160,6 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
     if ([segue.identifier isEqualToString:INSOShowGameDetailSegueIdentifier]) {
         [self prepareForShowGameDetailSegue:segue sender:sender];
     }
-    
-    if ([segue.identifier isEqualToString:INSOShowPurchaseModalSegueIdentifier]) {
-        [self prepareForShowPurchaseModalSegue:segue sender:sender];
-    }
 }
 
 - (void)prepareForShowGameDetailSegue:(UIStoryboardSegue *)segue sender:(INSOGameTableViewCell *)cell
@@ -207,11 +168,6 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
     Game* selectedGame = [self.gamesFRC objectAtIndexPath:indexPath];
     INSOGameDetailViewController* dest = segue.destinationViewController;
     dest.game = selectedGame; 
-}
-
-- (void)prepareForShowPurchaseModalSegue:(UIStoryboardSegue*)segue sender:(id)sender
-{
-    // Nothing to do here, yet.
 }
 
 #pragma mark - Table view data source
@@ -279,12 +235,6 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
-}
-
-#pragma mark - INSOProductManagerDelegate
-- (void)didRefreshProduct
-{
-    self.addButton.enabled = YES;
 }
 
 @end

@@ -12,7 +12,6 @@
 
 #import "INSOEmailStatsViewController.h"
 #import "INSOEmailStatsFileGenerator.h"
-#import "INSOProductManager.h"
 #import "INSOMensLacrosseStatsConstants.h"
 
 #import "Game.h"

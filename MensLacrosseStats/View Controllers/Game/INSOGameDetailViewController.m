@@ -7,7 +7,6 @@
 //
 
 #import "MensLacrosseStatsAppDelegate.h"
-#import "INSOProductManager.h"
 
 #import "INSOGameDetailViewController.h"
 #import "INSOGameEditViewController.h"
@@ -25,7 +24,6 @@ static NSString * INSOEditGameSegueIdentifier          = @"EditGameSegue";
 static NSString * INSORecordStatsSegueIdentifier       = @"RecordStatsSegue";
 static NSString * INSOGameStatsSegueIdentifier         = @"GameStatsSegue";
 static NSString * INSOExportStatsSegueIdentifier       = @"ExportStatsSegue";
-static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegue";
 
 
 @interface INSOGameDetailViewController ()
@@ -82,29 +80,17 @@ static NSString * INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseModalSegu
 #pragma mark - IBActions
 - (void)recordStats:(id)sender
 {
-    if ([[INSOProductManager sharedManager] productIsPurchased] && [[INSOProductManager sharedManager] productPurchaseExpired]) {
-        [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
-    } else {
-        [self performSegueWithIdentifier:INSORecordStatsSegueIdentifier sender:self];
-    }
+    [self performSegueWithIdentifier:INSORecordStatsSegueIdentifier sender:self];
 }
 
 - (void)editGame:(id)sender
 {
-    if ([[INSOProductManager sharedManager] productIsPurchased] && [[INSOProductManager sharedManager] productPurchaseExpired]) {
-        [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
-    } else {
-        [self performSegueWithIdentifier:INSOEditGameSegueIdentifier sender:self];
-    }
+    [self performSegueWithIdentifier:INSOEditGameSegueIdentifier sender:self];
 }
 
 - (void)exportStats:(id)sender
 {
-    if ([[INSOProductManager sharedManager] productIsPurchased] && [[INSOProductManager sharedManager] productPurchaseExpired]) {
-        [self performSegueWithIdentifier:INSOShowPurchaseModalSegueIdentifier sender:self];
-    } else {
-        [self performSegueWithIdentifier:INSOExportStatsSegueIdentifier sender:self];
-    }
+    [self performSegueWithIdentifier:INSOExportStatsSegueIdentifier sender:self];
 }
 
 #pragma mark - Private Properties
