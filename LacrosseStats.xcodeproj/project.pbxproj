@@ -979,10 +979,6 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/MensLacrosseStats/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/OpenSSL/lib",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.menslacrossestats;
 				PRODUCT_NAME = MensLacrosseStats;
 				PROVISIONING_PROFILE = "";
@@ -1001,10 +997,6 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/MensLacrosseStats/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/OpenSSL/lib",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.menslacrossestats;
 				PRODUCT_NAME = MensLacrosseStats;
 				PROVISIONING_PROFILE = "";
@@ -1024,10 +1016,6 @@
 				INFOPLIST_FILE = "$(SRCROOT)/WomensLacrosseStats/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/OpenSSL/lib",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.womenslacrossestats;
 				PRODUCT_NAME = WomensLacrosseStats;
 				PROVISIONING_PROFILE = "";
@@ -1047,10 +1035,6 @@
 				INFOPLIST_FILE = "$(SRCROOT)/WomensLacrosseStats/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/OpenSSL/lib",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.womenslacrossestats;
 				PRODUCT_NAME = WomensLacrosseStats;
 				PROVISIONING_PROFILE = "";

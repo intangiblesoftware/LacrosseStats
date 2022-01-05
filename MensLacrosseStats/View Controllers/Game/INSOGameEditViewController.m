@@ -217,7 +217,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventCode != %@", @(INSOEventCode8mFreePositionShot)];
         fetchRequest.predicate = predicate;
         
-        _eventsFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.Title" cacheName:nil];
+        _eventsFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.categoryCode" cacheName:nil];
         
         NSError *error = nil;
         if (![_eventsFRC performFetch:&error]) {
@@ -487,8 +487,20 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     INSOHeaderCollectionReusableView* header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:INSOHeaderViewIdentifier forIndexPath:indexPath];
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.eventsFRC sections] objectAtIndex:indexPath.section];
     
+    NSString *categoryCode = sectionInfo.name;
+    NSString *sectionTitle = nil;
+    if ([categoryCode isEqualToString:@"100"]) {
+        sectionTitle = @"Game Actions";
+    } else if ([categoryCode isEqualToString:@"200"]) {
+        sectionTitle = @"Personal Fouls";
+    } else if ([categoryCode isEqualToString:@"300"]) {
+        sectionTitle = @"Technical Fouls";
+    }else if ([categoryCode isEqualToString:@"400"]) {
+        sectionTitle = @"Expulsion Fouls";
+    }
+
     // Configure the header
-    header.leftTitleLabel.text = [sectionInfo name];
+    header.leftTitleLabel.text = sectionTitle;
     
     return header;
 }

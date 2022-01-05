@@ -10,6 +10,8 @@
 
 #import "INSOMensLacrosseStatsConstants.h"
 
+#import "UIColor+INSOScorebookColor.h"
+
 #import "Event.h"
 #import "EventCategory.h"
 #import "Game.h"
@@ -39,6 +41,9 @@
             [self addGame]; 
         }
     }
+    
+    // Globally set the background of the nav bar.
+    //[[UINavigationBar appearance] setBackgroundColor: [UIColor scorebookBlue]];
     
     return YES;
 }
