@@ -42,9 +42,6 @@
         }
     }
     
-    // Globally set the background of the nav bar.
-    //[[UINavigationBar appearance] setBackgroundColor: [UIColor scorebookBlue]];
-    
     return YES;
 }
 

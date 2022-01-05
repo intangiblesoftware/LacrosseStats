@@ -27,6 +27,7 @@ static NSString * INSOExportStatsSegueIdentifier       = @"ExportStatsSegue";
 
 
 @interface INSOGameDetailViewController ()
+
 // IBOutlets
 @property (nonatomic, weak) IBOutlet UILabel* gameDateTimeLabel;
 @property (nonatomic, weak) IBOutlet UILabel* homeTeamLabel;

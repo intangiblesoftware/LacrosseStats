@@ -24,6 +24,9 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 
 @interface INSOGameTableViewController () <NSFetchedResultsControllerDelegate>
 
+// IBActions
+- (IBAction)addGame:(id)sender;
+
 // Private Properties
 @property (nonatomic) NSFetchedResultsController* gamesFRC;
 @property (nonatomic) NSManagedObjectContext* managedObjectContext;
@@ -48,6 +51,12 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - IBActions
+- (void)addGame:(id)sender
+{
+    [self createNewGame];
 }
 
 #pragma mark - Private Properties
