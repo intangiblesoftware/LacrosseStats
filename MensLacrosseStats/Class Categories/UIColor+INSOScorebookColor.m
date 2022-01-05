@@ -47,8 +47,8 @@
 
 + (UIColor *)scorebookTeal
 {
-    // rgb(0, 128, 128);
-    return [UIColor colorWithRed:0.000 green:0.502 blue:0.502 alpha:1.000]; 
+    // rgb(42, 126, 133);
+    return [UIColor colorWithRed:0.165 green:0.494 blue:0.522 alpha:1.000];
 }
 
 + (UIColor *)scorebookBackgroundTeal

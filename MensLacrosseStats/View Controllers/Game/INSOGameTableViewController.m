@@ -44,7 +44,7 @@ static NSString * const INSOShowPurchaseModalSegueIdentifier = @"ShowPurchaseMod
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+            
     [self configureTableView];
 }
 

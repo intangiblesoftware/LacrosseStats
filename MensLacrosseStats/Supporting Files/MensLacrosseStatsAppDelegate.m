@@ -28,7 +28,7 @@
     NSDictionary *defaultDefaults = @{INSODefaultShouldImportCategoriesAndEventsKey:@(YES), INSOExportGameSummaryDefaultKey:@(YES), INSOExportPlayerStatsDefaultKey:@(YES), INSOExportMaxPrepsDefaultKey:@(YES)};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultDefaults];
     
-    // Import categories and events will only import if necessary (I hope). 
+    // Import categories and events will only import if necessary (I hope).
     [self importCategoriesAndEvents];
     
     // Count number of games in the app. If 0, then add one automatically.
