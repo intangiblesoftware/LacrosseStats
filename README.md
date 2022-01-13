@@ -36,7 +36,7 @@ Your lacrosse stats clipboard in an app designed specifically for women's lacros
 
 --- 
 
-After I got the above-mentioned stats app in the app store, plenty of people wanted to know if I had a women's version. Turns out no one was making one! So I listened to my customers and decided to build a version specifically for women's lacrosse - they're stats are a bit different from the men's. In the process, I realized the basic functionality of the two apps was the same so I could just create two build targets, one for men's and one for women's and allow them to share the code that was the same and have gender-specific code where necessary. It works pretty well. 
+After I got the above-mentioned stats app in the app store, plenty of people wanted to know if I had a women's version. Turns out no one was making one! So I listened to my customers and decided to build a version specifically for women's lacrosse - their stats are a bit different from the men's. In the process, I realized the basic functionality of the two apps was the same so I could just create two build targets, one for men's and one for women's and allow them to share the code that was the same and have gender-specific code where necessary. It works pretty well. 
 
 I'll be updating this build simultaneously with the men's version as I move to Swift and SwiftUI. 
 
