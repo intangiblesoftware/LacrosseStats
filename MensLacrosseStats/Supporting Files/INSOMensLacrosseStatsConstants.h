@@ -40,10 +40,10 @@ extern NSString * const INSOVisitorStatKey;
 extern NSString * const INSOStatNameKey;
 
 // Product identifier
-extern NSString * const INSOMensLacrosseStatsOneYearProductIdentifier;
-extern NSString * const INSOWomensLacrosseStatsOneYearProductIdentifier;
 extern NSString * const INSOMensProductName;
 extern NSString * const INSOWomensProductName;
+extern NSString * const INSOMensIdentifier;
+extern NSString * const INSOWomensIdentifier;
 
 // MaxPreps Company ID
 extern NSString * const INSOMaxPrepsMensLacrosseCompanyID;

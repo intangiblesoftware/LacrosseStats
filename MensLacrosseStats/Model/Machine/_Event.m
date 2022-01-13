@@ -3,26 +3,12 @@
 
 #import "_Event.h"
 
-const struct EventAttributes EventAttributes = {
-	.categoryCode = @"categoryCode",
-	.eventCode = @"eventCode",
-	.isDefalut = @"isDefalut",
-	.statCategory = @"statCategory",
-	.title = @"title",
-};
-
-const struct EventRelationships EventRelationships = {
-	.category = @"category",
-	.gameEvents = @"gameEvents",
-	.games = @"games",
-};
-
 @implementation EventID
 @end
 
 @implementation _Event
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:moc_];
 }
@@ -75,7 +61,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setCategoryCodeValue:(int16_t)value_ {
-	[self setCategoryCode:[NSNumber numberWithShort:value_]];
+	[self setCategoryCode:@(value_)];
 }
 
 - (int16_t)primitiveCategoryCodeValue {
@@ -84,7 +70,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setPrimitiveCategoryCodeValue:(int16_t)value_ {
-	[self setPrimitiveCategoryCode:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveCategoryCode:@(value_)];
 }
 
 @dynamic eventCode;
@@ -95,7 +81,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setEventCodeValue:(int16_t)value_ {
-	[self setEventCode:[NSNumber numberWithShort:value_]];
+	[self setEventCode:@(value_)];
 }
 
 - (int16_t)primitiveEventCodeValue {
@@ -104,7 +90,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setPrimitiveEventCodeValue:(int16_t)value_ {
-	[self setPrimitiveEventCode:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveEventCode:@(value_)];
 }
 
 @dynamic isDefalut;
@@ -115,7 +101,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setIsDefalutValue:(BOOL)value_ {
-	[self setIsDefalut:[NSNumber numberWithBool:value_]];
+	[self setIsDefalut:@(value_)];
 }
 
 - (BOOL)primitiveIsDefalutValue {
@@ -124,7 +110,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setPrimitiveIsDefalutValue:(BOOL)value_ {
-	[self setPrimitiveIsDefalut:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveIsDefalut:@(value_)];
 }
 
 @dynamic statCategory;
@@ -135,7 +121,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setStatCategoryValue:(int16_t)value_ {
-	[self setStatCategory:[NSNumber numberWithShort:value_]];
+	[self setStatCategory:@(value_)];
 }
 
 - (int16_t)primitiveStatCategoryValue {
@@ -144,7 +130,7 @@ const struct EventRelationships EventRelationships = {
 }
 
 - (void)setPrimitiveStatCategoryValue:(int16_t)value_ {
-	[self setPrimitiveStatCategory:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveStatCategory:@(value_)];
 }
 
 @dynamic title;
@@ -153,10 +139,10 @@ const struct EventRelationships EventRelationships = {
 
 @dynamic gameEvents;
 
-- (NSMutableSet*)gameEventsSet {
+- (NSMutableSet<GameEvent*>*)gameEventsSet {
 	[self willAccessValueForKey:@"gameEvents"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"gameEvents"];
+	NSMutableSet<GameEvent*> *result = (NSMutableSet<GameEvent*>*)[self mutableSetValueForKey:@"gameEvents"];
 
 	[self didAccessValueForKey:@"gameEvents"];
 	return result;
@@ -164,10 +150,10 @@ const struct EventRelationships EventRelationships = {
 
 @dynamic games;
 
-- (NSMutableSet*)gamesSet {
+- (NSMutableSet<Game*>*)gamesSet {
 	[self willAccessValueForKey:@"games"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"games"];
+	NSMutableSet<Game*> *result = (NSMutableSet<Game*>*)[self mutableSetValueForKey:@"games"];
 
 	[self didAccessValueForKey:@"games"];
 	return result;
@@ -191,7 +177,7 @@ const struct EventRelationships EventRelationships = {
 
 	NSManagedObjectModel *model = [[moc_ persistentStoreCoordinator] managedObjectModel];
 
-	NSDictionary *substitutionVariables = [NSDictionary dictionary];
+	NSDictionary *substitutionVariables = @{};
 
 	NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"DefaultEvents"
 													 substitutionVariables:substitutionVariables];
@@ -202,5 +188,35 @@ const struct EventRelationships EventRelationships = {
 	return result;
 }
 
+@end
+
+@implementation EventAttributes 
++ (NSString *)categoryCode {
+	return @"categoryCode";
+}
++ (NSString *)eventCode {
+	return @"eventCode";
+}
++ (NSString *)isDefalut {
+	return @"isDefalut";
+}
++ (NSString *)statCategory {
+	return @"statCategory";
+}
++ (NSString *)title {
+	return @"title";
+}
+@end
+
+@implementation EventRelationships 
++ (NSString *)category {
+	return @"category";
+}
++ (NSString *)gameEvents {
+	return @"gameEvents";
+}
++ (NSString *)games {
+	return @"games";
+}
 @end
 

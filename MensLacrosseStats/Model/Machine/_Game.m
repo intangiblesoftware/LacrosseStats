@@ -3,28 +3,12 @@
 
 #import "_Game.h"
 
-const struct GameAttributes GameAttributes = {
-	.gameDateTime = @"gameDateTime",
-	.homeScore = @"homeScore",
-	.homeTeam = @"homeTeam",
-	.location = @"location",
-	.teamWatching = @"teamWatching",
-	.visitingTeam = @"visitingTeam",
-	.visitorScore = @"visitorScore",
-};
-
-const struct GameRelationships GameRelationships = {
-	.events = @"events",
-	.eventsToRecord = @"eventsToRecord",
-	.players = @"players",
-};
-
 @implementation GameID
 @end
 
 @implementation _Game
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
 	NSParameterAssert(moc_);
 	return [NSEntityDescription insertNewObjectForEntityForName:@"Game" inManagedObjectContext:moc_];
 }
@@ -69,7 +53,7 @@ const struct GameRelationships GameRelationships = {
 }
 
 - (void)setHomeScoreValue:(int16_t)value_ {
-	[self setHomeScore:[NSNumber numberWithShort:value_]];
+	[self setHomeScore:@(value_)];
 }
 
 - (int16_t)primitiveHomeScoreValue {
@@ -78,7 +62,7 @@ const struct GameRelationships GameRelationships = {
 }
 
 - (void)setPrimitiveHomeScoreValue:(int16_t)value_ {
-	[self setPrimitiveHomeScore:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveHomeScore:@(value_)];
 }
 
 @dynamic homeTeam;
@@ -97,7 +81,7 @@ const struct GameRelationships GameRelationships = {
 }
 
 - (void)setVisitorScoreValue:(int16_t)value_ {
-	[self setVisitorScore:[NSNumber numberWithShort:value_]];
+	[self setVisitorScore:@(value_)];
 }
 
 - (int16_t)primitiveVisitorScoreValue {
@@ -106,15 +90,15 @@ const struct GameRelationships GameRelationships = {
 }
 
 - (void)setPrimitiveVisitorScoreValue:(int16_t)value_ {
-	[self setPrimitiveVisitorScore:[NSNumber numberWithShort:value_]];
+	[self setPrimitiveVisitorScore:@(value_)];
 }
 
 @dynamic events;
 
-- (NSMutableSet*)eventsSet {
+- (NSMutableSet<GameEvent*>*)eventsSet {
 	[self willAccessValueForKey:@"events"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"events"];
+	NSMutableSet<GameEvent*> *result = (NSMutableSet<GameEvent*>*)[self mutableSetValueForKey:@"events"];
 
 	[self didAccessValueForKey:@"events"];
 	return result;
@@ -122,10 +106,10 @@ const struct GameRelationships GameRelationships = {
 
 @dynamic eventsToRecord;
 
-- (NSMutableSet*)eventsToRecordSet {
+- (NSMutableSet<Event*>*)eventsToRecordSet {
 	[self willAccessValueForKey:@"eventsToRecord"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"eventsToRecord"];
+	NSMutableSet<Event*> *result = (NSMutableSet<Event*>*)[self mutableSetValueForKey:@"eventsToRecord"];
 
 	[self didAccessValueForKey:@"eventsToRecord"];
 	return result;
@@ -133,14 +117,50 @@ const struct GameRelationships GameRelationships = {
 
 @dynamic players;
 
-- (NSMutableSet*)playersSet {
+- (NSMutableSet<RosterPlayer*>*)playersSet {
 	[self willAccessValueForKey:@"players"];
 
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"players"];
+	NSMutableSet<RosterPlayer*> *result = (NSMutableSet<RosterPlayer*>*)[self mutableSetValueForKey:@"players"];
 
 	[self didAccessValueForKey:@"players"];
 	return result;
 }
 
+@end
+
+@implementation GameAttributes 
++ (NSString *)gameDateTime {
+	return @"gameDateTime";
+}
++ (NSString *)homeScore {
+	return @"homeScore";
+}
++ (NSString *)homeTeam {
+	return @"homeTeam";
+}
++ (NSString *)location {
+	return @"location";
+}
++ (NSString *)teamWatching {
+	return @"teamWatching";
+}
++ (NSString *)visitingTeam {
+	return @"visitingTeam";
+}
++ (NSString *)visitorScore {
+	return @"visitorScore";
+}
+@end
+
+@implementation GameRelationships 
++ (NSString *)events {
+	return @"events";
+}
++ (NSString *)eventsToRecord {
+	return @"eventsToRecord";
+}
++ (NSString *)players {
+	return @"players";
+}
 @end
 

@@ -1,21 +1,15 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to Event.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct EventAttributes {
-	__unsafe_unretained NSString *categoryCode;
-	__unsafe_unretained NSString *eventCode;
-	__unsafe_unretained NSString *isDefalut;
-	__unsafe_unretained NSString *statCategory;
-	__unsafe_unretained NSString *title;
-} EventAttributes;
-
-extern const struct EventRelationships {
-	__unsafe_unretained NSString *category;
-	__unsafe_unretained NSString *gameEvents;
-	__unsafe_unretained NSString *games;
-} EventRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class EventCategory;
 @class GameEvent;
@@ -24,59 +18,45 @@ extern const struct EventRelationships {
 @interface EventID : NSManagedObjectID {}
 @end
 
-@interface _Event : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _Event : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) EventID* objectID;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@property (nonatomic, readonly, strong) EventID *objectID;
 
-@property (nonatomic, strong) NSNumber* categoryCode;
+@property (nonatomic, strong, nullable) NSNumber* categoryCode;
 
 @property (atomic) int16_t categoryCodeValue;
 - (int16_t)categoryCodeValue;
 - (void)setCategoryCodeValue:(int16_t)value_;
 
-//- (BOOL)validateCategoryCode:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* eventCode;
+@property (nonatomic, strong, nullable) NSNumber* eventCode;
 
 @property (atomic) int16_t eventCodeValue;
 - (int16_t)eventCodeValue;
 - (void)setEventCodeValue:(int16_t)value_;
 
-//- (BOOL)validateEventCode:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* isDefalut;
+@property (nonatomic, strong, nullable) NSNumber* isDefalut;
 
 @property (atomic) BOOL isDefalutValue;
 - (BOOL)isDefalutValue;
 - (void)setIsDefalutValue:(BOOL)value_;
 
-//- (BOOL)validateIsDefalut:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* statCategory;
+@property (nonatomic, strong, nullable) NSNumber* statCategory;
 
 @property (atomic) int16_t statCategoryValue;
 - (int16_t)statCategoryValue;
 - (void)setStatCategoryValue:(int16_t)value_;
 
-//- (BOOL)validateStatCategory:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* title;
 
-@property (nonatomic, strong) NSString* title;
+@property (nonatomic, strong, nullable) EventCategory *category;
 
-//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSSet<GameEvent*> *gameEvents;
+- (nullable NSMutableSet<GameEvent*>*)gameEventsSet;
 
-@property (nonatomic, strong) EventCategory *category;
-
-//- (BOOL)validateCategory:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSSet *gameEvents;
-
-- (NSMutableSet*)gameEventsSet;
-
-@property (nonatomic, strong) NSSet *games;
-
-- (NSMutableSet*)gamesSet;
+@property (nonatomic, strong, nullable) NSSet<Game*> *games;
+- (nullable NSMutableSet<Game*>*)gamesSet;
 
 + (NSArray*)fetchDefaultEvents:(NSManagedObjectContext*)moc_ ;
 + (NSArray*)fetchDefaultEvents:(NSManagedObjectContext*)moc_ error:(NSError**)error_;
@@ -84,16 +64,16 @@ extern const struct EventRelationships {
 @end
 
 @interface _Event (GameEventsCoreDataGeneratedAccessors)
-- (void)addGameEvents:(NSSet*)value_;
-- (void)removeGameEvents:(NSSet*)value_;
+- (void)addGameEvents:(NSSet<GameEvent*>*)value_;
+- (void)removeGameEvents:(NSSet<GameEvent*>*)value_;
 - (void)addGameEventsObject:(GameEvent*)value_;
 - (void)removeGameEventsObject:(GameEvent*)value_;
 
 @end
 
 @interface _Event (GamesCoreDataGeneratedAccessors)
-- (void)addGames:(NSSet*)value_;
-- (void)removeGames:(NSSet*)value_;
+- (void)addGames:(NSSet<Game*>*)value_;
+- (void)removeGames:(NSSet<Game*>*)value_;
 - (void)addGamesObject:(Game*)value_;
 - (void)removeGamesObject:(Game*)value_;
 
@@ -101,40 +81,56 @@ extern const struct EventRelationships {
 
 @interface _Event (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveCategoryCode;
-- (void)setPrimitiveCategoryCode:(NSNumber*)value;
+- (nullable NSNumber*)primitiveCategoryCode;
+- (void)setPrimitiveCategoryCode:(nullable NSNumber*)value;
 
 - (int16_t)primitiveCategoryCodeValue;
 - (void)setPrimitiveCategoryCodeValue:(int16_t)value_;
 
-- (NSNumber*)primitiveEventCode;
-- (void)setPrimitiveEventCode:(NSNumber*)value;
+- (nullable NSNumber*)primitiveEventCode;
+- (void)setPrimitiveEventCode:(nullable NSNumber*)value;
 
 - (int16_t)primitiveEventCodeValue;
 - (void)setPrimitiveEventCodeValue:(int16_t)value_;
 
-- (NSNumber*)primitiveIsDefalut;
-- (void)setPrimitiveIsDefalut:(NSNumber*)value;
+- (nullable NSNumber*)primitiveIsDefalut;
+- (void)setPrimitiveIsDefalut:(nullable NSNumber*)value;
 
 - (BOOL)primitiveIsDefalutValue;
 - (void)setPrimitiveIsDefalutValue:(BOOL)value_;
 
-- (NSNumber*)primitiveStatCategory;
-- (void)setPrimitiveStatCategory:(NSNumber*)value;
+- (nullable NSNumber*)primitiveStatCategory;
+- (void)setPrimitiveStatCategory:(nullable NSNumber*)value;
 
 - (int16_t)primitiveStatCategoryValue;
 - (void)setPrimitiveStatCategoryValue:(int16_t)value_;
 
-- (NSString*)primitiveTitle;
-- (void)setPrimitiveTitle:(NSString*)value;
+- (nullable NSString*)primitiveTitle;
+- (void)setPrimitiveTitle:(nullable NSString*)value;
 
-- (EventCategory*)primitiveCategory;
-- (void)setPrimitiveCategory:(EventCategory*)value;
+- (nullable EventCategory*)primitiveCategory;
+- (void)setPrimitiveCategory:(nullable EventCategory*)value;
 
-- (NSMutableSet*)primitiveGameEvents;
-- (void)setPrimitiveGameEvents:(NSMutableSet*)value;
+- (NSMutableSet<GameEvent*>*)primitiveGameEvents;
+- (void)setPrimitiveGameEvents:(NSMutableSet<GameEvent*>*)value;
 
-- (NSMutableSet*)primitiveGames;
-- (void)setPrimitiveGames:(NSMutableSet*)value;
+- (NSMutableSet<Game*>*)primitiveGames;
+- (void)setPrimitiveGames:(NSMutableSet<Game*>*)value;
 
 @end
+
+@interface EventAttributes: NSObject 
++ (NSString *)categoryCode;
++ (NSString *)eventCode;
++ (NSString *)isDefalut;
++ (NSString *)statCategory;
++ (NSString *)title;
+@end
+
+@interface EventRelationships: NSObject
++ (NSString *)category;
++ (NSString *)gameEvents;
++ (NSString *)games;
+@end
+
+NS_ASSUME_NONNULL_END

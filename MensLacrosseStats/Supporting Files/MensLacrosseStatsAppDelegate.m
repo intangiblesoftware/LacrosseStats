@@ -9,8 +9,8 @@
 #import "MensLacrosseStatsAppDelegate.h"
 
 #import "INSOMensLacrosseStatsConstants.h"
-#import "INSOProductManager.h"
-#import "INSOReceiptValidator.h"
+
+#import "UIColor+INSOScorebookColor.h"
 
 #import "Event.h"
 #import "EventCategory.h"
@@ -18,8 +18,6 @@
 #import "RosterPlayer.h"
 
 @interface MensLacrosseStatsAppDelegate ()
-
-@property (nonatomic) INSOReceiptValidator* receiptValidator;
 
 @end
 
@@ -30,11 +28,8 @@
     NSDictionary *defaultDefaults = @{INSODefaultShouldImportCategoriesAndEventsKey:@(YES), INSOExportGameSummaryDefaultKey:@(YES), INSOExportPlayerStatsDefaultKey:@(YES), INSOExportMaxPrepsDefaultKey:@(YES)};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultDefaults];
     
-    // Import categories and events will only import if necessary (I hope). 
+    // Import categories and events will only import if necessary (I hope).
     [self importCategoriesAndEvents];
-    
-    // Refresh our product
-    [[INSOProductManager sharedManager] refreshProduct]; 
     
     // Count number of games in the app. If 0, then add one automatically.
     NSFetchRequest* fetchGames = [NSFetchRequest fetchRequestWithEntityName:[Game entityName]];

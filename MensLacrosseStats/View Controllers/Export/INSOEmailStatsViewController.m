@@ -12,7 +12,6 @@
 
 #import "INSOEmailStatsViewController.h"
 #import "INSOEmailStatsFileGenerator.h"
-#import "INSOProductManager.h"
 #import "INSOMensLacrosseStatsConstants.h"
 
 #import "Game.h"
@@ -50,12 +49,13 @@
     
     self.tableView.alwaysBounceVertical = NO;
     
+// FIXME Which product are we exporting for?
     // Are we sending boys or girls stats?
-    if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
+//    if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
         self.isPreparingForBoys = YES;
-    } else {
-        self.isPreparingForBoys = NO;
-    }
+//    } else {
+//        self.isPreparingForBoys = NO;
+//    }
     
     [self.gameSummarySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportGameSummaryDefaultKey]];
     [self.playerStatsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportPlayerStatsDefaultKey]];

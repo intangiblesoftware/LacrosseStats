@@ -1,23 +1,15 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
 // Make changes to Game.h instead.
 
-#import <CoreData/CoreData.h>
+#if __has_feature(modules)
+    @import Foundation;
+    @import CoreData;
+#else
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+#endif
 
-extern const struct GameAttributes {
-	__unsafe_unretained NSString *gameDateTime;
-	__unsafe_unretained NSString *homeScore;
-	__unsafe_unretained NSString *homeTeam;
-	__unsafe_unretained NSString *location;
-	__unsafe_unretained NSString *teamWatching;
-	__unsafe_unretained NSString *visitingTeam;
-	__unsafe_unretained NSString *visitorScore;
-} GameAttributes;
-
-extern const struct GameRelationships {
-	__unsafe_unretained NSString *events;
-	__unsafe_unretained NSString *eventsToRecord;
-	__unsafe_unretained NSString *players;
-} GameRelationships;
+NS_ASSUME_NONNULL_BEGIN
 
 @class GameEvent;
 @class Event;
@@ -26,81 +18,64 @@ extern const struct GameRelationships {
 @interface GameID : NSManagedObjectID {}
 @end
 
-@interface _Game : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@interface _Game : NSManagedObject
++ (instancetype)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
 + (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) GameID* objectID;
++ (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
+@property (nonatomic, readonly, strong) GameID *objectID;
 
-@property (nonatomic, strong) NSDate* gameDateTime;
+@property (nonatomic, strong, nullable) NSDate* gameDateTime;
 
-//- (BOOL)validateGameDateTime:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* homeScore;
+@property (nonatomic, strong, nullable) NSNumber* homeScore;
 
 @property (atomic) int16_t homeScoreValue;
 - (int16_t)homeScoreValue;
 - (void)setHomeScoreValue:(int16_t)value_;
 
-//- (BOOL)validateHomeScore:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* homeTeam;
 
-@property (nonatomic, strong) NSString* homeTeam;
+@property (nonatomic, strong, nullable) NSString* location;
 
-//- (BOOL)validateHomeTeam:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSString* teamWatching;
 
-@property (nonatomic, strong) NSString* location;
+@property (nonatomic, strong, nullable) NSString* visitingTeam;
 
-//- (BOOL)validateLocation:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* teamWatching;
-
-//- (BOOL)validateTeamWatching:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSString* visitingTeam;
-
-//- (BOOL)validateVisitingTeam:(id*)value_ error:(NSError**)error_;
-
-@property (nonatomic, strong) NSNumber* visitorScore;
+@property (nonatomic, strong, nullable) NSNumber* visitorScore;
 
 @property (atomic) int16_t visitorScoreValue;
 - (int16_t)visitorScoreValue;
 - (void)setVisitorScoreValue:(int16_t)value_;
 
-//- (BOOL)validateVisitorScore:(id*)value_ error:(NSError**)error_;
+@property (nonatomic, strong, nullable) NSSet<GameEvent*> *events;
+- (nullable NSMutableSet<GameEvent*>*)eventsSet;
 
-@property (nonatomic, strong) NSSet *events;
+@property (nonatomic, strong, nullable) NSSet<Event*> *eventsToRecord;
+- (nullable NSMutableSet<Event*>*)eventsToRecordSet;
 
-- (NSMutableSet*)eventsSet;
-
-@property (nonatomic, strong) NSSet *eventsToRecord;
-
-- (NSMutableSet*)eventsToRecordSet;
-
-@property (nonatomic, strong) NSSet *players;
-
-- (NSMutableSet*)playersSet;
+@property (nonatomic, strong, nullable) NSSet<RosterPlayer*> *players;
+- (nullable NSMutableSet<RosterPlayer*>*)playersSet;
 
 @end
 
 @interface _Game (EventsCoreDataGeneratedAccessors)
-- (void)addEvents:(NSSet*)value_;
-- (void)removeEvents:(NSSet*)value_;
+- (void)addEvents:(NSSet<GameEvent*>*)value_;
+- (void)removeEvents:(NSSet<GameEvent*>*)value_;
 - (void)addEventsObject:(GameEvent*)value_;
 - (void)removeEventsObject:(GameEvent*)value_;
 
 @end
 
 @interface _Game (EventsToRecordCoreDataGeneratedAccessors)
-- (void)addEventsToRecord:(NSSet*)value_;
-- (void)removeEventsToRecord:(NSSet*)value_;
+- (void)addEventsToRecord:(NSSet<Event*>*)value_;
+- (void)removeEventsToRecord:(NSSet<Event*>*)value_;
 - (void)addEventsToRecordObject:(Event*)value_;
 - (void)removeEventsToRecordObject:(Event*)value_;
 
 @end
 
 @interface _Game (PlayersCoreDataGeneratedAccessors)
-- (void)addPlayers:(NSSet*)value_;
-- (void)removePlayers:(NSSet*)value_;
+- (void)addPlayers:(NSSet<RosterPlayer*>*)value_;
+- (void)removePlayers:(NSSet<RosterPlayer*>*)value_;
 - (void)addPlayersObject:(RosterPlayer*)value_;
 - (void)removePlayersObject:(RosterPlayer*)value_;
 
@@ -108,40 +83,58 @@ extern const struct GameRelationships {
 
 @interface _Game (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSDate*)primitiveGameDateTime;
-- (void)setPrimitiveGameDateTime:(NSDate*)value;
+- (nullable NSDate*)primitiveGameDateTime;
+- (void)setPrimitiveGameDateTime:(nullable NSDate*)value;
 
-- (NSNumber*)primitiveHomeScore;
-- (void)setPrimitiveHomeScore:(NSNumber*)value;
+- (nullable NSNumber*)primitiveHomeScore;
+- (void)setPrimitiveHomeScore:(nullable NSNumber*)value;
 
 - (int16_t)primitiveHomeScoreValue;
 - (void)setPrimitiveHomeScoreValue:(int16_t)value_;
 
-- (NSString*)primitiveHomeTeam;
-- (void)setPrimitiveHomeTeam:(NSString*)value;
+- (nullable NSString*)primitiveHomeTeam;
+- (void)setPrimitiveHomeTeam:(nullable NSString*)value;
 
-- (NSString*)primitiveLocation;
-- (void)setPrimitiveLocation:(NSString*)value;
+- (nullable NSString*)primitiveLocation;
+- (void)setPrimitiveLocation:(nullable NSString*)value;
 
-- (NSString*)primitiveTeamWatching;
-- (void)setPrimitiveTeamWatching:(NSString*)value;
+- (nullable NSString*)primitiveTeamWatching;
+- (void)setPrimitiveTeamWatching:(nullable NSString*)value;
 
-- (NSString*)primitiveVisitingTeam;
-- (void)setPrimitiveVisitingTeam:(NSString*)value;
+- (nullable NSString*)primitiveVisitingTeam;
+- (void)setPrimitiveVisitingTeam:(nullable NSString*)value;
 
-- (NSNumber*)primitiveVisitorScore;
-- (void)setPrimitiveVisitorScore:(NSNumber*)value;
+- (nullable NSNumber*)primitiveVisitorScore;
+- (void)setPrimitiveVisitorScore:(nullable NSNumber*)value;
 
 - (int16_t)primitiveVisitorScoreValue;
 - (void)setPrimitiveVisitorScoreValue:(int16_t)value_;
 
-- (NSMutableSet*)primitiveEvents;
-- (void)setPrimitiveEvents:(NSMutableSet*)value;
+- (NSMutableSet<GameEvent*>*)primitiveEvents;
+- (void)setPrimitiveEvents:(NSMutableSet<GameEvent*>*)value;
 
-- (NSMutableSet*)primitiveEventsToRecord;
-- (void)setPrimitiveEventsToRecord:(NSMutableSet*)value;
+- (NSMutableSet<Event*>*)primitiveEventsToRecord;
+- (void)setPrimitiveEventsToRecord:(NSMutableSet<Event*>*)value;
 
-- (NSMutableSet*)primitivePlayers;
-- (void)setPrimitivePlayers:(NSMutableSet*)value;
+- (NSMutableSet<RosterPlayer*>*)primitivePlayers;
+- (void)setPrimitivePlayers:(NSMutableSet<RosterPlayer*>*)value;
 
 @end
+
+@interface GameAttributes: NSObject 
++ (NSString *)gameDateTime;
++ (NSString *)homeScore;
++ (NSString *)homeTeam;
++ (NSString *)location;
++ (NSString *)teamWatching;
++ (NSString *)visitingTeam;
++ (NSString *)visitorScore;
+@end
+
+@interface GameRelationships: NSObject
++ (NSString *)events;
++ (NSString *)eventsToRecord;
++ (NSString *)players;
+@end
+
+NS_ASSUME_NONNULL_END

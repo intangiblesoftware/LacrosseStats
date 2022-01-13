@@ -40,10 +40,10 @@ NSString * const INSOVisitorStatKey = @"visitorStat";
 NSString * const INSOStatNameKey = @"statName";
 
 #pragma mark - Product Identifier
-NSString * const INSOMensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.menslacrossestats.1year";
-NSString * const INSOWomensLacrosseStatsOneYearProductIdentifier = @"com.intangiblesoftware.womenslacrossestats.1year";
 NSString * const INSOMensProductName = @"Men’s Lacrosse Stats";
 NSString * const INSOWomensProductName = @"Women’s Lacrosse Stats";
+NSString * const INSOMensIdentifier = @"com.intangiblesoftware.menslacrossestats";
+NSString * const INSOWomensIdentifier = @"com.intangiblesoftware.womenslacrossestats";
 
 #pragma mark - Company identifiers
 NSString * const INSOMaxPrepsMensLacrosseCompanyID = @"9bfb842d-9e44-45f2-9bf8-203e2847bb66";

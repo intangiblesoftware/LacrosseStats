@@ -11,7 +11,6 @@
 #import "INSOGameEventCounter.h"
 #import "INSOMensLacrosseStatsConstants.h"
 #import "INSOMensLacrosseStatsEnum.h"
-#import "INSOProductManager.h"
 
 #import "Game.h"
 #import "Event.h"
@@ -48,8 +47,8 @@
     
     if (self) {
         _game = game;
-        
-        if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
+
+        if ([NSBundle.mainBundle.bundleIdentifier isEqualToString:INSOMensIdentifier]) {
             _isExportingForBoys = YES;
         } else {
             _isExportingForBoys = NO;
@@ -863,25 +862,25 @@
     
     // Faceoff %
     if ([self.game didRecordEvent:INSOEventCodeFaceoffWon] && [self.game didRecordEvent:INSOEventCodeFaceoffLost]) {
-    [header addObject:@"Faceoff Pct."];
+        [header addObject:@"Faceoff Pct."];
     }
     
     // Turnovers
     if ([self.game didRecordEvent:INSOEventCodeTurnover]) {
-    event = [Event eventForCode:INSOEventCodeTurnover inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
-    }
-    event = nil;
+        event = [Event eventForCode:INSOEventCodeTurnover inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
     
     // Caused turnover
     if ([self.game didRecordEvent:INSOEventCodeCausedTurnover]) {
-    event = [Event eventForCode:INSOEventCodeCausedTurnover inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
-    }
-    event = nil;
+        event = [Event eventForCode:INSOEventCodeCausedTurnover inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
     
     // Interceptions
@@ -913,87 +912,87 @@
     
     // Shots
     if ([self.game didRecordEvent:INSOEventCodeShot]) {
-    event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
-    }
-    event = nil;
+        event = [Event eventForCode:INSOEventCodeShot inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
     
     // Goals
     if ([self.game didRecordEvent:INSOEventCodeGoal]) {
-    event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
-    }
-    event = nil;
+        event = [Event eventForCode:INSOEventCodeGoal inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
     
     // Assists
     if ([self.game didRecordEvent:INSOEventCodeAssist]) {
-    event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
-    }
-    event = nil;
+        event = [Event eventForCode:INSOEventCodeAssist inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
     
     // Points
     if ([self.game didRecordEvent:INSOEventCodeAssist] && [self.game didRecordEvent:INSOEventCodeGoal]) {
-    [header addObject:@"Points"];
+        [header addObject:@"Points"];
     }
     
     // Shooting %
     if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeGoal]) {
-    [header addObject:@"Shooting Pct."];
+        [header addObject:@"Shooting Pct."];
     }
     
     // SOG
     if ([self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
-    event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
-    }
-    event = nil;
+        event = [Event eventForCode:INSOEventCodeShotOnGoal inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
     
     // Misses
     if ([self.game didRecordEvent:INSOEventCodeShot] && [self.game didRecordEvent:INSOEventCodeShotOnGoal]) {
-    [header addObject:@"Misses"];
+        [header addObject:@"Misses"];
     }
     
     // Shooting accuracy
     if ([self.game didRecordEvent:INSOEventCodeShotOnGoal] && [self.game didRecordEvent:INSOEventCodeShot]) {
-    [header addObject:@"Shooting Accuracy"];
+        [header addObject:@"Shooting Accuracy"];
     }
     
     // Saves
     if ([self.game didRecordEvent:INSOEventCodeSave]) {
-    event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
-    }
-    event = nil;
+        event = [Event eventForCode:INSOEventCodeSave inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
     
     // Goals allowed
     if ([self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
-    event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.game.managedObjectContext];
-    if (event) {
-        [header addObject:event.title];
-    }
-    event = nil;
+        event = [Event eventForCode:INSOEventCodeGoalAllowed inManagedObjectContext:self.game.managedObjectContext];
+        if (event) {
+            [header addObject:event.title];
+        }
+        event = nil;
     }
     
     // Save %
     if ([self.game didRecordEvent:INSOEventCodeSave] && [self.game didRecordEvent:INSOEventCodeGoalAllowed]) {
-    [header addObject:@"Save Pct."];
+        [header addObject:@"Save Pct."];
     }
     
     // Penalties
     if (self.shouldExportPenalties && self.isExportingForBoys) {
-    [header addObject:@"Penalties"];
-    [header addObject:@"Penalty time"];
+        [header addObject:@"Penalties"];
+        [header addObject:@"Penalty time"];
     }
     
     return header;

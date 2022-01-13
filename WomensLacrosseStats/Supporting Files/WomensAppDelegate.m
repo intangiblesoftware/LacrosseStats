@@ -9,8 +9,6 @@
 #import "WomensAppDelegate.h"
 
 #import "INSOMensLacrosseStatsConstants.h"
-#import "INSOProductManager.h"
-#import "INSOReceiptValidator.h"
 
 #import "Event.h"
 #import "EventCategory.h"
@@ -28,16 +26,13 @@
 {
     NSDictionary *defaultDefaults = @{INSODefaultShouldImportCategoriesAndEventsKey:@(YES), INSOExportGameSummaryDefaultKey:@(YES), INSOExportPlayerStatsDefaultKey:@(YES), INSOExportMaxPrepsDefaultKey:@(YES)};
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultDefaults];
-    
+        
     // Import categories and events will only import if necessary (I hope).
     [self importCategoriesAndEvents];
     
     // December 2016. Need to stop adding FPSOG as a default event.
     // So, if it's there, set default to false.
     [self remove8MFPSOG];
-    
-    // Refresh our product
-    [[INSOProductManager sharedManager] refreshProduct];
     
     // Count number of games in the app. If 0, then add one automatically.
     NSFetchRequest* fetchGames = [NSFetchRequest fetchRequestWithEntityName:[Game entityName]];
