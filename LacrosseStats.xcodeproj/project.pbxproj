@@ -162,8 +162,6 @@
 		B95D94391BBCB2F000E56AD9 /* _RosterPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _RosterPlayer.m; sourceTree = "<group>"; };
 		B95D943B1BBCC47500E56AD9 /* INSOStatCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOStatCollectionViewCell.h; sourceTree = "<group>"; };
 		B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOStatCollectionViewCell.m; sourceTree = "<group>"; };
-		B95E5DAE1C90FD460091053B /* INSOWomensInApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOWomensInApp.h; sourceTree = "<group>"; };
-		B95E5DAF1C90FD460091053B /* INSOWomensReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOWomensReceipt.h; sourceTree = "<group>"; };
 		B9637FC81BCC8B070033DED3 /* GameEvents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameEvents.plist; sourceTree = "<group>"; };
 		B97FD1851C5B0AAE000BC548 /* WomensAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WomensAppDelegate.h; sourceTree = "<group>"; };
 		B97FD1861C5B0AAE000BC548 /* WomensAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WomensAppDelegate.m; sourceTree = "<group>"; };
@@ -214,8 +212,6 @@
 		B9D732561C5B082300FEADFF /* Womens.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Womens.xcassets; sourceTree = "<group>"; };
 		B9DBC3BA1BC4B82600983F5B /* INSOHeaderCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOHeaderCollectionReusableView.h; sourceTree = "<group>"; };
 		B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOHeaderCollectionReusableView.m; sourceTree = "<group>"; };
-		B9DCC3F31C1E5AA900382BD8 /* INSOPurchaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOPurchaseViewController.h; sourceTree = "<group>"; };
-		B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPurchaseViewController.m; sourceTree = "<group>"; };
 		B9DECBE81C5C45B400481266 /* GameEvents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameEvents.plist; sourceTree = "<group>"; };
 		B9E7193E1C2F01B800EDD670 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../openssl-1.0.2e-iOS/lib/libcrypto.a"; sourceTree = "<group>"; };
 		B9E719421C2F189600EDD670 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../openssl-1.0.2e-iOS/lib/libssl.a"; sourceTree = "<group>"; };
@@ -319,15 +315,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		B95E5DAD1C90FD460091053B /* Custom Classes */ = {
-			isa = PBXGroup;
-			children = (
-				B95E5DAE1C90FD460091053B /* INSOWomensInApp.h */,
-				B95E5DAF1C90FD460091053B /* INSOWomensReceipt.h */,
-			);
-			path = "Custom Classes";
-			sourceTree = "<group>";
-		};
 		B97FD1841C5B0AAE000BC548 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,8 +401,6 @@
 				B916A1211C1DB38C00E754A3 /* Game */,
 				B916A12E1C1DB42800E754A3 /* Record Stats */,
 				B9CF5BB81BB967EC00AF51DF /* TableViewCells */,
-				B9DCC3F31C1E5AA900382BD8 /* INSOPurchaseViewController.h */,
-				B9DCC3F41C1E5AA900382BD8 /* INSOPurchaseViewController.m */,
 			);
 			name = "View Controllers";
 			path = "MensLacrosseStats/View Controllers";
@@ -541,7 +526,6 @@
 		B9D732461C5B082300FEADFF /* WomensLacrosseStats */ = {
 			isa = PBXGroup;
 			children = (
-				B95E5DAD1C90FD460091053B /* Custom Classes */,
 				B97FD1841C5B0AAE000BC548 /* Supporting Files */,
 				B9C429041C6C1AEA001C92AB /* View Controllers */,
 				B97FD18C1C5B0B1F000BC548 /* Views */,
@@ -975,11 +959,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CRBB3K29X3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/MensLacrosseStats/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.menslacrossestats;
 				PRODUCT_NAME = MensLacrosseStats;
 				PROVISIONING_PROFILE = "";
@@ -994,11 +980,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CRBB3K29X3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/MensLacrosseStats/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.menslacrossestats;
 				PRODUCT_NAME = MensLacrosseStats;
 				PROVISIONING_PROFILE = "";
@@ -1013,11 +1001,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = WomensAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CRBB3K29X3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WomensLacrosseStats/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.womenslacrossestats;
 				PRODUCT_NAME = WomensLacrosseStats;
 				PROVISIONING_PROFILE = "";
@@ -1032,11 +1022,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = WomensAppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CRBB3K29X3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/WomensLacrosseStats/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.womenslacrossestats;
 				PRODUCT_NAME = WomensLacrosseStats;
 				PROVISIONING_PROFILE = "";
