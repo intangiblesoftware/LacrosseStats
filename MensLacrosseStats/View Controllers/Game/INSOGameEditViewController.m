@@ -360,16 +360,41 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     self.playerStatCollectionView.collectionViewLayout = layout;
 }
 
+- (NSString*)titleForSectionName:(NSString*)sectionName
+{
+    INSOCategoryCode categoryCode = [sectionName intValue];
+    NSString* title = nil;
+    
+    switch (categoryCode) {
+        case INSOCategoryCodeGameAction:
+            title = @"Game Actions";
+            break;
+        case INSOCategoryCodePersonalFouls:
+            if ([NSBundle.mainBundle.bundleIdentifier isEqualToString:INSOMensIdentifier]) {
+                title = @"Personal Fouls";
+            } else {
+                title = @"Fouls";
+            }
+            break;
+        case INSOCategoryCodeTechnicalFouls:
+            title = @"Technical Fouls";
+            break;
+        case INSOCategoryCodeExpulsionFouls:
+            title = @"Expulsion Fouls";
+            break;
+        default:
+            title = @"";
+            break;
+    }
+
+    return title;
+}
+
 #pragma mark - Delegate Methods
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
 {
     return UIBarPositionTopAttached; 
 }
-
-//- (UIStatusBarStyle)preferredStatusBarStyle
-//{
-//    return UIStatusBarStyleLightContent;
-//}
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -498,20 +523,9 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     INSOHeaderCollectionReusableView* header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:INSOHeaderViewIdentifier forIndexPath:indexPath];
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.eventsFRC sections] objectAtIndex:indexPath.section];
     
-    NSString *categoryCode = sectionInfo.name;
-    NSString *sectionTitle = nil;
-    if ([categoryCode isEqualToString:@"100"]) {
-        sectionTitle = @"Game Actions";
-    } else if ([categoryCode isEqualToString:@"200"]) {
-        sectionTitle = @"Personal Fouls";
-    } else if ([categoryCode isEqualToString:@"300"]) {
-        sectionTitle = @"Technical Fouls";
-    }else if ([categoryCode isEqualToString:@"400"]) {
-        sectionTitle = @"Expulsion Fouls";
-    }
 
     // Configure the header
-    header.leftTitleLabel.text = sectionTitle;
+    header.leftTitleLabel.text = [self titleForSectionName:sectionInfo.name];
     
     return header;
 }
