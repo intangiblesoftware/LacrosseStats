@@ -49,14 +49,12 @@
     
     self.tableView.alwaysBounceVertical = NO;
     
-// FIXME Which product are we exporting for?
-    // Are we sending boys or girls stats?
-//    if ([[[INSOProductManager sharedManager] appProductName] isEqualToString:INSOMensProductName]) {
+    if ([NSBundle.mainBundle.bundleIdentifier isEqualToString:INSOMensIdentifier]) {
         self.isPreparingForBoys = YES;
-//    } else {
-//        self.isPreparingForBoys = NO;
-//    }
-    
+    } else {
+        self.isPreparingForBoys = NO;
+    }
+
     [self.gameSummarySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportGameSummaryDefaultKey]];
     [self.playerStatsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportPlayerStatsDefaultKey]];
     [self.maxPrepsSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:INSOExportMaxPrepsDefaultKey]];
