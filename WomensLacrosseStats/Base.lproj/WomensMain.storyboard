@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95137584209442139" green="0.97575753927230835" blue="0.9752468466758728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="GameCell" rowHeight="189" id="MjK-og-DmG" customClass="INSOGameTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="GameCell" rowHeight="189" id="MjK-og-DmG" customClass="INSOGameTableViewCell" customModule="WomensLacrosseStats" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="189"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MjK-og-DmG" id="Kmg-Y6-JGZ">
@@ -162,7 +162,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Games" id="8iJ-cR-KIt">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="F3m-Dd-oJh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="F3m-Dd-oJh">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addGame:" destination="aT5-aF-6lY" id="dcA-82-yki"/>

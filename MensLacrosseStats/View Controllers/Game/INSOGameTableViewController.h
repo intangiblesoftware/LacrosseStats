@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class INSOGameTableViewCell;
+
 @interface INSOGameTableViewController : UITableViewController
 
 @end

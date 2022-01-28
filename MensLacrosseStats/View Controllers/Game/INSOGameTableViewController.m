@@ -11,8 +11,9 @@
 #import "MensLacrosseStatsAppDelegate.h"
 
 #import "INSOGameTableViewController.h"
-#import "INSOGameTableViewCell.h"
 #import "INSOGameDetailViewController.h"
+
+#import "LacrosseStats-Swift.h"
 
 #import "Game.h"
 #import "Event.h"
