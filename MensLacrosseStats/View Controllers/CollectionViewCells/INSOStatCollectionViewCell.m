@@ -6,7 +6,6 @@
 //  Copyright © 2015 Intangible Software. All rights reserved.
 //
 
-#import "UIColor+INSOScorebookColor.h"
 
 #import "INSOStatCollectionViewCell.h"
 

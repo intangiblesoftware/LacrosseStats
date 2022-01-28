@@ -10,7 +10,6 @@
 
 #import "INSOMensLacrosseStatsConstants.h"
 
-#import "UIColor+INSOScorebookColor.h"
 
 #import "Event.h"
 #import "EventCategory.h"

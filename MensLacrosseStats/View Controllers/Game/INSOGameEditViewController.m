@@ -6,9 +6,10 @@
 //  Copyright © 2015 Intangible Software. All rights reserved.
 //
 
-#import "UIColor+INSOScorebookColor.h"
 
 #import "MensLacrosseStatsAppDelegate.h"
+
+#import "LacrosseStats-Swift.h"
 
 #import "INSOGameEditViewController.h"
 #import "INSOPlayerCollectionViewCell.h"

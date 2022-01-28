@@ -8,7 +8,7 @@
 
 @import MessageUI;
 
-#import "UIColor+INSOScorebookColor.h"
+#import "LacrosseStats-Swift.h"
 
 #import "INSOEmailStatsViewController.h"
 #import "INSOEmailStatsFileGenerator.h"

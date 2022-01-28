@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 IntangibleSoftware. All rights reserved.
 //
 
-#import "UIColor+INSOScorebookColor.h"
 
 #import "MensLacrosseStatsAppDelegate.h"
 

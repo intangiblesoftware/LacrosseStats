@@ -57,7 +57,7 @@
 		B97FD1941C5B0B5D000BC548 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD1911C5B0B5D000BC548 /* Main.storyboard */; };
 		B97FD1971C5B0B86000BC548 /* WomensLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD1991C5B0B86000BC548 /* WomensLaunchScreen.storyboard */; };
 		B97FD19A1C5B0B8E000BC548 /* WomensMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD19C1C5B0B8E000BC548 /* WomensMain.storyboard */; };
-		B97FD19D1C5B0D65000BC548 /* UIColor+INSOScorebookColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.m */; };
+		B97FD19D1C5B0D65000BC548 /* UIColor+INSOScorebookColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift */; };
 		B97FD19E1C5B0E12000BC548 /* INSOPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */; };
 		B97FD19F1C5B0E15000BC548 /* NSManagedObject+GameEventAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */; };
 		B97FD1A11C5B0E25000BC548 /* INSOGameEventCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */; };
@@ -106,7 +106,7 @@
 		B9C4290B1C6C1AEA001C92AB /* INSODrawResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C429061C6C1AEA001C92AB /* INSODrawResultViewController.m */; };
 		B9C4290C1C6C1AEA001C92AB /* INSOWomensGameEventSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C429081C6C1AEA001C92AB /* INSOWomensGameEventSelectorTableViewController.m */; };
 		B9C4290D1C6C1AEA001C92AB /* INSOWomensGameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C4290A1C6C1AEA001C92AB /* INSOWomensGameStatsViewController.m */; };
-		B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.m */; };
+		B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift */; };
 		B9CF5BB71BB967DD00AF51DF /* INSOPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */; };
 		B9D732571C5B082300FEADFF /* Womens.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9D732561C5B082300FEADFF /* Womens.xcassets */; };
 		B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */; };
@@ -203,8 +203,7 @@
 		B9C429091C6C1AEA001C92AB /* INSOWomensGameStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOWomensGameStatsViewController.h; sourceTree = "<group>"; };
 		B9C4290A1C6C1AEA001C92AB /* INSOWomensGameStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOWomensGameStatsViewController.m; sourceTree = "<group>"; };
 		B9C7A7301BADA3B30082DA8B /* MensLacrosseStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MensLacrosseStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B9CF5BB11BB967CF00AF51DF /* UIColor+INSOScorebookColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+INSOScorebookColor.h"; sourceTree = "<group>"; };
-		B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+INSOScorebookColor.m"; sourceTree = "<group>"; };
+		B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+INSOScorebookColor.swift"; sourceTree = "<group>"; };
 		B9CF5BB51BB967DD00AF51DF /* INSOPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOPickerTextField.h; sourceTree = "<group>"; };
 		B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOPickerTextField.m; sourceTree = "<group>"; };
 		B9D732451C5B082300FEADFF /* WomensLacrosseStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WomensLacrosseStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -490,8 +489,7 @@
 		B9CF5BB01BB967CF00AF51DF /* Class Categories */ = {
 			isa = PBXGroup;
 			children = (
-				B9CF5BB11BB967CF00AF51DF /* UIColor+INSOScorebookColor.h */,
-				B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.m */,
+				B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift */,
 			);
 			path = "Class Categories";
 			sourceTree = "<group>";
@@ -687,7 +685,7 @@
 				B99FDD521BB46865006FB373 /* MensLacrosseStats.xcdatamodeld in Sources */,
 				B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */,
 				B9A5DBA21BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m in Sources */,
-				B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.m in Sources */,
+				B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift in Sources */,
 				B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m in Sources */,
 				B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */,
 				B9CF5BB71BB967DD00AF51DF /* INSOPickerTextField.m in Sources */,
@@ -749,7 +747,7 @@
 				B97FD1B31C5B961F000BC548 /* INSOGameDetailViewController.m in Sources */,
 				B97FD19E1C5B0E12000BC548 /* INSOPickerTextField.m in Sources */,
 				B97FD18B1C5B0AAE000BC548 /* main.m in Sources */,
-				B97FD19D1C5B0D65000BC548 /* UIColor+INSOScorebookColor.m in Sources */,
+				B97FD19D1C5B0D65000BC548 /* UIColor+INSOScorebookColor.swift in Sources */,
 				B97FD1C51C5B9B52000BC548 /* INSOGameStatTableViewCell.m in Sources */,
 				B97FD1B61C5B962B000BC548 /* INSOGameTableViewController.m in Sources */,
 				B97FD1B91C5B963B000BC548 /* INSOGameEventSelectorTableViewController.m in Sources */,
