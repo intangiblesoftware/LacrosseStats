@@ -8,7 +8,7 @@
 
 #import "NSManagedObject+GameEventAggregate.h"
 
-#import "MensLacrosseStatsAppDelegate.h"
+#import "AppDelegate.h"
 
 #import "INSOGameStatsViewController.h"
 #import "INSOMensLacrosseStatsConstants.h"
@@ -128,7 +128,7 @@ static NSString * const INSOPlayerStatsCellIdentifier = @"PlayerStatCell";
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;

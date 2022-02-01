@@ -6,7 +6,7 @@
 //  Copyright © 2015 Intangible Software. All rights reserved.
 //
 
-#import "MensLacrosseStatsAppDelegate.h"
+#import "AppDelegate.h"
 
 #import "INSOGameDetailViewController.h"
 #import "INSOGameEditViewController.h"
@@ -98,7 +98,7 @@ static NSString * INSOExportStatsSegueIdentifier       = @"ExportStatsSegue";
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;

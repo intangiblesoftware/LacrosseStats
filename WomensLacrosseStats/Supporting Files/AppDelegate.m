@@ -1,12 +1,12 @@
 //
-//  WomensAppDelegate.m
-//  WomensLacrosseStats
+//  AppDelegate.m
+//  LacrosseStats
 //
 //  Created by James Dabrowski on 1/28/16.
 //  Copyright © 2016 Intangible Software. All rights reserved.
 //
 
-#import "WomensAppDelegate.h"
+#import "AppDelegate.h"
 
 #import "INSOMensLacrosseStatsConstants.h"
 
@@ -15,11 +15,11 @@
 #import "Game.h"
 #import "RosterPlayer.h"
 
-@interface WomensAppDelegate ()
+@interface AppDelegate ()
 
 @end
 
-@implementation WomensAppDelegate
+@implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

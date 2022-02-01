@@ -6,7 +6,7 @@
 //  Copyright © 2015 Intangible Software. All rights reserved.
 //
 
-#import "MensLacrosseStatsAppDelegate.h"
+#import "AppDelegate.h"
 
 #import "INSOFaceoffWonViewController.h"
 #import "INSOPlayerCollectionViewCell.h"
@@ -109,7 +109,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     

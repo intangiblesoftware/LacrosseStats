@@ -18,6 +18,11 @@
 // • Add `@class MySwiftClass` to your .h files that depend on the Swift code;
 // • No need to import the Swift Bridging Header (`WomensLacrosseStats-Swift.h`), since it's already being imported from the .pch file.
 
+#import "Event.h"
+#import "Game.h"
+#import "INSOGameDetailViewController.h"
+#import "AppDelegate.h"
+#import "RosterPlayer.h"
 #import <UIKit/UIKit.h>
 
 // End Swiftify generated imports

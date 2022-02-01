@@ -8,7 +8,7 @@
 #import "INSOMensLacrosseStatsEnum.h"
 #import "INSOMensLacrosseStatsConstants.h"
 
-#import "WomensAppDelegate.h"
+#import "AppDelegate.h"
 
 #import "INSOWomensGameEventSelectorTableViewController.h"
 #import "INSOPenaltyTimeViewController.h"
@@ -233,7 +233,7 @@ static NSString * const INSOMajorFoulResultSegueIdentifier = @"MajorFoulResultSe
 {
     // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
-        WomensAppDelegate* appDelegate = (WomensAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     

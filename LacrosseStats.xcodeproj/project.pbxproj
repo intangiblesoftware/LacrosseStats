@@ -23,13 +23,14 @@
 /* Begin PBXBuildFile section */
 		382224E326961C7000055620 /* INSOEmailStatsFileGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */; };
 		382224E426961C7100055620 /* INSOEmailStatsFileGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */; };
+		38AA532927A9C87D00E1F589 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FD1861C5B0AAE000BC548 /* AppDelegate.m */; };
 		38DD23E727A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */; };
 		38DD23E827A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */; };
 		B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */; };
 		B916A12A1C1DB38C00E754A3 /* INSOGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1231C1DB38C00E754A3 /* INSOGameDetailViewController.m */; };
 		B916A12B1C1DB38C00E754A3 /* INSOGameEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1251C1DB38C00E754A3 /* INSOGameEditViewController.m */; };
 		B916A12C1C1DB38C00E754A3 /* INSOGameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1271C1DB38C00E754A3 /* INSOGameStatsViewController.m */; };
-		B916A12D1C1DB38C00E754A3 /* INSOGameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.m */; };
+		B916A12D1C1DB38C00E754A3 /* INSOGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.swift */; };
 		B916A13B1C1DB42800E754A3 /* INSOEventListEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1301C1DB42800E754A3 /* INSOEventListEditorViewController.m */; };
 		B916A13C1C1DB42800E754A3 /* INSOFaceoffWonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1321C1DB42800E754A3 /* INSOFaceoffWonViewController.m */; };
 		B916A13D1C1DB42800E754A3 /* INSOGameEventSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1341C1DB42800E754A3 /* INSOGameEventSelectorTableViewController.m */; };
@@ -51,7 +52,7 @@
 		B95D943A1BBCB2F000E56AD9 /* _RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94391BBCB2F000E56AD9 /* _RosterPlayer.m */; };
 		B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */; };
 		B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9637FC81BCC8B070033DED3 /* GameEvents.plist */; };
-		B97FD1891C5B0AAE000BC548 /* WomensAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FD1861C5B0AAE000BC548 /* WomensAppDelegate.m */; };
+		B97FD1891C5B0AAE000BC548 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FD1861C5B0AAE000BC548 /* AppDelegate.m */; };
 		B97FD18B1C5B0AAE000BC548 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FD1881C5B0AAE000BC548 /* main.m */; };
 		B97FD1931C5B0B5D000BC548 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD18F1C5B0B5D000BC548 /* LaunchScreen.storyboard */; };
 		B97FD1941C5B0B5D000BC548 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD1911C5B0B5D000BC548 /* Main.storyboard */; };
@@ -76,7 +77,7 @@
 		B97FD1B31C5B961F000BC548 /* INSOGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1231C1DB38C00E754A3 /* INSOGameDetailViewController.m */; };
 		B97FD1B41C5B9623000BC548 /* INSOGameEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1251C1DB38C00E754A3 /* INSOGameEditViewController.m */; };
 		B97FD1B51C5B9627000BC548 /* INSOGameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1271C1DB38C00E754A3 /* INSOGameStatsViewController.m */; };
-		B97FD1B61C5B962B000BC548 /* INSOGameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.m */; };
+		B97FD1B61C5B962B000BC548 /* INSOGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.swift */; };
 		B97FD1B71C5B9634000BC548 /* INSOEventListEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1301C1DB42800E754A3 /* INSOEventListEditorViewController.m */; };
 		B97FD1B81C5B9637000BC548 /* INSOFaceoffWonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1321C1DB42800E754A3 /* INSOFaceoffWonViewController.m */; };
 		B97FD1B91C5B963B000BC548 /* INSOGameEventSelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1341C1DB42800E754A3 /* INSOGameEventSelectorTableViewController.m */; };
@@ -97,7 +98,6 @@
 		B991A6661BB75FAF004FD794 /* _GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A6641BB75FAF004FD794 /* _GameEvent.m */; };
 		B99FDD521BB46865006FB373 /* MensLacrosseStats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD501BB46865006FB373 /* MensLacrosseStats.xcdatamodeld */; };
 		B99FDD5F1BB46907006FB373 /* Mens.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD5E1BB46907006FB373 /* Mens.xcassets */; };
-		B99FDD651BB46957006FB373 /* MensLacrosseStatsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD621BB46957006FB373 /* MensLacrosseStatsAppDelegate.m */; };
 		B99FDD671BB46957006FB373 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD641BB46957006FB373 /* main.m */; };
 		B9A5DB9F1BE55856004B72A4 /* INSOGameEventCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */; };
 		B9A5DBA21BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */; };
@@ -126,8 +126,7 @@
 		B916A1251C1DB38C00E754A3 /* INSOGameEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameEditViewController.m; sourceTree = "<group>"; };
 		B916A1261C1DB38C00E754A3 /* INSOGameStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameStatsViewController.h; sourceTree = "<group>"; };
 		B916A1271C1DB38C00E754A3 /* INSOGameStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameStatsViewController.m; sourceTree = "<group>"; };
-		B916A1281C1DB38C00E754A3 /* INSOGameTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameTableViewController.h; sourceTree = "<group>"; };
-		B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameTableViewController.m; sourceTree = "<group>"; };
+		B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INSOGameTableViewController.swift; sourceTree = "<group>"; };
 		B916A12F1C1DB42800E754A3 /* INSOEventListEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOEventListEditorViewController.h; sourceTree = "<group>"; };
 		B916A1301C1DB42800E754A3 /* INSOEventListEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOEventListEditorViewController.m; sourceTree = "<group>"; };
 		B916A1311C1DB42800E754A3 /* INSOFaceoffWonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOFaceoffWonViewController.h; sourceTree = "<group>"; };
@@ -164,8 +163,8 @@
 		B95D943B1BBCC47500E56AD9 /* INSOStatCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOStatCollectionViewCell.h; sourceTree = "<group>"; };
 		B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOStatCollectionViewCell.m; sourceTree = "<group>"; };
 		B9637FC81BCC8B070033DED3 /* GameEvents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameEvents.plist; sourceTree = "<group>"; };
-		B97FD1851C5B0AAE000BC548 /* WomensAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WomensAppDelegate.h; sourceTree = "<group>"; };
-		B97FD1861C5B0AAE000BC548 /* WomensAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WomensAppDelegate.m; sourceTree = "<group>"; };
+		B97FD1851C5B0AAE000BC548 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B97FD1861C5B0AAE000BC548 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B97FD1871C5B0AAE000BC548 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B97FD1881C5B0AAE000BC548 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B97FD1901C5B0B5D000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -273,8 +272,7 @@
 				B916A1251C1DB38C00E754A3 /* INSOGameEditViewController.m */,
 				B916A1261C1DB38C00E754A3 /* INSOGameStatsViewController.h */,
 				B916A1271C1DB38C00E754A3 /* INSOGameStatsViewController.m */,
-				B916A1281C1DB38C00E754A3 /* INSOGameTableViewController.h */,
-				B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.m */,
+				B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -313,8 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				B9DECBE81C5C45B400481266 /* GameEvents.plist */,
-				B97FD1851C5B0AAE000BC548 /* WomensAppDelegate.h */,
-				B97FD1861C5B0AAE000BC548 /* WomensAppDelegate.m */,
+				B97FD1851C5B0AAE000BC548 /* AppDelegate.h */,
+				B97FD1861C5B0AAE000BC548 /* AppDelegate.m */,
 				B97FD1871C5B0AAE000BC548 /* Info.plist */,
 				B97FD1881C5B0AAE000BC548 /* main.m */,
 			);
@@ -680,7 +678,7 @@
 				B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */,
 				B916A13D1C1DB42800E754A3 /* INSOGameEventSelectorTableViewController.m in Sources */,
 				B9A5DB9F1BE55856004B72A4 /* INSOGameEventCounter.m in Sources */,
-				B916A12D1C1DB38C00E754A3 /* INSOGameTableViewController.m in Sources */,
+				B916A12D1C1DB38C00E754A3 /* INSOGameTableViewController.swift in Sources */,
 				382224E326961C7000055620 /* INSOEmailStatsFileGenerator.m in Sources */,
 				B99FDD521BB46865006FB373 /* MensLacrosseStats.xcdatamodeld in Sources */,
 				B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */,
@@ -698,6 +696,7 @@
 				B916A13F1C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m in Sources */,
 				B935AB4A1BC9CA6C006AEA3A /* EventCategory.m in Sources */,
 				B916A12B1C1DB38C00E754A3 /* INSOGameEditViewController.m in Sources */,
+				38AA532927A9C87D00E1F589 /* AppDelegate.m in Sources */,
 				B95D943A1BBCB2F000E56AD9 /* _RosterPlayer.m in Sources */,
 				B9B53F721D2355C0004DACF3 /* INSOButton.m in Sources */,
 				B935AB4D1BC9CA78006AEA3A /* _EventCategory.m in Sources */,
@@ -705,7 +704,6 @@
 				B928F26D1BE2F9000028DD51 /* INSOGameStatTableViewCell.m in Sources */,
 				38DD23E727A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */,
 				B916A13E1C1DB42800E754A3 /* INSOPenaltyTimeViewController.m in Sources */,
-				B99FDD651BB46957006FB373 /* MensLacrosseStatsAppDelegate.m in Sources */,
 				B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */,
 				B916A1401C1DB42800E754A3 /* INSOShotResultViewController.m in Sources */,
 				B916A12A1C1DB38C00E754A3 /* INSOGameDetailViewController.m in Sources */,
@@ -740,7 +738,7 @@
 				B9C4290C1C6C1AEA001C92AB /* INSOWomensGameEventSelectorTableViewController.m in Sources */,
 				B97FD1C31C5B9AA4000BC548 /* _GameEvent.m in Sources */,
 				B97FD1BC1C5B9647000BC548 /* INSOShotResultViewController.m in Sources */,
-				B97FD1891C5B0AAE000BC548 /* WomensAppDelegate.m in Sources */,
+				B97FD1891C5B0AAE000BC548 /* AppDelegate.m in Sources */,
 				B97FD1C41C5B9AA8000BC548 /* _RosterPlayer.m in Sources */,
 				38DD23E827A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */,
 				B97FD1AE1C5B9607000BC548 /* INSOHeaderCollectionReusableView.m in Sources */,
@@ -749,7 +747,7 @@
 				B97FD18B1C5B0AAE000BC548 /* main.m in Sources */,
 				B97FD19D1C5B0D65000BC548 /* UIColor+INSOScorebookColor.swift in Sources */,
 				B97FD1C51C5B9B52000BC548 /* INSOGameStatTableViewCell.m in Sources */,
-				B97FD1B61C5B962B000BC548 /* INSOGameTableViewController.m in Sources */,
+				B97FD1B61C5B962B000BC548 /* INSOGameTableViewController.swift in Sources */,
 				B97FD1B91C5B963B000BC548 /* INSOGameEventSelectorTableViewController.m in Sources */,
 				B97FD1A11C5B0E25000BC548 /* INSOGameEventCounter.m in Sources */,
 				B97FD1B71C5B9634000BC548 /* INSOEventListEditorViewController.m in Sources */,

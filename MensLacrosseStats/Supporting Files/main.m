@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MensLacrosseStatsAppDelegate.h"
+#import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MensLacrosseStatsAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

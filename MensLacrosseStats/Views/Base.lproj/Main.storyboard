@@ -66,7 +66,7 @@
         <!--Games-->
         <scene sceneID="MIT-2t-QWl">
             <objects>
-                <tableViewController id="Xr9-7A-QNT" customClass="INSOGameTableViewController" sceneMemberID="viewController">
+                <tableViewController id="Xr9-7A-QNT" customClass="INSOGameTableViewController" customModule="MensLacrosseStats" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="189" sectionHeaderHeight="28" sectionFooterHeight="28" id="eIp-fC-tUJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,7 +161,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Q3-3A-FNw">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="addGame:" destination="Xr9-7A-QNT" id="5hw-D8-kCm"/>
+                                <action selector="addGame:" destination="Xr9-7A-QNT" id="eak-IL-kdp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -1,6 +1,6 @@
 //
-//  WomensAppDelegate.h
-//  WomensLacrosseStats
+//  AppDelegate.h
+//  LacrosseStats
 //
 //  Created by James Dabrowski on 1/28/16.
 //  Copyright © 2016 Intangible Software. All rights reserved.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface WomensAppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

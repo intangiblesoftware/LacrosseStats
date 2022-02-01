@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 IntangibleSoftware. All rights reserved.
 //
 
-#import "MensLacrosseStatsAppDelegate.h"
+#import "AppDelegate.h"
 #import "INSOMensLacrosseStatsEnum.h"
 
 #import "INSOPenaltyTimeViewController.h"
@@ -188,7 +188,7 @@ static NSString * const INSODoneAddingEventSegueIdentifier = @"DoneAddingEventSe
 {
     // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     

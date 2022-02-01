@@ -7,7 +7,7 @@
 //
 
 
-#import "MensLacrosseStatsAppDelegate.h"
+#import "AppDelegate.h"
 
 #import "LacrosseStats-Swift.h"
 
@@ -196,7 +196,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 - (NSManagedObjectContext*)managedObjectContext
 {
     if (!_managedObjectContext) {
-        MensLacrosseStatsAppDelegate* appDelegate = (MensLacrosseStatsAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;

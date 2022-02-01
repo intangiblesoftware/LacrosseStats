@@ -8,7 +8,7 @@
 
 #import "INSODrawResultViewController.h"
 
-#import "WomensAppDelegate.h"
+#import "AppDelegate.h"
 #import "INSOPlayerCollectionViewCell.h"
 
 #import "RosterPlayer.h"
@@ -138,7 +138,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
 {
     // Just want to use the game's moc and want an easier ref to it.
     if (!_managedObjectContext) {
-        WomensAppDelegate* appDelegate = (WomensAppDelegate *)[[UIApplication sharedApplication] delegate];
+        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     
