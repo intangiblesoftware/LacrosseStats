@@ -613,7 +613,7 @@
         <!--Game Detail View Controller-->
         <scene sceneID="tcO-vQ-F4N">
             <objects>
-                <viewController id="TEW-ZO-gw9" customClass="INSOGameDetailViewController" sceneMemberID="viewController">
+                <viewController id="TEW-ZO-gw9" customClass="INSOGameDetailViewController" customModule="WomensLacrosseStats" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2ds-ub-IDX"/>
                         <viewControllerLayoutGuide type="bottom" id="xcu-qK-QaW"/>

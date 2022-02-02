@@ -19,10 +19,15 @@
 
 #import "Event.h"
 #import "Game.h"
-#import "INSOGameDetailViewController.h"
 #import "AppDelegate.h"
 #import "RosterPlayer.h"
 #import <UIKit/UIKit.h>
 
 // End Swiftify generated imports
 // -----------------------------------------------------------------------------
+
+#import "INSOGameEditViewController.h"
+#import "INSORosterPlayerSelectorViewController.h"
+#import "INSOGameStatsViewController.h"
+#import "INSOEmailStatsViewController.h"
+#import "INSOWomensGameStatsViewController.h"

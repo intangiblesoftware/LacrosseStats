@@ -885,7 +885,7 @@
         <!--Game Detail View Controller-->
         <scene sceneID="3us-Nn-gad">
             <objects>
-                <viewController id="ofZ-RP-s63" customClass="INSOGameDetailViewController" sceneMemberID="viewController">
+                <viewController id="ofZ-RP-s63" customClass="INSOGameDetailViewController" customModule="MensLacrosseStats" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z2y-nH-DpP"/>
                         <viewControllerLayoutGuide type="bottom" id="XXC-vB-Z1V"/>
