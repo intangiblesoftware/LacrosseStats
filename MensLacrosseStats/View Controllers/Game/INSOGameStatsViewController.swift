@@ -186,29 +186,26 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         }
 
         // Clears
-//        if game?.didRecordEvent(INSOEventCodeClearSuccessful) && game?.didRecordEvent(INSOEventCodeClearFailed) {
-//            let homeClearSuccessful = eventCounter?.eventCount(forHomeTeam: INSOEventCodeClearSuccessful).intValue ?? 0
-//            let homeClearFailed = eventCounter?.eventCount(forHomeTeam: INSOEventCodeClearFailed).intValue ?? 0
-//            let homeClears = homeClearSuccessful + homeClearFailed
-//            let homeClearPct = (homeClears > 0) ? CGFloat(homeClearSuccessful) / CGFloat(homeClears) : 0.0
-//            let homeClearPctString = percentFormatter?.string(from: NSNumber(value: Float(homeClearPct)))
-//
-//            let visitorClearSuccessful = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeClearSuccessful).intValue ?? 0
-//            let visitorClearFailed = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeClearFailed).intValue ?? 0
-//            let visitorClears = visitorClearSuccessful + visitorClearFailed
-//            let visitorClearPct = (visitorClears > 0) ? CGFloat(visitorClearSuccessful) / CGFloat(visitorClears) : 0.0
-//            let visitorClearPctString = percentFormatter?.string(from: NSNumber(value: Float(visitorClearPct)))
-//
-//            let homeStatString = "\(NSNumber(value: homeClearSuccessful))/\(NSNumber(value: homeClears)) \(homeClearPctString ?? "")"
-//            let visitorStatString = "\(NSNumber(value: visitorClearSuccessful))/\(NSNumber(value: visitorClears)) \(visitorClearPctString ?? "")"
-//
-//            sectionData.append([
-//                INSOHomeStatKey: homeStatString,
-//                INSOStatNameKey: "Clears",
-//                INSOVisitorStatKey: visitorStatString
-//            ])
-//        }
+        if game.didRecordEvent(.codeClearSuccessful) && game.didRecordEvent(.codeClearFailed) {
+            let homeClearSuccessful: Int = eventCounter.eventCount(forHomeTeam: .codeClearSuccessful).intValue
+            let homeClearFailed: Int = eventCounter.eventCount(forHomeTeam: .codeClearFailed).intValue
+            let homeClears: Int = homeClearSuccessful + homeClearFailed
+            let homeClearPct: Float = (homeClears > 0) ? Float(homeClearSuccessful) / Float(homeClears) : 0.0
+            let homeClearPctString: String = percentFormatter.string(from: NSNumber(value: homeClearPct)) ?? "0%"
+            
+            let visitorClearSuccessful: Int = eventCounter.eventCount(forVisitingTeam: .codeClearSuccessful).intValue
+            let visitorClearFailed: Int = eventCounter.eventCount(forVisitingTeam: .codeClearFailed).intValue
+            let visitorClears: Int = visitorClearSuccessful + visitorClearFailed
+            let visitorClearPct: Float = (visitorClears > 0) ? Float(visitorClearSuccessful) / Float(visitorClears) : 0.0
+            let visitorClearPctString: String = percentFormatter.string(from: NSNumber(value: visitorClearPct)) ?? "0%"
 
+            let homeStatString = "\(homeClearSuccessful)/\(homeClears) \(homeClearPctString)"
+            let visitorStatString = "\(visitorClearSuccessful)/\(visitorClears) \(visitorClearPctString)"
+            
+            let clearStats = EventStats(statName: "Clears", homeStat: homeStatString, visitorStat: visitorStatString)
+            stats.append(clearStats)
+        }
+        
         // Interceptions
 //        if game?.didRecordEvent(INSOEventCodeInterception) {
 //            let homeInterceptions = eventCounter?.eventCount(forHomeTeam: INSOEventCodeInterception)
