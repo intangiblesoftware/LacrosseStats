@@ -207,18 +207,13 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         // Interceptions
-//        if game?.didRecordEvent(INSOEventCodeInterception) {
-//            let homeInterceptions = eventCounter?.eventCount(forHomeTeam: INSOEventCodeInterception)
-//            let visitorInterceptions = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeInterception)
-//
-//            if let homeInterceptions = homeInterceptions, let visitorInterceptions = visitorInterceptions {
-//                sectionData.append([
-//                    INSOHomeStatKey: homeInterceptions,
-//                    INSOStatNameKey: "Interceptions",
-//                    INSOVisitorStatKey: visitorInterceptions
-//                ])
-//            }
-//        }
+        if game.didRecordEvent(.codeInterception) {
+            let homeInterceptions = eventCounter.eventCount(forHomeTeam: .codeInterception).intValue
+            let visitorInterceptions = eventCounter.eventCount(forVisitingTeam: .codeInterception).intValue
+
+            let interceptionStats = EventStats(statName: "Interceptions", homeStat: "\(homeInterceptions)", visitorStat: "\(visitorInterceptions)")
+            stats.append(interceptionStats)
+        }
 
         // Takeaways
 //        if game?.didRecordEvent(INSOEventCodeTakeaway) {
