@@ -216,68 +216,44 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         }
 
         // Takeaways
-//        if game?.didRecordEvent(INSOEventCodeTakeaway) {
-//            let homeTakeaways = eventCounter?.eventCount(forHomeTeam: INSOEventCodeTakeaway)
-//            let visitorTakeaways = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeTakeaway)
-//
-//            if let homeTakeaways = homeTakeaways, let visitorTakeaways = visitorTakeaways {
-//                sectionData.append([
-//                    INSOHomeStatKey: homeTakeaways,
-//                    INSOStatNameKey: "Takeaways",
-//                    INSOVisitorStatKey: visitorTakeaways
-//                ])
-//            }
-//        }
+        if game.didRecordEvent(.codeTakeaway) {
+            let homeTakeaways = eventCounter.eventCount(forHomeTeam: .codeTakeaway).intValue
+            let visitorTakeaways = eventCounter.eventCount(forVisitingTeam: .codeTakeaway).intValue
+            
+            let takeawayStats = EventStats(statName: "Takeaways", homeStat: "\(homeTakeaways)", visitorStat: "\(visitorTakeaways)")
+            stats.append(takeawayStats)
+        }
 
         // Turnovers
-//        if game?.didRecordEvent(INSOEventCodeTurnover) {
-//            let homeTurnovers = eventCounter?.eventCount(forHomeTeam: INSOEventCodeTurnover)
-//            let visitorTurnovers = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeTurnover)
-//
-//            if let homeTurnovers = homeTurnovers, let visitorTurnovers = visitorTurnovers {
-//                sectionData.append([
-//                    INSOHomeStatKey: homeTurnovers,
-//                    INSOStatNameKey: "Turnovers",
-//                    INSOVisitorStatKey: visitorTurnovers
-//                ])
-//            }
-//        }
+        if game.didRecordEvent(.codeTurnover) {
+            let homeTurnovers = eventCounter.eventCount(forHomeTeam: .codeTurnover).intValue
+            let visitorTurnovers = eventCounter.eventCount(forVisitingTeam: .codeTurnover).intValue
+            
+            let turnoverStats = EventStats(statName: "Turnovers", homeStat: "\(homeTurnovers)", visitorStat: "\(visitorTurnovers)")
+            stats.append(turnoverStats)
+        }
 
         // Caused Turnovers
-//        if game?.didRecordEvent(INSOEventCodeCausedTurnover) {
-//            let homeCausedTurnovers = eventCounter?.eventCount(forHomeTeam: INSOEventCodeCausedTurnover)
-//            let visitorCausedTurnovers = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeCausedTurnover)
-//
-//            if let homeCausedTurnovers = homeCausedTurnovers, let visitorCausedTurnovers = visitorCausedTurnovers {
-//                sectionData.append([
-//                    INSOHomeStatKey: homeCausedTurnovers,
-//                    INSOStatNameKey: "Caused Turnover",
-//                    INSOVisitorStatKey: visitorCausedTurnovers
-//                ])
-//            }
-//        }
+        if game.didRecordEvent(.codeCausedTurnover) {
+            let homeCausedTurnovers = eventCounter.eventCount(forHomeTeam: .codeCausedTurnover).intValue
+            let visitorCausedTurnovers = eventCounter.eventCount(forVisitingTeam: .codeCausedTurnover).intValue
+            
+            let causedTurnoverStats = EventStats(statName: "Caused Turnover", homeStat: "\(homeCausedTurnovers)", visitorStat: "\(visitorCausedTurnovers)")
+            stats.append(causedTurnoverStats)
+        }
 
         // Unforced Errors
-//        if game?.didRecordEvent(INSOEventCodeUnforcedError) {
-//            let homeUnforcedError = eventCounter?.eventCount(forHomeTeam: INSOEventCodeUnforcedError)
-//            let visitorUnforcedError = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeUnforcedError)
-//
-//            if let homeUnforcedError = homeUnforcedError, let visitorUnforcedError = visitorUnforcedError {
-//                sectionData.append([
-//                    INSOHomeStatKey: homeUnforcedError,
-//                    INSOStatNameKey: "Unforced Error",
-//                    INSOVisitorStatKey: visitorUnforcedError
-//                ])
-//            }
-//        }
+        if game.didRecordEvent(.codeUnforcedError) {
+            let homeUnforcedError = eventCounter.eventCount(forHomeTeam: .codeUnforcedError).intValue
+            let visitorUnforcedError = eventCounter.eventCount(forVisitingTeam: .codeUnforcedError).intValue
+
+            let unforcedErrorStats = EventStats(statName: "Unforced Errors", homeStat: "\(homeUnforcedError)", visitorStat: "\(visitorUnforcedError)")
+            stats.append(unforcedErrorStats)
+        }
 
         return Section(title: title, stats: stats)
     }
-         
-
-    /* Commenting out entire game stats creation fuctions.
-        Will put back one at a time as I get this implemented.
-     
+              
     func scoringEvents() -> [AnyHashable : Any]? {
         var scoringSection: [AnyHashable : Any] = [:]
 
@@ -287,167 +263,170 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         scoringSection[INSOSectionDataKey] = sectionData
 
         // Shots
-        if game?.didRecordEvent(INSOEventCodeShot) {
-            let homeShots = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShot)
-            let visitorShots = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShot)
-
-            if let homeShots = homeShots, let visitorShots = visitorShots {
-                sectionData.append([
-                    INSOHomeStatKey: homeShots,
-                    INSOStatNameKey: "Shots",
-                    INSOVisitorStatKey: visitorShots
-                ])
-            }
-        }
+//        if game?.didRecordEvent(INSOEventCodeShot) {
+//            let homeShots = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShot)
+//            let visitorShots = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShot)
+//
+//            if let homeShots = homeShots, let visitorShots = visitorShots {
+//                sectionData.append([
+//                    INSOHomeStatKey: homeShots,
+//                    INSOStatNameKey: "Shots",
+//                    INSOVisitorStatKey: visitorShots
+//                ])
+//            }
+//        }
 
         // Goals
-        if game?.didRecordEvent(INSOEventCodeGoal) {
-            let homeGoals = eventCounter?.eventCount(forHomeTeam: INSOEventCodeGoal)
-            let visitorGoals = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeGoal)
-
-            if let homeGoals = homeGoals, let visitorGoals = visitorGoals {
-                sectionData.append([
-                    INSOHomeStatKey: homeGoals,
-                    INSOStatNameKey: "Goals",
-                    INSOVisitorStatKey: visitorGoals
-                ])
-            }
-        }
+//        if game?.didRecordEvent(INSOEventCodeGoal) {
+//            let homeGoals = eventCounter?.eventCount(forHomeTeam: INSOEventCodeGoal)
+//            let visitorGoals = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeGoal)
+//
+//            if let homeGoals = homeGoals, let visitorGoals = visitorGoals {
+//                sectionData.append([
+//                    INSOHomeStatKey: homeGoals,
+//                    INSOStatNameKey: "Goals",
+//                    INSOVisitorStatKey: visitorGoals
+//                ])
+//            }
+//        }
 
         // Shooting pct. (Percent of shots that result in a goal)
-        if game?.didRecordEvent(INSOEventCodeShot) && game?.didRecordEvent(INSOEventCodeGoal) {
-            let homeShots = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShot).intValue ?? 0
-            let homeGoals = eventCounter?.eventCount(forHomeTeam: INSOEventCodeGoal).intValue ?? 0
-            let homeShootingPct = (homeShots > 0) ? CGFloat(homeGoals) / CGFloat(homeShots) : 0.0
-            let homeShootingPctString = percentFormatter?.string(from: NSNumber(value: Float(homeShootingPct)))
-
-            let visitorShots = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShot).intValue ?? 0
-            let visitorGoals = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeGoal).intValue ?? 0
-            let visitorShootingPct = (visitorShots > 0) ? CGFloat(visitorGoals) / CGFloat(visitorShots) : 0.0
-            let visitorShootingPctString = percentFormatter?.string(from: NSNumber(value: Float(visitorShootingPct)))
-
-            sectionData.append([
-                INSOHomeStatKey: homeShootingPctString ?? "",
-                INSOStatNameKey: "Shooting Percent\n(Goals / Shots)",
-                INSOVisitorStatKey: visitorShootingPctString ?? ""
-            ])
-        }
+//        if game?.didRecordEvent(INSOEventCodeShot) && game?.didRecordEvent(INSOEventCodeGoal) {
+//            let homeShots = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShot).intValue ?? 0
+//            let homeGoals = eventCounter?.eventCount(forHomeTeam: INSOEventCodeGoal).intValue ?? 0
+//            let homeShootingPct = (homeShots > 0) ? CGFloat(homeGoals) / CGFloat(homeShots) : 0.0
+//            let homeShootingPctString = percentFormatter?.string(from: NSNumber(value: Float(homeShootingPct)))
+//
+//            let visitorShots = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShot).intValue ?? 0
+//            let visitorGoals = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeGoal).intValue ?? 0
+//            let visitorShootingPct = (visitorShots > 0) ? CGFloat(visitorGoals) / CGFloat(visitorShots) : 0.0
+//            let visitorShootingPctString = percentFormatter?.string(from: NSNumber(value: Float(visitorShootingPct)))
+//
+//            sectionData.append([
+//                INSOHomeStatKey: homeShootingPctString ?? "",
+//                INSOStatNameKey: "Shooting Percent\n(Goals / Shots)",
+//                INSOVisitorStatKey: visitorShootingPctString ?? ""
+//            ])
+//        }
 
         // Shots on goal
-        if game?.didRecordEvent(INSOEventCodeShotOnGoal) {
-            let homeSOG = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShotOnGoal)
-            let visitorSOG = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShotOnGoal)
-
-            if let homeSOG = homeSOG, let visitorSOG = visitorSOG {
-                sectionData.append([
-                    INSOHomeStatKey: homeSOG,
-                    INSOStatNameKey: "Shots on Goal",
-                    INSOVisitorStatKey: visitorSOG
-                ])
-            }
-        }
+//        if game?.didRecordEvent(INSOEventCodeShotOnGoal) {
+//            let homeSOG = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShotOnGoal)
+//            let visitorSOG = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShotOnGoal)
+//
+//            if let homeSOG = homeSOG, let visitorSOG = visitorSOG {
+//                sectionData.append([
+//                    INSOHomeStatKey: homeSOG,
+//                    INSOStatNameKey: "Shots on Goal",
+//                    INSOVisitorStatKey: visitorSOG
+//                ])
+//            }
+//        }
 
         // Misses = shots - shots on goal;
-        if game?.didRecordEvent(INSOEventCodeShot) && game?.didRecordEvent(INSOEventCodeShotOnGoal) {
-            let homeShots = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShot).intValue ?? 0
-            let homeSOG = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShotOnGoal).intValue ?? 0
-            var homeMisses = homeShots - homeSOG
-            homeMisses = homeMisses < 0 ? 0 : homeMisses
-
-            let visitorShots = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShot).intValue ?? 0
-            let visitorSOG = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShotOnGoal).intValue ?? 0
-            var visitorMisses = visitorShots - visitorSOG
-            visitorMisses = visitorMisses < 0 ? 0 : visitorMisses
-
-            sectionData.append([
-                INSOHomeStatKey: NSNumber(value: homeMisses),
-                INSOStatNameKey: "Misses",
-                INSOVisitorStatKey: NSNumber(value: visitorMisses)
-            ])
-        }
+//        if game?.didRecordEvent(INSOEventCodeShot) && game?.didRecordEvent(INSOEventCodeShotOnGoal) {
+//            let homeShots = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShot).intValue ?? 0
+//            let homeSOG = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShotOnGoal).intValue ?? 0
+//            var homeMisses = homeShots - homeSOG
+//            homeMisses = homeMisses < 0 ? 0 : homeMisses
+//
+//            let visitorShots = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShot).intValue ?? 0
+//            let visitorSOG = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShotOnGoal).intValue ?? 0
+//            var visitorMisses = visitorShots - visitorSOG
+//            visitorMisses = visitorMisses < 0 ? 0 : visitorMisses
+//
+//            sectionData.append([
+//                INSOHomeStatKey: NSNumber(value: homeMisses),
+//                INSOStatNameKey: "Misses",
+//                INSOVisitorStatKey: NSNumber(value: visitorMisses)
+//            ])
+//        }
 
         // Shooting accuracy = shots on goal / shots (what percent of your shots were on goal)
-        if game?.didRecordEvent(INSOEventCodeShot) && game?.didRecordEvent(INSOEventCodeShotOnGoal) {
-            let homeShots = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShot).intValue ?? 0
-            let homeSOG = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShotOnGoal).intValue ?? 0
-            let homeAccuracy = (homeShots > 0) ? CGFloat(homeSOG) / CGFloat(homeShots) : 0.0
-            let homeAccuracyString = percentFormatter?.string(from: NSNumber(value: Float(homeAccuracy)))
-
-            let visitorShots = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShot).intValue ?? 0
-            let visitorSOG = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShotOnGoal).intValue ?? 0
-            let visitorAccuracy = (visitorShots > 0) ? CGFloat(visitorSOG) / CGFloat(visitorShots) : 0.0
-            let visitorAccuracyString = percentFormatter?.string(from: NSNumber(value: Float(visitorAccuracy)))
-
-            sectionData.append([
-                INSOHomeStatKey: homeAccuracyString ?? "",
-                INSOStatNameKey: "Shooting Accuracy\n(Shots on Goal / Shots)",
-                INSOVisitorStatKey: visitorAccuracyString ?? ""
-            ])
-        }
+//        if game?.didRecordEvent(INSOEventCodeShot) && game?.didRecordEvent(INSOEventCodeShotOnGoal) {
+//            let homeShots = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShot).intValue ?? 0
+//            let homeSOG = eventCounter?.eventCount(forHomeTeam: INSOEventCodeShotOnGoal).intValue ?? 0
+//            let homeAccuracy = (homeShots > 0) ? CGFloat(homeSOG) / CGFloat(homeShots) : 0.0
+//            let homeAccuracyString = percentFormatter?.string(from: NSNumber(value: Float(homeAccuracy)))
+//
+//            let visitorShots = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShot).intValue ?? 0
+//            let visitorSOG = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeShotOnGoal).intValue ?? 0
+//            let visitorAccuracy = (visitorShots > 0) ? CGFloat(visitorSOG) / CGFloat(visitorShots) : 0.0
+//            let visitorAccuracyString = percentFormatter?.string(from: NSNumber(value: Float(visitorAccuracy)))
+//
+//            sectionData.append([
+//                INSOHomeStatKey: homeAccuracyString ?? "",
+//                INSOStatNameKey: "Shooting Accuracy\n(Shots on Goal / Shots)",
+//                INSOVisitorStatKey: visitorAccuracyString ?? ""
+//            ])
+//        }
 
         // Assists
-        if game?.didRecordEvent(INSOEventCodeAssist) {
-            let homeAssists = eventCounter?.eventCount(forHomeTeam: INSOEventCodeAssist)
-            let visitorAssists = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeAssist)
-
-            if let homeAssists = homeAssists, let visitorAssists = visitorAssists {
-                sectionData.append([
-                    INSOHomeStatKey: homeAssists,
-                    INSOStatNameKey: "Assists",
-                    INSOVisitorStatKey: visitorAssists
-                ])
-            }
-        }
+//        if game?.didRecordEvent(INSOEventCodeAssist) {
+//            let homeAssists = eventCounter?.eventCount(forHomeTeam: INSOEventCodeAssist)
+//            let visitorAssists = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeAssist)
+//
+//            if let homeAssists = homeAssists, let visitorAssists = visitorAssists {
+//                sectionData.append([
+//                    INSOHomeStatKey: homeAssists,
+//                    INSOStatNameKey: "Assists",
+//                    INSOVisitorStatKey: visitorAssists
+//                ])
+//            }
+//        }
 
         // Saves
-        if game?.didRecordEvent(INSOEventCodeSave) {
-            let homeSaves = eventCounter?.eventCount(forHomeTeam: INSOEventCodeSave)
-            let visitorSaves = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeSave)
-
-            if let homeSaves = homeSaves, let visitorSaves = visitorSaves {
-                sectionData.append([
-                    INSOHomeStatKey: homeSaves,
-                    INSOStatNameKey: "Saves",
-                    INSOVisitorStatKey: visitorSaves
-                ])
-            }
-        }
+//        if game?.didRecordEvent(INSOEventCodeSave) {
+//            let homeSaves = eventCounter?.eventCount(forHomeTeam: INSOEventCodeSave)
+//            let visitorSaves = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeSave)
+//
+//            if let homeSaves = homeSaves, let visitorSaves = visitorSaves {
+//                sectionData.append([
+//                    INSOHomeStatKey: homeSaves,
+//                    INSOStatNameKey: "Saves",
+//                    INSOVisitorStatKey: visitorSaves
+//                ])
+//            }
+//        }
 
         // Goals allowed
-        if game?.didRecordEvent(INSOEventCodeGoalAllowed) {
-            let homeGoalsAllowed = eventCounter?.eventCount(forHomeTeam: INSOEventCodeGoalAllowed)
-            let visitorGoalsAllowed = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeGoalAllowed)
-
-            if let homeGoalsAllowed = homeGoalsAllowed, let visitorGoalsAllowed = visitorGoalsAllowed {
-                sectionData.append([
-                    INSOHomeStatKey: homeGoalsAllowed,
-                    INSOStatNameKey: "Goals Allowed",
-                    INSOVisitorStatKey: visitorGoalsAllowed
-                ])
-            }
-        }
+//        if game?.didRecordEvent(INSOEventCodeGoalAllowed) {
+//            let homeGoalsAllowed = eventCounter?.eventCount(forHomeTeam: INSOEventCodeGoalAllowed)
+//            let visitorGoalsAllowed = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeGoalAllowed)
+//
+//            if let homeGoalsAllowed = homeGoalsAllowed, let visitorGoalsAllowed = visitorGoalsAllowed {
+//                sectionData.append([
+//                    INSOHomeStatKey: homeGoalsAllowed,
+//                    INSOStatNameKey: "Goals Allowed",
+//                    INSOVisitorStatKey: visitorGoalsAllowed
+//                ])
+//            }
+//        }
 
         // Save pct. = saves / (saves + goals allowed)
-        if game?.didRecordEvent(INSOEventCodeSave) && game?.didRecordEvent(INSOEventCodeGoalAllowed) {
-            let homeSaves = eventCounter?.eventCount(forHomeTeam: INSOEventCodeSave).intValue ?? 0
-            let homeGoalsAllowed = eventCounter?.eventCount(forHomeTeam: INSOEventCodeGoalAllowed).intValue ?? 0
-            let homeSavePct = (homeSaves + homeGoalsAllowed) > 0 ? CGFloat(homeSaves) / CGFloat((homeSaves + homeGoalsAllowed)) : 0.0
-            let homeSavePctString = percentFormatter?.string(from: NSNumber(value: Float(homeSavePct)))
-
-            let visitorSaves = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeSave).intValue ?? 0
-            let visitorGoalsAllowed = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeGoalAllowed).intValue ?? 0
-            let visitorSavePct = (visitorSaves + visitorGoalsAllowed) > 0 ? CGFloat(visitorSaves) / CGFloat((visitorSaves + visitorGoalsAllowed)) : 0.0
-            let visitorSavePctString = percentFormatter?.string(from: NSNumber(value: Float(visitorSavePct)))
-
-            sectionData.append([
-                INSOHomeStatKey: homeSavePctString ?? "",
-                INSOStatNameKey: "Save Percent",
-                INSOVisitorStatKey: visitorSavePctString ?? ""
-            ])
-        }
+//        if game?.didRecordEvent(INSOEventCodeSave) && game?.didRecordEvent(INSOEventCodeGoalAllowed) {
+//            let homeSaves = eventCounter?.eventCount(forHomeTeam: INSOEventCodeSave).intValue ?? 0
+//            let homeGoalsAllowed = eventCounter?.eventCount(forHomeTeam: INSOEventCodeGoalAllowed).intValue ?? 0
+//            let homeSavePct = (homeSaves + homeGoalsAllowed) > 0 ? CGFloat(homeSaves) / CGFloat((homeSaves + homeGoalsAllowed)) : 0.0
+//            let homeSavePctString = percentFormatter?.string(from: NSNumber(value: Float(homeSavePct)))
+//
+//            let visitorSaves = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeSave).intValue ?? 0
+//            let visitorGoalsAllowed = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeGoalAllowed).intValue ?? 0
+//            let visitorSavePct = (visitorSaves + visitorGoalsAllowed) > 0 ? CGFloat(visitorSaves) / CGFloat((visitorSaves + visitorGoalsAllowed)) : 0.0
+//            let visitorSavePctString = percentFormatter?.string(from: NSNumber(value: Float(visitorSavePct)))
+//
+//            sectionData.append([
+//                INSOHomeStatKey: homeSavePctString ?? "",
+//                INSOStatNameKey: "Save Percent",
+//                INSOVisitorStatKey: visitorSavePctString ?? ""
+//            ])
+//        }
 
         return scoringSection
     }
+    
+    /* Commenting out entire game stats creation fuctions.
+        Will put back one at a time as I get this implemented.
 
     func extraManEvents() -> [AnyHashable : Any]? {
         var extraManSection: [AnyHashable : Any] = [:]
