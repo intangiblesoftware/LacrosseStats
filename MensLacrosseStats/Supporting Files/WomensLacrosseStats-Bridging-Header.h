@@ -19,9 +19,13 @@
 // • No need to import the Swift Bridging Header (`WomensLacrosseStats-Swift.h`), since it's already being imported from the .pch file.
 
 #import "Event.h"
+#import "EventCategory.h"
 #import "Game.h"
-#import "AppDelegate.h"
+#import "GameEvent.h"
 #import "RosterPlayer.h"
+
+#import "AppDelegate.h"
+
 #import <UIKit/UIKit.h>
 
 // End Swiftify generated imports
@@ -29,6 +33,5 @@
 
 #import "INSOGameEditViewController.h"
 #import "INSORosterPlayerSelectorViewController.h"
-#import "INSOGameStatsViewController.h"
 #import "INSOEmailStatsViewController.h"
 #import "INSOWomensGameStatsViewController.h"

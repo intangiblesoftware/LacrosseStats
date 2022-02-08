@@ -1047,7 +1047,7 @@
         <!--Game Stats-->
         <scene sceneID="HIN-I8-IFp">
             <objects>
-                <viewController id="qgc-hz-wfQ" customClass="INSOGameStatsViewController" sceneMemberID="viewController">
+                <viewController id="qgc-hz-wfQ" customClass="INSOGameStatsViewController" customModule="MensLacrosseStats" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ntb-XH-fRV"/>
                         <viewControllerLayoutGuide type="bottom" id="UN3-zm-m3P"/>

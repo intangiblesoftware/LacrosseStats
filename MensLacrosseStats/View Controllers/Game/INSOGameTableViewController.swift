@@ -144,20 +144,24 @@ class INSOGameTableViewController: UITableViewController, NSFetchedResultsContro
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // If for some reason the sender is not our game table view cell, just don't do anything.
+        guard let sender = sender as? INSOGameTableViewCell else {
+            return
+        }
+        
+        // Check the identifier, be safe.
         if segue.identifier == INSOShowGameDetailSegueIdentifier {
-            prepare(forShowGameDetailSegue: segue, sender: sender as? INSOGameTableViewCell)
+            prepare(forShowGameDetailSegue: segue, sender: sender)
         }
     }
 
-    private func prepare(forShowGameDetailSegue segue: UIStoryboardSegue?, sender cell: INSOGameTableViewCell?) {
-        var indexPath: IndexPath? = nil
-        if let cell = cell {
-            indexPath = tableView.indexPath(for: cell)
+    private func prepare(forShowGameDetailSegue segue: UIStoryboardSegue?, sender cell: INSOGameTableViewCell) {
+        // If for some reason we don't have an index path, time to just bail.
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
         }
-        var selectedGame: Game? = nil
-        if let indexPath = indexPath {
-            selectedGame = gamesFRC.object(at: indexPath) as Game
-        }
+        
+        let selectedGame: Game? = gamesFRC.object(at: indexPath) as Game
         let dest = segue?.destination as? INSOGameDetailViewController
         dest?.game = selectedGame
     }
@@ -169,12 +173,12 @@ class INSOGameTableViewController: UITableViewController, NSFetchedResultsContro
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: INSOGameCellIdentifier, for: indexPath) as? INSOGameTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: INSOGameCellIdentifier, for: indexPath) as! INSOGameTableViewCell
 
         // Configure the cell...
         configureGameCell(cell, at: indexPath)
 
-        return cell!
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

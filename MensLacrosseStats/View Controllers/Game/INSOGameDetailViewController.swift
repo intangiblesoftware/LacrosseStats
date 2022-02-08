@@ -18,14 +18,6 @@ class INSOGameDetailViewController: UIViewController {
     // Public Properties
     var game: Game?
 
-    // IBOutlets
-    @IBOutlet private weak var gameDateTimeLabel: UILabel!
-    @IBOutlet private weak var homeTeamLabel: UILabel!
-    @IBOutlet private weak var homeScoreLabel: UILabel!
-    @IBOutlet private weak var visitingTeamLabel: UILabel!
-    @IBOutlet private weak var visitingScoreLabel: UILabel!
-    @IBOutlet private weak var locationLabel: UILabel!
-
     // Private Properties
     private var managedObjectContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -34,7 +26,6 @@ class INSOGameDetailViewController: UIViewController {
     private var teamWatchingGoals = 0
     private var otherTeamGoals = 0
    
-    // IBActions
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -59,8 +50,15 @@ class INSOGameDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    // MARK: - IBActions
+    // MARK: - IBOutlets
+    @IBOutlet private weak var gameDateTimeLabel: UILabel!
+    @IBOutlet private weak var homeTeamLabel: UILabel!
+    @IBOutlet private weak var homeScoreLabel: UILabel!
+    @IBOutlet private weak var visitingTeamLabel: UILabel!
+    @IBOutlet private weak var visitingScoreLabel: UILabel!
+    @IBOutlet private weak var locationLabel: UILabel!
 
+    // MARK: - IBActions
     @IBAction func recordStats(_ sender: Any?) {
         performSegue(withIdentifier: INSORecordStatsSegueIdentifier, sender: self)
     }
@@ -74,7 +72,6 @@ class INSOGameDetailViewController: UIViewController {
     }
 
     // MARK: - Private Methods
-
     func configureView() {
         let dateFormat = DateFormatter.dateFormat(fromTemplate: "Mdyy", options: 0, locale: NSLocale.current)
         let timeFormat = DateFormatter.dateFormat(fromTemplate: "hmma", options: 0, locale: NSLocale.current)
@@ -103,7 +100,6 @@ class INSOGameDetailViewController: UIViewController {
     }
 
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == INSOEditGameSegueIdentifier {
             prepare(forGameEdit: segue, sender: sender)
