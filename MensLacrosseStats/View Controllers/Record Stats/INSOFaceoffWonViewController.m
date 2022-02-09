@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 
+#import "LacrosseStats-Swift.h"
+
 #import "INSOFaceoffWonViewController.h"
-#import "INSOPlayerCollectionViewCell.h"
 
 #import "RosterPlayer.h"
 #import "Game.h"

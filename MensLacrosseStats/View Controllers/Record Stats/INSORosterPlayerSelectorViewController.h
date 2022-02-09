@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class  Game;
+@class INSOPlayerCollectionViewCell;
 
 @interface INSORosterPlayerSelectorViewController : UIViewController
 

@@ -205,7 +205,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="8" maxX="0.0" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RosterPlayerCell" id="Q4R-M8-Tq1" customClass="INSOPlayerCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RosterPlayerCell" id="Q4R-M8-Tq1" customClass="INSOPlayerCollectionViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="8" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -234,7 +234,7 @@
                                             <outlet property="playerNumberLabel" destination="7Fj-1Q-e9g" id="utT-Qu-KLb"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeamPlayerCell" id="cPh-TN-sz3" customClass="INSOPlayerCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeamPlayerCell" id="cPh-TN-sz3" customClass="INSOPlayerCollectionViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="60" y="8" width="283" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -446,7 +446,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="8" maxX="0.0" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlayerCell" id="EeU-Ug-Hyq" customClass="INSOPlayerCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlayerCell" id="EeU-Ug-Hyq" customClass="INSOPlayerCollectionViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="58" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -475,7 +475,7 @@
                                             <outlet property="playerNumberLabel" destination="Sh4-Om-mlf" id="uwH-cV-3V9"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StatCell" id="eHT-E0-V8K" customClass="INSOStatCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="StatCell" id="eHT-E0-V8K" customClass="INSOStatCollectionViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="60" y="58" width="283" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -511,7 +511,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="08y-8i-vJv" customClass="INSOHeaderCollectionReusableView">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="08y-8i-vJv" customClass="INSOHeaderCollectionReusableView" customModule="LacrosseStats" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -1018,7 +1018,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlayerCell" id="kIK-dY-3iW" customClass="INSOPlayerCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlayerCell" id="kIK-dY-3iW" customClass="INSOPlayerCollectionViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1195,7 +1195,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlayerCell" id="SfN-Eu-Adx" customClass="INSOPlayerCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlayerCell" id="SfN-Eu-Adx" customClass="INSOPlayerCollectionViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">

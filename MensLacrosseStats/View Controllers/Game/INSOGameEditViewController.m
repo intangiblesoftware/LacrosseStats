@@ -12,10 +12,7 @@
 #import "LacrosseStats-Swift.h"
 
 #import "INSOGameEditViewController.h"
-#import "INSOPlayerCollectionViewCell.h"
-#import "INSOStatCollectionViewCell.h"
 #import "INSOMensLacrosseStatsConstants.h"
-#import "INSOHeaderCollectionReusableView.h"
 
 #import "Game.h"
 #import "RosterPlayer.h"
@@ -95,6 +92,7 @@ static const CGFloat INSODefaultPlayerCellSize = 50.0;
     [super viewDidLoad];
     
     self.playerStatCollectionView.allowsMultipleSelection = YES;
+//    [self.playerStatCollectionView registerClass:INSOPlayerCollectionViewCell forCellWithReuseIdentifier:INSOPlayerCellIdentifier]
     
     [self configureView];
 }

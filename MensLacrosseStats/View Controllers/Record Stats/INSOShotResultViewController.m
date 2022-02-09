@@ -12,7 +12,8 @@
 #import "INSOMensLacrosseStatsConstants.h"
 
 #import "INSOShotResultViewController.h"
-#import "INSOPlayerCollectionViewCell.h"
+
+#import "LacrosseStats-Swift.h"
 
 #import "RosterPlayer.h"
 #import "Event.h"

@@ -9,8 +9,9 @@
 
 #import "AppDelegate.h"
 
+#import "LacrosseStats-Swift.h"
+
 #import "INSORosterPlayerSelectorViewController.h"
-#import "INSOPlayerCollectionViewCell.h"
 #import "INSOGameEventSelectorTableViewController.h"
 #import "INSOEventListEditorViewController.h"
 
