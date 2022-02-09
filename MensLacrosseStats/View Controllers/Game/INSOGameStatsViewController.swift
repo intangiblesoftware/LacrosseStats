@@ -43,9 +43,8 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         let fieldingStats = fieldingEvents()
         let scoringStats = scoringEvents()
         let extraManStats = extraManEvents()
-        let penaltyStats = penaltyEvents()
 
-        return GameStats(sections: [fieldingStats, scoringStats, extraManStats, penaltyStats])
+        return GameStats(sections: [fieldingStats, scoringStats, extraManStats, Target.isMens ? penaltyEvents() : foulEvents()])
     }
 
     private var playerStats: GameStats {
@@ -169,6 +168,25 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
             
             let faceoffStats = EventStats(statName: "Faceoffs", homeStat: homeStatString, visitorStat: visitorStatString)
             stats.append(faceoffStats)
+        }
+
+        // Draws - for Women's stats
+        if game.didRecordEvent(.codeDrawTaken) && game.didRecordEvent(.codeDrawControl) {
+            let homeDrawsTaken  = eventCounter.eventCount(forHomeTeam: .codeDrawTaken).intValue
+            let homeDrawControl = eventCounter.eventCount(forHomeTeam: .codeDrawControl).intValue
+            let homeDrawControlPct = (homeDrawsTaken > 0) ? Float(homeDrawControl) / Float(homeDrawsTaken) : 0.0
+            let homeDrawControlPctString = percentFormatter.string(from: NSNumber(value: homeDrawControlPct)) ?? "0%"
+            
+            let visitorDrawsTaken = eventCounter.eventCount(forVisitingTeam: .codeDrawTaken).intValue
+            let visitorDrawControl = eventCounter.eventCount(forVisitingTeam: .codeDrawControl).intValue
+            let visitorDrawControlPct = (visitorDrawsTaken > 0) ? Float(visitorDrawControl) / Float(visitorDrawsTaken) : 0.0
+            let visitorDrawControlPctString = percentFormatter.string(from: NSNumber(value: visitorDrawControlPct)) ?? "0%"
+
+            let homeStatString = "\(homeDrawControl)/\(homeDrawsTaken) \(homeDrawControlPctString)"
+            let visitorStatString = "\(visitorDrawControl)/\(visitorDrawsTaken) \(visitorDrawControlPctString)"
+            
+            let drawStats = EventStats(statName: "Draws", homeStat: homeStatString, visitorStat: visitorStatString)
+            stats.append(drawStats)
         }
 
         // Clears
@@ -372,7 +390,14 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
     
     func extraManEvents() -> Section {
         // Section title
-        let title = NSLocalizedString("Extra-Man", comment: "")
+        var title = ""
+        
+        // Need different titles based on build target Mens vs Womens
+        if Target.isMens {
+            title = NSLocalizedString("Extra-Man", comment: "")
+        } else if Target.isWomens {
+            title = NSLocalizedString("Man-Up", comment: "")
+        }
         var stats: [EventStats] = []
 
         guard let game = game else {
@@ -386,6 +411,15 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
             
             let emoStats = EventStats(statName: "Extra-man Opportunities", homeStat: "\(homeEMO)", visitorStat: "\(visitorEMO)")
             stats.append(emoStats)
+        }
+        
+        // Man-up
+        if game.didRecordEvent(.codeManUp) {
+            let homeManUp = eventCounter.eventCount(forHomeTeam: .codeManUp).intValue
+            let visitorManUp = eventCounter.eventCount(forVisitingTeam: .codeManUp).intValue
+            
+            let manUpStats = EventStats(statName: "Man-Up", homeStat: "\(homeManUp)", visitorStat: "\(visitorManUp)")
+            stats.append(manUpStats)
         }
 
         // EMO goals
@@ -408,6 +442,28 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
             
             let emoScoringStats = EventStats(statName: "Extra-man Scoring", homeStat: homeEMOScoringString, visitorStat: visitorEMOScoringString)
             stats.append(emoScoringStats)
+        }
+        
+        // Man-up Scoring
+        if game.didRecordEvent(.codeManUp) && game.didRecordEvent(.codeGoal) {
+            let homeManUpGoals = eventCounter.extraManGoalsForHomeTeam().intValue
+            let visitorManUpGoals = eventCounter.extraManGoalsForVisitingTeam().intValue
+            
+            let manUpGoalStats = EventStats(statName: "Man-up Goals", homeStat: "\(homeManUpGoals)", visitorStat: "\(visitorManUpGoals)")
+            stats.append(manUpGoalStats)
+
+            // Just do the emo scoring here while we're at it.
+            // EMO scoring = emo goals / emo
+            let homeManUp = eventCounter.eventCount(forHomeTeam: .codeManUp).intValue
+            let visitorManUp = eventCounter.eventCount(forVisitingTeam: .codeManUp).intValue
+
+            let homeManUpScoring = (homeManUp > 0) ? Float(homeManUpGoals) / Float(homeManUp) : 0.0
+            let homeManUpScoringString = percentFormatter.string(from: NSNumber(value: homeManUpScoring)) ?? "0%"
+            let visitorManUpScoring = (visitorManUp > 0) ? Float(visitorManUpGoals) / Float(visitorManUp) : 0.0
+            let visitorManUpScoringString = percentFormatter.string(from: NSNumber(value: visitorManUpScoring)) ?? "0%"
+            
+            let manUpScoringStats = EventStats(statName: "Man-up Scoring", homeStat: homeManUpScoringString, visitorStat: visitorManUpScoringString)
+            stats.append(manUpScoringStats)
         }
 
         // Man-down
@@ -446,6 +502,7 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         return Section(title: title, stats: stats)
     }
 
+    // Penalties only for men's
     func penaltyEvents() -> Section {
         let title = "Penalties"
         var stats: [EventStats] = []
@@ -469,6 +526,81 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         
         let penaltyTimeStats = EventStats(statName: "Penalty Time", homeStat: homePenaltyTimeString, visitorStat: visitorPentaltyTimeString)
         stats.append(penaltyTimeStats)
+
+        return Section(title: title, stats: stats)
+    }
+    
+    // Fouls for women's
+    func foulEvents() -> Section {
+        let title = "Fouls"
+        var stats: [EventStats] = []
+        
+        guard let game = game else {
+            return Section(title: title, stats: stats)
+        }
+        
+        // Fouls
+        if game.didRecordEvent(.codeMinorFoul) || game.didRecordEvent(.codeMajorFoul) {
+            let homeFouls = eventCounter.totalFoulsForHomeTeam().intValue
+            let visitorFouls = eventCounter.totalFoulsForVisitingTeam().intValue
+            
+            let foulStats = EventStats(statName: "Fouls", homeStat: "\(homeFouls)", visitorStat: "\(visitorFouls)")
+            stats.append(foulStats)
+        }
+        
+        // 8-meter awarded
+        if game.didRecordEvent(.code8mFreePosition) {
+            let home8m = eventCounter.eventCount(forHomeTeam: .code8mFreePosition).intValue
+            let visitor8m = eventCounter.eventCount(forVisitingTeam: .code8mFreePosition).intValue
+            
+            let freePositionStats = EventStats(statName: "8m (Free Position)", homeStat: "\(home8m)", visitorStat: "\(visitor8m)")
+            stats.append(freePositionStats)
+        }
+        
+        // 8-meter shots & goals
+        if game.didRecordEvent(.codeShot) && game.didRecordEvent(.codeShotOnGoal) && game.didRecordEvent(.codeGoal) {
+            let homeFPS = eventCounter.freePositionEventCount(forHomeTeam: .codeShot).intValue
+            let visitorFPS = eventCounter.freePositionEventCount(forVisitingTeam: .codeShot).intValue
+            
+            let homeFPSOG = eventCounter.freePositionEventCount(forHomeTeam: .codeShotOnGoal).intValue
+            let visitorFPSOG = eventCounter.freePositionEventCount(forVisitingTeam: .codeShotOnGoal).intValue
+            
+            let homeFPGoal = eventCounter.freePositionEventCount(forHomeTeam: .codeGoal).intValue
+            let visitorFPGoal = eventCounter.freePositionEventCount(forVisitingTeam: .codeGoal).intValue
+            
+            let homeStatString = "\(homeFPS)/\(homeFPSOG)/\(homeFPGoal)"
+            let visitorStatString = "\(visitorFPS)/\(visitorFPSOG)/\(visitorFPGoal)"
+            
+            let freePositionStats = EventStats(statName: "8m (Free Position)\nShots/SOG/Goals", homeStat: homeStatString, visitorStat: visitorStatString)
+            stats.append(freePositionStats)
+        }
+        
+        // Green cards
+        if game.didRecordEvent(.codeGreenCard) {
+            let homeGreenCards = eventCounter.eventCount(forHomeTeam: .codeGreenCard).intValue
+            let visitorGreenCards = eventCounter.eventCount(forVisitingTeam: .codeGreenCard).intValue
+            
+            let greenCardStats = EventStats(statName: "Green Cards", homeStat: "\(homeGreenCards)", visitorStat: "\(visitorGreenCards)")
+            stats.append(greenCardStats)
+        }
+        
+        // Yellow cards
+        if game.didRecordEvent(.codeYellowCard) {
+            let homeYellowCards = eventCounter.eventCount(forHomeTeam: .codeYellowCard).intValue
+            let visitorYellowCards = eventCounter.eventCount(forVisitingTeam: .codeYellowCard).intValue
+            
+            let yellowCardStats = EventStats(statName: "Yellow Cards", homeStat: "\(homeYellowCards)", visitorStat: "\(visitorYellowCards)")
+            stats.append(yellowCardStats)
+        }
+
+        // Red cards
+        if game.didRecordEvent(.codeRedCard) {
+            let homeRedCards = eventCounter.eventCount(forHomeTeam: .codeRedCard).intValue
+            let visitorRedCards = eventCounter.eventCount(forVisitingTeam: .codeRedCard).intValue
+            
+            let redCardStats = EventStats(statName: "Red Cards", homeStat: "\(homeRedCards)", visitorStat: "\(visitorRedCards)")
+            stats.append(redCardStats)
+        }
 
         return Section(title: title, stats: stats)
     }
@@ -550,6 +682,27 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
             stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
+        // Draws taken
+        if game.didRecordEvent(.codeDrawTaken) {
+            statTitle = "Draws Taken"
+            statCount = eventCounter.eventCount(.codeDrawTaken, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat:"\(statCount)", visitorStat: ""))
+        }
+        
+        // Draw control
+        if game.didRecordEvent(.codeDrawControl) {
+            statTitle = "Draw Control"
+            statCount = eventCounter.eventCount(.codeDrawControl, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat:"\(statCount)", visitorStat: ""))
+        }
+        
+        // Draw possessions
+        if game.didRecordEvent(.codeDrawPossession) {
+            statTitle = "Draw Possession"
+            statCount = eventCounter.eventCount(.codeDrawPossession, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
+        }
+
         // Interceptions
         if game.didRecordEvent(.codeInterception) {
             statTitle = "Interceptions"
@@ -577,27 +730,73 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
             statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
             stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
-
-        // And now penalties
-        let totalPenalties = eventCounter.totalPenalties(forBoysRosterPlayer: rosterPlayer).intValue
-        let totalPenaltyTime = eventCounter.totalPenaltyTimeforRosterPlayer(rosterPlayer).doubleValue
-
-        let penaltyTimeFormatter = DateComponentsFormatter()
-        penaltyTimeFormatter.zeroFormattingBehavior = .dropLeading
-        penaltyTimeFormatter.allowedUnits = [.hour, .minute, .second]
-
-        var penaltyTimeString = penaltyTimeFormatter.string(from: TimeInterval(totalPenaltyTime)) ?? ""
         
-        if totalPenalties == 0 {
-            statTitle = NSLocalizedString("No penalties", comment: "")
-            penaltyTimeString = ""
-        } else if totalPenalties == 1 {
-            statTitle = NSLocalizedString("\(totalPenalties) penalty", comment: "")
-        } else {
-            statTitle = NSLocalizedString("\(totalPenalties) penalties", comment: "")
+        // 8M fp
+        if game.didRecordEvent(.code8mFreePosition) {
+            statTitle = "8m Free Position"
+            statCount = eventCounter.eventCount(.code8mFreePosition, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
+        }
+
+        // And now penalties if we're doing mens
+        if Target.isMens {
+            let totalPenalties = eventCounter.totalPenalties(forBoysRosterPlayer: rosterPlayer).intValue
+            let totalPenaltyTime = eventCounter.totalPenaltyTimeforRosterPlayer(rosterPlayer).doubleValue
+
+            let penaltyTimeFormatter = DateComponentsFormatter()
+            penaltyTimeFormatter.zeroFormattingBehavior = .dropLeading
+            penaltyTimeFormatter.allowedUnits = [.hour, .minute, .second]
+
+            var penaltyTimeString = penaltyTimeFormatter.string(from: TimeInterval(totalPenaltyTime)) ?? ""
+            
+            if totalPenalties == 0 {
+                statTitle = NSLocalizedString("No penalties", comment: "")
+                penaltyTimeString = ""
+            } else if totalPenalties == 1 {
+                statTitle = NSLocalizedString("\(totalPenalties) penalty", comment: "")
+            } else {
+                statTitle = NSLocalizedString("\(totalPenalties) penalties", comment: "")
+            }
+            
+            stats.append(EventStats(statName: statTitle, homeStat: penaltyTimeString, visitorStat: ""))
         }
         
-        stats.append(EventStats(statName: statTitle, homeStat: penaltyTimeString, visitorStat: ""))
+        // Instead do fouls if we're doing women's
+        if Target.isWomens {
+            // Fouls
+            if game.didRecordEvent(.codeMajorFoul) {
+                statTitle = "Major Foul"
+                statCount = eventCounter.eventCount(.codeMajorFoul, for: rosterPlayer).intValue
+                stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
+            }
+
+            if game.didRecordEvent(.codeMinorFoul) {
+                statTitle = "Minor Foul"
+                statCount = eventCounter.eventCount(.codeMinorFoul, for: rosterPlayer).intValue
+                stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
+            }
+            
+            // Green cards
+            if game.didRecordEvent(.codeGreenCard) {
+                statTitle = "Green Card"
+                statCount = eventCounter.eventCount(.codeGreenCard, for: rosterPlayer).intValue
+                stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
+            }
+            
+            // Yellow cards
+            if game.didRecordEvent(.codeYellowCard) {
+                statTitle = "Yellow Card"
+                statCount = eventCounter.eventCount(.codeYellowCard, for: rosterPlayer).intValue
+                stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
+            }
+            
+            // Red cards
+            if game.didRecordEvent(.codeRedCard) {
+                statTitle = "Red Card"
+                statCount = eventCounter.eventCount(.codeRedCard, for: rosterPlayer).intValue
+                stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
+            }
+        }
         
         return Section(title: playerTitle, stats: stats)
     }

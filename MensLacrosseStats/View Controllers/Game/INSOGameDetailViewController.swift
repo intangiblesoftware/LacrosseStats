@@ -131,9 +131,7 @@ class INSOGameDetailViewController: UIViewController {
     func prepare(forGameStatsSegue segue: UIStoryboardSegue, sender: Any?) {
         if let dest = segue.destination as? INSOGameStatsViewController {
             dest.game = game
-        } else if let dest = segue.destination as? INSOWomensGameStatsViewController {
-            dest.game = game
-        }
+        } 
     }
 
     func prepare(forExportStatsSegue segue: UIStoryboardSegue, sender: Any?) {

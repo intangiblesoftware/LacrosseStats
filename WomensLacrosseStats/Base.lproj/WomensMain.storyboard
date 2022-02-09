@@ -772,10 +772,10 @@
             </objects>
             <point key="canvasLocation" x="797" y="465"/>
         </scene>
-        <!--Womens Game Stats View Controller-->
+        <!--Game Stats View Controller-->
         <scene sceneID="he6-VP-Lf8">
             <objects>
-                <viewController id="Kll-PW-ZtD" customClass="INSOWomensGameStatsViewController" sceneMemberID="viewController">
+                <viewController id="Kll-PW-ZtD" customClass="INSOGameStatsViewController" customModule="WomensLacrosseStats" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TMr-so-KMl"/>
                         <viewControllerLayoutGuide type="bottom" id="7ND-pT-RUg"/>
