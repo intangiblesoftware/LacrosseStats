@@ -1720,7 +1720,7 @@
         <!--Export Stats-->
         <scene sceneID="j0o-db-vOR">
             <objects>
-                <tableViewController id="vpT-Yq-hic" customClass="INSOEmailStatsViewController" sceneMemberID="viewController">
+                <tableViewController id="vpT-Yq-hic" customClass="INSOEmailStatsViewController" sceneMemberID="viewController" customModule="LacrosseStats" customModuleProvider="target">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" id="cli-DZ-8LP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="702"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

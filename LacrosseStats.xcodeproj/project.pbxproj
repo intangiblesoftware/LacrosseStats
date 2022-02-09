@@ -29,7 +29,7 @@
 		38B3CCD927B433CA00AA4D07 /* WomensBuildTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3CCD827B433CA00AA4D07 /* WomensBuildTarget.swift */; };
 		38DD23E727A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */; };
 		38DD23E827A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */; };
-		B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */; };
+		B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.swift */; };
 		B916A12A1C1DB38C00E754A3 /* INSOGameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A1231C1DB38C00E754A3 /* INSOGameDetailViewController.swift */; };
 		B916A12B1C1DB38C00E754A3 /* INSOGameEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1251C1DB38C00E754A3 /* INSOGameEditViewController.m */; };
 		B916A12C1C1DB38C00E754A3 /* INSOGameStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A1271C1DB38C00E754A3 /* INSOGameStatsViewController.swift */; };
@@ -76,7 +76,7 @@
 		B97FD1AE1C5B9607000BC548 /* INSOHeaderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m */; };
 		B97FD1AF1C5B960B000BC548 /* INSOPlayerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.m */; };
 		B97FD1B01C5B960E000BC548 /* INSOStatCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.m */; };
-		B97FD1B11C5B9615000BC548 /* INSOEmailStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */; };
+		B97FD1B11C5B9615000BC548 /* INSOEmailStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.swift */; };
 		B97FD1B31C5B961F000BC548 /* INSOGameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A1231C1DB38C00E754A3 /* INSOGameDetailViewController.swift */; };
 		B97FD1B41C5B9623000BC548 /* INSOGameEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1251C1DB38C00E754A3 /* INSOGameEditViewController.m */; };
 		B97FD1B61C5B962B000BC548 /* INSOGameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A1291C1DB38C00E754A3 /* INSOGameTableViewController.swift */; };
@@ -121,8 +121,7 @@
 		38DD23E427A3559D00A4EEC5 /* MensLacrosseStats-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MensLacrosseStats-Bridging-Header.h"; sourceTree = "<group>"; };
 		38DD23E527A3559D00A4EEC5 /* WomensLacrosseStats-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WomensLacrosseStats-Bridging-Header.h"; sourceTree = "<group>"; };
 		38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INSOGameTableViewCell.swift; sourceTree = "<group>"; };
-		B916A11B1C1DB32100E754A3 /* INSOEmailStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOEmailStatsViewController.h; sourceTree = "<group>"; };
-		B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOEmailStatsViewController.m; sourceTree = "<group>"; };
+		B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INSOEmailStatsViewController.swift; sourceTree = "<group>"; };
 		B916A1231C1DB38C00E754A3 /* INSOGameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INSOGameDetailViewController.swift; sourceTree = "<group>"; };
 		B916A1241C1DB38C00E754A3 /* INSOGameEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameEditViewController.h; sourceTree = "<group>"; };
 		B916A1251C1DB38C00E754A3 /* INSOGameEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameEditViewController.m; sourceTree = "<group>"; };
@@ -253,8 +252,7 @@
 		B916A11A1C1DB32100E754A3 /* Export */ = {
 			isa = PBXGroup;
 			children = (
-				B916A11B1C1DB32100E754A3 /* INSOEmailStatsViewController.h */,
-				B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.m */,
+				B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.swift */,
 			);
 			path = Export;
 			sourceTree = "<group>";
@@ -681,7 +679,7 @@
 				B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.m in Sources */,
 				B991A6651BB75FAF004FD794 /* _Game.m in Sources */,
 				B99FDD671BB46957006FB373 /* main.m in Sources */,
-				B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.m in Sources */,
+				B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.swift in Sources */,
 				B916A13B1C1DB42800E754A3 /* INSOEventListEditorViewController.m in Sources */,
 				B991A65E1BB75FA5004FD794 /* Game.m in Sources */,
 				B916A13F1C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m in Sources */,
@@ -724,7 +722,7 @@
 				38B3CCD927B433CA00AA4D07 /* WomensBuildTarget.swift in Sources */,
 				B97FD1BA1C5B963F000BC548 /* INSOPenaltyTimeViewController.m in Sources */,
 				B97FD1C21C5B9A9E000BC548 /* _Game.m in Sources */,
-				B97FD1B11C5B9615000BC548 /* INSOEmailStatsViewController.m in Sources */,
+				B97FD1B11C5B9615000BC548 /* INSOEmailStatsViewController.swift in Sources */,
 				B92236DA1C7FEC820018E58D /* INSOMajorFoulResultViewController.m in Sources */,
 				B97FD1B81C5B9637000BC548 /* INSOFaceoffWonViewController.m in Sources */,
 				B9C4290C1C6C1AEA001C92AB /* INSOWomensGameEventSelectorTableViewController.m in Sources */,
