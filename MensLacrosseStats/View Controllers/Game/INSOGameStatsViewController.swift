@@ -48,25 +48,28 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         return GameStats(sections: [fieldingStats, scoringStats, extraManStats, penaltyStats])
     }
 
-//    private lazy var playerStatsArray: [AnyHashable] = {
-//        var temp: [AnyHashable] = []
-//
-//        guard var gamePlayers = game.players?.sorted(by: { player1, player2 in
-//            player1.numberValue > player2.numberValue
-//        }) else {
-//            return temp
-//        }
-//
-//        gamePlayers.removeAll(where: { $0.numberValue < 0 })
-//
-//        for rosterPlayer in gamePlayers {
-//            if let playerStatsDictionary = statsDictionary(for: rosterPlayer) {
-//                // FIXME: Fix statsDictionary method
-//            }
-//        }
-//
-//        return temp
-//    }()
+    private var playerStats: GameStats {
+        guard let game = game else {
+            return GameStats(sections: [Section(title: "No Player Stats", stats: nil)])
+        }
+
+        guard var gamePlayers = game.players?.sorted(by: { player1, player2 in
+            player1.numberValue < player2.numberValue
+        }) else {
+            return GameStats(sections: [Section(title: "No Player Stats", stats: nil)])
+        }
+
+        gamePlayers.removeAll(where: { $0.numberValue < 0 })
+
+        var tempPlayerStats: [Section] = []
+        
+        for rosterPlayer in gamePlayers {
+            let playerStats = playerStats(for: rosterPlayer)
+            tempPlayerStats.append(playerStats)
+        }
+
+        return GameStats(sections: tempPlayerStats)
+    }
 
     private var managedObjectContext: NSManagedObjectContext = {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -98,17 +101,13 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         statsTable.reloadData()
 
         // Scroll to top of player stats array (if we have somewhere to scroll to)
-//        if (playerStatsArray.count > 0) {
-//            statsTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-//        }
+        if (playerStats.sections.count > 0) {
+            statsTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
     }
 
     // MARK: - Private Methods
     func configureGameStatCell(_ cell: INSOGameStatTableViewCell, at indexPath: IndexPath?) {
-        var statName = ""
-        var homeStat = ""
-        var visitorStat = ""
-        
         guard let section = indexPath?.section else {
             return
         }
@@ -120,17 +119,17 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
             guard let eventStats = gameStats.sections[section].stats?[row] else {
                 return
             }
-            statName = eventStats.statName
-            homeStat = eventStats.homeStat
-            visitorStat = eventStats.visitorStat
+            cell.statNameLabel.text = eventStats.statName
+            cell.homeStatLabel.text = eventStats.homeStat
+            cell.visitorStatLabel.text = eventStats.visitorStat
         } else {
-            // Do player stuff later
-            return
+            guard let eventStats = playerStats.sections[section].stats?[row] else {
+                return
+            }
+            cell.statNameLabel.text = eventStats.statName
+            cell.homeStatLabel.text = eventStats.homeStat
         }
 
-        cell.homeStatLabel.text = homeStat
-        cell.visitorStatLabel.text = visitorStat
-        cell.statNameLabel.text = statName
     }
 
     func fieldingEvents() -> Section {
@@ -474,240 +473,134 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         return Section(title: title, stats: stats)
     }
     
-    /* Commenting out entier player stats creation functions
-    func statsDictionary(for rosterPlayer: RosterPlayer?) -> [AnyHashable : Any]? {
-        var statsDictionary: [AnyHashable : Any] = [:]
+    func playerStats(for rosterPlayer: RosterPlayer) -> Section {
 
-        var sectionTitle: String? = nil
-        if let number = rosterPlayer?.number {
-            sectionTitle = "#\(number)"
-        }
-        statsDictionary[INSOSectionTitleKey] = sectionTitle
+        let playerTitle = "#\(rosterPlayer.numberValue)"
 
         // Now build the  stats array
-        var statsArray: [AnyHashable] = []
-        statsDictionary[INSOSectionDataKey] = statsArray
+        var stats: [EventStats] = []
 
-        var event: Event?
-        var eventCount: NSNumber?
-        var statTitle: String?
-        var statValueString: String?
+        var statTitle: String = ""
+        var statCount: Int = 0
 
-        // Groundballs
-        event = Event(for: INSOEventCodeGroundball, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        guard let game = game else {
+            return Section(title: playerTitle, stats: stats)
         }
 
+        // Groundballs
+        if game.didRecordEvent(.codeGroundball) {
+            statTitle = "Groundballs"
+            statCount = eventCounter.eventCount(.codeGroundball, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
+        }
+        
         // Shots
-        event = Event(for: INSOEventCodeShot, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeShot) {
+            statTitle = "Shots"
+            statCount = eventCounter.eventCount(.codeShot, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Goals
-        event = Event(for: INSOEventCodeGoal, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeGoal) {
+            statTitle = "Goals"
+            statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Assists
-        event = Event(for: INSOEventCodeAssist, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeAssist) {
+            statTitle = "Assists"
+            statCount = eventCounter.eventCount(.codeAssist, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Shots on goal
-        event = Event(for: INSOEventCodeShotOnGoal, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeShotOnGoal) {
+            statTitle = "Shots on Goal"
+            statCount = eventCounter.eventCount(.codeShotOnGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Saves
-        event = Event(for: INSOEventCodeSave, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeSave) {
+            statTitle = "Saves"
+            statCount = eventCounter.eventCount(.codeSave, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Goal allowed
-        event = Event(for: INSOEventCodeGoalAllowed, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeGoalAllowed) {
+            statTitle = "Goals Allowed"
+            statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Won faceoff
-        event = Event(for: INSOEventCodeFaceoffWon, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeFaceoffWon) {
+            statTitle = "Faceoffs Won"
+            statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Lost faceoff
-        event = Event(for: INSOEventCodeFaceoffLost, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeFaceoffLost) {
+            statTitle = "Faceoffs Lost"
+            statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Interceptions
-        event = Event(for: INSOEventCodeInterception, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeInterception) {
+            statTitle = "Interceptions"
+            statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Takeaways
-        event = Event(for: INSOEventCodeTakeaway, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeTakeaway) {
+            statTitle = "Takeaways"
+            statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Caused turnover
-        event = Event(for: INSOEventCodeCausedTurnover, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeCausedTurnover) {
+            statTitle = "Caused Turnovers"
+            statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // Unforced errors
-        event = Event(for: INSOEventCodeUnforcedError, in: managedObjectContext)
-        if let event = event {
-            if game?.eventsToRecord.contains(event) ?? false {
-                statTitle = event?.title
-                eventCount = eventCounter?.eventCount(event?.eventCodeValue, for: rosterPlayer)
-                statValueString = "\(eventCount ?? 0)"
-                statsArray.append([
-                    INSOStatNameKey: statTitle ?? "",
-                    INSOHomeStatKey: statValueString ?? ""
-                ])
-            }
+        if game.didRecordEvent(.codeUnforcedError) {
+            statTitle = "Unforced Errors"
+            statCount = eventCounter.eventCount(.codeGoal, for: rosterPlayer).intValue
+            stats.append(EventStats(statName: statTitle, homeStat: "\(statCount)", visitorStat: ""))
         }
 
         // And now penalties
-        let predicate = NSPredicate(format: "statCategory == %@ OR statCategory == %@", NSNumber(value: INSOStatCategoryPenalty), NSNumber(value: INSOStatCategoryExpulsion))
-        let penaltyEventSet = game?.eventsToRecord.filter { predicate.evaluate(with: $0) }
+        let totalPenalties = eventCounter.totalPenalties(forBoysRosterPlayer: rosterPlayer).intValue
+        let totalPenaltyTime = eventCounter.totalPenaltyTimeforRosterPlayer(rosterPlayer).doubleValue
 
-        // Just be done
-        if (penaltyEventSet?.count ?? 0) > 0 {
-            let totalPenalties = eventCounter?.totalPenalties(forBoysRosterPlayer: rosterPlayer)
-            let totalPenaltyTime = eventCounter?.totalPenaltyTimeforRosterPlayer(rosterPlayer).doubleValue ?? 0.0
+        let penaltyTimeFormatter = DateComponentsFormatter()
+        penaltyTimeFormatter.zeroFormattingBehavior = .dropLeading
+        penaltyTimeFormatter.allowedUnits = [.hour, .minute, .second]
 
-            let penaltyTimeFormatter = DateComponentsFormatter()
-            penaltyTimeFormatter.zeroFormattingBehavior = .dropLeading
-            penaltyTimeFormatter.allowedUnits = [.hour, .minute, .second]
-
-            var penaltyTimeString = penaltyTimeFormatter.string(from: TimeInterval(totalPenaltyTime))
-            if totalPenalties?.intValue ?? 0 == 0 {
-                statTitle = NSLocalizedString("No penalties", comment: "")
-                penaltyTimeString = ""
-            } else if totalPenalties?.intValue ?? 0 == 1 {
-                let localizedTitle = NSLocalizedString("%@ penalty", comment: "")
-                statTitle = String(format: localizedTitle, totalPenalties ?? 0)
-            } else {
-                let localizedTitle = NSLocalizedString("%@ penalties", comment: "")
-                statTitle = String(format: localizedTitle, totalPenalties ?? 0)
-            }
-            statsArray.append([
-                INSOStatNameKey: statTitle ?? "",
-                INSOHomeStatKey: penaltyTimeString ?? ""
-            ])
+        var penaltyTimeString = penaltyTimeFormatter.string(from: TimeInterval(totalPenaltyTime)) ?? ""
+        
+        if totalPenalties == 0 {
+            statTitle = NSLocalizedString("No penalties", comment: "")
+            penaltyTimeString = ""
+        } else if totalPenalties == 1 {
+            statTitle = NSLocalizedString("\(totalPenalties) penalty", comment: "")
+        } else {
+            statTitle = NSLocalizedString("\(totalPenalties) penalties", comment: "")
         }
-
-        return statsDictionary
+        
+        stats.append(EventStats(statName: statTitle, homeStat: penaltyTimeString, visitorStat: ""))
+        
+        return Section(title: playerTitle, stats: stats)
     }
-     */
 
     // MARK: - Table view data source
 
@@ -715,7 +608,7 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         if statSourceSegmentedControl.selectedSegmentIndex == INSOStatSourceIndex.game.rawValue {
             return gameStats.sections.count
         } else {
-            return 0
+            return playerStats.sections.count
         }
     }
 
@@ -726,7 +619,8 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
             let currentSection = gameStats.sections[section]
             rowCount = currentSection.stats?.count ?? 0
         } else {
-            rowCount = 0
+            let currentSection = playerStats.sections[section]
+            rowCount = currentSection.stats?.count ?? 0
         }
 
         return rowCount
@@ -738,7 +632,8 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
             let currentSection = gameStats.sections[section]
             sectionTitle = currentSection.title
         } else {
-            sectionTitle = "Player Section Title"
+            let currentSection = playerStats.sections[section]
+            sectionTitle = currentSection.title
         }
 
         return sectionTitle
