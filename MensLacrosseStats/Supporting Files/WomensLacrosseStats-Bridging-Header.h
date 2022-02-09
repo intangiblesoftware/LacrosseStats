@@ -35,6 +35,5 @@
 #import "INSORosterPlayerSelectorViewController.h"
 #import "INSOEmailStatsViewController.h"
 #import "INSOGameEventCounter.h"
-#import "INSOGameStatTableViewCell.h"
 #import "INSOMensLacrosseStatsEnum.h"
 

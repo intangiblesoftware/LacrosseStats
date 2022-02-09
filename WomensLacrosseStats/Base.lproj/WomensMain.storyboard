@@ -799,7 +799,7 @@
                                 <color key="backgroundColor" red="0.95137584209442139" green="0.97575753927230835" blue="0.9752468466758728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionHeaderCell" rowHeight="40" id="bgw-F6-V8p" customClass="INSOGameStatTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionHeaderCell" rowHeight="40" id="bgw-F6-V8p" customClass="INSOGameStatTableViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="49" width="311" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bgw-F6-V8p" id="Gjl-LK-iYR">
@@ -824,7 +824,7 @@
                                             <outlet property="statNameLabel" destination="9uW-Us-y4X" id="6VH-R0-Ixi"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GameStatsCell" id="tjm-5e-RLc" customClass="INSOGameStatTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GameStatsCell" id="tjm-5e-RLc" customClass="INSOGameStatTableViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="89" width="311" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tjm-5e-RLc" id="gHa-fJ-YZZ">
@@ -868,7 +868,7 @@
                                             <outlet property="visitorStatLabel" destination="CQ4-cF-tJW" id="4Rw-U1-uEn"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerStatCell" rowHeight="40" id="kfX-f1-Cce" customClass="INSOGameStatTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlayerStatCell" rowHeight="40" id="kfX-f1-Cce" customClass="INSOGameStatTableViewCell" customModule="LacrosseStats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="137" width="311" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfX-f1-Cce" id="jZp-bb-vvB">
