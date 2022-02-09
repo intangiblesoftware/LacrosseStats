@@ -42,18 +42,10 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
 
         let fieldingStats = fieldingEvents()
         let scoringStats = scoringEvents()
+        let extraManStats = extraManEvents()
+        let penaltyStats = penaltyEvents()
 
-//            // Add extra-man events
-//        if let extraManDictionary = extraManEvents() {
-//            // FIXME: Fix extraManEvents function
-//        }
-//
-//            // Add penalty sub-array
-//        if let penaltyDictionary = penaltyEvents() {
-//            // FIXME: Fix penaltyEvents function
-//        }
-//
-        return GameStats(sections: [fieldingStats, scoringStats])
+        return GameStats(sections: [fieldingStats, scoringStats, extraManStats, penaltyStats])
     }
 
 //    private lazy var playerStatsArray: [AnyHashable] = {
@@ -379,147 +371,108 @@ class INSOGameStatsViewController: UIViewController, UITableViewDataSource, UITa
         return Section(title: title, stats: stats)
     }
     
-    /* Commenting out entire game stats creation fuctions.
-        Will put back one at a time as I get this implemented.
-
-    func extraManEvents() -> [AnyHashable : Any]? {
-        var extraManSection: [AnyHashable : Any] = [:]
-
+    func extraManEvents() -> Section {
         // Section title
-        extraManSection[INSOSectionTitleKey] = NSLocalizedString("Extra-Man", comment: "")
-        var sectionData: [AnyHashable] = []
-        extraManSection[INSOSectionDataKey] = sectionData
+        let title = NSLocalizedString("Extra-Man", comment: "")
+        var stats: [EventStats] = []
 
+        guard let game = game else {
+            return Section(title: title, stats: stats)
+        }
+        
         // EMO
-        if game?.didRecordEvent(INSOEventCodeEMO) {
-            let homeEMO = eventCounter?.eventCount(forHomeTeam: INSOEventCodeEMO)
-            let visitorEMO = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeEMO)
-
-            if let homeEMO = homeEMO, let visitorEMO = visitorEMO {
-                sectionData.append([
-                    INSOHomeStatKey: homeEMO,
-                    INSOStatNameKey: "Extra-man Opportunities",
-                    INSOVisitorStatKey: visitorEMO
-                ])
-            }
+        if game.didRecordEvent(.codeEMO) {
+            let homeEMO = eventCounter.eventCount(forHomeTeam: .codeEMO).intValue
+            let visitorEMO = eventCounter.eventCount(forVisitingTeam: .codeEMO).intValue
+            
+            let emoStats = EventStats(statName: "Extra-man Opportunities", homeStat: "\(homeEMO)", visitorStat: "\(visitorEMO)")
+            stats.append(emoStats)
         }
 
         // EMO goals
-        if game?.didRecordEvent(INSOEventCodeEMO) && game?.didRecordEvent(INSOEventCodeGoal) {
-            let homeEMOGoals = eventCounter?.extraManGoalsForHomeTeam().intValue ?? 0
-            let visitorEMOGoals = eventCounter?.extraManGoalsForVisitingTeam().intValue ?? 0
-
-            sectionData.append([
-                INSOHomeStatKey: NSNumber(value: homeEMOGoals),
-                INSOStatNameKey: "Extra-man Goals",
-                INSOVisitorStatKey: NSNumber(value: visitorEMOGoals)
-            ])
+        if game.didRecordEvent(.codeEMO) && game.didRecordEvent(.codeGoal) {
+            let homeEMOGoals = eventCounter.extraManGoalsForHomeTeam().intValue
+            let visitorEMOGoals = eventCounter.extraManGoalsForVisitingTeam().intValue
+            
+            let emoGoalStats = EventStats(statName: "Extra-man Goals", homeStat: "\(homeEMOGoals)", visitorStat: "\(visitorEMOGoals)")
+            stats.append(emoGoalStats)
 
             // Just do the emo scoring here while we're at it.
             // EMO scoring = emo goals / emo
-            let homeEMO = eventCounter?.eventCount(forHomeTeam: INSOEventCodeEMO).intValue ?? 0
-            let visitorEMO = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeEMO).intValue ?? 0
+            let homeEMO = eventCounter.eventCount(forHomeTeam: .codeEMO).intValue
+            let visitorEMO = eventCounter.eventCount(forVisitingTeam: .codeEMO).intValue
 
-            let homeEMOScoring = (homeEMO > 0) ? CGFloat(homeEMOGoals) / CGFloat(homeEMO) : 0.0
-            let homeEMOScoringString = percentFormatter?.string(from: NSNumber(value: Float(homeEMOScoring)))
-            let visitorEMOScoring = (visitorEMO > 0) ? CGFloat(visitorEMOGoals) / CGFloat(visitorEMO) : 0.0
-            let visitorEMOScoringString = percentFormatter?.string(from: NSNumber(value: Float(visitorEMOScoring)))
-
-            sectionData.append([
-                INSOHomeStatKey: homeEMOScoringString ?? "",
-                INSOStatNameKey: "Extra-man Scoring",
-                INSOVisitorStatKey: visitorEMOScoringString ?? ""
-            ])
+            let homeEMOScoring = (homeEMO > 0) ? Float(homeEMOGoals) / Float(homeEMO) : 0.0
+            let homeEMOScoringString = percentFormatter.string(from: NSNumber(value: homeEMOScoring)) ?? "0%"
+            let visitorEMOScoring = (visitorEMO > 0) ? Float(visitorEMOGoals) / Float(visitorEMO) : 0.0
+            let visitorEMOScoringString = percentFormatter.string(from: NSNumber(value: visitorEMOScoring)) ?? "0%"
+            
+            let emoScoringStats = EventStats(statName: "Extra-man Scoring", homeStat: homeEMOScoringString, visitorStat: visitorEMOScoringString)
+            stats.append(emoScoringStats)
         }
 
         // Man-down
-        if game?.didRecordEvent(INSOEventCodeManDown) {
-            let homeManDown = eventCounter?.eventCount(forHomeTeam: INSOEventCodeManDown)
-            let visitorManDown = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeManDown)
-
-            if let homeManDown = homeManDown, let visitorManDown = visitorManDown {
-                sectionData.append([
-                    INSOHomeStatKey: homeManDown,
-                    INSOStatNameKey: "Man-down",
-                    INSOVisitorStatKey: visitorManDown
-                ])
-            }
+        if game.didRecordEvent(.codeManDown) {
+            let homeManDown = eventCounter.eventCount(forHomeTeam: .codeManDown).intValue
+            let visitorManDown = eventCounter.eventCount(forVisitingTeam: .codeManDown).intValue
+            
+            let manDownStats = EventStats(statName: "Man-down", homeStat: "\(homeManDown)", visitorStat: "\(visitorManDown)")
+            stats.append(manDownStats)
         }
 
         // Man-down goals allowed
         // A man-down goal allowed is an extra-man goal scored by the other team.
         // Proceed accordingly.
-        if game?.didRecordEvent(INSOEventCodeManDown) && game?.didRecordEvent(INSOEventCodeGoal) {
-            let homeManDown = eventCounter?.eventCount(forHomeTeam: INSOEventCodeManDown).intValue ?? 0
-            let visitorManDown = eventCounter?.eventCount(forVisitingTeam: INSOEventCodeManDown).intValue ?? 0
+        if game.didRecordEvent(.codeManDown) && game.didRecordEvent(.codeGoal) {
+            let homeManDown = eventCounter.eventCount(forHomeTeam: .codeManDown).intValue
+            let visitorManDown = eventCounter.eventCount(forVisitingTeam: .codeManDown).intValue
 
-            let homeMDGoalsAllowed = eventCounter?.extraManGoalsForVisitingTeam().intValue ?? 0
-            let visitorMDGoalsAllowed = eventCounter?.extraManGoalsForHomeTeam().intValue ?? 0
+            let homeMDGoalsAllowed = eventCounter.extraManGoalsForVisitingTeam().intValue
+            let visitorMDGoalsAllowed = eventCounter.extraManGoalsForHomeTeam().intValue
 
-
-            let homeManDownScoring = (homeManDown > 0) ? CGFloat(homeMDGoalsAllowed) / CGFloat(homeManDown) : 0.0
-            let visitorManDownScoring = (visitorManDown > 0) ? CGFloat(visitorMDGoalsAllowed) / CGFloat(visitorManDown) : 0.0
+            let homeManDownScoring = (homeManDown > 0) ? Float(homeMDGoalsAllowed) / Float(homeManDown) : 0.0
+            let visitorManDownScoring = (visitorManDown > 0) ? Float(visitorMDGoalsAllowed) / Float(visitorManDown) : 0.0
 
             // Man-down scoring = man-down goals allowed / man-down
-            let homeManDownScoringString = percentFormatter?.string(from: NSNumber(value: Float(homeManDownScoring)))
-            let visitorManDownScoringString = percentFormatter?.string(from: NSNumber(value: Float(visitorManDownScoring)))
+            let homeManDownScoringString = percentFormatter.string(from: NSNumber(value: homeManDownScoring)) ?? "0%"
+            let visitorManDownScoringString = percentFormatter.string(from: NSNumber(value: visitorManDownScoring)) ?? "0%"
+            
+            let mdGoalsAllowedStats = EventStats(statName: "Man-down Goals Allowed", homeStat: "\(homeMDGoalsAllowed)", visitorStat: "\(visitorMDGoalsAllowed)")
+            stats.append(mdGoalsAllowedStats)
 
-            sectionData.append([
-                INSOHomeStatKey: NSNumber(value: homeMDGoalsAllowed),
-                INSOStatNameKey: "Man-down Goals Allowed",
-                INSOVisitorStatKey: NSNumber(value: visitorMDGoalsAllowed)
-            ])
-
-            sectionData.append([
-                INSOHomeStatKey: homeManDownScoringString ?? "",
-                INSOStatNameKey: "Man-down Scoring",
-                INSOVisitorStatKey: visitorManDownScoringString ?? ""
-            ])
+            let mdScoringStats = EventStats(statName: "Man-down Scoring", homeStat: homeManDownScoringString, visitorStat: visitorManDownScoringString)
+            stats.append(mdScoringStats)
         }
 
-        return extraManSection
+        return Section(title: title, stats: stats)
     }
 
-    func penaltyEvents() -> [AnyHashable : Any]? {
-        var penaltySection: [AnyHashable : Any] = [:]
-
-        // Section title depends on boys or girls
-        let sectionTitle = NSLocalizedString("Penalties", comment: "")
-        penaltySection[INSOSectionTitleKey] = NSLocalizedString(sectionTitle, comment: "")
-        var sectionData: [AnyHashable] = []
-        penaltySection[INSOSectionDataKey] = sectionData
-
+    func penaltyEvents() -> Section {
+        let title = "Penalties"
+        var stats: [EventStats] = []
+        
         // Penalties
-        let homePenalties = eventCounter?.totalPenaltiesForHomeTeam()
-        let visitorPenalties = eventCounter?.totalPenaltiesForVisitingTeam()
-
-        if let homePenalties = homePenalties, let visitorPenalties = visitorPenalties {
-            sectionData.append([
-                INSOHomeStatKey: homePenalties,
-                INSOStatNameKey: "Penalties",
-                INSOVisitorStatKey: visitorPenalties
-            ])
-        }
+        let homePenalties = eventCounter.totalPenaltiesForHomeTeam().intValue
+        let visitorPenalties = eventCounter.totalPenaltiesForVisitingTeam().intValue
+        
+        let penaltyStats = EventStats(statName: "Penalties", homeStat: "\(homePenalties)", visitorStat:"\(visitorPenalties)")
+        stats.append(penaltyStats)
 
         // Penalty Time
-        let homePenaltySeconds = eventCounter?.totalPenaltyTimeForHomeTeam().intValue ?? 0
-        let visitorPenaltySeconds = eventCounter?.totalPenaltyTimeForVisitingTeam().intValue ?? 0
+        let homePenaltySeconds = eventCounter.totalPenaltyTimeForHomeTeam().intValue
+        let visitorPenaltySeconds = eventCounter.totalPenaltyTimeForVisitingTeam().intValue
 
         let penaltyTimeFormatter = DateComponentsFormatter()
         penaltyTimeFormatter.zeroFormattingBehavior = .dropLeading
         penaltyTimeFormatter.allowedUnits = [.hour, .minute, .second]
-        let homePenaltyTimeString = penaltyTimeFormatter.string(from: TimeInterval(homePenaltySeconds))
-        let visitorPentaltyTimeString = penaltyTimeFormatter.string(from: TimeInterval(visitorPenaltySeconds))
+        let homePenaltyTimeString = penaltyTimeFormatter.string(from: TimeInterval(homePenaltySeconds)) ?? ""
+        let visitorPentaltyTimeString = penaltyTimeFormatter.string(from: TimeInterval(visitorPenaltySeconds)) ?? ""
+        
+        let penaltyTimeStats = EventStats(statName: "Penalty Time", homeStat: homePenaltyTimeString, visitorStat: visitorPentaltyTimeString)
+        stats.append(penaltyTimeStats)
 
-        sectionData.append([
-            INSOHomeStatKey: homePenaltyTimeString ?? "",
-            INSOStatNameKey: "Penalty Time",
-            INSOVisitorStatKey: visitorPentaltyTimeString ?? ""
-        ])
-
-        return penaltySection
+        return Section(title: title, stats: stats)
     }
-*/
     
     /* Commenting out entier player stats creation functions
     func statsDictionary(for rosterPlayer: RosterPlayer?) -> [AnyHashable : Any]? {
