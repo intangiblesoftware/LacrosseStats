@@ -26,19 +26,6 @@ extern NSString * const INSOStatCategoryKey;
 
 extern const NSInteger INSOExplusionPenaltyTime;
 
-// Some other keys
-extern NSString * const INSOTitleKey;
-extern NSString * const INSOEventsKey;
-extern NSString * const INSOPenaltyTimeKey;
-extern NSString * const INSOPenaltyCountKey;
-extern NSString * const INSOPlayerKey;
-extern NSString * const INSOStatsKey;
-extern NSString * const INSOSectionTitleKey; 
-extern NSString * const INSOSectionDataKey;
-extern NSString * const INSOHomeStatKey;
-extern NSString * const INSOVisitorStatKey;
-extern NSString * const INSOStatNameKey;
-
 // Product identifier
 extern NSString * const INSOMensProductName;
 extern NSString * const INSOWomensProductName;

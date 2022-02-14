@@ -10,6 +10,8 @@
 
 @class Game;
 
+@class GameEventCounter;
+
 typedef void(^completion)(NSData* gameStatsData);
 
 @interface INSOEmailStatsFileGenerator : NSObject

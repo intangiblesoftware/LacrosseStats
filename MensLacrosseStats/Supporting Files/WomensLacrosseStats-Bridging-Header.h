@@ -31,7 +31,6 @@
 
 #import "INSOGameEditViewController.h"
 #import "INSORosterPlayerSelectorViewController.h"
-#import "INSOGameEventCounter.h"
 #import "INSOMensLacrosseStatsEnum.h"
 #import "INSOMensLacrosseStatsConstants.h"
 #import "INSOEmailStatsFileGenerator.h"

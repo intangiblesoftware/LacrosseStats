@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		B98BEA521E16B7A90076BB68 = {
+		B98BEA521E16B7A90076BB68 /* Mogenerator */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B98BEA551E16B7A90076BB68;
+			buildConfigurationList = B98BEA551E16B7A90076BB68 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
 			buildPhases = (
-				B98BEA561E16B7DA0076BB68,
+				B98BEA561E16B7DA0076BB68 /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -29,6 +29,8 @@
 		38B3CCD927B433CA00AA4D07 /* WomensBuildTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3CCD827B433CA00AA4D07 /* WomensBuildTarget.swift */; };
 		38DD23E727A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */; };
 		38DD23E827A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */; };
+		38FF673C27B6D7FB0036EA59 /* GameEventCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF673B27B6D7FB0036EA59 /* GameEventCounter.swift */; };
+		38FF673D27B6F2EF0036EA59 /* GameEventCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF673B27B6D7FB0036EA59 /* GameEventCounter.swift */; };
 		B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.swift */; };
 		B916A12A1C1DB38C00E754A3 /* INSOGameDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A1231C1DB38C00E754A3 /* INSOGameDetailViewController.swift */; };
 		B916A12B1C1DB38C00E754A3 /* INSOGameEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B916A1251C1DB38C00E754A3 /* INSOGameEditViewController.m */; };
@@ -57,21 +59,20 @@
 		B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9637FC81BCC8B070033DED3 /* GameEvents.plist */; };
 		B97FD1891C5B0AAE000BC548 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FD1861C5B0AAE000BC548 /* AppDelegate.m */; };
 		B97FD18B1C5B0AAE000BC548 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FD1881C5B0AAE000BC548 /* main.m */; };
-		B97FD1931C5B0B5D000BC548 = {isa = PBXBuildFile; fileRef = B97FD18F1C5B0B5D000BC548 /* LaunchScreen.storyboard */; };
-		B97FD1941C5B0B5D000BC548 = {isa = PBXBuildFile; fileRef = B97FD1911C5B0B5D000BC548 /* Main.storyboard */; };
-		B97FD1971C5B0B86000BC548 = {isa = PBXBuildFile; fileRef = B97FD1991C5B0B86000BC548 /* WomensLaunchScreen.storyboard */; };
-		B97FD19A1C5B0B8E000BC548 = {isa = PBXBuildFile; fileRef = B97FD19C1C5B0B8E000BC548 /* WomensMain.storyboard */; };
+		B97FD1931C5B0B5D000BC548 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD18F1C5B0B5D000BC548 /* LaunchScreen.storyboard */; };
+		B97FD1941C5B0B5D000BC548 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD1911C5B0B5D000BC548 /* Main.storyboard */; };
+		B97FD1971C5B0B86000BC548 /* WomensLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD1991C5B0B86000BC548 /* WomensLaunchScreen.storyboard */; };
+		B97FD19A1C5B0B8E000BC548 /* WomensMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD19C1C5B0B8E000BC548 /* WomensMain.storyboard */; };
 		B97FD19D1C5B0D65000BC548 /* UIColor+INSOScorebookColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift */; };
 		B97FD19E1C5B0E12000BC548 /* INSOPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */; };
 		B97FD19F1C5B0E15000BC548 /* NSManagedObject+GameEventAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */; };
-		B97FD1A11C5B0E25000BC548 /* INSOGameEventCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */; };
 		B97FD1A41C5B0E67000BC548 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9471E621BD872CA00379D96 /* CoreData.framework */; };
 		B97FD1A61C5B95AB000BC548 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB3F1BC9C9E1006AEA3A /* Event.m */; };
 		B97FD1A71C5B95AF000BC548 /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B935AB491BC9CA6C006AEA3A /* EventCategory.m */; };
 		B97FD1A81C5B95B2000BC548 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65B1BB75FA5004FD794 /* Game.m */; };
 		B97FD1A91C5B95B5000BC548 /* GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65D1BB75FA5004FD794 /* GameEvent.m */; };
 		B97FD1AA1C5B95B9000BC548 /* RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */; };
-		B97FD1AB1C5B95DA000BC548 = {isa = PBXBuildFile; fileRef = B99FDD501BB46865006FB373; };
+		B97FD1AB1C5B95DA000BC548 /* MensLacrosseStats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD501BB46865006FB373 /* MensLacrosseStats.xcdatamodeld */; };
 		B97FD1AD1C5B9600000BC548 /* INSOMensLacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */; };
 		B97FD1AE1C5B9607000BC548 /* INSOHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.swift */; };
 		B97FD1AF1C5B960B000BC548 /* INSOPlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.swift */; };
@@ -98,10 +99,9 @@
 		B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65D1BB75FA5004FD794 /* GameEvent.m */; };
 		B991A6651BB75FAF004FD794 /* _Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A6621BB75FAF004FD794 /* _Game.m */; };
 		B991A6661BB75FAF004FD794 /* _GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A6641BB75FAF004FD794 /* _GameEvent.m */; };
-		B99FDD521BB46865006FB373 = {isa = PBXBuildFile; fileRef = B99FDD501BB46865006FB373; };
+		B99FDD521BB46865006FB373 /* MensLacrosseStats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD501BB46865006FB373 /* MensLacrosseStats.xcdatamodeld */; };
 		B99FDD5F1BB46907006FB373 /* Mens.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD5E1BB46907006FB373 /* Mens.xcassets */; };
 		B99FDD671BB46957006FB373 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD641BB46957006FB373 /* main.m */; };
-		B9A5DB9F1BE55856004B72A4 /* INSOGameEventCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */; };
 		B9A5DBA21BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */; };
 		B9B53F721D2355C0004DACF3 /* INSOButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B53F711D2355C0004DACF3 /* INSOButton.m */; };
 		B9B53F731D2355C0004DACF3 /* INSOButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B53F711D2355C0004DACF3 /* INSOButton.m */; };
@@ -121,6 +121,7 @@
 		38DD23E427A3559D00A4EEC5 /* MensLacrosseStats-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MensLacrosseStats-Bridging-Header.h"; sourceTree = "<group>"; };
 		38DD23E527A3559D00A4EEC5 /* WomensLacrosseStats-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WomensLacrosseStats-Bridging-Header.h"; sourceTree = "<group>"; };
 		38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INSOGameTableViewCell.swift; sourceTree = "<group>"; };
+		38FF673B27B6D7FB0036EA59 /* GameEventCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventCounter.swift; sourceTree = "<group>"; };
 		B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INSOEmailStatsViewController.swift; sourceTree = "<group>"; };
 		B916A1231C1DB38C00E754A3 /* INSOGameDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INSOGameDetailViewController.swift; sourceTree = "<group>"; };
 		B916A1241C1DB38C00E754A3 /* INSOGameEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameEditViewController.h; sourceTree = "<group>"; };
@@ -242,6 +243,7 @@
 				B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */,
 				B9A5DB9D1BE55856004B72A4 /* INSOGameEventCounter.h */,
 				B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */,
+				38FF673B27B6D7FB0036EA59 /* GameEventCounter.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -366,7 +368,7 @@
 			children = (
 				B991A6591BB75FA5004FD794 /* Human */,
 				B991A6601BB75FAF004FD794 /* Machine */,
-				B99FDD501BB46865006FB373,
+				B99FDD501BB46865006FB373 /* MensLacrosseStats.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -583,7 +585,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B9C7A72B1BADA3B30082DA8B /* Build configuration list for PBXProject "MensLacrosseStats" */;
+			buildConfigurationList = B9C7A72B1BADA3B30082DA8B /* Build configuration list for PBXProject "LacrosseStats" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -592,13 +594,13 @@
 				Base,
 			);
 			mainGroup = B9C7A7271BADA3B30082DA8B;
-			productRefGroup = B9C7A7311BADA3B30082DA8B;
+			productRefGroup = B9C7A7311BADA3B30082DA8B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				B9C7A72F1BADA3B30082DA8B /* MensLacrosseStats */,
 				B9D732441C5B082300FEADFF /* WomensLacrosseStats */,
-				B98BEA521E16B7A90076BB68,
+				B98BEA521E16B7A90076BB68 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -608,12 +610,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B97FD1931C5B0B5D000BC548,
+				B97FD1931C5B0B5D000BC548 /* LaunchScreen.storyboard in Resources */,
 				B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */,
 				B917B6B81DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */,
 				B917B6B51DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */,
 				B99FDD5F1BB46907006FB373 /* Mens.xcassets in Resources */,
-				B97FD1941C5B0B5D000BC548,
+				B97FD1941C5B0B5D000BC548 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,9 +627,9 @@
 				B917B6B61DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */,
 				B9DECBE91C5C45B400481266 /* GameEvents.plist in Resources */,
 				B97FD1C71C5B9B8B000BC548 /* Mens.xcassets in Resources */,
-				B97FD19A1C5B0B8E000BC548,
+				B97FD19A1C5B0B8E000BC548 /* WomensMain.storyboard in Resources */,
 				B9D732571C5B082300FEADFF /* Womens.xcassets in Resources */,
-				B97FD1971C5B0B86000BC548,
+				B97FD1971C5B0B86000BC548 /* WomensLaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,10 +662,9 @@
 				B991A6661BB75FAF004FD794 /* _GameEvent.m in Sources */,
 				B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */,
 				B916A13D1C1DB42800E754A3 /* INSOGameEventSelectorTableViewController.m in Sources */,
-				B9A5DB9F1BE55856004B72A4 /* INSOGameEventCounter.m in Sources */,
 				B916A12D1C1DB38C00E754A3 /* INSOGameTableViewController.swift in Sources */,
 				382224E326961C7000055620 /* INSOEmailStatsFileGenerator.m in Sources */,
-				B99FDD521BB46865006FB373,
+				B99FDD521BB46865006FB373 /* MensLacrosseStats.xcdatamodeld in Sources */,
 				B935AB471BC9C9F2006AEA3A /* _Event.m in Sources */,
 				B9A5DBA21BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m in Sources */,
 				B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift in Sources */,
@@ -673,6 +674,7 @@
 				B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.swift in Sources */,
 				B991A6651BB75FAF004FD794 /* _Game.m in Sources */,
 				B99FDD671BB46957006FB373 /* main.m in Sources */,
+				38FF673C27B6D7FB0036EA59 /* GameEventCounter.swift in Sources */,
 				B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.swift in Sources */,
 				B916A13B1C1DB42800E754A3 /* INSOEventListEditorViewController.m in Sources */,
 				B991A65E1BB75FA5004FD794 /* Game.m in Sources */,
@@ -711,7 +713,7 @@
 				B97FD1A61C5B95AB000BC548 /* Event.m in Sources */,
 				B97FD19F1C5B0E15000BC548 /* NSManagedObject+GameEventAggregate.m in Sources */,
 				B97FD1AF1C5B960B000BC548 /* INSOPlayerCollectionViewCell.swift in Sources */,
-				B97FD1AB1C5B95DA000BC548,
+				B97FD1AB1C5B95DA000BC548 /* MensLacrosseStats.xcdatamodeld in Sources */,
 				B97FD1A71C5B95AF000BC548 /* EventCategory.m in Sources */,
 				38B3CCD927B433CA00AA4D07 /* WomensBuildTarget.swift in Sources */,
 				B97FD1BA1C5B963F000BC548 /* INSOPenaltyTimeViewController.m in Sources */,
@@ -726,6 +728,7 @@
 				B97FD1891C5B0AAE000BC548 /* AppDelegate.m in Sources */,
 				B97FD1C41C5B9AA8000BC548 /* _RosterPlayer.m in Sources */,
 				38DD23E827A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */,
+				38FF673D27B6F2EF0036EA59 /* GameEventCounter.swift in Sources */,
 				B97FD1AE1C5B9607000BC548 /* INSOHeaderCollectionReusableView.swift in Sources */,
 				B97FD1B31C5B961F000BC548 /* INSOGameDetailViewController.swift in Sources */,
 				B97FD19E1C5B0E12000BC548 /* INSOPickerTextField.m in Sources */,
@@ -734,7 +737,6 @@
 				B97FD1C51C5B9B52000BC548 /* INSOGameStatTableViewCell.swift in Sources */,
 				B97FD1B61C5B962B000BC548 /* INSOGameTableViewController.swift in Sources */,
 				B97FD1B91C5B963B000BC548 /* INSOGameEventSelectorTableViewController.m in Sources */,
-				B97FD1A11C5B0E25000BC548 /* INSOGameEventCounter.m in Sources */,
 				B97FD1B71C5B9634000BC548 /* INSOEventListEditorViewController.m in Sources */,
 				B97FD1AA1C5B95B9000BC548 /* RosterPlayer.m in Sources */,
 				B97FD1B41C5B9623000BC548 /* INSOGameEditViewController.m in Sources */,
@@ -1008,7 +1010,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B98BEA551E16B7A90076BB68 = {
+		B98BEA551E16B7A90076BB68 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B98BEA531E16B7A90076BB68 /* Debug */,
@@ -1017,7 +1019,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B9C7A72B1BADA3B30082DA8B /* Build configuration list for PBXProject "MensLacrosseStats" */ = {
+		B9C7A72B1BADA3B30082DA8B /* Build configuration list for PBXProject "LacrosseStats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B9C7A75E1BADA3B30082DA8B /* Debug */,
@@ -1047,13 +1049,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B99FDD501BB46865006FB373 = {
+		B99FDD501BB46865006FB373 /* MensLacrosseStats.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B98BEA571E16B8C20076BB68,
-				B99FDD511BB46865006FB373,
+				B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */,
+				B99FDD511BB46865006FB373 /* MensLacrosseStats.xcdatamodel */,
 			);
-			currentVersion = B98BEA571E16B8C20076BB68;
+			currentVersion = B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */;
 			path = MensLacrosseStats.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

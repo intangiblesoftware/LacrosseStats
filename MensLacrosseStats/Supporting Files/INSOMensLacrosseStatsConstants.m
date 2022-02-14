@@ -27,18 +27,6 @@ NSString * const INSOStatCategoryKey   = @"StatCategory";
 #pragma mark - Other constants
 const NSInteger INSOExplusionPenaltyTime = (48 * 60);
 
-NSString * const INSOTitleKey = @"title";
-NSString * const INSOEventsKey = @"events"; 
-NSString * const INSOPenaltyTimeKey = @"penaltyTime"; 
-NSString * const INSOPenaltyCountKey = @"penaltyCount";
-NSString * const INSOPlayerKey = @"player";
-NSString * const INSOStatsKey = @"stats";
-NSString * const INSOSectionTitleKey = @"sectionTitle";
-NSString * const INSOSectionDataKey = @"sectionData";
-NSString * const INSOHomeStatKey = @"homeStat";
-NSString * const INSOVisitorStatKey = @"visitorStat";
-NSString * const INSOStatNameKey = @"statName";
-
 #pragma mark - Product Identifier
 NSString * const INSOMensProductName = @"Men’s Lacrosse Stats";
 NSString * const INSOWomensProductName = @"Women’s Lacrosse Stats";
