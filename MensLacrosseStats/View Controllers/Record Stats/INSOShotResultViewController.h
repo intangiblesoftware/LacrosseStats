@@ -11,7 +11,7 @@
 @class RosterPlayer;
 @class Event;
 
-#import "INSOMensLacrosseStatsEnum.h"
+#import "LacrosseStatsEnum.h"
 
 @interface INSOShotResultViewController : UIViewController
 

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "INSOMensLacrosseStatsEnum.h"
+#import "LacrosseStatsEnum.h"
 
 #import "INSOPenaltyTimeViewController.h"
 

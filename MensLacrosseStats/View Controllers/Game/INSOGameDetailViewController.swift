@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 private var INSOEditGameSegueIdentifier = "EditGameSegue"
 private var INSORecordStatsSegueIdentifier = "RecordStatsSegue"
@@ -66,9 +67,15 @@ class INSOGameDetailViewController: UIViewController {
     @IBAction func editGame(_ sender: Any?) {
         performSegue(withIdentifier: INSOEditGameSegueIdentifier, sender: self)
     }
-
-    @IBAction func exportStats(_ sender: Any?) {
-        performSegue(withIdentifier: INSOExportStatsSegueIdentifier, sender: self)
+    
+    @IBSegueAction func exportStats(_ coder: NSCoder) -> UIViewController? {
+        guard let game = game else {
+            // If we don't have a game, we aren't going to segue.
+            // Shouldn't actually have that export button enabled,
+            // but that's a problem for another day. 
+            return nil
+        }
+        return UIHostingController(coder: coder, rootView: ExportStatsView(fileGenerator: StatsFileGenerator(with: game)))
     }
 
     // MARK: - Private Methods
@@ -112,10 +119,6 @@ class INSOGameDetailViewController: UIViewController {
         if segue.identifier == INSOGameStatsSegueIdentifier {
             prepare(forGameStatsSegue: segue, sender: sender)
         }
-
-        if segue.identifier == INSOExportStatsSegueIdentifier {
-            prepare(forExportStatsSegue: segue, sender: sender)
-        }
     }
 
     func prepare(forGameEdit segue: UIStoryboardSegue, sender: Any?) {
@@ -132,11 +135,5 @@ class INSOGameDetailViewController: UIViewController {
         if let dest = segue.destination as? INSOGameStatsViewController {
             dest.game = game
         } 
-    }
-
-    func prepare(forExportStatsSegue segue: UIStoryboardSegue, sender: Any?) {
-        let navigationController = segue.destination as? UINavigationController
-        let emailViewController = navigationController?.viewControllers.first as? INSOEmailStatsViewController
-        emailViewController?.game = game
     }
 }

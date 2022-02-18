@@ -6,8 +6,8 @@
 //  Copyright © 2015 Intangible Software. All rights reserved.
 //
 
-#import "INSOMensLacrosseStatsEnum.h"
-#import "INSOMensLacrosseStatsConstants.h"
+#import "LacrosseStatsEnum.h"
+#import "LacrosseStatsConstants.h"
 
 #import "AppDelegate.h"
 

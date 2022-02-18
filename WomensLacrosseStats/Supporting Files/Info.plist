@@ -29,9 +29,9 @@
 	<key>ProductIdentifier</key>
 	<string>com.intangiblesoftware.womenslacrossestats.1year</string>
 	<key>UILaunchStoryboardName</key>
-	<string>WomensLaunchScreen</string>
+	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>WomensMain</string>
+	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -52,9 +52,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

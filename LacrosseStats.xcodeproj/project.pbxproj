@@ -21,12 +21,22 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3815331527BD6C78003E4868 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3815331427BD6C78003E4868 /* Media.xcassets */; };
+		3815331627BD6C78003E4868 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3815331427BD6C78003E4868 /* Media.xcassets */; };
 		382224E326961C7000055620 /* INSOEmailStatsFileGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */; };
 		382224E426961C7100055620 /* INSOEmailStatsFileGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */; };
+		382EB0CA27BD823F00947B52 /* INSOButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382EB0C927BD823F00947B52 /* INSOButtonStyle.swift */; };
+		382EB0CB27BD823F00947B52 /* INSOButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382EB0C927BD823F00947B52 /* INSOButtonStyle.swift */; };
+		38553CD627C01ADB00006D44 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38553CD527C01ADB00006D44 /* MailView.swift */; };
+		38553CD727C01ADB00006D44 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38553CD527C01ADB00006D44 /* MailView.swift */; };
 		38AA532927A9C87D00E1F589 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FD1861C5B0AAE000BC548 /* AppDelegate.m */; };
 		38B3CCD527B428C700AA4D07 /* INSOGameStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B916A1271C1DB38C00E754A3 /* INSOGameStatsViewController.swift */; };
 		38B3CCD727B4335E00AA4D07 /* MensBuildTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3CCD627B4335E00AA4D07 /* MensBuildTarget.swift */; };
 		38B3CCD927B433CA00AA4D07 /* WomensBuildTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3CCD827B433CA00AA4D07 /* WomensBuildTarget.swift */; };
+		38D5A86C27BD49F400EB744C /* StatsFileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5A86B27BD49F400EB744C /* StatsFileGenerator.swift */; };
+		38D5A86D27BD49F400EB744C /* StatsFileGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5A86B27BD49F400EB744C /* StatsFileGenerator.swift */; };
+		38D5A86F27BD4DD400EB744C /* ExportStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5A86E27BD4DD400EB744C /* ExportStatsView.swift */; };
+		38D5A87027BD4DD400EB744C /* ExportStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5A86E27BD4DD400EB744C /* ExportStatsView.swift */; };
 		38DD23E727A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */; };
 		38DD23E827A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */; };
 		38FF673C27B6D7FB0036EA59 /* GameEventCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF673B27B6D7FB0036EA59 /* GameEventCounter.swift */; };
@@ -61,8 +71,8 @@
 		B97FD18B1C5B0AAE000BC548 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B97FD1881C5B0AAE000BC548 /* main.m */; };
 		B97FD1931C5B0B5D000BC548 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD18F1C5B0B5D000BC548 /* LaunchScreen.storyboard */; };
 		B97FD1941C5B0B5D000BC548 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD1911C5B0B5D000BC548 /* Main.storyboard */; };
-		B97FD1971C5B0B86000BC548 /* WomensLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD1991C5B0B86000BC548 /* WomensLaunchScreen.storyboard */; };
-		B97FD19A1C5B0B8E000BC548 /* WomensMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD19C1C5B0B8E000BC548 /* WomensMain.storyboard */; };
+		B97FD1971C5B0B86000BC548 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD1991C5B0B86000BC548 /* LaunchScreen.storyboard */; };
+		B97FD19A1C5B0B8E000BC548 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B97FD19C1C5B0B8E000BC548 /* Main.storyboard */; };
 		B97FD19D1C5B0D65000BC548 /* UIColor+INSOScorebookColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift */; };
 		B97FD19E1C5B0E12000BC548 /* INSOPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CF5BB61BB967DD00AF51DF /* INSOPickerTextField.m */; };
 		B97FD19F1C5B0E15000BC548 /* NSManagedObject+GameEventAggregate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */; };
@@ -73,7 +83,7 @@
 		B97FD1A91C5B95B5000BC548 /* GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65D1BB75FA5004FD794 /* GameEvent.m */; };
 		B97FD1AA1C5B95B9000BC548 /* RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94361BBCB2E500E56AD9 /* RosterPlayer.m */; };
 		B97FD1AB1C5B95DA000BC548 /* MensLacrosseStats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B99FDD501BB46865006FB373 /* MensLacrosseStats.xcdatamodeld */; };
-		B97FD1AD1C5B9600000BC548 /* INSOMensLacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */; };
+		B97FD1AD1C5B9600000BC548 /* LacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* LacrosseStatsConstants.m */; };
 		B97FD1AE1C5B9607000BC548 /* INSOHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.swift */; };
 		B97FD1AF1C5B960B000BC548 /* INSOPlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.swift */; };
 		B97FD1B01C5B960E000BC548 /* INSOStatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D943C1BBCC47500E56AD9 /* INSOStatCollectionViewCell.swift */; };
@@ -93,7 +103,6 @@
 		B97FD1C31C5B9AA4000BC548 /* _GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A6641BB75FAF004FD794 /* _GameEvent.m */; };
 		B97FD1C41C5B9AA8000BC548 /* _RosterPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B95D94391BBCB2F000E56AD9 /* _RosterPlayer.m */; };
 		B97FD1C51C5B9B52000BC548 /* INSOGameStatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B928F26C1BE2F9000028DD51 /* INSOGameStatTableViewCell.swift */; };
-		B97FD1C71C5B9B8B000BC548 /* Mens.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B99FDD5E1BB46907006FB373 /* Mens.xcassets */; };
 		B9880D2E1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.swift */; };
 		B991A65E1BB75FA5004FD794 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65B1BB75FA5004FD794 /* Game.m */; };
 		B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B991A65D1BB75FA5004FD794 /* GameEvent.m */; };
@@ -112,12 +121,17 @@
 		B9D732571C5B082300FEADFF /* Womens.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9D732561C5B082300FEADFF /* Womens.xcassets */; };
 		B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.swift */; };
 		B9DECBE91C5C45B400481266 /* GameEvents.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9DECBE81C5C45B400481266 /* GameEvents.plist */; };
-		B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */; };
+		B9EBC2781BBB7C0D00370DE6 /* LacrosseStatsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B9EBC2771BBB7C0D00370DE6 /* LacrosseStatsConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3815331427BD6C78003E4868 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		382EB0C927BD823F00947B52 /* INSOButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INSOButtonStyle.swift; sourceTree = "<group>"; };
+		38553CD527C01ADB00006D44 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		38B3CCD627B4335E00AA4D07 /* MensBuildTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MensBuildTarget.swift; sourceTree = "<group>"; };
 		38B3CCD827B433CA00AA4D07 /* WomensBuildTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WomensBuildTarget.swift; sourceTree = "<group>"; };
+		38D5A86B27BD49F400EB744C /* StatsFileGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsFileGenerator.swift; sourceTree = "<group>"; };
+		38D5A86E27BD4DD400EB744C /* ExportStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportStatsView.swift; sourceTree = "<group>"; };
 		38DD23E427A3559D00A4EEC5 /* MensLacrosseStats-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MensLacrosseStats-Bridging-Header.h"; sourceTree = "<group>"; };
 		38DD23E527A3559D00A4EEC5 /* WomensLacrosseStats-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WomensLacrosseStats-Bridging-Header.h"; sourceTree = "<group>"; };
 		38DD23E627A3559D00A4EEC5 /* INSOGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INSOGameTableViewCell.swift; sourceTree = "<group>"; };
@@ -168,8 +182,8 @@
 		B97FD1881C5B0AAE000BC548 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B97FD1901C5B0B5D000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B97FD1921C5B0B5D000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B97FD1981C5B0B86000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WomensLaunchScreen.storyboard; sourceTree = "<group>"; };
-		B97FD19B1C5B0B8E000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WomensMain.storyboard; sourceTree = "<group>"; };
+		B97FD1981C5B0B86000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B97FD19B1C5B0B8E000BC548 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9880D2D1BBA2A62008771B4 /* INSOPlayerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INSOPlayerCollectionViewCell.swift; sourceTree = "<group>"; };
 		B98BEA571E16B8C20076BB68 /* MensLacrosseStats 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MensLacrosseStats 2.xcdatamodel"; sourceTree = "<group>"; };
 		B991A65A1BB75FA5004FD794 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -184,9 +198,7 @@
 		B99FDD5E1BB46907006FB373 /* Mens.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mens.xcassets; sourceTree = "<group>"; };
 		B99FDD631BB46957006FB373 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B99FDD641BB46957006FB373 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B99FDD711BB47A4A006FB373 /* INSOMensLacrosseStatsEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INSOMensLacrosseStatsEnum.h; sourceTree = "<group>"; };
-		B9A5DB9D1BE55856004B72A4 /* INSOGameEventCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOGameEventCounter.h; sourceTree = "<group>"; };
-		B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOGameEventCounter.m; sourceTree = "<group>"; };
+		B99FDD711BB47A4A006FB373 /* LacrosseStatsEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LacrosseStatsEnum.h; sourceTree = "<group>"; };
 		B9A5DBA01BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+GameEventAggregate.h"; sourceTree = "<group>"; };
 		B9A5DBA11BE5599C004B72A4 /* NSManagedObject+GameEventAggregate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+GameEventAggregate.m"; sourceTree = "<group>"; };
 		B9B53F701D2355C0004DACF3 /* INSOButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOButton.h; sourceTree = "<group>"; };
@@ -203,10 +215,8 @@
 		B9D732561C5B082300FEADFF /* Womens.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Womens.xcassets; sourceTree = "<group>"; };
 		B9DBC3BB1BC4B82600983F5B /* INSOHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = INSOHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		B9DECBE81C5C45B400481266 /* GameEvents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GameEvents.plist; sourceTree = "<group>"; };
-		B9E7193E1C2F01B800EDD670 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../openssl-1.0.2e-iOS/lib/libcrypto.a"; sourceTree = "<group>"; };
-		B9E719421C2F189600EDD670 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../openssl-1.0.2e-iOS/lib/libssl.a"; sourceTree = "<group>"; };
-		B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INSOMensLacrosseStatsConstants.h; sourceTree = "<group>"; };
-		B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INSOMensLacrosseStatsConstants.m; sourceTree = "<group>"; };
+		B9EBC2761BBB7C0D00370DE6 /* LacrosseStatsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LacrosseStatsConstants.h; sourceTree = "<group>"; };
+		B9EBC2771BBB7C0D00370DE6 /* LacrosseStatsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LacrosseStatsConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,14 +246,58 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3815331127BD6B0D003E4868 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift */,
+				382EB0C927BD823F00947B52 /* INSOButtonStyle.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3815331227BD6B5C003E4868 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B9D732561C5B082300FEADFF /* Womens.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		3815331327BD6C59003E4868 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3815331427BD6C78003E4868 /* Media.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		3815331727BD7217003E4868 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B99FDD711BB47A4A006FB373 /* LacrosseStatsEnum.h */,
+				B9EBC2761BBB7C0D00370DE6 /* LacrosseStatsConstants.h */,
+				B9EBC2771BBB7C0D00370DE6 /* LacrosseStatsConstants.m */,
+				B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */,
+				B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3815331827BD77D0003E4868 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B916A11A1C1DB32100E754A3 /* Export */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		B9108A991BC0898A000450F8 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
 				B932E5081C088CA10099F8A4 /* INSOEmailStatsFileGenerator.h */,
 				B932E5091C088CA10099F8A4 /* INSOEmailStatsFileGenerator.m */,
-				B9A5DB9D1BE55856004B72A4 /* INSOGameEventCounter.h */,
-				B9A5DB9E1BE55856004B72A4 /* INSOGameEventCounter.m */,
 				38FF673B27B6D7FB0036EA59 /* GameEventCounter.swift */,
+				38D5A86B27BD49F400EB744C /* StatsFileGenerator.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -252,6 +306,8 @@
 			isa = PBXGroup;
 			children = (
 				B916A11C1C1DB32100E754A3 /* INSOEmailStatsViewController.swift */,
+				38D5A86E27BD4DD400EB744C /* ExportStatsView.swift */,
+				38553CD527C01ADB00006D44 /* MailView.swift */,
 			);
 			path = Export;
 			sourceTree = "<group>";
@@ -290,8 +346,6 @@
 		B95391011BF57B7F00C5B6D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B9E719421C2F189600EDD670 /* libssl.a */,
-				B9E7193E1C2F01B800EDD670 /* libcrypto.a */,
 				B9471E621BD872CA00379D96 /* CoreData.framework */,
 			);
 			name = Frameworks;
@@ -302,10 +356,10 @@
 			isa = PBXGroup;
 			children = (
 				B9DECBE81C5C45B400481266 /* GameEvents.plist */,
-				B97FD1851C5B0AAE000BC548 /* AppDelegate.h */,
-				B97FD1861C5B0AAE000BC548 /* AppDelegate.m */,
 				B97FD1871C5B0AAE000BC548 /* Info.plist */,
 				B97FD1881C5B0AAE000BC548 /* main.m */,
+				38DD23E527A3559D00A4EEC5 /* WomensLacrosseStats-Bridging-Header.h */,
+				38B3CCD827B433CA00AA4D07 /* WomensBuildTarget.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -313,8 +367,8 @@
 		B97FD18C1C5B0B1F000BC548 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B97FD1991C5B0B86000BC548 /* WomensLaunchScreen.storyboard */,
-				B97FD19C1C5B0B8E000BC548 /* WomensMain.storyboard */,
+				B97FD1991C5B0B86000BC548 /* LaunchScreen.storyboard */,
+				B97FD19C1C5B0B8E000BC548 /* Main.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -377,7 +431,6 @@
 			isa = PBXGroup;
 			children = (
 				B9880D2B1BBA2A62008771B4 /* CollectionViewCells */,
-				B916A11A1C1DB32100E754A3 /* Export */,
 				B916A1211C1DB38C00E754A3 /* Game */,
 				B916A12E1C1DB42800E754A3 /* Record Stats */,
 				B9CF5BB81BB967EC00AF51DF /* TableViewCells */,
@@ -400,15 +453,8 @@
 				B9637FC81BCC8B070033DED3 /* GameEvents.plist */,
 				B99FDD631BB46957006FB373 /* Info.plist */,
 				B99FDD641BB46957006FB373 /* main.m */,
-				B99FDD711BB47A4A006FB373 /* INSOMensLacrosseStatsEnum.h */,
-				B9EBC2761BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.h */,
-				B9EBC2771BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m */,
 				38DD23E427A3559D00A4EEC5 /* MensLacrosseStats-Bridging-Header.h */,
-				38DD23E527A3559D00A4EEC5 /* WomensLacrosseStats-Bridging-Header.h */,
-				B917B6B41DF7A7DA00B5C471 /* GameSummaryHeaderFile.html */,
-				B917B6B71DF7A80D00B5C471 /* GameSummaryFooterFile.html */,
 				38B3CCD627B4335E00AA4D07 /* MensBuildTarget.swift */,
-				38B3CCD827B433CA00AA4D07 /* WomensBuildTarget.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -438,6 +484,9 @@
 		B9C7A7271BADA3B30082DA8B = {
 			isa = PBXGroup;
 			children = (
+				B97FD1851C5B0AAE000BC548 /* AppDelegate.h */,
+				B97FD1861C5B0AAE000BC548 /* AppDelegate.m */,
+				B9CF5BB01BB967CF00AF51DF /* Common */,
 				B9C7A7321BADA3B30082DA8B /* MensLacrosseStats */,
 				B9D732461C5B082300FEADFF /* WomensLacrosseStats */,
 				B9C7A7311BADA3B30082DA8B /* Products */,
@@ -457,25 +506,27 @@
 		B9C7A7321BADA3B30082DA8B /* MensLacrosseStats */ = {
 			isa = PBXGroup;
 			children = (
-				B99FDD5D1BB46907006FB373 /* Assets */,
-				B9CF5BB01BB967CF00AF51DF /* Class Categories */,
-				B9CF5BB41BB967DD00AF51DF /* Class Override */,
-				B9108A991BC0898A000450F8 /* Custom Classes */,
-				B95391011BF57B7F00C5B6D0 /* Frameworks */,
-				B99FDD4F1BB46865006FB373 /* Model */,
 				B99FDD601BB46957006FB373 /* Supporting Files */,
-				B99FDD531BB46881006FB373 /* View Controllers */,
+				B99FDD5D1BB46907006FB373 /* Assets */,
 				B99FDD681BB46A12006FB373 /* Views */,
+				B99FDD531BB46881006FB373 /* View Controllers */,
 			);
 			path = MensLacrosseStats;
 			sourceTree = "<group>";
 		};
-		B9CF5BB01BB967CF00AF51DF /* Class Categories */ = {
+		B9CF5BB01BB967CF00AF51DF /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				B9CF5BB21BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift */,
+				3815331727BD7217003E4868 /* Supporting Files */,
+				3815331327BD6C59003E4868 /* Assets */,
+				B99FDD4F1BB46865006FB373 /* Model */,
+				B9108A991BC0898A000450F8 /* Custom Classes */,
+				B9CF5BB41BB967DD00AF51DF /* Class Override */,
+				3815331127BD6B0D003E4868 /* Extensions */,
+				3815331827BD77D0003E4868 /* ViewControllers */,
+				B95391011BF57B7F00C5B6D0 /* Frameworks */,
 			);
-			path = "Class Categories";
+			path = Common;
 			sourceTree = "<group>";
 		};
 		B9CF5BB41BB967DD00AF51DF /* Class Override */ = {
@@ -504,9 +555,9 @@
 			isa = PBXGroup;
 			children = (
 				B97FD1841C5B0AAE000BC548 /* Supporting Files */,
-				B9C429041C6C1AEA001C92AB /* View Controllers */,
+				3815331227BD6B5C003E4868 /* Assets */,
 				B97FD18C1C5B0B1F000BC548 /* Views */,
-				B9D732561C5B082300FEADFF /* Womens.xcassets */,
+				B9C429041C6C1AEA001C92AB /* View Controllers */,
 			);
 			path = WomensLacrosseStats;
 			sourceTree = "<group>";
@@ -612,6 +663,7 @@
 			files = (
 				B97FD1931C5B0B5D000BC548 /* LaunchScreen.storyboard in Resources */,
 				B9637FC91BCC8B070033DED3 /* GameEvents.plist in Resources */,
+				3815331527BD6C78003E4868 /* Media.xcassets in Resources */,
 				B917B6B81DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */,
 				B917B6B51DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */,
 				B99FDD5F1BB46907006FB373 /* Mens.xcassets in Resources */,
@@ -625,11 +677,11 @@
 			files = (
 				B917B6B91DF7A80D00B5C471 /* GameSummaryFooterFile.html in Resources */,
 				B917B6B61DF7A7DA00B5C471 /* GameSummaryHeaderFile.html in Resources */,
+				3815331627BD6C78003E4868 /* Media.xcassets in Resources */,
 				B9DECBE91C5C45B400481266 /* GameEvents.plist in Resources */,
-				B97FD1C71C5B9B8B000BC548 /* Mens.xcassets in Resources */,
-				B97FD19A1C5B0B8E000BC548 /* WomensMain.storyboard in Resources */,
+				B97FD19A1C5B0B8E000BC548 /* Main.storyboard in Resources */,
 				B9D732571C5B082300FEADFF /* Womens.xcassets in Resources */,
-				B97FD1971C5B0B86000BC548 /* WomensLaunchScreen.storyboard in Resources */,
+				B97FD1971C5B0B86000BC548 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +710,7 @@
 			files = (
 				B916A13C1C1DB42800E754A3 /* INSOFaceoffWonViewController.m in Sources */,
 				B935AB411BC9C9E1006AEA3A /* Event.m in Sources */,
+				38553CD627C01ADB00006D44 /* MailView.swift in Sources */,
 				B916A12C1C1DB38C00E754A3 /* INSOGameStatsViewController.swift in Sources */,
 				B991A6661BB75FAF004FD794 /* _GameEvent.m in Sources */,
 				B991A65F1BB75FA5004FD794 /* GameEvent.m in Sources */,
@@ -670,6 +723,7 @@
 				B9CF5BB31BB967CF00AF51DF /* UIColor+INSOScorebookColor.swift in Sources */,
 				B95D943D1BBCC47500E56AD9 /* INSOStatCollectionViewCell.swift in Sources */,
 				B95D94371BBCB2E500E56AD9 /* RosterPlayer.m in Sources */,
+				38D5A86F27BD4DD400EB744C /* ExportStatsView.swift in Sources */,
 				B9CF5BB71BB967DD00AF51DF /* INSOPickerTextField.m in Sources */,
 				B9DBC3BC1BC4B82600983F5B /* INSOHeaderCollectionReusableView.swift in Sources */,
 				B991A6651BB75FAF004FD794 /* _Game.m in Sources */,
@@ -677,6 +731,7 @@
 				38FF673C27B6D7FB0036EA59 /* GameEventCounter.swift in Sources */,
 				B916A11F1C1DB32100E754A3 /* INSOEmailStatsViewController.swift in Sources */,
 				B916A13B1C1DB42800E754A3 /* INSOEventListEditorViewController.m in Sources */,
+				38D5A86C27BD49F400EB744C /* StatsFileGenerator.swift in Sources */,
 				B991A65E1BB75FA5004FD794 /* Game.m in Sources */,
 				B916A13F1C1DB42800E754A3 /* INSORosterPlayerSelectorViewController.m in Sources */,
 				B935AB4A1BC9CA6C006AEA3A /* EventCategory.m in Sources */,
@@ -690,7 +745,8 @@
 				B928F26D1BE2F9000028DD51 /* INSOGameStatTableViewCell.swift in Sources */,
 				38DD23E727A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */,
 				B916A13E1C1DB42800E754A3 /* INSOPenaltyTimeViewController.m in Sources */,
-				B9EBC2781BBB7C0D00370DE6 /* INSOMensLacrosseStatsConstants.m in Sources */,
+				382EB0CA27BD823F00947B52 /* INSOButtonStyle.swift in Sources */,
+				B9EBC2781BBB7C0D00370DE6 /* LacrosseStatsConstants.m in Sources */,
 				B916A1401C1DB42800E754A3 /* INSOShotResultViewController.m in Sources */,
 				B916A12A1C1DB38C00E754A3 /* INSOGameDetailViewController.swift in Sources */,
 			);
@@ -701,7 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B97FD1A91C5B95B5000BC548 /* GameEvent.m in Sources */,
-				B97FD1AD1C5B9600000BC548 /* INSOMensLacrosseStatsConstants.m in Sources */,
+				B97FD1AD1C5B9600000BC548 /* LacrosseStatsConstants.m in Sources */,
 				B97FD1BB1C5B9643000BC548 /* INSORosterPlayerSelectorViewController.m in Sources */,
 				B97FD1C11C5B9A9A000BC548 /* _EventCategory.m in Sources */,
 				382224E426961C7100055620 /* INSOEmailStatsFileGenerator.m in Sources */,
@@ -715,10 +771,13 @@
 				B97FD1AF1C5B960B000BC548 /* INSOPlayerCollectionViewCell.swift in Sources */,
 				B97FD1AB1C5B95DA000BC548 /* MensLacrosseStats.xcdatamodeld in Sources */,
 				B97FD1A71C5B95AF000BC548 /* EventCategory.m in Sources */,
+				38553CD727C01ADB00006D44 /* MailView.swift in Sources */,
+				38D5A86D27BD49F400EB744C /* StatsFileGenerator.swift in Sources */,
 				38B3CCD927B433CA00AA4D07 /* WomensBuildTarget.swift in Sources */,
 				B97FD1BA1C5B963F000BC548 /* INSOPenaltyTimeViewController.m in Sources */,
 				B97FD1C21C5B9A9E000BC548 /* _Game.m in Sources */,
 				B97FD1B11C5B9615000BC548 /* INSOEmailStatsViewController.swift in Sources */,
+				38D5A87027BD4DD400EB744C /* ExportStatsView.swift in Sources */,
 				B92236DA1C7FEC820018E58D /* INSOMajorFoulResultViewController.m in Sources */,
 				B97FD1B81C5B9637000BC548 /* INSOFaceoffWonViewController.m in Sources */,
 				B9C4290C1C6C1AEA001C92AB /* INSOWomensGameEventSelectorTableViewController.m in Sources */,
@@ -727,6 +786,7 @@
 				38B3CCD527B428C700AA4D07 /* INSOGameStatsViewController.swift in Sources */,
 				B97FD1891C5B0AAE000BC548 /* AppDelegate.m in Sources */,
 				B97FD1C41C5B9AA8000BC548 /* _RosterPlayer.m in Sources */,
+				382EB0CB27BD823F00947B52 /* INSOButtonStyle.swift in Sources */,
 				38DD23E827A3559D00A4EEC5 /* INSOGameTableViewCell.swift in Sources */,
 				38FF673D27B6F2EF0036EA59 /* GameEventCounter.swift in Sources */,
 				B97FD1AE1C5B9607000BC548 /* INSOHeaderCollectionReusableView.swift in Sources */,
@@ -762,20 +822,20 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		B97FD1991C5B0B86000BC548 /* WomensLaunchScreen.storyboard */ = {
+		B97FD1991C5B0B86000BC548 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B97FD1981C5B0B86000BC548 /* Base */,
 			);
-			name = WomensLaunchScreen.storyboard;
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		B97FD19C1C5B0B8E000BC548 /* WomensMain.storyboard */ = {
+		B97FD19C1C5B0B8E000BC548 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B97FD19B1C5B0B8E000BC548 /* Base */,
 			);
-			name = WomensMain.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -801,6 +861,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -844,7 +905,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -858,6 +919,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -895,7 +957,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
@@ -918,7 +980,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/MensLacrosseStats/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.menslacrossestats;
@@ -944,7 +1006,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/MensLacrosseStats/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.menslacrossestats;
@@ -960,7 +1022,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = WomensAppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -969,13 +1031,13 @@
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/WomensLacrosseStats/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.womenslacrossestats;
 				PRODUCT_NAME = WomensLacrosseStats;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "MensLacrosseStats/Supporting Files/WomensLacrosseStats-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "WomensLacrosseStats/Supporting Files/WomensLacrosseStats-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -986,7 +1048,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = WomensAppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -995,13 +1057,13 @@
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/WomensLacrosseStats/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.intangiblesoftware.womenslacrossestats;
 				PRODUCT_NAME = WomensLacrosseStats;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "MensLacrosseStats/Supporting Files/WomensLacrosseStats-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "WomensLacrosseStats/Supporting Files/WomensLacrosseStats-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "";
 			};

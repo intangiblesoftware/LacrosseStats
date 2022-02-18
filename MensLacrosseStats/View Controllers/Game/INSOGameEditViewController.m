@@ -12,7 +12,7 @@
 #import "LacrosseStats-Swift.h"
 
 #import "INSOGameEditViewController.h"
-#import "INSOMensLacrosseStatsConstants.h"
+#import "LacrosseStatsConstants.h"
 
 #import "Game.h"
 #import "RosterPlayer.h"

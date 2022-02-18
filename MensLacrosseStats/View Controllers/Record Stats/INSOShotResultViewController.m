@@ -9,7 +9,7 @@
 
 #import "AppDelegate.h"
 
-#import "INSOMensLacrosseStatsConstants.h"
+#import "LacrosseStatsConstants.h"
 
 #import "INSOShotResultViewController.h"
 
